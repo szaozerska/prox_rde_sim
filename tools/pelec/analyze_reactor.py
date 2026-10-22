@@ -1,25 +1,38 @@
 """Independent native closed-reactor checks, including a no-op chemistry guard."""
 import argparse
 import json
+import hashlib
 from pathlib import Path
 import cantera as ct
 import numpy as np
 from validation import native_log_errors
 
 
-def analyze(run,mechanism,native_constants=False):
+def analyze(run,mechanism,native_constants=False,additional_times=()):
+    case_path=run/'reactor_case.json'
+    case=json.loads(case_path.read_text()) if case_path.exists() else {}
+    temperature=case.get('temperature_K',1001.)
+    pressure=case.get('pressure_Pa',101325.)
+    composition=case.get('Y',{'H2':.06,'O2':.5,'N2':.44})
+    final_time=case.get('final_time_s',.001)
+    reference_rtol=case.get('reference_rtol',1e-11)
+    reference_atol=case.get('reference_atol',1e-20)
+    if case and hashlib.sha256(mechanism.read_bytes()).hexdigest()!=case['mechanism_sha256']:
+        raise ValueError('Mechanism does not match the declared reactor case')
     def make_phase():
         if native_constants:
-            from native_lidryer_reference import make_reference
+            from native_generated_reference import make_reference
             return make_reference(mechanism)
         return ct.Solution(str(mechanism)),{'kind':'nominal_yaml'}
     import yt
     yt.set_log_level(40)
     status=json.loads((run/'result.json').read_text())
     phase,reference_metadata=make_phase()
-    phase.TPY=1001.,101325.,{'H2':.06,'O2':.5,'N2':.44}
+    if case and phase.species_names!=case['species']:
+        raise ValueError('Reference species ordering differs from native case')
+    phase.TPY=temperature,pressure,composition
     reference=ct.IdealGasReactor(phase,energy='on',clone=True)
-    network=ct.ReactorNet([reference]);network.rtol=1e-11;network.atol=1e-20
+    network=ct.ReactorNet([reference]);network.rtol=reference_rtol;network.atol=reference_atol
     u0=phase.int_energy_mass;scale=max(abs(u0),phase.cv_mass*phase.T)
     initial_elements=np.array([phase.elemental_mass_fraction(e) for e in phase.element_names])
     # Cheap native reductions cover every step; full fields cover endpoints,
@@ -28,9 +41,9 @@ def analyze(run,mechanism,native_constants=False):
     if len(history)<2 or not np.isfinite(history.tolist()).all():
         raise ValueError('Missing/nonfinite native history')
     history_gas,_=make_phase()
-    history_gas.TPY=1001.,101325.,{'H2':.06,'O2':.5,'N2':.44}
+    history_gas.TPY=temperature,pressure,composition
     history_reactor=ct.IdealGasReactor(history_gas,energy='on',clone=True)
-    history_net=ct.ReactorNet([history_reactor]);history_net.rtol=1e-11;history_net.atol=1e-20
+    history_net=ct.ReactorNet([history_reactor]);history_net.rtol=reference_rtol;history_net.atol=reference_atol
     history_temperature_errors=[]
     for t,temperature in zip(history['time'],history['temp']):
         if t>0: history_net.advance(float(t))
@@ -45,6 +58,10 @@ def analyze(run,mechanism,native_constants=False):
     peak_plot=int(np.argmin(abs(np.array(times)-peak_time)))
     chosen=set(np.linspace(0,len(plots)-1,11,dtype=int))
     chosen.update(range(max(0,peak_plot-2),min(len(plots),peak_plot+4)))
+    for requested in additional_times:
+        matches=[i for i,t in enumerate(times) if abs(t-requested)<1e-18]
+        if len(matches)!=1:raise ValueError('Requested comparison field time is unavailable or ambiguous')
+        chosen.add(matches[0])
     rows=[];energy0=None;rho0=None
     for index in sorted(chosen):
         plot=plots[index]
@@ -52,6 +69,8 @@ def analyze(run,mechanism,native_constants=False):
         if not np.isclose(float(np.prod(ds.domain_width)),1.,rtol=0,atol=1e-14):
             raise ValueError('This upstream reactor history assumes a 1 cm3 box')
         if ds.index.max_level!=0: raise ValueError('Expected uniform zeroD control')
+        if not np.array_equal(ds.domain_dimensions,[8,8,8]):
+            raise ValueError('Expected the declared 8 x 8 x 8 native reactor mesh')
         ad=ds.all_data()
         names=['density','Temp','pressure','rho_E']+['Y('+s+')' for s in phase.species_names]
         fields={name:np.asarray(ad['boxlib',name]) for name in names}
@@ -87,7 +106,7 @@ def analyze(run,mechanism,native_constants=False):
             'all_step_mass_budget':float(np.max(abs(history['mass']/history['mass'][0]-1)))<1e-12,
             'all_step_energy_budget':float(np.max(abs(history['rho_E']/history['rho_E'][0]-1)))<1e-10,
             'completed':bool(status['completion_passed']),
-            'initial_and_final_time':abs(rows[0]['time'])<1e-14 and abs(rows[-1]['time']-.001)<1e-13,
+            'initial_and_final_time':abs(rows[0]['time'])<1e-14 and abs(rows[-1]['time']-final_time)<max(1e-15,final_time*1e-10),
             'active_cvode':'Initializing CVODE:' in log and 'WARNING: turning on reactions while using ReactorNull' not in log,
             'temperature_changes':rows[-1]['temperature_K']>rows[0]['temperature_K']+100.,
             'positive_temperature_pressure':all(r['temperature_K']>0 and r['pressure_Pa']>0 for r in rows),
@@ -101,12 +120,14 @@ def analyze(run,mechanism,native_constants=False):
             'species_sum':maxima['mass_fraction_sum_error']<1e-11,
             'species_nonnegative':min(r['minimum_mass_fraction'] for r in rows)>-1e-12,
             'uniformity':maxima['relative_nonuniformity']<1e-8}
+    if case:
+        checks['declared_temperature_interval']=all(300.<=r['temperature_K']<=5000. for r in rows) and bool(np.min(history['temp'])>=300. and np.max(history['temp'])<=5000.)
     return {'passed':all(checks.values()),'reference':reference_metadata,'checks':checks,'maxima':maxima,
             'species':phase.species_names,'records':rows,
             'history_samples':len(history),'max_history_temperature_relative_error':max(history_temperature_errors),
-            'field_samples':len(chosen),'available_field_samples':len(plots),
+            'field_samples':len(chosen),'available_field_samples':len(plots),'additional_comparison_times_s':list(additional_times),
             'sampling_scope':'All-step native mass/energy/temperature reductions; full-cell fields at endpoints, 11 regular samples and heating-peak neighbors',
-            'scope':'LiDryer closed-reactor numerical control at explicitly declared 1001 K; methane/engine validation pending'}
+            'scope':('Declared GRI closed-reactor numerical control; outside-fit thermochemistry and engine validation unresolved' if case else 'LiDryer closed-reactor numerical control at explicitly declared 1001 K; methane/engine validation pending')}
 
 
 if __name__=='__main__':

@@ -1,0 +1,71 @@
+{
+  "numerical_control_passed": true,
+  "checks": {
+    "all_native_field_reference_checks": true,
+    "cpu_within_reference_budget": true,
+    "halfdt_within_reference_budget": true,
+    "tolerance_within_reference_budget": true
+  },
+  "comparisons": {
+    "cpu": {
+      "common_field_samples": 16,
+      "temperature_relative_max_difference": 4.953149002062673e-12,
+      "pressure_relative_max_difference": 6.678879671540017e-12,
+      "species_absolute_max_difference": 8.417239127922471e-12
+    },
+    "halfdt": {
+      "common_field_samples": 16,
+      "temperature_relative_max_difference": 1.4472922860164772e-10,
+      "pressure_relative_max_difference": 1.9469248435655118e-10,
+      "species_absolute_max_difference": 9.760636743294526e-11
+    },
+    "tolerance": {
+      "common_field_samples": 16,
+      "temperature_relative_max_difference": 3.127595515906023e-09,
+      "pressure_relative_max_difference": 4.2108679876307065e-09,
+      "species_absolute_max_difference": 2.106486984843059e-09
+    }
+  },
+  "runs": {
+    "gpu": {
+      "backend": "gpu",
+      "dt": 5e-09,
+      "rtol": 1e-11,
+      "atol": 1e-22,
+      "wall_seconds": 18.215867891000002,
+      "completion_passed": true
+    },
+    "cpu": {
+      "backend": "cpu",
+      "dt": 5e-09,
+      "rtol": 1e-11,
+      "atol": 1e-22,
+      "wall_seconds": 155.162431341,
+      "completion_passed": true
+    },
+    "halfdt": {
+      "backend": "gpu",
+      "dt": 2.5e-09,
+      "rtol": 1e-11,
+      "atol": 1e-22,
+      "wall_seconds": 21.741655791,
+      "completion_passed": true
+    },
+    "tolerance": {
+      "backend": "gpu",
+      "dt": 5e-09,
+      "rtol": 1e-10,
+      "atol": 1e-20,
+      "wall_seconds": 15.433015378,
+      "completion_passed": true
+    }
+  },
+  "max_all_step_temperature_error": {
+    "gpu": 2.635860418820357e-10,
+    "cpu": 2.5862689767564007e-10,
+    "halfdt": 2.019082678827999e-09,
+    "tolerance": 3.391181113698849e-09
+  },
+  "scope": "Declared generated-GRI polynomial-law closed reactor only. Thermo fit validity, propagation, geometry and sustained-wave predictions remain unverified.",
+  "runtime_caveat": "CPU executable is serial; shared allocation reserves an H100 even for CPU controls. These timings are not a CPU-only cost or 3D-engine throughput comparison."
+}

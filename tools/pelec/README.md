@@ -1,7 +1,7 @@
 # Pinned PeleC trial
 
 One native GPU candidate, same-source CPU verification controls, installed
-OpenFOAM/detonationFoam fallback. No fork of numerical physics. `source_lock.json`
+OpenFOAM/detonationFoam fallback. Use upstream numerical kernels; the experimental GRI inverse-bound overlay is explicitly recorded and is limited to numerical controls. `source_lock.json`
 pins the upstream source, recursive submodules and amd64 CUDA image digest.
 The build records actual compiler/package versions and binary hash. Later
 rebuilding apt packages may differ; reuse the cached successful image for runs.
@@ -84,3 +84,14 @@ binary hashes and does not change rate constants or numerical source. This optio
 failed to cure the reactor step-limit error and is retained only as a rejected diagnostic. The default cached build remains
 available; full reacting throughput and the one-to-two-hour engine target remain
 unmeasured.
+
+
+Methane preflight and its unresolved model limits are in
+[the G2 evidence](../../docs/verification/pelec_g2/README.md).
+`methane_preflight.py NEW_OUTPUT --znd` reuses the inherited physical references.
+`modal_thermo_audit.py` probes compiled operators; its explicit
+`--gri-inverse-bound 5000` option does not extend thermodynamic fit validity.
+`native_generated_reference.py` preserves the LiDryer diagnostic and adds only
+the pinned GRI mechanism after a direct source-rate audit; nominal comparisons
+remain separate. `modal_methane.py` uses a capped native reactor and explicit
+state metadata, never an engine run. No imports launch jobs.

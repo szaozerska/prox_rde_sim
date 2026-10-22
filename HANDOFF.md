@@ -11,22 +11,23 @@ The [3D plan](first_sim_plan.md) supersedes implementation ordering in inherited
 2D documents. Self-review rounds are in [the review log](docs/plans/3d_plan_reviews.md).
 Keep the [implementation record](docs/verification/3d_progress.md) current.
 
-T0-T2 are complete for detonationFoam. Revision 12 prioritizes a bounded
+T0-T2 are complete for detonationFoam. Revision 14 prioritizes a bounded
 PeleC/Modal GPU trial (G0 and G1a native shock/reactor controls passed), retaining detonationFoam as fallback. Do not
 complete two full CPU/GPU engine stacks. About eight GPUs are authorized initially;
 Modal CPU and one-H100 access passed. Native PeleC CUDA smoke and independent
 field/budget checks passed; reacting throughput and multi-GPU scaling are unknown. See [the literature/runtime decision record](docs/plans/3d_literature_runtime_review.md).
 User authorized early implementation; the 14:30 kickoff is paused. G1a passed against the explicitly identified generated-rate reference; details are
 in docs/verification/pelec_g1/README.md. G1b/c and methane G2 remain open.
-The methane preflight has found a 3000 K native inversion bound in DRM19/GRI;
-do not build an engine case through that inconsistency. Routine cases must fit the measured two-hour gate; no full-engine runtime has
+The methane preflight isolated the 3000 K GRI inverse inconsistency. A documented
+5000 K inverse-bound overlay passes numerical tests but does not extend physical
+thermo validity. Small declared-law methane reactor controls now pass on CPU/H100 with step and
+tolerance checks; full physical/propagation/engine gates remain open. See docs/verification/pelec_g2/README.md. Routine cases must fit the measured two-hour gate; no full-engine runtime has
 been measured. Sustained-wave design screening requires the coupling/refill,
 window, numerical/model sensitivity and negative-control gates in revision 12. All physics gates remain
 in the selected backend; no OpenFOAM mesh pass transfers to PeleC embedded geometry.
 Homebrew installed Colima, Lima and Docker; a dedicated two-CPU/4 GiB `rde3d`
 profile mounts only this checkout and its temporary staging. Do not use the
-original checkout as a native-case output destination. The bounded tutorial-based installation check passed. No 3D flow or methane chemistry
-validation has passed yet. Do not run a full reactive engine through missing gates.
+original checkout as a native-case output destination. The bounded tutorial-based installation check passed. No reactive 3D engine flow or physical methane-model validation has passed yet. Do not run a full reactive engine through missing gates.
 
 Pinned detonationFoam candidate: `4bd2e86003447fdb143b475f199c846146f754e3`,
 OpenFOAM 8. Source audit identified early success exit, species clipping and

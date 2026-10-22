@@ -1,0 +1,42 @@
+{
+  "commands": [
+    [
+      "cmake",
+      "--build",
+      "/opt/PeleC/build-cpu",
+      "--target",
+      "PeleC-MethaneZeroD",
+      "-j",
+      "12"
+    ],
+    [
+      "cmake",
+      "--build",
+      "/opt/PeleC/build-gpu",
+      "--target",
+      "PeleC-MethaneZeroD",
+      "-j",
+      "12"
+    ]
+  ],
+  "binary_sha256": {
+    "cpu": "96a61075df804f0aab779ed1fbc689de3ee2bed2bffcd1ecb4105ce73ed1b56b",
+    "gpu": "e76f9b4c41007a1717bc296b28e11580e93ceb36f93eb12943fe9fa700e40b6d"
+  },
+  "overlay_sha256": {
+    "prob.cpp": "ce845f41ce568f301bd54c476d4277b56b6474180d717f0abe222fa9f1992146",
+    "prob_parm.H": "d4d9327ab2d103eb739158b7c5ea71bbab3d2075ea3679e3b0834412112ea681",
+    "prob.H": "01215b01f8dcffd28c9de4102a84d655fb1ccf25d7df8a3ebb59fc90095255c8",
+    "CMakeLists.txt": "c804af03f23b007375e303e94ed93a2029281c17aefc23a5de7acf35dbb827bf"
+  },
+  "wall_seconds": 303.56704173099996,
+  "patch": {
+    "before": "amrex::Real tmax = 3000.0; // min upper bound for thermo def",
+    "after": "amrex::Real tmax = 5000.0; // explicit polynomial-consistency diagnostic; NOT extended data validity",
+    "replacements": 2,
+    "original_header_sha256": "2b736af90daa5a3212404b7d692cac943f1bd277bb9ba78e1aa8de76db64f01e",
+    "patched_header_sha256": "e842f0ebab0ce61108f2f651c979022491b26d6a42ba067a1d3e99fb62bd48ca",
+    "scope": "Temperature inversion consistency only; fits/rates unchanged; outside-fit physical validity unresolved"
+  },
+  "scope": "Numerical methane reactor controls only; no engine/design validation"
+}

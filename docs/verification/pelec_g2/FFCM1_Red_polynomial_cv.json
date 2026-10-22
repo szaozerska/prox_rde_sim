@@ -1,0 +1,136 @@
+{
+  "scope": "Polynomial extrema only; fit validity is unchanged",
+  "temperature_interval_K": [
+    300,
+    5000
+  ],
+  "all_positive": true,
+  "species": [
+    {
+      "species": "N2",
+      "minimum_cv_over_R": 2.502978919835,
+      "temperature_K": 300.0,
+      "positive": true
+    },
+    {
+      "species": "H2",
+      "minimum_cv_over_R": 2.469951856159,
+      "temperature_K": 300.0,
+      "positive": true
+    },
+    {
+      "species": "H",
+      "minimum_cv_over_R": 1.5,
+      "temperature_K": 300.0,
+      "positive": true
+    },
+    {
+      "species": "O",
+      "minimum_cv_over_R": 1.5042089590696268,
+      "temperature_K": 1998.764056136964,
+      "positive": true
+    },
+    {
+      "species": "O2",
+      "minimum_cv_over_R": 2.534572525267,
+      "temperature_K": 300.0,
+      "positive": true
+    },
+    {
+      "species": "OH",
+      "minimum_cv_over_R": 2.5458707467414077,
+      "temperature_K": 507.34886840682185,
+      "positive": true
+    },
+    {
+      "species": "H2O",
+      "minimum_cv_over_R": 3.0407243485,
+      "temperature_K": 300.0,
+      "positive": true
+    },
+    {
+      "species": "HO2",
+      "minimum_cv_over_R": 3.201112599425,
+      "temperature_K": 300.0,
+      "positive": true
+    },
+    {
+      "species": "CO",
+      "minimum_cv_over_R": 2.5051039998510003,
+      "temperature_K": 300.0,
+      "positive": true
+    },
+    {
+      "species": "CO2",
+      "minimum_cv_over_R": 3.476256031212,
+      "temperature_K": 300.0,
+      "positive": true
+    },
+    {
+      "species": "CH",
+      "minimum_cv_over_R": 2.5089636945700002,
+      "temperature_K": 300.0,
+      "positive": true
+    },
+    {
+      "species": "CH2",
+      "minimum_cv_over_R": 3.214554889046,
+      "temperature_K": 300.0,
+      "positive": true
+    },
+    {
+      "species": "CH2(S)",
+      "minimum_cv_over_R": 3.064752178149,
+      "temperature_K": 300.0,
+      "positive": true
+    },
+    {
+      "species": "CH3",
+      "minimum_cv_over_R": 3.6276975388399997,
+      "temperature_K": 300.0,
+      "positive": true
+    },
+    {
+      "species": "CH4",
+      "minimum_cv_over_R": 3.3010222153100006,
+      "temperature_K": 300.0,
+      "positive": true
+    },
+    {
+      "species": "HCO",
+      "minimum_cv_over_R": 3.1745754313480004,
+      "temperature_K": 300.0,
+      "positive": true
+    },
+    {
+      "species": "CH2O",
+      "minimum_cv_over_R": 3.26286876331,
+      "temperature_K": 300.0,
+      "positive": true
+    },
+    {
+      "species": "CH2OH",
+      "minimum_cv_over_R": 4.7141561325,
+      "temperature_K": 300.0,
+      "positive": true
+    },
+    {
+      "species": "CH3O",
+      "minimum_cv_over_R": 4.1332158209,
+      "temperature_K": 300.0,
+      "positive": true
+    },
+    {
+      "species": "CH3OH",
+      "minimum_cv_over_R": 4.175990759299999,
+      "temperature_K": 300.0,
+      "positive": true
+    },
+    {
+      "species": "HE",
+      "minimum_cv_over_R": 1.5,
+      "temperature_K": 300.0,
+      "positive": true
+    }
+  ]
+}

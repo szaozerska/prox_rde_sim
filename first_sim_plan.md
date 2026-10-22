@@ -68,7 +68,7 @@ rebuild and verify the native geometry. Do not transfer OpenFOAM verification st
 | G1a | Upstream tiny cold shock and zero-D reactor on CPU and one GPU, same source/inputs/FP64. Compare reference solutions, short-time fields, species and elemental/energy budgets. | Single GPU; tests target seconds to a few minutes once built. No eight-GPU request for tiny tests. |
 | G1b | Full-annulus plus core-end EB geometry; analytic volume/areas, correct normals, closed cold equilibrium, directional shock. Instrument species/state repairs and their integrated mass/energy effects. | At most two angular/grid orientations/resolutions initially. T2 OpenFOAM pass does not count as this pass. |
 | G1c | One fixed refinement interface before dynamic AMR: cold shock/contact crosses it; compare uniform fine reference, composite conservation and regridding corrections. Reactive crossing follows G2b, before any reactive AMR engine run. Then small restart and MPI/GPU decomposition equivalence checks. | Reuse upstream EB-C7/C8/C3 and project reference states. Avoid building a general test framework. |
-| G2a | Thermo/units and closed-reactor checks for one methane/oxygen mechanism against Cantera, including compressed and hot-product/fresh mixtures. | Test an existing documented reduced mechanism first; do not invent a reduction or fit rates to force survival. Detailed mechanism stays a small-case reference. |
+| G2a | Thermo/units and closed-reactor checks for one methane/oxygen mechanism against Cantera, including compressed and hot-product/fresh mixtures. | Reduced candidates are screened against the detailed reference before use. FFCM1_Red changes ignition classification; keep full GRI for small numerical controls while mechanism suitability remains open. Do not fit rates to force survival. |
 | G2b | Native 1D formed detonation: two initial grid levels and a timestep halving; speed, induction/heat-release distance and continued shock/reaction coupling. Add a third level only if needed to resolve uncertainty. | Select the cheapest numerical setup that preserves the intended diagnostic. A fast wrong propagation solution fails. |
 | G3 | Short representative reacting workload on 1, 2, 4, then 8 GPUs when useful. Same cells, mechanism, precision, output and physical interval. Record startup, compute, chemistry, communication, I/O and peak memory. | Stop scaling when end-to-end time ceases improving. Choose one multi-GPU case or several independent checks from measured results. |
 | G4a | Smooth full-annulus/core-expansion, ideal-gas mixture, premixed feed, inviscid adiabatic slip walls, controlled initial charge; first checkpoint at one reference passage (63.131 us). | Requires G1/G2 gates, measured resource feasibility and native boundary budgets. Exploratory only; no injector mixing, heat loss, turbulence or experimental mean claims. |
@@ -391,7 +391,7 @@ References: [Mundt thesis](Mundt2023.pdf), [model audit](docs/verification/mundt
 
 ## Baseline and current status
 
-Revision 13 incorporates native-control evidence. G0 and G1a shock/closed-reactor
+Revision 14 incorporates native-control and methane preflight evidence. G0 and G1a shock/closed-reactor
 controls passed on CPU and one H100; native geometry/refinement G1b/c and methane
 G2 remain open. The generated-rate reference distinction and order-5 chemistry
 configuration are recorded in [G1a evidence](docs/verification/pelec_g1/README.md). Reacting throughput,
@@ -424,3 +424,33 @@ validated high-temperature thermochemistry. A second existing candidate may be
 screened to resolve this incompatibility; no broad mechanism search or invented
 reduction is required. Its kinetics, provenance and high-pressure scope must
 pass before any native methane propagation or engine case.
+
+
+## Revision 14 — methane law consistency before an engine choice
+
+The [G2 preflight](docs/verification/pelec_g2/README.md) rejects selecting FFCM1_Red
+from CJ agreement alone: independent refined ignition screens change event
+classification. This does not establish GRI as experimental truth. Full GRI is
+the paper-comparison baseline for small controls; measure its native cost before
+considering a reduced production mechanism. No CPU/GPU branch split is needed.
+
+The pinned GRI inverse uses a 3000 K bound while forward thermo and the paper-model
+reference extrapolate polynomials to hotter states. An explicit two-line build
+overlay extends only the inverse numerical interval to 5000 K. Compiled energy
+and enthalpy tests pass, but published thermo fit limits remain unchanged. Keep
+`numerical_consistency_passed` separate from the still-failing full physical
+preflight. The overlay is permitted only for numerical controls of the declared
+law. It cannot authorize engine/design conclusions through the physical gate.
+
+Before G2b/engine interpretation, document a defensible high-temperature thermo
+choice/sensitivity and mechanism applicability at the relevant pressure, mixture
+and temperature. If changing those assumptions changes propagation or extinction,
+report model uncertainty rather than one design verdict. GRI/paper consistency,
+independent integration and experimental validity are distinct checks.
+
+The 0.5-us homogeneous postshock methane numerical control now passes:
+independent reference refinement, native CPU/GPU agreement, whole-history and
+peak-species checks, and separate timestep/tolerance sensitivity. Same native
+PeleC/CVODE physics and the existing analyzer are reused. G1b/c geometry and cold
+refinement controls remain independent work; neither is waived. Native runtime
+for a small reactor is not a 3D engine throughput estimate.

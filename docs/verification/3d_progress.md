@@ -337,3 +337,39 @@ The source/probe review for G2 identified a distinct hot-state issue: native
 DRM19/GRI temperature inversion extrapolates above 3000 K, below Run 937 reference
 product temperature. Methane case construction waits on that preflight. Native
 annulus/AMR, propagation, sustained-wave and runtime gates remain open.
+
+
+## G2 preflight — mechanism and inverse-thermo issues separated
+
+[Evidence and decisions](pelec_g2/README.md): original GRI/DRM hot-state inverse
+round trips fail; an explicit diagnostic GRI bound correction passes numerical
+energy/enthalpy checks, without extending physical fit validity. FFCM1_Red has
+similar CJ speed but materially different ignition/length behavior; it is not
+selected as the sustained-wave default. The independent closed-reactor reference
+passes to 0.5 us and stays below the declared 5000 K polynomial interval. Native
+control construction uses a small upstream zeroD initializer overlay, not custom
+flux/chemistry integration. Physical methane/engine gates remain open.
+
+Reproducible CJ/ZND/ignition driver added, preserving the starter's default GRI
+reference. A mutable Cantera phase reused between ZND refinements was caught by
+the peak-validity check; resetting to the stored VN state fixes it. Failed output
+is retained. Sixteen 3D unit tests pass in 0.273 s, including three observed thermo
+regressions. Compiled GRI source rates also match the explicitly source-derived
+Cantera representation to 3.8e-14 normalized; nominal YAML differences are retained.
+
+
+G2 numerical-control completion: the declared GRI polynomial-law closed reactor
+passes CPU/H100, timestep and tolerance checks. H100 18.22 s, serial CPU 155.16 s,
+half-step H100 21.74 s; no engine throughput claim. Native/source-derived reference
+errors are <3.4e-9 across these controls, with full field budgets and species checks.
+Nominal-YAML identity still fails its strict threshold for documented generation
+constants; it is not silently relabelled as a pass. Shared saved field times were
+added after the comparison rejected insufficient overlap in automatic subsamples.
+The inherited hydrogen control reanalysis passes. Five reference tests pass from
+the correct cwd; an earlier incorrect-cwd import failure is recorded.
+
+G1b cold geometry work now uses the existing native implicit-function parser and
+Sod/GammaLaw executable. No geometry CFD source rewrite is needed. This independent
+control must still verify volume/connectivity/equilibrium and later surface
+areas/normals, directional fluxes and corrections; it does not advance through
+the unresolved methane physical-model gate.

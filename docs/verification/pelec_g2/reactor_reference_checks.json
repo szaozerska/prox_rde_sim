@@ -1,0 +1,35 @@
+{
+  "checks": {
+    "reference_refinement": true,
+    "energy": true,
+    "elements": true,
+    "density": true,
+    "species_sum": true,
+    "positive_species": true,
+    "within_declared_polynomial_interval": true,
+    "finite": true,
+    "reaction_occurs": true
+  },
+  "passed": true,
+  "differences": {
+    "temperature_relative": 5.799318802957032e-10,
+    "pressure_relative": 8.759770686594948e-10,
+    "species_absolute": 6.744830804983337e-10
+  },
+  "max_temperature_K": 4640.676196742314,
+  "reference_errors": [
+    {
+      "energy": 1.3225426115068417e-12,
+      "elements": 7.438494264988549e-15,
+      "density": 0.0,
+      "species_sum": 8.43769498715119e-15
+    },
+    {
+      "energy": 2.2413183198122178e-13,
+      "elements": 9.103828801926284e-15,
+      "density": 0.0,
+      "species_sum": 1.0880185641326534e-14
+    }
+  ],
+  "scope": "Numerical closed-reactor law control, including explicit outside-fit polynomial extrapolation; not physical validation"
+}

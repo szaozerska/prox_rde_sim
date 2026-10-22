@@ -10,7 +10,7 @@ an add-on; existing physics, thermochemical references, tests and figure roadmap
 are retained. Installation/mesh checks do not establish sustained detonation.
 Only commit and push to `3d-modelling` from this checkout.
 
-Current direction: [revision 13](first_sim_plan.md) evaluates PeleC for Modal GPU
+Current direction: [revision 14](first_sim_plan.md) evaluates PeleC for Modal GPU
 production, with small same-backend CPU checks and the installed detonationFoam
 fallback. No separate CPU/GPU model branches. See [solver choices and speed/accuracy
 tradeoffs](docs/plans/3d_literature_runtime_review.md). Modal CPU access passed;
@@ -24,8 +24,11 @@ new mesh with `python -m rde3d.prepare --out runs3d/my_mesh`, then verify it wit
 `python -m rde3d.mesh_metrics runs3d/my_mesh`. Run fast add-on checks with
 `python -m unittest discover -s rde3d/tests -v`. Use the existing Python environment
 or install the pinned repository requirements. Native setup is documented in
-[tools/openfoam](tools/openfoam/README.md). Cold flow and methane chemistry still
-have separate gates; no sustained 3D engine result is claimed.
+[tools/openfoam](tools/openfoam/README.md). Native methane closed-reactor numerical controls now pass on CPU/H100 with
+timestep/tolerance checks; their explicit thermo assumption and remaining physical
+limits are in [G2 evidence](docs/verification/pelec_g2/README.md). Cold geometry,
+propagation and experimental validation remain separate gates; no sustained 3D
+engine result is claimed.
 
 The documentation below describes the inherited 2D backend at the frozen baseline.
 Its unresolved Run 937 result remains open.

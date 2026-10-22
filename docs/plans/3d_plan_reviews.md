@@ -221,3 +221,26 @@ forward thermo, fit ranges and mechanism provenance. Test a second existing
 candidate only if this first screen rejects DRM19; do not silently extend data
 ranges or mistake a different mechanism's thermodynamic pass for kinetic
 validation. These source/operator checks precede a methane GPU build.
+
+
+## Round 14 — reduced-model agreement and thermo correction scope
+
+Issue: FFCM1_Red's 0.04% CJ agreement conceals 11–16% reaction-length differences
+and a changed cooler/high-pressure ignition classification. Fix: retain full GRI
+as the paper-comparison control; do not choose a reduced production model solely
+for speed. Tightened independent integration preserves the classification, so
+this is a model difference, not ODE accumulation. It is not proof GRI is truth.
+
+Issue: native GRI forward/inverse thermo is inconsistent above 3000 K. A diagnostic
+two-line inverse-bound overlay fixes the numerical round trip through 5000 K,
+without changing rates or coefficients. Published fit limits are still exceeded.
+Fix: separate numerical-law verification from physical suitability; regression
+tests prevent a corrected inverse from passing the physical fit gate. Only small
+numerical reactor controls may proceed under this explicit assumption. No engine
+propagation/survival conclusion is authorized by it.
+
+Recheck: original/diagnostic compiled energy and enthalpy operators, every species'
+polynomial cv extrema, independent ZND/ignition refinement and conservation, plus
+16 fast 3D tests. A new reference-wrapper state-reuse error was caught by the
+strict ZND peak check, corrected by resetting the frozen state, and re-run.
+The two-hour target remains a measured future gate, not an estimate from controls.

@@ -63,12 +63,12 @@ def _state(gas):
                 Y=gas.Y.tolist())
 
 
-def _cj(ct,post,thermo,pressure,temperature,phi,tolerance=1e-8,minimum_tolerance=1e-7):
+def _cj(ct,post,thermo,pressure,temperature,phi,tolerance=1e-8,minimum_tolerance=1e-7,mechanism="gri30.yaml"):
     if not np.isfinite([pressure,temperature,phi]).all() or min(pressure,temperature,phi)<=0:
         raise ValueError('positive finite pressure, temperature and equivalence ratio required')
     composition={'CH4':float(phi),'O2':2.}
-    initial=ct.Solution('gri30.yaml',transport_model=None);initial.TPX=temperature,pressure,composition
-    work=ct.Solution('gri30.yaml',transport_model=None)
+    initial=ct.Solution(mechanism,transport_model=None);initial.TPX=temperature,pressure,composition
+    work=ct.Solution(mechanism,transport_model=None)
     def evaluate(ratio):
         work.TPX=temperature,pressure,composition
         result=post.CJ_calc(work,initial,tolerance,tolerance,ratio)

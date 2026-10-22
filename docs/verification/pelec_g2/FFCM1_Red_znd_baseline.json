@@ -1,0 +1,29 @@
+{
+  "method": "BDF on unmodified SDToolbox ZNDSys",
+  "rtol": 1e-07,
+  "atol": 1e-11,
+  "max_step_s": 2e-09,
+  "numerical_warnings": [],
+  "requested_end_s": 2e-06,
+  "actual_end_s": 2e-06,
+  "termination": "The solver successfully reached the end of the integration interval.",
+  "stopped_at_sonic_event": false,
+  "samples": 1577,
+  "raw_species_min": -8.500997237922767e-31,
+  "raw_species_sum_max_error": 6.439293542825908e-13,
+  "invariant_relative_residuals": {
+    "energy": 6.774538592043387e-05,
+    "momentum": 7.350740293708724e-08
+  },
+  "induction_time_max_dTdt_s": 1.4941202539660057e-07,
+  "induction_length_vn_velocity_m": 4.0772546635049246e-05,
+  "distance_at_max_dTdt_m": 4.767998493679152e-05,
+  "cell_size_factor29_proxy_m": 0.001182403852416428,
+  "peak_thermicity_time_s": 1.494399704615505e-07,
+  "heat_fraction_lengths_m": {
+    "0.5": 4.576874342728218e-05,
+    "0.9": 5.346700252752443e-05,
+    "0.95": 5.8331177666756864e-05
+  },
+  "final_heat_fraction": 0.9993010183543956
+}

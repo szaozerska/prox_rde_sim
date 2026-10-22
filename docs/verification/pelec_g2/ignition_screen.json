@@ -1,0 +1,674 @@
+[
+  {
+    "mechanism": "grimech30",
+    "initial_temperature_K": 1001.0,
+    "pressure_Pa": 377916.97229176015,
+    "target_temperature_K": 1401.0,
+    "time_to_400K_rise_s": null,
+    "event_bracket_s": [
+      0.0019994098358945564,
+      0.0020014098358945563
+    ],
+    "event_bracket_temperature_K": [
+      1001.0230641738061,
+      1001.0231188240351
+    ],
+    "requested_horizon_s": 0.002,
+    "rtol": 1e-10,
+    "atol": 1e-20,
+    "max_step_s": 2e-06,
+    "steps": 1086,
+    "invariant_errors": {
+      "energy": 1.6680220884087627e-15,
+      "density": 0.0,
+      "elements": 7.771561172376096e-16,
+      "species_sum": 1.4432899320127035e-15
+    },
+    "wall_seconds": 0.48632490700038034,
+    "scope": "Independent homogeneous constant-volume mechanism sensitivity; not experimental ignition/extinction"
+  },
+  {
+    "mechanism": "grimech30",
+    "initial_temperature_K": 1001.0,
+    "pressure_Pa": 377916.97229176015,
+    "target_temperature_K": 1401.0,
+    "time_to_400K_rise_s": null,
+    "event_bracket_s": [
+      0.0019994640935400024,
+      0.0020004640935400025
+    ],
+    "event_bracket_temperature_K": [
+      1001.023065655782,
+      1001.0230929756648
+    ],
+    "requested_horizon_s": 0.002,
+    "rtol": 1e-11,
+    "atol": 1e-22,
+    "max_step_s": 1e-06,
+    "steps": 2148,
+    "invariant_errors": {
+      "energy": 1.630954930888568e-15,
+      "density": 0.0,
+      "elements": 2.886579864025407e-15,
+      "species_sum": 2.886579864025407e-15
+    },
+    "wall_seconds": 0.6817946850023873,
+    "scope": "Independent homogeneous constant-volume mechanism sensitivity; not experimental ignition/extinction"
+  },
+  {
+    "mechanism": "FFCM1_Red",
+    "initial_temperature_K": 1001.0,
+    "pressure_Pa": 377916.97229176015,
+    "target_temperature_K": 1401.0,
+    "time_to_400K_rise_s": null,
+    "event_bracket_s": [
+      0.0019998185184256423,
+      0.002001818518425642
+    ],
+    "event_bracket_temperature_K": [
+      1001.2014609814062,
+      1001.2019873999792
+    ],
+    "requested_horizon_s": 0.002,
+    "rtol": 1e-10,
+    "atol": 1e-20,
+    "max_step_s": 2e-06,
+    "steps": 1124,
+    "invariant_errors": {
+      "energy": 1.4441547459948172e-15,
+      "density": 0.0,
+      "elements": 1.1102230246251565e-15,
+      "species_sum": 1.3322676295501878e-15
+    },
+    "wall_seconds": 0.17406475400275667,
+    "scope": "Independent homogeneous constant-volume mechanism sensitivity; not experimental ignition/extinction"
+  },
+  {
+    "mechanism": "FFCM1_Red",
+    "initial_temperature_K": 1001.0,
+    "pressure_Pa": 377916.97229176015,
+    "target_temperature_K": 1401.0,
+    "time_to_400K_rise_s": null,
+    "event_bracket_s": [
+      0.0019996581773164012,
+      0.0020006581773164014
+    ],
+    "event_bracket_temperature_K": [
+      1001.2014188168008,
+      1001.2016818786593
+    ],
+    "requested_horizon_s": 0.002,
+    "rtol": 1e-11,
+    "atol": 1e-22,
+    "max_step_s": 1e-06,
+    "steps": 2210,
+    "invariant_errors": {
+      "energy": 2.9993983186046207e-15,
+      "density": 0.0,
+      "elements": 1.6653345369377348e-15,
+      "species_sum": 1.4432899320127035e-15
+    },
+    "wall_seconds": 0.25586670600023353,
+    "scope": "Independent homogeneous constant-volume mechanism sensitivity; not experimental ignition/extinction"
+  },
+  {
+    "mechanism": "grimech30",
+    "initial_temperature_K": 1001.0,
+    "pressure_Pa": 22984274.661736142,
+    "target_temperature_K": 1401.0,
+    "time_to_400K_rise_s": 0.0012953109743374716,
+    "event_bracket_s": [
+      0.0012953102541788586,
+      0.0012953129821971932
+    ],
+    "event_bracket_temperature_K": [
+      1400.8133210699984,
+      1401.5204757641197
+    ],
+    "requested_horizon_s": 0.002,
+    "rtol": 1e-10,
+    "atol": 1e-20,
+    "max_step_s": 2e-06,
+    "steps": 2207,
+    "invariant_errors": {
+      "energy": 2.398415600481192e-11,
+      "density": 0.0,
+      "elements": 5.329070518200751e-15,
+      "species_sum": 6.217248937900877e-15
+    },
+    "wall_seconds": 0.7594739539999864,
+    "scope": "Independent homogeneous constant-volume mechanism sensitivity; not experimental ignition/extinction"
+  },
+  {
+    "mechanism": "grimech30",
+    "initial_temperature_K": 1001.0,
+    "pressure_Pa": 22984274.661736142,
+    "target_temperature_K": 1401.0,
+    "time_to_400K_rise_s": 0.0012953109747558087,
+    "event_bracket_s": [
+      0.0012953102059958524,
+      0.0012953127990574364
+    ],
+    "event_bracket_temperature_K": [
+      1400.8007833380705,
+      1401.4727500147417
+    ],
+    "requested_horizon_s": 0.002,
+    "rtol": 1e-11,
+    "atol": 1e-22,
+    "max_step_s": 1e-06,
+    "steps": 3083,
+    "invariant_errors": {
+      "energy": 2.2365952176110295e-12,
+      "density": 0.0,
+      "elements": 3.6637359812630166e-15,
+      "species_sum": 3.885780586188048e-15
+    },
+    "wall_seconds": 0.8561369080016448,
+    "scope": "Independent homogeneous constant-volume mechanism sensitivity; not experimental ignition/extinction"
+  },
+  {
+    "mechanism": "FFCM1_Red",
+    "initial_temperature_K": 1001.0,
+    "pressure_Pa": 22984274.661736142,
+    "target_temperature_K": 1401.0,
+    "time_to_400K_rise_s": null,
+    "event_bracket_s": [
+      0.0019983734941748195,
+      0.0020003734941748193
+    ],
+    "event_bracket_temperature_K": [
+      1013.6991878323281,
+      1013.7137950738098
+    ],
+    "requested_horizon_s": 0.002,
+    "rtol": 1e-10,
+    "atol": 1e-20,
+    "max_step_s": 2e-06,
+    "steps": 1496,
+    "invariant_errors": {
+      "energy": 3.554842451679551e-15,
+      "density": 0.0,
+      "elements": 1.5543122344752192e-15,
+      "species_sum": 1.5543122344752192e-15
+    },
+    "wall_seconds": 0.2590418210020289,
+    "scope": "Independent homogeneous constant-volume mechanism sensitivity; not experimental ignition/extinction"
+  },
+  {
+    "mechanism": "FFCM1_Red",
+    "initial_temperature_K": 1001.0,
+    "pressure_Pa": 22984274.661736142,
+    "target_temperature_K": 1401.0,
+    "time_to_400K_rise_s": null,
+    "event_bracket_s": [
+      0.001999646246400038,
+      0.002000646246400038
+    ],
+    "event_bracket_temperature_K": [
+      1013.7084817487719,
+      1013.71578834765
+    ],
+    "requested_horizon_s": 0.002,
+    "rtol": 1e-11,
+    "atol": 1e-22,
+    "max_step_s": 1e-06,
+    "steps": 2709,
+    "invariant_errors": {
+      "energy": 3.591872060551212e-15,
+      "density": 0.0,
+      "elements": 5.551115123125783e-15,
+      "species_sum": 5.551115123125783e-15
+    },
+    "wall_seconds": 0.6015551559976302,
+    "scope": "Independent homogeneous constant-volume mechanism sensitivity; not experimental ignition/extinction"
+  },
+  {
+    "mechanism": "grimech30",
+    "initial_temperature_K": 1500.0,
+    "pressure_Pa": 377916.97229176015,
+    "target_temperature_K": 1900.0,
+    "time_to_400K_rise_s": 9.556254540503234e-05,
+    "event_bracket_s": [
+      9.55552333263552e-05,
+      9.556433696613706e-05
+    ],
+    "event_bracket_temperature_K": [
+      1898.774448258784,
+      1900.3002772437678
+    ],
+    "requested_horizon_s": 0.002,
+    "rtol": 1e-10,
+    "atol": 1e-20,
+    "max_step_s": 2e-06,
+    "steps": 1289,
+    "invariant_errors": {
+      "energy": 1.5967970463235612e-12,
+      "density": 0.0,
+      "elements": 1.887379141862766e-15,
+      "species_sum": 2.4424906541753444e-15
+    },
+    "wall_seconds": 0.5894802490001894,
+    "scope": "Independent homogeneous constant-volume mechanism sensitivity; not experimental ignition/extinction"
+  },
+  {
+    "mechanism": "grimech30",
+    "initial_temperature_K": 1500.0,
+    "pressure_Pa": 377916.97229176015,
+    "target_temperature_K": 1900.0,
+    "time_to_400K_rise_s": 9.55625502229933e-05,
+    "event_bracket_s": [
+      9.556112246846238e-05,
+      9.556568215122491e-05
+    ],
+    "event_bracket_temperature_K": [
+      1899.759732800523,
+      1900.5270511203923
+    ],
+    "requested_horizon_s": 0.002,
+    "rtol": 1e-11,
+    "atol": 1e-22,
+    "max_step_s": 1e-06,
+    "steps": 1936,
+    "invariant_errors": {
+      "energy": 3.287955819856392e-13,
+      "density": 0.0,
+      "elements": 5.440092820663267e-15,
+      "species_sum": 4.6629367034256575e-15
+    },
+    "wall_seconds": 0.4336483290026081,
+    "scope": "Independent homogeneous constant-volume mechanism sensitivity; not experimental ignition/extinction"
+  },
+  {
+    "mechanism": "FFCM1_Red",
+    "initial_temperature_K": 1500.0,
+    "pressure_Pa": 377916.97229176015,
+    "target_temperature_K": 1900.0,
+    "time_to_400K_rise_s": 6.919965413822902e-05,
+    "event_bracket_s": [
+      6.91884169701708e-05,
+      6.920415780595114e-05
+    ],
+    "event_bracket_temperature_K": [
+      1899.1610724673924,
+      1900.3362280274023
+    ],
+    "requested_horizon_s": 0.002,
+    "rtol": 1e-10,
+    "atol": 1e-20,
+    "max_step_s": 2e-06,
+    "steps": 1156,
+    "invariant_errors": {
+      "energy": 2.16803249118555e-12,
+      "density": 0.0,
+      "elements": 3.1086244689504383e-15,
+      "species_sum": 3.3306690738754696e-15
+    },
+    "wall_seconds": 0.16552914500061888,
+    "scope": "Independent homogeneous constant-volume mechanism sensitivity; not experimental ignition/extinction"
+  },
+  {
+    "mechanism": "FFCM1_Red",
+    "initial_temperature_K": 1500.0,
+    "pressure_Pa": 377916.97229176015,
+    "target_temperature_K": 1900.0,
+    "time_to_400K_rise_s": 6.919965701440722e-05,
+    "event_bracket_s": [
+      6.919575874752772e-05,
+      6.92093695698435e-05
+    ],
+    "event_bracket_temperature_K": [
+      1899.708139970653,
+      1900.7271710229913
+    ],
+    "requested_horizon_s": 0.002,
+    "rtol": 1e-11,
+    "atol": 1e-22,
+    "max_step_s": 1e-06,
+    "steps": 1649,
+    "invariant_errors": {
+      "energy": 1.994361244363428e-13,
+      "density": 0.0,
+      "elements": 2.9976021664879227e-15,
+      "species_sum": 3.774758283725532e-15
+    },
+    "wall_seconds": 0.20204791300056968,
+    "scope": "Independent homogeneous constant-volume mechanism sensitivity; not experimental ignition/extinction"
+  },
+  {
+    "mechanism": "grimech30",
+    "initial_temperature_K": 1500.0,
+    "pressure_Pa": 22984274.661736142,
+    "target_temperature_K": 1900.0,
+    "time_to_400K_rise_s": 2.0216748667504383e-06,
+    "event_bracket_s": [
+      2.021435351120422e-06,
+      2.021732860233845e-06
+    ],
+    "event_bracket_temperature_K": [
+      1898.9421848385227,
+      1900.256126859071
+    ],
+    "requested_horizon_s": 0.002,
+    "rtol": 1e-10,
+    "atol": 1e-20,
+    "max_step_s": 2e-06,
+    "steps": 1224,
+    "invariant_errors": {
+      "energy": 3.2203985369746e-12,
+      "density": 0.0,
+      "elements": 2.6645352591003757e-15,
+      "species_sum": 2.6645352591003757e-15
+    },
+    "wall_seconds": 0.5764360850007506,
+    "scope": "Independent homogeneous constant-volume mechanism sensitivity; not experimental ignition/extinction"
+  },
+  {
+    "mechanism": "grimech30",
+    "initial_temperature_K": 1500.0,
+    "pressure_Pa": 22984274.661736142,
+    "target_temperature_K": 1900.0,
+    "time_to_400K_rise_s": 2.021674936404691e-06,
+    "event_bracket_s": [
+      2.0215035143921236e-06,
+      2.021726092840298e-06
+    ],
+    "event_bracket_temperature_K": [
+      1899.242288727213,
+      1900.2261191976145
+    ],
+    "requested_horizon_s": 0.002,
+    "rtol": 1e-11,
+    "atol": 1e-22,
+    "max_step_s": 1e-06,
+    "steps": 1776,
+    "invariant_errors": {
+      "energy": 6.0574683121249e-13,
+      "density": 0.0,
+      "elements": 1.7763568394002505e-15,
+      "species_sum": 2.6645352591003757e-15
+    },
+    "wall_seconds": 0.6478153390016814,
+    "scope": "Independent homogeneous constant-volume mechanism sensitivity; not experimental ignition/extinction"
+  },
+  {
+    "mechanism": "FFCM1_Red",
+    "initial_temperature_K": 1500.0,
+    "pressure_Pa": 22984274.661736142,
+    "target_temperature_K": 1900.0,
+    "time_to_400K_rise_s": 2.0184431019968595e-06,
+    "event_bracket_s": [
+      2.018229692211505e-06,
+      2.0187592479594704e-06
+    ],
+    "event_bracket_temperature_K": [
+      1899.5510977482925,
+      1900.665005281968
+    ],
+    "requested_horizon_s": 0.002,
+    "rtol": 1e-10,
+    "atol": 1e-20,
+    "max_step_s": 2e-06,
+    "steps": 1225,
+    "invariant_errors": {
+      "energy": 2.9794369974539582e-12,
+      "density": 0.0,
+      "elements": 1.3322676295501878e-15,
+      "species_sum": 1.5543122344752192e-15
+    },
+    "wall_seconds": 0.1418758149993664,
+    "scope": "Independent homogeneous constant-volume mechanism sensitivity; not experimental ignition/extinction"
+  },
+  {
+    "mechanism": "FFCM1_Red",
+    "initial_temperature_K": 1500.0,
+    "pressure_Pa": 22984274.661736142,
+    "target_temperature_K": 1900.0,
+    "time_to_400K_rise_s": 2.0184432846192475e-06,
+    "event_bracket_s": [
+      2.018215235963676e-06,
+      2.018624771769664e-06
+    ],
+    "event_bracket_temperature_K": [
+      1899.5208031034485,
+      1900.3813575617248
+    ],
+    "requested_horizon_s": 0.002,
+    "rtol": 1e-11,
+    "atol": 1e-22,
+    "max_step_s": 1e-06,
+    "steps": 1575,
+    "invariant_errors": {
+      "energy": 3.554964679626106e-13,
+      "density": 0.0,
+      "elements": 1.4432899320127035e-15,
+      "species_sum": 1.6653345369377348e-15
+    },
+    "wall_seconds": 0.3487846799980616,
+    "scope": "Independent homogeneous constant-volume mechanism sensitivity; not experimental ignition/extinction"
+  },
+  {
+    "mechanism": "grimech30",
+    "initial_temperature_K": 1968.0018107768553,
+    "pressure_Pa": 377916.97229176015,
+    "target_temperature_K": 2368.0018107768556,
+    "time_to_400K_rise_s": 3.9014474341411355e-06,
+    "event_bracket_s": [
+      3.900264521077394e-06,
+      3.901815169456376e-06
+    ],
+    "event_bracket_temperature_K": [
+      2366.6761983159276,
+      2368.413907431418
+    ],
+    "requested_horizon_s": 0.002,
+    "rtol": 1e-10,
+    "atol": 1e-20,
+    "max_step_s": 2e-06,
+    "steps": 1055,
+    "invariant_errors": {
+      "energy": 3.2755148586100245e-12,
+      "density": 0.0,
+      "elements": 3.9968028886505635e-15,
+      "species_sum": 5.10702591327572e-15
+    },
+    "wall_seconds": 0.6140802989975782,
+    "scope": "Independent homogeneous constant-volume mechanism sensitivity; not experimental ignition/extinction"
+  },
+  {
+    "mechanism": "grimech30",
+    "initial_temperature_K": 1968.0018107768553,
+    "pressure_Pa": 377916.97229176015,
+    "target_temperature_K": 2368.0018107768556,
+    "time_to_400K_rise_s": 3.901447967398206e-06,
+    "event_bracket_s": [
+      3.900976343190397e-06,
+      3.901876551457208e-06
+    ],
+    "event_bracket_temperature_K": [
+      2367.472355110019,
+      2368.4829486298268
+    ],
+    "requested_horizon_s": 0.002,
+    "rtol": 1e-11,
+    "atol": 1e-22,
+    "max_step_s": 1e-06,
+    "steps": 1647,
+    "invariant_errors": {
+      "energy": 3.706297652273512e-13,
+      "density": 0.0,
+      "elements": 1.0103029524088925e-14,
+      "species_sum": 1.1102230246251565e-14
+    },
+    "wall_seconds": 0.7818034320007428,
+    "scope": "Independent homogeneous constant-volume mechanism sensitivity; not experimental ignition/extinction"
+  },
+  {
+    "mechanism": "FFCM1_Red",
+    "initial_temperature_K": 1968.0018107768553,
+    "pressure_Pa": 377916.97229176015,
+    "target_temperature_K": 2368.0018107768556,
+    "time_to_400K_rise_s": 4.999041075662909e-06,
+    "event_bracket_s": [
+      4.998789426699177e-06,
+      5.001787930710523e-06
+    ],
+    "event_bracket_temperature_K": [
+      2367.8433989126947,
+      2369.7309433837177
+    ],
+    "requested_horizon_s": 0.002,
+    "rtol": 1e-10,
+    "atol": 1e-20,
+    "max_step_s": 2e-06,
+    "steps": 890,
+    "invariant_errors": {
+      "energy": 9.522085773730497e-12,
+      "density": 0.0,
+      "elements": 2.6645352591003757e-15,
+      "species_sum": 2.6645352591003757e-15
+    },
+    "wall_seconds": 0.1584549489998608,
+    "scope": "Independent homogeneous constant-volume mechanism sensitivity; not experimental ignition/extinction"
+  },
+  {
+    "mechanism": "FFCM1_Red",
+    "initial_temperature_K": 1968.0018107768553,
+    "pressure_Pa": 377916.97229176015,
+    "target_temperature_K": 2368.0018107768556,
+    "time_to_400K_rise_s": 4.999040666264843e-06,
+    "event_bracket_s": [
+      4.9980191761576256e-06,
+      4.999996051943588e-06
+    ],
+    "event_bracket_temperature_K": [
+      2367.3611951229286,
+      2368.6009698064113
+    ],
+    "requested_horizon_s": 0.002,
+    "rtol": 1e-11,
+    "atol": 1e-22,
+    "max_step_s": 1e-06,
+    "steps": 1298,
+    "invariant_errors": {
+      "energy": 1.5560504400573856e-12,
+      "density": 0.0,
+      "elements": 4.107825191113079e-15,
+      "species_sum": 3.9968028886505635e-15
+    },
+    "wall_seconds": 0.1275660049977887,
+    "scope": "Independent homogeneous constant-volume mechanism sensitivity; not experimental ignition/extinction"
+  },
+  {
+    "mechanism": "grimech30",
+    "initial_temperature_K": 1968.0018107768553,
+    "pressure_Pa": 22984274.661736142,
+    "target_temperature_K": 2368.0018107768556,
+    "time_to_400K_rise_s": 1.0897933929291017e-07,
+    "event_bracket_s": [
+      1.089211587119477e-07,
+      1.0898083747702581e-07
+    ],
+    "event_bracket_temperature_K": [
+      2366.1516790413607,
+      2368.0494527551946
+    ],
+    "requested_horizon_s": 0.002,
+    "rtol": 1e-10,
+    "atol": 1e-20,
+    "max_step_s": 2e-06,
+    "steps": 1072,
+    "invariant_errors": {
+      "energy": 1.8662741933982613e-12,
+      "density": 0.0,
+      "elements": 2.55351295663786e-15,
+      "species_sum": 1.5543122344752192e-15
+    },
+    "wall_seconds": 0.4558547060005367,
+    "scope": "Independent homogeneous constant-volume mechanism sensitivity; not experimental ignition/extinction"
+  },
+  {
+    "mechanism": "grimech30",
+    "initial_temperature_K": 1968.0018107768553,
+    "pressure_Pa": 22984274.661736142,
+    "target_temperature_K": 2368.0018107768556,
+    "time_to_400K_rise_s": 1.0897933550786747e-07,
+    "event_bracket_s": [
+      1.0897482230595718e-07,
+      1.0900983682968809e-07
+    ],
+    "event_bracket_temperature_K": [
+      2367.857410721034,
+      2368.977701654569
+    ],
+    "requested_horizon_s": 0.002,
+    "rtol": 1e-11,
+    "atol": 1e-22,
+    "max_step_s": 1e-06,
+    "steps": 1643,
+    "invariant_errors": {
+      "energy": 2.280164698254341e-13,
+      "density": 0.0,
+      "elements": 9.547918011776346e-15,
+      "species_sum": 9.992007221626409e-15
+    },
+    "wall_seconds": 0.5590574809975806,
+    "scope": "Independent homogeneous constant-volume mechanism sensitivity; not experimental ignition/extinction"
+  },
+  {
+    "mechanism": "FFCM1_Red",
+    "initial_temperature_K": 1968.0018107768553,
+    "pressure_Pa": 22984274.661736142,
+    "target_temperature_K": 2368.0018107768556,
+    "time_to_400K_rise_s": 1.0625232044876004e-07,
+    "event_bracket_s": [
+      1.0619009989139288e-07,
+      1.0629422940999886e-07
+    ],
+    "event_bracket_temperature_K": [
+      2366.714870071557,
+      2368.8686359937487
+    ],
+    "requested_horizon_s": 0.002,
+    "rtol": 1e-10,
+    "atol": 1e-20,
+    "max_step_s": 2e-06,
+    "steps": 859,
+    "invariant_errors": {
+      "energy": 3.1850954466556365e-12,
+      "density": 0.0,
+      "elements": 4.773959005888173e-15,
+      "species_sum": 4.440892098500626e-15
+    },
+    "wall_seconds": 0.13392146399928606,
+    "scope": "Independent homogeneous constant-volume mechanism sensitivity; not experimental ignition/extinction"
+  },
+  {
+    "mechanism": "FFCM1_Red",
+    "initial_temperature_K": 1968.0018107768553,
+    "pressure_Pa": 22984274.661736142,
+    "target_temperature_K": 2368.0018107768556,
+    "time_to_400K_rise_s": 1.0625237555000788e-07,
+    "event_bracket_s": [
+      1.0620033614893847e-07,
+      1.0627764919677547e-07
+    ],
+    "event_bracket_temperature_K": [
+      2366.9257462390965,
+      2368.524416234789
+    ],
+    "requested_horizon_s": 0.002,
+    "rtol": 1e-11,
+    "atol": 1e-22,
+    "max_step_s": 1e-06,
+    "steps": 1220,
+    "invariant_errors": {
+      "energy": 7.582449178245735e-13,
+      "density": 0.0,
+      "elements": 1.7763568394002505e-15,
+      "species_sum": 2.220446049250313e-15
+    },
+    "wall_seconds": 0.1348346839986334,
+    "scope": "Independent homogeneous constant-volume mechanism sensitivity; not experimental ignition/extinction"
+  }
+]

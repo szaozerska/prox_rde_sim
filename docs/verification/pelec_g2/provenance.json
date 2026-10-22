@@ -1,0 +1,30 @@
+{
+  "cantera": "3.2.0",
+  "sdtoolbox": {
+    "source_url": "https://shepherd.caltech.edu/EDL/PublicResources/sdt/SDToolbox.zip",
+    "archive_sha256": "c3de67d95e1586a1abea952d2d3767738e5e6c0a217183d5b9303b8f89adb4b0",
+    "upstream_note": "Archive retrieved for this investigation; Python headers state Updated April 2026. Website download label is older. Files unmodified.",
+    "files": {
+      "config.py": "51c583ae33d4986c911796a99025de60991d09a08b079b681fa8a82b433c68e4",
+      "znd.py": "517357d72707a6268e5a8c514ab4d8ae1c46e0d79f5fdacc77cf52260052cac8",
+      "postshock.py": "45d68dbf1565bf10d7c61e57152be379831c8df0874f3d0fdd18f8d4995d7508",
+      "reflections.py": "9c9f1556c7d30e005b03989b8a7969c8191797ebc46f83666e8486302e878fa4",
+      "__init__.py": "be432cb061ddaee9369a3d75026dce0032039b17378c1c758c1e6ee807593fe3",
+      "cp.py": "23ec0a53b4b3d37c7f13bb73969926b3834bfbb5f2960393d375801c0540ca70",
+      "stagnation.py": "f5c79e4c541f998ce59a31abac00fe797025558cc0c50ed07c14c5015a24aa60",
+      "thermo.py": "23e757ad9386a98148e4ba7e569f300295aed6c83732ddc88621b30bc0514797",
+      "cv.py": "a37d89c75bdcc5fe31ab209da5c1a77c36deeeb6177f7740137216933691a080",
+      "utilities.py": "97728fc9f66a923ccd8479ffe80a40d92a3996ea881117890bdd958219d37ffd",
+      "LICENSE.txt": "9e161337eee43d727d26202f8a07807f19fb7108c88c3f266fc5cfab6b39642b"
+    }
+  },
+  "mechanism_sha256": {
+    "grimech30": "24658b932725ec6855a2aca2fbc035919127ee83eff0074ad62e3f821c0a40b9",
+    "FFCM1_Red": "ddbba8c97d929530cfb213da45485cca4f979dccf97c1063721bd855d7b3f259",
+    "drm19": "6449c06a07dd5c966726583929ab6be3fdf0016987101b7aeada17aeabf9c512"
+  },
+  "source_sha256": "f411c103eb735888ad4191009d929ad9da6f5800cee24439c3c4a0b40849b4de",
+  "pressure_basis": "Run 937 Eq.4.1 inferred prefill pressure, distinct from 1-atm sensitivity",
+  "phi": 1.176,
+  "temperature_K": 300.0
+}

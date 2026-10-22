@@ -4,7 +4,7 @@ import json
 from pathlib import Path
 import cantera as ct
 import numpy as np
-from native_lidryer_reference import make_reference
+from native_generated_reference import make_reference
 
 
 def compare(run, mechanism, native_constants=False):
@@ -15,9 +15,11 @@ def compare(run, mechanism, native_constants=False):
         gas,metadata=make_reference(mechanism)
     else:
         gas=ct.Solution(str(mechanism));metadata={'kind':'nominal_yaml'}
-    gas.TPY=1001.,101325.,{'H2':.06,'O2':.5,'N2':.44}
+    case_path=run/'reactor_case.json'
+    case=json.loads(case_path.read_text()) if case_path.exists() else {}
+    gas.TPY=case.get('temperature_K',1001.),case.get('pressure_Pa',101325.),case.get('Y',{'H2':.06,'O2':.5,'N2':.44})
     reactor=ct.IdealGasReactor(gas,energy='on',clone=True)
-    network=ct.ReactorNet([reactor]);network.rtol=1e-12;network.atol=1e-22
+    network=ct.ReactorNet([reactor]);network.rtol=case.get('reference_rtol',1e-12);network.atol=case.get('reference_atol',1e-22)
     truth=[]
     for t in history['time']:
         if t>0: network.advance(float(t))
