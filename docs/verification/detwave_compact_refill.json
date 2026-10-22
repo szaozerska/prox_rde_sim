@@ -1,0 +1,75 @@
+{
+  "run": "/private/tmp/prox-rde-detwave-fix/rde_sim_starter/runs/detwave_25fi5_high_flux_compact_seed",
+  "strip_x_mm": [
+    8,
+    15
+  ],
+  "actual_sample_heights_mm": [
+    0.938423645320197,
+    2.9403940886699504
+  ],
+  "rho_reference_kg_m3": 5.4565272091514485,
+  "definitions": "Fresh-equivalent height integrates rho*(1-progress) over the entire axial column and divides by initial fresh density. Cold-cell depth sums cells with progress<0.1 and T<600 K, not necessarily contiguous. Neither is a detonability criterion. Saved primitive arrays are float32.",
+  "samples": [
+    {
+      "time_us": 0,
+      "fresh_equivalent_height_mm": 3.8000001907348633,
+      "cold_fresh_cell_depth_mm": 3.753694581280788,
+      "progress_near_1mm": 0.0,
+      "progress_near_3mm": 0.0,
+      "temperature_near_1mm_K": 299.9999694824219,
+      "pressure_near_1mm_MPa": 0.5216547846794128,
+      "rate_near_1mm_per_s": 0.020796744152903557
+    },
+    {
+      "time_us": 10,
+      "fresh_equivalent_height_mm": 0.043141189962625504,
+      "cold_fresh_cell_depth_mm": 0.0,
+      "progress_near_1mm": 0.9959231615066528,
+      "progress_near_3mm": 1.0,
+      "temperature_near_1mm_K": 3056.637939453125,
+      "pressure_near_1mm_MPa": 1.319905400276184,
+      "rate_near_1mm_per_s": 5309.32568359375
+    },
+    {
+      "time_us": 20,
+      "fresh_equivalent_height_mm": 0.36531150341033936,
+      "cold_fresh_cell_depth_mm": 0.4044159042927516,
+      "progress_near_1mm": 0.7666355967521667,
+      "progress_near_3mm": 0.999858558177948,
+      "temperature_near_1mm_K": 2720.95751953125,
+      "pressure_near_1mm_MPa": 0.5749430060386658,
+      "rate_near_1mm_per_s": 253790.359375
+    },
+    {
+      "time_us": 30,
+      "fresh_equivalent_height_mm": 0.7739203572273254,
+      "cold_fresh_cell_depth_mm": 0.6524278676988037,
+      "progress_near_1mm": 0.3760665953159332,
+      "progress_near_3mm": 0.999991774559021,
+      "temperature_near_1mm_K": 1794.466552734375,
+      "pressure_near_1mm_MPa": 0.7569500207901001,
+      "rate_near_1mm_per_s": 222700.78125
+    },
+    {
+      "time_us": 40,
+      "fresh_equivalent_height_mm": 0.6670161485671997,
+      "cold_fresh_cell_depth_mm": 0.4245249824067558,
+      "progress_near_1mm": 0.6115670800209045,
+      "progress_near_3mm": 0.9998152852058411,
+      "temperature_near_1mm_K": 2446.266845703125,
+      "pressure_near_1mm_MPa": 0.9079183340072632,
+      "rate_near_1mm_per_s": 311945.84375
+    },
+    {
+      "time_us": 50,
+      "fresh_equivalent_height_mm": 0.9439234137535095,
+      "cold_fresh_cell_depth_mm": 0.8602216748768473,
+      "progress_near_1mm": 0.21974274516105652,
+      "progress_near_3mm": 0.9998278021812439,
+      "temperature_near_1mm_K": 1083.875,
+      "pressure_near_1mm_MPa": 0.696845293045044,
+      "rate_near_1mm_per_s": 88942.734375
+    }
+  ]
+}

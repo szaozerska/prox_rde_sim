@@ -510,7 +510,62 @@ See `detwave_main_bitwise_check.json`; this is compatibility evidence, not a
 coarse-grid physics claim. No restart/duplication of the active equivalent
 inviscid studies is needed solely because of the merge.
 
-## Active-run handoff (replace with results when complete)
+## Compact-charge return and refill assessment (20:49 UTC)
+
+The compact-charge control is now stopped after a complete **50 us** sample.
+SIGINT occurred at 50.898 us; the final `failed`/`KeyboardInterrupt` status is an
+intentional stop, not a numerical failure. A pre-stop 50 us checkpoint and
+`manual_stop.json` preserve that distinction. Invalid-state count stayed zero.
+There is no reason to spend the remaining budget extending this clearly lost
+seeded wave to the originally planned 80 us.
+
+The compact pressure/reaction ridge persists through roughly 25 us, then weakens
+near its first periodic return at **28–30 us**. At 40 us the full field shows a
+weak pressure wave and distributed burning at the inlet/product interface;
+there is no continuing strong ridge at 3 mm. At 50 us global maximum pressure
+is 1.762 MPa and only 7.24% of heat release lies above twice initial pressure.
+Those global numbers support the field interpretation; they are not standalone
+detonation criteria. Plots in `detwave_compact_checkpoint/` show the saved prefix
+(space-time through approximately 47 us, full field at 40 us).
+
+The important distinction is **successful first transit versus failed refill**.
+In the x=8–15 mm strip, ahead of the returning ridge at 30 us, the fresh-equivalent
+column is 0.774 mm versus 3.8 mm initially. This diagnostic integrates
+rho*(1-progress) over the entire axial column and divides by initial fresh-gas
+density. Cells with progress<0.1 and T<600 K occupy only 0.652 mm total depth.
+At actual height 0.938 mm, average progress is already 0.376, temperature 1794 K,
+and reaction rate 2.23e5/s; near 2.940 mm, progress is 0.999992. At 20 us, before
+return, the near-1 mm strip is already reacting at 2.54e5/s. Thus fresh material
+is being consumed outside the main returning front. `detwave_refill_reduce.py`
+and `detwave_compact_refill.json` record reproducible definitions/results; the
+thresholds are diagnostic choices, not a universal detonability rule.
+
+By 50 us, 4.236 mg has entered and 1.330 mg of fresh-equivalent mass remains;
+native scaled budget residual is 7.69e-16. The injector is functioning. Its
+time-averaged delivered flow is 84.7 g/s versus the 102.29 g/s nominal choked
+capacity. Remaining inventory does not mean a sufficiently cold/deep layer is
+available at the wave front. Uniform premixed injection, numerical mixing at the
+hot-product contact, and a one-step rate with no induction stage can all affect
+this consumption. This experiment does not separate those contributions.
+
+This reinforces the earlier literature distinction: Mundt's inferred fill height
+cannot be imposed as guaranteed replenishment, and Strakey/Ferguson's finite
+kernel does not validate our premixed injector or one-step contact ignition.
+Reducing the charge fixed a startup comparison bias, **not sustained operation**.
+Do not add ignition energy or repeatedly reseed the wave and call that a fix.
+The immediate remaining assessment is whether the larger Run 937 case, with
+longer time available for refill, retains coupling on return. It remains active;
+its planned 189 us duration is not yet achieved and may exceed today's wall-time
+budget. A future chemistry fix must address both shock reaction and unshocked
+mixed-gas ignition, rather than merely shortening every chemical timescale.
+
+Reviewed main was merged and pushed as `8fda32c`. The broad merge whitespace
+check flagged CRLF endings in upstream generated CSVs; these are retained as
+upstream output, not modified as part of this physics investigation. The one-shot
+main checkpoint automation was deleted after completion; the investigation
+follow-up remains active until completion or 22:00 UTC.
+
+## Active-run handoff (historical launch commands; see latest statuses above)
 
 Both simulations run in this branch's worktree, not the original checkout.
 Python: `/Users/sgfx/Desktop/Projects/prox_rde_sim/.venv/bin/python`.
