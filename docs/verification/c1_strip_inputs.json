@@ -1,0 +1,81 @@
+{
+  "calibration": {
+    "CJ": {
+      "T": 4885.151457540693,
+      "p": 10951531.152722448
+    },
+    "D_CJ": 2471.0,
+    "Ea": 1912039.7726565108,
+    "L_half": 0.001,
+    "MW": 26.09085894206549,
+    "M_CJ": 7.181250184592161,
+    "Q": 11.076804691270638,
+    "R": 318.6732954427518,
+    "T1": 300.0,
+    "VN": {
+      "M": 0.3348675875993769,
+      "T": 2116.2489661145023,
+      "p": 21525145.333159216,
+      "u_shock_frame": 306.03320728412723
+    },
+    "a1": 344.0905046452345,
+    "cp": 1655.110281738685,
+    "gamma": 1.2384499222264016,
+    "induction_real": 2.7586206896551727e-05,
+    "k": 2522464.136488483,
+    "lambda_real": 0.0008,
+    "p1": 377916.97229176015,
+    "q": 5500000.0
+  },
+  "cases": [
+    {
+      "direction": "x",
+      "name": "closed_1d",
+      "open_end": false,
+      "rows": 1
+    },
+    {
+      "direction": "x",
+      "name": "strip_x",
+      "open_end": false,
+      "rows": 8
+    },
+    {
+      "direction": "z",
+      "name": "strip_z",
+      "open_end": false,
+      "rows": 8
+    },
+    {
+      "direction": "x",
+      "name": "original_open_1d",
+      "open_end": true,
+      "rows": 1
+    }
+  ],
+  "common_source_cap_s": 1.4454733289035721e-08,
+  "driver_sha256": "98b0851cd0810936e37ed69ee5c18e9bda0b81808c5da77eb6d6c71a0a00f889",
+  "dx_m": 0.0005,
+  "end_s": 9.5e-05,
+  "implementation": {
+    "packages": {
+      "PyYAML": "6.0.3",
+      "llvmlite": "0.45.1",
+      "numba": "0.62.1",
+      "numpy": "2.3.5",
+      "scipy": "1.18.1"
+    },
+    "python": "3.12.0",
+    "source_sha256": {
+      "analyze.py": "84dee7247d1db42074805858295e3b3fe8c7713fd2c695b3edcafd68c59d8247",
+      "calibrate.py": "e43a8522a46ac0d2808adb032aef66e4b019cb5f94ae03ae43c8f490ea0870fa",
+      "physics.py": "6766f8caed3b4d09d77489f5cfc657d848a473094e155d5ac48b3eddc33d975a",
+      "run.py": "18d850b6448259fe546d1a1c48aaae99a4ab74942b56d85b421fc23dee3112af",
+      "solver.py": "f2ecf8fa01ca5228b996872f5b8e29722eb5f314c4aba3c97a7db3aef45b2b83"
+    }
+  },
+  "kind": "strip",
+  "length_m": 0.25,
+  "policy": "identical chemistry and timestep; matched reflecting walls plus original 1D outlet control",
+  "rows": 8
+}

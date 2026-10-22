@@ -38,7 +38,11 @@ See [D3 evidence and graphs](docs/verification/d3_investigation.md):
   the 65–90 µs fits are 2457.33/2477.59/2495.97 m/s. A settled, spatially
   converged speed has not been established by matching the fitted CJ value.
 
-**Next planned increment:** C1 multirow/directional equivalence, then C2's
+**C1 passed:** all four 95 µs controls have identical saved primitive fields,
+fronts and zero transverse variation; conservation residual <4e-15, zero invalid
+states. Default suite: 60 passed, one opt-in skipped.
+
+**Next planned increment:** C2's
 conservative formed-profile verification in a fully filled strip. Only then run
 C3's bounded layer comparison; C4 compares initiation methods in a demonstrated
 supporting layer. Freeze chemistry and quantify source/time/grid effects, initial
@@ -49,9 +53,9 @@ Document each increment and push it to main after verification. The old automati
 ## Subsequent diagnostic review
 
 The [layer-height / reaction-length review](docs/verification/layer_diagnostic_review.md)
-finds the central hypothesis credible and still untested: no multirow reactive
-strip control, formed-profile layer-height bracket, or matched ignition control
-has been run. Saved-profile postprocessing gives 5.72 µs to 95% surrogate heat
+finds the central hypothesis credible and still untested: at the time of that review no multirow reactive strip, formed-profile layer-height
+bracket, or matched ignition control had been run. C1 now passes; the latter
+two controls remain pending. Saved-profile postprocessing gives 5.72 µs to 95% surrogate heat
 release versus a 4.16–4.39 µs illustrative transverse relief scale. This supports
 a targeted test, not a proven extinction criterion. The submitted diagnosis
 incorrectly asserted delayed outflow and broadly excluded outlet/contact effects.

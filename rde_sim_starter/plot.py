@@ -499,9 +499,40 @@ def plot_reference(directory, destination):
     return report
 
 
+def plot_controlled(directory, destination):
+    """C1 strip fields and comparison histories from saved data only."""
+    import numpy as np
+    directory,destination=Path(directory),Path(destination)
+    report=json.loads((directory/'summary.json').read_text())
+    if report['kind']!='strip':raise ValueError('unsupported controlled diagnostic')
+    with np.load(directory/'fields.npz',allow_pickle=False) as data:
+        x=data['x'].copy();fields=data['primitive'].copy()
+    destination.mkdir(parents=True,exist_ok=False)
+    plt=_pyplot();fig,axes=plt.subplots(2,2,figsize=(11,7),layout='constrained')
+    try:
+        times=np.array([h['time_s'] for h in report['history']])*1e6
+        for i,name in enumerate(report['cases']):
+            style=['-','--',':','-.'][i]
+            axes[0,0].plot(x*1e3,fields[-1,i,3]/1e6,style,label=name)
+            axes[0,1].plot(x*1e3,fields[-1,i,4],style,label=name)
+            axes[1,0].plot(times,[np.nan if h['front_m'][i] is None else h['front_m'][i]*1e3 for h in report['history']],style,label=name)
+            axes[1,1].plot(times,[max(h['max_scaled_difference'][i],1e-18) for h in report['history']],style,label=name)
+        axes[0,0].set(xlabel='Propagation coordinate [mm]',ylabel='Final pressure [MPa]')
+        axes[0,1].set(xlabel='Propagation coordinate [mm]',ylabel='Final reaction progress')
+        axes[1,0].set(xlabel='Time [µs]',ylabel='Pressure-threshold front [mm]')
+        axes[1,1].set(xlabel='Time [µs]',ylabel='Scaled field difference (zeros shown at 1e-18)',yscale='log')
+        for ax in axes.flat:ax.grid(alpha=.25)
+        axes[0,0].legend(fontsize=8)
+        fig.suptitle('C1: row and direction controls; overlapping traces are expected')
+        fig.savefig(destination/'strip_control.png',dpi=140)
+    finally:plt.close(fig)
+    return report
+
+
 def main(argv=None):
     parser=argparse.ArgumentParser(description=__doc__)
     source=parser.add_mutually_exclusive_group(required=True)
+    source.add_argument('--controlled',type=Path,help='saved controlled 2D diagnostic')
     source.add_argument('--experiments',type=Path,help='saved contact or 1D refinement suite')
     source.add_argument('--reference',type=Path,help='saved physical/surrogate reference')
     source.add_argument('--calibration',type=Path,help='saved calibration JSON')
@@ -516,7 +547,9 @@ def main(argv=None):
         parser.error('output exists; choose a new destination')
     if args.compare_run and not args.coupling:
         parser.error('--compare-run requires --coupling')
-    if args.experiments:
+    if args.controlled:
+        plot_controlled(args.controlled,args.out)
+    elif args.experiments:
         plot_experiments(args.experiments,args.out)
     elif args.reference:
         plot_reference(args.reference,args.out)
