@@ -8,14 +8,18 @@ repository. `remote.origin.push` names only the 3D branch. Check branch and cwd
 before edits/commits and push explicitly with `git push origin HEAD:3d-modelling`.
 
 The [3D plan](first_sim_plan.md) supersedes implementation ordering in inherited
-2D documents. Five self-review rounds are in [the review log](docs/plans/3d_plan_reviews.md).
+2D documents. Self-review rounds are in [the review log](docs/plans/3d_plan_reviews.md).
 Keep the [implementation record](docs/verification/3d_progress.md) current.
 
-T0-T2 are complete for detonationFoam. Revision 11 now prioritizes a bounded
+T0-T2 are complete for detonationFoam. Revision 12 prioritizes a bounded
 PeleC/Modal GPU trial (G0 next), retaining detonationFoam as fallback. Do not
 complete two full CPU/GPU engine stacks. About eight GPUs are authorized initially;
-hardware/access/topology are not verified and no GPU benchmarks have run. See
-[the GPU decision record](docs/plans/3d_gpu_decision.md). All physics gates remain
+Modal authentication/eight-core CPU execution passed; GPU access/topology and
+solver performance are unverified. See [the literature/runtime decision record](docs/plans/3d_literature_runtime_review.md).
+User authorized early implementation; the 14:30 kickoff is paused. Start now with
+G0. Routine cases must fit the measured two-hour gate; no full-engine runtime has
+been measured. Sustained-wave design screening requires the coupling/refill,
+window, numerical/model sensitivity and negative-control gates in revision 12. All physics gates remain
 in the selected backend; no OpenFOAM mesh pass transfers to PeleC embedded geometry.
 Homebrew installed Colima, Lima and Docker; a dedicated two-CPU/4 GiB `rde3d`
 profile mounts only this checkout and its temporary staging. Do not use the

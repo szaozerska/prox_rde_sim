@@ -1,4 +1,4 @@
-# 3D RDE development plan - revision 11, Modal GPU path
+# 3D RDE development plan - revision 12, measured two-hour GPU path
 
 This branch develops a native three-dimensional methane/oxygen pipeline.
 The October 22 GPU revision below controls execution order; the T0-T7 physics
@@ -15,12 +15,35 @@ source tests, conservation definitions and paper transcriptions are reusable;
 native fluxes, thermodynamics, chemistry integration and boundaries need renewed
 verification in the selected native backend.
 
+## Revision 12: literature, runtime and sustained-wave objective
+
+The [fresh literature/runtime review](docs/plans/3d_literature_runtime_review.md)
+controls the next increments. Mundt Run 937 is experimental; its Chapter 4
+thermochemical/empirical calculations are not a full-engine simulation. The target
+is eventual sustained-detonation screening for modified designs. The first useful
+output is a qualified idealized 3D diagnostic, followed by the stability, model and
+experimental validation needed for design claims. Use one PeleC GPU implementation
+with small same-source CPU controls and detonationFoam as a bounded fallback.
+
+Routine complete cases target <=2 hours including queue/output after the cached
+build. Forecast integration <=90 minutes using measured reacting throughput plus
+30%; stop at 120 minutes, without blind retries. This is a feasibility gate, not a
+measured runtime guarantee. Retain the short G4 preview cap; after its checks pass,
+a separately specified <=2 ms screening case may proceed under the review's gates.
+A rotating pressure pulse, seeded wave count or continuing ignition is not a
+sustained-wave pass. Check replenishment, shock/reaction coupling, disjoint windows,
+mesh/dt and startup/feed/outlet sensitivity, and a documented negative control.
+
+The user authorized an early start; the 14:30 kickoff is paused to avoid duplicate
+work. Finish the three review rounds, then start G0 now in the isolated 3D clone.
+
 ## GPU revision: fastest useful result
 
 The user now provides access to about eight Modal GPUs and prioritizes turnaround
 above initial fidelity. This supersedes the earlier local-only/no-cloud restriction.
-GPU model, account access, simultaneous capacity and topology are not yet verified.
-No Modal job or GPU benchmark has run. GPU runtime estimates are not measured results.
+Modal authentication and an eight-core CPU access probe passed. GPU model,
+simultaneous capacity, topology and solver performance remain unverified.
+GPU runtime estimates are not measured results.
 
 **Decision:** one 3D project and physical specification, CPU checks plus a GPU
 production candidate; no separate CPU/GPU branches or full duplicate implementations.
@@ -208,8 +231,10 @@ Default unit tests require no container and finish in seconds once dependencies
 are warm. Backend smoke tests are explicit and bounded. A future engine check
 has a first checkpoint at one reference interval (63.131 microseconds), then
 three intervals, 189.394 microseconds, at most five total
-315.657 microseconds for a documented unresolved observation. Frequency budgets
-time only. Tiny cold/chemistry tests use much shorter durations. No large sweeps.
+315.657 microseconds for a documented unresolved observation. These durations
+budget observation time, not validation. Revision 12 separately permits a qualified
+<=2 ms screening case after the preview, numerical and runtime gates pass. Tiny
+cold/chemistry tests use much shorter durations. No large sweeps.
 
 If a critical inconsistency appears, stop dependent advancement. Record symptom,
 files/inputs, evidence, candidate causes, discriminating test and disposition:
@@ -366,9 +391,10 @@ References: [Mundt thesis](Mundt2023.pdf), [model audit](docs/verification/mundt
 
 ## Baseline and current status
 
-Revision 11 GPU plan is reviewed but unimplemented: G0-G5 pending; no hardware
-access or GPU performance has been verified. Next step is G0, not completion of a
-duplicate full detonationFoam pipeline.
+Revision 12 plan is reviewed; native GPU G0-G5 remain pending at plan handoff.
+Modal authentication and eight-core CPU execution passed; GPU allocation and CFD
+performance are unverified. Start G0 now; do not complete a duplicate full
+detonationFoam pipeline.
 
 T0 complete. Separate clone based on `0f435aad6b23e063a35f1017a985d5ee8ee8145d`,
 committed 2026-10-22 01:35:05 PDT. T1 installation and T2 parametric mesh checks passed; no 3D reactive model has been validated. The new C1-C6 controlled 2D

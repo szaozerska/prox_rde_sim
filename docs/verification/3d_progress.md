@@ -202,3 +202,29 @@ Live billing-rate query returned CPU $0.04730/core-hour and RAM $0.008/GiB-hour:
 requested 8-core/1-GiB baseline is $0.3864/hour, not a measured invoice. Only this
 short access probe ran. GPU allocation and PeleC/detonationFoam remote execution
 remain pending. JSON/checksum assertions and git diff whitespace checks passed.
+
+
+## Revision 12 — fresh literature review and early implementation authorization
+
+Re-extracted the complete Mundt thesis and read Chapter 3/4 methods/results;
+rendered and inspected printed pp. 44-103, covering their figures. Compared ten
+primary papers/reports plus official solver/Modal sources. Run 937 is experimental;
+Chapter 4 mixes thermo references with empirical formulas. Published full-engine
+3D studies are expensive; no inspected source proves this case fits two hours.
+The detailed source/evidence table and revised gates are in
+`../plans/3d_literature_runtime_review.md`.
+
+Planning issues/fixes are documented in self-review rounds 9-11: source provenance,
+GPU-speedup transfer, timing-margin arithmetic, sustained-wave false positives,
+negative controls, conditional longer observation and stale document/schedule
+state. Initial PDF rendering stalled due to an unwritable fontconfig cache; stopped
+only this task's render processes and used a temporary writable cache. All 60
+pages then rendered. No copyrighted PDF copies or temporary images added to Git.
+
+User authorized early implementation, superseding the 14:30 wait. Paused only this
+chat's kickoff automation to prevent a duplicate start; other chat's automation is
+untouched. Work remains in isolated 3d-modelling. G0 starts with a pinned native GPU
+trial, CPU controls, and detonationFoam fallback. Sustained-wave design screening
+is the objective; short diagnostic outputs are intermediate, not a completed
+physical validation. Local documentation links, arithmetic and diff whitespace
+checks passed. No CFD job ran during the literature review.

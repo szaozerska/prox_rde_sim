@@ -4,16 +4,19 @@ Work in `/Users/sgfx/Desktop/Projects/prox_rde_sim_3d`, branch **3d-modelling**.
 The separate original checkout belongs to the parallel 2D session. This branch
 starts from investigation commit `0f435aa` (October 22, 2026, 01:35 PDT).
 
-Follow the [3D plan](first_sim_plan.md), [five plan reviews](docs/plans/3d_plan_reviews.md),
+Follow the [3D plan](first_sim_plan.md), [plan reviews](docs/plans/3d_plan_reviews.md),
 and [implementation record](docs/verification/3d_progress.md). The 3D pipeline is
 an add-on; existing physics, thermochemical references, tests and figure roadmap
 are retained. Installation/mesh checks do not establish sustained detonation.
 Only commit and push to `3d-modelling` from this checkout.
 
-Current direction: [revision 11](first_sim_plan.md) evaluates PeleC for Modal GPU
+Current direction: [revision 12](first_sim_plan.md) evaluates PeleC for Modal GPU
 production, with small same-backend CPU checks and the installed detonationFoam
 fallback. No separate CPU/GPU model branches. See [solver choices and speed/accuracy
-tradeoffs](docs/plans/3d_gpu_decision.md). No GPU run has been performed yet.
+tradeoffs](docs/plans/3d_literature_runtime_review.md). Modal CPU access passed;
+no GPU run has been performed yet. The current objective is measured <=2-hour
+routine cases and eventual sustained-detonation design screening. Short diagnostic
+propagation is not yet proof of long-term or real-engine stability.
 
 Verified so far: pinned OpenFOAM 8/detonationFoam installation smoke; full-annulus
 and core-end expansion meshes with native volume/area/quality checks. Prepare a

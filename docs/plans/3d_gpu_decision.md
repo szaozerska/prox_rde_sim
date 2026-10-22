@@ -1,7 +1,10 @@
 # Modal GPU decision for 3D modelling
 
 October 22, 2026. Research and planning only; no GPU benchmark or new solver pass.
-This record supports revision 11 of [the execution plan](../../first_sim_plan.md).
+This historical record supports revision 11. The [revision 12 literature/runtime
+review](3d_literature_runtime_review.md) and [execution plan](../../first_sim_plan.md)
+now control implementation, timing and sustained-wave claims. Modal CPU access has
+since passed; no GPU result existed at this record's handoff.
 User priority: minimize time to a useful result, tolerate reduced initial fidelity,
 about eight Modal GPUs initially. Device type, topology and access remain unverified.
 

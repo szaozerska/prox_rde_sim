@@ -1,10 +1,13 @@
 # 3D branch scheduling override
 
-The [3D plan](../../first_sim_plan.md), revision 10, sets this branch's execution
+The [3D plan](../../first_sim_plan.md), revision 12, sets this branch's execution
 order. Keep the measurement operators, reference records and G0-G8 backlog below;
 apply them to native 3D fields and face/volume integrals when the relevant gates
 pass. The inherited 2D milestone numbers and implementation order are historical
-here. No new full figure campaign is part of the first 3D backend checks.
+here. The [revision 12 review](3d_literature_runtime_review.md) prioritizes Run 937
+pressure/front plots and existing Chapter 4 references, followed by sustained-wave
+checks and one documented non-detonative control. The inherited G0-G8 catalogue
+is not the GPU G0-G5 sequence. No full figure campaign is part of the first checks.
 
 # Figure validation roadmap: Mundt Chapters 3 and 4
 
