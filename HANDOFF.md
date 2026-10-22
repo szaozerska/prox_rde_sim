@@ -12,12 +12,14 @@ The [3D plan](first_sim_plan.md) supersedes implementation ordering in inherited
 Keep the [implementation record](docs/verification/3d_progress.md) current.
 
 T0-T2 are complete for detonationFoam. Revision 12 prioritizes a bounded
-PeleC/Modal GPU trial (G0 smoke and G1 shock controls passed; chemistry held), retaining detonationFoam as fallback. Do not
+PeleC/Modal GPU trial (G0 and G1a native shock/reactor controls passed), retaining detonationFoam as fallback. Do not
 complete two full CPU/GPU engine stacks. About eight GPUs are authorized initially;
 Modal CPU and one-H100 access passed. Native PeleC CUDA smoke and independent
 field/budget checks passed; reacting throughput and multi-GPU scaling are unknown. See [the literature/runtime decision record](docs/plans/3d_literature_runtime_review.md).
-User authorized early implementation; the 14:30 kickoff is paused. Current G1 chemistry investigation is recorded in docs/verification/pelec_g1/README.md.
-Do not advance to methane/engine work through that gate. Routine cases must fit the measured two-hour gate; no full-engine runtime has
+User authorized early implementation; the 14:30 kickoff is paused. G1a passed against the explicitly identified generated-rate reference; details are
+in docs/verification/pelec_g1/README.md. G1b/c and methane G2 remain open.
+The methane preflight has found a 3000 K native inversion bound in DRM19/GRI;
+do not build an engine case through that inconsistency. Routine cases must fit the measured two-hour gate; no full-engine runtime has
 been measured. Sustained-wave design screening requires the coupling/refill,
 window, numerical/model sensitivity and negative-control gates in revision 12. All physics gates remain
 in the selected backend; no OpenFOAM mesh pass transfers to PeleC embedded geometry.

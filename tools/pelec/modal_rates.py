@@ -6,7 +6,7 @@ app=modal.App('prox-rde-3d-native-rate-probe',include_source=False)
 
 @app.function(image=image,serialized=True,cpu=(2.,2.),memory=(2048,2048),
               timeout=120,startup_timeout=120,retries=0,max_containers=1)
-def rates():
+def rates(strict_eos: bool = False):
     import json
     import shlex
     import subprocess
@@ -33,10 +33,14 @@ int main() {
     CKWYP(p,T,Y,W); CKUBMS(T,Y,u); CKCVBS(T,Y,cv); CKRHOY(p,T,Y,rho);
     std::cout << rho << " " << u << " " << cv;
     for(int k=0;k<NUM_SPECIES;++k) std::cout << " " << W[k];
-    std::cout << "\n";
+    double recovered = T + 5.e-7;
+    int error = 0;
+    GET_T_GIVEN_EY(u,Y,recovered,error);
+    std::cout << " " << recovered << " " << error << "\n";
   }
 }
 ''')
+    if strict_eos: flags.append('-DCONVERGENCE')
     flags += [str(source),'-o','/tmp/rates']
     compiled=subprocess.run(flags,cwd=entry['directory'],capture_output=True,text=True,timeout=90)
     if compiled.returncode:
@@ -52,5 +56,6 @@ int main() {
                              capture_output=True,text=True,check=True,timeout=10)
     values=[[float(x) for x in row.split()] for row in completed.stdout.splitlines()]
     return json.dumps({'status':'rates_evaluated','inputs_cgs':inputs,'values_cgs':values,
-                       'columns':['density','internal_energy','cv']+['wdot_'+str(i) for i in range(9)],
+                       'columns':['density','internal_energy','cv']+['wdot_'+str(i) for i in range(9)]+['recovered_T_K','inversion_status'],
+                       'strict_eos':strict_eos,'temperature_guess_offset_K':5e-7,
                        'compile_command':flags,'scope':'Direct CPU mechanism thermodynamics/production rates; independent of CFD/CVODE'})

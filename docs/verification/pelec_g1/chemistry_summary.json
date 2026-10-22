@@ -1,0 +1,28 @@
+{
+  "numerical_gate_passed_for_generated_LiDryer_model": true,
+  "checks": {
+    "native_controls_pass": true,
+    "peak_field_and_finer_step_controls_pass": true,
+    "cpu_gpu_within_reference_error_budget": true,
+    "timestep_within_reference_error_budget": true,
+    "final_strict_cpu_gpu": true
+  },
+  "cpu_gpu": {
+    "common_field_samples": 17,
+    "temperature_relative_max_difference": 1.554837147921262e-09,
+    "pressure_relative_max_difference": 1.4787129298809987e-09,
+    "species_absolute_max_difference": 3.53812040429502e-10
+  },
+  "outer_step": {
+    "common_field_samples": 17,
+    "temperature_relative_max_difference": 2.385585682329605e-07,
+    "pressure_relative_max_difference": 2.2687878253879745e-07,
+    "species_absolute_max_difference": 5.4282176371878155e-08
+  },
+  "scope": "Numerical integration of pinned generated LiDryer rates. Nominal YAML differs in documented constants and is not falsely marked equivalent. Methane, geometry, propagation and experimental validation remain separate.",
+  "final_strict_cpu_gpu": {
+    "temperature_relative_max_difference": 7.531857360021377e-10,
+    "species_absolute_max_difference": 4.2384584730825736e-10,
+    "common_field_samples": 17
+  }
+}

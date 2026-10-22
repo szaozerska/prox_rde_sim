@@ -10,11 +10,11 @@ an add-on; existing physics, thermochemical references, tests and figure roadmap
 are retained. Installation/mesh checks do not establish sustained detonation.
 Only commit and push to `3d-modelling` from this checkout.
 
-Current direction: [revision 12](first_sim_plan.md) evaluates PeleC for Modal GPU
+Current direction: [revision 13](first_sim_plan.md) evaluates PeleC for Modal GPU
 production, with small same-backend CPU checks and the installed detonationFoam
 fallback. No separate CPU/GPU model branches. See [solver choices and speed/accuracy
 tradeoffs](docs/plans/3d_literature_runtime_review.md). Modal CPU access passed;
-the pinned native GPU installation smoke has now passed (see [evidence](docs/verification/pelec_g0/result.json)). The current objective is measured <=2-hour
+the pinned native GPU installation smoke and G1a shock/reactor controls have passed (see [evidence](docs/verification/pelec_g0/result.json)). The current objective is measured <=2-hour
 routine cases and eventual sustained-detonation design screening. Short diagnostic
 propagation is not yet proof of long-term or real-engine stability.
 
@@ -249,3 +249,5 @@ metrics are retained with [the D2 report](docs/verification/d2_coupling.md).
 - [Reference dissertation](Mundt2023.pdf) and [starter status](rde_sim_starter/STATUS.md).
 - [Pre-foundation source archive](docs/archive/starter_pre_foundation.zip) and
   [planning handoff](docs/archive/HANDOFF_planning_20261021.md): historical reference only.
+
+Native control results and failure root causes: [G1a report](docs/verification/pelec_g1/README.md). No methane or sustained 3D detonation has yet been validated.

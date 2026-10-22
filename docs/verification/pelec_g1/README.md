@@ -1,7 +1,9 @@
-# G1: native control results and chemistry hold
+# G1a: verified native shock and closed-reactor controls
 
-The shock-control increment passed. The chemistry increment has **not passed**;
-no methane detonation or engine simulation is authorized by these results. All
+The shock and closed-reactor numerical controls passed. The reactor pass is
+explicitly against the pinned generated LiDryer model, independently integrated
+with Cantera. The nominal YAML constant discrepancy is preserved separately.
+No methane detonation or engine simulation is validated by these results. All
 cases use pinned upstream PeleC, 3D FP64, with eight transverse cells per direction
 for the shock and an 8 x 8 x 8 uniform periodic closed reactor. One H100 is used;
 CPU executables are serial controls, not a CPU scaling benchmark. The common
@@ -86,12 +88,16 @@ must not be compared as though they used identical time samples.
    570 us. Preserve it as invalid numerics; do not infer a physical ignition delay.
    New runner/analyzer log checks reject native errors regardless of final time or
    exit status. A regression test reproduces this failure signature.
-5. **Current hypothesis under test:** the native EOS inversion stops at a 1e-6 K
+5. **EOS precision hypothesis rejected as the dominant cause:** the native EOS inversion stops at a 1e-6 K
    correction, whereas the tight relative ODE setting requests roughly 1e-7 K at
-   initial temperature. The RHS recomputes temperature from fixed energy. This can
-   create an accuracy floor, but it is not yet a demonstrated root cause. A bounded
-   A/B build uses the mechanism's existing `CONVERGENCE` mode (1e-12 K inversion, iteration cap 5000 rather than 200)
-   with unchanged rates and ODE settings. No native numerical source is patched.
+   initial temperature. The RHS recomputes temperature from fixed energy. A direct compiled probe measures a 5e-7 K residual for the default
+   inversion and 4.55e-13 K with the stricter option. A bounded
+   A/B build tested the mechanism's existing `CONVERGENCE` mode (1e-12 K inversion, iteration cap 5000 rather than 200)
+   with unchanged rates and ODE settings. The native reactor still failed at
+   the same 130–140 us interval, after 26.46 seconds. This option does not cure the
+   observed step-limit failure and is not adopted. No native numerical source was
+   patched. The separate build cost 381.77 CPU-build seconds; cached image is
+   `im-J7qYx0WrtBk6YAnYYfIMU2`.
 
 No grid issue is implicated by a homogeneous, no-hydro reactor. Do not explain a
 failed integration away with future 3D geometry or injector physics. GPU-first
@@ -106,10 +112,55 @@ hashes, direct-rate diagnostics and a native failure log. Execution completion a
 physics acceptance are deliberately separate. `initial_*` includes the rejected
 no-op case. `tight_timeout_*` and `atol20_failure_*` preserve incomplete controls.
 
-Gate status: G0 passed; G1 shock passed; G1 chemistry blocked pending the above
-small investigation. G2 methane/formed-wave propagation and G3 engine work have
-not started. Do not advertise sustained detonation, a calibrated classifier, or a
+Gate status: G0 and G1a passed with the reference scope above. G1b/c native
+geometry/refinement controls and G2 methane/formed-wave propagation remain open. Do not advertise sustained detonation, a calibrated classifier, or a
 measured two-hour RDE runtime from these controls.
 
 Committed log copies have trailing whitespace removed; original byte-for-byte logs
 remain in the checksummed native run artifacts.
+
+The source-derived rate conventions shift the independent 1500 K threshold time
+by 10.59 ns (0.00787%) and the 1-ms temperature by 0.0000453 K. This is a real
+model-representation difference, not native integration error. A pointwise
+temperature comparison during rapid ignition magnifies that tiny time shift.
+Preserve both references; do not align curves or fit rates to obtain a pass.
+
+The final discriminating configuration tests kept the original EOS build: shorten
+the outer interval from 10/5 us to 1/0.5 us; separately allow native CVODE BDF order
+5 rather than its default cap of 2. The independent Cantera reference already
+allows order 5. Neither changes the physical chemistry or relaxes tolerances.
+
+## Resolution: native chemistry order, tolerance and reference identity
+
+The order-2 cap, combined with long zero-D outer intervals and tight tolerances,
+was the demonstrated cause of the excessive substep work. With identical rates,
+EOS, outer steps and tolerances, permitting native CVODE BDF order 5 completed the
+1-ms CPU control in 9.37 s and GPU controls in 5.35/6.20 s (10/5 us outer steps).
+Both preserve species, elements, native/independent energy, density and uniformity.
+CPU/GPU common-time relative temperature difference is 1.56e-9. Allowing higher
+chemistry order does not make the full hydrodynamic algorithm fifth order.
+
+At order 5, rtol=1e-10/atol=1e-20 gives a maximum all-step temperature error of
+1.04e-5 in the five-microsecond case. Tightening to 1e-11/1e-22 reduces it to
+1.23e-7. A further outer-step halving to 2.5 us gives 2.10e-7; this small bounded
+restart/sampling sensitivity is not claimed as monotonic formal convergence.
+Full species fields now include the steep 135-us ignition point. Their maximum
+species error is 1.06e-7 or less, below 2e-6. The tighter CPU 5-us control also
+passes (13.47 s); final GPU 5/2.5-us controls took 8.44/10.13 s, including output.
+By contrast, order 2 with 1/0.5-us steps took 54.73/61.66 s and still missed the
+2e-5 temperature criterion (3.73e-5/4.34e-5). This is a measured control-level
+accuracy/speed improvement, not an engine-throughput projection.
+
+The final control defaults are order 5, rtol=1e-11, atol=1e-22, 5/2.5-us outer
+steps. They are not automatically engine settings; benchmark and recheck at the
+actual CFD timestep, mechanism and thermodynamic states. The original EOS option
+is retained: the stricter inversion did not address this failure.
+
+The numerical reference must represent the equations actually integrated. Using
+the source-derived Rcal/reference-concentration conventions is an explicit
+reference-identity correction, not a relaxed error criterion or a fitted mechanism.
+Direct compiled rates were checked first, and the nominal-YAML results remain
+visible. Their approximately 10.6-ns ignition difference and late temperature
+difference remain model-representation sensitivities. No claim of exact nominal
+YAML reproduction is made. See `chemistry_summary.json` and the convergence plot.
+All thirteen fast regression tests also pass.

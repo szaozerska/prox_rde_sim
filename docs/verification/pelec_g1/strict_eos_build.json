@@ -1,0 +1,47 @@
+{
+  "purpose": "A/B diagnostic of EOS inversion tolerance; original-rate chemistry and native numerical source unchanged",
+  "macro": "CONVERGENCE",
+  "temperature_inversion_tolerance_K": 1e-12,
+  "commands": [
+    [
+      "cmake",
+      "-S",
+      "/opt/PeleC",
+      "-B",
+      "/opt/PeleC/build-cpu",
+      "-DCMAKE_CXX_FLAGS=-DCONVERGENCE"
+    ],
+    [
+      "cmake",
+      "--build",
+      "/opt/PeleC/build-cpu",
+      "--target",
+      "PeleC-zeroD",
+      "-j",
+      "12"
+    ],
+    [
+      "cmake",
+      "-S",
+      "/opt/PeleC",
+      "-B",
+      "/opt/PeleC/build-gpu",
+      "-DCMAKE_CXX_FLAGS=-DCONVERGENCE",
+      "-DCMAKE_CUDA_FLAGS=-DCONVERGENCE"
+    ],
+    [
+      "cmake",
+      "--build",
+      "/opt/PeleC/build-gpu",
+      "--target",
+      "PeleC-zeroD",
+      "-j",
+      "12"
+    ]
+  ],
+  "binary_sha256": {
+    "cpu": "8487d123fcffb1eb3720f6efe48ce1e277f0945c3c88a7687b432fbbf6f2c58b",
+    "gpu": "5789cca7f04f5cee85b575982001e82eae12c5598a8a877047f414f2f17baaed"
+  },
+  "wall_seconds": 381.765998939
+}

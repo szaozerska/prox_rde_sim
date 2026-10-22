@@ -195,3 +195,29 @@ framework, no full figure campaign and no dependency on unpublished 2D work.
 Recheck: all changed-document local links and git whitespace checks pass; throughput
 and cost arithmetic checked. No solver result or runtime is claimed by this
 documentation change. Native implementation can now start at G0.
+
+
+## Round 12 — numerical failure versus mechanism identity
+
+Observed: CPU/GPU agreement and conservation did not guarantee correct ignition;
+CPU could continue after a failed CVODE solve. A nominal YAML comparison mixed
+integration error with two generated-rate constant conventions. Tight tolerances
+with the native order-2 cap reached a substep limit.
+
+Fix/check: fail-closed log guards, independent native operator probes, separate
+nominal and generated-rate references, and unchanged numerical error criteria.
+The EOS-precision hypothesis was tested and rejected as the dominant cause.
+Native order 5 resolved the substep failure with faster, more accurate controls;
+CPU/GPU, field budgets, peak species, timestep and tolerance checks pass. Keep
+nominal-YAML differences visible and do not transfer these settings to an engine
+without new checks. No physics-rate adjustment or new numerical method added.
+
+## Round 13 — methane hot-state eligibility before expensive implementation
+
+Source inspection finds the native DRM19 and GRI inversion bounds at 3000 K,
+whereas the existing physical reference has approximately 3994 K CJ products.
+An initial-guess-independent compiled round-trip check is required, along with
+forward thermo, fit ranges and mechanism provenance. Test a second existing
+candidate only if this first screen rejects DRM19; do not silently extend data
+ranges or mistake a different mechanism's thermodynamic pass for kinetic
+validation. These source/operator checks precede a methane GPU build.

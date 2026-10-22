@@ -52,7 +52,7 @@ mechanism or energy tolerance. See the preserved investigation in the G0 evidenc
 folder; methane validation is separate.
 
 
-G1 shock convergence and CPU/GPU equivalence passed. **G1 chemistry is not passed.**
+G1 shock convergence and CPU/GPU equivalence passed. **G1a closed-reactor numerical controls now pass for the pinned generated LiDryer model.**
 See [the failure investigation](../../docs/verification/pelec_g1/README.md).
 The controls runner rejects solver-error logs independently of native exit/final
 time, since the pinned CPU per-cell CVODE path can ignore an integration failure.
@@ -64,8 +64,8 @@ MPLCONFIGDIR="$PWD/.tooling/matplotlib" .tooling/analysis-venv/bin/python tools/
 ```
 
 Chemistry controls require explicit `--suite chem`; `--rtol`, `--atol`,
-`--backend-filter` and the CPU-only `--linear-solver` permit discriminating small
-tests. Defaults are historical control settings, not accepted engine tolerances.
+`--backend-filter`, `--chem-dt`, `--chem-order` and the CPU-only `--linear-solver` permit discriminating small
+tests. Defaults are the verified order-5, rtol=1e-11/atol=1e-22 reactor controls; they are not automatically accepted engine tolerances.
 Every subprocess has a 90-second cap; the batch stops at first completion/error
 failure. These are not production engine cases. The shared control allocation
 reserves one H100 even for a CPU case filter.
@@ -81,6 +81,6 @@ rates across public fresh/reacting mixtures on two CPUs.
 `PELEC_STRICT_EOS=1` selects a separate cached A/B build using the upstream
 `CONVERGENCE` macro. It changes EOS inversion tolerance to 1e-12 K and its iteration cap to 5000, records new
 binary hashes and does not change rate constants or numerical source. This option
-is under investigation, not an accepted remedy. The default cached build remains
+failed to cure the reactor step-limit error and is retained only as a rejected diagnostic. The default cached build remains
 available; full reacting throughput and the one-to-two-hour engine target remain
 unmeasured.

@@ -1,0 +1,18 @@
+{
+  "nominal": {
+    "T_1ms_K": 3223.858656625031,
+    "time_to_1500K_s": 0.00013444753176281666,
+    "time_to_2000K_s": 0.00013510845161090394
+  },
+  "generated_constants": {
+    "T_1ms_K": 3223.858611344191,
+    "time_to_1500K_s": 0.00013443694608304216,
+    "time_to_2000K_s": 0.0001350978527103507
+  },
+  "relative_difference": {
+    "T_1ms_K": -1.404554128558999e-08,
+    "time_to_1500K_s": -7.873465310748173e-05,
+    "time_to_2000K_s": -7.844735415796222e-05
+  },
+  "scope": "Independent model-representation sensitivity, not native execution acceptance or experimental validation; same closed constant-volume initial state."
+}

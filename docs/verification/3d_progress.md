@@ -320,3 +320,20 @@ All thirteen fast 3D tests pass after adding the observed solver-error regressio
 No changes were made to the parallel 2D checkout. GPU-first remains one bounded
 native implementation with CPU controls and the installed detonationFoam fallback;
 these failures do not establish a GPU hardware limitation.
+
+
+## G1a resolution — numerical controls pass with supported native options
+
+The strict EOS inversion A/B did not resolve the failure and is not adopted.
+The order-2 cap plus tight tolerance/long zero-D intervals caused excessive CVODE
+substeps; allowing order 5 completed CPU/GPU controls quickly. Tightening tolerances
+reduces all-step ignition error by about 84x at the 5-us step. Full peak species,
+energy/element budgets and separate timestep checks pass. Final strict CPU/GPU
+controls and the independently matched generated-rate reference are recorded in
+[G1a evidence](pelec_g1/README.md). Nominal YAML differs by 10.6 ns in ignition
+time; that model difference is retained, not relabelled as numerical success.
+
+The source/probe review for G2 identified a distinct hot-state issue: native
+DRM19/GRI temperature inversion extrapolates above 3000 K, below Run 937 reference
+product temperature. Methane case construction waits on that preflight. Native
+annulus/AMR, propagation, sustained-wave and runtime gates remain open.

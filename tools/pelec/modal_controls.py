@@ -20,7 +20,7 @@ app=modal.App('prox-rde-3d-pelec-controls',include_source=False)
 @app.function(image=image,serialized=True,gpu='H100!',cpu=(8.0,8.0),
               memory=(16384,16384),timeout=900,startup_timeout=180,
               retries=0,max_containers=1)
-def controls(suite: str = "all", rtol: float = 1e-9, atol: float = 1e-15, backend_filter: str = "both", linear_solver: str = "GMRES"):
+def controls(suite: str = "all", rtol: float = 1e-11, atol: float = 1e-22, backend_filter: str = "both", linear_solver: str = "GMRES", chem_dt: float = 5e-6, chem_order: int = 5):
     import base64
     import hashlib
     import io
@@ -38,7 +38,11 @@ def controls(suite: str = "all", rtol: float = 1e-9, atol: float = 1e-15, backen
     cases=[('gpu','Sod',64,.001),('gpu','Sod',128,.0005),
            ('gpu','Sod',256,.00025),('gpu','Sod',128,.00025),
            ('cpu','Sod',128,.0005),
-           ('cpu','zeroD',8,1e-5),('gpu','zeroD',8,1e-5),('gpu','zeroD',8,5e-6)]
+           ('cpu','zeroD',8,chem_dt),('gpu','zeroD',8,chem_dt),('gpu','zeroD',8,chem_dt/2)]
+    if chem_order not in (1,2,3,4,5):
+        raise ValueError('CVODE BDF order must be 1 through 5')
+    if not 2e-7 <= chem_dt <= 1e-5:
+        raise ValueError('Chemistry control dt must keep the 1 ms horizon within max_step')
     if suite not in ('all','shock','chem'):
         raise ValueError('suite must be all, shock, or chem')
     if suite != 'all':
@@ -71,10 +75,10 @@ def controls(suite: str = "all", rtol: float = 1e-9, atol: float = 1e-15, backen
             command+=['amr.plot_vars=density Temp',
                       'amr.derive_plot_vars=pressure x_velocity y_velocity z_velocity']
         else:
-            command+=['prob.T_init=1001','pelec.do_hydro=0','amr.plot_per=1e-5',
+            command+=['prob.T_init=1001','pelec.do_hydro=0',f'amr.plot_per={max(5e-6,min(1e-5,dt))}',
                       'amr.data_log=datlog','pelec.plot_massfrac=1',
                       'pelec.chem_integrator=ReactorCvode',f'cvode.solve_type={linear_solver}',
-                      f'ode.rtol={rtol}',f'ode.atol={atol}']
+                      f'ode.rtol={rtol}',f'ode.atol={atol}',f'cvode.max_order={chem_order}']
         started=time.monotonic()
         with (run/'solver.log').open('w') as log:
             try:

@@ -1,4 +1,4 @@
-# 3D RDE development plan - revision 12, measured two-hour GPU path
+# 3D RDE development plan - revision 13, native verification and methane preflight
 
 This branch develops a native three-dimensional methane/oxygen pipeline.
 The October 22 GPU revision below controls execution order; the T0-T7 physics
@@ -391,8 +391,10 @@ References: [Mundt thesis](Mundt2023.pdf), [model audit](docs/verification/mundt
 
 ## Baseline and current status
 
-Revision 12 plan is reviewed. G0 native CUDA installation smoke and independent
-field/budget checks passed on one H100; G1 controls are next. Reacting throughput,
+Revision 13 incorporates native-control evidence. G0 and G1a shock/closed-reactor
+controls passed on CPU and one H100; native geometry/refinement G1b/c and methane
+G2 remain open. The generated-rate reference distinction and order-5 chemistry
+configuration are recorded in [G1a evidence](docs/verification/pelec_g1/README.md). Reacting throughput,
 multi-GPU capacity/scaling and G2-G5 physics remain unverified. Do not complete a
 duplicate full detonationFoam pipeline. See [G0 evidence](docs/verification/pelec_g0/result.json).
 
@@ -400,3 +402,25 @@ T0 complete. Separate clone based on `0f435aad6b23e063a35f1017a985d5ee8ee8145d`,
 committed 2026-10-22 01:35:05 PDT. T1 installation and T2 parametric mesh checks passed; no 3D reactive model has been validated. The new C1-C6 controlled 2D
 plan was re-read after branching; its source/formed-profile/layer controls can
 provide additional evidence later, without changing this frozen checkout.
+
+
+## Revision 13 execution refinements
+
+Use independently integrated references matching the pinned generated rates for
+numerical error, and keep nominal-mechanism representation differences separately
+visible. Never fit constants to native trajectories or experimental wave speeds.
+G1a exposed and guarded against no-op chemistry and ignored CPU CVODE failures.
+Native order-5 chemistry passes the small strict controls; the default order-2
+cap was inefficient for their long zero-D intervals. This is a supported native
+option, not a new CFD solver or an overall fifth-order hydrodynamic claim.
+
+Before choosing a methane mechanism, directly test native u(T,Y), cv(T,Y), and
+T(u,Y) against Cantera at fresh and product states, including the approximately
+3994 K existing Run 937 reference. A compiled audit finds DRM19 and native GRI
+forward thermodynamics agree with Cantera, but their inverse switches to linear
+extrapolation above 3000 K. Do not pass a mechanism on low-temperature checks only,
+raise the inversion bound silently, or confuse polynomial extrapolation with
+validated high-temperature thermochemistry. A second existing candidate may be
+screened to resolve this incompatibility; no broad mechanism search or invented
+reduction is required. Its kinetics, provenance and high-pressure scope must
+pass before any native methane propagation or engine case.
