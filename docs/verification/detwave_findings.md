@@ -1,6 +1,6 @@
 # Why the current 2D model loses its detonation wave
 
-Assessment at **21:42 UTC, October 22, 2026**. Branch
+Final assessment at the **22:00 UTC deadline, October 22, 2026**. Branch
 `2d-modelling-detwave-sustaining-fix`; original checkout preserved. Detailed
 measurements, hypotheses and provenance are in
 [the investigation log](detwave_sustaining_investigation.md).
@@ -19,7 +19,7 @@ that the experimental engines should fail or that a 2D workflow cannot work.
 
 | Discriminating evidence | What it establishes |
 |---|---|
-| Original Run 937 chemistry loses reaction/pressure coupling despite a formed start; shortened chemistry remains coupled through 60 us in the larger engine | Startup energy alone is insufficient; reaction timescale matters |
+| Original Run 937 chemistry loses reaction/pressure coupling despite a formed start; shortened chemistry remains coupled through the final 80 us sample in the larger engine | Startup energy alone is insufficient; reaction timescale matters |
 | Smaller 25-FI-5 controls also fail; changing charge fraction improves the first transit but not sustained return | The problem is not confined to one Run 937 input, and the original fixed-length charge biased the smaller-engine comparison |
 | HLLC reduces stationary-contact artificial conversion by about 100,000×; actual engine cold refill at 30 us grows from 0.65 to 1.14 mm at nearly identical delivered mass | Numerical mixing is a demonstrated source of premature burning |
 | HLLC engine still loses strong coupling after return; at 50 us only 3.23% of heat is above twice initial pressure | Contact restoration is a useful numerical correction, not a complete sustaining fix |
@@ -80,8 +80,30 @@ For a demonstration today, the verified result is **bounded coupled propagation*
 in the larger engine and a reproduced mechanism of failure on return in the
 smaller engine. It must not be labeled a validated steady RDE. More ignition,
 repeated reseeding or artificially maintaining a fresh layer would hide the test.
-The existing larger-engine run continues only until the agreed 22:00 UTC deadline;
-its final achieved duration and return status will be recorded then.
+The larger-engine run was intentionally stopped at the deadline after 80.138 us
+(10,357 steps; 2 h 47 min wall time), short of its 189.394 us target. Its complete
+80 us field still has a coupled forward front at x=186.36 mm: pressure 18.43 MPa,
+nearby reaction rate 8.50e5/s, and 0.125 mm absolute peak separation at z=1.062 mm.
+It has not crossed the 223.681 mm periodic seam or completed a circuit from its
+initial position. This is an unfinished sustaining test, not evidence of extinction
+in the larger engine. Zero invalid states were recorded. The 80 us checkpoint and
+all source provenance are preserved; all investigation jobs are stopped and the
+follow-up automation has been removed.
+
+| Run | Last complete saved interval | Outcome |
+|---|---:|---|
+| Run 937, original chemistry | 40 us | Completed; lost coupling |
+| Run 937, shortened chemistry | 80 us | Deadline stop; coupled first transit, no return |
+| 25-FI-5 geometry control | 52 us | Intentionally stopped after wave loss |
+| 25-FI-5 high flux, large charge | 43 us | Intentionally stopped after wave loss |
+| 25-FI-5 high flux, compact charge, HLL | 50 us | Lost coupling around first return |
+| Same compact case, HLLC | 51 us checkpoint / 50 us full field | Better refill, still lost coupling |
+| Fully fresh 1 mm layer, HLLC | 10 us | Completed; pressure/reaction separation |
+
+[Final large-engine metrics](detwave_short_final_metrics.json) and
+[space-time plot](detwave_short_final/space_time.png) preserve the final evidence.
+Raw `KeyboardInterrupt` statuses on intentionally stopped jobs describe manual
+termination, not a solver failure.
 
 ## Relation to the literature
 

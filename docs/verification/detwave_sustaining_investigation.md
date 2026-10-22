@@ -825,3 +825,49 @@ Do not infer permission to use the separately active main or 3D branches.
 - A ten-minute chat follow-up was configured for at most three hours. Local
   automation requires the computer awake and app running; quitting is not a
   supported guarantee. Every run saves progress/checkpoints for recovery.
+
+
+## Final deadline closeout — 22:00 UTC, October 22
+
+This section supersedes every historical active-run instruction above. **All
+investigation CFD jobs are stopped or completed. Do not restart them automatically.**
+The recurring investigation follow-up has been deleted. The original checkout
+remains untouched; work and reporting stay on the investigation branch.
+
+The remaining Run 937 shortened-chemistry process was positively identified as
+PID 9440, its complete 80 us / 10,338-step checkpoint copied to
+`runs/detwave_short_189us/checkpoint_before_deadline_stop.npz`, and then sent SIGINT
+at the user deadline. A `deadline_stop.json` records the preservation time and
+reason. Its final raw status is `failed` / `KeyboardInterrupt()` at 80.1382048 us,
+10,357 steps, 10,056.09 s wall time, zero invalid states. This is a **budget stop**,
+not numerical failure or demonstrated extinction. The target 189.394 us was not
+reached. Archived v1 source is the provenance of this run; later merged/HLLC code
+must not be represented as having produced it.
+
+The final complete 80 us sample contains 9.296 mg fresh gas and 19.651 mg cumulative
+injected mass; global maximum pressure 21.293 MPa, heat fraction above twice p1
+0.7427, scaled conservation residual 9.14e-16. More decisively, isolating the
+forward front in x=150–215 mm gives:
+
+| Height | Forward pressure peak | Pressure | Maximum rate within 2 mm | Signed pressure-minus-rate peak gap |
+|---|---:|---:|---:|---:|
+| 1.062 mm | 186.359 mm | 18.429 MPa | 8.496e5/s | -0.125 mm |
+| 3.060 mm | 185.984 mm | 17.350 MPa | 5.633e5/s | +0.875 mm |
+
+The space-time ridge and local rates support coupled first-transit propagation.
+The forward wave has not crossed the periodic seam at 223.681 mm, much less
+returned to its initial position after a full circuit. **This run does not establish
+sustained periodic operation.** Final metrics, input/field/checkpoint hashes and
+sampling definitions are in `detwave_short_final_metrics.json`; plots are in
+`detwave_short_final/`.
+
+The deadline result is therefore a supported numerical correction and a bounded
+model diagnosis, **not the requested sustaining prototype**. The completed 1 mm
+fresh-layer control identifies reaction/expansion incompatibility for the tested
+chemistry/discretization combination; it does not uniquely distinguish surrogate
+kinetics from residual spatial error. HLLC suppresses artificial contact burning
+and improves cold refill, but does not rescue the small engine. Future work should
+qualify reaction timing and resolution against the actual refill thickness before
+another periodic-engine run, rather than increase ignition or tune six engines.
+The concise final report is `detwave_findings.md`. No new simulations were launched
+at closeout.

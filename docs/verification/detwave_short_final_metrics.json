@@ -1,0 +1,117 @@
+{
+  "run": "rde_sim_starter/runs/detwave_short_189us",
+  "source_snapshot": "source_snapshot_v1",
+  "fingerprint": {
+    "packages": {
+      "PyYAML": "6.0.3",
+      "llvmlite": "0.45.1",
+      "numba": "0.62.1",
+      "numpy": "2.3.5",
+      "scipy": "1.18.1"
+    },
+    "python": "3.12.0",
+    "source_sha256": {
+      "analyze.py": "84dee7247d1db42074805858295e3b3fe8c7713fd2c695b3edcafd68c59d8247",
+      "calibrate.py": "e43a8522a46ac0d2808adb032aef66e4b019cb5f94ae03ae43c8f490ea0870fa",
+      "physics.py": "6766f8caed3b4d09d77489f5cfc657d848a473094e155d5ac48b3eddc33d975a",
+      "run.py": "18d850b6448259fe546d1a1c48aaae99a4ab74942b56d85b421fc23dee3112af",
+      "solver.py": "f2ecf8fa01ca5228b996872f5b8e29722eb5f314c4aba3c97a7db3aef45b2b83"
+    },
+    "study": {
+      "controlled.py": "6259cf5858075cfed2a66e784a44165c4b0656fa5e982be80d32802d4ba6226e",
+      "detwave_initialization.py": "d72d473a4319a32dafaced6021a651060b5a368e0347d1de18c7dc5f8acff2e0",
+      "detwave_study.py": "6af5b555ad9970345cb40e1a88925ea90c0b93038094d491b0c9981cfe5d2c4b"
+    }
+  },
+  "stop_reason": "Intentional deadline SIGINT; raw failed/KeyboardInterrupt is not numerical failure or extinction",
+  "stop_record": {
+    "saved_time_us": 80.0,
+    "steps": 10338,
+    "time_utc": "2026-10-22T22:00:39.657914+00:00",
+    "reason": "User-specified 22:00 UTC investigation deadline. Budget stop, not demonstrated numerical failure or wave extinction. Preserve original v1 provenance; no automatic continuation."
+  },
+  "planned_end_us": 189.3939393939394,
+  "actual_stop_us": 80.13820479403489,
+  "actual_steps": 10357,
+  "wall_seconds": 10056.088577813,
+  "invalid_state_count": 0,
+  "last_complete_sample": {
+    "boundary": [
+      [
+        -0.0004770486506889095,
+        3.081740583835632,
+        -0.28436579100359194,
+        -1274.1271677890832,
+        -0.0004785132815911602
+      ],
+      [
+        -0.0004770486506889095,
+        3.081740583835632,
+        -0.28436579100359194,
+        -1274.1271677890832,
+        -0.0004785132815911602
+      ],
+      [
+        0.003930247288866292,
+        0.0,
+        16.647488863859436,
+        23567.85789803788,
+        0.0
+      ],
+      [
+        0.005900318827444963,
+        0.46280941679071086,
+        8.388460753112494,
+        16743.985104733012,
+        0.005900318827444963
+      ]
+    ],
+    "budget_scaled_residual": 9.139960120951031e-16,
+    "chemical_power_W": 2014263.912749657,
+    "converted_J": 139.6747740652741,
+    "fresh_mass_kg": 9.295923154867741e-06,
+    "high_pressure_heat_fraction": 0.7427306160055829,
+    "injected_mass_kg": 1.9651236444331452e-05,
+    "outlet_subsonic_fraction": 0.010620458356623811,
+    "pressure_max_Pa": 21292666.598513283,
+    "source": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.005079082693282697
+    ],
+    "steps": 10338,
+    "time_s": 7.999999999999999e-05
+  },
+  "field_time_s": 7.999999999999999e-05,
+  "forward_front_search_interval_m": [
+    0.15,
+    0.215
+  ],
+  "local_front_samples": [
+    {
+      "z_m": 0.0010618032786885246,
+      "pressure_peak_x_m": 0.18635948693823465,
+      "pressure_peak_Pa": 18429226.0,
+      "rate_peak_within_2mm_per_s": 849561.75,
+      "pressure_minus_rate_peak_gap_m": -0.00012503152427928432
+    },
+    {
+      "z_m": 0.0030604918032786886,
+      "pressure_peak_x_m": 0.18598439236539688,
+      "pressure_peak_Pa": 17349884.0,
+      "rate_peak_within_2mm_per_s": 563300.3125,
+      "pressure_minus_rate_peak_gap_m": 0.000875220669954796
+    }
+  ],
+  "circumference_m": 0.2236813969355933,
+  "initial_shock_m": 0.02236813969355933,
+  "interpretation": "Coupled forward propagation at the saved 80 us sample; no first periodic seam crossing or full circuit, so sustaining validation remains unachieved.",
+  "sha256": {
+    "rde_sim_starter/runs/detwave_short_189us/inputs.json": "87011a6346f6a722f35edc008032c669eecd305bb0bb4b87389352fa1a79301d",
+    "rde_sim_starter/runs/detwave_short_189us/progress.json": "e9a4b5be884fd258d03ce6c8dee3373d04ff3f18116453add65deeb84ce06d67",
+    "rde_sim_starter/runs/detwave_short_189us/checkpoint_before_deadline_stop.npz": "f94f015f4b0a18c8f00efb801271258436489ec18506229fea07f78156f3d590",
+    "rde_sim_starter/runs/detwave_short_189us/fields/t_00080.0000us.npz": "6065e42b0aa77d58b740d60c9f019e0dd8f91cc1be87eba56cac15de3126c494"
+  }
+}

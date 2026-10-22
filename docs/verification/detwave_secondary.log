@@ -1,0 +1,66 @@
+START secondary geometry
+detwave_25fi5_geometry: 0.000/189.394 us, 0 steps, 0.1 s
+detwave_25fi5_geometry: 1.000/189.394 us, 119 steps, 27.0 s
+detwave_25fi5_geometry: 2.000/189.394 us, 240 steps, 54.5 s
+detwave_25fi5_geometry: 3.000/189.394 us, 362 steps, 82.7 s
+detwave_25fi5_geometry: 4.000/189.394 us, 485 steps, 111.5 s
+detwave_25fi5_geometry: 5.000/189.394 us, 608 steps, 142.9 s
+detwave_25fi5_geometry: 6.000/189.394 us, 731 steps, 178.0 s
+detwave_25fi5_geometry: 7.000/189.394 us, 855 steps, 208.5 s
+detwave_25fi5_geometry: 8.000/189.394 us, 979 steps, 235.3 s
+detwave_25fi5_geometry: 9.000/189.394 us, 1100 steps, 265.9 s
+detwave_25fi5_geometry: 10.000/189.394 us, 1220 steps, 298.3 s
+detwave_25fi5_geometry: 11.000/189.394 us, 1351 steps, 331.0 s
+detwave_25fi5_geometry: 12.000/189.394 us, 1475 steps, 355.7 s
+detwave_25fi5_geometry: 13.000/189.394 us, 1597 steps, 377.8 s
+detwave_25fi5_geometry: 14.000/189.394 us, 1728 steps, 401.1 s
+detwave_25fi5_geometry: 15.000/189.394 us, 1854 steps, 423.5 s
+detwave_25fi5_geometry: 16.000/189.394 us, 1978 steps, 445.5 s
+detwave_25fi5_geometry: 17.000/189.394 us, 2112 steps, 469.5 s
+detwave_25fi5_geometry: 18.000/189.394 us, 2258 steps, 495.4 s
+detwave_25fi5_geometry: 19.000/189.394 us, 2407 steps, 521.9 s
+detwave_25fi5_geometry: 20.000/189.394 us, 2556 steps, 552.7 s
+detwave_25fi5_geometry: 21.000/189.394 us, 2704 steps, 581.4 s
+detwave_25fi5_geometry: 22.000/189.394 us, 2848 steps, 616.4 s
+detwave_25fi5_geometry: 23.000/189.394 us, 2989 steps, 650.3 s
+detwave_25fi5_geometry: 24.000/189.394 us, 3123 steps, 680.5 s
+detwave_25fi5_geometry: 25.000/189.394 us, 3246 steps, 707.5 s
+detwave_25fi5_geometry: 26.000/189.394 us, 3365 steps, 737.3 s
+detwave_25fi5_geometry: 27.000/189.394 us, 3484 steps, 767.0 s
+detwave_25fi5_geometry: 28.000/189.394 us, 3602 steps, 794.1 s
+detwave_25fi5_geometry: 29.000/189.394 us, 3724 steps, 822.5 s
+detwave_25fi5_geometry: 30.000/189.394 us, 3847 steps, 849.2 s
+detwave_25fi5_geometry: 31.000/189.394 us, 3963 steps, 874.3 s
+detwave_25fi5_geometry: 32.000/189.394 us, 4072 steps, 906.1 s
+detwave_25fi5_geometry: 33.000/189.394 us, 4175 steps, 933.7 s
+detwave_25fi5_geometry: 34.000/189.394 us, 4278 steps, 956.6 s
+detwave_25fi5_geometry: 35.000/189.394 us, 4377 steps, 979.7 s
+detwave_25fi5_geometry: 36.000/189.394 us, 4473 steps, 1002.0 s
+detwave_25fi5_geometry: 37.000/189.394 us, 4568 steps, 1029.7 s
+detwave_25fi5_geometry: 38.000/189.394 us, 4663 steps, 1059.6 s
+detwave_25fi5_geometry: 39.000/189.394 us, 4759 steps, 1082.8 s
+detwave_25fi5_geometry: 40.000/189.394 us, 4856 steps, 1105.2 s
+detwave_25fi5_geometry: 41.000/189.394 us, 4950 steps, 1128.8 s
+detwave_25fi5_geometry: 42.000/189.394 us, 5043 steps, 1169.6 s
+detwave_25fi5_geometry: 43.000/189.394 us, 5137 steps, 1199.1 s
+detwave_25fi5_geometry: 44.000/189.394 us, 5231 steps, 1225.2 s
+detwave_25fi5_geometry: 45.000/189.394 us, 5324 steps, 1246.8 s
+detwave_25fi5_geometry: 46.000/189.394 us, 5416 steps, 1268.7 s
+detwave_25fi5_geometry: 47.000/189.394 us, 5508 steps, 1291.4 s
+detwave_25fi5_geometry: 48.000/189.394 us, 5599 steps, 1312.5 s
+detwave_25fi5_geometry: 49.000/189.394 us, 5692 steps, 1333.2 s
+detwave_25fi5_geometry: 50.000/189.394 us, 5785 steps, 1356.1 s
+detwave_25fi5_geometry: 51.000/189.394 us, 5879 steps, 1383.5 s
+detwave_25fi5_geometry: 52.000/189.394 us, 5973 steps, 1408.8 s
+detwave_25fi5_geometry: 52.935/189.394 us, 6061 steps, 1434.7 s
+Traceback (most recent call last):
+  File "<stdin>", line 4, in <module>
+  File "/private/tmp/prox-rde-detwave-fix/rde_sim_starter/detwave_study.py", line 121, in run
+    while s.t<target-1e-16:s.step(dt_max=target-s.t)
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/private/tmp/prox-rde-detwave-fix/rde_sim_starter/solver.py", line 287, in step
+    boundary2, source2 = self._L(self.U1, self.k1, "RK stage 1")
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/private/tmp/prox-rde-detwave-fix/rde_sim_starter/solver.py", line 261, in _L
+    rhs(self.W, out, self.Fb, self.boundary_faces, self.source_columns,
+KeyboardInterrupt
