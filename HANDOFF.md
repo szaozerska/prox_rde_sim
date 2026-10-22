@@ -11,7 +11,12 @@ The [3D plan](first_sim_plan.md) supersedes implementation ordering in inherited
 2D documents. Five self-review rounds are in [the review log](docs/plans/3d_plan_reviews.md).
 Keep the [implementation record](docs/verification/3d_progress.md) current.
 
-T0-T2 are complete. T3 cold equilibrium is next.
+T0-T2 are complete for detonationFoam. Revision 11 now prioritizes a bounded
+PeleC/Modal GPU trial (G0 next), retaining detonationFoam as fallback. Do not
+complete two full CPU/GPU engine stacks. About eight GPUs are authorized initially;
+hardware/access/topology are not verified and no GPU benchmarks have run. See
+[the GPU decision record](docs/plans/3d_gpu_decision.md). All physics gates remain
+in the selected backend; no OpenFOAM mesh pass transfers to PeleC embedded geometry.
 Homebrew installed Colima, Lima and Docker; a dedicated two-CPU/4 GiB `rde3d`
 profile mounts only this checkout and its temporary staging. Do not use the
 original checkout as a native-case output destination. The bounded tutorial-based installation check passed. No 3D flow or methane chemistry

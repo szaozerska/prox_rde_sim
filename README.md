@@ -10,6 +10,11 @@ an add-on; existing physics, thermochemical references, tests and figure roadmap
 are retained. Installation/mesh checks do not establish sustained detonation.
 Only commit and push to `3d-modelling` from this checkout.
 
+Current direction: [revision 11](first_sim_plan.md) evaluates PeleC for Modal GPU
+production, with small same-backend CPU checks and the installed detonationFoam
+fallback. No separate CPU/GPU model branches. See [solver choices and speed/accuracy
+tradeoffs](docs/plans/3d_gpu_decision.md). No GPU run has been performed yet.
+
 Verified so far: pinned OpenFOAM 8/detonationFoam installation smoke; full-annulus
 and core-end expansion meshes with native volume/area/quality checks. Prepare a
 new mesh with `python -m rde3d.prepare --out runs3d/my_mesh`, then verify it with

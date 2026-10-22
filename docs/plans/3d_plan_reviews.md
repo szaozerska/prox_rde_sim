@@ -83,3 +83,61 @@ All five rounds completed before project implementation. Installing prerequisite
 and reading upstream code proceeded during planning; neither was treated as a
 validated simulation. Round 4/5 incorporate the new layer-diagnostic review: it is
 a credible hypothesis and does not eliminate outlet, startup or numerical causes.
+
+
+# GPU revision reviews — October 22, 2026
+
+These additional self-reviews concern the new user priority and eight-GPU access.
+They do not supersede the evidence/status of the original five rounds.
+
+## Round 6 — backend decision and reuse
+
+Reviewed the proposed GPU direction against current primary Modal, PeleC, MFC and
+Fluent documentation. Issues: a GPU allocation does not accelerate the installed
+CPU executable; two complete model branches duplicate work; GPU chemistry support
+cannot be inferred from a generic GPU solver label; old claims that Fluent has no
+GPU reactions would now be false.
+
+Fix: one physical project, same-backend CPU/GPU controls, bounded PeleC trial and
+installed detonationFoam fallback. Explicitly acknowledge Fluent's finite-rate
+GPU capability while documenting the pressure-based formulation and unestablished
+license/case availability. No custom GPU port or simultaneous alternative stack.
+Recheck: backend change is conditional on measured capability, not marketing or
+a claimed speedup. First revision of GPU plan/decision record saved.
+
+## Round 7 — physical shortcuts, mesh migration and dependency ordering
+
+Reviewed the first GPU revision against PeleC EB documentation and our geometry
+arithmetic. Issues: native mesh verification cannot transfer; cut-cell species
+repair can change mass/energy; uniform coarse cells do not resolve the inherited
+reaction scale; the first draft placed a reactive AMR crossing test before its
+chemistry verification dependency. Old text still mandated three passages first.
+
+Fix: independent EB geometry/cold checks and quantified repairs; same physics
+1D grid/dt checks; distinguish cold AMR crossing from reactive crossing after G2b;
+allow uniform-grid trials to defer unneeded dynamic-AMR work. One-passage first
+checkpoint, three/five-passage cap retained. Old native-field/units and local-only
+wording now identifies backend scope. Recheck: no cyclic test dependency and no
+coarse engine pass can substitute for propagation/chemistry verification.
+
+## Round 8 — turnaround, scaling, acceptance and final consistency
+
+Reviewed the amended dependency order and the complete entry-point documents.
+Issues: eight GPUs need not minimize turnaround; a one-GPU case may not fit;
+raw cell-state storage understates memory; generic cold criteria incorrectly
+required every species to be strictly positive; per-run timeouts do not bound
+queue delay or retries. Native boundary names must not imply OpenFOAM patches
+exist unchanged in an EB backend.
+
+Fix: measure queue/setup/integration/I/O separately, use the smallest fitting
+allocation as a declared scaling baseline, compare against multiple independent
+small runs, and retain memory headroom. Species may be zero; pressure, temperature
+and density must be positive. Surface identities transfer, native topology does
+not. Require predeclared tolerances/correction budgets and tested restart before
+retrying costly work. Resource/time checkpoints remain explicitly unmeasured
+planning decisions. Recheck: no GPU job, new chemistry pass or speedup is claimed;
+README/handoff direct G0 while keeping T0-T2 evidence backend-specific.
+
+Verification for this documentation increment: seven existing 3D unit tests pass
+in 0.101 s; geometry/cell-count/CFL arithmetic and changed-document local links
+checked independently; `git diff --check` passes. No CFD rerun was necessary.

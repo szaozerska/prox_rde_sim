@@ -140,3 +140,32 @@ Commands: `python -m rde3d.prepare --out runs3d/<new-name> [--ntheta 128 |
 --outlet-z .0762]`, then `python -m rde3d.mesh_metrics runs3d/<new-name>`.
 Use `--saved` to reanalyze existing mesh/logs without rerunning. T2 permits the
 cold equilibrium test. Reactive mesh requirements remain entirely unverified.
+
+
+## Revision 11 — Modal GPU planning, not a solver result
+
+User authorized roughly eight Modal GPUs and prioritized turnaround over initial
+fidelity. Researched current primary PeleC, MFC, Fluent and Modal documentation;
+read-only public PeleC HEAD query returned 949e2bb67386bf4b16324b06555e303ff411e179.
+That is a candidate research snapshot, not an installed build. No Modal access,
+GPU type/topology, benchmark, new chemistry result or engine run is verified.
+
+Revised the primary plan and entry points; added `docs/plans/3d_gpu_decision.md`.
+One 3D project now evaluates PeleC for GPU production with same-backend CPU
+controls, retaining installed detonationFoam as fallback. No duplicate CPU/GPU
+engine branches or custom GPU solver. A four-active-hour checkpoint and first-day
+capability decision limit migration effort; neither promises a delivery date.
+
+Three additional self-reviews (rounds 6-8) recorded issues and fixes: GPU support
+versus actual reacting capability, cut-cell species/energy repair, nontransferable
+mesh passes, AMR/chemistry dependency ordering, unresolvable coarse reaction scales,
+queue/scaling/memory overhead and restart/output durability. Initial assumptions
+explicitly defer jets, wall loss and turbulence; conservation, source/thermo checks,
+front coupling and grid/time diagnostics stay mandatory. An unresolved numerical
+failure cannot be labelled physical extinction or excused by a future feature.
+
+Analytic volume 4.3089845447e-4 m3 yields 3.45/27.58/220.62 million fluid-volume
+equivalent cells at uniform 0.5/0.25/0.125 mm. These are planning calculations, not
+new meshes or approved reactive resolutions. No extrapolated wall time is claimed.
+Seven existing 3D tests passed in 0.101 s; local links, arithmetic and whitespace
+checked for the changed docs. Original 2D checkout remains untouched. G0 is next.
