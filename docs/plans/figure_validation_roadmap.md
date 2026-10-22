@@ -1,3 +1,11 @@
+# 3D branch scheduling override
+
+The [3D plan](../../first_sim_plan.md), revision 10, sets this branch's execution
+order. Keep the measurement operators, reference records and G0-G8 backlog below;
+apply them to native 3D fields and face/volume integrals when the relevant gates
+pass. The inherited 2D milestone numbers and implementation order are historical
+here. No new full figure campaign is part of the first 3D backend checks.
+
 # Figure validation roadmap: Mundt Chapters 3 and 4
 
 **D3 update (October 22, 2026):** the initial Run 937 G0 subset now exists:

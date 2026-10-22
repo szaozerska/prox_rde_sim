@@ -1,3 +1,18 @@
+# 3D modelling branch
+
+Work in `/Users/sgfx/Desktop/Projects/prox_rde_sim_3d`, branch **3d-modelling**.
+The separate original checkout belongs to the parallel 2D session. This branch
+starts from investigation commit `0f435aa` (October 22, 2026, 01:35 PDT).
+
+Follow the [3D plan](first_sim_plan.md), [five plan reviews](docs/plans/3d_plan_reviews.md),
+and [implementation record](docs/verification/3d_progress.md). The 3D pipeline is
+an add-on; existing physics, thermochemical references, tests and figure roadmap
+are retained. Installation/mesh checks do not establish sustained detonation.
+Only commit and push to `3d-modelling` from this checkout.
+
+The documentation below describes the inherited 2D backend at the frozen baseline.
+Its unresolved Run 937 result remains open.
+
 # prox_rde_sim
 
 Reduced RDE simulation project. Foundation, bounded-run persistence, reactive-source

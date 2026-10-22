@@ -1,3 +1,6 @@
+> Baseline reference copied from main at `0f435aa`. The instructions below
+> apply to the other 2D session. This 3D checkout commits only to `3d-modelling`.
+
 # Controlled 2D investigation — execution plan
 
 October 22, 2026. Companion to master-plan revision 9.
