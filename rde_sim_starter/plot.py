@@ -682,7 +682,8 @@ def plot_detwave(directory, destination):
         for axis,values,label in zip(axes[:,column],arrays,['Pressure [MPa]','log10 reaction rate [1/s]','Reaction progress']):
             im=axis.pcolormesh(x,times,values,shading='nearest',cmap='magma' if 'rate' in label else 'viridis')
             fig.colorbar(im,ax=axis,label=label)
-            axis.set(xlabel='Mean-radius circumference [mm]',ylabel='Time [us]',title=f'z = {height:.3f} mm')
+            axis.set(xlabel='Mean-radius circumference [mm]',ylabel='Time [us]',
+                     title=f'z = {height:.3f} mm',xlim=(0,width),ylim=(times[0],times[-1]))
     fig.suptitle(f"Bounded engine study: L50={inputs['half_mm']} mm, grid={inputs['dx_mm']} mm\nPressure ridges require continuing nearby reaction; startup included")
     fig.savefig(destination/'space_time.png',dpi=140);plt.close(fig)
     fig,axes=plt.subplots(2,2,figsize=(12,7),layout='constrained')

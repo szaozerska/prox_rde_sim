@@ -110,6 +110,56 @@ not a methane chemistry validation or evidence for changing our outlet to a wall
   `detwave_engine_temporal.json`. Both longer cases now use .20, unchanged
   flow CFL .4, flux, EOS and integrator. This short check is not proof of
   identical late nonlinear structures.
+- Initial charge accounting: original/shortened cases have 19.2481/14.3321 J
+  excess energy, 84.6617/82.7206 J unspent chemical energy, and
+  0.0050751/0.0039816 kg m/s azimuthal momentum. Both use identical 25 mm
+  geometric charge and 3.8 mm conservative layer height on 1789 x 610 cells.
+  The original case is *more* strongly energized, not less. Different ZND
+  profiles remain a confound; success of the short case cannot establish a
+  universal chemistry-only threshold from this engine pair alone.
+- Benchmark fields inspected: forward shock-associated reaction and a separate
+  rear-startup disturbance are present. Numerical interface burning occurs along
+  the initially fresh/product boundary. Native exit mass flux is nonzero by
+  2 us; outflow cannot be dismissed on a claim that it begins at 43 us.
+
+## Active-run handoff (replace with results when complete)
+
+Both simulations run in this branch's worktree, not the original checkout.
+Python: `/Users/sgfx/Desktop/Projects/prox_rde_sim/.venv/bin/python`.
+Commands were launched with `NUMBA_NUM_THREADS=4`, from `rde_sim_starter`:
+
+```sh
+python detwave_study.py --out runs/detwave_original_40us --half-mm 1 --end-us 40
+python detwave_study.py --out runs/detwave_short_189us
+```
+
+Logs: `docs/verification/detwave_original_40us.log` and
+`detwave_short_189us.log`. Each run has immutable `inputs.json`, atomic
+`progress.json` and `checkpoint.npz`, rings at 1 us, full fields every 10 us,
+and `summary.json` on exit. Do not mistake a live prefix for a completed run.
+Do not rerun or resume while its process is alive. Following an actual process
+interruption, `python detwave_study.py --out <same directory> --resume` requires
+unchanged source/environment and retains the saved duration. Invalid-state
+failures require investigation, not blind restart. Production solver files and
+study source must remain unchanged until both runs finish to preserve provenance.
+
+Read-only reduction and rendering:
+
+```sh
+python docs/verification/detwave_reduce.py rde_sim_starter/runs/CASE NEW_METRICS.json
+cd rde_sim_starter
+MPLCONFIGDIR=/private/tmp/detwave-mpl python plot.py --detwave runs/CASE --out NEW_PLOTS_DIR
+```
+
+Next inspect common 10/20/40 us fields and ring histories. Track pressure peaks
+with the existing periodic candidate tracker and examine nearby reaction, fresh
+gas ahead and speed relative to that gas. Tracks are diagnostic candidates, not
+detonation labels. For the short case, assess continuation beyond the seeded
+charge and first circuit into replenished material. If either clearly loses
+coupling, document the time and mechanism before choosing any extension.
+Keep compact metrics, selected plots and final findings in Git; bulk runs are
+ignored. Commit/push only `2d-modelling-detwave-sustaining-fix` explicitly.
+Do not infer permission to use the separately active main or 3D branches.
 - Runtime decision: first original-chemistry formed-start engine segment is
   capped at 40 us, enough to inspect the already-observed thin-layer failure
   timescale. Extend only if still ambiguous; do not spend the entire budget
