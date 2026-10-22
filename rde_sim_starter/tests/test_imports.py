@@ -19,8 +19,10 @@ import solver
 solver.Solver.step = lambda *a, **k: (_ for _ in ()).throw(AssertionError('simulation on import'))
 import calibrate
 calibrate.calibrate = lambda *a, **k: (_ for _ in ()).throw(AssertionError('calibration on import'))
-import run, analyze, plot, test_1d, physics, coupling
+import run, analyze, plot, test_1d, physics, coupling, experiments, reference
 assert 'matplotlib.pyplot' not in sys.modules
+assert 'cantera' not in sys.modules
+assert 'sdtoolbox' not in sys.modules
 """
             result=subprocess.run([sys.executable,'-c',script],cwd=directory,env=env,capture_output=True,text=True,timeout=90)
             self.assertEqual(result.returncode,0,result.stdout+result.stderr)

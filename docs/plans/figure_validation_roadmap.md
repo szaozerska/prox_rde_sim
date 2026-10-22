@@ -1,6 +1,20 @@
 # Figure validation roadmap: Mundt Chapters 3 and 4
 
-**Planning only; part of [the current simulation plan](../../first_sim_plan.md), revision 6.** All functions and reports below are proposed work, not implemented capabilities. The review covered the complete relevant pages, captions, surrounding discussion, and rendered figures: Chapter 3, Figs. 3.1–3.35 and Tables 3-2/3-3; Chapter 4, Figs. 4.1–4.31. Printed page numbers are used throughout; add 16 for the PDF page.
+**D3 update (October 22, 2026):** the initial Run 937 G0 subset now exists:
+five-point CJ/heat-release neighborhood, nominal physical/surrogate ZND comparison
+and stricter-tolerance reference checks. See [D3 investigation](../verification/d3_investigation.md).
+NASA CEA itself, full Fig. 4.2–4.4 curves and experimental digitization remain
+pending. The nominal factor-29 cell-size proxy is not a resolved CFD cell width.
+Contact/refinement figures are numerical diagnostics and do not close G2's
+sustained-wave criterion.
+
+**Controlled-test update:** [C1–C6 and three plan reviews](controlled_2d_tests.md)
+now precede additional engine figures: multirow/direction, verified formed-profile,
+layer survival and initiation controls. The previously selected 0.25 mm engine
+comparison is superseded. Reuse diagnostic output for plots; full campaigns stay
+deferred. This session publishes on main; independent 3D work has its own branch.
+
+**Planning catalogue; part of [the current simulation plan](../../first_sim_plan.md), revision 9.** Apart from the completed D3 subset described above and existing D1/D2 diagnostics, functions and reports below remain proposed work, not implemented capabilities. The review covered the complete relevant pages, captions, surrounding discussion, and rendered figures: Chapter 3, Figs. 3.1–3.35 and Tables 3-2/3-3; Chapter 4, Figs. 4.1–4.31. Printed page numbers are used throughout; add 16 for the PDF page.
 
 **Deadline override:** the current test stage uses **three expected passage intervals by default, up to five total only if needed**. For Run 937 that is approximately **0.19–0.32 ms** of simulated time. This supersedes the earlier long screening-run proposal; use a fixed time cap so an extinguished wave cannot prolong a test indefinitely. The immediate output is a short Run 937 field/front/pressure/budget report, with transient estimates labelled accordingly. G2 spectra and G3–G9 campaigns below are deferred. The 51 mm map and the 3 ms/10 ms campaign budgets in section 8 are later planning context, not overnight work.
 

@@ -3,6 +3,7 @@
 
 # Local environments, compiled caches and generated results.
 .venv/
+.reference-deps/
 __pycache__/
 *.py[cod]
 *.nbc

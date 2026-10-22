@@ -1,12 +1,12 @@
-# Starter status — D2 coupling diagnostics, October 21, 2026
+# Starter status — paper/model audit, October 22, 2026
 
 Source accuracy, 1D propagation and the bounded Run 937 workflow are implemented.
 See [the handoff](../HANDOFF.md) and [D1 results](../docs/verification/d1_propagation.md)
-and [D2 comparison](../docs/verification/d2_coupling.md) for observed outcomes; completion of the time cap does not establish detonation.
+and [D3 investigation](../docs/verification/d3_investigation.md) for observed outcomes; completion of the time cap does not establish detonation.
 
 **OPEN: [RDE-001](../docs/verification/run937_unresolved.md).** The 3.8 and 7.6 mm
 Run 937 starts do not demonstrate sustained detonation by 189.394 microseconds.
-D2 diagnostic work is implemented; the broader physics/reference/refinement work
+D3 diagnostics and the initial physical reference are implemented; broader model/refinement work
 is incomplete and the sustained-wave milestone is not met. The issue record
 specifies candidate causes and checks needed to claim a fix.
 
@@ -19,6 +19,8 @@ specifies candidate causes and checks needed to claim a fix.
 | `test_1d.py` | Saved 95 µs propagation experiment plus compatibility test entry point; common initializer used by opt-in test. |
 | `analyze.py` | Pure reductions, conservation, checked saved-run reader and hysteretic pressure arrivals. No detonation classifier. |
 | `coupling.py` | Saved full-height chemical-conversion diagnostics, periodic pressure-peak candidates, conservative track association and explicit case-input comparison. No detonation classifier. |
+| `experiments.py` | Frozen/reactive moving contacts and fixed-chemistry 1D spatial comparisons. |
+| `reference.py` | Optional Cantera/SDToolbox CJ/ZND and independent equilibrium heat-release reference; exact CEA remains pending. |
 | `plot.py` | Saved calibration, 1D fields/fronts, engine fields, multi-height candidate tracks, conversion-height histories and case comparison. No CFD calls. |
 | `tests/` | Foundation/D0 coverage plus independent source refinement, injector-plane consistency, normal Mach, roundoff handling, event detection and read-only saved-output checks. |
 
@@ -26,5 +28,14 @@ The 1D default/half-source-step speeds are 2490.157/2490.179 m/s, compared with 
 fitted 2471 m/s surrogate reference. Source accuracy is supported for the tested
 states, not for arbitrary chemistry. Run 937 completed 189.394 µs without invalid
 states; its weakening pressure fronts do not establish sustained detonation.
-No spatial convergence, physical CJ/ZND, whole-engine force/torque validation,
-wall-loss closure, CAD or 3D work is claimed.
+D3 adds the physical CJ/ZND reference and three-grid numerical comparisons.
+Contact conversion falls from 726.44 to 289.78 J/m² across 0.5 to 0.125 mm;
+1D speed remains sensitive to both mesh and fit window. No completed spatial
+convergence, 2D sustained wave, whole-engine force/torque validation, wall-loss
+closure, CAD or 3D work is claimed. The full 59-test suite passed during D3;
+no new studies or test suite were run for the documentation-only
+[paper audit](../docs/verification/mundt_model_audit.md). Production code and inputs
+are unchanged. The reviewed controlled-test plan now specifies C1–C6. C1 is
+next; the proposed unchanged-start 0.25 mm engine case is superseded.
+
+The authorized next implementation is [C1–C6 controlled 2D testing](../docs/plans/controlled_2d_tests.md), published on main in small verified increments. The prior automatic engine refinement is superseded.

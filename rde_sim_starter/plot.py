@@ -377,9 +377,133 @@ def plot_coupling(directory, destination, compare_directory=None, heights_mm=(1.
     return comparison
 
 
+def plot_experiments(directory, destination):
+    """Render saved contact/refinement results without advancing the solver."""
+    import numpy as np
+    directory,destination=Path(directory),Path(destination)
+    report=json.loads((directory/'summary.json').read_text())
+    cases=report['cases'];destination.mkdir(parents=True,exist_ok=False);plt=_pyplot()
+    colors={dx:color for dx,color in zip(sorted({c['dx_m'] for c in cases},reverse=True),['#245ca6','#c76524','#308257','#8b549c'])}
+    if report['kind']=='contact':
+        fig,axes=plt.subplots(2,2,figsize=(12,8),layout='constrained')
+        try:
+            for case in cases:
+                folder=directory/case['directory'];inputs=json.loads((folder/'inputs.json').read_text())
+                summary=case['summary'];rows=summary['history'];dx=case['dx_m'];color=colors[dx]
+                label=f'{dx*1e3:g} mm';style='-' if case['reactive'] else '--'
+                if case['reactive']:
+                    axes[0,0].plot([r['time_s']*1e6 for r in rows],[r['conversion_J_m2'] for r in rows],color=color,label=label)
+                    axes[0,1].plot([r['time_s']*1e6 for r in rows],[r['pressure_max_Pa']/1e3 for r in rows],color=color,label=label)
+                with np.load(folder/'fields.npz',allow_pickle=False) as data:
+                    x=data['x'];W=data['primitive'][-1];t=data['times'][-1]
+                relative=(x-inputs['initial_contact_m']-inputs['velocity_mps']*t)*1e3
+                axes[1,0].plot(relative,W[3]/(W[0]*inputs['calibration']['R']),style,color=color,label=label if case['reactive'] else None)
+                axes[1,1].plot(relative,W[4],style,color=color)
+            axes[0,0].set(xlabel='Time [µs]',ylabel='Converted chemical energy [J/m²]')
+            axes[0,1].set(xlabel='Time [µs]',ylabel='Maximum pressure [kPa]')
+            axes[1,0].set(xlabel='Distance from exact advected contact [mm]',ylabel='Temperature [K]',xlim=(-5,5))
+            axes[1,1].set(xlabel='Distance from exact advected contact [mm]',ylabel='Reaction progress',xlim=(-5,5),ylim=(-.02,1.02))
+            for ax in axes.flat:ax.grid(alpha=.2)
+            axes[0,0].legend(title='Cell size');axes[1,0].legend(title='Solid: reactive; dashed: frozen',fontsize=8)
+            fig.suptitle('Moving hot-product / fresh-gas contact at 20 µs; fixed chemistry and common time cap')
+            fig.savefig(destination/'contact_profiles.png',dpi=150)
+        finally:plt.close(fig)
+        fig,axes=plt.subplots(1,2,figsize=(10,4),layout='constrained')
+        try:
+            active=sorted((c for c in cases if c['reactive']),key=lambda c:c['dx_m'])
+            frozen=sorted((c for c in cases if not c['reactive']),key=lambda c:c['dx_m'])
+            axes[0].loglog([c['dx_m']*1e3 for c in active],[c['summary']['final']['conversion_J_m2'] for c in active],'o-')
+            axes[1].loglog([c['dx_m']*1e3 for c in frozen],[c['summary']['final']['frozen_density_L1_kg_m3'] for c in frozen],'o-')
+            axes[0].set(ylabel='Reactive conversion at 20 µs [J/m²]')
+            axes[1].set(ylabel='Frozen density L1 error [kg/m³]')
+            for ax in axes:ax.set_xlabel('Cell size [mm]');ax.grid(alpha=.2,which='both')
+            fig.suptitle('Contact sensitivity: numerical mixing decreases with refinement')
+            fig.savefig(destination/'contact_refinement.png',dpi=150)
+        finally:plt.close(fig)
+    elif report['kind']=='refinement':
+        inputs=json.loads((directory/'inputs.json').read_text());cj=inputs['calibration']['D_CJ']
+        fig,axes=plt.subplots(2,2,figsize=(12,8),layout='constrained')
+        rows=[]
+        try:
+            for case in cases:
+                dx=case['dx_m'];label=f'{dx*1e3:g} mm';color=colors[dx]
+                with np.load(directory/case['directory']/'fields.npz',allow_pickle=False) as data:
+                    x=data['x'];W=data['primitive'][-1];h=data['history']
+                mask=(h[:,0]>=65e-6)&(h[:,0]<90e-6)&np.isfinite(h[:,1])
+                late=float(np.polyfit(h[mask,0],h[mask,1],1)[0]) if mask.sum()>20 else None
+                rows.append(dict(dx_mm=dx*1e3,fit_40_95_mps=case['summary']['speed_mps'],fit_65_90_mps=late,
+                                 final_front_separation_mm=case['summary']['final_front_separation_m']*1e3))
+                axes[0,1].plot(h[:,0]*1e6,h[:,1]*1e3,color=color,label=label)
+                axes[1,0].plot(h[:,0]*1e6,(h[:,1]-h[:,2])*1e3,color=color,label=label)
+                axes[1,1].plot((h[-1,1]-x)*1e3,W[4],color=color,label=label)
+            axes[0,0].plot([r['dx_mm'] for r in rows],[r['fit_40_95_mps'] for r in rows],'o-',label='40–95 µs fit')
+            axes[0,0].plot([r['dx_mm'] for r in rows],[r['fit_65_90_mps'] for r in rows],'s--',label='65–90 µs fit')
+            axes[0,0].axhline(cj,color='k',ls=':',label='Fitted surrogate CJ reference')
+            axes[0,0].set(xlabel='Cell size [mm]',ylabel='Pressure-front speed [m/s]')
+            axes[0,1].set(xlabel='Time [µs]',ylabel='Pressure-front position [mm]')
+            axes[1,0].set(xlabel='Time [µs]',ylabel='Pressure-to-50% front distance [mm]',xlim=(40,95))
+            axes[1,1].set(xlabel='Distance behind final pressure front [mm]',ylabel='Reaction progress',xlim=(-1,8),ylim=(-.02,1.02))
+            for ax in axes.flat:ax.grid(alpha=.2);ax.legend(fontsize=8)
+            fig.suptitle('1D fixed-chemistry spatial comparison; transient/window sensitivity remains')
+            fig.savefig(destination/'propagation_refinement.png',dpi=150)
+        finally:plt.close(fig)
+        (destination/'speed_windows.json').write_text(json.dumps(rows,indent=2,allow_nan=False)+'\n')
+    else:raise ValueError('unknown saved experiment kind')
+    return report
+
+
+def plot_reference(directory, destination):
+    """Render saved physical/surrogate profiles; never load a chemistry package."""
+    import numpy as np
+    directory,destination=Path(directory),Path(destination)
+    report=json.loads((directory/'summary.json').read_text())
+    with np.load(directory/'profiles.npz',allow_pickle=False) as f:data={k:f[k].copy() for k in f.files}
+    destination.mkdir(parents=True,exist_ok=False);plt=_pyplot()
+    fig,axes=plt.subplots(2,2,figsize=(12,8),layout='constrained')
+    try:
+        for prefix,label,color in [('', 'Physical GRI-Mech ZND','#245ca6'),('surrogate_','Inherited one-step surrogate','#c76524')]:
+            x=data[prefix+'distance_m']*1e3
+            for ax,key,scale in [(axes[0,0],'pressure_Pa',1e-6),(axes[0,1],'temperature_K',1.),(axes[1,0],'heat_fraction',1.)]:
+                mask=x>0
+                ax.semilogx(x[mask],data[prefix+key][mask]*scale,color=color,label=label)
+                ax.set(xlabel='Distance behind shock [mm]',xlim=(.001,10))
+                ax.grid(alpha=.2,which='both')
+        axes[0,0].set_ylabel('Pressure [MPa]');axes[0,1].set_ylabel('Temperature [K]')
+        axes[1,0].set_ylabel('Fraction of own equilibrium/model heat release')
+        axes[0,0].legend(fontsize=8)
+        axes[1,1].plot(data['time_s']*1e6,data['dTdt_K_s']/1e9,label='Physical dT/dt')
+        axes[1,1].axvline(report['znd']['induction_time_max_dTdt_s']*1e6,color='#c76524',ls='--',label='Temperature-rise maximum')
+        axes[1,1].axvline(report['znd']['peak_thermicity_time_s']*1e6,color='#308257',ls=':',label='Thermicity maximum')
+        axes[1,1].set(xlabel='Time behind shock [µs]',ylabel='Temperature rise rate [10⁹ K/s]',xlim=(0,.5))
+        axes[1,1].legend(fontsize=8);axes[1,1].grid(alpha=.2)
+        fig.suptitle('Run 937 reference audit: detailed chemistry versus fitted, thickened surrogate')
+        fig.savefig(destination/'reference_profiles.png',dpi=150)
+    finally:plt.close(fig)
+    fig,axes=plt.subplots(2,2,figsize=(11,7),layout='constrained')
+    try:
+        nominal=report['nominal'];samples=report['neighborhood'];surrogate=report['surrogate']
+        for column,(name,key,fixed,scale,label) in enumerate([
+            ('phi','phi','pressure_Pa',1.,'Equivalence ratio'),
+            ('pressure','pressure_Pa','phi',1e-3,'Initial pressure [kPa]')]):
+            points=sorted([s for s in samples if np.isclose(s[fixed],nominal[fixed])],key=lambda s:s[key])
+            x=[s[key]*scale for s in points]
+            axes[0,column].plot(x,[s['CJ_speed_mps'] for s in points],'o-',label='Cantera/SDToolbox reference')
+            axes[0,column].axhline(surrogate['D_CJ'],color='#c76524',ls='--',label='Fixed Run 937 surrogate / paper CJ')
+            axes[1,column].plot(x,[s['q_equilibrium_Jkg']/1e6 for s in points],'o-',label='Independent GRI-Mech equilibrium')
+            axes[1,column].axhline(surrogate['q']/1e6,color='#c76524',ls='--',label='Fixed surrogate q')
+            for row in range(2):axes[row,column].set_xlabel(label);axes[row,column].grid(alpha=.2);axes[row,column].legend(fontsize=7)
+            axes[0,column].set_ylabel('CJ speed [m/s]');axes[1,column].set_ylabel('Heat release [MJ/kg reactants]')
+        fig.suptitle('Small Run 937 reference neighborhood; CEA has not been executed')
+        fig.savefig(destination/'reference_neighborhood.png',dpi=150)
+    finally:plt.close(fig)
+    return report
+
+
 def main(argv=None):
     parser=argparse.ArgumentParser(description=__doc__)
     source=parser.add_mutually_exclusive_group(required=True)
+    source.add_argument('--experiments',type=Path,help='saved contact or 1D refinement suite')
+    source.add_argument('--reference',type=Path,help='saved physical/surrogate reference')
     source.add_argument('--calibration',type=Path,help='saved calibration JSON')
     source.add_argument('--run',type=Path,help='saved engine run directory')
     source.add_argument('--tube',type=Path,help='saved 1D experiment directory')
@@ -392,7 +516,11 @@ def main(argv=None):
         parser.error('output exists; choose a new destination')
     if args.compare_run and not args.coupling:
         parser.error('--compare-run requires --coupling')
-    if args.coupling:
+    if args.experiments:
+        plot_experiments(args.experiments,args.out)
+    elif args.reference:
+        plot_reference(args.reference,args.out)
+    elif args.coupling:
         plot_coupling(args.coupling,args.out,args.compare_run,args.heights_mm)
     elif args.run:
         plot_run(args.run,args.out)

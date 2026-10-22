@@ -4,6 +4,7 @@ With --out, save a bounded detonation check using the production solver. With
 no arguments, run tests/test_solver.py as before. Imports never advance flow.
 """
 import argparse
+import hashlib
 import json
 from pathlib import Path
 import time
@@ -13,6 +14,8 @@ from solver import Solver, InvalidStateError, REFLECT, TRANSMIT, WALL, NG
 
 
 def detonation_case(calibration, source_cfl=.05, dx=.25e-3):
+    if not np.isfinite(dx) or dx<=0:
+        raise ValueError('positive finite cell spacing required')
     c=calibration
     gas=tuple(c[key] for key in ['gamma','q','R','k','Ea'])
     n=round(.25/dx)
@@ -28,20 +31,20 @@ def detonation_case(calibration, source_cfl=.05, dx=.25e-3):
     return s,x
 
 
-def run_detonation(calibration, directory, source_cfl=.05, end=95e-6):
+def run_detonation(calibration, directory, source_cfl=.05, end=95e-6, dx=.25e-3):
     """Save pressure/progress fronts; no engine or experimental validation implied."""
     from run import _write_json, _write_npz, _fingerprint
     if not 40e-6<end<=95e-6:
         raise ValueError('propagation check must end after 40 and at most 95 microseconds')
     directory=Path(directory)
     directory.mkdir(parents=True,exist_ok=False)
-    s,x=detonation_case(calibration,source_cfl)
+    s,x=detonation_case(calibration,source_cfl,dx)
     initial=s.conserved_totals()
     inputs=dict(case='1D one-step ignition/propagation',calibration=calibration,
                 dx=s.dx,nx=s.nx,end_s=end,source_cfl=source_cfl,cfl=s.cfl,
                 hot_patch_m=.01,pressure_multiplier=2.,speed_fit_start_s=40e-6,
                 front_operator='last cell above 2*p1; half-reaction front is last xi>=0.5 cell behind it',
-                implementation=_fingerprint())
+                implementation=_fingerprint(),driver_sha256=hashlib.sha256(Path(__file__).read_bytes()).hexdigest())
     _write_json(directory/'inputs.json',inputs)
     times=[0.]; fields=[s.prim()[:,:,0].copy()]; history=[]; tick=1; status='completed'; error=None
     started=time.monotonic()
@@ -81,10 +84,11 @@ def main(argv=None):
     parser=argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--out',type=Path,help='new saved 1D experiment directory')
     parser.add_argument('--source-cfl',type=float,default=.05)
+    parser.add_argument('--dx-mm',type=float,default=.25)
     parser.add_argument('--calibration',type=Path,default=Path(__file__).with_name('calib.json'))
     args=parser.parse_args(argv)
     if args.out:
-        result=run_detonation(json.loads(args.calibration.read_text()),args.out,args.source_cfl)
+        result=run_detonation(json.loads(args.calibration.read_text()),args.out,args.source_cfl,dx=args.dx_mm*1e-3)
         print(json.dumps({k:v for k,v in result.items() if k!='budget'},indent=2))
         return 0 if result['status']=='completed' else 2
     suite=unittest.defaultTestLoader.discover(str(Path(__file__).with_name('tests')),pattern='test_solver.py')

@@ -2,14 +2,17 @@
 
 Reduced RDE simulation project. Foundation, bounded-run persistence, reactive-source
 checks and saved-run plots are implemented. D2 adds full-height reaction diagnostics,
-periodic pressure-peak tracks and an explicit startup comparison. See the D1/D2
-verification records for results and their limits.
+periodic pressure-peak tracks and an explicit startup comparison. D3 adds physical
+CJ/ZND references, contact controls, spatial comparisons and diagnostic graphs.
+See [D3 results](docs/verification/d3_investigation.md) for numerical evidence and
+[the paper/model audit](docs/verification/mundt_model_audit.md) for the checked
+physics and construction assumptions. No new studies were run for the audit.
 
-**Known unresolved result: reduced Run 937 does not sustain detonation in either
+**Known unresolved result: reduced Run 937 does not demonstrate sustained detonation in either
 of the tested starts (3.8 or 7.6 mm initial layer, 189.394 microseconds).** Numerical
 checks pass, but the broader physical-model/refinement work is incomplete and the
 sustained-wave milestone is not met. See [RDE-001](docs/verification/run937_unresolved.md)
-for the exact cases, evidence, candidate causes and criteria for a fix. D0-D2 are
+for the exact cases, evidence, candidate causes and criteria for a fix. D0-D3 are
 short development increments, not completion of the broader physics stages.
 
 ## Run the fast checks
@@ -28,8 +31,47 @@ on first use. Two threads keep these small tests inexpensive; this is not a
 production performance setting. The suite includes conservation, Arrhenius source convergence against an independent
 ODE, boundary-plane checks, Sod, restart/failure handling, and read-only plotting.
 The 95 microsecond detonation test is opt-in with
-`RDE_RUN_REACTIVE_BASELINE=1`; it was exercised during D1 and the full 51-test D2 suite.
+`RDE_RUN_REACTIVE_BASELINE=1`; it was exercised during D1 and the full 59-test D3 suite.
 The small nonreactive runner tests are not a Run 937 propagation check.
+
+## D3 investigation and graphs
+
+The physical reference and the existing thickened surrogate remain separate.
+D3 quantifies thermodynamic/reaction-length differences, contact mixing and
+1D grid/window sensitivity; it does not resolve the 2D sustained-wave issue.
+[The report](docs/verification/d3_investigation.md) includes five figures.
+[The revised plan](first_sim_plan.md) selects the reviewed [C1–C6 controls](docs/plans/controlled_2d_tests.md): multirow/direction, formed-profile, layer survival, then initiation isolation before a justified engine revision. This session publishes 2D work on main; independent 3D work uses its own branch.
+
+Optional physical-reference dependencies are isolated from the pinned CFD stack.
+From the repo root, install once into a new `.reference-deps` directory:
+
+```sh
+.venv/bin/python -m pip install --only-binary=:all: --no-deps --target .reference-deps -r requirements-reference.txt
+cd rde_sim_starter
+PYTHONPATH=../.reference-deps ../.venv/bin/python reference.py --out runs/new_reference
+../.venv/bin/python plot.py --reference runs/new_reference --out runs/new_reference/plots
+```
+
+Cantera/GRI-Mech and unmodified, hash-pinned SDToolbox provide CJ/frozen-shock/ZND
+references. The heat-release calculation is an independent equilibrium cross-check;
+NASA CEA has not been executed. The first mechanism load can take a minute or two
+on this host. Inputs, source/mechanism hashes, versions, warnings, solver checks
+and nominal/strict tolerance results are retained with each reference.
+
+The numerical experiments use the original chemistry, without Cantera:
+
+```sh
+NUMBA_NUM_THREADS=2 ../.venv/bin/python experiments.py contact --out runs/new_contact
+NUMBA_NUM_THREADS=2 ../.venv/bin/python experiments.py refinement --out runs/new_refinement
+../.venv/bin/python plot.py --experiments runs/new_contact --out runs/new_contact/plots
+../.venv/bin/python plot.py --experiments runs/new_refinement --out runs/new_refinement/plots
+```
+
+These commands create six contact controls (20 µs) or three 1D grids (95 µs).
+All spacings keep the chemistry fixed. `test_1d.py --dx-mm 0.125 --out ...`
+selects one spacing explicitly. Existing destinations are rejected; figures read
+saved arrays and need no optional chemistry package. Current local artifacts are
+`runs/d3_contact`, `runs/d3_refinement` and `runs/d3_reference`.
 
 ## Saved-run interface
 
@@ -162,11 +204,13 @@ metrics are retained with [the D2 report](docs/verification/d2_coupling.md).
 
 - [Current handoff](HANDOFF.md): verified progress and the next concrete step.
 - [RDE-001: Run 937 sustained detonation unresolved](docs/verification/run937_unresolved.md).
+- [D3 physical reference, contact and spatial investigation](docs/verification/d3_investigation.md).
 - [D2 coupling diagnostics and startup comparison](docs/verification/d2_coupling.md).
 - [D1 propagation verification](docs/verification/d1_propagation.md).
 - [Run-plumbing verification](docs/verification/d0_run_plumbing.md).
 - [Foundation verification](docs/verification/foundation_session.md): historical first-increment baseline.
-- [Current simulation plan — revision 6](first_sim_plan.md).
+- [Current simulation plan — revision 9](first_sim_plan.md).
+- [Paper/model audit](docs/verification/mundt_model_audit.md): checked assumptions and requirements before new studies.
 - [Figure validation roadmap](docs/plans/figure_validation_roadmap.md): later Chapter 3–4 campaigns.
 - Local `sim_plan_review.md`: historical revision-3 review, retained locally and excluded from Git.
 - [Revision 4](docs/plans/first_sim_plan_rev4.md) and [revision 3](docs/plans/first_sim_plan_rev3.md): superseded plans.

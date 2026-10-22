@@ -1,23 +1,38 @@
-# RDE simulation plan — revision 6
+# RDE simulation plan — revision 9
 
-**Status: D2 reusable coupling diagnostics and one startup comparison implemented.** The source cap, roundoff handling, injector-plane closure and saved-field diagnostics are checked; 1D and bounded Run 937 evidence is recorded in [the D1 report](docs/verification/d1_propagation.md). D2 adds full-height chemical-conversion fields and periodic pressure-peak tracks; its controlled startup comparison is recorded in [the D2 report](docs/verification/d2_coupling.md). See [HANDOFF.md](HANDOFF.md) for the observed outcome and remaining model limitations. This remains the current implementation plan. Revision 6 prioritizes the overnight deadline, short tests covering only a few wave passages, and a simple separation of physics, testing, analysis, and plotting files. The complete Chapter 3–4 roadmap remains follow-on work. Longer physical validation, confirmed mode tracking and subsequent milestones remain pending. [Revision 4](docs/plans/first_sim_plan_rev4.md) (only archive link paths adjusted) and unchanged [revision 3](docs/plans/first_sim_plan_rev3.md) are retained for comparison; the local, Git-ignored `sim_plan_review.md` explains revision 3's physics and implementation issues. Historical proposals do not override this plan.
+**Status: controlled 2D tests authorized; diagnostics ready for publication.**
+The [controlled-test plan](docs/plans/controlled_2d_tests.md) records three review
+passes and the C1–C6 increments. First verify multirow/direction equivalence and
+formed-profile propagation, then distinguish thin-layer survival from initiation.
+The [diagnostic review](docs/verification/layer_diagnostic_review.md) identifies
+this as a leading untested hypothesis, not an established cause. The paper audit
+and completed D3 references/contact/refinement evidence remain the baseline.
+This session commits and pushes only **main**, for the 2D pipeline. A separate
+session owns 3D development and need not wait for a successful 2D engine run.
+[HANDOFF.md](HANDOFF.md) gives current commands and outcomes. Older plans and the
+Git-ignored review are historical context and do not override this plan.
 
 **Known open case: [RDE-001](docs/verification/run937_unresolved.md).** D1's 3.8 mm
 and D2's 7.6 mm Run 937 starts do not demonstrate sustained detonation by 189.394
-microseconds. D0-D2 completion refers to the short development increments below,
+microseconds. D0-D3 completion refers to the short development increments below,
 not completion of the broader numbered physics stages in section 7. Stage 1
 physical-reference/refinement work is incomplete and Stage 3's sustained-wave
 criterion is not met. The first working physical 2D iteration remains pending.
 
 **Immediate deliverable:** a runnable reduced 2D Run 937 prototype, meaningful fast numerical checks, a few passages of pressure/reaction fields if the model sustains them, and short-window pressure/force diagnostics. The fuller first working iteration adds sufficient numerical/averaging evidence for pressure comparisons and qualified thrust/torque estimates. Human inspection remains the primary wave assessment. These are intermediate research models on the path to simulation of imported 3D engine geometry.
 
-**Future requirements:** retain the ability to replace the CFD backend, resolve radial/gap physics in 3D, and import CAD assemblies or parts. CAD import is **TO BE IMPLEMENTED after the first working iteration**; its geometry contract and independent importer can be developed in parallel now. Sections 3, 4, 8, and 9 define these requirements and their order.
+**Future requirements:** retain the ability to replace the CFD backend, resolve radial/gap physics in 3D, and import CAD assemblies or parts. The separate 3D session may begin backend evaluation now; successful operation of this custom 2D engine is not a prerequisite for that independent track. CAD import is **TO BE IMPLEMENTED after the first working iteration**; its geometry contract and independent importer can be developed in parallel now. Sections 3, 4, 8, and 9 define these requirements and their order.
 
 Paper references mean Mundt (2023), *Geometric Scaling of Cylindrical Rotating Detonation Rocket Engine Combustors*. Use printed page numbers; PDF page = printed page + 16. Fig. 1.1 is an illustrative flow/design image, not a measured 3D validation dataset.
 
-## 0. Deadline scope and short-test policy
+## 0. Short-test scope and current investigation
 
-**Priority: the user's tonight/tomorrow-morning deadline.** Complete the smallest useful single-case workflow first. The longer validation campaigns and full figure catalogue below are a backlog, not requirements for the overnight deliverable.
+D0–D3 and the source audits are complete as development increments. The user
+has authorized the controlled C1–C6 investigation, small verified implementation
+steps, documentation and publication on main. Follow the three reviewed passes
+in the companion plan. Broad operating maps and unrelated figure campaigns stay
+deferred. Preserve the engine duration policy below; localized controls choose
+separate finite durations appropriate to their causal/relief times.
 
 The user clarified the earlier “500–700 ns” instruction to mean **a few wave passages, with the minimum useful test duration**. Use:
 
@@ -29,12 +44,29 @@ The user clarified the earlier “500–700 ns” instruction to mean **a few wa
 
 Small algebraic/source tests need no engine-length run. Use short localized 1D shock/reaction tests for fluxes and source timing, retaining the physical model; keep the full 2D check separate from the fast default test suite. Reuse its saved data for every diagnostic/plot. If insufficient clean post-startup data remain, report **inconclusive over this short window**, rather than pretending the test established a steady state.
 
-| Overnight order | Required work and useful output | Explicitly deferred |
+| Development order | Required work and useful output | Explicitly deferred |
 |---|---|---|
 | **D0. Minimal organization and checks** | Separate files as in §4.5; freeze Run 937 inputs; fix correctness issues affecting this case; fast source/conservation/boundary checks. | General plugin infrastructure, all-engine registry, full thermochemical parameter sweeps. |
 | **D1. Short propagation check** | One small 1D check, then the three-interval Run 937 2D check; inspect pressure/reaction coupling and state validity. Extend to five total only for a specific unresolved observation. | Long settling studies, multiple ignition ensembles, automatic parameter search. |
 | **D2. Reusable analysis and plots** | Unrolled fields, short space–time plot/front tracks, pressure station traces/profile, and mass/energy/momentum budgets. Compute instantaneous thrust/torque diagnostics with storage where the implemented model supports them. | Full spectra/spectrogram suite, wrapped-cylinder polish, multi-engine/mode maps. |
-| **D3. Focused confirmation and handoff** | Rerun only checks affected by fixes; one short time-step or resolution comparison if needed to resolve a material numerical concern; save inputs/results and a concise limitations report. | Measured-thrust campaign, full convergence studies, 51 mm sweeps, CAD/backend/3D implementation. |
+| **D3. Focused investigation — completed** | Run 937 physical CJ/ZND and independent equilibrium heat release; six frozen/reactive contact tests at 0.5/0.25/0.125 mm; three fixed-chemistry 1D propagation grids; reference/contact/front graphs and regression checks. | Exact NASA CEA replication, full G0 curves, new 2D runs, chemistry replacement, broad convergence and engine sweeps. |
+
+**Next increment: C1 multirow and direction control.** Then C2 must establish
+that the conservative formed detonation profile propagates in a fully filled
+channel before C3 tests layer survival. C3 starts with 3.8 and 15 mm layers at
+fixed chemistry and grid; follow-up heights/refinement are selected from results.
+C4 compares blast/profile starts only in a layer that supports the formed wave.
+C5 selects a supported model change; C6 returns to a bounded engine case. See
+[controlled-test plan and three reviews](docs/plans/controlled_2d_tests.md) for
+unit tests, diagnostic requirements, causal-domain checks and stopping criteria.
+
+The nominal 3.8 mm cell-center mask changes fresh inventory and initialization
+energy on refinement; use conservative cell averages in the new controls and
+record the mixed interface cells. Do not silently rewrite D1/D2 or treat a changed
+initializer as a pure grid comparison. The previously proposed unchanged-start
+0.25 mm engine run is superseded by these cheaper causal controls. Hypothesis-
+driven reaction-length changes are permitted after independent verification;
+freeze each selected chemistry across its mesh comparisons.
 
 This short run tests basic propagation and numerical behavior. It does **not** establish long-term wave stability, converged mean pressure, validated thrust, or mean mechanical torque. Label initial pressure/force overlays **transient, short-window estimates**; retain storage terms. Front tracking/arrival times are more useful than a fine-frequency FFT here. Keep the remaining evidence as follow-on work, without hiding it or trying to complete every graph overnight.
 
@@ -42,7 +74,7 @@ This short run tests basic propagation and numerical behavior. It does **not** e
 
 - Reuse the small `rde_sim_starter` numerical prototype after verification. Keep useful flux, reconstruction, calibration, and plotting work; correct the deficiencies recorded in the review. Do not expand this prototype into a general CAD mesher or a new industrial 3D CFD framework.
 - First solve a radially averaged, unrolled circumferential–axial domain, denoted `(x, z)`, where `x = r_m theta`. The radial direction is absent. A cylinder-wrapped display remains a visualization of this 2D solution.
-- Start with 76-FI-5 / Run 937. Its relatively thin annulus is the best initial candidate among these engines for this approximation. Small, wide-gap cases are exploratory comparisons, not obligatory initial validation gates.
+- Start with 76-FI-5 / Run 937. Its relatively thin annulus is the most favorable initial candidate among these engines for this approximation, by project judgment; the paper does not validate this reduction. Gap/mean radius is 0.1404, and radial dynamics are absent. Small, wide-gap cases are exploratory comparisons, not obligatory initial validation gates.
 - Use simplified premixed reactive flow first. Preserve separate fuel and oxidizer data in the case definition, even if this backend explicitly converts them to one equivalent premixed feed.
 - Keep measured inputs, fitted parameters, derived reference quantities, and numerical choices separate. A quantity used to fit the model cannot independently validate it.
 - Show intermediate fields and histories early. Defer elaborate automatic wave classification and whole-paper mode-map replication. Retain shock/reaction coupling and numerical checks so the visual interpretation is meaningful.
@@ -76,6 +108,11 @@ Mundt's speed convention uses the outer circumference. For `N` uniformly rotatin
 
 ### 2.2 Chemistry: distinguish physical references from the surrogate
 
+The paper's Eq. 1.11 is introductory theory, not a validated Run 937 one-step
+parameter set. Current Ea/(R T1)=20, 1 mm half-reaction length, constant R/gamma
+and the fitted rate are project choices. See the [audit](docs/verification/mundt_model_audit.md)
+for the physical/surrogate comparison and unresolved reference discrepancies.
+
 Maintain two reference calculations:
 
 1. Physical thermochemistry and, where needed, detailed-chemistry CJ/ZND results for the documented mixture and state. Record mechanism, thermodynamic data, solver version, and induction definition. A constant-volume ignition calculation at a selected VN state is a useful auxiliary reference, but is not itself a ZND calculation.
@@ -85,10 +122,16 @@ For the initial Run 937 physical reference, use Cantera with SDToolbox and the
 paper's GRI-Mech 3.0 mechanism for CJ, frozen post-shock and ZND calculations.
 Reproduce the CEA CJ-equilibrium heat-release convention, or identify another
 package/database as an independent cross-check rather than exact CEA replication.
-Record package/mechanism versions, state definitions and convergence. These
-reference calculations remain unimplemented; they do not require replacing the
-2D CFD source with the full mechanism in every cell. Complete this focused G0
-subset alongside the contact/refinement investigation in RDE-001.
+Record package/mechanism versions, state definitions and convergence. The
+D3 calculations are now implemented in `reference.py`: a five-point CJ/heat-release
+neighborhood and nominal ZND with stricter-tolerance repeat. The heat-release
+result is an independent Cantera/GRI-Mech cross-check; NASA CEA was not executed.
+The nominal result is 2531.86 m/s, 5.41847 MJ/kg and 3994.14 K at CJ, with a
+0.03952 mm shock-to-half-heat distance. The fixed surrogate remains 2471 m/s,
+5.5 MJ/kg, 4885.15 K and 1 mm. These differing structures require assessment,
+not automatic retuning. The factor-29 induction proxy is 1.0644 mm, not an
+observed CFD cell width. Full G0 curves and exact paper reconciliation remain
+pending. Detailed chemistry has not been installed into the CFD source.
 
 A two-step induction/reaction model is a candidate repair for the starter's observed premature burning. Verify it before making it the production default. Use distinct progress variables for induction and reaction; conserve stored chemical energy consistently. If total energy already contains unspent chemical energy, do not add that heat a second time as an energy source.
 
@@ -100,6 +143,15 @@ Verify induction-event timing, partially advanced induction states, and reaction
 
 ### 2.3 Injection, walls, outlet, and initial conditions
 
+The paper's hardware uses 72 separate fuel/oxygen pairs, holes inclined 30 degrees
+to the axis, and impingement 2.16 mm above the injector face. Its 300 K premixed
+CJ/ZND calculation does not justify complete mixing at the injection boundary.
+The physical inner core ends at 76.2 mm inside a longer outer core; our outlet
+omits that expansion. The tabulated 100.2 kPa back pressure is not a measured
+annulus-exit boundary condition. A radial pre-detonator at z=73 mm differs from
+our zero-velocity hot-patch start. These are explicit closure/initialization
+assumptions requiring assessment, not reproduced construction details.
+
 The first injector model may be a pressure-responsive equivalent premixed boundary. Document the conversion from two experimental feeds, discharge coefficient, area ratio, composition, and enthalpy. Choose either imposed flow or plenum-driven predicted flow for each case. Do not independently prescribe incompatible plenum conditions and mass flow. Any fitted discharge coefficient is recorded as calibration and then frozen for validation cases.
 
 Check blocked, unchoked, and choked injection limits, including consistent pressure and velocity at the injection plane. State explicitly if reverse flow is suppressed; this omits injector backflow dynamics. Account for both open injector area and the remaining injector face in momentum/pressure forces.
@@ -110,7 +162,7 @@ Begin with a smooth-wall Euler baseline. Add a separate, tested wall-friction cl
 
 Do not tune friction or heat loss simply to reproduce the gap trend. The closure coefficients and thermal assumptions need sensitivity studies; the starter does not presently implement these wall models.
 
-Use periodic ignition masks and record deposited energy/geometry. Startup choices can select modes. An initial fill height obtained from measured frequency is allowed as initialization, but recovering it is not independent validation. Exclude startup from reported means only after checking histories. A second initialization is needed when mode selection materially affects the result.
+Use periodic ignition masks and record discretized fresh inventory, geometry and net energy change relative to the pre-mask state; this is not a measured igniter energy. Startup choices can select modes. An operating refill height obtained from measured frequency may be adopted for initialization, but is not a paper-specified startup state, and recovering it is not independent validation. Control or quantify the charge/energy change when refining cell-center masks. Exclude startup from reported means only after checking histories. A second initialization is needed when mode selection materially affects the result.
 
 ## 3. What changing the annular gap means in 2D
 
@@ -206,7 +258,7 @@ The supplied tutorial inspected is a 1D ammonia/oxygen detonation case, not a co
 
 The application integration should be bounded if these contracts are respected. The CFD migration risk remains appreciable: detailed chemistry, transport, numerical diffusion, and boundary conditions can change the predicted solution. Revalidate the physics after migration.
 
-After the first working iteration, pin a compatible environment and upstream revision, build/run the upstream example, verify simple hydrodynamic/detonation references, then construct a matched reduced 2D RDE case before adding 3D. Check the exact needed AMR/parallel/transport features in that selected version; the presence of a `dynamicMesh2D` option is not evidence of a ready 3D adaptive RDE workflow. Backend selection is provisional until this representative-case evaluation succeeds.
+On the independent 3D track, pin a compatible environment and upstream revision, build/run the upstream example, verify simple hydrodynamic/detonation references, then construct a matched reduced 2D RDE case before adding 3D. Check the exact needed AMR/parallel/transport features in that selected version; the presence of a `dynamicMesh2D` option is not evidence of a ready 3D adaptive RDE workflow. Backend selection is provisional until this representative-case evaluation succeeds.
 
 Sources inspected: upstream `README.md`; `applications/solvers/detonationFoam_V2.0/{detonationFoam_V2.0.C,Allwmake,Make/files,Make/options}`; tutorial `system/{controlDict,blockMeshDict}` and `constant/solverTypeProperties`. Repository: `https://github.com/JieSun-pku/detonationFoam`. Associated solver paper: Sun et al., *Computer Physics Communications* 292 (2023), 108859. No upstream build was performed during planning.
 
@@ -313,7 +365,7 @@ Useful views: unrolled pressure plus reaction fields; a space–time plot; axial
 
 ## 7. Milestones and intermediate results
 
-**Scheduling override:** §0's D0–D3 is the immediate deadline plan. The table below retains the full project sequence; its long-time accuracy and multi-case exit evidence is not required overnight. The first delivery is a short-test prototype, not a claim that stages 0–4 have all been validated.
+**Scheduling:** §0 and the controlled-test companion record completed D0–D3 and the authorized C1–C6 investigation. The separate 3D track may proceed independently; the historical stage ordering below does not block its backend evaluation. The table below retains the full project sequence. The current prototype does not claim completion of stages 0–4; Stage 1's physical-reference subset has progressed, but its refinement assessment and Stage 3's sustained-wave criterion remain open.
 
 Stages gate the claims made from their output, not every useful parallel activity. A failed coarse mesh does not prohibit studying a better-resolved mesh. CAD contract work and importer development can proceed in parallel without delaying the first CFD result.
 
@@ -323,7 +375,7 @@ Stages gate the claims made from their output, not every useful parallel activit
 | **1. Physics/numerical baseline** | Reproduce starter baselines; separate physical/surrogate references; verify source timing and corrected reaction profiles. Show 1D profiles and shock paths; begin Chapter 4 thermochemical reference plots (**G0**). | Credible conservation, detonation structure/speed, and fixed-model refinement; errors explicitly reported. |
 | **2. Feed/outlet and force accounting** | Nonreacting fill/outlet cases and simple force case; native-flux budgets with storage. Show pressure/filling and budget histories. | Feed limiting cases and force signs close consistently; outlet assumptions have a defined check. |
 | **3. First visible 2D wave** | Run 76-FI-5; live pressure/reaction fields, checkpoints, front tracking, space–time plot (**G1**). Add/test wall friction separately for the initial torque estimate. | Sustained shock-coupled burning after ignition without hidden repairs; force and angular budgets checked. Exact paper wave count is not a gate to further investigation. |
-| **4. First working iteration** | Fixed-model resolution/time/outlet/window checks; Run 937 pressure/wave checks (**G1–G2**); thrust and qualified torque estimates; reusable viewer/report. | Numerical sensitivity is quantified; measured-versus-predicted discrepancies and missing physics are visible. This is the milestone after which CAD integration and backend implementation enter the main application. |
+| **4. First working iteration** | Fixed-model resolution/time/outlet/window checks; Run 937 pressure/wave checks (**G1–G2**); thrust and qualified torque estimates; reusable viewer/report. | Numerical sensitivity is quantified; measured-versus-predicted discrepancies and missing physics are visible. This qualifies the 2D iteration; independent 3D/backend work need not wait for it. |
 | **5A. CAD import — TO BE IMPLEMENTED** | Implement/import the geometry manifest, preview and validate a known assembly, connect a supported reduced case. Independent contract/importer work may have started during stages 0–4. | Known annulus dimensions/areas agree with the manual case; omitted features are explicit; unsupported geometry cannot silently run in 2D. See section 9. |
 | **5B. Established CFD backend evaluation** | Pin/build candidate such as detonationFoam; verify upstream/simple cases; create matched reduced RDE case through the adapter. | Reproducible environment, mapped physical conditions, readable results, and checked force/energy conventions. Choose backend based on evidence. |
 | **5C. Validation and reduced-model limits** | Run measured-thrust cases and friction sensitivity. Add radius-study sweeps (**G3**), back-pressure profiles (**G4**), then the 51-FI-5 map (**G5**). Begin derived Chapter 4 comparisons (**G7**) and retain the depth-invariance check. | Report achieved accuracy and which discrepancies require richer physics. Maps may be exploratory; full mode-map agreement is not required. |
@@ -357,7 +409,7 @@ The [figure-by-figure roadmap](docs/plans/figure_validation_roadmap.md) is part 
 
 ## 8. 3D physics track
 
-**TO BE IMPLEMENTED after the first working iteration and backend evaluation.** Start from a parameterized straight annulus so radial-physics development does not depend on completion of CAD import.
+**Independent track: backend evaluation may start now in the separate 3D session.** Start from a parameterized straight annulus so radial-physics development does not depend on completion of CAD import.
 
 Use a domain retaining azimuthal variation and axial refill/exhaust. Axisymmetric `(r,z)` removes the rotating-wave degree of freedom. A radial–azimuthal slice can study selected curved-front phenomena but omits axial refill/exhaust. Neither replaces the intended full RDE calculation.
 

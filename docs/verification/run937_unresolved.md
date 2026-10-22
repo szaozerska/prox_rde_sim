@@ -13,9 +13,9 @@ co-rotating waves throughout a 0.696 s burn, with 15.84 kHz passage frequency an
 1893 m/s outer-periphery speed (printed pp. 47-52, Table 3-2). The present model
 has not reproduced that behavior.
 
-The D0-D2 labels refer to short development increments: run infrastructure,
+The D0-D3 labels refer to short development increments: run infrastructure,
 source/boundary checks, a short propagation attempt, and saved-field diagnostics.
-They are distinct from the broader numbered stages in the master plan. D2 is
+They are distinct from the broader numbered stages in the master plan. D3 is
 implemented, but broader Stage 1 physical-reference/refinement work is incomplete,
 and Stage 3's sustained shock-coupled burning criterion is **not met**. The first
 working, physically assessed 2D iteration has not been delivered.
@@ -23,8 +23,9 @@ working, physically assessed 2D iteration has not been delivered.
 The solver already includes reactive flow, chemical energy, injection and an
 outlet, and supports the tested 1D detonation. It has enough machinery to attempt
 2D propagation; there is no disabled switch that will simply turn on stable RDE
-operation. Missing work includes physical chemistry references, fixed-chemistry
-spatial sensitivity and investigation/correction of the failing case. A full
+operation. D3 now supplies the nominal physical chemistry reference and small fixed-chemistry
+spatial tests. Remaining work includes 2D spatial sensitivity, surrogate assessment
+and investigation/correction of the failing case. A full
 mechanism in every CFD cell is not a prerequisite established by these results.
 Nor do the results prove that a one-step model can never sustain rotation.
 
@@ -76,6 +77,13 @@ metrics and reproduction commands accompany this publication.
 
 ## Parameters checked against the paper
 
+The [October 22 paper/model audit](mundt_model_audit.md) is the detailed source
+check, with printed-page citations and source hashes. No new studies were run.
+It identifies model-construction differences rather than a gross transcription
+error: the paper does not validate our one-step kinetics/EOS, uniform premixed
+feed, annulus-end boundary, or hot-patch initial state. Its discussion of radial
+curvature and mixing does not establish that a 3D solver is the missing cure.
+
 The main geometry, mixture ratio, reference mass flux/flow and back pressure agree
 with Tables 2-1, 3-2 and 4-1. The single premixed plenum is an approximation to
 separate measured oxygen/methane feeds (1309.5/1399.4 kPa and 303/301 K). The
@@ -84,8 +92,9 @@ checks nominal capacity only, not actual transient flow or mixing.
 
 The initial 377.9 kPa follows the paper's Eq. 4.1 fit; it is not a prescribed
 measured steady chamber pressure. Eq. 4.5 gives about 3.84 mm using Run 937's
-measured frequency, supporting the baseline initialization but not independently
-validating the resulting wave frequency.
+measured frequency. This estimates an operating refill height, not a measured
+startup charge; adopting it as initialization is our assumption and cannot
+independently validate the resulting wave frequency.
 
 Surrogate inputs remain q=5.5 MJ/kg, gamma=1.23845, R=318.67 J/(kg K),
 Ea/(R T1)=20 and k=2.52246e6 /s. Gamma is fitted to the paper's 2471 m/s CJ
@@ -94,6 +103,12 @@ result. No gross experimental-input transcription error has been identified;
 this does not establish the suitability of the surrogate or boundary closures.
 
 ## Candidate causes and distinguishing checks
+
+The [layer-diagnostic review](layer_diagnostic_review.md) checks the subsequent
+external diagnosis against saved data. Thin-layer survival and ignition adequacy
+are leading untested hypotheses. A formed-profile layer-height comparison and a
+matched blast/profile control have not been run. Outlet isolation and negligible
+engine contact losses have not been established by the arguments in that diagnosis.
 
 These are hypotheses, not established explanations or instructions to tune for
 an attractive rotating wave.
@@ -111,25 +126,35 @@ closed-reactor tests show second-order temporal convergence for selected states.
 This supports those time-integration checks; it does not establish 2D spatial
 convergence or eliminate every time-discretization concern.
 
-## Next work and what counts as a fix
+## D3 evidence and next work
 
-1. Establish the controlled contact/refinement evidence above. A numerically
-   broadened reactive interface is not a resolved physical flame-speed prediction.
-2. Complete the Run 937 physical-reference subset of G0: Cantera with SDToolbox
-   for CJ/frozen post-shock/ZND calculations using the paper's GRI-Mech 3.0
-   mechanism; reproduce the CEA CJ-equilibrium heat-release calculation, or label
-   an alternate equilibrium package/database as an independent cross-check.
-   Record versions, mixture/state, induction definition and convergence. A
-   constant-volume reactor is an auxiliary check, not a substitute for ZND.
-3. Use those results to select a specific correction or bounded 2D resolution/
-   boundary experiment. A two-step induction/reaction model remains a candidate,
-   requiring source/event-timing and mixed-state tests; it is not a proven cure.
-4. Reassess the same documented case with pressure and reaction fields together.
-   A fix must demonstrate continuing shock-associated heat release after ignition
-   across multiple observed passages, preserve state validity and budgets, and
-   include an appropriate sensitivity check. Document any changed physics,
-   resolution, boundary or initialization. Exact experimental wave count is a
-   subsequent comparison, not something to impose to force success.
+The [D3 investigation](d3_investigation.md) strengthens the numerical-contact and
+surrogate-structure hypotheses without isolating the 2D failure's root cause:
+
+- Reactive contact conversion at 20 µs decreases from 726.44 to 457.79 to
+  289.78 J/m² as spacing decreases from 0.5 to 0.25 to 0.125 mm. Frozen controls
+  release no heat and preserve uniform pressure. Numerical mixing can produce
+  reaction in this model; this isolated experiment does not prove it quenches RDE rotation.
+- The fixed-model 1D front fits are 2456.05/2490.16/2522.45 m/s over 40–95 µs;
+  the later 65–90 µs window gives 2457.33/2477.59/2495.97 m/s. Spatial convergence
+  and settled speed have not been established by the former single-grid CJ match.
+- Cantera/GRI-Mech with SDToolbox gives 2531.86 m/s, 5.41847 MJ/kg,
+  3994.14 K at CJ, and a 0.03952 mm half-heat distance. The thickened surrogate
+  has similar nominal heat release but different thermodynamics and structure.
+  This is an independent physical reference at the documented state; the
+  paper's tabulated CJ difference and exact NASA CEA replication remain open.
+
+**Next work:** the user authorized the reviewed [C1–C6 controlled investigation](../plans/controlled_2d_tests.md). Start with multirow/directional equivalence and
+formed-profile propagation in a fully filled channel; then layer survival and
+conditional blast/profile comparison. Those decisive tests have not yet been
+performed. C1/C2 are gates before interpreting C3. Preserve initial inventories,
+freeze chemistry across meshes, and check driver/boundary causality. The old
+0.25 mm engine comparison is superseded. This session commits only to main;
+independent 3D preparation is not blocked by the 2D investigation.
+
+A fix must demonstrate continuing shock-associated heat release after startup,
+with state validity, conservation and sensitivity evidence. Neither numerical
+validity nor a visually rotating pressure peak alone closes RDE-001.
 
 Keep the existing bounded-run policy (three reference intervals; a justified
 extension of the same saved run to five total). If that window cannot support a
@@ -137,6 +162,10 @@ claim, report the claim as unresolved/inconclusive rather than inferring a stead
 state. Closing the short-propagation issue would still not establish long-term
 stability or agreement with the paper's last-100-ms pressure averages.
 
-Do not shorten reaction lengths until a wave survives, double-count chemical
-energy, hide invalid states with clipping, interpret pressure tracks alone as
-detonation, or treat matching a fitted CJ target as independent validation.
+Do not tune reaction lengths solely until a wave survives. A predeclared,
+physically motivated reaction-length sensitivity study is allowed: verify the
+source, resolve its structure, freeze chemistry within each mesh comparison and
+retain failure evidence. A model-specific critical layer height does not itself
+validate the chosen chemistry. Do not double-count chemical energy, hide invalid
+states with clipping, interpret pressure tracks alone as detonation, or treat
+matching a fitted CJ target as independent validation.
