@@ -107,8 +107,8 @@ this does not establish the suitability of the surrogate or boundary closures.
 The [layer-diagnostic review](layer_diagnostic_review.md) checks the subsequent
 external diagnosis against saved data. Thin-layer survival and ignition adequacy
 are the leading controlled-test questions. C1 row/direction equivalence and C2
-formed-profile verification now pass. C3 has a coarse thin/thick contrast, with
-refinement still in progress; a matched blast/profile control remains pending. Outlet isolation and negligible
+formed-profile verification now pass. C3 confirms the bounded thin/thick contrast
+on refinement; a blast/profile initiation control is underway. Outlet isolation and negligible
 engine contact losses have not been established by the arguments in that diagnosis.
 
 These are hypotheses, not established explanations or instructions to tune for
@@ -160,8 +160,8 @@ surrogate-structure hypotheses without isolating the 2D failure's root cause:
   Both are valid and conservative with positive remote-boundary margins.
   Interface burning remains visible. The 0.25 mm thin case also loses coupling, with a 25.75 mm wall-to-main-reaction
   gap at 40 µs; the aligned thin control also loses coupling. Thick refinement stopped on
-  its diagnostic speed bound at 23.56 µs and is being continued under an audited
-  3200 m/s bound without changing the model;
+  its diagnostic speed bound at 23.56 µs; an audited 3200 m/s continuation
+  reached 40 µs with strong wall/middle coupling and valid budgets;
   no converged critical-height threshold or unique root cause is established.
   The initial cut-cell temperature also changes with refinement despite equal
   conserved inventory; the explicit face-aligned thin-layer control also loses coupling. This
@@ -172,8 +172,8 @@ surrogate-structure hypotheses without isolating the 2D failure's root cause:
   initialized with a formed wave. They do not reproduce the complete engine,
   isolate all numerical mixing effects, or exclude a separate initiation problem.
 
-**Next work:** finish C3 refinement and review the combined fields, reaction,
-budgets and causality evidence before conditional C4 initiation comparison.
+**Next work:** assess C4's 15 mm blast/profile comparison, now underway after
+review of the combined C3 fields, reaction, budgets and causality evidence.
 Keep chemistry frozen across the comparison. Do not launch an engine rerun
 merely because the isolated thick layer supports a wave. The [reviewed plan](../plans/controlled_2d_tests.md)
 contains the remaining gates. This session commits only to main; independent

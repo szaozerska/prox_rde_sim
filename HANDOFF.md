@@ -53,10 +53,12 @@ remote-boundary cone violation; numerical interface burning remains visible.
 The 0.25 mm thin case also loses coupling (25.75 mm wall-to-main-reaction gap
 at 40 µs). The aligned thin control also loses coupling. The thick refinement stopped
 at 23.56 µs on its declared speed bound (valid state, no failure of coupling);
-a checked continuation with a 3200 m/s bound is underway before closing C3.
+its audited continuation reached 40 µs, retaining wall/middle coupling and valid
+budgets. C3 closes only the bounded qualitative contrast, not a steady-state or
+critical-height claim. The full 71-test suite passed, including the reactive baseline.
 
-**Next planned increment:** complete C3 refinement and assessment; C4 compares initiation methods in a demonstrated
-supporting layer. Freeze chemistry and quantify source/time/grid effects, initial
+**Next planned increment:** C4 is running the 0.5 mm blast comparator at 15 mm,
+against the saved formed-wave controls. Freeze chemistry and quantify source/time/grid effects, initial
 inventory and boundary causality. Stop advancement on a critical inconsistency.
 Document each increment and push it to main after verification. The old automatic
 0.25 mm engine refinement is superseded by these causal controls.
@@ -66,8 +68,8 @@ Document each increment and push it to main after verification. The old automati
 The [layer-height / reaction-length review](docs/verification/layer_diagnostic_review.md)
 identified the central hypothesis as credible and untested at that time: at the time of that review no multirow reactive strip, formed-profile layer-height
 bracket, or matched ignition control had been run. C1 now passes; the latter
-layer comparison now has coarse evidence with refinement in progress; matched
-ignition comparison remains pending. Saved-profile postprocessing gives 5.72 µs to 95% surrogate heat
+layer comparison now confirms the bounded contrast on refinement; the
+blast/profile initiation comparison is underway. Saved-profile postprocessing gives 5.72 µs to 95% surrogate heat
 release versus a 4.16–4.39 µs illustrative transverse relief scale. This supports
 a targeted test, not a proven extinction criterion. The submitted diagnosis
 incorrectly asserted delayed outflow and broadly excluded outlet/contact effects.
@@ -177,5 +179,6 @@ continuation (new output path; original remains immutable):
 NUMBA_NUM_THREADS=2 ../.venv/bin/python controlled.py layer --height-mm 15 --dx-mm 0.25 --resume runs/c3_layer_150_025 --transverse-bound 3200 --out runs/new_thick_continuation
 ```
 
-C4's `--start blast` comparator is implemented/tested but its full study remains
-conditional on C3. Do not interpret software readiness as a passed physical gate.
+C4's `--start blast` comparator is implemented/tested and its first full study
+is underway after the C3 bounded-response gate. Inspect the saved result before
+selecting any C5 model change.

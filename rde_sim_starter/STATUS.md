@@ -71,3 +71,13 @@ Aligned thin-layer control also loses coupling. Refined thick run stopped at
 0.0206 m/s; state and budgets remain valid. Checked continuation at 3200 m/s
 is underway. Twelve targeted continuation/control tests pass. C4 software is
 ready; its full diagnostic is still gated on C3.
+
+## C3 completed bounded comparison; C4 underway
+
+This entry supersedes the running/stopped statuses above. The audited thick
+continuation completed 40 µs with strong wall/middle coupling, zero invalid
+states, budget residual <1.3e-15 and positive remote-boundary margins. Both
+meshes and the aligned thin control support the qualitative thin/thick contrast;
+no steady/converged critical height is claimed. C4's 15 mm, 0.5 mm blast control
+is underway. The full suite passed 71/71, including the opt-in reactive baseline.
+See the increment log for fields, metrics, bound correction and limitations.

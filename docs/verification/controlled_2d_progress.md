@@ -267,3 +267,37 @@ bounds: 5000/3500 m/s, with a 550 mm axial domain, initial front at 200 mm and
 initial front. Boundary types/medium stay the same; the larger remote domain
 keeps the intended comparison outside boundary influence. The plan records
 these choices before the conditional full run.
+
+## C3e — refined thick endpoint and combined gate: bounded contrast verified
+
+- The checked 15 mm continuation completed 40 µs / 2771 total steps. No invalid
+  states; maximum native-budget residual 1.295e-15. Observed characteristic
+  maxima 3576.17/3099.16 m/s stay below the declared 4000/3200 m/s bounds.
+  Final left/reaction, right and top margins are 57.375, 39.625 and 2 mm.
+  The top four rows retain initial density, pressure, transverse velocity and
+  progress exactly; axial velocity differs only by 8.7e-281 m/s. This is a
+  consistency check alongside the finite-speed bound, not a new boundary model.
+- All saved prefix fields/times are bit-for-bit equal to the original stopped
+  run. Its 3000 m/s bound failure remains preserved. Budgets include the full
+  original trajectory; continuation did not reset time, source or boundary flux.
+- At 40 µs, wall/middle global rate peaks are 0.75/1.75 mm behind the leading
+  pressure fronts, at 2.77e5/1.73e5 s^-1. Wall pressure is 27.43 MPa. The upper
+  row is less tightly coupled (8 mm peak separation); the field shows transverse
+  structure. Late 24–40 µs wall/middle/upper pressure-front fits are
+  1862.5/2000.0/2206.25 m/s. These are threshold tracks, not steady detonation
+  speeds or experimental matches. No arbitrary fit to Mundt's velocity is made.
+- Combined with the 0.5 mm result, this verifies **qualitatively different
+  bounded responses** at 3.8 and 15 mm under this surrogate. The refined and
+  face-aligned thin controls also lose coupling. This is not a converged critical
+  height, proof of indefinite thick-layer survival, or proof that initial formed
+  charge has ceased influencing the transient. Numerical contact burning remains
+  visible; the thin conversion integral still changes by 15.6% on refinement.
+- [Metrics/provenance](c3_thick_refined_metrics.json), [inspected figure](c3_thick_refined.png),
+  and ignored native `runs/c3_layer_150_025_continued/` preserve the evidence.
+  The full suite, including opt-in 95 µs reactive baseline, passed **71/71** in
+  185.552 s; [log](controlled_full_tests.log). No production numerics changed.
+- **Gate:** C3 is sufficient for the narrowly conditional C4 comparison at
+  15 mm. Run one 0.5 mm blast comparator through 40 µs, with its already declared
+  remote-domain margins. Compare shock/reaction fields, displacement relative to
+  initial front, budgets and unequal initialization inventories. Do not rerun the
+  engine or change chemistry from this result alone.

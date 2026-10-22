@@ -169,3 +169,19 @@ Those are remote-domain changes, not changes to the local mixture or boundary
 types. Compare front displacement from initialization and record the different
 initial conserved inventory. A bound stop is a protocol issue to assess, not
 a detonation-failure label. Full production chemistry remains unchanged.
+
+## C3 closure and C4 execution decision
+
+C3's refined thick endpoint confirms near-wall/middle shock-associated reaction
+through 40 µs, while all three thin controls lose leading-front coupling.
+Advance only the bounded qualitative gate: no steady state, critical height or
+complete spatial convergence has been established. The original bound stop was
+a diagnostic-domain issue and its audited continuation is complete.
+
+C4 now runs once at 15 mm and 0.5 mm. Its baseline is the saved formed control;
+compare front displacement, global/near-front reaction, native budgets and
+causal margins. Both starts have the same fresh/product thermodynamic states
+and boundary types, but deliberately different initial energy/momentum and
+remote-domain sizes. Any failed blast conclusion is limited to this grid/window;
+if it changes the C5 decision, assess whether one refinement is necessary before
+using it. No parameter sweep or unsupported engine change follows automatically.
