@@ -1,6 +1,8 @@
 # Reduced annular closures after completion of the 2D workflow
 
-Status: implementation and acceptance tests complete; matched engine comparison running. Main branch only; no CAD. Functional F1–F4
+Status: implementation, acceptance and matched engine comparison complete.
+The original case still does not sustain rotating detonation through 189.394 us;
+RDE-001 remains open. Main branch only; no CAD. Functional F1–F4
 completed at b26ec9e. RDE-001 remains open. This is the user's requested follow-on
 experiment, not a claim that the surface solver now resolves radial dynamics.
 

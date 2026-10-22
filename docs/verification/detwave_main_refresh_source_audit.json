@@ -1,0 +1,34 @@
+{
+  "rde_sim_starter/solver.py": {
+    "sha256": "303ef7ec0ee5234e50ebca402d8d9421fa1586756f0282fbb2e81a5ddb731e22",
+    "unchanged_from_investigation_800d466": true
+  },
+  "rde_sim_starter/run.py": {
+    "sha256": "1e3c64d33ed5326f1d4f53a8b4e5de88bf5b6a5e9afa33ad6b5188c538fc88d0",
+    "unchanged_from_investigation_800d466": true
+  },
+  "rde_sim_starter/physics.py": {
+    "sha256": "0150132690fc1d951aaf55d7da2f17681771d25605ce3288ebbd300cc612472a",
+    "unchanged_from_investigation_800d466": true
+  },
+  "rde_sim_starter/radial.py": {
+    "sha256": "9594b5e06d505baa382a80014ced7e4a294b7776c2bc3abd82c3cd1b3e280e87",
+    "unchanged_from_investigation_800d466": true
+  },
+  "rde_sim_starter/calib.json": {
+    "sha256": "d21b2f9d1fc096e23760e546a4e0946d39732d819741ee14d2ff845b62543dbc",
+    "unchanged_from_investigation_800d466": true
+  },
+  "rde_sim_starter/detwave_study.py": {
+    "sha256": "3e4855e0990923bbe2c739ba88acc7129a56f2285654d41d1e9351ce9389d638",
+    "unchanged_from_investigation_800d466": true
+  },
+  "rde_sim_starter/detwave_initialization.py": {
+    "sha256": "d72d473a4319a32dafaced6021a651060b5a368e0347d1de18c7dc5f8acff2e0",
+    "unchanged_from_investigation_800d466": true
+  },
+  "rde_sim_starter/detwave_refill_layer.py": {
+    "sha256": "d36d5fb594641930176d68eac2b49680c96fae9ff412d3a96ddb04eb5e942689",
+    "unchanged_from_investigation_800d466": true
+  }
+}

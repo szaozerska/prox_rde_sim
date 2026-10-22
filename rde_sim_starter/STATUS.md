@@ -23,7 +23,8 @@ The default case is still inviscid. No friction coefficient is calibrated by
 default. An opt-in `annular_closure` now reconstructs separate wall pressures
 from radial equilibrium and applies per-wall drag and optional heat exchange.
 Acceptance passed (130 full-suite tests plus two additional tests; 132 distinct).
-The requested controlled engine comparison is in progress. Radial
+The matched 189.394 us engine comparison is complete: zero invalid states,
+no restored sustained detonation in this case. See [results](../docs/verification/radial_closures.md). Radial
 momentum/velocity, empirical curvature loss and inner-wall detachment are not
 resolved. See the [reviewed closure plan](../docs/plans/radial_closures_2d.md).
 CAD/coreless/nonuniform geometry and 3D are explicitly unsupported by this backend.
@@ -34,3 +35,12 @@ can be analyzed; exact restart requires their original source/environment.
 
 Latest follow-on request: implement and evaluate the independent report's radial
 closures after this workflow completion. This is a new physics increment, distinct from workflow completion. No CAD work.
+
+## Timed final GIFs and replenishment review
+
+Final static workflow reports now export every saved frame to wrapped/unwrapped
+pressure-and-reaction GIFs; `animate.py` also provides a standalone CLI.
+[Evidence and interpretation](../docs/verification/propagation_gifs.md): the
+radial-active run receives 49.87 mg of fresh mixture and ends with 49.64 mg
+unreacted, compared with 15.35 mg initially. No global fuel exhaustion.
+RDE-001 remains open; the time-limit endpoint is not a detected extinction.

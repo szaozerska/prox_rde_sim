@@ -1,0 +1,82 @@
+{
+  "provenance": {
+    "directory": "/Users/sgfx/Desktop/Projects/prox_rde_sim/rde_sim_starter/runs/radial_active",
+    "inputs_sha256": "9feea9410733db3c5737ae67067b664890255e5e83832eeceb9e91bfa8ed37f3",
+    "summary_sha256": "c62def91f740dade3716ac6395c99bf8e86173ce31e360d341d6ff1d5500578a",
+    "committed_history_sha256": "fe2dcdc92cda537eee2b83188a4dc9f3301a8f709ac1486a863368d4c3f3c36f",
+    "committed_history_bytes": 27538060,
+    "checkpoint_step": 13165,
+    "report_source_sha256": "cfb29d295be2be355843679f9fd1c6a329632ff11909ca1d5dc840b87161215c",
+    "analysis_source_sha256": "3ee0021a4406ae52c90c87ccbb7af782113738ab2a7d982c8bf1dc631a059b7a"
+  },
+  "checkpoint_sha256": "f2501d2bb7f827611d14ecb9d7caa0d602ba9e76cb17ad086965976add458cdc",
+  "checkpoint_unreacted_mixture_kg": 4.964364986417817e-05,
+  "native_ledger_unreacted_mixture_kg": 4.964364986417816e-05,
+  "difference_kg": 6.776263578034403e-21,
+  "windows": [
+    {
+      "window_s": [
+        0.0,
+        0.0001893939393939394
+      ],
+      "initial_unreacted_mixture_kg": 1.5350910982912973e-05,
+      "final_unreacted_mixture_kg": 4.964364986417816e-05,
+      "injected_unreacted_mixture_kg": 4.986825898233292e-05,
+      "exited_unreacted_mixture_kg": 3.653939523455725e-12,
+      "converted_mixture_kg": 1.5575516447126962e-05,
+      "unreacted_balance_residual_kg": -1.2468324983583301e-18,
+      "mass_flow": {
+        "available": true,
+        "injected_mass_kg": 4.986825898233292e-05,
+        "exited_mass_kg": 6.580445635382029e-05,
+        "mean_inlet_kg_s": 0.2633044074267178,
+        "mean_outlet_kg_s": 0.3474475295481711
+      },
+      "max_scaled_budget_residual": 6.453990077354968e-14,
+      "definition": "rho*(1-progress) integrated over the annulus; mixture-equivalent chemical inventory, not methane mass"
+    },
+    {
+      "window_s": [
+        0.0001,
+        0.00018
+      ],
+      "initial_unreacted_mixture_kg": 3.295424732947885e-05,
+      "final_unreacted_mixture_kg": 4.761172987507083e-05,
+      "injected_unreacted_mixture_kg": 2.139956994379705e-05,
+      "exited_unreacted_mixture_kg": 1.4934233727057974e-12,
+      "converted_mixture_kg": 6.742085904780681e-06,
+      "unreacted_balance_residual_kg": -1.009663273127126e-18,
+      "mass_flow": {
+        "available": true,
+        "injected_mass_kg": 2.139956994379705e-05,
+        "exited_mass_kg": 3.285194729786934e-05,
+        "mean_inlet_kg_s": 0.26749462429746307,
+        "mean_outlet_kg_s": 0.4106493412233667
+      },
+      "max_scaled_budget_residual": 4.364013607888565e-14,
+      "definition": "rho*(1-progress) integrated over the annulus; mixture-equivalent chemical inventory, not methane mass"
+    },
+    {
+      "window_s": [
+        0.00018,
+        0.0001893939393939394
+      ],
+      "initial_unreacted_mixture_kg": 4.761172987507083e-05,
+      "final_unreacted_mixture_kg": 4.964364986417816e-05,
+      "injected_unreacted_mixture_kg": 2.515285660637324e-06,
+      "exited_unreacted_mixture_kg": 2.160515778055431e-12,
+      "converted_mixture_kg": 4.833635110142146e-07,
+      "unreacted_balance_residual_kg": -8.470329472543003e-22,
+      "mass_flow": {
+        "available": true,
+        "injected_mass_kg": 2.515285660637324e-06,
+        "exited_mass_kg": 2.950635332425677e-06,
+        "mean_inlet_kg_s": 0.26775621548719936,
+        "mean_outlet_kg_s": 0.3140998902259595
+      },
+      "max_scaled_budget_residual": 8.239344455492448e-17,
+      "definition": "rho*(1-progress) integrated over the annulus; mixture-equivalent chemical inventory, not methane mass"
+    }
+  ],
+  "paper_reference_mdot_kg_s": 0.26865
+}

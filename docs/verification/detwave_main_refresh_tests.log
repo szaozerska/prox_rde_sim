@@ -1,0 +1,32 @@
+test_failed_encoder_cannot_leave_complete_marker (test_animate.AnimationTests.test_failed_encoder_cannot_leave_complete_marker) ... ok
+test_native_end_to_end_gifs_readonly_zero_reaction_and_fuel_budget (test_animate.AnimationTests.test_native_end_to_end_gifs_readonly_zero_reaction_and_fuel_budget) ... ok
+test_surface_cells_conserve_mean_and_close_periodic_seam (test_animate.AnimationTests.test_surface_cells_conserve_mean_and_close_periodic_seam) ... ok
+test_timing_preserves_unequal_physical_intervals_and_endpoint_hold (test_animate.AnimationTests.test_timing_preserves_unequal_physical_intervals_and_endpoint_hold) ... ok
+test_corrupt_checkpoint_does_not_wait_forever (test_workflow.WatchTests.test_corrupt_checkpoint_does_not_wait_forever) ... Waiting for a coherent checkpoint: corrupt
+Waiting for a coherent checkpoint: corrupt
+ok
+test_refreshes_changed_checkpoints_and_stops_without_solver (test_workflow.WatchTests.test_refreshes_changed_checkpoints_and_stops_without_solver) ... Preview 1: committed step 1, 1 µs
+Preview 2: committed step 2, 2 µs
+ok
+test_comparison_records_confounds_and_refuses_nonoverlap (test_workflow.WorkflowTests.test_comparison_records_confounds_and_refuses_nonoverlap) ... ok
+test_end_to_end_preflight_run_resume_viewer_and_readonly_rejection (test_workflow.WorkflowTests.test_end_to_end_preflight_run_resume_viewer_and_readonly_rejection) ... ok
+test_failure_marks_incomplete_instead_of_success (test_workflow.WorkflowTests.test_failure_marks_incomplete_instead_of_success) ... ok
+test_radial_report_describes_enabled_physics (test_workflow.WorkflowTests.test_radial_report_describes_enabled_physics) ... ok
+test_imports_do_not_read_cases_run_solver_or_render (test_imports.ImportTests.test_imports_do_not_read_cases_run_solver_or_render) ... ok
+test_periodic_front_distance_and_absolute_signal_preserved (test_radial_study.RadialStudyTests.test_periodic_front_distance_and_absolute_signal_preserved) ... ok
+test_contact_and_shear_flux_in_both_directions (test_hllc.HllcTests.test_contact_and_shear_flux_in_both_directions) ... ok
+test_sod_exact_star_state_and_shock (test_hllc.HllcTests.test_sod_exact_star_state_and_shock) ... ok
+test_stationary_hot_cold_contact_no_artificial_mixing (test_hllc.HllcTests.test_stationary_hot_cold_contact_no_artificial_mixing) ... ok
+test_supersonic_and_default_flux (test_hllc.HllcTests.test_supersonic_and_default_flux) ... ok
+test_unknown_flux_rejected (test_hllc.HllcTests.test_unknown_flux_rejected) ... ok
+test_geometry_and_chemistry_are_explicit_and_fixed (test_detwave_cases.SecondaryCaseTests.test_geometry_and_chemistry_are_explicit_and_fixed) ... ok
+test_high_flux_plenum_has_declared_choked_capacity (test_detwave_cases.SecondaryCaseTests.test_high_flux_plenum_has_declared_choked_capacity) ... ok
+test_saved_secondary_run_uses_supplied_case (test_detwave_cases.SecondaryCaseTests.test_saved_secondary_run_uses_supplied_case) ... run: 0.000/0.030 us, 0 steps, 0.0 s
+run: 0.030/0.030 us, 3 steps, 0.1 s
+run: 0.030/0.030 us, 3 steps, 0.1 s
+ok
+
+----------------------------------------------------------------------
+Ran 20 tests in 116.588s
+
+OK

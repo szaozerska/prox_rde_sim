@@ -8,8 +8,9 @@ measurements, hypotheses and provenance are in
 ## Main finding
 
 **The model was checked against its initial fresh layer, but not the much thinner
-layer it actually replenishes.** Its artificially extended reaction zone loses
-coupling under expansion at that thinner layer. Numerical contact mixing also
+layer it actually replenishes.** The tested thickened-chemistry/grid combination
+loses coupling under expansion at that thinner layer; kinetics and spatial error
+have not been uniquely separated. Numerical contact mixing also
 burns fresh material prematurely. Fixing that mixing improves refill but does
 not, by itself, sustain detonation.
 
@@ -124,3 +125,15 @@ termination, not a solver failure.
 No 3D run, Modal pricing analysis, or six-engine calibrated production result is
 claimed. The remaining uncertainty is substantive: these tests identify model
 incompatibilities, but have not produced a validated sustaining closure.
+
+
+## Subsequent main refresh and clarification
+
+Main through `050995e` was reviewed and integrated after the deadline at the user's
+request. It adds completed radial-control evidence and GIF/reporting functionality,
+with no new evolution-code change relative to our already merged physics. Existing
+results and source snapshots remain intact; no engine tests were repeated.
+[Refresh review](detwave_main_refresh.md) explains the decision and clarifies that
+Mundt's injector geometry is physically important but unresolved by our inlet.
+The 1 mm control is evidence of a model limitation, not unique proof of the cause
+of the experimental-replication discrepancy.

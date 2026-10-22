@@ -59,11 +59,13 @@ class WorkflowTests(unittest.TestCase):
         self.assertFalse(report['experimental_comparison']['available'])
         self.assertFalse(report['radial_physics']['centrifugal_pressure_split'])
         self.assertEqual(len(report['preview']['rendered_frames']),3)
-        for name in ['index.html','report.md','history.csv','wrapped.png','space_time.png','signals.png','loads.png','roll.png']:
+        for name in ['index.html','report.md','history.csv','wrapped.png','space_time.png','signals.png','loads.png','roll.png','animations/unwrapped.gif','animations/wrapped.gif']:
             self.assertGreater((out/name).stat().st_size,100)
         html=(out/'index.html').read_text()
         self.assertIn('RDE-001 remains unresolved',html)
         self.assertNotIn('https://',html)
+        self.assertIn('animations/wrapped.gif', html)
+        self.assertNotIn('centrifugal pressure split, curvature loss and heat loss are absent', html)
         again=self.cli(command,args)
         self.assertEqual(again.returncode,2)
         inside=self.cli(command,args[:-1]+[str(native/'view')])
@@ -94,6 +96,19 @@ class WorkflowTests(unittest.TestCase):
         with self.assertRaises(ValueError):collect_workflow(paths[0],0,.25e-6,segment_s=0)
         with self.assertRaises(ValueError):collect_workflow(paths[0],0,.25e-6,inertia=0)
 
+    def test_radial_report_describes_enabled_physics(self):
+        self.config['model'].pop('wall_cf')
+        self.config['model'].update(walls='annular_closure', radial=dict(centrifugal=True,
+            inner=dict(cf=.005, temperature_K=300.), outer=dict(cf=.005, temperature_K=300.),
+            analogy_factor=1., recovery_factor=.9))
+        native=self.root/'native';run.start_run(self.config,self.cal,native)
+        data=collect_workflow(native,0.,.25e-6)
+        out=self.root/'report';out.mkdir();write_data(data,out)
+        report=(out/'report.md').read_text()
+        self.assertIn('centrifugal_pressure_split=True',report)
+        self.assertIn('heat_loss=True',report)
+        self.assertNotIn('heat loss are not implemented',report)
+
     def test_failure_marks_incomplete_instead_of_success(self):
         native=self.root/'native';run.start_run(self.config,self.cal,native)
         out=self.root/'bad'
@@ -110,7 +125,7 @@ class WatchTests(unittest.TestCase):
                    dict(steps=2,t=2e-6,status='completed_limit')]
         with tempfile.TemporaryDirectory() as tmp:
             out=Path(tmp)/'view'
-            def render(source,target,start,end,frames):
+            def render(source,target,start,end,frames,gifs=False):
                 Path(target).mkdir();(Path(target)/'index.html').write_text('verified report')
             with patch('window_report.load_native_prefix',side_effect=[({},s,[],{}) for s in summaries]), \
                  patch('plot.plot_workflow',side_effect=render) as renderer, patch('time.sleep'):

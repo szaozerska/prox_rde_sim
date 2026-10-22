@@ -70,7 +70,10 @@ reconstructs inner/outer pressure using radial equilibrium, applies separate wal
 drag, and supports Reynolds-analogy heat exchange with explicit wall temperatures
 and recovery factor. Radial velocity/momentum, wave detachment and calibrated
 curvature losses remain unresolved. Wrapped/head-end views add no physics.
-See the [reviewed equations, assumptions and experiment](docs/plans/radial_closures_2d.md).
+See the [reviewed equations and assumptions](docs/plans/radial_closures_2d.md) and
+[completed comparison with plots](docs/verification/radial_closures.md). Both new
+cases completed 189.394 us with no invalid states; these closures did not restore
+sustained rotating detonation in the original case.
 
 Named exploratory cases hold the original D1 mesh, chemistry and startup fixed:
 `cases/run937_wall_control.yaml` disables the centrifugal split;
@@ -349,3 +352,12 @@ still the default. The adiabatic drag closure saves native momentum sources and
 provides mean-radius wall torque with angular storage/flux checks. No coefficient
 is calibrated by default. It does not add radial dynamics, heat loss, centrifugal
 pressure split or curvature losses. See [F3 verification](docs/verification/f3_wall_friction.md).
+
+## Final propagation GIFs
+
+Final static workflow reports now include timed **unwrapped and wrapped GIFs**,
+each pairing pressure with reaction on fixed scales. The standalone command is
+`../.venv/bin/python animate.py --run runs/radial_active --out ../reports/radial_movie`
+from `rde_sim_starter`. See the [movies and fuel-balance explanation](docs/verification/propagation_gifs.md).
+This case continues to receive fresh mixture; it does not stop because fuel is
+exhausted. The saved window ends at 189.394 us with RDE-001 still open.

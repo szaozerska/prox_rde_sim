@@ -3,9 +3,15 @@
 Snapshot: **October 22, 2026**. Repository:
 `/Users/sgfx/Desktop/Projects/prox_rde_sim`.
 
+Latest addition: final reports include both timed propagation GIFs; see
+[GIFs and fuel accounting](docs/verification/propagation_gifs.md). Radial-active
+fresh-mixture inventory increases from 15.35 to 49.64 mg while injection continues.
+Global exhaustion is excluded for this case; sustained shock/reaction coupling
+remains unresolved. Native inputs and physics parameters are unchanged.
+
 ## Current result and plan
 
-[Revision 14](first_sim_plan.md) records the completed D3 investigation and the
+[Revision 15](first_sim_plan.md) records the completed D3 investigation and the
 [paper/model audit](docs/verification/mundt_model_audit.md). The latest instruction authorizes controlled 2D tests, three plan reviews,
 small verified increments and publication on **main only**. The independent
 session handles 3D in another checkout/branch; do not push to its branch. D3 and
@@ -170,7 +176,9 @@ are under `docs/verification/`. D1/D2 saved runs and reports remain intact.
   energy; do not add it again to total energy. Do not tune reaction length to grid.
 - Native flux closure checks numerical accounting, not physical boundary validity.
   Annulus-exit force is not whole-engine thrust; angular balance is not mechanical
-  wall torque. Wall traction/heat loss, CAD and 3D remain unimplemented.
+  wall torque. Optional wall traction/heat transfer and centrifugal equilibrium
+  are now implemented; resolved radial dynamics, CAD and 3D are outside this
+  branch's delivered 2D workflow.
 - Keep the abandoned Google Drive troubleshooting stopped.
 
 ## Environment and workspace
@@ -242,5 +250,7 @@ The independent report and pre-existing edits in `controlled_2d_progress.md` are
 preserved and are not included in this session's commits.
 
 Radial follow-on: [reviewed scope and equations](docs/plans/radial_closures_2d.md).
-Implementation/tests are complete; the controlled comparison is running.
+Implementation/tests and the controlled comparison are complete. Both new cases
+ran 189.394 us/13,165 steps without invalid states; the radial closure did not
+restore sustained detonation in this case.
 [Evidence and status](docs/verification/radial_closures.md). Inviscid defaults remain unchanged.

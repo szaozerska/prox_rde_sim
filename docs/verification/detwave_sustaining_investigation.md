@@ -871,3 +871,12 @@ qualify reaction timing and resolution against the actual refill thickness befor
 another periodic-engine run, rather than increase ignition or tune six engines.
 The concise final report is `detwave_findings.md`. No new simulations were launched
 at closeout.
+
+
+## User-requested post-deadline main integration
+
+Reviewed and integrated main through `050995e`, with completed radial comparisons
+and propagation GIFs. See `detwave_main_refresh.md` for the injector-angle paper
+check, limits of the 1 mm inference, source-identity audit, merge resolution and
+explicit decision not to repeat unchanged CFD. This is integration/reporting work;
+the time-bounded engine investigation and its follow-up remain stopped.
