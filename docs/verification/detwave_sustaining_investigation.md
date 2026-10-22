@@ -273,6 +273,79 @@ This strengthens the need to separate H1 (reaction/expansion coupling) from H4
 and H6 (refill and case definition). Faster chemistry's early Run 937 improvement
 cannot by itself guarantee periodic survival in another geometry.
 
+## Big-picture reassessment requested by user
+
+**Continue the bounded 2D investigation; do not conclude 3D is required.**
+The numerical prerequisites are complete. They established trustworthy execution
+of the selected surrogate, not suitability of its chemistry. The present engine
+comparisons directly test wave support and refill, rather than launching more
+generic numerical sweeps. The expensive Run 937 grid contains about 1.09 million
+cells and requires thousands of small explicit steps even for tens of us;
+wall-clock slowness is not itself evidence that the physics is impossible.
+
+### What the source actually did
+
+Rechecked Mundt printed pp.26,37,74,77–78 directly. This is an experimental
+engine scaling study with thermochemical post-processing, not a demonstrated
+unsteady CFD implementation of our one-step model. Separate methane and oxygen
+feeds mix in the engine. A spark-ignited external pre-detonator supplies ignition;
+its port is at 73 mm in the 76 mm engine and 22.4 mm in the 25 mm engines.
+Premixing in §4.1.2 applies to the Cantera/SDToolbox reference calculation. The
+fill height in Eq.4.5 is inferred using measured wave passage frequency; the
+paper does not numerically inject or continually reset a prescribed 3.8 mm layer.
+Our initial layer, uniform premixed face injection, hot upper products, equivalent
+plenum and thickened one-step kinetics are additional modeling choices.
+
+The directly inspected numerical setup in
+[Strakey & Ferguson](https://netl.doe.gov/projects/files/ValidationofaComputationalFluidDynamicsModelofaMethaneOxygenRotatingDetonationEngine_010522.pdf)
+uses a 5 mm initial fresh region with air above, an axial pressure taper, and a
+2-degree hot kernel at 4 MPa/3000 K. It also resolves injectors/manifolds and uses
+12-species chemistry. Thus detailed pre-detonator modeling is not a prerequisite
+in that successful CFD study, but its simple ignition cannot be transplanted
+while claiming the remaining closures match ours. Our formed-start control
+already bypasses failure to establish an initial detonation; adding ignition
+energy does not resolve its observed later decoupling.
+
+[Hishida, Fujiwara & Wolanski (2009)](https://link.springer.com/article/10.1007/s00193-008-0178-2)
+explicitly report sustained near-CJ rotation with a two-dimensional simple
+chemistry model. Only the publisher abstract was accessible, so it establishes
+feasibility, not a verified set of transferable methane-oxygen coefficients.
+[Koch & Kutz (2020)](https://arxiv.org/abs/2007.14776) likewise demonstrate the
+importance of the relative injection, mixing, combustion and exhaust timescales
+in a reduced model. Neither validates our artificially chosen 1 mm reaction length.
+
+### Deadline-focused decision and fallback
+
+1. Finish the original 40 us control and prioritize periodic behavior in the
+   existing shortened-chemistry and small high-flux runs. No additional six-case
+   expensive sweep until one setup demonstrates repeat propagation into refill.
+2. If faster chemistry propagates through fresh initial charge but fails on
+   return, examine the local fresh-layer state and inlet recovery at the return,
+   including startup counter-waves. That discriminates refill/startup from
+   the earlier chemistry/expansion failure; do not simply shorten chemistry again.
+3. A minimal supported prototype may retain inviscid 2D flow, premixed gas,
+   conservative formed ignition and one common reduced-chemistry calibration
+   procedure. It must predict refill rather than reset fuel or apply continuing
+   ignition. Any changed initial layer or pressure profile is a labeled startup
+   sensitivity, not a paper-prescribed condition or steady-survival guarantee.
+4. For all six geometries, audit dimensions/areas and operating points using the
+   same rules. **The current unrolled model has no direct radial-confinement or
+   gap-dependent wall-loss closure.** Gap scales integral quantities and affects
+   mean-radius circumference; it is not a resolved radial coordinate. Consequently
+   a working wave alone cannot validate the experimental gap-width ranking.
+5. If the autonomous reacting model cannot show periodic survival by the deadline,
+   deliver its actual attained interval and diagnosed limitations. A separate
+   reduced-order/shock-fitted performance demonstrator is a possible fallback:
+   [Fievisohn (2016)](https://drum.lib.umd.edu/items/159d8be8-c108-4b3c-9a41-ea6287e7dad8)
+   provides a literature precedent using CJ/shock-expansion theory and method of
+   characteristics. Such a model conditions on a detonation solution and cannot
+   count as a prediction that the wave sustains. It has not been implemented here.
+
+No evidence currently establishes impossibility of 2D modeling. The strongest
+supported criticism is of the selected reaction/refill scales and their presumed
+equivalence to the experiment. No Modal resource or pricing investigation is
+included, following the user's explicit withdrawal of that request.
+
 ## Active-run handoff (replace with results when complete)
 
 Both simulations run in this branch's worktree, not the original checkout.
