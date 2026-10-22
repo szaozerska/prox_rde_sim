@@ -5,6 +5,9 @@ Branch: `2d-modelling-detwave-sustaining-fix`, created from GitHub main
 `/private/tmp/prox-rde-detwave-fix`. Original dirty main checkout is preserved.
 The user's branch instruction supersedes historical documents saying main only.
 
+**Reading guide:** the compact assessment is in [detwave_findings.md](detwave_findings.md).
+This file retains the chronological hypotheses, controls, corrections and provenance.
+
 ## Initial assessment and hypotheses (before new runs)
 
 Reviewed README, HANDOFF, revision 10, the C1–C6 plan, paper/model audit,
@@ -726,6 +729,44 @@ characteristic bounds and positive remote-boundary causal margins; violation
 stops interpretation. The absolute 22:00 UTC deadline is also enforced in the
 driver. One job only: `runs/detwave_refill_layer_hllc`, one thread,
 `detwave_refill_layer.log`. The active larger engine retains v1 source.
+
+### Final thin-layer control completed (21:42 UTC)
+
+The 1 mm fully fresh layer control **loses pressure/reaction coupling** within
+its complete 10 us window. At z=0.0625 mm the leading p>2*p1 threshold advances
+from x=39.9375 to 55.5625 mm, but the reaction peak falls 6.25 mm behind it.
+This threshold-to-peak gap grows from 0.125 mm initially, through 1.50 mm at
+5 us, to 6.25 mm at 10 us. The bottom-row pressure maximum falls from
+28.720 to 7.343 to 3.406 MPa. At 10 us that pressure maximum is at x=54.5625 mm
+and T=456 K; the maximum reaction rate within 1 mm of the leading threshold is
+only **19.2/s**, down from 1.03e6/s initially. The 5–10 us threshold speed is
+1300 m/s, versus 2475 m/s for the fully filled planar HLLC control. This is
+separation and slowing, not merely a lower pressure threshold crossing.
+
+Execution: 1005 steps, 432 s, zero invalid states, maximum recorded scaled
+conservation residual approximately 1.6e-15. Observed directional signal speeds
+3174/2950 m/s remain below predeclared 4000/3000 bounds. At the endpoint, left,
+right and top causal margins remain 8.06, 15.44 and 2.50 mm. Remote boundaries
+cannot explain this bounded result under those measured bounds. The bottom wall
+and 1500 K products are the stated finite-layer control, not the complete engine.
+Data and figure: `detwave_refill_layer_result.json/.png`; raw state remains in
+`runs/detwave_refill_layer_hllc`. The job completed normally and must not restart.
+
+**Supported diagnosis:** the tested thickened-chemistry/discretization combination
+that propagates through a 3.8 mm initial layer does not retain coupling through
+a 1 mm replenished-like layer, even when fresh composition and contact handling
+are favorable and no injection/return complication exists. This directly supports
+reaction/expansion incompatibility at the actual refill thickness. It does not
+prove a universal h/L threshold, physical extinction of real methane/oxygen,
+or separation of residual spatial error from the surrogate's kinetics.
+
+The larger short-chemistry engine still shows coupled first-transit propagation
+in its 60 us saved field: at z=1.062 mm the pressure peak is x=145.349 mm,
+17.506 MPa, with nearby rate 7.29e5/s and 0.125 mm peak separation. At z=3.060 mm,
+pressure is 18.065 MPa, nearby rate 5.97e5/s, separation 0.625 mm. These are
+localized forward-front samples, not global pressure alone. First return across
+the 223.681 mm circumference has not been completed. Keep only this existing
+engine job active until the deadline; no new simulation is justified now.
 
 ## Active-run handoff (historical launch commands; see latest statuses above)
 
