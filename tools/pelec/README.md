@@ -50,3 +50,37 @@ The LiDryer upstream reactor has a tiny thermodynamic fit discontinuity at 1000 
 The strict independent reference uses 1001 K, explicitly, without changing the
 mechanism or energy tolerance. See the preserved investigation in the G0 evidence
 folder; methane validation is separate.
+
+
+G1 shock convergence and CPU/GPU equivalence passed. **G1 chemistry is not passed.**
+See [the failure investigation](../../docs/verification/pelec_g1/README.md).
+The controls runner rejects solver-error logs independently of native exit/final
+time, since the pinned CPU per-cell CVODE path can ignore an integration failure.
+
+```sh
+.tooling/modal-venv/bin/modal run --profile prox --write-result /private/tmp/prox_rde_3d_controls.json tools/pelec/modal_controls.py --suite shock
+.tooling/modal-venv/bin/python tools/pelec/collect_result.py /private/tmp/prox_rde_3d_controls.json runs3d/new_controls
+MPLCONFIGDIR="$PWD/.tooling/matplotlib" .tooling/analysis-venv/bin/python tools/pelec/analyze_shock_controls.py runs3d/new_controls/controls
+```
+
+Chemistry controls require explicit `--suite chem`; `--rtol`, `--atol`,
+`--backend-filter` and the CPU-only `--linear-solver` permit discriminating small
+tests. Defaults are historical control settings, not accepted engine tolerances.
+Every subprocess has a 90-second cap; the batch stops at first completion/error
+failure. These are not production engine cases. The shared control allocation
+reserves one H100 even for a CPU case filter.
+
+`compare_reactor_history.py RUN MECHANISM --output REPORT` is the cheap all-step
+temperature comparison. `analyze_reactor.py RUN MECHANISM` additionally checks
+native fields, species/element budgets and independent energy. The optional
+`--native-constants` mode is a separately labelled LiDryer diagnostic derived from
+the generated header; it does not replace or overwrite nominal YAML comparisons.
+`modal_rates.py` evaluates the actual compiled native thermodynamics and source
+rates across public fresh/reacting mixtures on two CPUs.
+
+`PELEC_STRICT_EOS=1` selects a separate cached A/B build using the upstream
+`CONVERGENCE` macro. It changes EOS inversion tolerance to 1e-12 K and its iteration cap to 5000, records new
+binary hashes and does not change rate constants or numerical source. This option
+is under investigation, not an accepted remedy. The default cached build remains
+available; full reacting throughput and the one-to-two-hour engine target remain
+unmeasured.

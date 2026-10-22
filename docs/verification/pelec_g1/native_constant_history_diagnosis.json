@@ -1,0 +1,43 @@
+{
+  "reference": {
+    "kind": "native_generated_constants",
+    "native_Rcal": 1.9872155831739962,
+    "cantera_Rcal": 1.9872042586408318,
+    "native_reference_R_SI": 8.31446,
+    "activation_energy_factor": 0.9999943013061793,
+    "species_reference_pressure_factor": 1.000000314891555,
+    "scope": "Independent integration of the actual generated rates; nominal YAML comparisons remain separate"
+  },
+  "cases": [
+    {
+      "run": "runs3d/pelec_chem_controls_02/controls/cpu_zeroD_n8_dt1e-05",
+      "max_temperature_relative_error": 0.004471059860049698,
+      "time_of_max_error": 0.00013
+    },
+    {
+      "run": "runs3d/pelec_chem_controls_02/controls/gpu_zeroD_n8_dt1e-05",
+      "max_temperature_relative_error": 0.004471059860116311,
+      "time_of_max_error": 0.00013
+    },
+    {
+      "run": "runs3d/pelec_chem_controls_02/controls/gpu_zeroD_n8_dt5e-06",
+      "max_temperature_relative_error": 0.13853949236885255,
+      "time_of_max_error": 0.000135
+    },
+    {
+      "run": "runs3d/pelec_chem_atol18_04/controls/cpu_zeroD_n8_dt1e-05",
+      "max_temperature_relative_error": 3.729211319769554e-05,
+      "time_of_max_error": 0.00013
+    },
+    {
+      "run": "runs3d/pelec_chem_atol18_04/controls/gpu_zeroD_n8_dt1e-05",
+      "max_temperature_relative_error": 3.729211319769554e-05,
+      "time_of_max_error": 0.00013
+    },
+    {
+      "run": "runs3d/pelec_chem_atol18_04/controls/gpu_zeroD_n8_dt5e-06",
+      "max_temperature_relative_error": 0.0008260714170569283,
+      "time_of_max_error": 0.000135
+    }
+  ]
+}

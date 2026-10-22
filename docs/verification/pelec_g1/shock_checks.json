@@ -1,0 +1,408 @@
+{
+  "passed": true,
+  "checks": {
+    "individual_controls": true,
+    "three_grid_error_decreases": true,
+    "fine_mean_absolute_error": true,
+    "cpu_gpu_equivalence": true,
+    "temporal_error_below_spatial": true
+  },
+  "cases": {
+    "gpu_Sod_n64_dt0.001": {
+      "time": 0.2,
+      "shape": [
+        64,
+        8,
+        8
+      ],
+      "checks": {
+        "initial_time": true,
+        "final_time": true,
+        "same_mesh": true,
+        "finite_fields": true,
+        "positive_density_pressure_temperature": true,
+        "mass_conservation": true,
+        "energy_conservation": true,
+        "transverse_velocity": true,
+        "transverse_uniformity": true,
+        "wall_pressure_impulse": true,
+        "star_pressure": true,
+        "star_velocity": true,
+        "shock_location": true
+      },
+      "initial_integrals": {
+        "mass": 0.03515625,
+        "energy": 0.0859375,
+        "xmomentum": 0.0
+      },
+      "final_integrals": {
+        "mass": 0.03515625,
+        "energy": 0.0859375,
+        "xmomentum": 0.011249999999999993
+      },
+      "relative_drift": {
+        "mass": 0.0,
+        "energy": 0.0
+      },
+      "max_transverse_velocity": 0.0,
+      "relative_transverse_nonuniformity": 0.0,
+      "native_minmax": {
+        "density": [
+          0.125,
+          1.0
+        ],
+        "Temp": [
+          2.4703758334988563e-07,
+          4.053041369999998e-07
+        ],
+        "pressure": [
+          0.1,
+          1.0
+        ],
+        "x_velocity": [
+          -1.4210854715202004e-17,
+          0.9315606228079623
+        ],
+        "y_velocity": [
+          0.0,
+          0.0
+        ],
+        "z_velocity": [
+          0.0,
+          0.0
+        ]
+      },
+      "mean_absolute_error": {
+        "density": 0.006560008690089582,
+        "pressure": 0.005004098640096084,
+        "x_velocity": 0.016775666868961103
+      },
+      "shock_location": 0.8515625,
+      "passed": true,
+      "native_completion_passed": true
+    },
+    "gpu_Sod_n128_dt0.0005": {
+      "time": 0.2,
+      "shape": [
+        128,
+        8,
+        8
+      ],
+      "checks": {
+        "initial_time": true,
+        "final_time": true,
+        "same_mesh": true,
+        "finite_fields": true,
+        "positive_density_pressure_temperature": true,
+        "mass_conservation": true,
+        "energy_conservation": true,
+        "transverse_velocity": true,
+        "transverse_uniformity": true,
+        "wall_pressure_impulse": true,
+        "star_pressure": true,
+        "star_velocity": true,
+        "shock_location": true
+      },
+      "initial_integrals": {
+        "mass": 0.03515625,
+        "energy": 0.0859375,
+        "xmomentum": 0.0
+      },
+      "final_integrals": {
+        "mass": 0.03515625,
+        "energy": 0.0859375,
+        "xmomentum": 0.011249999999999993
+      },
+      "relative_drift": {
+        "mass": 0.0,
+        "energy": 0.0
+      },
+      "max_transverse_velocity": 0.0,
+      "relative_transverse_nonuniformity": 0.0,
+      "native_minmax": {
+        "density": [
+          0.125,
+          1.0
+        ],
+        "Temp": [
+          2.474146208877497e-07,
+          4.0369416389507856e-07
+        ],
+        "pressure": [
+          0.1,
+          1.0
+        ],
+        "x_velocity": [
+          0.0,
+          0.9307007253259804
+        ],
+        "y_velocity": [
+          0.0,
+          0.0
+        ],
+        "z_velocity": [
+          0.0,
+          0.0
+        ]
+      },
+      "mean_absolute_error": {
+        "density": 0.003208098079624887,
+        "pressure": 0.002209580134318845,
+        "x_velocity": 0.006308203426560168
+      },
+      "shock_location": 0.84765625,
+      "passed": true,
+      "native_completion_passed": true
+    },
+    "gpu_Sod_n256_dt0.00025": {
+      "time": 0.2,
+      "shape": [
+        256,
+        8,
+        8
+      ],
+      "checks": {
+        "initial_time": true,
+        "final_time": true,
+        "same_mesh": true,
+        "finite_fields": true,
+        "positive_density_pressure_temperature": true,
+        "mass_conservation": true,
+        "energy_conservation": true,
+        "transverse_velocity": true,
+        "transverse_uniformity": true,
+        "wall_pressure_impulse": true,
+        "star_pressure": true,
+        "star_velocity": true,
+        "shock_location": true
+      },
+      "initial_integrals": {
+        "mass": 0.03515625,
+        "energy": 0.0859375,
+        "xmomentum": 0.0
+      },
+      "final_integrals": {
+        "mass": 0.03515625,
+        "energy": 0.08593750000000001,
+        "xmomentum": 0.011249999999999993
+      },
+      "relative_drift": {
+        "mass": 0.0,
+        "energy": 1.6148698540002277e-16
+      },
+      "max_transverse_velocity": 0.0,
+      "relative_transverse_nonuniformity": 0.0,
+      "native_minmax": {
+        "density": [
+          0.125,
+          1.0
+        ],
+        "Temp": [
+          2.474755048054731e-07,
+          4.023550122254885e-07
+        ],
+        "pressure": [
+          0.1,
+          1.0
+        ],
+        "x_velocity": [
+          0.0,
+          0.9302864258127835
+        ],
+        "y_velocity": [
+          0.0,
+          0.0
+        ],
+        "z_velocity": [
+          0.0,
+          0.0
+        ]
+      },
+      "mean_absolute_error": {
+        "density": 0.001796361017064067,
+        "pressure": 0.001119123894207996,
+        "x_velocity": 0.003101588691963354
+      },
+      "shock_location": 0.849609375,
+      "passed": true,
+      "native_completion_passed": true
+    },
+    "gpu_Sod_n128_dt0.00025": {
+      "time": 0.2,
+      "shape": [
+        128,
+        8,
+        8
+      ],
+      "checks": {
+        "initial_time": true,
+        "final_time": true,
+        "same_mesh": true,
+        "finite_fields": true,
+        "positive_density_pressure_temperature": true,
+        "mass_conservation": true,
+        "energy_conservation": true,
+        "transverse_velocity": true,
+        "transverse_uniformity": true,
+        "wall_pressure_impulse": true,
+        "star_pressure": true,
+        "star_velocity": true,
+        "shock_location": true
+      },
+      "initial_integrals": {
+        "mass": 0.03515625,
+        "energy": 0.0859375,
+        "xmomentum": 0.0
+      },
+      "final_integrals": {
+        "mass": 0.03515625,
+        "energy": 0.0859375,
+        "xmomentum": 0.011249999999999993
+      },
+      "relative_drift": {
+        "mass": 0.0,
+        "energy": 0.0
+      },
+      "max_transverse_velocity": 0.0,
+      "relative_transverse_nonuniformity": 0.0,
+      "native_minmax": {
+        "density": [
+          0.125,
+          1.0
+        ],
+        "Temp": [
+          2.4743669488235345e-07,
+          4.0416844255809784e-07
+        ],
+        "pressure": [
+          0.1,
+          1.0
+        ],
+        "x_velocity": [
+          -7.105427357601002e-18,
+          0.9305318133887963
+        ],
+        "y_velocity": [
+          0.0,
+          0.0
+        ],
+        "z_velocity": [
+          0.0,
+          0.0
+        ]
+      },
+      "mean_absolute_error": {
+        "density": 0.0032008552428124046,
+        "pressure": 0.0021858142910164257,
+        "x_velocity": 0.006298693176779553
+      },
+      "shock_location": 0.84765625,
+      "passed": true,
+      "native_completion_passed": true
+    },
+    "cpu_Sod_n128_dt0.0005": {
+      "time": 0.2,
+      "shape": [
+        128,
+        8,
+        8
+      ],
+      "checks": {
+        "initial_time": true,
+        "final_time": true,
+        "same_mesh": true,
+        "finite_fields": true,
+        "positive_density_pressure_temperature": true,
+        "mass_conservation": true,
+        "energy_conservation": true,
+        "transverse_velocity": true,
+        "transverse_uniformity": true,
+        "wall_pressure_impulse": true,
+        "star_pressure": true,
+        "star_velocity": true,
+        "shock_location": true
+      },
+      "initial_integrals": {
+        "mass": 0.03515625,
+        "energy": 0.0859375,
+        "xmomentum": 0.0
+      },
+      "final_integrals": {
+        "mass": 0.03515625,
+        "energy": 0.0859375,
+        "xmomentum": 0.011249999999999993
+      },
+      "relative_drift": {
+        "mass": 0.0,
+        "energy": 0.0
+      },
+      "max_transverse_velocity": 0.0,
+      "relative_transverse_nonuniformity": 0.0,
+      "native_minmax": {
+        "density": [
+          0.125,
+          1.0
+        ],
+        "Temp": [
+          2.474146208877494e-07,
+          4.0369416389507877e-07
+        ],
+        "pressure": [
+          0.1,
+          1.0
+        ],
+        "x_velocity": [
+          0.0,
+          0.9307007253259812
+        ],
+        "y_velocity": [
+          0.0,
+          0.0
+        ],
+        "z_velocity": [
+          0.0,
+          0.0
+        ]
+      },
+      "mean_absolute_error": {
+        "density": 0.003208098079624963,
+        "pressure": 0.002209580134318898,
+        "x_velocity": 0.006308203426560136
+      },
+      "shock_location": 0.84765625,
+      "passed": true,
+      "native_completion_passed": true
+    }
+  },
+  "grid_mean_absolute_errors": {
+    "density": [
+      0.006560008690089582,
+      0.003208098079624887,
+      0.001796361017064067
+    ],
+    "pressure": [
+      0.005004098640096084,
+      0.002209580134318845,
+      0.001119123894207996
+    ],
+    "x_velocity": [
+      0.016775666868961103,
+      0.006308203426560168,
+      0.003101588691963354
+    ]
+  },
+  "cpu_gpu_relative_max_error": {
+    "density": 1.099120794378905e-14,
+    "Temp": 4.065271391269707e-15,
+    "pressure": 1.5765166949677223e-14,
+    "x_velocity": 1.4556687158582098e-14,
+    "y_velocity": 0.0,
+    "z_velocity": 0.0
+  },
+  "timestep_mean_absolute_difference": {
+    "density": 9.098613648330072e-05,
+    "pressure": 7.68518038794211e-05,
+    "x_velocity": 0.00012439279931441178
+  },
+  "criteria": "Predeclared: cold CPU/GPU relative max <1e-10; all three grid errors decrease; fine MAE <.02; temporal difference <10% of same-grid exact error. Discontinuous shock: not a formal smooth second-order claim."
+}

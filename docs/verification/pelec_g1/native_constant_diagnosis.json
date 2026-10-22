@@ -1,0 +1,63 @@
+{
+  "conventions": {
+    "kind": "native_generated_constants",
+    "native_Rcal": 1.9872155831739962,
+    "cantera_Rcal": 1.9872042586408318,
+    "native_reference_R_SI": 8.31446,
+    "activation_energy_factor": 0.9999943013061793,
+    "species_reference_pressure_factor": 1.000000314891555,
+    "scope": "Independent integration of the actual generated rates; nominal YAML comparisons remain separate"
+  },
+  "rate_checks": [
+    {
+      "T": 300.0,
+      "P": 101325.0,
+      "relative_rate_error": 3.000000887442923e-08
+    },
+    {
+      "T": 300.0,
+      "P": 300000.00000000006,
+      "relative_rate_error": 3.000000877524637e-08
+    },
+    {
+      "T": 1001.0,
+      "P": 101325.00000000001,
+      "relative_rate_error": 1.822734040604022e-14
+    },
+    {
+      "T": 1001.0,
+      "P": 300000.00000000006,
+      "relative_rate_error": 1.465400854343411e-14
+    },
+    {
+      "T": 1200.0,
+      "P": 101325.0,
+      "relative_rate_error": 1.125638734179671e-14
+    },
+    {
+      "T": 1200.0,
+      "P": 300000.00000000006,
+      "relative_rate_error": 4.210075703408748e-15
+    },
+    {
+      "T": 2000.0,
+      "P": 101324.99999999999,
+      "relative_rate_error": 1.564222764769157e-14
+    },
+    {
+      "T": 2000.0,
+      "P": 300000.0,
+      "relative_rate_error": 1.6005420502384686e-14
+    },
+    {
+      "T": 3000.0,
+      "P": 101325.0,
+      "relative_rate_error": 7.175037674738719e-15
+    },
+    {
+      "T": 3000.0,
+      "P": 300000.0,
+      "relative_rate_error": 7.02706074774042e-15
+    }
+  ]
+}

@@ -1,0 +1,4 @@
+[ERROR][rank 0][/opt/PeleC/Submodules/PelePhysics/Submodules/sundials/src/cvode/cvode.c:1428][CVode] At t = 5.03021e-06, mxstep steps taken before reaching tout.
+[ERROR][rank 0][/opt/PeleC/Submodules/PelePhysics/Submodules/sundials/src/cvode/cvode.c:1428][CVode] At t = 5.03021e-06, mxstep steps taken before reaching tout.
+[ERROR][rank 0][/opt/PeleC/Submodules/PelePhysics/Submodules/sundials/src/cvode/cvode.c:1428][CVode] At t = 5.03021e-06, mxstep steps taken before reaching tout.
+Total CVODE error lines: 2048

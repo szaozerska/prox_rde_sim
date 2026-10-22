@@ -298,3 +298,25 @@ G0 fast-suite environment correction: invoking the full 3D suite with the isolat
 Modal client failed importing PyYAML (that environment intentionally contains only
 client dependencies). Re-ran with the existing read-only project Python environment;
 all ten tests passed. No packages or files in the 2D checkout were changed.
+
+
+## G1 — shock passed; chemistry held at an independently detected inconsistency
+
+Three native shock grids, separate timestep halving and CPU/GPU comparison passed
+with decreasing exact-solution errors, finite states and conservation. Detailed
+criteria, timings and visually checked plot are in [G1 evidence](pelec_g1/README.md).
+
+The chemistry checks rejected a no-op default reactor, then found ignition-history
+errors despite passing conservation and CPU/GPU agreement. Absolute-tolerance
+refinement improves the history but does not yet meet its criterion. A compiled
+operator probe separates generated-rate constant conventions from integration
+error; preserve both nominal YAML and source-derived diagnostic references.
+A very tight test exposed ignored CPU CVODE return status and partial chemistry
+advancement with a continuing flow clock. New fail-closed log checks and regression
+tests reject that signature. No methane/engine work proceeds. An A/B diagnostic of
+the upstream tighter EOS inversion mode is running; root cause is not yet claimed.
+
+All thirteen fast 3D tests pass after adding the observed solver-error regression.
+No changes were made to the parallel 2D checkout. GPU-first remains one bounded
+native implementation with CPU controls and the installed detonationFoam fallback;
+these failures do not establish a GPU hardware limitation.

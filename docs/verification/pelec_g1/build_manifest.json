@@ -1,0 +1,56 @@
+{
+  "commands": [
+    [
+      "configure-cpu",
+      [
+        "cmake",
+        "-S",
+        "/opt/PeleC",
+        "-B",
+        "/opt/PeleC/build-cpu",
+        "-G",
+        "Ninja",
+        "-DCMAKE_BUILD_TYPE=Release",
+        "-DPELE_ENABLE_CUDA=OFF",
+        "-DPELE_DIM=3",
+        "-DPELE_PRECISION=DOUBLE",
+        "-DPELE_ENABLE_MPI=OFF",
+        "-DPELE_ENABLE_OPENMP=OFF",
+        "-DPELE_ENABLE_PARTICLES=OFF",
+        "-DPELE_ENABLE_TINY_PROFILE=ON"
+      ]
+    ],
+    [
+      "build-cpu",
+      [
+        "cmake",
+        "--build",
+        "/opt/PeleC/build-cpu",
+        "--target",
+        "PeleC-Sod",
+        "PeleC-zeroD",
+        "-j",
+        "12"
+      ]
+    ],
+    [
+      "build-gpu-chemistry",
+      [
+        "cmake",
+        "--build",
+        "/opt/PeleC/build-gpu",
+        "--target",
+        "PeleC-zeroD",
+        "-j",
+        "12"
+      ]
+    ]
+  ],
+  "binary_sha256": {
+    "cpu/Sod": "a867956a3d4fb6e24683bdd3b2554814c35c86a9e649d3d6916efa51746580c9",
+    "cpu/zeroD": "8c9059216832b738614a9baf193b1a785c6bd26e7d5c743147ccae7923e8d06f",
+    "gpu/Sod": "10f0065c7c6a6ed6ee206055dda6de6f64876f8275d26e3123ed78d9cfbeec09",
+    "gpu/zeroD": "a8a0bd6277dcc01249174bd8be77215d38b17cee5847ef2334920346d75c2a01"
+  },
+  "build_wall_seconds": 211.667874738
+}

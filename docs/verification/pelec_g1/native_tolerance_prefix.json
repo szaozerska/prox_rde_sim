@@ -1,0 +1,14 @@
+[
+  {
+    "case": "pelec_chem_controls_02",
+    "common_prefix_end_s": 9e-05,
+    "max_temperature_relative_error": 3.0311431533647237e-06,
+    "completion": true
+  },
+  {
+    "case": "pelec_chem_tight_03",
+    "common_prefix_end_s": 9e-05,
+    "max_temperature_relative_error": 9.470556805446506e-08,
+    "completion": false
+  }
+]

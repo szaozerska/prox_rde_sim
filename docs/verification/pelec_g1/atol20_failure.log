@@ -1,0 +1,520 @@
+Initializing AMReX (26.07)...
+Initializing CUDA...
+CUDA initialized with 1 device.
+AMReX (26.07) initialized
+Initializing SUNDIALS with 1 threads...
+SUNDIALS initialized.
+
+Starting run at 21:14:06 UTC on 2026-10-22.
+Successfully read inputs file ...
+
+PeleC git hash: 949e2bb
+AMReX git hash: 1546c1c
+PelePhysics git hash: 6e8026f
+SUNDIALS git hash: 0eff396
+
+0 Advected Variables:
+
+9 Species:
+H2  O2  H2O  H  O  OH  HO2  H2O2  N2
+0 Auxiliary Variables:
+
+Warning: both amr.plot_int and amr.plot_per are > 0.!
+Initializing EB2
+Successfully read inputs file ...
+Starting to call amrex_probinit ...
+Successfully run amrex_probinit
+Creating ReactorBase instance: ReactorCvode
+Initializing CVODE:
+Initializing the data at level 0
+Done initializing level 0 data
+... Initializing reactions, using interval dt = 1e-05
+
+TIME = 0 MASS        = 0.0001992725866
+TIME = 0 XMOM        = 0
+TIME = 0 YMOM        = 0
+TIME = 0 ZMOM        = 0
+TIME = 0 RHO*e       = 1595804.519
+TIME = 0 RHO*K       = 0
+TIME = 0 RHO*E       = 1595804.519
+TIME = 0 FUEL PROD   = 0
+
+TIME = 0 density     MIN = 0.00019927259    MAX = 0.00019927259
+TIME = 0 x_velocity  MIN = 0                MAX = 0
+TIME = 0 y_velocity  MIN = 0                MAX = 0
+TIME = 0 z_velocity  MIN = 0                MAX = 0
+TIME = 0 eint_e      MIN = 8.0081488e+09    MAX = 8.0081488e+09
+TIME = 0 Temp        MIN = 1001             MAX = 1001
+TIME = 0 pressure    MIN = 1013250          MAX = 1013250
+TIME = 0 massfrac    MIN = 0                MAX = 0.5
+TIME = 0 sumYminus1  MIN = 0                MAX = 0
+TIME = 0 HO2         MIN = 0                MAX = 0
+INITIAL GRIDS
+  Level 0   1 grids  512 cells  100 % of domain
+
+PLOTFILE: file = plt00000
+Write plotfile time = 0.005726106  seconds
+
+[Level 0 step 1] ADVANCE at time 0 with dt = 1e-05
+SDC iteration 1 of 2.
+... Computing reactions for dt = 1e-05
+SDC iteration 2 of 2.
+... Computing reactions for dt = 1e-05
+[Level 0 step 1] Advanced 512 cells
+
+TIME = 1e-05 MASS        = 0.0001992725866
+TIME = 1e-05 XMOM        = 0
+TIME = 1e-05 YMOM        = 0
+TIME = 1e-05 ZMOM        = 0
+TIME = 1e-05 RHO*e       = 1595804.519
+TIME = 1e-05 RHO*K       = 0
+TIME = 1e-05 RHO*E       = 1595804.519
+TIME = 1e-05 FUEL PROD   = 0
+
+TIME = 1e-05 density     MIN = 0.00019927259    MAX = 0.00019927259
+TIME = 1e-05 x_velocity  MIN = 0                MAX = 0
+TIME = 1e-05 y_velocity  MIN = 0                MAX = 0
+TIME = 1e-05 z_velocity  MIN = 0                MAX = 0
+TIME = 1e-05 eint_e      MIN = 8.0081488e+09    MAX = 8.0081488e+09
+TIME = 1e-05 Temp        MIN = 1001             MAX = 1001
+TIME = 1e-05 pressure    MIN = 1013250          MAX = 1013250
+TIME = 1e-05 massfrac    MIN = 2.4380931e-12    MAX = 0.5
+TIME = 1e-05 sumYminus1  MIN = -1.110223e-16    MAX = -1.110223e-16
+TIME = 1e-05 HO2         MIN = 1.6888343e-09    MAX = 1.6888343e-09
+
+[STEP 1] Coarse TimeStep time: 0.24763313
+[STEP 1] FAB kilobyte spread across MPI nodes: [676 ... 676]
+
+STEP = 1 TIME = 1e-05 DT = 1e-05
+
+PLOTFILE: file = plt00001
+Write plotfile time = 0.004839183  seconds
+
+[Level 0 step 2] ADVANCE at time 1e-05 with dt = 1e-05
+SDC iteration 1 of 2.
+... Computing reactions for dt = 1e-05
+SDC iteration 2 of 2.
+... Computing reactions for dt = 1e-05
+[Level 0 step 2] Advanced 512 cells
+
+TIME = 2e-05 MASS        = 0.0001992725866
+TIME = 2e-05 XMOM        = 0
+TIME = 2e-05 YMOM        = 0
+TIME = 2e-05 ZMOM        = 0
+TIME = 2e-05 RHO*e       = 1595804.519
+TIME = 2e-05 RHO*K       = 0
+TIME = 2e-05 RHO*E       = 1595804.519
+TIME = 2e-05 FUEL PROD   = 0
+
+TIME = 2e-05 density     MIN = 0.00019927259    MAX = 0.00019927259
+TIME = 2e-05 x_velocity  MIN = 0                MAX = 0
+TIME = 2e-05 y_velocity  MIN = 0                MAX = 0
+TIME = 2e-05 z_velocity  MIN = 0                MAX = 0
+TIME = 2e-05 eint_e      MIN = 8.0081488e+09    MAX = 8.0081488e+09
+TIME = 2e-05 Temp        MIN = 1001             MAX = 1001
+TIME = 2e-05 pressure    MIN = 1013250          MAX = 1013250
+TIME = 2e-05 massfrac    MIN = 1.677361e-11     MAX = 0.49999999
+TIME = 2e-05 sumYminus1  MIN = 2.220446e-16     MAX = 2.220446e-16
+TIME = 2e-05 HO2         MIN = 7.2589092e-09    MAX = 7.2589092e-09
+
+[STEP 2] Coarse TimeStep time: 0.352582717
+[STEP 2] FAB kilobyte spread across MPI nodes: [770 ... 770]
+
+STEP = 2 TIME = 2e-05 DT = 1e-05
+
+PLOTFILE: file = plt00002
+Write plotfile time = 0.004549947  seconds
+
+[Level 0 step 3] ADVANCE at time 2e-05 with dt = 1e-05
+SDC iteration 1 of 2.
+... Computing reactions for dt = 1e-05
+SDC iteration 2 of 2.
+... Computing reactions for dt = 1e-05
+[Level 0 step 3] Advanced 512 cells
+
+TIME = 3e-05 MASS        = 0.0001992725866
+TIME = 3e-05 XMOM        = 0
+TIME = 3e-05 YMOM        = 0
+TIME = 3e-05 ZMOM        = 0
+TIME = 3e-05 RHO*e       = 1595804.519
+TIME = 3e-05 RHO*K       = 0
+TIME = 3e-05 RHO*E       = 1595804.519
+TIME = 3e-05 FUEL PROD   = 0
+
+TIME = 3e-05 density     MIN = 0.00019927259    MAX = 0.00019927259
+TIME = 3e-05 x_velocity  MIN = 0                MAX = 0
+TIME = 3e-05 y_velocity  MIN = 0                MAX = 0
+TIME = 3e-05 z_velocity  MIN = 0                MAX = 0
+TIME = 3e-05 eint_e      MIN = 8.0081488e+09    MAX = 8.0081488e+09
+TIME = 3e-05 Temp        MIN = 1001.0001        MAX = 1001.0001
+TIME = 3e-05 pressure    MIN = 1013250.1        MAX = 1013250.1
+TIME = 3e-05 massfrac    MIN = 6.8850743e-11    MAX = 0.49999996
+TIME = 3e-05 sumYminus1  MIN = 0                MAX = 0
+TIME = 3e-05 HO2         MIN = 2.4627403e-08    MAX = 2.4627403e-08
+
+[STEP 3] Coarse TimeStep time: 0.421146872
+[STEP 3] FAB kilobyte spread across MPI nodes: [770 ... 770]
+
+STEP = 3 TIME = 3e-05 DT = 1e-05
+
+PLOTFILE: file = plt00003
+Write plotfile time = 0.004462188  seconds
+
+[Level 0 step 4] ADVANCE at time 3e-05 with dt = 1e-05
+SDC iteration 1 of 2.
+... Computing reactions for dt = 1e-05
+SDC iteration 2 of 2.
+... Computing reactions for dt = 1e-05
+[Level 0 step 4] Advanced 512 cells
+
+TIME = 4e-05 MASS        = 0.0001992725866
+TIME = 4e-05 XMOM        = 0
+TIME = 4e-05 YMOM        = 0
+TIME = 4e-05 ZMOM        = 0
+TIME = 4e-05 RHO*e       = 1595804.519
+TIME = 4e-05 RHO*K       = 0
+TIME = 4e-05 RHO*E       = 1595804.519
+TIME = 4e-05 FUEL PROD   = 0
+
+TIME = 4e-05 density     MIN = 0.00019927259    MAX = 0.00019927259
+TIME = 4e-05 x_velocity  MIN = 0                MAX = 0
+TIME = 4e-05 y_velocity  MIN = 0                MAX = 0
+TIME = 4e-05 z_velocity  MIN = 0                MAX = 0
+TIME = 4e-05 eint_e      MIN = 8.0081488e+09    MAX = 8.0081488e+09
+TIME = 4e-05 Temp        MIN = 1001.0004        MAX = 1001.0004
+TIME = 4e-05 pressure    MIN = 1013250.3        MAX = 1013250.3
+TIME = 4e-05 massfrac    MIN = 2.3736675e-10    MAX = 0.49999986
+TIME = 4e-05 sumYminus1  MIN = 0                MAX = 0
+TIME = 4e-05 HO2         MIN = 7.787652e-08     MAX = 7.787652e-08
+
+[STEP 4] Coarse TimeStep time: 0.692339409
+[STEP 4] FAB kilobyte spread across MPI nodes: [770 ... 770]
+
+STEP = 4 TIME = 4e-05 DT = 1e-05
+
+PLOTFILE: file = plt00004
+Write plotfile time = 0.004213413  seconds
+
+[Level 0 step 5] ADVANCE at time 4e-05 with dt = 1e-05
+SDC iteration 1 of 2.
+... Computing reactions for dt = 1e-05
+SDC iteration 2 of 2.
+... Computing reactions for dt = 1e-05
+[Level 0 step 5] Advanced 512 cells
+
+TIME = 5e-05 MASS        = 0.0001992725866
+TIME = 5e-05 XMOM        = 0
+TIME = 5e-05 YMOM        = 0
+TIME = 5e-05 ZMOM        = 0
+TIME = 5e-05 RHO*e       = 1595804.519
+TIME = 5e-05 RHO*K       = 0
+TIME = 5e-05 RHO*E       = 1595804.519
+TIME = 5e-05 FUEL PROD   = 0
+
+TIME = 5e-05 density     MIN = 0.00019927259    MAX = 0.00019927259
+TIME = 5e-05 x_velocity  MIN = 0                MAX = 0
+TIME = 5e-05 y_velocity  MIN = 0                MAX = 0
+TIME = 5e-05 z_velocity  MIN = 0                MAX = 0
+TIME = 5e-05 eint_e      MIN = 8.0081488e+09    MAX = 8.0081488e+09
+TIME = 5e-05 Temp        MIN = 1001.0012        MAX = 1001.0012
+TIME = 5e-05 pressure    MIN = 1013251.1        MAX = 1013251.1
+TIME = 5e-05 massfrac    MIN = 7.6266671e-10    MAX = 0.49999956
+TIME = 5e-05 sumYminus1  MIN = -1.110223e-16    MAX = -1.110223e-16
+TIME = 5e-05 HO2         MIN = 2.402422e-07     MAX = 2.402422e-07
+
+[STEP 5] Coarse TimeStep time: 0.982649773
+[STEP 5] FAB kilobyte spread across MPI nodes: [770 ... 770]
+
+STEP = 5 TIME = 5e-05 DT = 1e-05
+
+PLOTFILE: file = plt00005
+Write plotfile time = 0.004624268  seconds
+
+[Level 0 step 6] ADVANCE at time 5e-05 with dt = 1e-05
+SDC iteration 1 of 2.
+... Computing reactions for dt = 1e-05
+SDC iteration 2 of 2.
+... Computing reactions for dt = 1e-05
+[Level 0 step 6] Advanced 512 cells
+
+TIME = 6e-05 MASS        = 0.0001992725866
+TIME = 6e-05 XMOM        = 0
+TIME = 6e-05 YMOM        = 0
+TIME = 6e-05 ZMOM        = 0
+TIME = 6e-05 RHO*e       = 1595804.519
+TIME = 6e-05 RHO*K       = 0
+TIME = 6e-05 RHO*E       = 1595804.519
+TIME = 6e-05 FUEL PROD   = 0
+
+TIME = 6e-05 density     MIN = 0.00019927259    MAX = 0.00019927259
+TIME = 6e-05 x_velocity  MIN = 0                MAX = 0
+TIME = 6e-05 y_velocity  MIN = 0                MAX = 0
+TIME = 6e-05 z_velocity  MIN = 0                MAX = 0
+TIME = 6e-05 eint_e      MIN = 8.0081488e+09    MAX = 8.0081488e+09
+TIME = 6e-05 Temp        MIN = 1001.0037        MAX = 1001.0037
+TIME = 6e-05 pressure    MIN = 1013253.4        MAX = 1013253.4
+TIME = 6e-05 massfrac    MIN = 2.3850088e-09    MAX = 0.49999865
+TIME = 6e-05 sumYminus1  MIN = -1.110223e-16    MAX = -1.110223e-16
+TIME = 6e-05 HO2         MIN = 7.3437067e-07    MAX = 7.3437067e-07
+
+[STEP 6] Coarse TimeStep time: 1.110414326
+[STEP 6] FAB kilobyte spread across MPI nodes: [770 ... 770]
+
+STEP = 6 TIME = 6e-05 DT = 1e-05
+
+PLOTFILE: file = plt00006
+Write plotfile time = 0.004184787  seconds
+
+[Level 0 step 7] ADVANCE at time 6e-05 with dt = 1e-05
+SDC iteration 1 of 2.
+... Computing reactions for dt = 1e-05
+SDC iteration 2 of 2.
+... Computing reactions for dt = 1e-05
+[Level 0 step 7] Advanced 512 cells
+
+TIME = 7e-05 MASS        = 0.0001992725866
+TIME = 7e-05 XMOM        = 0
+TIME = 7e-05 YMOM        = 0
+TIME = 7e-05 ZMOM        = 0
+TIME = 7e-05 RHO*e       = 1595804.519
+TIME = 7e-05 RHO*K       = 0
+TIME = 7e-05 RHO*E       = 1595804.519
+TIME = 7e-05 FUEL PROD   = 0
+
+TIME = 7e-05 density     MIN = 0.00019927259    MAX = 0.00019927259
+TIME = 7e-05 x_velocity  MIN = 0                MAX = 0
+TIME = 7e-05 y_velocity  MIN = 0                MAX = 0
+TIME = 7e-05 z_velocity  MIN = 0                MAX = 0
+TIME = 7e-05 eint_e      MIN = 8.0081488e+09    MAX = 8.0081488e+09
+TIME = 7e-05 Temp        MIN = 1001.0115        MAX = 1001.0115
+TIME = 7e-05 pressure    MIN = 1013260.5        MAX = 1013260.5
+TIME = 7e-05 massfrac    MIN = 7.4414108e-09    MAX = 0.49999588
+TIME = 7e-05 sumYminus1  MIN = -2.220446e-16    MAX = -2.220446e-16
+TIME = 7e-05 HO2         MIN = 2.2364805e-06    MAX = 2.2364805e-06
+
+[STEP 7] Coarse TimeStep time: 1.380385863
+[STEP 7] FAB kilobyte spread across MPI nodes: [770 ... 770]
+
+STEP = 7 TIME = 7e-05 DT = 1e-05
+
+PLOTFILE: file = plt00007
+Write plotfile time = 0.004400733  seconds
+
+[Level 0 step 8] ADVANCE at time 7e-05 with dt = 1e-05
+SDC iteration 1 of 2.
+... Computing reactions for dt = 1e-05
+SDC iteration 2 of 2.
+... Computing reactions for dt = 1e-05
+[Level 0 step 8] Advanced 512 cells
+
+TIME = 8e-05 MASS        = 0.0001992725866
+TIME = 8e-05 XMOM        = 0
+TIME = 8e-05 YMOM        = 0
+TIME = 8e-05 ZMOM        = 0
+TIME = 8e-05 RHO*e       = 1595804.519
+TIME = 8e-05 RHO*K       = 0
+TIME = 8e-05 RHO*E       = 1595804.519
+TIME = 8e-05 FUEL PROD   = 0
+
+TIME = 8e-05 density     MIN = 0.00019927259    MAX = 0.00019927259
+TIME = 8e-05 x_velocity  MIN = 0                MAX = 0
+TIME = 8e-05 y_velocity  MIN = 0                MAX = 0
+TIME = 8e-05 z_velocity  MIN = 0                MAX = 0
+TIME = 8e-05 eint_e      MIN = 8.0081488e+09    MAX = 8.0081488e+09
+TIME = 8e-05 Temp        MIN = 1001.0355        MAX = 1001.0355
+TIME = 8e-05 pressure    MIN = 1013282.5        MAX = 1013282.5
+TIME = 8e-05 massfrac    MIN = 2.3827321e-08    MAX = 0.49998739
+TIME = 8e-05 sumYminus1  MIN = -1.110223e-16    MAX = -1.110223e-16
+TIME = 8e-05 HO2         MIN = 6.7942077e-06    MAX = 6.7942077e-06
+
+[STEP 8] Coarse TimeStep time: 1.561142352
+[STEP 8] FAB kilobyte spread across MPI nodes: [770 ... 770]
+
+STEP = 8 TIME = 8e-05 DT = 1e-05
+
+PLOTFILE: file = plt00008
+Write plotfile time = 0.004238168  seconds
+
+[Level 0 step 9] ADVANCE at time 8e-05 with dt = 1e-05
+SDC iteration 1 of 2.
+... Computing reactions for dt = 1e-05
+SDC iteration 2 of 2.
+... Computing reactions for dt = 1e-05
+[Level 0 step 9] Advanced 512 cells
+
+TIME = 9e-05 MASS        = 0.0001992725866
+TIME = 9e-05 XMOM        = 0
+TIME = 9e-05 YMOM        = 0
+TIME = 9e-05 ZMOM        = 0
+TIME = 9e-05 RHO*e       = 1595804.519
+TIME = 9e-05 RHO*K       = 0
+TIME = 9e-05 RHO*E       = 1595804.519
+TIME = 9e-05 FUEL PROD   = 0
+
+TIME = 9e-05 density     MIN = 0.00019927259    MAX = 0.00019927259
+TIME = 9e-05 x_velocity  MIN = 0                MAX = 0
+TIME = 9e-05 y_velocity  MIN = 0                MAX = 0
+TIME = 9e-05 z_velocity  MIN = 0                MAX = 0
+TIME = 9e-05 eint_e      MIN = 8.0081488e+09    MAX = 8.0081488e+09
+TIME = 9e-05 Temp        MIN = 1001.1118        MAX = 1001.1118
+TIME = 9e-05 pressure    MIN = 1013352.5        MAX = 1013352.5
+TIME = 9e-05 massfrac    MIN = 8.273098e-08     MAX = 0.49996118
+TIME = 9e-05 sumYminus1  MIN = -2.220446e-16    MAX = -2.220446e-16
+TIME = 9e-05 HO2         MIN = 2.0547245e-05    MAX = 2.0547245e-05
+
+[STEP 9] Coarse TimeStep time: 1.842179239
+[STEP 9] FAB kilobyte spread across MPI nodes: [770 ... 770]
+
+STEP = 9 TIME = 9e-05 DT = 1e-05
+
+PLOTFILE: file = plt00009
+Write plotfile time = 0.004579023  seconds
+
+[Level 0 step 10] ADVANCE at time 9e-05 with dt = 1e-05
+SDC iteration 1 of 2.
+... Computing reactions for dt = 1e-05
+SDC iteration 2 of 2.
+... Computing reactions for dt = 1e-05
+[Level 0 step 10] Advanced 512 cells
+
+TIME = 0.0001 MASS        = 0.0001992725866
+TIME = 0.0001 XMOM        = 0
+TIME = 0.0001 YMOM        = 0
+TIME = 0.0001 ZMOM        = 0
+TIME = 0.0001 RHO*e       = 1595804.519
+TIME = 0.0001 RHO*K       = 0
+TIME = 0.0001 RHO*E       = 1595804.519
+TIME = 0.0001 FUEL PROD   = 0
+
+TIME = 0.0001 density     MIN = 0.00019927259    MAX = 0.00019927259
+TIME = 0.0001 x_velocity  MIN = 0                MAX = 0
+TIME = 0.0001 y_velocity  MIN = 0                MAX = 0
+TIME = 0.0001 z_velocity  MIN = 0                MAX = 0
+TIME = 0.0001 eint_e      MIN = 8.0081488e+09    MAX = 8.0081488e+09
+TIME = 0.0001 Temp        MIN = 1001.3758        MAX = 1001.3758
+TIME = 0.0001 pressure    MIN = 1013596.5        MAX = 1013596.5
+TIME = 0.0001 massfrac    MIN = 3.4204091e-07    MAX = 0.49987769
+TIME = 0.0001 sumYminus1  MIN = 0                MAX = 0
+TIME = 0.0001 HO2         MIN = 6.1242359e-05    MAX = 6.1242359e-05
+
+[STEP 10] Coarse TimeStep time: 2.052660904
+[STEP 10] FAB kilobyte spread across MPI nodes: [770 ... 770]
+
+STEP = 10 TIME = 0.0001 DT = 1e-05
+
+PLOTFILE: file = plt00010
+Write plotfile time = 0.004332487  seconds
+
+[Level 0 step 11] ADVANCE at time 0.0001 with dt = 1e-05
+SDC iteration 1 of 2.
+... Computing reactions for dt = 1e-05
+SDC iteration 2 of 2.
+... Computing reactions for dt = 1e-05
+[Level 0 step 11] Advanced 512 cells
+
+TIME = 0.00011 MASS        = 0.0001992725866
+TIME = 0.00011 XMOM        = 0
+TIME = 0.00011 YMOM        = 0
+TIME = 0.00011 ZMOM        = 0
+TIME = 0.00011 RHO*e       = 1595804.519
+TIME = 0.00011 RHO*K       = 0
+TIME = 0.00011 RHO*E       = 1595804.519
+TIME = 0.00011 FUEL PROD   = 0
+
+TIME = 0.00011 density     MIN = 0.00019927259    MAX = 0.00019927259
+TIME = 0.00011 x_velocity  MIN = 0                MAX = 0
+TIME = 0.00011 y_velocity  MIN = 0                MAX = 0
+TIME = 0.00011 z_velocity  MIN = 0                MAX = 0
+TIME = 0.00011 eint_e      MIN = 8.0081488e+09    MAX = 8.0081488e+09
+TIME = 0.00011 Temp        MIN = 1002.5141        MAX = 1002.5141
+TIME = 0.00011 pressure    MIN = 1014665.8        MAX = 1014665.8
+TIME = 0.00011 massfrac    MIN = 1.753316e-06     MAX = 0.49958576
+TIME = 0.00011 sumYminus1  MIN = 0                MAX = 0
+TIME = 0.00011 HO2         MIN = 0.00017144205    MAX = 0.00017144205
+
+[STEP 11] Coarse TimeStep time: 2.57175304
+[STEP 11] FAB kilobyte spread across MPI nodes: [770 ... 770]
+
+STEP = 11 TIME = 0.00011 DT = 1e-05
+
+PLOTFILE: file = plt00011
+Write plotfile time = 0.004382172  seconds
+
+[Level 0 step 12] ADVANCE at time 0.00011 with dt = 1e-05
+SDC iteration 1 of 2.
+... Computing reactions for dt = 1e-05
+SDC iteration 2 of 2.
+... Computing reactions for dt = 1e-05
+[Level 0 step 12] Advanced 512 cells
+
+TIME = 0.00012 MASS        = 0.0001992725866
+TIME = 0.00012 XMOM        = 0
+TIME = 0.00012 YMOM        = 0
+TIME = 0.00012 ZMOM        = 0
+TIME = 0.00012 RHO*e       = 1595804.519
+TIME = 0.00012 RHO*K       = 0
+TIME = 0.00012 RHO*E       = 1595804.519
+TIME = 0.00012 FUEL PROD   = 0
+
+TIME = 0.00012 density     MIN = 0.00019927259    MAX = 0.00019927259
+TIME = 0.00012 x_velocity  MIN = 0                MAX = 0
+TIME = 0.00012 y_velocity  MIN = 0                MAX = 0
+TIME = 0.00012 z_velocity  MIN = 0                MAX = 0
+TIME = 0.00012 eint_e      MIN = 8.0081488e+09    MAX = 8.0081488e+09
+TIME = 0.00012 Temp        MIN = 1009.8888        MAX = 1009.8888
+TIME = 0.00012 pressure    MIN = 1021732.3        MAX = 1021732.3
+TIME = 0.00012 massfrac    MIN = 8.0395805e-06    MAX = 0.49824985
+TIME = 0.00012 sumYminus1  MIN = 0                MAX = 0
+TIME = 0.00012 HO2         MIN = 0.00034537772    MAX = 0.00034537772
+
+[STEP 12] Coarse TimeStep time: 3.378774802
+[STEP 12] FAB kilobyte spread across MPI nodes: [770 ... 770]
+
+STEP = 12 TIME = 0.00012 DT = 1e-05
+
+PLOTFILE: file = plt00012
+Write plotfile time = 0.004551769  seconds
+
+[Level 0 step 13] ADVANCE at time 0.00012 with dt = 1e-05
+SDC iteration 1 of 2.
+... Computing reactions for dt = 1e-05
+SDC iteration 2 of 2.
+... Computing reactions for dt = 1e-05
+[Level 0 step 13] Advanced 512 cells
+
+TIME = 0.00013 MASS        = 0.0001992725866
+TIME = 0.00013 XMOM        = 0
+TIME = 0.00013 YMOM        = 0
+TIME = 0.00013 ZMOM        = 0
+TIME = 0.00013 RHO*e       = 1595804.519
+TIME = 0.00013 RHO*K       = 0
+TIME = 0.00013 RHO*E       = 1595804.519
+TIME = 0.00013 FUEL PROD   = 0
+
+TIME = 0.00013 density     MIN = 0.00019927259    MAX = 0.00019927259
+TIME = 0.00013 x_velocity  MIN = 0                MAX = 0
+TIME = 0.00013 y_velocity  MIN = 0                MAX = 0
+TIME = 0.00013 z_velocity  MIN = 0                MAX = 0
+TIME = 0.00013 eint_e      MIN = 8.0081488e+09    MAX = 8.0081488e+09
+TIME = 0.00013 Temp        MIN = 1080.0959        MAX = 1080.0959
+TIME = 0.00013 pressure    MIN = 1089244.7        MAX = 1089244.7
+TIME = 0.00013 massfrac    MIN = 9.5537427e-06    MAX = 0.48559288
+TIME = 0.00013 sumYminus1  MIN = 0                MAX = 0
+TIME = 0.00013 HO2         MIN = 0.00034898983    MAX = 0.00034898983
+
+[STEP 13] Coarse TimeStep time: 4.244508726
+[STEP 13] FAB kilobyte spread across MPI nodes: [770 ... 770]
+
+STEP = 13 TIME = 0.00013 DT = 1e-05
+
+PLOTFILE: file = plt00013
+Write plotfile time = 0.004554162  seconds
+
+[Level 0 step 14] ADVANCE at time 0.00013 with dt = 1e-05
+SDC iteration 1 of 2.
+... Computing reactions for dt = 1e-05
+[ERROR][rank 0][/opt/PeleC/Submodules/PelePhysics/Submodules/sundials/src/cvode/cvode.c:1428][CVode] At t = 5.03021e-06, mxstep steps taken before reaching tout.
+
+SUNDIALS_ERROR: CVode() failed with flag = -1
+
+amrex::Abort::0::abort !!!
