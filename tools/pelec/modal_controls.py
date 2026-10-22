@@ -20,7 +20,7 @@ app=modal.App('prox-rde-3d-pelec-controls',include_source=False)
 @app.function(image=image,serialized=True,gpu='H100!',cpu=(8.0,8.0),
               memory=(16384,16384),timeout=900,startup_timeout=180,
               retries=0,max_containers=1)
-def controls(suite: str = "all", rtol: float = 1e-11, atol: float = 1e-22, backend_filter: str = "both", linear_solver: str = "GMRES", chem_dt: float = 5e-6, chem_order: int = 5):
+def controls(suite: str = "all", rtol: float = 1e-11, atol: float = 1e-22, backend_filter: str = "both", linear_solver: str = "GMRES", chem_dt: float = 5e-6, chem_order: int = 5, hydro_method: str = "godunov", directions: bool = False):
     import base64
     import hashlib
     import io
@@ -39,6 +39,10 @@ def controls(suite: str = "all", rtol: float = 1e-11, atol: float = 1e-22, backe
            ('gpu','Sod',256,.00025),('gpu','Sod',128,.00025),
            ('cpu','Sod',128,.0005),
            ('cpu','zeroD',8,chem_dt),('gpu','zeroD',8,chem_dt),('gpu','zeroD',8,chem_dt/2)]
+    if hydro_method not in ('godunov','mol'):
+        raise ValueError('Unknown native hydro method')
+    if directions and (suite!='shock' or backend_filter=='cpu'):
+        raise ValueError('Directional set requires the GPU shock suite')
     if chem_order not in (1,2,3,4,5):
         raise ValueError('CVODE BDF order must be 1 through 5')
     if not 2e-7 <= chem_dt <= 1e-5:
@@ -57,8 +61,11 @@ def controls(suite: str = "all", rtol: float = 1e-11, atol: float = 1e-22, backe
         cases=[item for item in cases if item[0]==backend_filter]
     if not (0 < rtol <= 1e-6 and 0 < atol <= 1e-6):
         raise ValueError('Expected positive strict chemistry tolerances')
-    for backend,case,nx,dt in cases:
-        name=f'{backend}_{case}_n{nx}_dt{dt:g}'
+    cases=[(*item,0) for item in cases]
+    if directions:cases += [('gpu','Sod',128,.0005,1),('gpu','Sod',128,.0005,2)]
+    for backend,case,nx,dt,axis in cases:
+        method_suffix=f'_{hydro_method}_a{axis}' if case=='Sod' and (hydro_method!='godunov' or directions) else ''
+        name=f'{backend}_{case}{method_suffix}_n{nx}_dt{dt:g}'
         run=root/name;run.mkdir()
         input_name='sod-1.inp' if case=='Sod' else 'zerod-1.inp'
         text=(source/f'Exec/RegTests/{case}/{input_name}').read_text()
@@ -72,7 +79,14 @@ def controls(suite: str = "all", rtol: float = 1e-11, atol: float = 1e-22, backe
                  f'pelec.fixed_dt={dt}','pelec.init_shrink=1',
                  'amrex.abort_on_unused_inputs=1','amr.plot_int=1000000']
         if case=='Sod':
-            command+=['amr.plot_vars=density Temp',
+            if hydro_method=='mol' or directions:
+                cells=[8,8,8];cells[axis]=nx
+                lengths=[8/nx]*3;lengths[axis]=1.
+                command+=['amr.n_cell='+' '.join(map(str,cells)),
+                    'geometry.prob_hi='+' '.join(map(str,lengths)),f'prob.idir={axis+1}',
+                    f'pelec.do_mol={int(hydro_method=="mol")}', 'pelec.cfl=0.3',
+                    'pelec.lo_bc=SlipWall SlipWall SlipWall','pelec.hi_bc=SlipWall SlipWall SlipWall']
+            command+=['amr.plot_vars=density Temp rho_E',
                       'amr.derive_plot_vars=pressure x_velocity y_velocity z_velocity']
         else:
             command+=['prob.T_init=1001','pelec.do_hydro=0',f'amr.plot_per={max(5e-6,min(1e-5,dt))}',
@@ -97,7 +111,7 @@ def controls(suite: str = "all", rtol: float = 1e-11, atol: float = 1e-22, backe
         passed=passed and not log_errors
         if case=='zeroD':
             passed=passed and 'Initializing CVODE:' in logtext and 'WARNING: turning on reactions while using ReactorNull' not in logtext
-        record=dict(name=name,backend=backend,case=case,dt=dt,nx=nx,command=command,
+        record=dict(name=name,backend=backend,case=case,dt=dt,nx=nx,axis=axis,hydro_method=hydro_method,command=command,
                     returncode=code,final_time=actual,target_time=final,
                     wall_seconds=elapsed,log_errors=log_errors,completion_passed=passed)
         records.append(record)

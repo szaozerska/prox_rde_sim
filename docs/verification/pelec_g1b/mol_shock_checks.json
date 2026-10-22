@@ -1,0 +1,286 @@
+{
+  "passed": true,
+  "checks": {
+    "individual_controls": true,
+    "three_grid_errors_decrease": true,
+    "fine_errors": true,
+    "cpu_gpu_equivalence": true,
+    "rotated_axis_equivalence": true,
+    "timestep_below_spatial_error": true
+  },
+  "cases": {
+    "gpu_Sod_mol_a0_n64_dt0.001": {
+      "passed": true,
+      "checks": {
+        "completed": true,
+        "mol_selected": true,
+        "no_solver_errors": true,
+        "time": true,
+        "isotropic": true,
+        "positive": true,
+        "budgets": true,
+        "momentum_impulse": true,
+        "transverse_motion": true,
+        "transverse_uniformity": true
+      },
+      "mean_absolute_error": {
+        "density": 0.007004726620147882,
+        "pressure": 0.005118908792591508,
+        "velocity": 0.01602322870691618
+      },
+      "budgets": {
+        "mass": 4.440892098500626e-16,
+        "energy": 1.1102230246251565e-16
+      },
+      "momentum_impulse_relative_error": 7.709882115452475e-16,
+      "transverse_motion": 0.0,
+      "transverse_nonuniformity": 0.0,
+      "wall_seconds": 3.223885985
+    },
+    "gpu_Sod_mol_a0_n128_dt0.0005": {
+      "passed": true,
+      "checks": {
+        "completed": true,
+        "mol_selected": true,
+        "no_solver_errors": true,
+        "time": true,
+        "isotropic": true,
+        "positive": true,
+        "budgets": true,
+        "momentum_impulse": true,
+        "transverse_motion": true,
+        "transverse_uniformity": true
+      },
+      "mean_absolute_error": {
+        "density": 0.0036080168872073015,
+        "pressure": 0.0023537402733503194,
+        "velocity": 0.006269756312981107
+      },
+      "budgets": {
+        "mass": 0.0,
+        "energy": 0.0
+      },
+      "momentum_impulse_relative_error": 7.709882115452475e-16,
+      "transverse_motion": 0.0,
+      "transverse_nonuniformity": 0.0,
+      "wall_seconds": 4.019182017
+    },
+    "gpu_Sod_mol_a0_n256_dt0.00025": {
+      "passed": true,
+      "checks": {
+        "completed": true,
+        "mol_selected": true,
+        "no_solver_errors": true,
+        "time": true,
+        "isotropic": true,
+        "positive": true,
+        "budgets": true,
+        "momentum_impulse": true,
+        "transverse_motion": true,
+        "transverse_uniformity": true
+      },
+      "mean_absolute_error": {
+        "density": 0.0019830435264142038,
+        "pressure": 0.0011907546012209392,
+        "velocity": 0.003065093120769316
+      },
+      "budgets": {
+        "mass": 0.0,
+        "energy": 2.220446049250313e-16
+      },
+      "momentum_impulse_relative_error": 6.16790569236198e-16,
+      "transverse_motion": 0.0,
+      "transverse_nonuniformity": 0.0,
+      "wall_seconds": 6.684483302
+    },
+    "gpu_Sod_mol_a0_n128_dt0.00025": {
+      "passed": true,
+      "checks": {
+        "completed": true,
+        "mol_selected": true,
+        "no_solver_errors": true,
+        "time": true,
+        "isotropic": true,
+        "positive": true,
+        "budgets": true,
+        "momentum_impulse": true,
+        "transverse_motion": true,
+        "transverse_uniformity": true
+      },
+      "mean_absolute_error": {
+        "density": 0.0036022304003328776,
+        "pressure": 0.002346940045245311,
+        "velocity": 0.006254967798646089
+      },
+      "budgets": {
+        "mass": 0.0,
+        "energy": 2.220446049250313e-16
+      },
+      "momentum_impulse_relative_error": 4.625929269271485e-16,
+      "transverse_motion": 0.0,
+      "transverse_nonuniformity": 0.0,
+      "wall_seconds": 5.879383465
+    },
+    "cpu_Sod_mol_a0_n128_dt0.0005": {
+      "passed": true,
+      "checks": {
+        "completed": true,
+        "mol_selected": true,
+        "no_solver_errors": true,
+        "time": true,
+        "isotropic": true,
+        "positive": true,
+        "budgets": true,
+        "momentum_impulse": true,
+        "transverse_motion": true,
+        "transverse_uniformity": true
+      },
+      "mean_absolute_error": {
+        "density": 0.0036080168872073266,
+        "pressure": 0.002353740273350335,
+        "velocity": 0.006269756312981154
+      },
+      "budgets": {
+        "mass": 0.0,
+        "energy": 0.0
+      },
+      "momentum_impulse_relative_error": 7.709882115452475e-16,
+      "transverse_motion": 0.0,
+      "transverse_nonuniformity": 0.0,
+      "wall_seconds": 15.210699474000002
+    },
+    "gpu_Sod_mol_a1_n128_dt0.0005": {
+      "passed": true,
+      "checks": {
+        "completed": true,
+        "mol_selected": true,
+        "no_solver_errors": true,
+        "time": true,
+        "isotropic": true,
+        "positive": true,
+        "budgets": true,
+        "momentum_impulse": true,
+        "transverse_motion": true,
+        "transverse_uniformity": true
+      },
+      "mean_absolute_error": {
+        "density": 0.0036080168872073015,
+        "pressure": 0.0023537402733503194,
+        "velocity": 0.006269756312981107
+      },
+      "budgets": {
+        "mass": 4.440892098500626e-16,
+        "energy": 0.0
+      },
+      "momentum_impulse_relative_error": 7.709882115452475e-16,
+      "transverse_motion": 0.0,
+      "transverse_nonuniformity": 0.0,
+      "wall_seconds": 3.5096859940000016
+    },
+    "gpu_Sod_mol_a2_n128_dt0.0005": {
+      "passed": true,
+      "checks": {
+        "completed": true,
+        "mol_selected": true,
+        "no_solver_errors": true,
+        "time": true,
+        "isotropic": true,
+        "positive": true,
+        "budgets": true,
+        "momentum_impulse": true,
+        "transverse_motion": true,
+        "transverse_uniformity": true
+      },
+      "mean_absolute_error": {
+        "density": 0.0036080168872072993,
+        "pressure": 0.0023537402733503003,
+        "velocity": 0.006269756312981092
+      },
+      "budgets": {
+        "mass": 2.220446049250313e-16,
+        "energy": 2.220446049250313e-16
+      },
+      "momentum_impulse_relative_error": 7.709882115452475e-16,
+      "transverse_motion": 0.0,
+      "transverse_nonuniformity": 0.0,
+      "wall_seconds": 4.170528345000001
+    }
+  },
+  "grid_mean_absolute_errors": {
+    "density": [
+      0.007004726620147882,
+      0.0036080168872073015,
+      0.0019830435264142038
+    ],
+    "pressure": [
+      0.005118908792591508,
+      0.0023537402733503194,
+      0.0011907546012209392
+    ],
+    "velocity": [
+      0.01602322870691618,
+      0.006269756312981107,
+      0.003065093120769316
+    ]
+  },
+  "comparisons": {
+    "cpu": {
+      "density": {
+        "relative_max": 1.6098222669864093e-15,
+        "mean_absolute": 2.502338614096544e-16
+      },
+      "pressure": {
+        "relative_max": 1.4987996250504071e-15,
+        "mean_absolute": 1.7618285302889447e-16
+      },
+      "velocity": {
+        "relative_max": 3.696348860841552e-15,
+        "mean_absolute": 3.4917373123946006e-16
+      }
+    },
+    "halfdt": {
+      "density": {
+        "relative_max": 0.0001019365655341647,
+        "mean_absolute": 8.066370243712683e-06
+      },
+      "pressure": {
+        "relative_max": 0.0001663412704110109,
+        "mean_absolute": 9.349250946065544e-06
+      },
+      "velocity": {
+        "relative_max": 0.000987099442079572,
+        "mean_absolute": 2.3957990421549635e-05
+      }
+    },
+    "y": {
+      "density": {
+        "relative_max": 0.0,
+        "mean_absolute": 0.0
+      },
+      "pressure": {
+        "relative_max": 0.0,
+        "mean_absolute": 0.0
+      },
+      "velocity": {
+        "relative_max": 0.0,
+        "mean_absolute": 0.0
+      }
+    },
+    "z": {
+      "density": {
+        "relative_max": 1.5543111543317054e-15,
+        "mean_absolute": 2.5673907444456745e-16
+      },
+      "pressure": {
+        "relative_max": 1.5543107222744963e-15,
+        "mean_absolute": 2.518601646683827e-16
+      },
+      "velocity": {
+        "relative_max": 1.6693188403800557e-15,
+        "mean_absolute": 3.527046939882886e-16
+      }
+    }
+  },
+  "criteria": "Same cold-control criteria as G1a: decreasing three-grid errors, fine MAE <.02, CPU/GPU and axis relative differences <1e-10, timestep difference <10% spatial error; no smooth-order claim across shocks",
+  "scope": "Native MOL Cartesian shock controls; EB dynamic flux/correction, AMR and reactive propagation remain separate"
+}

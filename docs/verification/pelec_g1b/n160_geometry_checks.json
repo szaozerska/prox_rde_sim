@@ -1,0 +1,61 @@
+{
+  "passed": true,
+  "checks": {
+    "completed": true,
+    "no_solver_errors": true,
+    "endpoint_times": true,
+    "vfrac_bounded": true,
+    "vfrac_unchanged": true,
+    "cut_cells_present": true,
+    "one_connected_fluid_region": true,
+    "interior_sign_correct": true,
+    "solid_sign_correct": true,
+    "volume": true,
+    "volume_derived_slice_areas": true,
+    "finite_positive_fluid_state": true,
+    "equilibrium": true,
+    "stationary": true,
+    "budgets": true,
+    "species_sum": true,
+    "gamma_law_eos": true,
+    "all_step_mass_budget": true,
+    "all_step_energy_budget": true
+  },
+  "n_cell": [
+    160,
+    160,
+    304
+  ],
+  "dx_m": [
+    0.0005,
+    0.0005,
+    0.0005
+  ],
+  "fluid_volume_m3": 0.000430894851488387,
+  "analytic_volume_m3": 0.000430898454472774,
+  "volume_relative_error": 8.36156256678322e-06,
+  "max_volume_derived_slice_area_relative_error": 0.003335692207534713,
+  "fluid_components": 1,
+  "worst_slice_z_m": 0.07625,
+  "worst_slice_core_height_fraction": 0.40000000000002706,
+  "straight_section_slice_area_relative_error": 2.6387512637948696e-05,
+  "integrated_slice_area_L1_relative_error": 3.380811586601716e-05,
+  "cut_cells": 280948,
+  "minimum_positive_vfrac": 0.00018118122215585977,
+  "relative_budgets": {
+    "mass": 0.0,
+    "energy": 0.0,
+    "species": 0.0
+  },
+  "equilibrium_relative_errors": {
+    "density": 1.9984014443252818e-15,
+    "Temp": 3.3306690738754696e-15,
+    "pressure": 3.4416913763379853e-15,
+    "rho_E": 3.3306690738754696e-15
+  },
+  "max_velocity_m_s": 4.445893890133876e-19,
+  "species_sum_error": 0.0,
+  "gamma_law_eos_error": 6.661338147750939e-16,
+  "wall_seconds": 6.975169989000001,
+  "scope": "Native geometry volumes/topology and closed GammaLaw equilibrium only. Surface normals/areas, directional fluxes, repair budgets, AMR and engine physics are not certified."
+}

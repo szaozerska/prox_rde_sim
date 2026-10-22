@@ -391,7 +391,7 @@ References: [Mundt thesis](Mundt2023.pdf), [model audit](docs/verification/mundt
 
 ## Baseline and current status
 
-Revision 14 incorporates native-control and methane preflight evidence. G0 and G1a shock/closed-reactor
+Revision 15 incorporates native-control, cold geometry and methane preflight evidence. G0 and G1a shock/closed-reactor
 controls passed on CPU and one H100; native geometry/refinement G1b/c and methane
 G2 remain open. The generated-rate reference distinction and order-5 chemistry
 configuration are recorded in [G1a evidence](docs/verification/pelec_g1/README.md). Reacting throughput,
@@ -454,3 +454,20 @@ peak-species checks, and separate timestep/tolerance sensitivity. Same native
 PeleC/CVODE physics and the existing analyzer are reused. G1b/c geometry and cold
 refinement controls remain independent work; neither is waived. Native runtime
 for a small reactor is not a 3D engine throughput estimate.
+
+
+## Revision 15 — geometry evidence and the hydro-path distinction
+
+The [G1b geometric/static subset](docs/verification/pelec_g1b/README.md) passes on
+1/0.5-mm native EB grids, with actual native surface areas/normals/port apertures
+and closure checked. The core-edge maximum slice error is nonmonotonic but below
+1%; integrated error, volume and all boundary areas improve. Keep this local
+observation visible in later moving-wave refinement. Stored native normals use
+an inward convention; use the verified flux-sign conversion in diagnostics.
+
+Original G1a shock controls used Godunov hydro. Seven new regular-grid MOL controls
+now pass exact-reference, three-grid, timestep, x/y/z rotation and CPU/GPU checks
+for the method used with EB. Do not transfer this pass to dynamic cut-cell fluxes.
+G1b local correction accounting and G1c AMR remain open. Default zero SRD slopes
+are robust but can add near-wall diffusion; moving-shock/refinement checks must
+assess that before interpreting an engine's extinction as physical.

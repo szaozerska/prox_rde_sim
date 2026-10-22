@@ -1,0 +1,15 @@
+{
+  "command": [
+    "cmake",
+    "--build",
+    "/opt/PeleC/build-gpu",
+    "--target",
+    "PeleC-GeometryDiagnostics",
+    "-j",
+    "12"
+  ],
+  "wall_seconds": 73.881420859,
+  "case_source_sha256": "c31ac0cf766b5607bb08f91a0f6cc3ee2b81039e23ff4057649d878a2bbe9f67",
+  "binary_sha256": "b986fc41de6fbf7ee6c800dfefb732d8a8c7030a2afc5ac31f46faff52bf58de",
+  "scope": "Read-only post-init surface/port extraction; no changed native numerical physics"
+}

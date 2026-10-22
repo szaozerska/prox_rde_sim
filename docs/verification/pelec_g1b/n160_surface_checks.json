@@ -1,0 +1,42 @@
+{
+  "passed": true,
+  "checks": {
+    "cold_volume_checks_passed": true,
+    "surface_hook_present": true,
+    "exactly_one_owned_record_per_cut_cell": true,
+    "indices_in_domain": true,
+    "positive_area_and_cut_fraction": true,
+    "unit_normals": true,
+    "correct_wall_orientation": true,
+    "inward_core_corner_components": true,
+    "boundary_areas": true,
+    "surface_vector_closure": true,
+    "gauss_volume_consistency": true
+  },
+  "surface_records": 280948,
+  "measured": {
+    "outerWall_m2": 0.036386942707469325,
+    "innerWall_m2": 0.01584729982204105,
+    "coreEnd_m2": 0.003441837717904168,
+    "injector_m2": 0.001118409257223226,
+    "outlet_m2": 0.004560246975126885
+  },
+  "normal_convention": "Stored PeleC eb_normal points into fluid; physical outward normal = -stored normal (EB.cpp aperture definition and MOL.cpp pressure-flux sign)",
+  "area_relative_errors": {
+    "outerWall_m2": 6.596923722734793e-06,
+    "innerWall_m2": 1.7404771532114616e-05,
+    "coreEnd_m2": 3.5621937410579285e-05,
+    "injector_m2": 2.031948378444781e-06,
+    "outlet_m2": 2.6387512751746556e-05
+  },
+  "orientation": {
+    "outer_min_radial_projection": 0.9999999999999997,
+    "inner_min_inward_projection": 0.9999999999999998,
+    "core_min_negative_z_projection": 1.0
+  },
+  "surface_vector_closure_relative": 6.320071748024697e-15,
+  "gauss_volume_m3": 0.00043089485148836097,
+  "gauss_volume_relative_difference": 6.039613253960852e-14,
+  "criteria": "Areas <1%; normals unit to 1e-12 and correct sign/projection >.95 away from core corner; vector closure <1e-10; divergence-theorem volume agreement <0.1%",
+  "scope": "Native wall-flux areas/normals and port apertures. Inner-wall/core-end corner contributions use radial/axial projected area. Directional flow, repair budgets, AMR and reactive behavior remain separate."
+}

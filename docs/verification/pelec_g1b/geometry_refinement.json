@@ -1,0 +1,16 @@
+{
+  "passed": true,
+  "checks": {
+    "all_cold_controls": true,
+    "all_surface_controls": true,
+    "volume_error_decreases": true,
+    "integrated_slice_error_decreases": true,
+    "all_boundary_area_errors_decrease": true
+  },
+  "scope": "Geometry and cold equilibrium subset passed; full G1b dynamic EB/correction gate remains open",
+  "nonmonotonic_local_slice_max": {
+    "coarse": 0.0028623608877507145,
+    "fine": 0.003335692207534713,
+    "location": "Core-end cut layer; core height fractions .2 and .4. Both <1%; no claimed maximum-norm convergence."
+  }
+}

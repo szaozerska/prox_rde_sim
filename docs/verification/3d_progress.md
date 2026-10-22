@@ -373,3 +373,19 @@ Sod/GammaLaw executable. No geometry CFD source rewrite is needed. This independ
 control must still verify volume/connectivity/equilibrium and later surface
 areas/normals, directional fluxes and corrections; it does not advance through
 the unresolved methane physical-model gate.
+
+
+## G1b geometric/static subset and native MOL regular-grid controls pass
+
+[Evidence](pelec_g1b/README.md): native annulus volume errors decrease from
+6.64e-5 to 8.36e-6; all actual boundary-area errors decrease. One connected fluid
+region, correct signs/normals/ports and surface/volume closure pass. Cold mass,
+energy and species budgets show zero measured drift. The local core-edge slice
+maximum increases slightly (0.286% to 0.334%) while integrated error decreases;
+both meet 1%, and the unresolved maximum-norm behavior is documented.
+
+A source-aware review caught the Godunov-versus-MOL coverage gap. Seven native
+MOL shocks now pass three-grid, timestep, x/y/z, CPU/GPU and conservation/impulse
+checks. Plots were visually reviewed. These are geometric/static and regular-grid
+passes; moving cut-cell shocks, local repair budgets, AMR and engine results are
+not claimed. No files in the parallel 2D checkout were changed.

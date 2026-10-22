@@ -244,3 +244,20 @@ polynomial cv extrema, independent ZND/ignition refinement and conservation, plu
 16 fast 3D tests. A new reference-wrapper state-reuse error was caught by the
 strict ZND peak check, corrected by resetting the frozen state, and re-run.
 The two-hour target remains a measured future gate, not an estimate from controls.
+
+
+## Round 15 — native geometry conventions and hydro-path coverage
+
+Issue: a visually plausible annulus and correct total volume do not certify
+wall normals, port apertures, surface closure or moving-wave accuracy. Fix: a
+read-only native diagnostic hook exports the actual flux-boundary structures.
+Explicitly convert the stored inward normal using the verified pressure-flux sign;
+no native physics is changed. Both grids pass areas/orientation/closure and cold
+budgets. Retain the nonmonotonic core-edge slice maximum: geometry L1/areas improve,
+but no maximum-norm convergence or dynamic EB acceptance is claimed.
+
+Issue: G1a's Godunov shock pass did not cover the MOL method required for EB.
+Fix/recheck: seven native MOL cases now pass exact-solution grid/timestep checks,
+all-axis invariance and CPU/GPU equivalence. Dynamic cut-cell corrections and
+AMR remain separate prerequisites, especially because default SRD slopes are zero
+and may add diffusion that could be mistaken for physical wave extinction.

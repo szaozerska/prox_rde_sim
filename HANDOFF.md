@@ -11,7 +11,7 @@ The [3D plan](first_sim_plan.md) supersedes implementation ordering in inherited
 2D documents. Self-review rounds are in [the review log](docs/plans/3d_plan_reviews.md).
 Keep the [implementation record](docs/verification/3d_progress.md) current.
 
-T0-T2 are complete for detonationFoam. Revision 14 prioritizes a bounded
+T0-T2 are complete for detonationFoam. Revision 15 prioritizes a bounded
 PeleC/Modal GPU trial (G0 and G1a native shock/reactor controls passed), retaining detonationFoam as fallback. Do not
 complete two full CPU/GPU engine stacks. About eight GPUs are authorized initially;
 Modal CPU and one-H100 access passed. Native PeleC CUDA smoke and independent
@@ -43,3 +43,8 @@ The existing Python environment may be read through
 `/Users/sgfx/Desktop/Projects/prox_rde_sim/.venv/bin/python`; do not install into
 or alter it. All source imports/run outputs must resolve inside this 3D clone.
 Bulk native outputs and downloaded/build dependencies will be Git-ignored.
+
+
+Native geometry/static checks and regular-grid MOL direction/refinement checks
+pass; see [G1b evidence](docs/verification/pelec_g1b/README.md). Full dynamic EB,
+AMR and reacting-engine gates remain open.

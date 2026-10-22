@@ -6,7 +6,7 @@ import numpy as np
 FIELDS = ('density', 'Temp', 'pressure', 'x_velocity', 'y_velocity', 'z_velocity')
 
 
-def load_fields(plot):
+def load_fields(plot,names=FIELDS):
     import yt
     yt.set_log_level(40)
     ds = yt.load(str(plot))
@@ -14,7 +14,7 @@ def load_fields(plot):
         raise ValueError('This small uniform-grid control analyzer does not flatten AMR')
     grid = ds.covering_grid(0, ds.domain_left_edge, ds.domain_dimensions)
     # Read native fields, never generic yt thermodynamic reconstructions.
-    values = {name: np.asarray(grid['boxlib', name]) for name in FIELDS}
+    values = {name: np.asarray(grid['boxlib', name]) for name in names}
     dx = np.asarray(ds.domain_width)/ds.domain_dimensions
     return float(ds.current_time), values, dx, np.asarray(ds.domain_left_edge)
 

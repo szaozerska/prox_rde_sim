@@ -84,6 +84,13 @@ def main(case_file: str, output: str, backend: str='gpu', dt: float=5e-9,
          rtol: float=1e-11, atol: float=1e-22):
     target=Path(output)
     if target.exists():raise FileExistsError('Refusing to overwrite methane evidence')
-    result=control.remote(json.loads(Path(case_file).read_text()),backend,dt,rtol,atol)
+    call=control.spawn(json.loads(Path(case_file).read_text()),backend,dt,rtol,atol)
+    try:
+        result=call.get(timeout=600)
+    except modal.exception.TimeoutError:
+        call.cancel()
+        target.write_text(json.dumps({'status':'client_deadline_exceeded','function_call_id':call.object_id,
+            'scope':'Queue/startup/execution exceeded 600 s; cancelled this call only; no validation or artifact claimed'})+'\n')
+        raise
     target.write_text(result+'\n')
     print('Saved bounded methane control: '+str(target))
