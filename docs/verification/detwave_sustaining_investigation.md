@@ -694,6 +694,39 @@ The read-only refill reducer now explicitly lists unavailable requested field
 times instead of requiring a completed 50 us run; no CFD source changed.
 The larger short-chemistry case is at 52 us; its full return is still pending.
 
+### HLLC post-return outcome and final discriminating control (21:34 UTC)
+
+Contact restoration alone **does not sustain the small-engine wave**. At 40 us,
+the pressure disturbance extends through burned products while heat release
+largely follows the inlet interface. At the bottom-cell pressure peak
+(z=0.0626 mm, x=27.047 mm), p=5.148 MPa but T=514 K, progress=.00719 and
+rate only 84.7/s. Nearby hotter interface cells react quickly, but that does not
+make the cold pressure peak a detonation. At 50 us pmax=1.801 MPa and only 3.23%
+of heat is above twice initial pressure. Fresh inventory is 2.185 mg and inlet
+delivery 4.262 mg: the loss occurs despite greater fresh inventory than HLL.
+The scaled conservation residual is 7.57e-16 and invalid-state count remains zero.
+Stopped deliberately after preserving a complete 51 us checkpoint and 50 us
+full field. `KeyboardInterrupt` is manual, not numerical failure. Do not restart.
+Final plots/metrics are `detwave_hllc_final/` and `detwave_hllc_refill50.json`.
+
+One final **physics-specific** control is predeclared: formed wave in an initially
+fully fresh **1 mm layer**, same high-flux-case surrogate thermochemistry,
+0.125 mm grid, HLLC and source fraction .20, under 1500 K products. It removes
+periodic return and injection, asking whether the model can propagate through a
+layer comparable to its actual cold refill. Existing short-chemistry layer
+success was for 3.8 mm, so it did not establish this prerequisite. This is not
+another rate search or a fitted sustaining remedy. An initial success would not
+rule out later failure; early loss would directly implicate layer/chemistry/
+expansion compatibility even with ideal replenished composition.
+
+`detwave_refill_layer.py` uses the existing conservative layer initializer,
+an aligned interface, 112.5 mm streamwise domain, shock at 40 mm, and 32.5 mm
+product buffer. Duration **10 us maximum**, with predeclared 4000/3000 m/s
+characteristic bounds and positive remote-boundary causal margins; violation
+stops interpretation. The absolute 22:00 UTC deadline is also enforced in the
+driver. One job only: `runs/detwave_refill_layer_hllc`, one thread,
+`detwave_refill_layer.log`. The active larger engine retains v1 source.
+
 ## Active-run handoff (historical launch commands; see latest statuses above)
 
 Both simulations run in this branch's worktree, not the original checkout.
