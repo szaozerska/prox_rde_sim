@@ -63,3 +63,15 @@ class SavedOutputTests(unittest.TestCase):
             self.assertEqual(result['run_mode'],'development_benchmark')
             self.assertFalse(result['experimental_pressure_overlay'])
             self.assertEqual(result['time_s'],.03e-6)
+
+
+    def test_legacy_viewer_rejects_changed_inputs_and_corrupt_uncommitted_field_is_ignored(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            native=Path(tmp)/'run';config,calibration=toy_case()
+            start_run(config,calibration,native)
+            (native/'fields'/'step_999999999.npz').write_bytes(b'partial')
+            self.assertTrue(load_saved_run(native)['fields'])
+            path=native/'inputs.json';manifest=json.loads(path.read_text())
+            manifest['resolved']['gap']*=2;path.write_text(json.dumps(manifest))
+            with self.assertRaisesRegex(ValueError,'verified native prefix'):
+                load_saved_run(native)

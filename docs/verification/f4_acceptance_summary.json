@@ -1,0 +1,16 @@
+{
+  "historical_d1_evidence_unchanged": {
+    "inputs_sha256": true,
+    "summary_sha256": true,
+    "committed_history_sha256": true
+  },
+  "native_exit_force_difference_N": 0.0,
+  "budget_residual_max_difference": 0.0,
+  "d1_max_scaled_budget_residual": 4.390677543911571e-14,
+  "d1_pressure_peak_Hz": 12497.741644086222,
+  "d1_spectral_qualification": "fewer than three cycles: peak is poorly constrained; pressure oscillation only; interpolation cannot undo aliasing; harmonics need front/reaction inspection",
+  "smoke_scaled_budget_residual": 1.0663202799811268e-16,
+  "smoke_wall_torque_Nm": 3.1006728276642644e-06,
+  "smoke_traction_minus_balance_Nm": -4.936809671736848e-17,
+  "qualification": "Read-only historical comparison and nonreactive plumbing fixture; no new sustaining-wave result"
+}

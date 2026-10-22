@@ -86,7 +86,10 @@ CLI/import checks passed. Saved C6a and D1 examples are linked in the F1 report.
 
 **F2 minimal geometry/result contracts are implemented**; see [evidence](docs/verification/f2_contracts.md).
 F3 optional wall friction/torque is implemented; see [verification](docs/verification/f3_wall_friction.md).
-Next is the completed saved-data workflow and final acceptance (F4).
+F4 is implemented; see the [completion matrix](docs/plans/2d_workflow_completion.md),
+[acceptance report](docs/verification/f4_workflow_completion.md), and README commands.
+Workflow acceptance: 122 tests passed with no skips, 16 affected tests repeated after final review, and one additional coupled wall/reaction ODE check passed (123 distinct tests).
+The latest user request now authorizes a separate radial-closure increment and a controlled sustainment assessment here, after workflow completion. Read the independent report before choosing closures; do not add arbitrary tangential centrifugal forcing or tuned curvature losses. CAD remains out of scope.
 Finish these software capabilities without treating them as physical validation. Retain
 the C5 chemistry/model qualifications. The new named formed case does not replace
 `config.yaml` or imply a model of Mundt's actual pre-detonator. Commit and push

@@ -1,0 +1,473 @@
+{
+  "report_schema_version": 1,
+  "run_status": "completed_limit",
+  "run_mode": "development_benchmark",
+  "run_invalid_state_count": 0,
+  "committed_end_s": 3e-07,
+  "window": {
+    "start_s": 5.4999999999999996e-08,
+    "end_s": 2.5e-07,
+    "duration_s": 1.9499999999999999e-07,
+    "contributing_steps": 39,
+    "partially_included_steps": 0,
+    "operator": "native integrals prorated within partial steps; inventory linearly interpolated between accepted states; other samples use step-end rectangles",
+    "qualification": "partial-step closure checks this interpolation, not an independently evolved state"
+  },
+  "budgets": {
+    "available": true,
+    "conserved_order": [
+      "mass",
+      "azimuthal_momentum",
+      "axial_momentum",
+      "total_energy",
+      "reacted_mass"
+    ],
+    "conserved_units": [
+      "kg",
+      "kg m/s",
+      "kg m/s",
+      "J",
+      "kg"
+    ],
+    "start_inventory": [
+      9.942558538004423e-07,
+      9.934254071924513e-06,
+      5.853714412602041e-06,
+      4.773723049394745,
+      1.9868570345654315e-07
+    ],
+    "end_inventory": [
+      9.968178483386377e-07,
+      9.930420422558464e-06,
+      9.031672067476812e-06,
+      4.787182913968781,
+      1.986114482826471e-07
+    ],
+    "storage": [
+      2.561994538195389e-09,
+      -3.833649366048945e-09,
+      3.1779576548747705e-06,
+      0.013459864574036473,
+      -7.425517389605243e-11
+    ],
+    "boundary_integral": [
+      [
+        6.16513128292531e-11,
+        5.889219311945318e-07,
+        4.606038436387443e-10,
+        0.00030191057211086347,
+        1.23019315404173e-11
+      ],
+      [
+        6.16513128292531e-11,
+        5.889219311945318e-07,
+        4.606038436387443e-10,
+        0.00030191057211086347,
+        1.23019315404173e-11
+      ],
+      [
+        2.9332843831455008e-09,
+        0.0,
+        6.109358179421765e-06,
+        0.01758953684984254,
+        0.0
+      ],
+      [
+        3.7128984495021805e-10,
+        3.712723125768113e-09,
+        2.931309453554552e-06,
+        0.004129672275806035,
+        7.425517389605134e-11
+      ]
+    ],
+    "source_integral": [
+      0.0,
+      -1.209262402789063e-10,
+      -9.107099244137377e-11,
+      0.0,
+      0.0
+    ],
+    "net_influx_and_source": [
+      2.5619945381952827e-09,
+      -3.833649366047019e-09,
+      3.177957654874772e-06,
+      0.013459864574036504,
+      -7.425517389605134e-11
+    ],
+    "residual": [
+      1.0629270871306406e-22,
+      -1.9256764660234484e-21,
+      -1.2705494208814505e-21,
+      -3.122502256758253e-17,
+      -1.0856745539758488e-24
+    ],
+    "residual_scale": [
+      9.968178483386377e-07,
+      0.0021844791992385398,
+      0.0021844791992385398,
+      4.787182913968781,
+      9.968178483386377e-07
+    ],
+    "scale_definition": "inventory/transport scale with sqrt(mass * total energy) momentum reference",
+    "max_scaled_residual": 1.0663202799811268e-16,
+    "closure_tolerance": 1e-10,
+    "closure_within_tolerance": true,
+    "angular_storage_kg_m2_s": -1.9168246830244724e-11,
+    "angular_net_influx_kg_m2_s": -1.9168246830235095e-11,
+    "angular_residual_kg_m2_s": -9.628382330117243e-24
+  },
+  "mass_flow": {
+    "available": true,
+    "injected_mass_kg": 2.9332843831455008e-09,
+    "exited_mass_kg": 3.7128984495021805e-10,
+    "mean_inlet_kg_s": 0.015042484016130774,
+    "mean_outlet_kg_s": 0.0019040504869241952
+  },
+  "exit_numerical_force": {
+    "available": true,
+    "mean_N": 8.73660449428068,
+    "impulse_N_s": 1.7036378763847326e-06,
+    "ambient_pressure_Pa": 100200.0,
+    "exit_area_m2": 6.283185307179587e-05,
+    "definition": "top-face numerical axial momentum flux minus ambient pressure times exit area"
+  },
+  "exit_force_from_control_volume": {
+    "available": true,
+    "mean_N": 8.736604494280686,
+    "impulse_N_s": 1.7036378763847334e-06,
+    "native_minus_balance_mean_N": -5.329070518200751e-15
+  },
+  "exit_cell_force_estimate": {
+    "available": true,
+    "mean_N": 17.24145452828049,
+    "definition": "step-end cell-centre estimate; rectangle-rule time average, not the RK numerical face flux"
+  },
+  "annulus_exit_effective_isp": {
+    "available": true,
+    "value_s": 59.22464161929938,
+    "g0_m_s2": 9.80665,
+    "definition": "annulus-exit effective Isp: exit impulse / (net injected mass in same window * g0); not whole-engine Isp"
+  },
+  "pressure_stations": {
+    "available": true,
+    "stations_m": [
+      0.0,
+      0.002,
+      0.004
+    ],
+    "mean_Pa": [
+      379846.28329680685,
+      377106.8450948224,
+      374367.40689283796
+    ],
+    "definition": "step-end circumferential means, weighted by interval overlap"
+  },
+  "chemical_conversion": {
+    "available": true,
+    "chemical_to_thermal_J": 0.0,
+    "definition": "q times reacted-mass source; internal conversion, not an extra total-energy source"
+  },
+  "engine_torque": {
+    "available": true,
+    "mean_Nm": 3.1006728276642644e-06,
+    "angular_impulse_Nm_s": 6.046312013945315e-13,
+    "balance_mean_Nm": 3.1006728277136325e-06,
+    "traction_minus_balance_Nm": -4.936809671736848e-17,
+    "wall_cf": 0.01,
+    "definition": "reaction torque on engine = negative native wall momentum source times mean radius",
+    "qualification": "constant-Cf adiabatic closure, unvalidated; mean-radius approximation; no vehicle stability claim"
+  },
+  "physical_validation": "not established by this report; transient window, no steady-state or sustained-detonation classification",
+  "provenance": {
+    "directory": "/Users/sgfx/Desktop/Projects/prox_rde_sim/rde_sim_starter/runs/f4_workflow_smoke",
+    "inputs_sha256": "53ee9c6700763070a4e328cf2daa3a421072190607dfb8fd7623c251b020aae6",
+    "summary_sha256": "67f47cf191bc125ac2238c0e15529c008df110afd536a645dc6e5822a1715f51",
+    "committed_history_sha256": "4e4e2ff8d2cd77c2df8ba991c1ae1a1504efee8b54ea02c5c7968b6ba33181e4",
+    "committed_history_bytes": 103960,
+    "checkpoint_step": 61,
+    "report_source_sha256": "5fa4e7252473b88a7b2ca224a47f476ab7258524c5376cbf3f2e068b50a86fd5",
+    "analysis_source_sha256": "3ee0021a4406ae52c90c87ccbb7af782113738ab2a7d982c8bf1dc631a059b7a",
+    "field_reader_source_sha256": "f50116ddb833bb9210d55b08f3ba8721283cb9aa7b6ea6fb1463950db3db9e12",
+    "workflow_source_sha256": "529a2329edff2eafa1a3f3159e073e69a4edb2cccf53494814731566fb720934",
+    "plot_source_sha256": "001cc70a9dfd29ca904a488aab0a2d2dabad31a23b8952bc4e6730c09591ace6",
+    "workflow_analysis_sha256": "17ca048ad06c921e68b3e065486b24bbe11fec09073fe74faf83372d9f8eb59b"
+  },
+  "experimental_comparison": {
+    "available": false,
+    "reason": "geometry.r_outer_mm differs from nominal Run 937 reduction; geometry.r_inner_mm differs from nominal Run 937 reduction; geometry.length_mm differs from nominal Run 937 reduction; development benchmark is not an experimental comparison",
+    "case": "Mundt Run 937"
+  },
+  "radial_physics": {
+    "radial_momentum": false,
+    "radial_velocity": false,
+    "centrifugal_pressure_split": false,
+    "curvature_loss": false,
+    "heat_loss": false,
+    "separate_inner_outer_wall_states": false,
+    "wall_drag": "constant_cf",
+    "qualification": "surface (theta,z) model; cylindrical display is not 3D or the full proposed 2.5D tier"
+  },
+  "pressure_spectrum": {
+    "available": true,
+    "frequency_Hz": [
+      0.0,
+      4996712.689020375,
+      9993425.37804075,
+      14990138.067061124,
+      19986850.7560815,
+      24983563.445101872,
+      29980276.13412225,
+      34976988.823142625,
+      39973701.512163,
+      44970414.20118337,
+      49967126.890203744,
+      54963839.579224125,
+      59960552.2682445,
+      64957264.95726487,
+      69953977.64628525,
+      74950690.33530562,
+      79947403.024326,
+      84944115.71334638,
+      89940828.40236674,
+      94937541.09138712
+    ],
+    "density_Pa2_per_Hz": [
+      4.338519449226939e-06,
+      6.337416014955099e-06,
+      8.453962862398529e-07,
+      1.2387667890221893e-08,
+      5.677267052788861e-10,
+      2.8520721189141188e-11,
+      7.273504117971053e-14,
+      1.4950000127997807e-12,
+      2.514337832919359e-12,
+      2.4458854939596004e-12,
+      1.9964859011024623e-12,
+      1.5045294362648949e-12,
+      1.0809942444495685e-12,
+      7.471509542192986e-13,
+      4.949262837088533e-13,
+      3.0952759000273644e-13,
+      1.7705046893688948e-13,
+      8.655606629441573e-14,
+      3.027734483999661e-14,
+      3.3159555100732607e-15
+    ],
+    "peak_pressure_frequency_Hz": 4996712.689020375,
+    "peak_cycles_in_window": 0.974358974358973,
+    "frequency_bin_Hz": 4996712.689020375,
+    "nyquist_Hz": 94937541.09138712,
+    "sampling_nyquist_Hz": 97435897.43589732,
+    "native_max_gap_s": 5.000000000000005e-09,
+    "uniform_sample_count": 39,
+    "window_s": [
+      5.4999999999999996e-08,
+      2.5e-07
+    ],
+    "window_function": "Hann; linear detrend; one-sided PSD",
+    "qualification": "fewer than three cycles: peak is poorly constrained; pressure oscillation only; interpolation cannot undo aliasing; harmonics need front/reaction inspection"
+  },
+  "pressure_spectrogram": {
+    "segment_s": 4.8749999999999996e-08,
+    "overlap_fraction": 0.5,
+    "segments": [
+      {
+        "available": false,
+        "reason": "fewer than 16 conservative uniform samples in this window"
+      },
+      {
+        "available": false,
+        "reason": "fewer than 16 conservative uniform samples in this window"
+      },
+      {
+        "available": false,
+        "reason": "fewer than 16 conservative uniform samples in this window"
+      },
+      {
+        "available": false,
+        "reason": "fewer than 16 conservative uniform samples in this window"
+      },
+      {
+        "available": false,
+        "reason": "fewer than 16 conservative uniform samples in this window"
+      },
+      {
+        "available": false,
+        "reason": "fewer than 16 conservative uniform samples in this window"
+      },
+      {
+        "available": false,
+        "reason": "fewer than 16 conservative uniform samples in this window"
+      }
+    ],
+    "qualification": "each segment retains its own sampling limit and frequency bins"
+  },
+  "roll_response": {
+    "available": true,
+    "times_s": [
+      5.4999999999999996e-08,
+      6e-08,
+      6.5e-08,
+      7e-08,
+      7.500000000000001e-08,
+      8e-08,
+      8.500000000000001e-08,
+      9.000000000000001e-08,
+      9.500000000000002e-08,
+      1e-07,
+      1.05e-07,
+      1.1e-07,
+      1.1500000000000001e-07,
+      1.2000000000000002e-07,
+      1.2500000000000002e-07,
+      1.3000000000000003e-07,
+      1.3500000000000003e-07,
+      1.4000000000000004e-07,
+      1.4500000000000004e-07,
+      1.5000000000000005e-07,
+      1.5500000000000005e-07,
+      1.6e-07,
+      1.65e-07,
+      1.7000000000000001e-07,
+      1.7500000000000002e-07,
+      1.8000000000000002e-07,
+      1.8500000000000003e-07,
+      1.9000000000000003e-07,
+      1.9500000000000004e-07,
+      2e-07,
+      2.05e-07,
+      2.1e-07,
+      2.15e-07,
+      2.2e-07,
+      2.2500000000000002e-07,
+      2.3000000000000002e-07,
+      2.3500000000000003e-07,
+      2.4000000000000003e-07,
+      2.4500000000000004e-07,
+      2.5e-07
+    ],
+    "angular_velocity_rad_s": [
+      0.0,
+      1.442661079474036e-12,
+      2.8903835273124073e-12,
+      4.3432209114908355e-12,
+      5.8012262927178684e-12,
+      7.264452225421187e-12,
+      8.732950758902875e-12,
+      1.0206773438657534e-11,
+      1.1685971307847262e-11,
+      1.3170594908927425e-11,
+      1.466069428541739e-11,
+      1.6156318983810214e-11,
+      1.7657518055615662e-11,
+      1.91643400595307e-11,
+      2.067683306373191e-11,
+      2.21950446482843e-11,
+      2.3719021907660986e-11,
+      2.5248811453368477e-11,
+      2.6784459416672296e-11,
+      2.8326011451417794e-11,
+      2.9873512736941115e-11,
+      3.142700798106541e-11,
+      3.2986541423177556e-11,
+      3.4552156837380477e-11,
+      3.612389753571679e-11,
+      3.7701806371459095e-11,
+      3.9285925742462636e-11,
+      4.0876297594576164e-11,
+      4.2472963425106794e-11,
+      4.407596428633496e-11,
+      4.568534078907563e-11,
+      4.730113310628185e-11,
+      4.892338097668722e-11,
+      5.055212370848368e-11,
+      5.218740018303117e-11,
+      5.3829248858596004e-11,
+      5.547770777411459e-11,
+      5.713281455297971e-11,
+      5.879460640684618e-11,
+      6.046312013945315e-11
+    ],
+    "angle_rad": [
+      0.0,
+      3.606652698685089e-21,
+      1.443926421565121e-20,
+      3.2523275312659334e-20,
+      5.788439332318112e-20,
+      9.05485896185287e-20,
+      1.305420970793389e-19,
+      1.7789140757323996e-19,
+      2.32623269439502e-19,
+      2.9476468498143846e-19,
+      3.6434290796730056e-19,
+      4.413854411403697e-19,
+      5.259200337389345e-19,
+      6.179746790268005e-19,
+      7.175776118349571e-19,
+      8.2475730611499775e-19,
+      9.395424725048611e-19,
+      1.0619620559074349e-18,
+      1.192045233082537e-18,
+      1.3298214102527623e-18,
+      1.4753202207236597e-18,
+      1.6285715225186745e-18,
+      1.789605396029282e-18,
+      1.9584521416806773e-18,
+      2.1351422776134205e-18,
+      2.3197065373813603e-18,
+      2.5121758676661647e-18,
+      2.712581426008762e-18,
+      2.9209545785579698e-18,
+      3.1373268978365722e-18,
+      3.3617301605250987e-18,
+      3.594196345263493e-18,
+      3.834757630470916e-18,
+      4.083446392183843e-18,
+      4.34029520191263e-18,
+      4.6053368245166984e-18,
+      4.8786042160984756e-18,
+      5.160130521916211e-18,
+      5.449949074315776e-18,
+      5.748093390681522e-18
+    ],
+    "inertia_kg_m2": 0.01,
+    "qualification": "constant inertia; no damping/control/structural model; not a stability verdict"
+  },
+  "preview": {
+    "snapshot_count": 5,
+    "selected_step_ids": [
+      17,
+      25,
+      33,
+      41,
+      49
+    ],
+    "field_window_s": [
+      5.4999999999999996e-08,
+      2.5e-07
+    ],
+    "pressure_range_Pa": [
+      372476.59375,
+      380861.4375
+    ],
+    "reaction_rate_max_per_s": 0.0,
+    "interpretation": "saved snapshots only; animation uses uniform playback intervals, timestamps retain actual time",
+    "rendered_frames": [
+      {
+        "file": "frame_000.png",
+        "time_us": 0.08,
+        "step": 17
+      },
+      {
+        "file": "frame_001.png",
+        "time_us": 0.16,
+        "step": 33
+      },
+      {
+        "file": "frame_002.png",
+        "time_us": 0.24000000000000002,
+        "step": 49
+      }
+    ]
+  }
+}

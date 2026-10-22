@@ -79,7 +79,7 @@ def case_contract(config, resolved):
             authoritative_integrals='RK-weighted native faces and cell sources in history; display fields are float32'))
 
 
-def iter_fields(directory, inputs, max_step):
+def iter_fields(directory, inputs, max_step, selected_steps=None):
     """Yield one native snapshot at a time; do not retain a full field history."""
     r = inputs['resolved']
     shape = (r['nx'], r['ny'])
@@ -87,10 +87,10 @@ def iter_fields(directory, inputs, max_step):
     for path in sorted((Path(directory) / 'fields').glob('step_*.npz')):
         # Exclude uncommitted files before opening them (a concurrent writer may exist).
         step = int(path.stem.split('_')[-1])
-        if step > max_step:
+        if step > max_step or (selected_steps is not None and step not in selected_steps):
             continue
         with np.load(path, allow_pickle=False) as saved:
-            if int(saved['step']) != step:
+            if np.asarray(saved['step']).shape!=() or float(saved['step']) != step:
                 raise ValueError('snapshot filename and step disagree')
             t = float(saved['t'])
             if not math.isfinite(t) or t <= previous:
@@ -98,7 +98,10 @@ def iter_fields(directory, inputs, max_step):
             arrays = {k: saved[k] for k in ('pressure', 'density', 'temperature', 'u_theta', 'u_z', 'progress', 'reaction_rate')}
             if any(v.shape != shape or not np.isfinite(v).all() for v in arrays.values()):
                 raise ValueError('snapshot fields must be finite and match the native mesh')
-            if np.any(arrays['density'] <= 0) or np.any(arrays['pressure'] <= 0):
-                raise ValueError('invalid snapshot density/pressure')
+            if (np.any(arrays['density'] <= 0) or np.any(arrays['pressure'] <= 0)
+                    or np.any(arrays['temperature'] <= 0) or np.any(arrays['reaction_rate'] < 0)
+                    or np.any(arrays['progress'] < -64*np.finfo(float).eps)
+                    or np.any(arrays['progress'] > 1+64*np.finfo(float).eps)):
+                raise ValueError('invalid snapshot physical state')
         previous = t
         yield dict(step=step, t=t, **arrays)

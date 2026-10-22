@@ -60,10 +60,13 @@ class ContractTests(unittest.TestCase):
             path = sorted((out / 'fields').glob('*.npz'))[0]
             with np.load(path) as saved:
                 fields = {k: saved[k] for k in saved.files}
-            fields['pressure'][0, 0] = np.nan
-            np.savez(path, **fields)
-            with self.assertRaisesRegex(ValueError, 'finite'):
-                list(contracts.iter_fields(out, inputs, summary['steps']))
+            for key,value in [('pressure',np.nan),('progress',2.),('temperature',-1.),('reaction_rate',-1.),('step',.5)]:
+                changed={k:v.copy() for k,v in fields.items()}
+                if key=='step': changed[key]=np.array(value)
+                else: changed[key][0,0]=value
+                np.savez(path,**changed)
+                with self.subTest(key=key), self.assertRaises(ValueError):
+                    list(contracts.iter_fields(out,inputs,summary['steps']))
 
     def test_preflight_cli_and_no_outputs(self):
         config, _ = toy_case()

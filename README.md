@@ -23,6 +23,52 @@ The [formed-engine initializer and bounded benchmark](docs/verification/c6a_func
 are implemented and tested (2 us, 556 steps, zero invalid states). The sustaining-wave investigation is
 assigned to a separate chat; this branch continues 2D functionality and tests.
 
+## Complete 2D software workflow
+
+The functional workflow is implemented through F4. Start with the
+[completion matrix](docs/plans/2d_workflow_completion.md) and
+[test/acceptance report](docs/verification/f4_workflow_completion.md).
+Sustained Run 937 detonation and predictive performance remain unresolved.
+
+A fast software demonstration (from `rde_sim_starter`; use fresh output names):
+
+```sh
+NUMBA_NUM_THREADS=2 ../.venv/bin/python run.py --preflight --case cases/workflow_smoke.yaml
+NUMBA_NUM_THREADS=2 ../.venv/bin/python run.py --case cases/workflow_smoke.yaml --benchmark-us 0.3 --out runs/my_workflow_smoke
+../.venv/bin/python plot.py --workflow runs/my_workflow_smoke --start-us 0.055 --end-us 0.25 --frames 3 --inertia-kg-m2 0.01 --out ../reports/my_workflow_smoke
+```
+
+Open `reports/my_workflow_smoke/index.html`. This nonreactive 16 × 2 fixture tests
+software plumbing; it is not a physical engine case. Reports contain native
+budgets/loads, explicit missing-data reasons, field playback, spectral windows,
+CSV/JSON exports and provenance. Positive inertia enables only an illustrative
+constant-inertia response when wall torque is modeled.
+
+For an existing running native case, use a separate terminal:
+
+```sh
+../.venv/bin/python plot.py --workflow runs/EXISTING_RUN --follow --start-us 0 --refresh-seconds 30 --frames 4 --out ../reports/live_preview
+```
+
+The preview updates only at committed checkpoints and stops when the run stops.
+`--max-updates 3` bounds preview updates; Ctrl-C stops the viewer, not the solver.
+Native CFD is stopped with Ctrl-C in its own terminal and resumed with
+`../.venv/bin/python run.py --resume runs/EXISTING_RUN`; ordinary engine runs
+extend from three to five total expected intervals. Completed development
+benchmarks retain their separate cap and cannot become engine studies by resume.
+
+For sensitivity comparisons, add `--compare-runs runs/SECOND_RUN ...` to a static
+`--workflow` command. Every run must cover the full selected window. The CSV/JSON
+records changed settings and flags confounded comparisons; no CFD is launched.
+Full native windows remain available through `window_report.py` without reading
+fields. The existing `--coupling` option provides candidate front tracks and
+multi-height reaction inspection; spectra alone do not classify detonation.
+
+**Radial physics:** circumference, annular area and mean-radius moments are
+represented; optional wall drag scales with gap. Radial momentum, centrifugal
+pressure splitting, curvature loss, heat loss and distinct inner/outer wall
+states are absent. Wrapped/head-end views add no physics.
+
 ## Run the fast checks
 
 From the project root (Python 3.12; verified on macOS x86_64):
@@ -39,7 +85,7 @@ on first use. Two threads keep these small tests inexpensive; this is not a
 production performance setting. The suite includes conservation, Arrhenius source convergence against an independent
 ODE, boundary-plane checks, Sod, restart/failure handling, and read-only plotting.
 The 95 microsecond detonation test is opt-in with
-`RDE_RUN_REACTIVE_BASELINE=1`; it was exercised during D1 and the full 59-test D3 suite.
+`RDE_RUN_REACTIVE_BASELINE=1`; it also passed in the final 122-test F4 acceptance run (no skips). Final review added one coupled-physics test, for 123 distinct passing tests.
 The small nonreactive runner tests are not a Run 937 propagation check.
 
 ## D3 investigation and graphs

@@ -1,6 +1,6 @@
 # RDE simulation plan — revision 13
 
-**Status: C1–C4, C5a and the C5b–e quarter-length bounded experiment completed. C6a functional initialization/benchmark is complete. F1 saved-window reporting is complete (98 tests passed, one opt-in skipped). F2 contracts complete; F3 optional wall-friction/torque implemented; F4 workflow acceptance remains. Sustained-wave investigation is assigned to a separate chat.**
+**Status: reduced 2D software workflow F1–F4 complete. Full acceptance: 122 tests passed, no skips; 16 affected checks repeated after review, plus one new coupled-physics check (123 distinct passing tests). RDE-001 remains open. Next, per the latest user direction: separately verified radial closures and their sustainment effects; no CAD work.**
 The [controlled-test plan](docs/plans/controlled_2d_tests.md) records three review
 passes and the C1–C6 increments. First verify multirow/direction equivalence and
 formed-profile propagation, then distinguish thin-layer survival from initiation.
@@ -42,7 +42,7 @@ Functional increments after C6a, drawn from sections 4.5, 5.2 and 9:
 | **F2: minimal geometry/result contract — implemented** | Versioned SI geometry and capability metadata for the supported constant annulus, preserving source provenance and exposing omitted features for future backend/CAD adapters. | Known dimensions/areas and unit conversions; reject unsupported coreless/nonuniform/CAD geometry instead of silently reducing it. No general plugin framework or 3D work. |
 
 | **F3: optional wall friction and qualified torque — implemented** | Explicit constant-Cf adiabatic momentum sink, native source budgets, mean-radius engine torque and optional constant-inertia roll response. Inviscid default retained. | Analytic uniform decay/heating; zero-Cf equivalence; sign reversal, coefficient/time sensitivity, angular balance including storage; saved-run/restart checks. |
-| **F4: complete saved-data workflow** | Streaming field preview/animation and labelled wrapped/head-end views; windowed pressure spectrum/spectrogram; explicit reference comparison and reusable multi-run sensitivity tables; documented run/resume/report commands. | Known-signal frequency/alias/window tests, corrupted/missing input rejection, read-only outputs and a tiny complete CLI run/resume/analyze/plot acceptance test. |
+| **F4: complete saved-data workflow — implemented** | Streaming field preview/animation and labelled wrapped/head-end views; windowed pressure spectrum/spectrogram; explicit reference comparison and reusable multi-run sensitivity tables; documented run/resume/report commands. | Known-signal frequency/alias/window tests, corrupted/missing input rejection, read-only outputs and a tiny complete CLI run/resume/analyze/plot acceptance test. |
 
 **Completion boundary (latest request):** finish F2–F4 and audit the complete fast
 suite plus the opt-in reactive baseline before the final push. This completes the
@@ -66,7 +66,7 @@ It uses saved native step integrals with explicit partial-step semantics, retain
 storage and missing-data reasons, and writes JSON/Markdown without CFD or full
 field loading. [F1 evidence and accounting review](docs/verification/f1_window_reporting.md)
 include analytical force checks and reports from C6a and historical D1. Neither
-report is a new propagation result. F2–F4 below finish the software workflow; the physical validation gates remain open.
+report is a new propagation result. F2–F4 complete the software workflow; the physical validation gates remain open. See the [completion matrix](docs/plans/2d_workflow_completion.md) and [F4 acceptance](docs/verification/f4_workflow_completion.md).
 
 ### Historical controlled-test scope
 
@@ -345,16 +345,16 @@ rde_sim_starter/
 
 Reuse existing functions and move only what crosses these boundaries; fold the useful checks in the current `test_1d.py` into `tests/test_solver.py` rather than maintaining duplicate test paths. Physics/solver code must not import tests or plotting. Tests call production functions and assert results; they do not contain a second solver. `analyze.py` computes metrics without rendering; `plot.py` may call that analysis on saved data. Imports must not start simulations, tests, calibration runs or figures.
 
-Use one lightweight test runner (standard-library `unittest` is sufficient), one run entry point, and one plotting entry point. Proposed commands below are a **future CLI contract**, not implemented commands:
+Use one lightweight test runner (standard-library `unittest` is sufficient), one run entry point, and one plotting entry point. Implemented command examples (choose new output directories; the full engine case is more expensive than the documented smoke fixture):
 
 ```text
 cd rde_sim_starter
 python -m unittest discover -s tests
 python run.py --case config.yaml --test-passages 3 --out runs/run937_short
-python plot.py runs/run937_short
+python plot.py --workflow runs/run937_short --start-us 0 --end-us 180 --out ../reports/run937_short
 ```
 
-The optional five-interval check resumes the saved run to a total duration limit. `plot.py` produces the selected fields, profiles and report from that run; it never launches another simulation. Do not introduce a workflow engine, job service, abstract plugin registry, per-figure scripts, or per-engine plotting modules. Keep the future backend contract as a small set of functions/metadata until a second backend is implemented.
+The optional five-interval check resumes the saved run to a total duration limit. `plot.py --workflow` produces selected fields, profiles and a window report; optional `--follow` refreshes at committed checkpoints; it never launches another simulation. Do not introduce a workflow engine, job service, abstract plugin registry, per-figure scripts, or per-engine plotting modules. Keep the future backend contract as a small set of functions/metadata until a second backend is implemented.
 
 ## 5. Verification, thrust, wave inspection, and torque
 

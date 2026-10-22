@@ -1,0 +1,11 @@
+test_constant_torque_roll_matches_closed_form_and_reverses (test_workflow_analysis.WorkflowAnalysisTests.test_constant_torque_roll_matches_closed_form_and_reverses) ... ok
+test_known_frequency_and_independent_power_normalization (test_workflow_analysis.WorkflowAnalysisTests.test_known_frequency_and_independent_power_normalization) ... ok
+test_reference_identity_and_saved_data_guard (test_workflow_analysis.WorkflowAnalysisTests.test_reference_identity_and_saved_data_guard) ... ok
+test_short_constant_and_low_cycle_signals_are_qualified (test_workflow_analysis.WorkflowAnalysisTests.test_short_constant_and_low_cycle_signals_are_qualified) ... ok
+test_spectrogram_detects_changing_frequency_without_mode_label (test_workflow_analysis.WorkflowAnalysisTests.test_spectrogram_detects_changing_frequency_without_mode_label) ... ok
+test_uneven_sampling_uses_largest_gap_and_no_hidden_window_clamp (test_workflow_analysis.WorkflowAnalysisTests.test_uneven_sampling_uses_largest_gap_and_no_hidden_window_clamp) ... ok
+
+----------------------------------------------------------------------
+Ran 6 tests in 0.083s
+
+OK

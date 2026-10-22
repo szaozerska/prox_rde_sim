@@ -111,3 +111,28 @@ class WallTests(unittest.TestCase):
         for model in [dict(walls='constant_cf'), dict(walls='inviscid', wall_cf=.01)]:
             changed=copy.deepcopy(config); changed['model'].update(model)
             with self.assertRaises(ValueError): run.resolve_case(changed,cal)
+
+    def test_reacting_friction_cell_matches_independent_energy_coupled_ode(self):
+        from scipy.integrate import solve_ivp
+        _,cal=toy_case()
+        g,q,R,k,Ea=(cal[key] for key in ['gamma','q','R','k','Ea'])
+        u0,T0,xi0,end=600.,1000.,.2,20e-6
+        cf,gap=.2,.005
+        # Drag velocity has a closed form. The independent scalar chemistry ODE
+        # includes BOTH kinetic-to-thermal and chemical-to-thermal conversion.
+        def velocity(t): return u0/(1+cf/gap*u0*t)
+        def ode(t,y):
+            temperature=T0+(g-1)/R*(.5*(u0*u0-velocity(t)**2)+q*(y[0]-xi0))
+            return [(1-y[0])*k*np.exp(-Ea/(R*temperature))]
+        reference=solve_ivp(ode,(0,end),[xi0],method='DOP853',rtol=2e-12,atol=2e-14)
+        self.assertTrue(reference.success)
+        s=Solver(4,2,1.,1.,(g,q,R,k,Ea),(PERIODIC,PERIODIC,WALL,WALL),wall_cf=cf,wall_gap=gap)
+        s.set_prim(1.,u0,0.,R*T0,xi0)
+        initial=s.conserved_totals()
+        while s.t<end:s.step(dt_max=end-s.t)
+        W=s.prim()
+        self.assertAlmostEqual(W[1,0,0],velocity(end),delta=1e-4)
+        self.assertAlmostEqual(W[4,0,0],reference.y[0,-1],delta=5e-5)
+        self.assertAlmostEqual(s.conserved_totals()[3],initial[3],delta=1e-7)
+        self.assertEqual(s.cumulative_source[3],0.)
+        self.assertEqual(s.invalid_state_count,0)

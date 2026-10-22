@@ -1,0 +1,16 @@
+test_corrupt_checkpoint_does_not_wait_forever (test_workflow.WatchTests.test_corrupt_checkpoint_does_not_wait_forever) ... Waiting for a coherent checkpoint: corrupt
+Waiting for a coherent checkpoint: corrupt
+ok
+test_refreshes_changed_checkpoints_and_stops_without_solver (test_workflow.WatchTests.test_refreshes_changed_checkpoints_and_stops_without_solver) ... Preview 1: committed step 1, 1 µs
+Preview 2: committed step 2, 2 µs
+ok
+test_benchmark_plot_retains_scope_and_omits_experimental_mean_overlay (test_saved_outputs.SavedOutputTests.test_benchmark_plot_retains_scope_and_omits_experimental_mean_overlay) ... ok
+test_legacy_viewer_rejects_changed_inputs_and_corrupt_uncommitted_field_is_ignored (test_saved_outputs.SavedOutputTests.test_legacy_viewer_rejects_changed_inputs_and_corrupt_uncommitted_field_is_ignored) ... ok
+test_plotting_only_reads_saved_data (test_saved_outputs.SavedOutputTests.test_plotting_only_reads_saved_data) ... ok
+test_reader_ignores_uncommitted_tail_and_rejects_missing_committed_rows (test_saved_outputs.SavedOutputTests.test_reader_ignores_uncommitted_tail_and_rejects_missing_committed_rows) ... ok
+test_imports_do_not_read_cases_run_solver_or_render (test_imports.ImportTests.test_imports_do_not_read_cases_run_solver_or_render) ... ok
+
+----------------------------------------------------------------------
+Ran 7 tests in 101.218s
+
+OK

@@ -1,0 +1,6 @@
+test_reacting_friction_cell_matches_independent_energy_coupled_ode (test_wall_friction.WallTests.test_reacting_friction_cell_matches_independent_energy_coupled_ode) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 7.511s
+
+OK

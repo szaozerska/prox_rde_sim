@@ -184,10 +184,17 @@ def plot_run(directory, destination):
         reference=config.get('experimental_reference',{})
         # Only overlay the engine references when their stations fit this geometry.
         zr=reference.get('pressure_stations_mm',[])
-        if not benchmark and zr and max(zr)<=r['length']*1e3:
-            axes[0,1].scatter(zr,reference['mean_pressures_kPa'],marker='x',c='k',label='Mundt Run 937: long-window mean')
+        from workflow_analysis import run937_reference
+        station_means=dict(available=average['available'])
+        if average['available']:
+            station_means.update(stations_m=r['pressure_stations'],
+                mean_Pa=np.interp(r['pressure_stations'],z*.001,average['pressure_profile_Pa']))
+        comparison=run937_reference(config,r,dict(run_mode=mode,pressure_stations=station_means))
+        if comparison['available']:
+            axes[0,1].scatter(comparison['stations_m']*1000,comparison['experimental_mean_Pa']/1000,
+                marker='x',c='k',label='Mundt Run 937: long-window mean')
         axes[0,1].set(xlabel='Axial distance [mm]',ylabel='Mean pressure [kPa]')
-        axes[0,1].legend(fontsize=8)
+        if axes[0,1].get_legend_handles_labels()[0]: axes[0,1].legend(fontsize=8)
         if len(rows)>1:
             axes[1,0].plot(t[1:]*1e6,[row['mdot_in']*1e3 for row in rows[1:]],label='Inlet')
             axes[1,0].plot(t[1:]*1e6,[row['mdot_out']*1e3 for row in rows[1:]],label='Outlet')
@@ -226,7 +233,8 @@ def plot_run(directory, destination):
     finally:
         plt.close(fig)
     report=dict(status=summary['status'],run_mode=mode,
-                experimental_pressure_overlay=bool(not benchmark and zr and max(zr)<=r['length']*1e3),
+                experimental_pressure_overlay=comparison['available'],
+                experimental_comparison_reason=comparison.get('reason',comparison.get('qualification')),
                 time_s=summary['t'],snapshot_count=len(fields),native_rows=len(rows),
                 reaction_rate_available=rate_available,
                 pressure_event_times_s=events,pressure_event_count=len(events),
@@ -674,6 +682,243 @@ def plot_controlled(directory, destination):
     return report
 
 
+def plot_workflow(directory, destination, start, end, frames=12, segment_s=None, inertia=None, compare_runs=None):
+    """Streaming saved-field viewer plus native window report; never advances CFD."""
+    import html
+    import numpy as np
+    from matplotlib.colors import Normalize, LogNorm
+    from contracts import iter_fields
+    from workflow import collect_workflow, compare_saved_runs, write_data
+    destination=Path(destination)
+    sources=[Path(directory),*(Path(p) for p in (compare_runs or []))]
+    if any(destination.resolve().is_relative_to(p.resolve()) for p in sources):
+        raise ValueError('workflow output must be outside every saved run')
+    if not isinstance(frames,int) or not 1<=frames<=60:
+        raise ValueError('preview frame count must lie in [1,60]')
+    if destination.exists():
+        raise FileExistsError(destination)
+    data=collect_workflow(directory,start,end,segment_s,inertia)
+    comparison=compare_saved_runs(sources,start,end) if compare_runs else None
+    inputs,summary,report=data['inputs'],data['summary'],data['report']
+    r=inputs['resolved']; preview=report['preview']; plt=_pyplot()
+    destination.mkdir(parents=True,exist_ok=False)
+    try:
+        steps=preview['selected_step_ids']
+        chosen=set(np.asarray(steps)[np.unique(np.rint(np.linspace(0,len(steps)-1,min(frames,len(steps)))).astype(int))]) if steps else set()
+        if steps:
+            lo,hi=preview['pressure_range_Pa'];pnorm=Normalize(lo/1e6,max(hi,lo*1.001)/1e6)
+            maximum=preview['reaction_rate_max_per_s']
+            rate_options=dict(norm=LogNorm(maximum*1e-6,maximum*1.001)) if maximum>0 else dict(vmin=0,vmax=1)
+        frame_items=[];last=None
+        for frame in iter_fields(directory,inputs,summary['steps'],selected_steps=chosen):
+            if frame['step'] not in chosen: continue
+            fig,axes=plt.subplots(1,3,figsize=(12,4),layout='constrained')
+            try:
+                extent=[0,r['width']*1000,0,r['length']*1000]
+                items=[(frame['pressure']/1e6,'Pressure [MPa]',dict(norm=pnorm,cmap='magma')),
+                       (frame['progress'],'Reaction progress',dict(vmin=0,vmax=1,cmap='viridis')),
+                       (frame['reaction_rate'],'Reaction rate [1/s]',dict(cmap='inferno',**rate_options))]
+                for ax,(array,title,options) in zip(axes,items):
+                    im=ax.imshow(array.T,origin='lower',extent=extent,aspect='auto',**options)
+                    ax.set(xlabel='Circumferential x [mm]',ylabel='Axial z [mm]',title=title)
+                    fig.colorbar(im,ax=ax)
+                fig.suptitle(f"Reduced 2D — {frame['t']*1e6:.6g} µs — {summary.get('run_mode','engine_intervals')}")
+                name=f'frame_{len(frame_items):03d}.png';fig.savefig(destination/name,dpi=110)
+                frame_items.append(dict(file=name,time_us=frame['t']*1e6,step=frame['step']))
+            finally: plt.close(fig)
+            last=frame
+        report['preview']['rendered_frames']=frame_items
+        if last is not None:
+            # Fixed-radius surface and radially repeated ring are displays only.
+            ix=np.unique(np.rint(np.linspace(0,r['nx']-1,min(100,r['nx']))).astype(int))
+            iz=np.unique(np.rint(np.linspace(0,r['ny']-1,min(60,r['ny']))).astype(int))
+            theta=(ix+.5)*r['dx']/r['r_mean']; z=(iz+.5)*r['dy']*1000
+            theta=np.r_[theta,theta[0]+2*np.pi]; wrapped_ix=np.r_[ix,ix[0]]
+            th,zz=np.meshgrid(theta,z,indexing='ij')
+            fig=plt.figure(figsize=(12,5),layout='constrained')
+            try:
+                ax=fig.add_subplot(1,2,1,projection='3d')
+                colors=plt.get_cmap('magma')(pnorm(last['pressure'][np.ix_(wrapped_ix,iz)]/1e6))
+                ax.plot_surface(r['r_mean']*1000*np.cos(th),r['r_mean']*1000*np.sin(th),zz,
+                    facecolors=colors,shade=False,rcount=len(wrapped_ix),ccount=len(iz))
+                ax.set(xlabel='X [mm]',ylabel='Y [mm]',zlabel='z [mm]',title='Pressure on mean-radius surface — 2D display')
+                scalar=plt.cm.ScalarMappable(norm=pnorm,cmap='magma');fig.colorbar(scalar,ax=ax,shrink=.55,label='Pressure [MPa]')
+                polar=fig.add_subplot(1,2,2,projection='polar')
+                edges=np.linspace(0,2*np.pi,r['nx']+1)
+                radii=np.array([r['r_mean']-.5*r['gap'],r['r_mean']+.5*r['gap']])*1000
+                im=polar.pcolormesh(edges,radii,last['reaction_rate'][:,r['probe_index']][None,:],cmap='inferno',**rate_options)
+                polar.set_ylim(0,r['r_outer']*1000)
+                polar.set_title('Synthetic head-end ring: radially repeated rate\nNot camera luminosity; no cross-gap physics')
+                fig.colorbar(im,ax=polar,shrink=.55,label='Reaction rate [1/s]')
+                fig.suptitle(f"Wrapped 2D fields at {last['t']*1e6:g} µs; no radial evolution")
+                fig.savefig(destination/'wrapped.png',dpi=120)
+            finally: plt.close(fig)
+
+        fig,axes=plt.subplots(1,2,figsize=(11,4),layout='constrained')
+        try:
+            ts=data['ring_times']
+            for ax,values,title in zip(axes,[data['ring_pressure']/1e6,data['ring_rate']],['Pressure [MPa]','Reaction rate [1/s]']):
+                if len(ts)>=2:
+                    x=(np.arange(r['nx'])+.5)*r['dx']*1000
+                    opts=dict(norm=pnorm,cmap='magma') if title.startswith('Pressure') else dict(cmap='inferno',**rate_options)
+                    im=ax.pcolormesh(x,ts*1e6,values,shading='nearest',**opts)
+                    fig.colorbar(im,ax=ax)
+                    ax.set_ylim(ts[0]*1e6,ts[-1]*1e6)
+                else: ax.text(.5,.5,'Fewer than two saved fields in window',ha='center',transform=ax.transAxes)
+                ax.set(xlabel='Circumferential x [mm]',ylabel='Time [µs]',title=title)
+            fig.suptitle('Saved ring at z = %.4g mm; field sampling may miss fast fronts' % ((r['probe_index']+.5)*r['dy']*1000))
+            fig.savefig(destination/'space_time.png',dpi=120)
+        finally: plt.close(fig)
+
+        fig,axes=plt.subplots(2,2,figsize=(11,8),layout='constrained')
+        try:
+            rows=data['rows'];selected=[row for row in rows if start<=row['t']<=end]
+            axes[0,0].plot([row['t']*1e6 for row in selected],[row.get('probe_pressure_Pa',np.nan)/1e3 for row in selected])
+            axes[0,0].set(xlabel='Time [µs]',ylabel='Local pressure [kPa]')
+            spec=report['pressure_spectrum']
+            if spec['available']:
+                axes[0,1].loglog(spec['frequency_Hz'][1:]/1000,np.maximum(spec['density_Pa2_per_Hz'][1:],1e-300))
+                axes[0,1].set_title(f"Δf = {spec['frequency_bin_Hz']/1000:.3g} kHz; pressure peak only" +
+                    ('\nFewer than 3 cycles: peak poorly constrained' if spec['peak_cycles_in_window']<3 else ''))
+            else: axes[0,1].text(.5,.5,spec['reason'],ha='center',wrap=True,transform=axes[0,1].transAxes)
+            axes[0,1].set(xlabel='Frequency [kHz]',ylabel='Hann PSD [Pa²/Hz]')
+            valid=[s for s in report['pressure_spectrogram']['segments'] if s['available']]
+            if valid:
+                densities=np.concatenate([np.log10(np.maximum(s['density_Pa2_per_Hz'][1:],1e-300)) for s in valid])
+                snorm=Normalize(float(densities.max())-8,float(densities.max()))
+                for s in valid:
+                    freq=s['frequency_Hz'][1:]/1000; center=np.mean(s['window_s'])*1e6
+                    im=axes[1,0].scatter(np.full(len(freq),center),freq,c=np.log10(np.maximum(s['density_Pa2_per_Hz'][1:],1e-300)),s=8,cmap='magma',norm=snorm)
+                fig.colorbar(im,ax=axes[1,0],label='log10 PSD [Pa²/Hz], common scale')
+                axes[1,0].set_yscale('log')
+            else: axes[1,0].text(.5,.5,'No resolved segment spectra',ha='center',transform=axes[1,0].transAxes)
+            axes[1,0].set(xlabel='Segment center [µs]',ylabel='Frequency [kHz]',title='50% overlapping Hann windows; native sampling limits')
+            station=report['pressure_stations'];ref=report['experimental_comparison']
+            if station['available']:
+                axes[1,1].plot(np.array(station['stations_m'])*1000,np.array(station['mean_Pa'])/1000,label='Model window')
+            if ref['available']:
+                axes[1,1].scatter(ref['stations_m']*1000,ref['experimental_mean_Pa']/1000,label='Mundt long-window reference',marker='x')
+            else: axes[1,1].set_title('Experimental overlay unavailable: see report')
+            if station['available'] or ref['available']: axes[1,1].legend(fontsize=8)
+            axes[1,1].set(xlabel='Axial z [mm]',ylabel='Mean pressure [kPa]')
+            fig.suptitle('Transient signal analysis; no automatic wave/mode classification')
+            fig.savefig(destination/'signals.png',dpi=120)
+        finally: plt.close(fig)
+
+        fig,axes=plt.subplots(2,2,figsize=(11,8),layout='constrained')
+        try:
+            selected=[row for row in data['rows'][1:] if start < row['t'] and row['t']-row['dt'] < end]
+            tt=np.array([row['t'] for row in selected])*1e6
+            axes[0,0].step(tt,[row.get('exit_numerical_force_N',np.nan) for row in selected],where='pre')
+            axes[0,0].set(ylabel='Native annulus-exit contribution [N]',title='Not whole-engine thrust')
+            torque=report['engine_torque']
+            if torque['available']:
+                axes[0,1].step(tt,[row.get('wall_engine_torque_Nm',np.nan) for row in selected],where='pre')
+                axes[0,1].axhline(torque['mean_Nm'],ls='--',color='k',label='Selected-window mean');axes[0,1].legend()
+            else: axes[0,1].text(.5,.5,'No modeled wall torque',ha='center',transform=axes[0,1].transAxes)
+            axes[0,1].set(ylabel='Modeled engine torque [N m]',title='Mean-radius constant-Cf closure, when enabled')
+            for key,label in [('mdot_in','Inlet'),('mdot_out','Outlet')]:
+                axes[1,0].step(tt,[row.get(key,np.nan) for row in selected],where='pre',label=label)
+            axes[1,0].legend();axes[1,0].set(ylabel='Native mass flow [kg/s]')
+            budget=report['budgets']
+            if budget['available']:
+                residual=np.array([row['residual'] for row in selected])
+                for i,label in enumerate(['Mass','θ momentum','z momentum','Energy','Reacted mass']):
+                    axes[1,1].semilogy(tt,np.maximum(abs(residual[:,i])/budget['residual_scale'][i],1e-18),label=label)
+                axes[1,1].legend(fontsize=7)
+            axes[1,1].set(ylabel='Cumulative residual / window scale',title='Whole-run closure history; window closure in report')
+            for ax in axes.flat: ax.set_xlabel('Time [µs]');ax.set_xlim(start*1e6,end*1e6);ax.grid(alpha=.2)
+            fig.savefig(destination/'loads.png',dpi=120)
+        finally: plt.close(fig)
+        roll=report['roll_response']
+        if roll['available']:
+            fig,axes=plt.subplots(1,2,figsize=(10,4),layout='constrained')
+            try:
+                axes[0].plot(roll['times_s']*1e6,roll['angular_velocity_rad_s']);axes[0].set_ylabel('Illustrative roll rate [rad/s]')
+                axes[1].plot(roll['times_s']*1e6,roll['angle_rad']);axes[1].set_ylabel('Relative angle [rad]')
+                for ax in axes: ax.set_xlabel('Time [µs]')
+                fig.suptitle('Specified constant inertia, zero initial roll; no damping/control/stability prediction')
+                fig.savefig(destination/'roll.png',dpi=120)
+            finally: plt.close(fig)
+        write_data(data,destination,comparison)
+        images=['signals.png','loads.png','space_time.png']+(['wrapped.png'] if last is not None else [])+(['roll.png'] if roll['available'] else [])
+        body=''.join(f'<figure><img src="{name}" alt="{name}" loading="lazy"></figure>' for name in images)
+        playback=''
+        if frame_items:
+            playback='''<button id="play">Play / pause</button><input id="frame" type="range" min="0" value="0"><span id="stamp"></span><img id="field" alt="Saved 2D pressure and reaction fields">
+<script>const frames=FRAME_DATA;const slider=document.getElementById('frame');slider.max=frames.length-1;
+function show(){const f=frames[Number(slider.value)];document.getElementById('field').src=f.file;document.getElementById('stamp').textContent=` ${f.time_us.toPrecision(6)} µs (step ${f.step})`;}
+slider.oninput=show;let timer=null;document.getElementById('play').onclick=()=>{if(timer){clearInterval(timer);timer=null;}else{timer=setInterval(()=>{slider.value=(Number(slider.value)+1)%frames.length;show();},500);}};show();</script>'''.replace('FRAME_DATA',json.dumps(frame_items))
+        else: playback='<p>No field snapshots within this window. Native history reports remain available.</p>'
+        page='''<!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Reduced 2D RDE report</title>
+<style>body{font:16px system-ui;max-width:1200px;margin:2rem auto;padding:0 1rem;color:#172230;background:#fafafa}img{width:100%;height:auto}figure{margin:1.5rem 0}input{width:45%}button{padding:.5rem}aside{padding:1rem;background:#fff0d6}a{color:#1250a0}</style>
+<h1>Reduced 2D RDE saved-data report</h1>'''
+        page+=f'<p>{html.escape(summary.get("run_mode","engine_intervals"))}; selected window {start*1e6:g}–{end*1e6:g} µs. Committed step {summary["steps"]}.</p>'
+        page+='<aside>RDE-001 remains unresolved on main. These outputs do not establish sustained detonation or validated engine performance. Radial momentum, centrifugal pressure split, curvature loss and heat loss are absent. Wrapped/head-end views are synthetic 2D displays.</aside>'
+        page+='<p><a href="report.md">Report</a> · <a href="report.json">JSON and provenance</a> · <a href="history.csv">History CSV</a>'
+        if comparison: page+=' · <a href="comparison.csv">Sensitivity comparison CSV</a>'
+        page+='</p><p>Playback uses equal display intervals; actual saved timestamps are shown. Re-run this read-only command into a new output directory to refresh a running case.</p>'+playback+body+'</html>'
+        (destination/'index.html').write_text(page)
+        (destination/'COMPLETE').write_text('Saved-data workflow completed. Physical validation remains separate.\n')
+    except Exception:
+        (destination/'INCOMPLETE').write_text('Workflow output failed; do not treat this directory as complete. Use a new output path after correcting the error.\n')
+        raise
+    return report
+
+
+def watch_workflow(directory, destination, start=0., end=None, frames=4, refresh_seconds=30., max_updates=None):
+    """Refresh only when a new checkpoint is committed; Ctrl-C stops the viewer.
+
+    Each rendering has a new immutable subdirectory. Root HTML refreshes its
+    iframe; no network service, job scheduler or CFD process is created.
+    """
+    import math
+    import time
+    from window_report import load_native_prefix
+    if not math.isfinite(refresh_seconds) or refresh_seconds<1:
+        raise ValueError('refresh interval must be finite and at least one second')
+    if not math.isfinite(start) or start<0 or (end is not None and (not math.isfinite(end) or end<=start)):
+        raise ValueError('invalid watch time window')
+    if not isinstance(frames,int) or not 1<=frames<=60:
+        raise ValueError('preview frame count must lie in [1,60]')
+    if max_updates is not None and (not isinstance(max_updates,int) or max_updates<1):
+        raise ValueError('max_updates must be a positive integer')
+    destination=Path(destination)
+    if destination.resolve().is_relative_to(Path(directory).resolve()):
+        raise ValueError('watch output must be outside the saved run')
+    destination.mkdir(parents=True,exist_ok=False)
+    previous=None; updates=0; read_failures=0
+    terminal={'completed_limit','failed','interrupted'}
+    while True:
+        try:
+            _,summary,_,_=load_native_prefix(directory)
+            read_failures=0
+        except (ValueError,OSError) as error:
+            # A changing checkpoint/summary pair is expected during active output.
+            # Surface the reason; do not repeatedly render an unverified prefix.
+            read_failures+=1
+            if read_failures>=3:
+                raise ValueError(f'no coherent checkpoint after three reads: {error}') from error
+            print(f'Waiting for a coherent checkpoint: {error}',flush=True)
+            time.sleep(refresh_seconds)
+            continue
+        finish=summary['t'] if end is None else min(end,summary['t'])
+        identity=(summary['steps'],summary['status'])
+        if finish>start and identity!=previous:
+            name=f'update_{updates:04d}_step_{summary["steps"]:09d}'
+            plot_workflow(directory,destination/name,start,finish,frames=frames)
+            page=f'''<!doctype html><html lang="en"><meta charset="utf-8"><meta http-equiv="refresh" content="{refresh_seconds:g}"><title>RDE checkpoint preview</title><p>Read-only checkpoint preview: step {summary['steps']}, {summary['t']*1e6:g} µs; status {summary['status']}. CFD is not controlled by this page.</p><iframe title="Latest verified report" src="{name}/index.html" style="width:100%;height:90vh;border:0"></iframe></html>'''
+            temporary=destination/'.index.tmp';temporary.write_text(page);temporary.replace(destination/'index.html')
+            updates+=1;previous=identity
+            print(f'Preview {updates}: committed step {summary["steps"]}, {finish*1e6:g} µs',flush=True)
+        if (summary['status'] in terminal or (end is not None and summary['t']>=end)
+                or (max_updates is not None and updates>=max_updates)):
+            if not updates:
+                raise ValueError('run stopped without a committed positive-duration window after start')
+            return dict(updates=updates,status=summary['status'],last_step=summary['steps'])
+        time.sleep(refresh_seconds)
+
+
 def main(argv=None):
     parser=argparse.ArgumentParser(description=__doc__)
     source=parser.add_mutually_exclusive_group(required=True)
@@ -682,13 +927,47 @@ def main(argv=None):
     source.add_argument('--experiments',type=Path,help='saved contact or 1D refinement suite')
     source.add_argument('--reference',type=Path,help='saved physical/surrogate reference')
     source.add_argument('--calibration',type=Path,help='saved calibration JSON')
+    source.add_argument('--workflow',type=Path,help='complete read-only native-window report and streaming field viewer')
     source.add_argument('--run',type=Path,help='saved engine run directory')
     source.add_argument('--tube',type=Path,help='saved 1D experiment directory')
     source.add_argument('--coupling',type=Path,help='saved engine run for full-height reaction and candidate-track diagnostics')
     parser.add_argument('--compare-run',type=Path,help='second saved run; requires --coupling')
     parser.add_argument('--heights-mm',type=float,nargs='+',default=[1.,4.,8.,16.],help='ring heights for --coupling')
+    parser.add_argument('--follow',action='store_true',help='refresh the workflow preview at new committed checkpoints')
+    parser.add_argument('--refresh-seconds',type=float,default=30.,help='minimum polling interval for --follow')
+    parser.add_argument('--max-updates',type=int,help='optional cap on --follow rendered updates')
+    parser.add_argument('--start-us',type=float,help='workflow window start')
+    parser.add_argument('--end-us',type=float,help='workflow window end')
+    parser.add_argument('--frames',type=int,default=12,help='workflow preview frames, 1–60')
+    parser.add_argument('--segment-us',type=float,help='workflow spectrogram segment duration')
+    parser.add_argument('--inertia-kg-m2',type=float,help='optional constant inertia for illustrative roll response')
+    parser.add_argument('--compare-runs',type=Path,nargs='+',help='additional saved runs for same-window sensitivity table')
     parser.add_argument('--out',type=Path,required=True,help='new PNG for calibration; new directory for run/tube plots')
     args=parser.parse_args(argv)
+    if not args.follow and (args.max_updates is not None or args.refresh_seconds!=30.):
+        parser.error('--max-updates/--refresh-seconds require --follow')
+    if args.workflow:
+        if args.compare_run:
+            parser.error('--compare-run requires --coupling; use --compare-runs for workflow')
+        if args.start_us is None or (args.end_us is None and not args.follow):
+            parser.error('--workflow requires --start-us and --end-us (end may be omitted with --follow)')
+        try:
+            if args.follow:
+                if args.inertia_kg_m2 is not None or args.segment_us is not None or args.compare_runs:
+                    parser.error('--follow uses default signal windows and no inertia/comparison; use a final static report for these')
+                watch_workflow(args.workflow,args.out,args.start_us*1e-6,
+                    None if args.end_us is None else args.end_us*1e-6,args.frames,args.refresh_seconds,args.max_updates)
+                return
+            plot_workflow(args.workflow,args.out,args.start_us*1e-6,args.end_us*1e-6,
+                args.frames,None if args.segment_us is None else args.segment_us*1e-6,
+                args.inertia_kg_m2,args.compare_runs)
+        except (ValueError,TypeError,KeyError,OSError) as error:
+            parser.exit(2,f'Workflow stopped: {error}\n')
+        return
+    if args.follow or args.max_updates is not None:
+        parser.error('--follow and --max-updates require --workflow --follow')
+    if any(v is not None for v in (args.start_us,args.end_us,args.segment_us,args.inertia_kg_m2,args.compare_runs)):
+        parser.error('window/spectrum/inertia/comparison options require --workflow')
     if args.out.exists():
         parser.error('output exists; choose a new destination')
     if args.compare_run and not args.coupling:

@@ -1,0 +1,15 @@
+WatchTests (unittest.loader._FailedTest.WatchTests) ... ERROR
+test_benchmark_plot_retains_scope_and_omits_experimental_mean_overlay (test_saved_outputs.SavedOutputTests.test_benchmark_plot_retains_scope_and_omits_experimental_mean_overlay) ... ok
+test_plotting_only_reads_saved_data (test_saved_outputs.SavedOutputTests.test_plotting_only_reads_saved_data) ... ok
+test_reader_ignores_uncommitted_tail_and_rejects_missing_committed_rows (test_saved_outputs.SavedOutputTests.test_reader_ignores_uncommitted_tail_and_rejects_missing_committed_rows) ... ok
+test_imports_do_not_read_cases_run_solver_or_render (test_imports.ImportTests.test_imports_do_not_read_cases_run_solver_or_render) ... ok
+
+======================================================================
+ERROR: WatchTests (unittest.loader._FailedTest.WatchTests)
+----------------------------------------------------------------------
+AttributeError: module 'test_workflow' has no attribute 'WatchTests'
+
+----------------------------------------------------------------------
+Ran 5 tests in 111.214s
+
+FAILED (errors=1)
