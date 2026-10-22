@@ -1,6 +1,6 @@
-# RDE simulation plan — revision 12
+# RDE simulation plan — revision 13
 
-**Status: C1–C4, C5a and the C5b–e quarter-length bounded experiment completed. C6a functional initialization/benchmark is complete. F1 saved-window reporting is complete (98 tests passed, one opt-in skipped). Next: F2 minimal contracts. Sustained-wave investigation is assigned to a separate chat.**
+**Status: C1–C4, C5a and the C5b–e quarter-length bounded experiment completed. C6a functional initialization/benchmark is complete. F1 saved-window reporting is complete (98 tests passed, one opt-in skipped). F2 contracts complete; next F3–F4 workflow completion. Sustained-wave investigation is assigned to a separate chat.**
 The [controlled-test plan](docs/plans/controlled_2d_tests.md) records three review
 passes and the C1–C6 increments. First verify multirow/direction equivalence and
 formed-profile propagation, then distinguish thin-layer survival from initiation.
@@ -39,7 +39,24 @@ Functional increments after C6a, drawn from sections 4.5, 5.2 and 9:
 | Increment | Deliverable | Short verification |
 |---|---|---|
 | **F1: saved-window reporting — implemented** | Explicit time-window selection, native mass/energy/momentum balances and annulus-exit force summary; preserve storage, missing-data reasons and transient qualifications. | Analytical constant/time-varying signals and known-flow force signs; uneven time steps and partial-window overlap; read-only saved-run smoke check. No CFD campaign. |
-| **F2: minimal geometry/result contract** | Versioned SI geometry and capability metadata for the supported constant annulus, preserving source provenance and exposing omitted features for future backend/CAD adapters. | Known dimensions/areas and unit conversions; reject unsupported coreless/nonuniform/CAD geometry instead of silently reducing it. No general plugin framework or 3D work. |
+| **F2: minimal geometry/result contract — implemented** | Versioned SI geometry and capability metadata for the supported constant annulus, preserving source provenance and exposing omitted features for future backend/CAD adapters. | Known dimensions/areas and unit conversions; reject unsupported coreless/nonuniform/CAD geometry instead of silently reducing it. No general plugin framework or 3D work. |
+
+| **F3: optional wall friction and qualified torque** | Explicit constant-Cf adiabatic momentum sink, native source budgets, mean-radius engine torque and optional constant-inertia roll response. Inviscid default retained. | Analytic uniform decay/heating; zero-Cf equivalence; sign reversal, coefficient/time sensitivity, angular balance including storage; saved-run/restart checks. |
+| **F4: complete saved-data workflow** | Streaming field preview/animation and labelled wrapped/head-end views; windowed pressure spectrum/spectrogram; explicit reference comparison and reusable multi-run sensitivity tables; documented run/resume/report commands. | Known-signal frequency/alias/window tests, corrupted/missing input rejection, read-only outputs and a tiny complete CLI run/resume/analyze/plot acceptance test. |
+
+**Completion boundary (latest request):** finish F2–F4 and audit the complete fast
+suite plus the opt-in reactive baseline before the final push. This completes the
+2D *software workflow*, including optional friction; it does not declare sustained
+Run 937 detonation or predictive performance validated. Fixed-model production
+sensitivity campaigns, measured-thrust/held-out validation, CAD import, alternate
+CFD backends and 3D remain separately identified work. Generic comparisons can
+consume those studies later without embedding per-engine plotting logic.
+
+Review 1: metadata alone cannot enforce support; integrate geometry rejection
+in the actual runner and preflight. Review 2: torque must come from applied wall
+sources and independently checked storage/flux, not exit angular flux alone.
+Review 3: short signals and synthetic views must not imply established frequency,
+3D physics, steady pressure or camera luminosity. Keep unavailable results explicit.
 
 C6a construction decisions, the test audit and its bounded measurements are
 recorded in [the functional increment report](docs/verification/c6a_functional_pipeline.md).
@@ -49,7 +66,7 @@ It uses saved native step integrals with explicit partial-step semantics, retain
 storage and missing-data reasons, and writes JSON/Markdown without CFD or full
 field loading. [F1 evidence and accounting review](docs/verification/f1_window_reporting.md)
 include analytical force checks and reports from C6a and historical D1. Neither
-report is a new propagation result. F2 is the next implementation increment.
+report is a new propagation result. F2–F4 below finish the software workflow; the physical validation gates remain open.
 
 ### Historical controlled-test scope
 

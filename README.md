@@ -260,3 +260,13 @@ run/input provenance, partial-step interpolation and unavailable-data reasons.
 No solver execution or full-field loading is needed. Force and effective Isp are
 qualified transient annulus-exit quantities, not validated whole-engine thrust,
 Isp or evidence of sustained detonation. See [F1 tests and examples](docs/verification/f1_window_reporting.md).
+
+## Case preflight and portable metadata
+
+From `rde_sim_starter`, run `../.venv/bin/python run.py --preflight --case config.yaml`.
+This validates calibration and initialization, prints the versioned SI geometry,
+backend capabilities and result interpretation, and does not advance CFD. It
+allocates the selected mesh. Saved native inputs retain this contract and the
+original experimental stream references. Only manual constant-annulus geometry
+is supported; CAD/nonuniform/coreless input is rejected. See
+[F2 evidence](docs/verification/f2_contracts.md).

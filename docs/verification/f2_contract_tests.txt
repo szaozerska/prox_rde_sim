@@ -1,0 +1,9 @@
+test_dimensions_units_area_and_source_identity (test_contracts.ContractTests.test_dimensions_units_area_and_source_identity) ... ok
+test_preflight_cli_and_no_outputs (test_contracts.ContractTests.test_preflight_cli_and_no_outputs) ... ok
+test_saved_contract_stream_and_corrupted_field (test_contracts.ContractTests.test_saved_contract_stream_and_corrupted_field) ... ok
+test_unsupported_geometry_rejected_by_real_runner_before_output (test_contracts.ContractTests.test_unsupported_geometry_rejected_by_real_runner_before_output) ... ok
+
+----------------------------------------------------------------------
+Ran 4 tests in 8.686s
+
+OK

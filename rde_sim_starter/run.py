@@ -24,6 +24,7 @@ import yaml
 
 from analyze import conservation_budget, exit_contribution
 from calibrate import calibrate
+from contracts import geometry_contract, case_contract
 from physics import total_energy, reaction_rate, PROGRESS_TOL
 from solver import Solver, InvalidStateError, NG, PERIODIC, INJECTOR, OUTFLOW
 
@@ -88,7 +89,7 @@ def _run_lock(directory):
 def _fingerprint():
     return dict(
         source_sha256={name: hashlib.sha256((HERE / name).read_bytes()).hexdigest()
-                       for name in ['solver.py', 'physics.py', 'run.py', 'analyze.py', 'calibrate.py', 'formed.py']},
+                       for name in ['solver.py', 'physics.py', 'run.py', 'analyze.py', 'calibrate.py', 'formed.py', 'contracts.py']},
         python=sys.version.split()[0],
         packages={name: version(name) for name in ['numpy', 'numba', 'llvmlite', 'scipy', 'PyYAML']},
     )
@@ -105,6 +106,7 @@ def resolve_case(config, calibration):
     """Resolve explicit model/units and numerical settings before creating output."""
     if config.get('schema_version') != 1:
         raise ValueError('case schema_version must be 1; use the current config.yaml')
+    geometry_contract(config)  # reject unsupported geometry before allocation or output
     geo, op, nm = config['geometry'], config['operating_point'], config['numerics']
     model = config['model']
     if model['geometry'] != 'constant_annulus' or model['feed'] != 'premixed_plenum' or model['walls'] != 'inviscid':
@@ -421,7 +423,7 @@ def start_run(config, calibration, directory, test_passages=3, source_text=None,
     with _run_lock(directory):
         (directory / 'fields').mkdir()
         manifest = dict(format_version=FORMAT_VERSION, created_utc=datetime.now(timezone.utc).isoformat(),
-                        config=config, calibration=calibration, resolved=r,
+                        config=config, calibration=calibration, resolved=r, contracts=case_contract(config, r),
                         source_text=source_text, implementation=_fingerprint(),
                         definitions=dict(boundary_order=['left', 'right', 'bottom', 'top'],
                             boundary_normals=['+theta', '+theta', '+z', '+z'],
@@ -536,10 +538,13 @@ def main(argv=None):
     parser.add_argument('--case', type=Path, help='new-run YAML case; defaults to config.yaml')
     parser.add_argument('--calibration', type=Path, help='new-run surrogate JSON; defaults to calib.json')
     parser.add_argument('--out', type=Path, help='new output directory; must not exist')
+    parser.add_argument('--preflight', action='store_true', help='validate and print SI contracts without running or creating output')
     parser.add_argument('--resume', type=Path, help='existing run directory; uses only its saved inputs')
     parser.add_argument('--test-passages', type=int, choices=(3, 5), help='total expected intervals, not additional intervals')
     parser.add_argument('--benchmark-us', type=float, help='new-run development cost/validity check, at most 2 us; not a passage study')
     args = parser.parse_args(argv)
+    if args.preflight and (args.resume or args.out or args.benchmark_us or args.test_passages):
+        parser.error('--preflight accepts only --case and --calibration')
     if args.benchmark_us is not None and (args.test_passages is not None or args.resume):
         parser.error('--benchmark-us cannot be combined with --test-passages or --resume')
     try:
@@ -548,11 +553,17 @@ def main(argv=None):
                 parser.error('--resume cannot be combined with new-run inputs/output')
             result = resume_run(args.resume, args.test_passages)
         else:
-            if args.out is None:
+            if args.out is None and not args.preflight:
                 parser.error('a new run needs --out')
             case = args.case or HERE / 'config.yaml'
             calibration = args.calibration or HERE / 'calib.json'
             case_text, calibration_text = case.read_text(), calibration.read_text()
+            if args.preflight:
+                config, calibrated = yaml.safe_load(case_text), json.loads(calibration_text)
+                resolved = resolve_case(config, calibrated)
+                build_solver(resolved, calibrated)  # check initialization as well as metadata
+                print(json.dumps(case_contract(config, resolved), indent=2, allow_nan=False))
+                return 0
             result = start_run(yaml.safe_load(case_text), json.loads(calibration_text), args.out,
                                args.test_passages or 3,
                                dict(case_yaml=case_text, calibration_json=calibration_text), benchmark_us=args.benchmark_us)
