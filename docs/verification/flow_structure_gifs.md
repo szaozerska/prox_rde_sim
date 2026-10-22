@@ -170,3 +170,11 @@ changed initial inventories. The existing C6a named case changes chemistry and
 mesh as well as startup, so simply comparing its movie to this one would not
 isolate directionality. No new engine study or unphysical swirl source is launched
 in response to this clarification.
+
+## Opposing fronts and movie duration
+
+See [the subsequent startup/collision review](startup_collision_review.md) for
+native pressure/reaction timelines, Mundt's ignition sequence and counter-wave
+examples, external video links, and their interpretation limits. At z=0.752 mm,
+strong reaction fades before the far-side pressure encounter. The saved movie
+is only 189.394 us, not a demonstrated complete startup or extinction history.

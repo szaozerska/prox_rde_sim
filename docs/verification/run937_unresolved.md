@@ -13,6 +13,13 @@ a conservative formed initializer and <=2 us persistence/budget benchmark;
 its success cannot close this issue or establish compatibility with the paper's
 sustained-wave result.
 
+**Startup timing clarification:** [the collision audit](startup_collision_review.md)
+finds strong near-injector reaction fades before the prominent far-side encounter
+in the GIF case. Counter-propagation alone is not proof of cancellation. The
+189.394 us development limit spans only 1.5 Run 937 reference revolutions; it is
+not a physical extinction criterion and cannot exclude later reinitiation. The
+short-run coupling failure remains meaningful, while long-time outcome is untested.
+
 ## Was this stage supposed to produce a working RDE?
 
 Sustained detonation is the intended physical target: Mundt Run 937 reports two

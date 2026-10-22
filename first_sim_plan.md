@@ -1,4 +1,4 @@
-# RDE simulation plan — revision 16
+# RDE simulation plan — revision 17
 
 **Status: reduced 2D software workflow F1–F4 complete. Full acceptance: 122 tests passed, no skips; 16 affected checks repeated after review, plus one new coupled-physics check (123 distinct passing tests). RDE-001 remains open. The radial-wall increment and matched 189.394 us comparison are also complete: 132 distinct verification tests passed, but sustained detonation was not restored in the original case. See [radial results](docs/verification/radial_closures.md). No CAD work.**
 
@@ -21,6 +21,16 @@ hot patch from the already implemented +theta formed initializer. Do not infer
 net injector swirl from the paper's 30-degree impingement angle. A startup-only
 comparison needs matched chemistry/mesh/feed and explicit initial inventories;
 it is not replaced by comparing the confounded C6a case to this baseline.
+
+**Startup/collision review:** the saved radial-active case loses strong near-injector
+reaction by 40 us, before its prominent far-side pressure interaction at about
+106–110 us at that height. Opposing fronts do not simply cancel their energy;
+Mundt also documents counter-wave modes. The 189.394 us development cap is only
+1.5 Run 937 reference revolutions and cannot establish permanent extinction or
+exclude later reinitiation. See [source review and measured timeline](docs/verification/startup_collision_review.md).
+Retain the actual-refill-layer/chemistry/resolution gate; review the existing formed
+controls before another startup comparison. Do not assume arbitrary inlet swirl
+or a longer unchanged run is the fix. This review launches no new CFD campaign.
 
 The [controlled-test plan](docs/plans/controlled_2d_tests.md) records three review
 passes and the C1–C6 increments. First verify multirow/direction equivalence and

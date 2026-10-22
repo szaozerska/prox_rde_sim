@@ -11,7 +11,7 @@ remains unresolved. Native inputs and physics parameters are unchanged.
 
 ## Current result and plan
 
-[Revision 16](first_sim_plan.md) records the completed D3 investigation and the
+[Revision 17](first_sim_plan.md) records the completed D3 investigation and the
 [paper/model audit](docs/verification/mundt_model_audit.md). The latest instruction authorizes controlled 2D tests, three plan reviews,
 small verified increments and publication on **main only**. The independent
 session handles 3D in another checkout/branch; do not push to its branch. D3 and
@@ -262,3 +262,15 @@ Static final workflow reports now use `flow_structure.py` for both GIFs.
 The unwrapped movie exposes density edges, compressive fronts, reaction, shear
 and expansion; the cylinder shows the same composite from opposite views.
 Do not relabel progress=0.5 as the paper's new/old-product slip line.
+
+## Startup and collision clarification
+
+[Saved-field/paper review](docs/verification/startup_collision_review.md) tests the
+user's opposing-wave hypothesis. At z=0.752 mm, the whole-ring reaction maximum
+falls to 10.8 /s by 40 us; the prominent far-side pressure encounter occurs around
+106–110 us. Higher layers still burn. This does not support cancellation of two
+healthy detonations as the sole cause. The movie ends after only 1.5 experimental
+reference revolutions, so later reinitiation is not excluded. Mundt Figure 2.3
+and Appendix B supply startup and counter-wave examples; verified external video
+links and access limits are recorded. Four relevant analytical checks passed;
+all 96 source hashes match the GIF manifest. No evolution-code change or CFD rerun.
