@@ -61,3 +61,7 @@ retains strong coupling near the wall/middle. Both cases valid and conservative,
 with remote-boundary travel bounds satisfied. 0.25 mm checks are in progress;
 C3 is open and this is not an experimental critical-height result. Default suite:
 66 passed, one opt-in skipped. See the increment log and saved field figures.
+
+The 0.25 mm thin case completed and also loses shock/reaction coupling, with
+25.75 mm wall-to-main-reaction gap at 40 µs and no invalid states. Thick
+refinement and aligned thin-interface control are still running; C3 remains open.

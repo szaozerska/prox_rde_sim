@@ -158,7 +158,8 @@ surrogate-structure hypotheses without isolating the 2D failure's root cause:
 - C3 at 0.5 mm: a 3.8 mm formed wave loses leading shock/reaction coupling by
   40 µs, while a 15 mm layer retains strong coupling near its wall/middle.
   Both are valid and conservative with positive remote-boundary margins.
-  Interface burning remains visible. The 0.25 mm comparisons are in progress;
+  Interface burning remains visible. The 0.25 mm thin case also loses coupling, with a 25.75 mm wall-to-main-reaction
+  gap at 40 µs; thick refinement is still in progress;
   no converged critical-height threshold or unique root cause is established.
   The initial cut-cell temperature also changes with refinement despite equal
   conserved inventory; an explicit face-aligned thin-layer control is being

@@ -1,6 +1,6 @@
 # RDE simulation plan — revision 9
 
-**Status: C1/C2 passed; C3 coarse layer contrast found, refinement in progress.**
+**Status: C1/C2 passed; thin-layer loss repeats on refinement; remaining C3 controls running.**
 The [controlled-test plan](docs/plans/controlled_2d_tests.md) records three review
 passes and the C1–C6 increments. First verify multirow/direction equivalence and
 formed-profile propagation, then distinguish thin-layer survival from initiation.

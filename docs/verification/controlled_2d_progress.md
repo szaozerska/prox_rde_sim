@@ -177,3 +177,34 @@ Resource decision: this Mac has four physical CPU cores. The 15 mm fine run was
 temporarily stopped without discarding state to let the thin fine run finish;
 it must be resumed. Its native scheduling record will accompany its eventual
 results. Wall times from overlapping/paused runs are not clean performance data.
+
+### C3b — 3.8 mm refinement completed
+
+At 0.25 mm the thin layer again loses leading shock/reaction coupling by 40 µs.
+The wall-row pressure maximum is 2.76 MPa, versus 2.74 MPa at 0.5 mm. The
+24–40 µs front fit is 1296.875 m/s versus 1337.5 m/s; wall-to-global-reaction
+peak separation is 25.75 versus 26 mm. Peak reaction within the inclusive
+2 mm window behind the leading wall front is 6.13/s versus 9.95/s, while
+the detached main reaction remains about 1e5/s. Refinement does not rescue
+this formed thin-layer case. Integrated chemical conversion falls from 3546.17
+to 2994.50 J per metre of depth (15.6%); this is qualitative agreement in
+coupling loss, not full convergence of the reacting flow.
+
+The upper-row global reaction peak lies 31.5 mm behind its front, outside the
+30 mm search window. The saved local-search metric consequently jumps to a
+weaker secondary structure at 13.75 mm; that is **not** recoupling. This was
+resolved by inspecting full fields and calculating global as well as local
+reaction maxima. Probe centers differ slightly between meshes; do not infer
+a convergence order from the row-specific values.
+
+The run completed 2771 steps, zero invalid states, maximum normalized budget
+residual 1.23e-15 and positive boundary-cone margins. Integrated initial conserved
+quantities match the coarse case to roundoff. [Native/derived metrics](c3_layer_038_refined_metrics.json),
+[inspected figure](c3_layer_038_refined.png). Its source hash matches commit
+`83dd544`; it was not changed by the later alignment helper. No source or
+chemistry change was made for this refinement, so prior tests remain applicable.
+
+The thick refinement has been resumed after the recorded scheduling pause.
+The extra aligned thin control is running with one Numba thread while the
+thick refinement uses two. C3's combined gate and C4 remain pending. The
+2449 s elapsed thin-run time includes contention; it is not a clean benchmark.
