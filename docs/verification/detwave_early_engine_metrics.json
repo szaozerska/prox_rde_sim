@@ -1,0 +1,127 @@
+{
+  "definition": "Rightmost p > 2 p_initial in x=22..100 mm; rate maximum behind that front in same forward sector; 2 mm near-front neighborhood. Valid only before periodic return; pressure threshold is not a detonation classifier.",
+  "cases": [
+    {
+      "case": "detwave_original_40us",
+      "latest_time_us": 18.999999999999996,
+      "inputs_sha256": "ee9a598dc08d1165d6533d25e488a8070b460a21c14abcde3f8b6a5b71d9c6a0",
+      "records": [
+        {
+          "time_us": 10,
+          "height_mm": 0.5621311475409837,
+          "front_mm": 43.198391638483784,
+          "forward_pressure_max_MPa": 7.230837,
+          "front_to_rate_peak_mm": 1.5003782913510997,
+          "near_front_rate_per_s": 154176.1875,
+          "forward_rate_max_per_s": 154176.1875
+        },
+        {
+          "time_us": 10,
+          "height_mm": 1.0618032786885245,
+          "front_mm": 43.198391638483784,
+          "forward_pressure_max_MPa": 7.7906805,
+          "front_to_rate_peak_mm": 2.1255359127473965,
+          "near_front_rate_per_s": 133154.3125,
+          "forward_rate_max_per_s": 144583.828125
+        },
+        {
+          "time_us": 10,
+          "height_mm": 3.0604918032786887,
+          "front_mm": 43.57348621132156,
+          "forward_pressure_max_MPa": 8.70508,
+          "front_to_rate_peak_mm": 3.5008826798192394,
+          "near_front_rate_per_s": 28366.83984375,
+          "forward_rate_max_per_s": 127290.609375
+        },
+        {
+          "time_us": 15,
+          "height_mm": 0.5621311475409837,
+          "front_mm": 50.20015699812225,
+          "forward_pressure_max_MPa": 6.843137,
+          "front_to_rate_peak_mm": 3.875977252657016,
+          "near_front_rate_per_s": 2441.337158203125,
+          "forward_rate_max_per_s": 97163.6015625
+        },
+        {
+          "time_us": 15,
+          "height_mm": 1.0618032786885245,
+          "front_mm": 50.20015699812225,
+          "forward_pressure_max_MPa": 6.3277175,
+          "front_to_rate_peak_mm": 4.501134874053306,
+          "near_front_rate_per_s": 4467.568359375,
+          "forward_rate_max_per_s": 100397.5078125
+        },
+        {
+          "time_us": 15,
+          "height_mm": 3.0604918032786887,
+          "front_mm": 52.32569291086964,
+          "forward_pressure_max_MPa": 2.10361925,
+          "front_to_rate_peak_mm": 7.501891456755505,
+          "near_front_rate_per_s": 4140.81201171875,
+          "forward_rate_max_per_s": 93121.2578125
+        }
+      ]
+    },
+    {
+      "case": "detwave_short_189us",
+      "latest_time_us": 17.0,
+      "inputs_sha256": "87011a6346f6a722f35edc008032c669eecd305bb0bb4b87389352fa1a79301d",
+      "records": [
+        {
+          "time_us": 10,
+          "height_mm": 0.5621311475409837,
+          "front_mm": 44.32367535699711,
+          "forward_pressure_max_MPa": 19.998424,
+          "front_to_rate_peak_mm": 0.37509457283777664,
+          "near_front_rate_per_s": 816831.5625,
+          "forward_rate_max_per_s": 816831.5625
+        },
+        {
+          "time_us": 10,
+          "height_mm": 1.0618032786885245,
+          "front_mm": 44.32367535699711,
+          "forward_pressure_max_MPa": 14.179863,
+          "front_to_rate_peak_mm": 0.5001260971170332,
+          "near_front_rate_per_s": 738680.0625,
+          "forward_rate_max_per_s": 738680.0625
+        },
+        {
+          "time_us": 10,
+          "height_mm": 3.0604918032786887,
+          "front_mm": 44.19864383271785,
+          "forward_pressure_max_MPa": 13.314018,
+          "front_to_rate_peak_mm": 0.7501891456755533,
+          "near_front_rate_per_s": 605629.375,
+          "forward_rate_max_per_s": 605629.375
+        },
+        {
+          "time_us": 15,
+          "height_mm": 0.5621311475409837,
+          "front_mm": 54.45122882361704,
+          "forward_pressure_max_MPa": 13.668169,
+          "front_to_rate_peak_mm": 0.7501891456755533,
+          "near_front_rate_per_s": 625756.0,
+          "forward_rate_max_per_s": 625756.0
+        },
+        {
+          "time_us": 15,
+          "height_mm": 1.0618032786885245,
+          "front_mm": 54.45122882361704,
+          "forward_pressure_max_MPa": 12.567103,
+          "front_to_rate_peak_mm": 0.6251576213962967,
+          "near_front_rate_per_s": 668669.375,
+          "forward_rate_max_per_s": 668669.375
+        },
+        {
+          "time_us": 15,
+          "height_mm": 3.0604918032786887,
+          "front_mm": 54.576260347896294,
+          "forward_pressure_max_MPa": 16.179284,
+          "front_to_rate_peak_mm": 0.5001260971170332,
+          "near_front_rate_per_s": 771748.6875,
+          "forward_rate_max_per_s": 771748.6875
+        }
+      ]
+    }
+  ]
+}

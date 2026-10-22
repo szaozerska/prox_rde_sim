@@ -181,6 +181,53 @@ not a methane chemistry validation or evidence for changing our outlet to a wall
   the initially fresh/product boundary. Native exit mass flux is nonzero by
   2 us; outflow cannot be dismissed on a claim that it begins at 43 us.
 
+## Interim matched engine result: 10–15 us (19:43 UTC)
+
+The original chemistry develops a growing separation between the forward
+pressure front and the main reaction peak, even with a formed start. The
+quarter-length chemistry remains much more closely coupled over this interval.
+At the actual 1.062 mm ring, the separation grows from 2.126 to 4.501 mm for
+original chemistry; the shortened case changes from 0.500 to 0.625 mm. At the
+3.060 mm ring the 15 us separations are 7.502 and 0.500 mm respectively.
+Within 2 mm of the forward front at 1.062 mm height, the original case's maximum
+reaction rate falls from 133,154/s at 10 us to 4,468/s at 15 us; the short case
+retains 668,669/s at 15 us. The rate ratio alone is not the test, since the
+pre-exponential factor differs fourfold; the growing spatial separation and
+original case's own rate collapse are the relevant evidence.
+
+![Early pressure/reaction separation](detwave_early_separation.png)
+
+Definitions and exact values are in `detwave_early_engine_metrics.json`,
+reproducible with `detwave_early_compare.py`. The front is the rightmost cell
+above twice initial pressure in the forward x=22–100 mm sector, not a verified
+shock label. The peak search is behind it in that same sector. These definitions
+are limited to the 10/15 us pre-return frames and must not be used unchanged for
+periodic tracking. Full 10 us fields were visually checked: the shortened case
+has a compact forward reaction feature, whereas the original has a broader,
+lagging feature. Both also contain interface burning and rear-startup waves.
+
+**Interpretation:** this strengthens H1 and weakens the claim that changing
+startup alone is sufficient for original chemistry. The original charge had
+more initial excess energy, so this contrast cannot be attributed simply to a
+weaker original ignition. The evidence agrees qualitatively with the finite
+layer/expansion mechanism discussed above; it does not identify a universal
+critical reaction length or prove that shortened chemistry sustains on refill.
+Do not change production chemistry defaults on this early result alone.
+
+The 25-FI-5 geometry-only 20 us field already has a much thinner fresh region
+and substantial reaction away from the forward pressure feature. Its shorter
+circumference introduces startup/return interactions sooner. This is a reason
+to retain the separate high-flux case and inspect replenishment, not to label
+all remaining pressure structures detonations. No secondary survival verdict
+is available yet.
+
+At this check, original/short/geometry runs reached 19/16/32 us, with no invalid
+states and maximum scaled budget residual below 1.2e-15. High flux is queued
+behind geometry. The current short-run extrapolation exceeds the wall-clock
+budget; completing 189 us is not promised. Continue existing jobs without
+duplication, reassess after the original 40 us job frees resources, and report
+the actual attained interval at the 22:00 UTC deadline.
+
 ## Active-run handoff (replace with results when complete)
 
 Both simulations run in this branch's worktree, not the original checkout.
