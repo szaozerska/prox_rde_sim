@@ -11,7 +11,7 @@ The [3D plan](first_sim_plan.md) supersedes implementation ordering in inherited
 2D documents. Five self-review rounds are in [the review log](docs/plans/3d_plan_reviews.md).
 Keep the [implementation record](docs/verification/3d_progress.md) current.
 
-T0/T1 are complete. T2 parametric mesh verification is in progress.
+T0-T2 are complete. T3 cold equilibrium is next.
 Homebrew installed Colima, Lima and Docker; a dedicated two-CPU/4 GiB `rde3d`
 profile mounts only this checkout and its temporary staging. Do not use the
 original checkout as a native-case output destination. The bounded tutorial-based installation check passed. No 3D flow or methane chemistry

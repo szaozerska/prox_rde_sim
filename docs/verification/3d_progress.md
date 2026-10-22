@@ -107,3 +107,36 @@ Two native reader/completion tests passed (0.009 s): early exits, missing fields
 wrong field counts, truncated/nonfinite data and nonpositive states are rejected.
 Full logs, initial-input hashes and failure evidence are in `3d_install/`.
 T1 permits native geometry and cold controls; T4 chemistry validation remains open.
+
+## T2 - full 3D mesh and expansion verified
+
+Implemented `rde3d.geometry`, `prepare` and `mesh_metrics` as a small add-on.
+Geometry reads the inherited case's radii/length; the documented 152 mm outer
+core adds the downstream full-cylinder volume. Named core-end wall is retained.
+Full 360-degree connectivity, no cyclic sector or collapsed-axis cells. This
+idealized geometry omits injector passages, ports and the facility duct/tank.
+
+Three native cases passed `blockMesh` and `checkMesh -allTopology -allGeometry`:
+
+| Case | Cells | Volume error versus exact geometry | Max nonorthogonality | Max skewness |
+|---|---:|---:|---:|---:|
+| Expansion, 64 azimuthal cells | 30,720 | 0.16056% | 32.962 degrees | 0.4534 |
+| Expansion, 128 azimuthal cells | 73,728 | 0.04015% | 36.160 degrees | 0.6366 |
+| Constant-annulus control, 64 | 6,144 | 0.16056% | 0.000002 degrees | 0.1181 |
+
+Native boundary areas agree within 0.161% on the coarse mesh and 0.041% on the
+finer mesh. Vector boundary closure is below 1.8e-15 relative. Angular refinement
+reduces circular-face volume/area error by about fourfold; the residual is chordal
+tessellation, not a wrong nominal radius. Full logs/manifests/input hashes are in
+`docs/verification/3d_meshes`. No flow or reaction-resolution claim is made.
+
+A report-reader error initially consumed punctuation after OpenFOAM's printed
+volume. Root cause: an overly permissive numeric regex, not mesh generation.
+Fixed it and reanalyzed the saved mesh; no CFD rerun was needed. Added a known
+unit-cube area/closure test, the exact punctuation case, and a failed-checkMesh
+log case. All seven 3D unit tests pass in 0.041 s.
+
+Commands: `python -m rde3d.prepare --out runs3d/<new-name> [--ntheta 128 |
+--outlet-z .0762]`, then `python -m rde3d.mesh_metrics runs3d/<new-name>`.
+Use `--saved` to reanalyze existing mesh/logs without rerunning. T2 permits the
+cold equilibrium test. Reactive mesh requirements remain entirely unverified.

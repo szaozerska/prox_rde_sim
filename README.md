@@ -10,6 +10,15 @@ an add-on; existing physics, thermochemical references, tests and figure roadmap
 are retained. Installation/mesh checks do not establish sustained detonation.
 Only commit and push to `3d-modelling` from this checkout.
 
+Verified so far: pinned OpenFOAM 8/detonationFoam installation smoke; full-annulus
+and core-end expansion meshes with native volume/area/quality checks. Prepare a
+new mesh with `python -m rde3d.prepare --out runs3d/my_mesh`, then verify it with
+`python -m rde3d.mesh_metrics runs3d/my_mesh`. Run fast add-on checks with
+`python -m unittest discover -s rde3d/tests -v`. Use the existing Python environment
+or install the pinned repository requirements. Native setup is documented in
+[tools/openfoam](tools/openfoam/README.md). Cold flow and methane chemistry still
+have separate gates; no sustained 3D engine result is claimed.
+
 The documentation below describes the inherited 2D backend at the frozen baseline.
 Its unresolved Run 937 result remains open.
 

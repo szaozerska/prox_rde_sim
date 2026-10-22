@@ -1,0 +1,43 @@
+{
+  "schema_version": 1,
+  "purpose": "mesh_only",
+  "backend": "OpenFOAM-8",
+  "source_case_sha256": "99b81dce294d65498aaa8d2ae22ad8427b1ce4f6d12df829e947ca35a25470f9",
+  "geometry_m": {
+    "outer_radius": 0.0381,
+    "inner_radius": 0.033100000000000004,
+    "core_length": 0.0762,
+    "outlet_z": 0.152
+  },
+  "analytical": {
+    "volume_m3": 0.0004308984544727739,
+    "injector_m2": 0.0011184069846779656,
+    "outlet_m2": 0.00456036731187748,
+    "innerWall_m2": 0.0158475756454745,
+    "outerWall_m2": 0.03638718275093842,
+    "coreEnd_m2": 0.0034419603271995144
+  },
+  "mesh_controls": {
+    "ntheta": 64,
+    "nr": 4,
+    "nz": 24,
+    "nz_downstream": 24,
+    "nr_core": 8
+  },
+  "cell_count": 30720,
+  "coordinates": "Cartesian x,y,z; axis +z; azimuth atan2(y,x)",
+  "boundaries": [
+    "injector",
+    "innerWall",
+    "outerWall",
+    "outlet",
+    "coreEnd"
+  ],
+  "expansion_reference": "Mundt printed pp. 29-30, 37; outer core 152 mm",
+  "omissions": [
+    "injector passages/plenums",
+    "predetonator",
+    "facility duct/tank"
+  ],
+  "validated_reactive_model": false
+}

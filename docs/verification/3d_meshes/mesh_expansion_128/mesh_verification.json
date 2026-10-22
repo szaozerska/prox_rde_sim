@@ -1,0 +1,32 @@
+{
+  "status": "passed",
+  "checks": {
+    "mesh_ok": true,
+    "three_geometry_directions": true,
+    "three_solution_directions": true,
+    "cell_count": true,
+    "volume": true,
+    "nonorthogonality": true,
+    "skewness": true,
+    "patch_areas": true,
+    "boundary_closure": true
+  },
+  "volume_relative_error": 0.0004015468493281382,
+  "native_patch_measures": {
+    "injector_m2": 0.0011179578918806949,
+    "innerWall_m2": 0.015845984615685444,
+    "outerWall_m2": 0.03638352963120601,
+    "outlet_m2": 0.004558536110747501,
+    "coreEnd_m2": 0.0034405782188668423,
+    "boundary_closure_relative": 1.704421424453393e-15
+  },
+  "patch_relative_errors": {
+    "injector_m2": 0.00040154684602589086,
+    "outlet_m2": 0.0004015468502305275,
+    "innerWall_m2": 0.00010039578448139963,
+    "outerWall_m2": 0.00010039578379605896,
+    "coreEnd_m2": 0.00040154685158633185
+  },
+  "max_nonorthogonality_deg": 36.1604516545,
+  "max_skewness": 0.636621760177
+}

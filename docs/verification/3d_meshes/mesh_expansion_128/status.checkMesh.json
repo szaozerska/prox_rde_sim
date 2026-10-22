@@ -1,0 +1,23 @@
+{
+  "command": [
+    "checkMesh",
+    "-allTopology",
+    "-allGeometry"
+  ],
+  "image_id": "sha256:ecfef04e386b8b48bc61c8d14c09e1efc294935d7ba47d878740cd650afa82c6",
+  "input_sha256": {
+    "constant/polyMesh/boundary": "5a47e73f56513bd8d95e5eb08d5de0fb69c0087a80d3c1c3501e4b265e257efb",
+    "constant/polyMesh/faces": "a9ea249cd5f24d7660608c3e86871885f2151717ba22526e6c8c06f3959ae401",
+    "constant/polyMesh/neighbour": "4a00ce977b8743f575e85c7e151e91edd1524f5b71995bf44a80277468c06841",
+    "constant/polyMesh/owner": "e469c0716c30b629c8e65a243f177b2fd9270fa77313512f09475bfda786f5ec",
+    "constant/polyMesh/points": "5a53e06c680ec5b47661588aa931fc501dcfccb4a578341e2614f6b4f852bca8",
+    "system/blockMeshDict": "047e319d746719f9148a1bc91595113bec88d03ab02a4def651f0b543ef1dc6f",
+    "system/controlDict": "45e8303b3fb0ac1266062664516028b562e426f5a6f022e9a3df58a8d991f773",
+    "system/fvSchemes": "b1a60f342320c754b29bc01aadb7bb15f9de861fb3e4bab5b586c4a5895eda58",
+    "system/fvSolution": "1a65c73d5f8e8b3dcaf3fb61e6cc67a3e4c70d636b1b3a338d7432ea3edbaca2"
+  },
+  "wall_timeout_s": 120,
+  "status": "process_completed",
+  "returncode": 0,
+  "wall_time_s": 4.598258361998887
+}
