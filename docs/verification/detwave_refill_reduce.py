@@ -20,8 +20,13 @@ rho_ref = c['p1'] / (c['R'] * 300)
 j = int(np.argmin(abs(z - .001)))
 k = int(np.argmin(abs(z - .003)))
 rows = []
+missing = []
 for us in [0, 10, 20, 30, 40, 50]:
-    with np.load(p / 'fields' / f't_{us:05d}.0000us.npz') as a:
+    field = p / 'fields' / f't_{us:05d}.0000us.npz'
+    if not field.exists():
+        missing.append(us)
+        continue
+    with np.load(field) as a:
         w, rate = a['primitive'], a['rate']
     temperature = w[3] / w[0] / c['R']
     fresh = w[0] * (1 - w[4])
@@ -34,7 +39,9 @@ for us in [0, 10, 20, 30, 40, 50]:
         temperature_near_1mm_K=float(temperature[region, j].mean()),
         pressure_near_1mm_MPa=float(w[3, region, j].mean() / 1e6),
         rate_near_1mm_per_s=float(rate[region, j].mean())))
-result = dict(run=str(p.resolve()), strip_x_mm=[8, 15],
+if not rows:
+    raise ValueError('no requested saved fields available')
+result = dict(run=str(p.resolve()), strip_x_mm=[8, 15], missing_times_us=missing,
     actual_sample_heights_mm=[float(z[j]*1000), float(z[k]*1000)],
     rho_reference_kg_m3=rho_ref,
     definitions='Fresh-equivalent height integrates rho*(1-progress) over the entire axial column and divides by initial fresh density. Cold-cell depth sums cells with progress<0.1 and T<600 K, not necessarily contiguous. Neither is a detonability criterion. Saved primitive arrays are float32.',

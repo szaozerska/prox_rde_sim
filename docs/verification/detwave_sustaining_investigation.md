@@ -668,6 +668,32 @@ visible. The decisive 28–30 us return has not yet occurred in the HLLC run.
 The larger short-chemistry HLL job has reached 48 us with no invalid states;
 neither active case is yet evidence of sustained periodic operation.
 
+### First-return refill comparison (21:22 UTC)
+
+The HLLC run reaches 30 us without invalid states. In the same x=8–15 mm strip
+ahead of its returning wave, fresh-equivalent column height is **1.081 mm**, versus
+0.774 mm with HLL. Total depth of cells with progress<0.1 and T<600 K is
+**1.142 versus 0.652 mm**. Near 0.938 mm height, average progress is 0.0239 versus
+0.3761, temperature **338 versus 1794 K**, and rate 0.204 versus 2.23e5/s.
+At 2.940 mm both cases are essentially fully burned. The engine therefore shows
+a substantial local refill benefit from contact restoration, although its fresh
+layer is still much thinner than the initial 3.8 mm charge layer.
+
+At 30 us global fresh inventory is 0.886 versus 0.629 mg (HLLC/HLL), while
+integrated inlet delivery is 2.362 versus 2.366 mg. The benefit is not obtained
+by increasing supply. Maximum pressure is 10.748 versus 7.475 MPa; fraction
+of heat above twice initial pressure is .831 versus .576. **Neither statistic
+establishes sustained detonation.** The pressure ridge still weakens at return,
+and the 30 us field contains both a bow-shaped pressure disturbance in burned
+gas and reaction near the thin inlet layer. The next segment must distinguish
+continued coupled propagation at its foot from a decaying wave over interface
+burning. Do not prematurely call either success or complete extinction at 30 us.
+
+Saved evidence: `detwave_hllc_refill30.json` and `detwave_hllc_prefix30/`.
+The read-only refill reducer now explicitly lists unavailable requested field
+times instead of requiring a completed 50 us run; no CFD source changed.
+The larger short-chemistry case is at 52 us; its full return is still pending.
+
 ## Active-run handoff (historical launch commands; see latest statuses above)
 
 Both simulations run in this branch's worktree, not the original checkout.

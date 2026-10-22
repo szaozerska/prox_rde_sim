@@ -1,0 +1,59 @@
+{
+  "run": "/private/tmp/prox-rde-detwave-fix/rde_sim_starter/runs/detwave_25fi5_compact_hllc",
+  "strip_x_mm": [
+    8,
+    15
+  ],
+  "missing_times_us": [
+    40,
+    50
+  ],
+  "actual_sample_heights_mm": [
+    0.938423645320197,
+    2.9403940886699504
+  ],
+  "rho_reference_kg_m3": 5.4565272091514485,
+  "definitions": "Fresh-equivalent height integrates rho*(1-progress) over the entire axial column and divides by initial fresh density. Cold-cell depth sums cells with progress<0.1 and T<600 K, not necessarily contiguous. Neither is a detonability criterion. Saved primitive arrays are float32.",
+  "samples": [
+    {
+      "time_us": 0,
+      "fresh_equivalent_height_mm": 3.8000001907348633,
+      "cold_fresh_cell_depth_mm": 3.753694581280788,
+      "progress_near_1mm": 0.0,
+      "progress_near_3mm": 0.0,
+      "temperature_near_1mm_K": 299.9999694824219,
+      "pressure_near_1mm_MPa": 0.5216547846794128,
+      "rate_near_1mm_per_s": 0.020796744152903557
+    },
+    {
+      "time_us": 10,
+      "fresh_equivalent_height_mm": 0.06163434684276581,
+      "cold_fresh_cell_depth_mm": 0.013406052076002813,
+      "progress_near_1mm": 0.9998598694801331,
+      "progress_near_3mm": 1.0,
+      "temperature_near_1mm_K": 3012.541748046875,
+      "pressure_near_1mm_MPa": 1.2654058933258057,
+      "rate_near_1mm_per_s": 169.70724487304688
+    },
+    {
+      "time_us": 20,
+      "fresh_equivalent_height_mm": 0.5068324208259583,
+      "cold_fresh_cell_depth_mm": 0.5853976073187896,
+      "progress_near_1mm": 0.7705541253089905,
+      "progress_near_3mm": 0.9999970197677612,
+      "temperature_near_1mm_K": 2781.46923828125,
+      "pressure_near_1mm_MPa": 0.480904221534729,
+      "rate_near_1mm_per_s": 181659.828125
+    },
+    {
+      "time_us": 30,
+      "fresh_equivalent_height_mm": 1.0812525749206543,
+      "cold_fresh_cell_depth_mm": 1.1417487684729064,
+      "progress_near_1mm": 0.023875027894973755,
+      "progress_near_3mm": 0.9999996423721313,
+      "temperature_near_1mm_K": 337.76959228515625,
+      "pressure_near_1mm_MPa": 0.5261020660400391,
+      "rate_near_1mm_per_s": 0.20449544489383698
+    }
+  ]
+}
