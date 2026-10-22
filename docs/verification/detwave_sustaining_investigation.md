@@ -410,6 +410,46 @@ Current secondary sources have been copied and fingerprint-verified under
 snapshots allow recovery without silently changing the numerical model of a run.
 After integration, check affected code before launching tests with the new source.
 
+## Completed original-chemistry control (20:25 UTC)
+
+Original Run 937 finished its declared 40 us segment: 4000 accepted steps,
+zero invalid states, no execution error, and native budget residuals near
+machine precision. Runtime was 4272 s under concurrent host load. It did **not**
+preserve a shock-supported reaction front. At the 1.062 mm ring, the forward
+pressure structure remains, but the maximum reaction rate within 2 mm of its
+threshold front falls to 0.172/s by 40 us; even the maximum in the forward
+sector behind it is only 4.97/s. Full fields show reaction mainly on displaced
+fresh/product interfaces, separated from the pressure front.
+
+At the common 30 us sample, original versus shortened chemistry gives:
+
+| Diagnostic at 1.062 mm | Original | Quarter reaction length |
+|---|---:|---:|
+| Forward pressure maximum | 3.198 MPa | 14.468 MPa |
+| Main rate peak behind threshold front | 20.755 mm | 0.625 mm |
+| Maximum rate within 2 mm of front | 0.385/s | 651157/s |
+| Threshold-front displacement speed, 20–30 us | 1250 m/s | 1988 m/s |
+
+These are pre-return diagnostics in the explicitly limited x=22–100 mm sector,
+not independent shock reconstruction or a steady wave-speed fit. At 40 us the
+original's nominal peak separation becomes smaller simply because near-wall
+reaction has nearly vanished; **a small gap to a negligible peak is not recovery**.
+The full rate amplitude must accompany any proximity metric.
+
+Final original fresh inventory is 22.890 mg versus 15.393 mg initially, with
+10.055 mg injected. Only 13.44% of instantaneous global heat release is in cells
+above twice initial pressure. This agrees with early decoupling in a system that
+still contains fuel, not total depletion. The formed start rules out failure to
+establish an initial wave as a sufficient explanation for this control. Shorter
+chemistry's stronger coupled propagation through 30 us supports H1, subject to
+the already-recorded initial-profile inventory difference. Periodic survival
+remains untested at this time; this is not a complete sustaining fix.
+
+Evidence: `detwave_engine_20to40us.json`, the generic read-only reduction
+`detwave_original_final40_metrics.json`, and saved final full fields. The
+compact-seed small-engine job and short-chemistry Run 937 remain active. No
+extension of the failed original control is needed before the main checkpoint.
+
 ## Active-run handoff (replace with results when complete)
 
 Both simulations run in this branch's worktree, not the original checkout.
