@@ -61,9 +61,10 @@ Document each increment and push it to main after verification. The old automati
 ## Subsequent diagnostic review
 
 The [layer-height / reaction-length review](docs/verification/layer_diagnostic_review.md)
-finds the central hypothesis credible and still untested: at the time of that review no multirow reactive strip, formed-profile layer-height
+identified the central hypothesis as credible and untested at that time: at the time of that review no multirow reactive strip, formed-profile layer-height
 bracket, or matched ignition control had been run. C1 now passes; the latter
-two controls remain pending. Saved-profile postprocessing gives 5.72 µs to 95% surrogate heat
+layer comparison now has coarse evidence with refinement in progress; matched
+ignition comparison remains pending. Saved-profile postprocessing gives 5.72 µs to 95% surrogate heat
 release versus a 4.16–4.39 µs illustrative transverse relief scale. This supports
 a targeted test, not a proven extinction criterion. The submitted diagnosis
 incorrectly asserted delayed outflow and broadly excluded outlet/contact effects.
@@ -150,3 +151,18 @@ D3 was staged in `/private/tmp/prox_rde_d3_work`; the subsequent audit used
 with original-file checks and byte verification through normal approval.
 The repository and saved outputs are the durable working copies; the temporary
 staging directory is not required for further work.
+
+## Controlled diagnostic commands
+
+From `rde_sim_starter/`, choose a new output path for every run:
+
+```sh
+NUMBA_NUM_THREADS=2 ../.venv/bin/python controlled.py strip --out runs/new_strip
+NUMBA_NUM_THREADS=2 ../.venv/bin/python controlled.py formed --dx-mm 0.5 --out runs/new_formed
+NUMBA_NUM_THREADS=2 ../.venv/bin/python controlled.py layer --height-mm 3.8 --dx-mm 0.5 --out runs/new_layer
+../.venv/bin/python plot.py --controlled runs/new_layer --out runs/new_layer/plots
+```
+
+The strip/formed/layer CLI caps are 95/40/40 µs. Do not automatically rerun
+these commands when inspecting existing plots; render their saved run instead.
+Layer runs retain `progress.json` while advancing and final native fields/budgets.

@@ -146,3 +146,11 @@ RDE-001 remains open. Independent 3D work belongs to the other session/checkout.
   chemistry, physical domain, initial conserved charge and duration. Those runs
   are underway. C3 is not yet closed; no formal critical-height bracket, stable
   rotating wave, chemistry change or C4 initiation conclusion is claimed.
+
+### Cross-document consistency review
+
+Updated the open issue, handoff and starter status to remove stale claims that
+the C1/C2 controls and coarse layer comparison had not been run. Added direct
+CLI reproduction commands. This documentation-only synchronization changes no
+inputs or source; the 67-test result above remains applicable. Refinement is
+still in progress and RDE-001 remains open.

@@ -106,8 +106,9 @@ this does not establish the suitability of the surrogate or boundary closures.
 
 The [layer-diagnostic review](layer_diagnostic_review.md) checks the subsequent
 external diagnosis against saved data. Thin-layer survival and ignition adequacy
-are leading untested hypotheses. A formed-profile layer-height comparison and a
-matched blast/profile control have not been run. Outlet isolation and negligible
+are the leading controlled-test questions. C1 row/direction equivalence and C2
+formed-profile verification now pass. C3 has a coarse thin/thick contrast, with
+refinement still in progress; a matched blast/profile control remains pending. Outlet isolation and negligible
 engine contact losses have not been established by the arguments in that diagnosis.
 
 These are hypotheses, not established explanations or instructions to tune for
@@ -144,13 +145,32 @@ surrogate-structure hypotheses without isolating the 2D failure's root cause:
   This is an independent physical reference at the documented state; the
   paper's tabulated CJ difference and exact NASA CEA replication remain open.
 
-**Next work:** the user authorized the reviewed [C1–C6 controlled investigation](../plans/controlled_2d_tests.md). Start with multirow/directional equivalence and
-formed-profile propagation in a fully filled channel; then layer survival and
-conditional blast/profile comparison. Those decisive tests have not yet been
-performed. C1/C2 are gates before interpreting C3. Preserve initial inventories,
-freeze chemistry across meshes, and check driver/boundary causality. The old
-0.25 mm engine comparison is superseded. This session commits only to main;
-independent 3D preparation is not blocked by the 2D investigation.
+## Controlled evidence after D3
+
+[C1–C3 evidence](controlled_2d_progress.md) narrows the investigation:
+
+- C1's 95 µs matched 1D/multirow/rotated runs have identical saved fields and
+  fronts. This excludes the specific coordinate/row-path errors tested.
+- C2's conservative formed profile propagates through 40 µs on three grids,
+  with continued near-front reaction and speeds approaching the surrogate CJ
+  value. Jump, inventory, table and source-step checks pass; remote-boundary
+  characteristic cones remain clear of the measured reaction region.
+- C3 at 0.5 mm: a 3.8 mm formed wave loses leading shock/reaction coupling by
+  40 µs, while a 15 mm layer retains strong coupling near its wall/middle.
+  Both are valid and conservative with positive remote-boundary margins.
+  Interface burning remains visible. The 0.25 mm comparisons are in progress;
+  no converged critical-height threshold or unique root cause is established.
+- These are isolated unforced propagation controls. They show that the declared
+  model can propagate in 2D and can lose coupling in a thin layer even when
+  initialized with a formed wave. They do not reproduce the complete engine,
+  isolate all numerical mixing effects, or exclude a separate initiation problem.
+
+**Next work:** finish C3 refinement and review the combined fields, reaction,
+budgets and causality evidence before conditional C4 initiation comparison.
+Keep chemistry frozen across the comparison. Do not launch an engine rerun
+merely because the isolated thick layer supports a wave. The [reviewed plan](../plans/controlled_2d_tests.md)
+contains the remaining gates. This session commits only to main; independent
+3D preparation is not blocked by this investigation.
 
 A fix must demonstrate continuing shock-associated heat release after startup,
 with state validity, conservation and sensitivity evidence. Neither numerical

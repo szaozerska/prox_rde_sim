@@ -35,7 +35,7 @@ convergence, 2D sustained wave, whole-engine force/torque validation, wall-loss
 closure, CAD or 3D work is claimed. The full 59-test suite passed during D3;
 no new studies or test suite were run for the documentation-only
 [paper audit](../docs/verification/mundt_model_audit.md). Production code and inputs
-are unchanged. The reviewed controlled-test plan now specifies C1–C6. C1 has passed; C2 is
+are unchanged. The reviewed controlled-test plan now specifies C1–C6. C1/C2 have passed and C3 refinement is
 next; the proposed unchanged-start 0.25 mm engine case is superseded.
 
 The authorized next implementation is [C1–C6 controlled 2D testing](../docs/plans/controlled_2d_tests.md), published on main in small verified increments. The prior automatic engine refinement is superseded.
@@ -44,15 +44,15 @@ The authorized next implementation is [C1–C6 controlled 2D testing](../docs/pl
 
 C1 passed at 0.5 mm through 95 µs: identical saved fields/fronts in 1D, multirow,
 rotated and original-open controls; no invalid states; residual <4e-15. Default
-suite 60 passed/one opt-in skipped. C2 formed-profile verification is next.
+suite at that increment: 60 passed/one opt-in skipped. C2 has since passed.
 See [increment log](../docs/verification/controlled_2d_progress.md).
 
 ## C2 formed-wave update
 
 Conservative initializer, jump/inventory/table checks and four bounded formed-wave
 runs passed. Three meshes give 20–40 µs speeds 2478.15/2472.97/2472.07 m/s with
-continued near-front reaction and isolated remote boundaries. C3 layer response
-is next; Run 937 remains unresolved. See the increment log for qualifications.
+continued near-front reaction and isolated remote boundaries. C3 now has coarse
+evidence with refinement in progress; Run 937 remains unresolved. See the increment log for qualifications.
 
 ## C3 coarse layer update
 
