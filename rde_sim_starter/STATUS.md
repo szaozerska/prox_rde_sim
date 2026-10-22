@@ -1,22 +1,30 @@
-# Starter status — D0 run plumbing, October 21, 2026
+# Starter status — D2 coupling diagnostics, October 21, 2026
 
-Foundation and bounded-run plumbing are implemented. Small synthetic nonreactive
-cases verify output/restart. The first reactive Run 937 check is still pending.
-See [the current handoff](../HANDOFF.md) and
-[verification record](../docs/verification/d0_run_plumbing.md).
+Source accuracy, 1D propagation and the bounded Run 937 workflow are implemented.
+See [the handoff](../HANDOFF.md) and [D1 results](../docs/verification/d1_propagation.md)
+and [D2 comparison](../docs/verification/d2_coupling.md) for observed outcomes; completion of the time cap does not establish detonation.
+
+**OPEN: [RDE-001](../docs/verification/run937_unresolved.md).** The 3.8 and 7.6 mm
+Run 937 starts do not demonstrate sustained detonation by 189.394 microseconds.
+D2 diagnostic work is implemented; the broader physics/reference/refinement work
+is incomplete and the sustained-wave milestone is not met. The issue record
+specifies candidate causes and checks needed to claim a fix.
 
 | Component | Current state |
 |---|---|
-| `physics.py` | One-step EOS/chemical energy, source, inherited equivalent injector and strict validity checks. |
-| `solver.py` | HLL/MUSCL/SSP-RK2; invalid candidates rejected. Actual RK-weighted boundary/source integrals and cumulative budgets now recorded on accepted steps. Flow CFL plus optional cap; automatic source accuracy control remains pending. |
-| `calibrate.py` | Pure surrogate calculations and explicit-output CLI; supplied calibration preserved. |
-| `run.py` | Three-interval new-run cap, five-total resume, frozen inputs, periodic ignition masks, early fields, per-step diagnostics, transient means, atomic checkpoints and failure recovery. |
-| `analyze.py` | Pure means, window weights, exit contribution, directional-spectrum reduction and storage-inclusive conservation budgets. No automatic wave/stability verdict. |
-| `plot.py` | Saved calibration/Sod rendering only. Run-field rendering/front tracking remains D1/D2 work. |
-| `tests/` | Foundation checks plus native open-domain budgets, short CLI/restart, immutable inputs, averaging and failure-injection tests. Opt-in 95 µs detonation baseline not rerun. |
-| `config.yaml` | Explicit schema-1 model/reference/initialization/output settings. Startup included in transient means; old millisecond defaults removed. |
-| Supplied JSON/PNGs | Unchanged inherited calibration/tube evidence, not fresh physical validation. |
+| `physics.py` | One-step EOS/chemical energy/source; global source-slope cap; roundoff-aware validity; consistent sonic/pressure-matched injector plane and open/closed area pressure. |
+| `solver.py` | HLL/MUSCL/SSP-RK2, strict significant-state rejection, unchanged conserved state at tolerated progress roundoff, actual RK-weighted budgets. Flow and source step caps. |
+| `calibrate.py` | Pure surrogate calculation; inherited calibration and chemistry parameters preserved. |
+| `run.py` | Bounded three-interval run and five-total resume, frozen inputs, snapshots, native probe/station histories, means, failure recovery, version-2 checkpoints. |
+| `test_1d.py` | Saved 95 µs propagation experiment plus compatibility test entry point; common initializer used by opt-in test. |
+| `analyze.py` | Pure reductions, conservation, checked saved-run reader and hysteretic pressure arrivals. No detonation classifier. |
+| `coupling.py` | Saved full-height chemical-conversion diagnostics, periodic pressure-peak candidates, conservative track association and explicit case-input comparison. No detonation classifier. |
+| `plot.py` | Saved calibration, 1D fields/fronts, engine fields, multi-height candidate tracks, conversion-height histories and case comparison. No CFD calls. |
+| `tests/` | Foundation/D0 coverage plus independent source refinement, injector-plane consistency, normal Mach, roundoff handling, event detection and read-only saved-output checks. |
 
-The inherited report of 2D extinction near 90 µs has not been reproduced or repaired.
-Native flux closure does not validate the inlet/outlet physics. No sustained
-rotation, experimental pressure agreement, whole-engine thrust or torque is claimed.
+The 1D default/half-source-step speeds are 2490.157/2490.179 m/s, compared with the
+fitted 2471 m/s surrogate reference. Source accuracy is supported for the tested
+states, not for arbitrary chemistry. Run 937 completed 189.394 µs without invalid
+states; its weakening pressure fronts do not establish sustained detonation.
+No spatial convergence, physical CJ/ZND, whole-engine force/torque validation,
+wall-loss closure, CAD or 3D work is claimed.

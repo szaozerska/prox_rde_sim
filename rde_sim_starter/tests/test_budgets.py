@@ -33,7 +33,7 @@ class BudgetTests(unittest.TestCase):
 
     def test_rejected_stage_does_not_commit_budget_or_state(self):
         s = Solver(4, 1, .1, .1, (1.4, 10., 1., 1e10, 0.),
-                   (PERIODIC, PERIODIC, WALL, WALL))
+                   (PERIODIC, PERIODIC, WALL, WALL), source_cfl=None)
         s.set_prim(1., 0., 0., 100., .2)
         initial = s.U.copy()
         with self.assertRaises(InvalidStateError):

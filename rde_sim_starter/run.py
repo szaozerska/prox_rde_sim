@@ -23,11 +23,11 @@ import yaml
 
 from analyze import conservation_budget, exit_contribution
 from calibrate import calibrate
-from physics import total_energy
+from physics import total_energy, reaction_rate, PROGRESS_TOL
 from solver import Solver, InvalidStateError, NG, PERIODIC, INJECTOR, OUTFLOW
 
 HERE = Path(__file__).resolve().parent
-FORMAT_VERSION = 1
+FORMAT_VERSION = 2
 
 
 def _safe_json(value):
@@ -139,6 +139,9 @@ def resolve_case(config, calibration):
     max_dt = nm.get('max_step_ns')
     if max_dt is not None:
         max_dt = _positive(max_dt, 'maximum step') * 1e-9
+    source_cfl = _positive(nm.get('source_cfl', .05), 'source CFL')
+    if source_cfl > .25:
+        raise ValueError('source_cfl must be <= .25')
     stations = np.asarray(config['diagnostics']['pressure_stations_mm'], dtype=float) * 1e-3
     if stations.ndim != 1 or not np.all(np.isfinite(stations)) or np.any(stations < 0) or np.any(stations > length):
         raise ValueError('pressure stations must lie within the modeled annulus')
@@ -147,7 +150,7 @@ def resolve_case(config, calibration):
         raise ValueError('probe must lie inside the axial domain')
     resolved = dict(nx=nx, ny=ny, dx=width / nx, dy=length / ny,
                     width=width, length=length, r_outer=ro, r_mean=rm, gap=gap,
-                    gas=gas, cfl=nm['cfl'],
+                    gas=gas, cfl=nm['cfl'], source_cfl=source_cfl,
                     injector=[op['p_plenum_kPa'] * 1e3, op['T_plenum_K'], geo['area_ratio'], model['discharge_coefficient']],
                     p_back=op['p_back_kPa'] * 1e3, f_ref=f_ref,
                     average_start=average_start, snapshot_interval=snapshot_interval,
@@ -167,7 +170,7 @@ def build_solver(resolved, calibration, initialize=True):
     r = resolved
     solver = Solver(r['nx'], r['ny'], r['dx'], r['dy'], tuple(r['gas']),
                     (PERIODIC, PERIODIC, INJECTOR, OUTFLOW), inj=r['injector'],
-                    p_back=r['p_back'], cfl=r['cfl'])
+                    p_back=r['p_back'], cfl=r['cfl'], source_cfl=r['source_cfl'])
     if not initialize:
         return solver
     x = (np.arange(solver.nx) + .5) * solver.dx
@@ -229,11 +232,14 @@ def _manifest_hash(directory):
 
 def _snapshot(solver, resolved, directory):
     W = solver.prim()
+    temperature=W[3]/(solver.R*W[0])
+    rate=reaction_rate(W[4],temperature,solver.R,solver.k,solver.Ea)
     _write_npz(Path(directory) / 'fields' / f'step_{solver.steps:09d}.npz',
                t=np.array(solver.t), step=np.array(solver.steps), pressure=W[3].astype('float32'),
                progress=W[4].astype('float32'), density=W[0].astype('float32'),
                u_theta=W[1].astype('float32'), u_z=W[2].astype('float32'),
-               temperature=(W[3] / (solver.R * W[0])).astype('float32'))
+               temperature=temperature.astype('float32'),
+               reaction_rate=rate.astype('float32'))
 
 
 def _checkpoint(solver, state, directory, history):
@@ -244,6 +250,7 @@ def _checkpoint(solver, state, directory, history):
     metadata = dict(format_version=FORMAT_VERSION, inputs_sha256=state['inputs_sha256'],
                     t=solver.t, steps=solver.steps, rho_min=solver.rho_min, p_min=solver.p_min,
                     invalid_state_count=solver.invalid_state_count, last_failure=solver.last_failure,
+                    progress_roundoff_max=solver.progress_roundoff_max,
                     history_bytes=history.buffer.tell(), average_weight=state['average_weight'],
                     snapshot_tick=state['snapshot_tick'], checkpoint_tick=state['checkpoint_tick'],
                     passage_tick=state['passage_tick'])
@@ -267,6 +274,11 @@ def _history_row(solver, r):
                exit_cell_force_estimate_N=exit_contribution(W[0, :, -1], W[2, :, -1],
                                                           W[3, :, -1], solver.dx * r['gap'], r['p_back']))
     mach = W[2, :, -1] / np.sqrt(solver.g * W[3, :, -1] / W[0, :, -1])
+    probe=r['probe_index']
+    row.update(probe_pressure_Pa=float(W[3,0,probe]), probe_progress=float(W[4,0,probe]),
+               probe_temperature_K=float(W[3,0,probe]/(solver.R*W[0,0,probe])),
+               progress_min=float(W[4].min()),progress_max=float(W[4].max()),
+               pressure_min_Pa=float(W[3].min()), pressure_max_Pa=float(W[3].max()))
     row.update(exit_cell_axial_mach_min=float(mach.min()), exit_cell_axial_mach_max=float(mach.max()),
                exit_cell_subsonic_fraction=float(np.mean(np.abs(mach) < 1)),
                exit_cell_reverse_fraction=float(np.mean(mach < 0)))
@@ -290,9 +302,10 @@ def _save_summary(solver, r, state, directory, status, target, error=None):
                    reason=None if weight > 0 else 'no accepted steps overlap the averaging window')
     result = dict(format_version=FORMAT_VERSION, status=status, t=solver.t, steps=solver.steps,
                   target_time_s=target, reference_frequency_Hz=r['f_ref'], observed_passages=None,
-                  observed_passages_reason='front/arrival tracking is not implemented in D0',
+                  observed_passages_reason='pressure events are reported by plotting; detonation passages require field inspection',
                   average=average, budgets=budget, invalid_state_count=solver.invalid_state_count,
                   last_failure=solver.last_failure, error=error,
+                  progress_roundoff_max=solver.progress_roundoff_max, progress_tolerance=PROGRESS_TOL,
                   engine_torque_Nm=None, torque_reason='no wall-traction model; angular residual is a conservation check')
     _write_json(Path(directory) / 'summary.json', result)
     return _safe_json(result)
@@ -400,6 +413,10 @@ def start_run(config, calibration, directory, test_passages=3, source_text=None)
                             angular_momentum_units='kg m^2/s', pressure_units='Pa', time_units='s',
                             pressure_operator='circumferential cell-centre mean, axial interpolation with endpoint extension',
                             total_energy='thermal + kinetic + unspent chemical energy',
+                            injector_plane='converging opening: sonic or chamber-pressure matched; open/closed face pressure weighted by nominal area',
+                            source_step='global reaction-slope bound, see physics.source_step_limit',
+                            progress_tolerance=PROGRESS_TOL,
+                            probe='first circumferential cell at saved probe_index; native step sampling',
                             force='annulus-exit numerical momentum/pressure contribution; not whole-engine thrust'))
         _write_json(directory / 'inputs.json', manifest)
         state = dict(inputs_sha256=_manifest_hash(directory),
@@ -429,6 +446,7 @@ def _load_checkpoint(directory):
         solver.rho_min, solver.p_min = metadata['rho_min'], metadata['p_min']
         solver.invalid_state_count = metadata['invalid_state_count']
         solver.last_failure = metadata['last_failure']
+        solver.progress_roundoff_max = metadata['progress_roundoff_max']
         solver._check_state(solver.U, 'checkpoint load')
         for name, shape in [('cumulative_boundary', (4, 5)), ('cumulative_source', (5,))]:
             value = saved[name]

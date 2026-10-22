@@ -1,0 +1,66 @@
+# D2 controlled startup comparison. Only fill_height_mm differs from the D1 case.
+# Ignition and products-behind height follow the fill, so ignition energy also changes.
+# Reduced Run 937 case, Mundt (2023). Reference data are not extra boundary conditions.
+schema_version: 1
+model:
+  geometry: constant_annulus
+  feed: premixed_plenum  # converging opening, sonic or chamber-pressure matched
+  walls: inviscid
+  chemistry: one_step
+  discharge_coefficient: 0.76  # inherited effective value; not independently validated
+
+geometry:
+  r_outer_mm: 38.1
+  r_inner_mm: 33.1
+  length_mm: 76.2
+  area_ratio: 0.110
+
+operating_point:
+  mass_flux: 240.21         # reference kg/(s m^2); used by surrogate p1 fit
+  mdot_target_gps: 268.65   # reference only; plenum model predicts injected flow
+  phi: 1.176
+  p_plenum_kPa: 1350.0     # inherited rounded equivalent feed, not the exact mean
+  T_plenum_K: 300.0        # inherited equivalent-feed temperature
+  p_back_kPa: 100.2
+  D_CJ: 2471.0
+  q_MJkg: 5.5
+  f_paper_kHz: 15.84       # duration budget only; does not impose wave count/speed
+  N_paper: 2
+
+experimental_reference:   # master plan section 2.1, Mundt Tables 2-1, 2-2, 3-2, 4-1
+  oxygen_plenum_kPa: 1309.5
+  methane_plenum_kPa: 1399.4
+  oxygen_plenum_K: 303.0
+  methane_plenum_K: 301.0
+  pressure_stations_mm: [0, 22.2, 34.9, 47.6, 60.3, 73.0]
+  mean_pressures_kPa: [368.5, 323.3, 292.3, 281.1, 255.4, 238.4]
+  peripheral_speed_mps: 1893.0  # outer-radius convention
+
+chemistry:
+  Ea_over_RT1: 20.0
+  L_half_mm: 1.0
+
+numerics:
+  dx_mm: 0.5
+  cfl: 0.4
+  source_cfl: 0.05         # global one-step source-slope cap; check by halving
+  average_start_us: 0.0     # explicitly transient: startup included
+  snapshot_every_us: 2.0
+  checkpoint_every_us: 10.0
+  max_step_ns: null        # optional additional step cap
+  probe_y_mm: 1.0
+
+initialization:
+  kind: ignition
+  fill_height_mm: 7.6
+  product_temperature_K: 1500.0
+  patches: 1
+  patch_width_mm: 10.0
+  products_behind_mm: 20.0
+  offset_fraction: 0.1
+  pressure_multiplier: 2.0
+  u_theta: 0.0
+  u_z: 0.0
+
+diagnostics:
+  pressure_stations_mm: [0, 22.2, 34.9, 47.6, 60.3, 73.0]

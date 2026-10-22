@@ -54,7 +54,7 @@ class SolverTests(unittest.TestCase):
             np.testing.assert_array_equal(s.U,original)
 
     def test_rejected_reaction_stage_is_atomic(self):
-        s=uniform_solver()
+        s=uniform_solver(source_cfl=None)
         s.k=1e8
         original=s.U.copy()
         with self.assertRaises(InvalidStateError) as caught:
@@ -134,14 +134,8 @@ class SolverTests(unittest.TestCase):
     @unittest.skipUnless(os.environ.get('RDE_RUN_REACTIVE_BASELINE')=='1','95 us inherited detonation check is opt-in; not part of the fast suite')
     def test_inherited_detonation_baseline(self):
         c=json.loads((Path(__file__).resolve().parents[1]/'calib.json').read_text())
-        g,q,R,k,Ea=(c[name] for name in ['gamma','q','R','k','Ea'])
-        dx=.25e-3; n=1000
-        s=Solver(n,1,dx,dx,(g,q,R,k,Ea),(REFLECT,TRANSMIT,WALL,WALL))
-        x=(np.arange(n)+.5)*dx
-        p=np.full((n,1),c['p1']); r=np.full((n,1),c['p1']/(R*c['T1'])); xi=np.zeros((n,1))
-        hot=x<.01
-        p[hot]=2*c['CJ']['p']; r[hot]=p[hot]/(R*c['CJ']['T']); xi[hot]=1.
-        s.set_prim(r,0.,0.,p,xi)
+        from test_1d import detonation_case
+        s,x=detonation_case(c)
         ts,xs=[],[]
         while s.t<95e-6:
             s.step(dt_max=95e-6-s.t)

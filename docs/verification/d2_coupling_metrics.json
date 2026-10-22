@@ -1,0 +1,3062 @@
+{
+  "comparison": {
+    "config_differences": [
+      {
+        "path": "initialization.fill_height_mm",
+        "left": 3.8,
+        "right": 7.6
+      }
+    ],
+    "identical_calibration": true,
+    "identical_numerical_implementation": true,
+    "initialization_energy_change_J": [
+      5.026505930902999,
+      9.424698620442939
+    ],
+    "baseline": "/Users/sgfx/Desktop/Projects/prox_rde_sim/rde_sim_starter/runs/d1_run937",
+    "variant": "/private/tmp/prox_rde_d2_work/rde_sim_starter/runs/d2_fill_7p6mm",
+    "interpretation": "Controlled inputs must be inspected. Pressure/conversion overlap and short tracks do not establish sustained detonation.",
+    "cases": [
+      {
+        "status": "completed_limit",
+        "time_s": 0.0001893939393939394,
+        "prefix_step": 13165,
+        "last_snapshot": {
+          "time_s": 0.0001893939393939394,
+          "pressure_max_Pa": 450731.34375,
+          "reaction_rate_max_per_s": 87924.4296875,
+          "thermal_conversion_W": 279444.46771524294,
+          "conversion_height_quantiles_m": [
+            0.012677784204002973,
+            0.018323160390299607,
+            0.022085074422561406
+          ],
+          "conversion_fraction_p_above_threshold": 0.0,
+          "conversion_fraction_below_initial_fill": 5.849913324493145e-07
+        },
+        "native_chemical_conversion_J": 87.26699178927308,
+        "snapshot_trapezoid_conversion_J": 87.20775455320445
+      },
+      {
+        "status": "completed_limit",
+        "time_s": 0.0001893939393939394,
+        "prefix_step": 13165,
+        "last_snapshot": {
+          "time_s": 0.0001893939393939394,
+          "pressure_max_Pa": 607945.0625,
+          "reaction_rate_max_per_s": 91980.484375,
+          "thermal_conversion_W": 376716.82375136635,
+          "conversion_height_quantiles_m": [
+            0.009678340763635876,
+            0.01909609474897575,
+            0.026724691272638573
+          ],
+          "conversion_fraction_p_above_threshold": 0.0,
+          "conversion_fraction_below_initial_fill": 0.003248995471250004
+        },
+        "native_chemical_conversion_J": 122.4080348730987,
+        "snapshot_trapezoid_conversion_J": 122.30560267904198
+      }
+    ]
+  },
+  "cases": {
+    "baseline": {
+      "directory": "/Users/sgfx/Desktop/Projects/prox_rde_sim/rde_sim_starter/runs/d1_run937",
+      "status": "completed_limit",
+      "prefix_step": 13165,
+      "time_s": 0.0001893939393939394,
+      "snapshot_count": 96,
+      "inputs_sha256": "794de1f8a3229b1dfba7a17d8d3bd1f7cf5da7981d2ce31627fec1069ef5f86d",
+      "numerical_implementation": {
+        "packages": {
+          "PyYAML": "6.0.3",
+          "llvmlite": "0.45.1",
+          "numba": "0.62.1",
+          "numpy": "2.3.5",
+          "scipy": "1.18.1"
+        },
+        "python": "3.12.0",
+        "source_sha256": {
+          "analyze.py": "84dee7247d1db42074805858295e3b3fe8c7713fd2c695b3edcafd68c59d8247",
+          "calibrate.py": "e43a8522a46ac0d2808adb032aef66e4b019cb5f94ae03ae43c8f490ea0870fa",
+          "physics.py": "6766f8caed3b4d09d77489f5cfc657d848a473094e155d5ac48b3eddc33d975a",
+          "run.py": "18d850b6448259fe546d1a1c48aaae99a4ab74942b56d85b421fc23dee3112af",
+          "solver.py": "f2ecf8fa01ca5228b996872f5b8e29722eb5f314c4aba3c97a7db3aef45b2b83"
+        }
+      },
+      "diagnostics_sha256": "d77b7184dbd806759b87939b5b467edcd2ac79d00b830bbe5ef8c9d2ae1147e7",
+      "definitions": {
+        "thermal_conversion": "rho*q*reaction_rate, W/m^3; internal chemical-to-thermal conversion, not an added total-energy source",
+        "pressure_threshold_Pa": 755833.9445835203,
+        "pressure_prominence_Pa": 94479.24307294004,
+        "rate_peak_threshold_per_s": 1000.0,
+        "rate_peak_prominence_per_s": 100.0,
+        "minimum_peak_spacing_cells": 2,
+        "maximum_tracking_speed_mps": 4942.0,
+        "ambiguity_distance_m": 0.0010008116193986278,
+        "nearby_rate_radius_m": 0.002,
+        "height_quantile_method": "uniform conversion within each axial cell",
+        "reaction_offset": "nearest qualifying reaction-rate peak minus pressure-peak position; signed shortest periodic distance, not a measured reaction-zone length",
+        "interpretation": "Pressure-peak tracks and spatial overlap are diagnostics, not confirmed shocks, detonation passages, wave counts, or engine validation."
+      },
+      "snapshots": [
+        {
+          "time_s": 0.0,
+          "pressure_max_Pa": 21903062.0,
+          "reaction_rate_max_per_s": 0.005199186038225889,
+          "thermal_conversion_W": 0.4389673283606114,
+          "conversion_height_quantiles_m": [
+            0.0004010526315789474,
+            0.002005263157894737,
+            0.0036094736842105265
+          ],
+          "conversion_fraction_p_above_threshold": 0.0,
+          "conversion_fraction_below_initial_fill": 0.9999999999999974
+        },
+        {
+          "time_s": 2e-06,
+          "pressure_max_Pa": 21232228.0,
+          "reaction_rate_max_per_s": 100663.1484375,
+          "thermal_conversion_W": 137901.05153241009,
+          "conversion_height_quantiles_m": [
+            0.0003567447766543282,
+            0.0020027832975026407,
+            0.004974858107248944
+          ],
+          "conversion_fraction_p_above_threshold": 0.8421084229321842,
+          "conversion_fraction_below_initial_fill": 0.7570581534652339
+        },
+        {
+          "time_s": 4e-06,
+          "pressure_max_Pa": 8758166.0,
+          "reaction_rate_max_per_s": 99476.1328125,
+          "thermal_conversion_W": 188611.61873248013,
+          "conversion_height_quantiles_m": [
+            0.0003722274986607954,
+            0.0022883320228395494,
+            0.005643472598696827
+          ],
+          "conversion_fraction_p_above_threshold": 0.8546512943506755,
+          "conversion_fraction_below_initial_fill": 0.6833907388792834
+        },
+        {
+          "time_s": 6e-06,
+          "pressure_max_Pa": 4966084.0,
+          "reaction_rate_max_per_s": 92845.1171875,
+          "thermal_conversion_W": 213013.79826149665,
+          "conversion_height_quantiles_m": [
+            0.00046687181042905535,
+            0.00308493353415632,
+            0.0066166152449876016
+          ],
+          "conversion_fraction_p_above_threshold": 0.8538406450434588,
+          "conversion_fraction_below_initial_fill": 0.58352903172812
+        },
+        {
+          "time_s": 8e-06,
+          "pressure_max_Pa": 3886706.0,
+          "reaction_rate_max_per_s": 85769.953125,
+          "thermal_conversion_W": 242415.92176103027,
+          "conversion_height_quantiles_m": [
+            0.00037384127515044537,
+            0.00340759920691506,
+            0.007641539293671293
+          ],
+          "conversion_fraction_p_above_threshold": 0.8545661722635436,
+          "conversion_fraction_below_initial_fill": 0.540353732583257
+        },
+        {
+          "time_s": 9.999999999999999e-06,
+          "pressure_max_Pa": 3579492.0,
+          "reaction_rate_max_per_s": 82152.3671875,
+          "thermal_conversion_W": 255046.42988054192,
+          "conversion_height_quantiles_m": [
+            0.000476113280024318,
+            0.0039008491334837376,
+            0.008529288718476954
+          ],
+          "conversion_fraction_p_above_threshold": 0.7625124714811081,
+          "conversion_fraction_below_initial_fill": 0.5059582034948352
+        },
+        {
+          "time_s": 1.2e-05,
+          "pressure_max_Pa": 3321624.5,
+          "reaction_rate_max_per_s": 82023.2578125,
+          "thermal_conversion_W": 263300.63323237334,
+          "conversion_height_quantiles_m": [
+            0.0005766535658562152,
+            0.0045374211258387325,
+            0.009223633688765687
+          ],
+          "conversion_fraction_p_above_threshold": 0.7544470573556732,
+          "conversion_fraction_below_initial_fill": 0.46562360490258486
+        },
+        {
+          "time_s": 1.4e-05,
+          "pressure_max_Pa": 3128787.25,
+          "reaction_rate_max_per_s": 81957.6328125,
+          "thermal_conversion_W": 267296.2247408562,
+          "conversion_height_quantiles_m": [
+            0.000654630243344389,
+            0.004991442449331522,
+            0.009774311894692396
+          ],
+          "conversion_fraction_p_above_threshold": 0.7229843994657296,
+          "conversion_fraction_below_initial_fill": 0.42508856432886477
+        },
+        {
+          "time_s": 1.6e-05,
+          "pressure_max_Pa": 2921513.25,
+          "reaction_rate_max_per_s": 78605.328125,
+          "thermal_conversion_W": 265721.84558211453,
+          "conversion_height_quantiles_m": [
+            0.0007763712447610349,
+            0.005319163211549751,
+            0.010249396020458193
+          ],
+          "conversion_fraction_p_above_threshold": 0.5944838311781698,
+          "conversion_fraction_below_initial_fill": 0.38432100708809663
+        },
+        {
+          "time_s": 1.8e-05,
+          "pressure_max_Pa": 2713856.75,
+          "reaction_rate_max_per_s": 80120.390625,
+          "thermal_conversion_W": 260361.3914574655,
+          "conversion_height_quantiles_m": [
+            0.0010220937061177907,
+            0.005651111140428716,
+            0.010671574877616299
+          ],
+          "conversion_fraction_p_above_threshold": 0.4545239478736029,
+          "conversion_fraction_below_initial_fill": 0.3371553983386669
+        },
+        {
+          "time_s": 1.9999999999999998e-05,
+          "pressure_max_Pa": 2702665.75,
+          "reaction_rate_max_per_s": 80286.2109375,
+          "thermal_conversion_W": 253688.68491967974,
+          "conversion_height_quantiles_m": [
+            0.001414834151028251,
+            0.00593536646784549,
+            0.011052795729540998
+          ],
+          "conversion_fraction_p_above_threshold": 0.3651897037502797,
+          "conversion_fraction_below_initial_fill": 0.2857394772821581
+        },
+        {
+          "time_s": 2.2e-05,
+          "pressure_max_Pa": 2783162.0,
+          "reaction_rate_max_per_s": 83223.6953125,
+          "thermal_conversion_W": 248160.96535430918,
+          "conversion_height_quantiles_m": [
+            0.0019162922139823097,
+            0.006194312522533082,
+            0.011408688706863138
+          ],
+          "conversion_fraction_p_above_threshold": 0.2532094536314662,
+          "conversion_fraction_below_initial_fill": 0.23657973882283087
+        },
+        {
+          "time_s": 2.4e-05,
+          "pressure_max_Pa": 2722828.25,
+          "reaction_rate_max_per_s": 84969.640625,
+          "thermal_conversion_W": 245367.55220776665,
+          "conversion_height_quantiles_m": [
+            0.0024507836175516095,
+            0.0064054611368704285,
+            0.011732072691309499
+          ],
+          "conversion_fraction_p_above_threshold": 0.19884810674039605,
+          "conversion_fraction_below_initial_fill": 0.19470605630259136
+        },
+        {
+          "time_s": 2.6e-05,
+          "pressure_max_Pa": 2644425.5,
+          "reaction_rate_max_per_s": 85571.828125,
+          "thermal_conversion_W": 245936.85588595713,
+          "conversion_height_quantiles_m": [
+            0.002956687703089758,
+            0.006588834380902567,
+            0.01200136024224103
+          ],
+          "conversion_fraction_p_above_threshold": 0.16704375887325432,
+          "conversion_fraction_below_initial_fill": 0.16155680554527155
+        },
+        {
+          "time_s": 2.8e-05,
+          "pressure_max_Pa": 2558766.25,
+          "reaction_rate_max_per_s": 84991.7265625,
+          "thermal_conversion_W": 250183.88261014558,
+          "conversion_height_quantiles_m": [
+            0.003410499546359119,
+            0.0067348708336245795,
+            0.0121704471220455
+          ],
+          "conversion_fraction_p_above_threshold": 0.16320690070244462,
+          "conversion_fraction_below_initial_fill": 0.13483748136151788
+        },
+        {
+          "time_s": 2.9999999999999997e-05,
+          "pressure_max_Pa": 2527107.75,
+          "reaction_rate_max_per_s": 85815.7265625,
+          "thermal_conversion_W": 258223.09590045884,
+          "conversion_height_quantiles_m": [
+            0.003782375209953488,
+            0.006832010486100532,
+            0.01222870090299827
+          ],
+          "conversion_fraction_p_above_threshold": 0.16110296785422779,
+          "conversion_fraction_below_initial_fill": 0.1131381068189603
+        },
+        {
+          "time_s": 3.2e-05,
+          "pressure_max_Pa": 2451385.5,
+          "reaction_rate_max_per_s": 86051.296875,
+          "thermal_conversion_W": 268032.52651041903,
+          "conversion_height_quantiles_m": [
+            0.004054131677084833,
+            0.006908034606811271,
+            0.01220866886484807
+          ],
+          "conversion_fraction_p_above_threshold": 0.15746931562721436,
+          "conversion_fraction_below_initial_fill": 0.09684169019225312
+        },
+        {
+          "time_s": 3.4e-05,
+          "pressure_max_Pa": 2372181.5,
+          "reaction_rate_max_per_s": 87369.375,
+          "thermal_conversion_W": 279265.9866056246,
+          "conversion_height_quantiles_m": [
+            0.004173376067152399,
+            0.006979493201480095,
+            0.012144517568178371
+          ],
+          "conversion_fraction_p_above_threshold": 0.15723798121047078,
+          "conversion_fraction_below_initial_fill": 0.08781210895919549
+        },
+        {
+          "time_s": 3.6e-05,
+          "pressure_max_Pa": 2237648.5,
+          "reaction_rate_max_per_s": 88716.9609375,
+          "thermal_conversion_W": 292343.2141935894,
+          "conversion_height_quantiles_m": [
+            0.004229947383691666,
+            0.007049187461728623,
+            0.012042121433942394
+          ],
+          "conversion_fraction_p_above_threshold": 0.1545222273433046,
+          "conversion_fraction_below_initial_fill": 0.08305427868814538
+        },
+        {
+          "time_s": 3.7999999999999995e-05,
+          "pressure_max_Pa": 2074120.75,
+          "reaction_rate_max_per_s": 90499.078125,
+          "thermal_conversion_W": 307052.5894794909,
+          "conversion_height_quantiles_m": [
+            0.004251146586751422,
+            0.00711412343394771,
+            0.011918507739082818
+          ],
+          "conversion_fraction_p_above_threshold": 0.15152604800164124,
+          "conversion_fraction_below_initial_fill": 0.08041881976283691
+        },
+        {
+          "time_s": 3.9999999999999996e-05,
+          "pressure_max_Pa": 1899044.25,
+          "reaction_rate_max_per_s": 91405.8125,
+          "thermal_conversion_W": 323683.4765126368,
+          "conversion_height_quantiles_m": [
+            0.0042388020235574865,
+            0.007170407081002913,
+            0.011773261660317122
+          ],
+          "conversion_fraction_p_above_threshold": 0.14189617508903246,
+          "conversion_fraction_below_initial_fill": 0.08086381989342697
+        },
+        {
+          "time_s": 4.2e-05,
+          "pressure_max_Pa": 1727510.0,
+          "reaction_rate_max_per_s": 92301.0234375,
+          "thermal_conversion_W": 342112.0482568804,
+          "conversion_height_quantiles_m": [
+            0.004213657932362374,
+            0.007220319785185406,
+            0.011651441542127246
+          ],
+          "conversion_fraction_p_above_threshold": 0.1353627343444594,
+          "conversion_fraction_below_initial_fill": 0.08305961661402765
+        },
+        {
+          "time_s": 4.4e-05,
+          "pressure_max_Pa": 1576020.25,
+          "reaction_rate_max_per_s": 92334.3125,
+          "thermal_conversion_W": 362678.00012632826,
+          "conversion_height_quantiles_m": [
+            0.0041661534155274784,
+            0.007261833879157853,
+            0.011552297499795527
+          ],
+          "conversion_fraction_p_above_threshold": 0.1290083845237131,
+          "conversion_fraction_below_initial_fill": 0.08725407621646855
+        },
+        {
+          "time_s": 4.6e-05,
+          "pressure_max_Pa": 1495269.0,
+          "reaction_rate_max_per_s": 93375.1640625,
+          "thermal_conversion_W": 385616.732187222,
+          "conversion_height_quantiles_m": [
+            0.004106726029806161,
+            0.007298179184384666,
+            0.011501618630034694
+          ],
+          "conversion_fraction_p_above_threshold": 0.12612527572141072,
+          "conversion_fraction_below_initial_fill": 0.09213484090722396
+        },
+        {
+          "time_s": 4.8e-05,
+          "pressure_max_Pa": 1426051.5,
+          "reaction_rate_max_per_s": 94814.2734375,
+          "thermal_conversion_W": 410832.7095370874,
+          "conversion_height_quantiles_m": [
+            0.004049724641380851,
+            0.007329879573900505,
+            0.011485455335996663
+          ],
+          "conversion_fraction_p_above_threshold": 0.12195686548182327,
+          "conversion_fraction_below_initial_fill": 0.09674783441252885
+        },
+        {
+          "time_s": 4.9999999999999996e-05,
+          "pressure_max_Pa": 1367372.625,
+          "reaction_rate_max_per_s": 94975.5390625,
+          "thermal_conversion_W": 438841.5710110688,
+          "conversion_height_quantiles_m": [
+            0.003990582159007048,
+            0.0073527808009604505,
+            0.011488476210183878
+          ],
+          "conversion_fraction_p_above_threshold": 0.11701291334152641,
+          "conversion_fraction_below_initial_fill": 0.10131614353552161
+        },
+        {
+          "time_s": 5.2e-05,
+          "pressure_max_Pa": 1346791.75,
+          "reaction_rate_max_per_s": 96945.6796875,
+          "thermal_conversion_W": 468808.9053216572,
+          "conversion_height_quantiles_m": [
+            0.003949600523531381,
+            0.007373885396280443,
+            0.011515056840121675
+          ],
+          "conversion_fraction_p_above_threshold": 0.11510001475325388,
+          "conversion_fraction_below_initial_fill": 0.10438925738262365
+        },
+        {
+          "time_s": 5.4e-05,
+          "pressure_max_Pa": 1328815.75,
+          "reaction_rate_max_per_s": 112077.0,
+          "thermal_conversion_W": 501336.9218912028,
+          "conversion_height_quantiles_m": [
+            0.003947590355597348,
+            0.007401526090589125,
+            0.011599684730837008
+          ],
+          "conversion_fraction_p_above_threshold": 0.11012544462091532,
+          "conversion_fraction_below_initial_fill": 0.10483791278038322
+        },
+        {
+          "time_s": 5.6e-05,
+          "pressure_max_Pa": 1312687.75,
+          "reaction_rate_max_per_s": 109948.5078125,
+          "thermal_conversion_W": 534053.3154257892,
+          "conversion_height_quantiles_m": [
+            0.003970150369168145,
+            0.007438087881146795,
+            0.011793698290569955
+          ],
+          "conversion_fraction_p_above_threshold": 0.10931753116527293,
+          "conversion_fraction_below_initial_fill": 0.10319574787369398
+        },
+        {
+          "time_s": 5.8e-05,
+          "pressure_max_Pa": 1295307.75,
+          "reaction_rate_max_per_s": 105697.34375,
+          "thermal_conversion_W": 565109.2997416536,
+          "conversion_height_quantiles_m": [
+            0.004008904634726334,
+            0.007457455840461747,
+            0.011964748590571022
+          ],
+          "conversion_fraction_p_above_threshold": 0.10887938765827165,
+          "conversion_fraction_below_initial_fill": 0.10012780184080143
+        },
+        {
+          "time_s": 5.9999999999999995e-05,
+          "pressure_max_Pa": 1277344.0,
+          "reaction_rate_max_per_s": 102719.6171875,
+          "thermal_conversion_W": 595693.1426087726,
+          "conversion_height_quantiles_m": [
+            0.00406693913111887,
+            0.007464340998923231,
+            0.012179174055301535
+          ],
+          "conversion_fraction_p_above_threshold": 0.10477769799890756,
+          "conversion_fraction_below_initial_fill": 0.0958234990509702
+        },
+        {
+          "time_s": 6.2e-05,
+          "pressure_max_Pa": 1263092.25,
+          "reaction_rate_max_per_s": 100158.3125,
+          "thermal_conversion_W": 624711.7753991225,
+          "conversion_height_quantiles_m": [
+            0.00413065191016547,
+            0.0074594689669504844,
+            0.012460817370772807
+          ],
+          "conversion_fraction_p_above_threshold": 0.10249873922576914,
+          "conversion_fraction_below_initial_fill": 0.091205417770925
+        },
+        {
+          "time_s": 6.4e-05,
+          "pressure_max_Pa": 1249611.0,
+          "reaction_rate_max_per_s": 96708.6796875,
+          "thermal_conversion_W": 650632.9749734119,
+          "conversion_height_quantiles_m": [
+            0.004191707920273607,
+            0.007440439632753403,
+            0.012756292782936237
+          ],
+          "conversion_fraction_p_above_threshold": 0.09721861369850651,
+          "conversion_fraction_below_initial_fill": 0.08704533984597947
+        },
+        {
+          "time_s": 6.599999999999999e-05,
+          "pressure_max_Pa": 1236196.875,
+          "reaction_rate_max_per_s": 95447.890625,
+          "thermal_conversion_W": 674194.7445940255,
+          "conversion_height_quantiles_m": [
+            0.0042507254479819,
+            0.007418619120328413,
+            0.01311841925897144
+          ],
+          "conversion_fraction_p_above_threshold": 0.09182427305394354,
+          "conversion_fraction_below_initial_fill": 0.08342205307392776
+        },
+        {
+          "time_s": 6.8e-05,
+          "pressure_max_Pa": 1222936.375,
+          "reaction_rate_max_per_s": 96309.234375,
+          "thermal_conversion_W": 696331.5412536758,
+          "conversion_height_quantiles_m": [
+            0.004309343403123328,
+            0.00740309181504189,
+            0.013825409161341829
+          ],
+          "conversion_fraction_p_above_threshold": 0.08640084971023249,
+          "conversion_fraction_below_initial_fill": 0.07997754504368411
+        },
+        {
+          "time_s": 7e-05,
+          "pressure_max_Pa": 1211995.625,
+          "reaction_rate_max_per_s": 97300.8359375,
+          "thermal_conversion_W": 714984.71579624,
+          "conversion_height_quantiles_m": [
+            0.004359356983052877,
+            0.007386673241534143,
+            0.01477317559489317
+          ],
+          "conversion_fraction_p_above_threshold": 0.08016022421749483,
+          "conversion_fraction_below_initial_fill": 0.07681236862976774
+        },
+        {
+          "time_s": 7.2e-05,
+          "pressure_max_Pa": 1201108.5,
+          "reaction_rate_max_per_s": 98539.390625,
+          "thermal_conversion_W": 723906.6447236113,
+          "conversion_height_quantiles_m": [
+            0.00438544249977554,
+            0.0073443549789550715,
+            0.014689674571717198
+          ],
+          "conversion_fraction_p_above_threshold": 0.07262214075550906,
+          "conversion_fraction_below_initial_fill": 0.07460605242077607
+        },
+        {
+          "time_s": 7.4e-05,
+          "pressure_max_Pa": 1189371.75,
+          "reaction_rate_max_per_s": 98964.4140625,
+          "thermal_conversion_W": 721138.757510329,
+          "conversion_height_quantiles_m": [
+            0.004382920659667132,
+            0.007267058047099646,
+            0.013477230322183871
+          ],
+          "conversion_fraction_p_above_threshold": 0.07202669500361444,
+          "conversion_fraction_below_initial_fill": 0.07353786177937598
+        },
+        {
+          "time_s": 7.599999999999999e-05,
+          "pressure_max_Pa": 1176331.5,
+          "reaction_rate_max_per_s": 97774.0390625,
+          "thermal_conversion_W": 716167.95337999,
+          "conversion_height_quantiles_m": [
+            0.0043753335847145575,
+            0.007189809642834445,
+            0.012638466536938278
+          ],
+          "conversion_fraction_p_above_threshold": 0.06894237089870413,
+          "conversion_fraction_below_initial_fill": 0.07241912968333876
+        },
+        {
+          "time_s": 7.8e-05,
+          "pressure_max_Pa": 1161389.5,
+          "reaction_rate_max_per_s": 97729.9921875,
+          "thermal_conversion_W": 713201.0800868573,
+          "conversion_height_quantiles_m": [
+            0.00437240941799603,
+            0.0071287877487293495,
+            0.012187105540629737
+          ],
+          "conversion_fraction_p_above_threshold": 0.06985140726471706,
+          "conversion_fraction_below_initial_fill": 0.07092620860693946
+        },
+        {
+          "time_s": 7.999999999999999e-05,
+          "pressure_max_Pa": 1145069.25,
+          "reaction_rate_max_per_s": 97279.484375,
+          "thermal_conversion_W": 711597.5977593103,
+          "conversion_height_quantiles_m": [
+            0.00436968022674542,
+            0.007082676182655997,
+            0.011871803509375617
+          ],
+          "conversion_fraction_p_above_threshold": 0.07146417434722539,
+          "conversion_fraction_below_initial_fill": 0.06959311153633985
+        },
+        {
+          "time_s": 8.2e-05,
+          "pressure_max_Pa": 1126324.25,
+          "reaction_rate_max_per_s": 96750.734375,
+          "thermal_conversion_W": 710946.9285907517,
+          "conversion_height_quantiles_m": [
+            0.004360285693431598,
+            0.007047638035804872,
+            0.011603361681304152
+          ],
+          "conversion_fraction_p_above_threshold": 0.07281062563358959,
+          "conversion_fraction_below_initial_fill": 0.06912787268460147
+        },
+        {
+          "time_s": 8.4e-05,
+          "pressure_max_Pa": 1109717.625,
+          "reaction_rate_max_per_s": 96602.015625,
+          "thermal_conversion_W": 710944.5737550267,
+          "conversion_height_quantiles_m": [
+            0.00434178992461644,
+            0.007019930069518487,
+            0.011382874347624562
+          ],
+          "conversion_fraction_p_above_threshold": 0.07317712840520772,
+          "conversion_fraction_below_initial_fill": 0.06986748645882322
+        },
+        {
+          "time_s": 8.599999999999999e-05,
+          "pressure_max_Pa": 1098203.875,
+          "reaction_rate_max_per_s": 96511.1171875,
+          "thermal_conversion_W": 711472.5419947325,
+          "conversion_height_quantiles_m": [
+            0.004317325586760443,
+            0.007001897571285738,
+            0.011176118399456153
+          ],
+          "conversion_fraction_p_above_threshold": 0.0727510632620392,
+          "conversion_fraction_below_initial_fill": 0.0714730779858408
+        },
+        {
+          "time_s": 8.8e-05,
+          "pressure_max_Pa": 1085467.75,
+          "reaction_rate_max_per_s": 97502.828125,
+          "thermal_conversion_W": 712222.4031376686,
+          "conversion_height_quantiles_m": [
+            0.004290401246064409,
+            0.006992479936972024,
+            0.010990062442075777
+          ],
+          "conversion_fraction_p_above_threshold": 0.07214904399108571,
+          "conversion_fraction_below_initial_fill": 0.07349688156601017
+        },
+        {
+          "time_s": 8.999999999999999e-05,
+          "pressure_max_Pa": 1070957.375,
+          "reaction_rate_max_per_s": 97289.5,
+          "thermal_conversion_W": 712323.9762536668,
+          "conversion_height_quantiles_m": [
+            0.004266048157015895,
+            0.006989232472444164,
+            0.01086379344309017
+          ],
+          "conversion_fraction_p_above_threshold": 0.08897673803670794,
+          "conversion_fraction_below_initial_fill": 0.07536238357332312
+        },
+        {
+          "time_s": 9.2e-05,
+          "pressure_max_Pa": 1056710.0,
+          "reaction_rate_max_per_s": 97125.03125,
+          "thermal_conversion_W": 710835.4187344935,
+          "conversion_height_quantiles_m": [
+            0.004254036089185086,
+            0.006992677263920082,
+            0.010760925413112184
+          ],
+          "conversion_fraction_p_above_threshold": 0.10313833850837352,
+          "conversion_fraction_below_initial_fill": 0.07614083972521342
+        },
+        {
+          "time_s": 9.4e-05,
+          "pressure_max_Pa": 1039684.8125,
+          "reaction_rate_max_per_s": 96763.5234375,
+          "thermal_conversion_W": 708159.6524834711,
+          "conversion_height_quantiles_m": [
+            0.004260701206793003,
+            0.007008346497320482,
+            0.010685926660708445
+          ],
+          "conversion_fraction_p_above_threshold": 0.11288684913947708,
+          "conversion_fraction_below_initial_fill": 0.0751534676543214
+        },
+        {
+          "time_s": 9.6e-05,
+          "pressure_max_Pa": 1022257.125,
+          "reaction_rate_max_per_s": 95091.265625,
+          "thermal_conversion_W": 704188.8992834577,
+          "conversion_height_quantiles_m": [
+            0.0042824280119333315,
+            0.007052876093898343,
+            0.010644719920512252
+          ],
+          "conversion_fraction_p_above_threshold": 0.11724521030828153,
+          "conversion_fraction_below_initial_fill": 0.07268755391160149
+        },
+        {
+          "time_s": 9.8e-05,
+          "pressure_max_Pa": 1007109.125,
+          "reaction_rate_max_per_s": 95424.640625,
+          "thermal_conversion_W": 698494.1927581367,
+          "conversion_height_quantiles_m": [
+            0.004315056984900583,
+            0.007123193896199895,
+            0.010639421173464423
+          ],
+          "conversion_fraction_p_above_threshold": 0.1257842743244791,
+          "conversion_fraction_below_initial_fill": 0.06909721658927992
+        },
+        {
+          "time_s": 9.999999999999999e-05,
+          "pressure_max_Pa": 992858.375,
+          "reaction_rate_max_per_s": 96003.8203125,
+          "thermal_conversion_W": 690990.9209941042,
+          "conversion_height_quantiles_m": [
+            0.004360025705310264,
+            0.007216131081440902,
+            0.010668301272328313
+          ],
+          "conversion_fraction_p_above_threshold": 0.14286721841865416,
+          "conversion_fraction_below_initial_fill": 0.06421848207390726
+        },
+        {
+          "time_s": 0.000102,
+          "pressure_max_Pa": 977175.375,
+          "reaction_rate_max_per_s": 96382.28125,
+          "thermal_conversion_W": 682524.6798504629,
+          "conversion_height_quantiles_m": [
+            0.004420834728052773,
+            0.0073275796291866,
+            0.010723212120135729
+          ],
+          "conversion_fraction_p_above_threshold": 0.15968826180100212,
+          "conversion_fraction_below_initial_fill": 0.057812260926865575
+        },
+        {
+          "time_s": 0.000104,
+          "pressure_max_Pa": 959183.3125,
+          "reaction_rate_max_per_s": 96936.96875,
+          "thermal_conversion_W": 673531.9953409566,
+          "conversion_height_quantiles_m": [
+            0.0044977871943778685,
+            0.007454785035245509,
+            0.010794044636866628
+          ],
+          "conversion_fraction_p_above_threshold": 0.15945224613547007,
+          "conversion_fraction_below_initial_fill": 0.050144851340984016
+        },
+        {
+          "time_s": 0.000106,
+          "pressure_max_Pa": 1082186.25,
+          "reaction_rate_max_per_s": 97928.0859375,
+          "thermal_conversion_W": 663605.1997073393,
+          "conversion_height_quantiles_m": [
+            0.004592262771278732,
+            0.007607534296569466,
+            0.010876662888935112
+          ],
+          "conversion_fraction_p_above_threshold": 0.15058851935994338,
+          "conversion_fraction_below_initial_fill": 0.04185771594274669
+        },
+        {
+          "time_s": 0.000108,
+          "pressure_max_Pa": 1153297.5,
+          "reaction_rate_max_per_s": 96573.5546875,
+          "thermal_conversion_W": 652959.3619902558,
+          "conversion_height_quantiles_m": [
+            0.004691151896992111,
+            0.007773300139435201,
+            0.0109689291811646
+          ],
+          "conversion_fraction_p_above_threshold": 0.13622564989700317,
+          "conversion_fraction_below_initial_fill": 0.0334962732920635
+        },
+        {
+          "time_s": 0.00010999999999999999,
+          "pressure_max_Pa": 1122391.5,
+          "reaction_rate_max_per_s": 98342.1328125,
+          "thermal_conversion_W": 641734.5108350589,
+          "conversion_height_quantiles_m": [
+            0.004792564547291776,
+            0.007940888492973952,
+            0.011086505476168232
+          ],
+          "conversion_fraction_p_above_threshold": 0.11872054126898735,
+          "conversion_fraction_below_initial_fill": 0.025568372516326043
+        },
+        {
+          "time_s": 0.000112,
+          "pressure_max_Pa": 1087049.5,
+          "reaction_rate_max_per_s": 95337.4609375,
+          "thermal_conversion_W": 630006.8028492182,
+          "conversion_height_quantiles_m": [
+            0.004898731307981134,
+            0.008097486802976256,
+            0.011232449778448754
+          ],
+          "conversion_fraction_p_above_threshold": 0.09822002849454584,
+          "conversion_fraction_below_initial_fill": 0.01831993272709751
+        },
+        {
+          "time_s": 0.00011399999999999999,
+          "pressure_max_Pa": 1052155.375,
+          "reaction_rate_max_per_s": 96570.0078125,
+          "thermal_conversion_W": 618284.5065143676,
+          "conversion_height_quantiles_m": [
+            0.005015505698171872,
+            0.00825194240025158,
+            0.011370556934305656
+          ],
+          "conversion_fraction_p_above_threshold": 0.08115372803656441,
+          "conversion_fraction_below_initial_fill": 0.012069053718977697
+        },
+        {
+          "time_s": 0.000116,
+          "pressure_max_Pa": 1037208.75,
+          "reaction_rate_max_per_s": 93621.8125,
+          "thermal_conversion_W": 606515.4227282073,
+          "conversion_height_quantiles_m": [
+            0.005133910040089791,
+            0.00841807521531619,
+            0.01150075263010528
+          ],
+          "conversion_fraction_p_above_threshold": 0.07126933082189589,
+          "conversion_fraction_below_initial_fill": 0.007283570135495303
+        },
+        {
+          "time_s": 0.000118,
+          "pressure_max_Pa": 1023739.125,
+          "reaction_rate_max_per_s": 94247.8671875,
+          "thermal_conversion_W": 594089.8482029348,
+          "conversion_height_quantiles_m": [
+            0.0052797835961648516,
+            0.008596577085822725,
+            0.011671280812855178
+          ],
+          "conversion_fraction_p_above_threshold": 0.06793008091792783,
+          "conversion_fraction_below_initial_fill": 0.00406794063787776
+        },
+        {
+          "time_s": 0.00011999999999999999,
+          "pressure_max_Pa": 988490.6875,
+          "reaction_rate_max_per_s": 93422.5,
+          "thermal_conversion_W": 581310.904720887,
+          "conversion_height_quantiles_m": [
+            0.005451208928079444,
+            0.00878558056621977,
+            0.01184497945930581
+          ],
+          "conversion_fraction_p_above_threshold": 0.04917042329744111,
+          "conversion_fraction_below_initial_fill": 0.002084349018786089
+        },
+        {
+          "time_s": 0.000122,
+          "pressure_max_Pa": 970623.9375,
+          "reaction_rate_max_per_s": 93252.875,
+          "thermal_conversion_W": 568114.6224729646,
+          "conversion_height_quantiles_m": [
+            0.005621484720547863,
+            0.00899897494967498,
+            0.012006542378140708
+          ],
+          "conversion_fraction_p_above_threshold": 0.00024011299092453018,
+          "conversion_fraction_below_initial_fill": 0.0009453885792752014
+        },
+        {
+          "time_s": 0.000124,
+          "pressure_max_Pa": 959697.4375,
+          "reaction_rate_max_per_s": 92698.9609375,
+          "thermal_conversion_W": 554671.2089356733,
+          "conversion_height_quantiles_m": [
+            0.005803218647518985,
+            0.009217063683426275,
+            0.012216658014915007
+          ],
+          "conversion_fraction_p_above_threshold": 1.7569386475250111e-06,
+          "conversion_fraction_below_initial_fill": 0.00038311345716493577
+        },
+        {
+          "time_s": 0.000126,
+          "pressure_max_Pa": 938182.75,
+          "reaction_rate_max_per_s": 91572.25,
+          "thermal_conversion_W": 541698.4850913716,
+          "conversion_height_quantiles_m": [
+            0.005983574442424777,
+            0.009453038840966453,
+            0.012418774487718543
+          ],
+          "conversion_fraction_p_above_threshold": 4.22242173967925e-07,
+          "conversion_fraction_below_initial_fill": 0.00013966457544671015
+        },
+        {
+          "time_s": 0.000128,
+          "pressure_max_Pa": 890989.75,
+          "reaction_rate_max_per_s": 92480.109375,
+          "thermal_conversion_W": 528564.1144940323,
+          "conversion_height_quantiles_m": [
+            0.00616858666205456,
+            0.009696378131142085,
+            0.012636677944139309
+          ],
+          "conversion_fraction_p_above_threshold": 1.1501032126445048e-07,
+          "conversion_fraction_below_initial_fill": 4.8987044659140844e-05
+        },
+        {
+          "time_s": 0.00013,
+          "pressure_max_Pa": 819133.0625,
+          "reaction_rate_max_per_s": 91564.8125,
+          "thermal_conversion_W": 515247.4546544068,
+          "conversion_height_quantiles_m": [
+            0.006352902310674913,
+            0.009953840696258676,
+            0.012874070279238823
+          ],
+          "conversion_fraction_p_above_threshold": 2.8295282033037177e-08,
+          "conversion_fraction_below_initial_fill": 1.8113492273793083e-05
+        },
+        {
+          "time_s": 0.00013199999999999998,
+          "pressure_max_Pa": 737496.9375,
+          "reaction_rate_max_per_s": 91740.8359375,
+          "thermal_conversion_W": 502236.0893273805,
+          "conversion_height_quantiles_m": [
+            0.006535245619372181,
+            0.010209701140429113,
+            0.013113103062732657
+          ],
+          "conversion_fraction_p_above_threshold": 0.0,
+          "conversion_fraction_below_initial_fill": 7.487744106770798e-06
+        },
+        {
+          "time_s": 0.000134,
+          "pressure_max_Pa": 660530.3125,
+          "reaction_rate_max_per_s": 90677.421875,
+          "thermal_conversion_W": 489422.5502789461,
+          "conversion_height_quantiles_m": [
+            0.006728756481069927,
+            0.010478526399252711,
+            0.013372761476425769
+          ],
+          "conversion_fraction_p_above_threshold": 0.0,
+          "conversion_fraction_below_initial_fill": 3.722327637395889e-06
+        },
+        {
+          "time_s": 0.000136,
+          "pressure_max_Pa": 632896.3125,
+          "reaction_rate_max_per_s": 90087.9453125,
+          "thermal_conversion_W": 477042.6888552023,
+          "conversion_height_quantiles_m": [
+            0.006916614877493148,
+            0.010732172950156252,
+            0.013634285779974015
+          ],
+          "conversion_fraction_p_above_threshold": 0.0,
+          "conversion_fraction_below_initial_fill": 2.223419662447946e-06
+        },
+        {
+          "time_s": 0.000138,
+          "pressure_max_Pa": 612367.0625,
+          "reaction_rate_max_per_s": 91571.46875,
+          "thermal_conversion_W": 464886.7953307704,
+          "conversion_height_quantiles_m": [
+            0.007112405530965621,
+            0.010991261346769692,
+            0.013910892197625306
+          ],
+          "conversion_fraction_p_above_threshold": 0.0,
+          "conversion_fraction_below_initial_fill": 1.5164597185711878e-06
+        },
+        {
+          "time_s": 0.00014,
+          "pressure_max_Pa": 593103.75,
+          "reaction_rate_max_per_s": 89658.34375,
+          "thermal_conversion_W": 453106.95810296223,
+          "conversion_height_quantiles_m": [
+            0.007309542714995135,
+            0.011232222078892146,
+            0.014191111213340355
+          ],
+          "conversion_fraction_p_above_threshold": 0.0,
+          "conversion_fraction_below_initial_fill": 1.1434899082646023e-06
+        },
+        {
+          "time_s": 0.00014199999999999998,
+          "pressure_max_Pa": 577012.6875,
+          "reaction_rate_max_per_s": 91691.4921875,
+          "thermal_conversion_W": 442023.15061955864,
+          "conversion_height_quantiles_m": [
+            0.007506885519497881,
+            0.011481275148186235,
+            0.014486113003306595
+          ],
+          "conversion_fraction_p_above_threshold": 0.0,
+          "conversion_fraction_below_initial_fill": 9.246685207296118e-07
+        },
+        {
+          "time_s": 0.000144,
+          "pressure_max_Pa": 567386.6875,
+          "reaction_rate_max_per_s": 90983.8125,
+          "thermal_conversion_W": 431418.4607875607,
+          "conversion_height_quantiles_m": [
+            0.007716373635372657,
+            0.011723177869668436,
+            0.014790754688829205
+          ],
+          "conversion_fraction_p_above_threshold": 0.0,
+          "conversion_fraction_below_initial_fill": 7.843842162086466e-07
+        },
+        {
+          "time_s": 0.000146,
+          "pressure_max_Pa": 571366.375,
+          "reaction_rate_max_per_s": 91346.0859375,
+          "thermal_conversion_W": 421238.07780177303,
+          "conversion_height_quantiles_m": [
+            0.007919185389316278,
+            0.011967868260506232,
+            0.01510025626490484
+          ],
+          "conversion_fraction_p_above_threshold": 0.0,
+          "conversion_fraction_below_initial_fill": 6.896590295195508e-07
+        },
+        {
+          "time_s": 0.000148,
+          "pressure_max_Pa": 572006.375,
+          "reaction_rate_max_per_s": 89056.703125,
+          "thermal_conversion_W": 411466.16514421225,
+          "conversion_height_quantiles_m": [
+            0.00813338943441018,
+            0.012220008041888037,
+            0.01542423670721957
+          ],
+          "conversion_fraction_p_above_threshold": 0.0,
+          "conversion_fraction_below_initial_fill": 6.247380970042965e-07
+        },
+        {
+          "time_s": 0.00015,
+          "pressure_max_Pa": 565794.25,
+          "reaction_rate_max_per_s": 90922.90625,
+          "thermal_conversion_W": 402402.4710955941,
+          "conversion_height_quantiles_m": [
+            0.008344394352845853,
+            0.012473813700915205,
+            0.015745407592284693
+          ],
+          "conversion_fraction_p_above_threshold": 0.0,
+          "conversion_fraction_below_initial_fill": 5.806356947128798e-07
+        },
+        {
+          "time_s": 0.00015199999999999998,
+          "pressure_max_Pa": 556789.5,
+          "reaction_rate_max_per_s": 89117.75,
+          "thermal_conversion_W": 393564.35086562345,
+          "conversion_height_quantiles_m": [
+            0.008560274783735076,
+            0.012741310661063935,
+            0.01607047554888481
+          ],
+          "conversion_fraction_p_above_threshold": 0.0,
+          "conversion_fraction_below_initial_fill": 5.537472681403856e-07
+        },
+        {
+          "time_s": 0.000154,
+          "pressure_max_Pa": 547166.5,
+          "reaction_rate_max_per_s": 90165.5546875,
+          "thermal_conversion_W": 385213.33487006975,
+          "conversion_height_quantiles_m": [
+            0.008780269653065232,
+            0.013008831532617554,
+            0.01640300630696097
+          ],
+          "conversion_fraction_p_above_threshold": 0.0,
+          "conversion_fraction_below_initial_fill": 5.408074076630704e-07
+        },
+        {
+          "time_s": 0.000156,
+          "pressure_max_Pa": 538416.1875,
+          "reaction_rate_max_per_s": 87774.296875,
+          "thermal_conversion_W": 377348.0682212999,
+          "conversion_height_quantiles_m": [
+            0.008998396617278632,
+            0.013280488543165086,
+            0.01673089326747041
+          ],
+          "conversion_fraction_p_above_threshold": 0.0,
+          "conversion_fraction_below_initial_fill": 5.388062564298569e-07
+        },
+        {
+          "time_s": 0.000158,
+          "pressure_max_Pa": 530736.375,
+          "reaction_rate_max_per_s": 89411.5078125,
+          "thermal_conversion_W": 369605.3745393082,
+          "conversion_height_quantiles_m": [
+            0.009225681462799954,
+            0.013554363871863873,
+            0.01705661497246029
+          ],
+          "conversion_fraction_p_above_threshold": 0.0,
+          "conversion_fraction_below_initial_fill": 5.457548964549491e-07
+        },
+        {
+          "time_s": 0.00015999999999999999,
+          "pressure_max_Pa": 525052.75,
+          "reaction_rate_max_per_s": 89299.3828125,
+          "thermal_conversion_W": 362248.0822625419,
+          "conversion_height_quantiles_m": [
+            0.009448697265895312,
+            0.01382153145976926,
+            0.017382368453852486
+          ],
+          "conversion_fraction_p_above_threshold": 0.0,
+          "conversion_fraction_below_initial_fill": 5.592558647580918e-07
+        },
+        {
+          "time_s": 0.00016199999999999998,
+          "pressure_max_Pa": 518002.96875,
+          "reaction_rate_max_per_s": 88778.4375,
+          "thermal_conversion_W": 355192.33044443815,
+          "conversion_height_quantiles_m": [
+            0.009680922327982039,
+            0.014095247606059739,
+            0.01770200877868403
+          ],
+          "conversion_fraction_p_above_threshold": 0.0,
+          "conversion_fraction_below_initial_fill": 5.774668701658654e-07
+        },
+        {
+          "time_s": 0.000164,
+          "pressure_max_Pa": 508603.0625,
+          "reaction_rate_max_per_s": 89378.703125,
+          "thermal_conversion_W": 348317.9844703051,
+          "conversion_height_quantiles_m": [
+            0.009910344800520405,
+            0.014366018577497858,
+            0.018019284593130357
+          ],
+          "conversion_fraction_p_above_threshold": 0.0,
+          "conversion_fraction_below_initial_fill": 5.988787992157326e-07
+        },
+        {
+          "time_s": 0.000166,
+          "pressure_max_Pa": 498328.3125,
+          "reaction_rate_max_per_s": 88578.65625,
+          "thermal_conversion_W": 341703.6489986344,
+          "conversion_height_quantiles_m": [
+            0.010146510729072798,
+            0.014644433660493601,
+            0.01833654131271069
+          ],
+          "conversion_fraction_p_above_threshold": 0.0,
+          "conversion_fraction_below_initial_fill": 6.215726311035649e-07
+        },
+        {
+          "time_s": 0.000168,
+          "pressure_max_Pa": 486539.375,
+          "reaction_rate_max_per_s": 88984.03125,
+          "thermal_conversion_W": 335271.53130554804,
+          "conversion_height_quantiles_m": [
+            0.010379078263543588,
+            0.014923098633424881,
+            0.018652448443984962
+          ],
+          "conversion_fraction_p_above_threshold": 0.0,
+          "conversion_fraction_below_initial_fill": 6.440077748632501e-07
+        },
+        {
+          "time_s": 0.00016999999999999999,
+          "pressure_max_Pa": 493423.1875,
+          "reaction_rate_max_per_s": 88415.75,
+          "thermal_conversion_W": 329092.69334096793,
+          "conversion_height_quantiles_m": [
+            0.010614715100216774,
+            0.01520945503797146,
+            0.018966933103660377
+          ],
+          "conversion_fraction_p_above_threshold": 0.0,
+          "conversion_fraction_below_initial_fill": 6.642276206583175e-07
+        },
+        {
+          "time_s": 0.00017199999999999998,
+          "pressure_max_Pa": 493790.53125,
+          "reaction_rate_max_per_s": 88858.7109375,
+          "thermal_conversion_W": 322998.20582777285,
+          "conversion_height_quantiles_m": [
+            0.01084375148283767,
+            0.015498962492839389,
+            0.019284822776457884
+          ],
+          "conversion_fraction_p_above_threshold": 0.0,
+          "conversion_fraction_below_initial_fill": 6.804978166495972e-07
+        },
+        {
+          "time_s": 0.000174,
+          "pressure_max_Pa": 492106.21875,
+          "reaction_rate_max_per_s": 88345.421875,
+          "thermal_conversion_W": 317222.60760395264,
+          "conversion_height_quantiles_m": [
+            0.011073342137372393,
+            0.015794569871950333,
+            0.019596278519505548
+          ],
+          "conversion_fraction_p_above_threshold": 0.0,
+          "conversion_fraction_below_initial_fill": 6.90290227571171e-07
+        },
+        {
+          "time_s": 0.000176,
+          "pressure_max_Pa": 492684.0,
+          "reaction_rate_max_per_s": 89089.9921875,
+          "thermal_conversion_W": 311590.130919266,
+          "conversion_height_quantiles_m": [
+            0.011295091839245658,
+            0.01609855186531531,
+            0.019915940140201524
+          ],
+          "conversion_fraction_p_above_threshold": 0.0,
+          "conversion_fraction_below_initial_fill": 6.929098701471302e-07
+        },
+        {
+          "time_s": 0.000178,
+          "pressure_max_Pa": 492379.71875,
+          "reaction_rate_max_per_s": 88117.21875,
+          "thermal_conversion_W": 306207.7142054769,
+          "conversion_height_quantiles_m": [
+            0.011516032956090402,
+            0.016405708598781727,
+            0.02023464706804966
+          ],
+          "conversion_fraction_p_above_threshold": 0.0,
+          "conversion_fraction_below_initial_fill": 6.882095394990454e-07
+        },
+        {
+          "time_s": 0.00017999999999999998,
+          "pressure_max_Pa": 488790.125,
+          "reaction_rate_max_per_s": 88526.6484375,
+          "thermal_conversion_W": 301032.9005506296,
+          "conversion_height_quantiles_m": [
+            0.01173069898355375,
+            0.016723836743653558,
+            0.020546325282366634
+          ],
+          "conversion_fraction_p_above_threshold": 0.0,
+          "conversion_fraction_below_initial_fill": 6.769650018396825e-07
+        },
+        {
+          "time_s": 0.00018199999999999998,
+          "pressure_max_Pa": 479983.9375,
+          "reaction_rate_max_per_s": 87282.1953125,
+          "thermal_conversion_W": 296086.31683555443,
+          "conversion_height_quantiles_m": [
+            0.011940986506715033,
+            0.017049789624581865,
+            0.020877984813090736
+          ],
+          "conversion_fraction_p_above_threshold": 0.0,
+          "conversion_fraction_below_initial_fill": 6.607669554743674e-07
+        },
+        {
+          "time_s": 0.000184,
+          "pressure_max_Pa": 472087.78125,
+          "reaction_rate_max_per_s": 86803.8515625,
+          "thermal_conversion_W": 291270.334789118,
+          "conversion_height_quantiles_m": [
+            0.012147682156062229,
+            0.01738044379865708,
+            0.02120254989208183
+          ],
+          "conversion_fraction_p_above_threshold": 0.0,
+          "conversion_fraction_below_initial_fill": 6.415042310808699e-07
+        },
+        {
+          "time_s": 0.000186,
+          "pressure_max_Pa": 467372.4375,
+          "reaction_rate_max_per_s": 87225.1640625,
+          "thermal_conversion_W": 286724.5830444594,
+          "conversion_height_quantiles_m": [
+            0.01234559272608134,
+            0.01772272914444698,
+            0.021523513970728797
+          ],
+          "conversion_fraction_p_above_threshold": 0.0,
+          "conversion_fraction_below_initial_fill": 6.204200564662649e-07
+        },
+        {
+          "time_s": 0.000188,
+          "pressure_max_Pa": 458600.875,
+          "reaction_rate_max_per_s": 87518.2578125,
+          "thermal_conversion_W": 282343.8636494532,
+          "conversion_height_quantiles_m": [
+            0.012544021570310667,
+            0.01807709838612511,
+            0.021862804944688546
+          ],
+          "conversion_fraction_p_above_threshold": 0.0,
+          "conversion_fraction_below_initial_fill": 5.992348940473334e-07
+        },
+        {
+          "time_s": 0.0001893939393939394,
+          "pressure_max_Pa": 450731.34375,
+          "reaction_rate_max_per_s": 87924.4296875,
+          "thermal_conversion_W": 279444.46771524294,
+          "conversion_height_quantiles_m": [
+            0.012677784204002973,
+            0.018323160390299607,
+            0.022085074422561406
+          ],
+          "conversion_fraction_p_above_threshold": 0.0,
+          "conversion_fraction_below_initial_fill": 5.849913324493145e-07
+        }
+      ],
+      "native_chemical_conversion_J": 87.26699178927308,
+      "snapshot_trapezoid_conversion_J": 87.20775455320445,
+      "confirmed_detonation_passages": null,
+      "plot_source_sha256": "27bf91bc9368de65b8b1391f0a2bcb8f47901e37a5735f5edf9aeed8e372bad2",
+      "rings": [
+        {
+          "z_m": 0.0007519736842105263,
+          "candidate_track_segment_count": 8,
+          "cadence_ambiguous_intervals": 0,
+          "last_candidate_time_s": 0.00013
+        },
+        {
+          "z_m": 0.003759868421052632,
+          "candidate_track_segment_count": 8,
+          "cadence_ambiguous_intervals": 0,
+          "last_candidate_time_s": 0.000124
+        },
+        {
+          "z_m": 0.0077703947368421055,
+          "candidate_track_segment_count": 6,
+          "cadence_ambiguous_intervals": 0,
+          "last_candidate_time_s": 0.000118
+        },
+        {
+          "z_m": 0.015791447368421054,
+          "candidate_track_segment_count": 3,
+          "cadence_ambiguous_intervals": 0,
+          "last_candidate_time_s": 9.8e-05
+        }
+      ]
+    },
+    "variant": {
+      "directory": "/private/tmp/prox_rde_d2_work/rde_sim_starter/runs/d2_fill_7p6mm",
+      "status": "completed_limit",
+      "prefix_step": 13165,
+      "time_s": 0.0001893939393939394,
+      "snapshot_count": 96,
+      "inputs_sha256": "f1acdb5c344e28c99c70037c994568602cf79a39df411d6063cddd48eca6efbb",
+      "numerical_implementation": {
+        "packages": {
+          "PyYAML": "6.0.3",
+          "llvmlite": "0.45.1",
+          "numba": "0.62.1",
+          "numpy": "2.3.5",
+          "scipy": "1.18.1"
+        },
+        "python": "3.12.0",
+        "source_sha256": {
+          "analyze.py": "84dee7247d1db42074805858295e3b3fe8c7713fd2c695b3edcafd68c59d8247",
+          "calibrate.py": "e43a8522a46ac0d2808adb032aef66e4b019cb5f94ae03ae43c8f490ea0870fa",
+          "physics.py": "6766f8caed3b4d09d77489f5cfc657d848a473094e155d5ac48b3eddc33d975a",
+          "run.py": "18d850b6448259fe546d1a1c48aaae99a4ab74942b56d85b421fc23dee3112af",
+          "solver.py": "f2ecf8fa01ca5228b996872f5b8e29722eb5f314c4aba3c97a7db3aef45b2b83"
+        }
+      },
+      "diagnostics_sha256": "d77b7184dbd806759b87939b5b467edcd2ac79d00b830bbe5ef8c9d2ae1147e7",
+      "definitions": {
+        "thermal_conversion": "rho*q*reaction_rate, W/m^3; internal chemical-to-thermal conversion, not an added total-energy source",
+        "pressure_threshold_Pa": 755833.9445835203,
+        "pressure_prominence_Pa": 94479.24307294004,
+        "rate_peak_threshold_per_s": 1000.0,
+        "rate_peak_prominence_per_s": 100.0,
+        "minimum_peak_spacing_cells": 2,
+        "maximum_tracking_speed_mps": 4942.0,
+        "ambiguity_distance_m": 0.0010008116193986278,
+        "nearby_rate_radius_m": 0.002,
+        "height_quantile_method": "uniform conversion within each axial cell",
+        "reaction_offset": "nearest qualifying reaction-rate peak minus pressure-peak position; signed shortest periodic distance, not a measured reaction-zone length",
+        "interpretation": "Pressure-peak tracks and spatial overlap are diagnostics, not confirmed shocks, detonation passages, wave counts, or engine validation."
+      },
+      "snapshots": [
+        {
+          "time_s": 0.0,
+          "pressure_max_Pa": 21903062.0,
+          "reaction_rate_max_per_s": 0.005199186038225889,
+          "thermal_conversion_W": 0.8230637406761464,
+          "conversion_height_quantiles_m": [
+            0.0007519736842105264,
+            0.0037598684210526315,
+            0.006767763157894737
+          ],
+          "conversion_fraction_p_above_threshold": 0.0,
+          "conversion_fraction_below_initial_fill": 0.9999999999999974
+        },
+        {
+          "time_s": 2e-06,
+          "pressure_max_Pa": 21835758.0,
+          "reaction_rate_max_per_s": 103398.203125,
+          "thermal_conversion_W": 249787.44484082508,
+          "conversion_height_quantiles_m": [
+            0.0006409168742573181,
+            0.003645172895803223,
+            0.008109214039500125
+          ],
+          "conversion_fraction_p_above_threshold": 0.9114086629041337,
+          "conversion_fraction_below_initial_fill": 0.8658651485870562
+        },
+        {
+          "time_s": 4e-06,
+          "pressure_max_Pa": 16128975.0,
+          "reaction_rate_max_per_s": 117692.984375,
+          "thermal_conversion_W": 372351.96035771456,
+          "conversion_height_quantiles_m": [
+            0.0005567564891897889,
+            0.003275828735969504,
+            0.008496960276320239
+          ],
+          "conversion_fraction_p_above_threshold": 0.9251669416991055,
+          "conversion_fraction_below_initial_fill": 0.8399125928643671
+        },
+        {
+          "time_s": 6e-06,
+          "pressure_max_Pa": 8532594.0,
+          "reaction_rate_max_per_s": 124341.6015625,
+          "thermal_conversion_W": 467005.5840436357,
+          "conversion_height_quantiles_m": [
+            0.0005013733590884614,
+            0.0032489669206279925,
+            0.008977309513080378
+          ],
+          "conversion_fraction_p_above_threshold": 0.9326558888544351,
+          "conversion_fraction_below_initial_fill": 0.8080431148892757
+        },
+        {
+          "time_s": 8e-06,
+          "pressure_max_Pa": 7925520.5,
+          "reaction_rate_max_per_s": 122318.9453125,
+          "thermal_conversion_W": 539048.6482836279,
+          "conversion_height_quantiles_m": [
+            0.0005279432149500522,
+            0.0035812163383568316,
+            0.009650583975572039
+          ],
+          "conversion_fraction_p_above_threshold": 0.9364171875666518,
+          "conversion_fraction_below_initial_fill": 0.7694793829084423
+        },
+        {
+          "time_s": 9.999999999999999e-06,
+          "pressure_max_Pa": 6795131.5,
+          "reaction_rate_max_per_s": 120500.3828125,
+          "thermal_conversion_W": 630535.2370059751,
+          "conversion_height_quantiles_m": [
+            0.0005702232152556281,
+            0.00412656186503547,
+            0.0104071528850491
+          ],
+          "conversion_fraction_p_above_threshold": 0.9434932637839324,
+          "conversion_fraction_below_initial_fill": 0.7356254832006475
+        },
+        {
+          "time_s": 1.2e-05,
+          "pressure_max_Pa": 5861643.5,
+          "reaction_rate_max_per_s": 115074.5234375,
+          "thermal_conversion_W": 713829.8075357054,
+          "conversion_height_quantiles_m": [
+            0.0006168675311539963,
+            0.004677398149707324,
+            0.011230373376722126
+          ],
+          "conversion_fraction_p_above_threshold": 0.9168468647831666,
+          "conversion_fraction_below_initial_fill": 0.6931115046016546
+        },
+        {
+          "time_s": 1.4e-05,
+          "pressure_max_Pa": 5377242.5,
+          "reaction_rate_max_per_s": 115663.0859375,
+          "thermal_conversion_W": 729899.0166262215,
+          "conversion_height_quantiles_m": [
+            0.0007210969029976386,
+            0.005305637771126787,
+            0.012205139496969565
+          ],
+          "conversion_fraction_p_above_threshold": 0.9044507572497053,
+          "conversion_fraction_below_initial_fill": 0.6372227656992023
+        },
+        {
+          "time_s": 1.6e-05,
+          "pressure_max_Pa": 5230304.0,
+          "reaction_rate_max_per_s": 115149.8828125,
+          "thermal_conversion_W": 716427.6963093545,
+          "conversion_height_quantiles_m": [
+            0.0008146593812313372,
+            0.005966836991926489,
+            0.013139489234227303
+          ],
+          "conversion_fraction_p_above_threshold": 0.899610167506922,
+          "conversion_fraction_below_initial_fill": 0.5819008096606088
+        },
+        {
+          "time_s": 1.8e-05,
+          "pressure_max_Pa": 5210072.0,
+          "reaction_rate_max_per_s": 113241.875,
+          "thermal_conversion_W": 694164.3858287104,
+          "conversion_height_quantiles_m": [
+            0.0008768204091608082,
+            0.006819561297596707,
+            0.013999567334006684
+          ],
+          "conversion_fraction_p_above_threshold": 0.8972695759238891,
+          "conversion_fraction_below_initial_fill": 0.5331646111360394
+        },
+        {
+          "time_s": 1.9999999999999998e-05,
+          "pressure_max_Pa": 5228857.0,
+          "reaction_rate_max_per_s": 110132.25,
+          "thermal_conversion_W": 675482.2159467692,
+          "conversion_height_quantiles_m": [
+            0.0008887849089673715,
+            0.0076267160059184545,
+            0.014771863447998081
+          ],
+          "conversion_fraction_p_above_threshold": 0.8892382585234273,
+          "conversion_fraction_below_initial_fill": 0.4937876758275623
+        },
+        {
+          "time_s": 2.2e-05,
+          "pressure_max_Pa": 5019352.0,
+          "reaction_rate_max_per_s": 107913.84375,
+          "thermal_conversion_W": 665848.4045133059,
+          "conversion_height_quantiles_m": [
+            0.0008562187239865394,
+            0.008122519963018432,
+            0.015433540769811406
+          ],
+          "conversion_fraction_p_above_threshold": 0.868434688275529,
+          "conversion_fraction_below_initial_fill": 0.4648869325586566
+        },
+        {
+          "time_s": 2.4e-05,
+          "pressure_max_Pa": 4826027.5,
+          "reaction_rate_max_per_s": 105606.3046875,
+          "thermal_conversion_W": 660244.2001367459,
+          "conversion_height_quantiles_m": [
+            0.0008384557728226094,
+            0.008464338559897049,
+            0.016001497627555355
+          ],
+          "conversion_fraction_p_above_threshold": 0.8391385568065833,
+          "conversion_fraction_below_initial_fill": 0.44454271002534573
+        },
+        {
+          "time_s": 2.6e-05,
+          "pressure_max_Pa": 4511380.5,
+          "reaction_rate_max_per_s": 104990.0,
+          "thermal_conversion_W": 652590.9721904736,
+          "conversion_height_quantiles_m": [
+            0.0008707675655590944,
+            0.008721529414809226,
+            0.016503312215831473
+          ],
+          "conversion_fraction_p_above_threshold": 0.7910380073703397,
+          "conversion_fraction_below_initial_fill": 0.42748475750984105
+        },
+        {
+          "time_s": 2.8e-05,
+          "pressure_max_Pa": 4154335.5,
+          "reaction_rate_max_per_s": 103483.9921875,
+          "thermal_conversion_W": 641392.4323438259,
+          "conversion_height_quantiles_m": [
+            0.0009479066021003189,
+            0.00895352091557335,
+            0.016944876700016515
+          ],
+          "conversion_fraction_p_above_threshold": 0.6620420126893612,
+          "conversion_fraction_below_initial_fill": 0.4121297648583364
+        },
+        {
+          "time_s": 2.9999999999999997e-05,
+          "pressure_max_Pa": 3813515.5,
+          "reaction_rate_max_per_s": 98943.578125,
+          "thermal_conversion_W": 627776.1374597887,
+          "conversion_height_quantiles_m": [
+            0.001083409252285395,
+            0.009126568567326323,
+            0.01731510006474662
+          ],
+          "conversion_fraction_p_above_threshold": 0.5232443346526986,
+          "conversion_fraction_below_initial_fill": 0.3986679095706833
+        },
+        {
+          "time_s": 3.2e-05,
+          "pressure_max_Pa": 3578371.0,
+          "reaction_rate_max_per_s": 97546.296875,
+          "thermal_conversion_W": 613396.4869937997,
+          "conversion_height_quantiles_m": [
+            0.001286205083937938,
+            0.009252657884111405,
+            0.01759688507661211
+          ],
+          "conversion_fraction_p_above_threshold": 0.4343598910587682,
+          "conversion_fraction_below_initial_fill": 0.38713674420305577
+        },
+        {
+          "time_s": 3.4e-05,
+          "pressure_max_Pa": 3552489.5,
+          "reaction_rate_max_per_s": 97075.125,
+          "thermal_conversion_W": 598308.7647893172,
+          "conversion_height_quantiles_m": [
+            0.001563392747395368,
+            0.009362180043461127,
+            0.01779052222354233
+          ],
+          "conversion_fraction_p_above_threshold": 0.3770823537906434,
+          "conversion_fraction_below_initial_fill": 0.37641088152876045
+        },
+        {
+          "time_s": 3.6e-05,
+          "pressure_max_Pa": 3611226.5,
+          "reaction_rate_max_per_s": 95054.9453125,
+          "thermal_conversion_W": 582478.4252234541,
+          "conversion_height_quantiles_m": [
+            0.001910195923119827,
+            0.009471965235645285,
+            0.017906325167206402
+          ],
+          "conversion_fraction_p_above_threshold": 0.3364716260988246,
+          "conversion_fraction_below_initial_fill": 0.3649932431653212
+        },
+        {
+          "time_s": 3.7999999999999995e-05,
+          "pressure_max_Pa": 3529504.0,
+          "reaction_rate_max_per_s": 96760.375,
+          "thermal_conversion_W": 567588.1423797462,
+          "conversion_height_quantiles_m": [
+            0.0023291633934712443,
+            0.009574656955166315,
+            0.017964244573145986
+          ],
+          "conversion_fraction_p_above_threshold": 0.3051701314711434,
+          "conversion_fraction_below_initial_fill": 0.35221168359049765
+        },
+        {
+          "time_s": 3.9999999999999996e-05,
+          "pressure_max_Pa": 3376213.75,
+          "reaction_rate_max_per_s": 96626.7109375,
+          "thermal_conversion_W": 556607.8304825588,
+          "conversion_height_quantiles_m": [
+            0.0027418073622761997,
+            0.009662711370369526,
+            0.018001841390758517
+          ],
+          "conversion_fraction_p_above_threshold": 0.28317035435222887,
+          "conversion_fraction_below_initial_fill": 0.3390245128054426
+        },
+        {
+          "time_s": 4.2e-05,
+          "pressure_max_Pa": 3295625.0,
+          "reaction_rate_max_per_s": 96651.0546875,
+          "thermal_conversion_W": 551244.0881889398,
+          "conversion_height_quantiles_m": [
+            0.0030856296817889286,
+            0.009742452401413568,
+            0.01808096219167218
+          ],
+          "conversion_fraction_p_above_threshold": 0.27412532723616856,
+          "conversion_fraction_below_initial_fill": 0.326488841407973
+        },
+        {
+          "time_s": 4.4e-05,
+          "pressure_max_Pa": 3226499.0,
+          "reaction_rate_max_per_s": 96809.9296875,
+          "thermal_conversion_W": 552491.4388439313,
+          "conversion_height_quantiles_m": [
+            0.003361894161692878,
+            0.009808000381844293,
+            0.018247616908223543
+          ],
+          "conversion_fraction_p_above_threshold": 0.26162705357672955,
+          "conversion_fraction_below_initial_fill": 0.3157545678157292
+        },
+        {
+          "time_s": 4.6e-05,
+          "pressure_max_Pa": 3144494.75,
+          "reaction_rate_max_per_s": 95615.6015625,
+          "thermal_conversion_W": 560566.7865856917,
+          "conversion_height_quantiles_m": [
+            0.003561773488491232,
+            0.009855587113032273,
+            0.01846297023999727
+          ],
+          "conversion_fraction_p_above_threshold": 0.2631808970567226,
+          "conversion_fraction_below_initial_fill": 0.3076147222434743
+        },
+        {
+          "time_s": 4.8e-05,
+          "pressure_max_Pa": 3065060.0,
+          "reaction_rate_max_per_s": 96256.46875,
+          "thermal_conversion_W": 574482.048569503,
+          "conversion_height_quantiles_m": [
+            0.0037227346714825255,
+            0.009894774279739558,
+            0.018718473873354475
+          ],
+          "conversion_fraction_p_above_threshold": 0.2728268807574018,
+          "conversion_fraction_below_initial_fill": 0.3011927346005188
+        },
+        {
+          "time_s": 4.9999999999999996e-05,
+          "pressure_max_Pa": 2974481.75,
+          "reaction_rate_max_per_s": 96982.859375,
+          "thermal_conversion_W": 592044.0625907275,
+          "conversion_height_quantiles_m": [
+            0.0038771467235305178,
+            0.00993499917628077,
+            0.018979182329424443
+          ],
+          "conversion_fraction_p_above_threshold": 0.28292402596473076,
+          "conversion_fraction_below_initial_fill": 0.2952498081787012
+        },
+        {
+          "time_s": 5.2e-05,
+          "pressure_max_Pa": 2917505.5,
+          "reaction_rate_max_per_s": 97082.796875,
+          "thermal_conversion_W": 611812.610234495,
+          "conversion_height_quantiles_m": [
+            0.004017289873390574,
+            0.009970821411371658,
+            0.019232960611008907
+          ],
+          "conversion_fraction_p_above_threshold": 0.2919622481716338,
+          "conversion_fraction_below_initial_fill": 0.28984407474744645
+        },
+        {
+          "time_s": 5.4e-05,
+          "pressure_max_Pa": 2886696.0,
+          "reaction_rate_max_per_s": 95573.828125,
+          "thermal_conversion_W": 632715.9019734949,
+          "conversion_height_quantiles_m": [
+            0.004135291880234851,
+            0.009996034727960897,
+            0.019479453446249625
+          ],
+          "conversion_fraction_p_above_threshold": 0.30038441904266794,
+          "conversion_fraction_below_initial_fill": 0.28521043115635064
+        },
+        {
+          "time_s": 5.6e-05,
+          "pressure_max_Pa": 2863328.25,
+          "reaction_rate_max_per_s": 96571.0625,
+          "thermal_conversion_W": 653628.9810757898,
+          "conversion_height_quantiles_m": [
+            0.00422520510332659,
+            0.0100070732367156,
+            0.0197090412576906
+          ],
+          "conversion_fraction_p_above_threshold": 0.3077158420465804,
+          "conversion_fraction_below_initial_fill": 0.2815871402968108
+        },
+        {
+          "time_s": 5.8e-05,
+          "pressure_max_Pa": 2848779.25,
+          "reaction_rate_max_per_s": 94944.265625,
+          "thermal_conversion_W": 673910.9996332362,
+          "conversion_height_quantiles_m": [
+            0.0042878469590244515,
+            0.009999829813681903,
+            0.019923825616922502
+          ],
+          "conversion_fraction_p_above_threshold": 0.31397216357511526,
+          "conversion_fraction_below_initial_fill": 0.2794730583156182
+        },
+        {
+          "time_s": 5.9999999999999995e-05,
+          "pressure_max_Pa": 2864027.75,
+          "reaction_rate_max_per_s": 95329.1875,
+          "thermal_conversion_W": 692957.834222272,
+          "conversion_height_quantiles_m": [
+            0.004327049962081596,
+            0.009974136843556875,
+            0.020107633677861045
+          ],
+          "conversion_fraction_p_above_threshold": 0.3200866276830324,
+          "conversion_fraction_below_initial_fill": 0.2789285156813766
+        },
+        {
+          "time_s": 6.2e-05,
+          "pressure_max_Pa": 2878408.0,
+          "reaction_rate_max_per_s": 103245.40625,
+          "thermal_conversion_W": 713833.3813777061,
+          "conversion_height_quantiles_m": [
+            0.004355972329794667,
+            0.00994420213244584,
+            0.020272108527200763
+          ],
+          "conversion_fraction_p_above_threshold": 0.32242298222609117,
+          "conversion_fraction_below_initial_fill": 0.27928100158837293
+        },
+        {
+          "time_s": 6.4e-05,
+          "pressure_max_Pa": 2835010.75,
+          "reaction_rate_max_per_s": 102296.6015625,
+          "thermal_conversion_W": 733506.2533033313,
+          "conversion_height_quantiles_m": [
+            0.0043860604891271865,
+            0.009899475563030738,
+            0.020513131059493005
+          ],
+          "conversion_fraction_p_above_threshold": 0.3264819146989121,
+          "conversion_fraction_below_initial_fill": 0.280973052635475
+        },
+        {
+          "time_s": 6.599999999999999e-05,
+          "pressure_max_Pa": 2728971.25,
+          "reaction_rate_max_per_s": 98180.171875,
+          "thermal_conversion_W": 747451.0417582991,
+          "conversion_height_quantiles_m": [
+            0.00441161146525365,
+            0.009845650339378073,
+            0.020782989451510806
+          ],
+          "conversion_fraction_p_above_threshold": 0.3282811254086969,
+          "conversion_fraction_below_initial_fill": 0.2835889929677492
+        },
+        {
+          "time_s": 6.8e-05,
+          "pressure_max_Pa": 2588500.25,
+          "reaction_rate_max_per_s": 95950.171875,
+          "thermal_conversion_W": 758915.2054293164,
+          "conversion_height_quantiles_m": [
+            0.004429718101046745,
+            0.009776362766743379,
+            0.020943658266941452
+          ],
+          "conversion_fraction_p_above_threshold": 0.3310303868798854,
+          "conversion_fraction_below_initial_fill": 0.28782868697472286
+        },
+        {
+          "time_s": 7e-05,
+          "pressure_max_Pa": 2428347.5,
+          "reaction_rate_max_per_s": 96196.5390625,
+          "thermal_conversion_W": 768193.0263642273,
+          "conversion_height_quantiles_m": [
+            0.004439365598870564,
+            0.009692584873114985,
+            0.021019693952369568
+          ],
+          "conversion_fraction_p_above_threshold": 0.33117952695149877,
+          "conversion_fraction_below_initial_fill": 0.2936302687406749
+        },
+        {
+          "time_s": 7.2e-05,
+          "pressure_max_Pa": 2315227.75,
+          "reaction_rate_max_per_s": 96388.1328125,
+          "thermal_conversion_W": 776213.2860582,
+          "conversion_height_quantiles_m": [
+            0.004444411462566976,
+            0.009600876430509525,
+            0.0210795741568841
+          ],
+          "conversion_fraction_p_above_threshold": 0.3299730327090011,
+          "conversion_fraction_below_initial_fill": 0.3004597171588165
+        },
+        {
+          "time_s": 7.4e-05,
+          "pressure_max_Pa": 2288853.0,
+          "reaction_rate_max_per_s": 96483.21875,
+          "thermal_conversion_W": 783502.9191802037,
+          "conversion_height_quantiles_m": [
+            0.004444127337171225,
+            0.009504137622132971,
+            0.021106165920133108
+          ],
+          "conversion_fraction_p_above_threshold": 0.3271172390450702,
+          "conversion_fraction_below_initial_fill": 0.307961153599683
+        },
+        {
+          "time_s": 7.599999999999999e-05,
+          "pressure_max_Pa": 2253578.5,
+          "reaction_rate_max_per_s": 94928.21875,
+          "thermal_conversion_W": 789888.1302860603,
+          "conversion_height_quantiles_m": [
+            0.004438608764298068,
+            0.009403724883511662,
+            0.02108705288811631
+          ],
+          "conversion_fraction_p_above_threshold": 0.3218563406295764,
+          "conversion_fraction_below_initial_fill": 0.31572037696185956
+        },
+        {
+          "time_s": 7.8e-05,
+          "pressure_max_Pa": 2214579.75,
+          "reaction_rate_max_per_s": 95168.4375,
+          "thermal_conversion_W": 795481.895539283,
+          "conversion_height_quantiles_m": [
+            0.00442653297184362,
+            0.009304199469520815,
+            0.021059328771245774
+          ],
+          "conversion_fraction_p_above_threshold": 0.31296339319963523,
+          "conversion_fraction_below_initial_fill": 0.32345295430743704
+        },
+        {
+          "time_s": 7.999999999999999e-05,
+          "pressure_max_Pa": 2170991.25,
+          "reaction_rate_max_per_s": 95477.9296875,
+          "thermal_conversion_W": 801017.2408270467,
+          "conversion_height_quantiles_m": [
+            0.004407752828505254,
+            0.009207910164015565,
+            0.021050396659359222
+          ],
+          "conversion_fraction_p_above_threshold": 0.3034870355055926,
+          "conversion_fraction_below_initial_fill": 0.33094740126485545
+        },
+        {
+          "time_s": 8.2e-05,
+          "pressure_max_Pa": 2113389.25,
+          "reaction_rate_max_per_s": 102180.7734375,
+          "thermal_conversion_W": 807339.308302947,
+          "conversion_height_quantiles_m": [
+            0.004382909482914609,
+            0.009105665262369656,
+            0.021101923878878822
+          ],
+          "conversion_fraction_p_above_threshold": 0.2811436369722313,
+          "conversion_fraction_below_initial_fill": 0.3379489251121696
+        },
+        {
+          "time_s": 8.4e-05,
+          "pressure_max_Pa": 2050114.75,
+          "reaction_rate_max_per_s": 116542.2578125,
+          "thermal_conversion_W": 821890.5981585056,
+          "conversion_height_quantiles_m": [
+            0.004366168192654001,
+            0.008992838352431719,
+            0.021484078997316965
+          ],
+          "conversion_fraction_p_above_threshold": 0.2666902129124598,
+          "conversion_fraction_below_initial_fill": 0.34131863777003374
+        },
+        {
+          "time_s": 8.599999999999999e-05,
+          "pressure_max_Pa": 2038173.75,
+          "reaction_rate_max_per_s": 113066.09375,
+          "thermal_conversion_W": 836323.10655902,
+          "conversion_height_quantiles_m": [
+            0.00435214753833951,
+            0.008855626410903166,
+            0.02183702992223948
+          ],
+          "conversion_fraction_p_above_threshold": 0.2622777136532893,
+          "conversion_fraction_below_initial_fill": 0.3435569250444779
+        },
+        {
+          "time_s": 8.8e-05,
+          "pressure_max_Pa": 2033076.125,
+          "reaction_rate_max_per_s": 102195.6328125,
+          "thermal_conversion_W": 844175.3358666007,
+          "conversion_height_quantiles_m": [
+            0.004337010103765681,
+            0.008707615462998069,
+            0.02218791793115109
+          ],
+          "conversion_fraction_p_above_threshold": 0.25995760561720693,
+          "conversion_fraction_below_initial_fill": 0.3473341790230904
+        },
+        {
+          "time_s": 8.999999999999999e-05,
+          "pressure_max_Pa": 2014368.375,
+          "reaction_rate_max_per_s": 97814.65625,
+          "thermal_conversion_W": 852163.3288096018,
+          "conversion_height_quantiles_m": [
+            0.004327518643296194,
+            0.00855437731960059,
+            0.022639461166761264
+          ],
+          "conversion_fraction_p_above_threshold": 0.256205920440637,
+          "conversion_fraction_below_initial_fill": 0.3582070956766592
+        },
+        {
+          "time_s": 9.2e-05,
+          "pressure_max_Pa": 1980788.25,
+          "reaction_rate_max_per_s": 98755.0078125,
+          "thermal_conversion_W": 861648.4298698084,
+          "conversion_height_quantiles_m": [
+            0.004326475293384945,
+            0.008465315422802362,
+            0.023327267130874817
+          ],
+          "conversion_fraction_p_above_threshold": 0.2551189135746976,
+          "conversion_fraction_below_initial_fill": 0.38018892124377857
+        },
+        {
+          "time_s": 9.4e-05,
+          "pressure_max_Pa": 1936763.75,
+          "reaction_rate_max_per_s": 99066.9921875,
+          "thermal_conversion_W": 868381.8227789637,
+          "conversion_height_quantiles_m": [
+            0.004331330384811409,
+            0.008415499587301672,
+            0.023981497965957922
+          ],
+          "conversion_fraction_p_above_threshold": 0.2559119349960995,
+          "conversion_fraction_below_initial_fill": 0.40405017033330065
+        },
+        {
+          "time_s": 9.6e-05,
+          "pressure_max_Pa": 1889029.5,
+          "reaction_rate_max_per_s": 97688.1328125,
+          "thermal_conversion_W": 873494.3241021979,
+          "conversion_height_quantiles_m": [
+            0.004343020415637243,
+            0.008405221912263094,
+            0.02470368982971624
+          ],
+          "conversion_fraction_p_above_threshold": 0.23911364139108826,
+          "conversion_fraction_below_initial_fill": 0.4213637618404492
+        },
+        {
+          "time_s": 9.8e-05,
+          "pressure_max_Pa": 1830401.75,
+          "reaction_rate_max_per_s": 96288.6796875,
+          "thermal_conversion_W": 879856.7090727756,
+          "conversion_height_quantiles_m": [
+            0.004369554672751234,
+            0.008446383857461914,
+            0.025873898464114357
+          ],
+          "conversion_fraction_p_above_threshold": 0.23147369956824718,
+          "conversion_fraction_below_initial_fill": 0.4310548857777766
+        },
+        {
+          "time_s": 9.999999999999999e-05,
+          "pressure_max_Pa": 2253328.5,
+          "reaction_rate_max_per_s": 95283.5703125,
+          "thermal_conversion_W": 887328.7251770123,
+          "conversion_height_quantiles_m": [
+            0.00440984082448736,
+            0.008535657767384946,
+            0.027554696272631577
+          ],
+          "conversion_fraction_p_above_threshold": 0.23923674344792895,
+          "conversion_fraction_below_initial_fill": 0.4348535362005415
+        },
+        {
+          "time_s": 0.000102,
+          "pressure_max_Pa": 2235644.5,
+          "reaction_rate_max_per_s": 97999.8984375,
+          "thermal_conversion_W": 892052.1824722773,
+          "conversion_height_quantiles_m": [
+            0.0044620260247052864,
+            0.008642285183057426,
+            0.028785340614547406
+          ],
+          "conversion_fraction_p_above_threshold": 0.24846754106791086,
+          "conversion_fraction_below_initial_fill": 0.43507003394780863
+        },
+        {
+          "time_s": 0.000104,
+          "pressure_max_Pa": 1988397.125,
+          "reaction_rate_max_per_s": 99293.953125,
+          "thermal_conversion_W": 888032.435782545,
+          "conversion_height_quantiles_m": [
+            0.004520434788699838,
+            0.008689206147935238,
+            0.028360690070638468
+          ],
+          "conversion_fraction_p_above_threshold": 0.2523291079908939,
+          "conversion_fraction_below_initial_fill": 0.4349516448420936
+        },
+        {
+          "time_s": 0.000106,
+          "pressure_max_Pa": 1831717.5,
+          "reaction_rate_max_per_s": 98705.4921875,
+          "thermal_conversion_W": 875744.5491146204,
+          "conversion_height_quantiles_m": [
+            0.004576232200561297,
+            0.008673554605344138,
+            0.026570079989467223
+          ],
+          "conversion_fraction_p_above_threshold": 0.25076889059404367,
+          "conversion_fraction_below_initial_fill": 0.4355605224046509
+        },
+        {
+          "time_s": 0.000108,
+          "pressure_max_Pa": 1794271.875,
+          "reaction_rate_max_per_s": 97589.359375,
+          "thermal_conversion_W": 861741.6458926529,
+          "conversion_height_quantiles_m": [
+            0.004634645417464645,
+            0.008664975546771253,
+            0.024950053277457813
+          ],
+          "conversion_fraction_p_above_threshold": 0.24429944222507022,
+          "conversion_fraction_below_initial_fill": 0.43445618042210526
+        },
+        {
+          "time_s": 0.00010999999999999999,
+          "pressure_max_Pa": 1886063.5,
+          "reaction_rate_max_per_s": 103287.4375,
+          "thermal_conversion_W": 852260.81113206,
+          "conversion_height_quantiles_m": [
+            0.004732002648430288,
+            0.00868366903443362,
+            0.024116901742175997
+          ],
+          "conversion_fraction_p_above_threshold": 0.23871772185871826,
+          "conversion_fraction_below_initial_fill": 0.43158670170475616
+        },
+        {
+          "time_s": 0.000112,
+          "pressure_max_Pa": 1747841.375,
+          "reaction_rate_max_per_s": 103109.1640625,
+          "thermal_conversion_W": 842989.7029990276,
+          "conversion_height_quantiles_m": [
+            0.004851449681183141,
+            0.008783889125867646,
+            0.02379469694271754
+          ],
+          "conversion_fraction_p_above_threshold": 0.22862829843511343,
+          "conversion_fraction_below_initial_fill": 0.42313976541445847
+        },
+        {
+          "time_s": 0.00011399999999999999,
+          "pressure_max_Pa": 1533103.75,
+          "reaction_rate_max_per_s": 99517.5078125,
+          "thermal_conversion_W": 831538.6992371599,
+          "conversion_height_quantiles_m": [
+            0.004962339652999802,
+            0.008961641309353919,
+            0.023732242750916847
+          ],
+          "conversion_fraction_p_above_threshold": 0.21419409373904827,
+          "conversion_fraction_below_initial_fill": 0.4082513058963858
+        },
+        {
+          "time_s": 0.000116,
+          "pressure_max_Pa": 1393650.75,
+          "reaction_rate_max_per_s": 98618.09375,
+          "thermal_conversion_W": 817904.4194033297,
+          "conversion_height_quantiles_m": [
+            0.00507032742066368,
+            0.009210946114251228,
+            0.023803001597890425
+          ],
+          "conversion_fraction_p_above_threshold": 0.20047124317123383,
+          "conversion_fraction_below_initial_fill": 0.3880407008474969
+        },
+        {
+          "time_s": 0.000118,
+          "pressure_max_Pa": 1311924.0,
+          "reaction_rate_max_per_s": 99196.6015625,
+          "thermal_conversion_W": 802663.4732035147,
+          "conversion_height_quantiles_m": [
+            0.005174796214314758,
+            0.009484966858625401,
+            0.023923073621560823
+          ],
+          "conversion_fraction_p_above_threshold": 0.19097364342813175,
+          "conversion_fraction_below_initial_fill": 0.3622045619802875
+        },
+        {
+          "time_s": 0.00011999999999999999,
+          "pressure_max_Pa": 1232323.875,
+          "reaction_rate_max_per_s": 97572.03125,
+          "thermal_conversion_W": 786156.6557682209,
+          "conversion_height_quantiles_m": [
+            0.005277258056696276,
+            0.009794032492407047,
+            0.024039589288165214
+          ],
+          "conversion_fraction_p_above_threshold": 0.19016328329728188,
+          "conversion_fraction_below_initial_fill": 0.3306440346844996
+        },
+        {
+          "time_s": 0.000122,
+          "pressure_max_Pa": 1197842.625,
+          "reaction_rate_max_per_s": 97582.921875,
+          "thermal_conversion_W": 768258.91934463,
+          "conversion_height_quantiles_m": [
+            0.005379432299786331,
+            0.010103007825957012,
+            0.024110864134203443
+          ],
+          "conversion_fraction_p_above_threshold": 0.18575906896355143,
+          "conversion_fraction_below_initial_fill": 0.29960502998828653
+        },
+        {
+          "time_s": 0.000124,
+          "pressure_max_Pa": 1167246.0,
+          "reaction_rate_max_per_s": 97274.6484375,
+          "thermal_conversion_W": 749399.1461607375,
+          "conversion_height_quantiles_m": [
+            0.005487253630523008,
+            0.010431226992852023,
+            0.024107756146356466
+          ],
+          "conversion_fraction_p_above_threshold": 0.14608005775644617,
+          "conversion_fraction_below_initial_fill": 0.2797687216773357
+        },
+        {
+          "time_s": 0.000126,
+          "pressure_max_Pa": 1099551.25,
+          "reaction_rate_max_per_s": 98725.65625,
+          "thermal_conversion_W": 729856.0164140139,
+          "conversion_height_quantiles_m": [
+            0.005586948397032964,
+            0.010775386228350293,
+            0.024048189001928944
+          ],
+          "conversion_fraction_p_above_threshold": 0.05756357994806524,
+          "conversion_fraction_below_initial_fill": 0.2727995619568677
+        },
+        {
+          "time_s": 0.000128,
+          "pressure_max_Pa": 1001567.1875,
+          "reaction_rate_max_per_s": 99487.2265625,
+          "thermal_conversion_W": 710414.0146686495,
+          "conversion_height_quantiles_m": [
+            0.005684210551212215,
+            0.011117639942247619,
+            0.023961413942008812
+          ],
+          "conversion_fraction_p_above_threshold": 0.008687267875509072,
+          "conversion_fraction_below_initial_fill": 0.2706098878134615
+        },
+        {
+          "time_s": 0.00013,
+          "pressure_max_Pa": 898835.0,
+          "reaction_rate_max_per_s": 99182.6953125,
+          "thermal_conversion_W": 691926.8580665111,
+          "conversion_height_quantiles_m": [
+            0.005789720275316183,
+            0.011464500409194256,
+            0.023871917186167595
+          ],
+          "conversion_fraction_p_above_threshold": 2.174307975762954e-06,
+          "conversion_fraction_below_initial_fill": 0.2682388312555813
+        },
+        {
+          "time_s": 0.00013199999999999998,
+          "pressure_max_Pa": 811933.875,
+          "reaction_rate_max_per_s": 98871.15625,
+          "thermal_conversion_W": 674436.7607291074,
+          "conversion_height_quantiles_m": [
+            0.005913001455106937,
+            0.01182257057653488,
+            0.023813399445332124
+          ],
+          "conversion_fraction_p_above_threshold": 4.540474962172262e-07,
+          "conversion_fraction_below_initial_fill": 0.2642841196660739
+        },
+        {
+          "time_s": 0.000134,
+          "pressure_max_Pa": 776211.0625,
+          "reaction_rate_max_per_s": 99490.8125,
+          "thermal_conversion_W": 658334.8445339011,
+          "conversion_height_quantiles_m": [
+            0.006052059723065459,
+            0.01217923461607693,
+            0.023837253979632544
+          ],
+          "conversion_fraction_p_above_threshold": 1.3416488863968981e-08,
+          "conversion_fraction_below_initial_fill": 0.25820460104095844
+        },
+        {
+          "time_s": 0.000136,
+          "pressure_max_Pa": 746065.25,
+          "reaction_rate_max_per_s": 98849.0546875,
+          "thermal_conversion_W": 643537.216473313,
+          "conversion_height_quantiles_m": [
+            0.006173063863550579,
+            0.012530050357746554,
+            0.023943195404745772
+          ],
+          "conversion_fraction_p_above_threshold": 0.0,
+          "conversion_fraction_below_initial_fill": 0.24975145807855806
+        },
+        {
+          "time_s": 0.000138,
+          "pressure_max_Pa": 704959.6875,
+          "reaction_rate_max_per_s": 98362.3671875,
+          "thermal_conversion_W": 629642.0983574473,
+          "conversion_height_quantiles_m": [
+            0.0063132239430668795,
+            0.01290263040266728,
+            0.02407881821321384
+          ],
+          "conversion_fraction_p_above_threshold": 0.0,
+          "conversion_fraction_below_initial_fill": 0.23870363415172186
+        },
+        {
+          "time_s": 0.00014,
+          "pressure_max_Pa": 707537.5625,
+          "reaction_rate_max_per_s": 98771.96875,
+          "thermal_conversion_W": 616609.6522178964,
+          "conversion_height_quantiles_m": [
+            0.006487058195265217,
+            0.013263928760526485,
+            0.02423166825790335
+          ],
+          "conversion_fraction_p_above_threshold": 0.0,
+          "conversion_fraction_below_initial_fill": 0.22481910030657018
+        },
+        {
+          "time_s": 0.00014199999999999998,
+          "pressure_max_Pa": 761419.3125,
+          "reaction_rate_max_per_s": 98445.6484375,
+          "thermal_conversion_W": 603771.4662180749,
+          "conversion_height_quantiles_m": [
+            0.0066318511351779064,
+            0.013614453094586015,
+            0.024370872714262495
+          ],
+          "conversion_fraction_p_above_threshold": 3.1119578922436683e-09,
+          "conversion_fraction_below_initial_fill": 0.2080165662851551
+        },
+        {
+          "time_s": 0.000144,
+          "pressure_max_Pa": 805479.6875,
+          "reaction_rate_max_per_s": 97772.4296875,
+          "thermal_conversion_W": 591421.3239299704,
+          "conversion_height_quantiles_m": [
+            0.006780998349143066,
+            0.013964875809140806,
+            0.02446895018361366
+          ],
+          "conversion_fraction_p_above_threshold": 5.3751128247167586e-08,
+          "conversion_fraction_below_initial_fill": 0.1886775860686717
+        },
+        {
+          "time_s": 0.000146,
+          "pressure_max_Pa": 822965.375,
+          "reaction_rate_max_per_s": 97438.2890625,
+          "thermal_conversion_W": 579410.8877119587,
+          "conversion_height_quantiles_m": [
+            0.006959256763968039,
+            0.014312659249987569,
+            0.024536749129272964
+          ],
+          "conversion_fraction_p_above_threshold": 8.910206526836411e-08,
+          "conversion_fraction_below_initial_fill": 0.16734048052162223
+        },
+        {
+          "time_s": 0.000148,
+          "pressure_max_Pa": 811749.625,
+          "reaction_rate_max_per_s": 96977.09375,
+          "thermal_conversion_W": 567749.0883571027,
+          "conversion_height_quantiles_m": [
+            0.007119851496343721,
+            0.014640038269219106,
+            0.024575246033725424
+          ],
+          "conversion_fraction_p_above_threshold": 1.2200358765929894e-07,
+          "conversion_fraction_below_initial_fill": 0.1449563161925901
+        },
+        {
+          "time_s": 0.00015,
+          "pressure_max_Pa": 787647.4375,
+          "reaction_rate_max_per_s": 96001.9765625,
+          "thermal_conversion_W": 556493.0397646192,
+          "conversion_height_quantiles_m": [
+            0.007282735990895795,
+            0.014958427986609608,
+            0.024593442656937286
+          ],
+          "conversion_fraction_p_above_threshold": 1.2251563075733151e-07,
+          "conversion_fraction_below_initial_fill": 0.12311424773526994
+        },
+        {
+          "time_s": 0.00015199999999999998,
+          "pressure_max_Pa": 796918.25,
+          "reaction_rate_max_per_s": 94849.109375,
+          "thermal_conversion_W": 545288.7681588162,
+          "conversion_height_quantiles_m": [
+            0.007481261140361059,
+            0.01525960769191908,
+            0.024613828059419987
+          ],
+          "conversion_fraction_p_above_threshold": 2.6063496625618754e-07,
+          "conversion_fraction_below_initial_fill": 0.10318886693962744
+        },
+        {
+          "time_s": 0.000154,
+          "pressure_max_Pa": 857215.8125,
+          "reaction_rate_max_per_s": 94513.1640625,
+          "thermal_conversion_W": 534264.7542422478,
+          "conversion_height_quantiles_m": [
+            0.007644697778417434,
+            0.015562700201555871,
+            0.02462303169011979
+          ],
+          "conversion_fraction_p_above_threshold": 4.7510144410149976e-07,
+          "conversion_fraction_below_initial_fill": 0.08623164523923627
+        },
+        {
+          "time_s": 0.000156,
+          "pressure_max_Pa": 905527.375,
+          "reaction_rate_max_per_s": 94298.921875,
+          "thermal_conversion_W": 522585.4782891862,
+          "conversion_height_quantiles_m": [
+            0.007800608597043715,
+            0.015812568379450918,
+            0.024586000698560585
+          ],
+          "conversion_fraction_p_above_threshold": 6.801413794382013e-07,
+          "conversion_fraction_below_initial_fill": 0.07252267750394131
+        },
+        {
+          "time_s": 0.000158,
+          "pressure_max_Pa": 895636.4375,
+          "reaction_rate_max_per_s": 94610.03125,
+          "thermal_conversion_W": 510678.9291999395,
+          "conversion_height_quantiles_m": [
+            0.007964900065286001,
+            0.016071007075327076,
+            0.024495218377894496
+          ],
+          "conversion_fraction_p_above_threshold": 8.072884666751432e-07,
+          "conversion_fraction_below_initial_fill": 0.06164521839877696
+        },
+        {
+          "time_s": 0.00015999999999999999,
+          "pressure_max_Pa": 893280.1875,
+          "reaction_rate_max_per_s": 94246.015625,
+          "thermal_conversion_W": 498485.1271150187,
+          "conversion_height_quantiles_m": [
+            0.008106416730119897,
+            0.01628067018925698,
+            0.024374286606491925
+          ],
+          "conversion_fraction_p_above_threshold": 8.778704747051738e-07,
+          "conversion_fraction_below_initial_fill": 0.053002018028727754
+        },
+        {
+          "time_s": 0.00016199999999999998,
+          "pressure_max_Pa": 889987.1875,
+          "reaction_rate_max_per_s": 93602.7734375,
+          "thermal_conversion_W": 486536.5659932011,
+          "conversion_height_quantiles_m": [
+            0.008236914529742604,
+            0.01650339536479768,
+            0.02425783571941033
+          ],
+          "conversion_fraction_p_above_threshold": 9.360168218795882e-07,
+          "conversion_fraction_below_initial_fill": 0.04621053844192829
+        },
+        {
+          "time_s": 0.000164,
+          "pressure_max_Pa": 912794.5625,
+          "reaction_rate_max_per_s": 93245.828125,
+          "thermal_conversion_W": 475150.9505752419,
+          "conversion_height_quantiles_m": [
+            0.008375684608558387,
+            0.016679861167163315,
+            0.024174131588653246
+          ],
+          "conversion_fraction_p_above_threshold": 8.856860396452607e-07,
+          "conversion_fraction_below_initial_fill": 0.040802911221582666
+        },
+        {
+          "time_s": 0.000166,
+          "pressure_max_Pa": 887665.6875,
+          "reaction_rate_max_per_s": 94238.6953125,
+          "thermal_conversion_W": 464321.5500823409,
+          "conversion_height_quantiles_m": [
+            0.008526256243755791,
+            0.016850633981669964,
+            0.02413778935818355
+          ],
+          "conversion_fraction_p_above_threshold": 6.457465867915044e-07,
+          "conversion_fraction_below_initial_fill": 0.03624662513723593
+        },
+        {
+          "time_s": 0.000168,
+          "pressure_max_Pa": 842536.3125,
+          "reaction_rate_max_per_s": 94496.140625,
+          "thermal_conversion_W": 454276.9408989836,
+          "conversion_height_quantiles_m": [
+            0.008647181051853421,
+            0.017013097197094422,
+            0.024152845083440684
+          ],
+          "conversion_fraction_p_above_threshold": 5.579590112147133e-07,
+          "conversion_fraction_below_initial_fill": 0.03219815323194676
+        },
+        {
+          "time_s": 0.00016999999999999999,
+          "pressure_max_Pa": 806313.0625,
+          "reaction_rate_max_per_s": 93985.7421875,
+          "thermal_conversion_W": 444929.0044386406,
+          "conversion_height_quantiles_m": [
+            0.008764475843914385,
+            0.017169627879466274,
+            0.02422407331448581
+          ],
+          "conversion_fraction_p_above_threshold": 3.2791867110406185e-07,
+          "conversion_fraction_below_initial_fill": 0.028489174954882242
+        },
+        {
+          "time_s": 0.00017199999999999998,
+          "pressure_max_Pa": 777004.0,
+          "reaction_rate_max_per_s": 93663.796875,
+          "thermal_conversion_W": 436405.1427384389,
+          "conversion_height_quantiles_m": [
+            0.008880512782135058,
+            0.017335923050608826,
+            0.0243462929130178
+          ],
+          "conversion_fraction_p_above_threshold": 9.592436952755631e-08,
+          "conversion_fraction_below_initial_fill": 0.02486865244838259
+        },
+        {
+          "time_s": 0.000174,
+          "pressure_max_Pa": 732675.0625,
+          "reaction_rate_max_per_s": 95104.7265625,
+          "thermal_conversion_W": 428560.0819012476,
+          "conversion_height_quantiles_m": [
+            0.00899207530445849,
+            0.01751149911465491,
+            0.02450713457081868
+          ],
+          "conversion_fraction_p_above_threshold": 0.0,
+          "conversion_fraction_below_initial_fill": 0.021459936740822833
+        },
+        {
+          "time_s": 0.000176,
+          "pressure_max_Pa": 686793.875,
+          "reaction_rate_max_per_s": 95294.171875,
+          "thermal_conversion_W": 421243.5018191577,
+          "conversion_height_quantiles_m": [
+            0.00908388195052212,
+            0.017687631901960522,
+            0.024713613640224265
+          ],
+          "conversion_fraction_p_above_threshold": 0.0,
+          "conversion_fraction_below_initial_fill": 0.018448851656111917
+        },
+        {
+          "time_s": 0.000178,
+          "pressure_max_Pa": 667430.1875,
+          "reaction_rate_max_per_s": 94594.8984375,
+          "thermal_conversion_W": 414043.48102914117,
+          "conversion_height_quantiles_m": [
+            0.009167759975141939,
+            0.017865676106555328,
+            0.024947146408801888
+          ],
+          "conversion_fraction_p_above_threshold": 0.0,
+          "conversion_fraction_below_initial_fill": 0.01584735094369182
+        },
+        {
+          "time_s": 0.00017999999999999998,
+          "pressure_max_Pa": 666860.125,
+          "reaction_rate_max_per_s": 94132.0,
+          "thermal_conversion_W": 407081.62924359966,
+          "conversion_height_quantiles_m": [
+            0.009252572366169418,
+            0.018059896555576528,
+            0.02519979946864684
+          ],
+          "conversion_fraction_p_above_threshold": 0.0,
+          "conversion_fraction_below_initial_fill": 0.013443604254412699
+        },
+        {
+          "time_s": 0.00018199999999999998,
+          "pressure_max_Pa": 656476.75,
+          "reaction_rate_max_per_s": 93802.0546875,
+          "thermal_conversion_W": 400243.07945556345,
+          "conversion_height_quantiles_m": [
+            0.00934156856321911,
+            0.018251077652624282,
+            0.025474667222978337
+          ],
+          "conversion_fraction_p_above_threshold": 0.0,
+          "conversion_fraction_below_initial_fill": 0.01105623042616039
+        },
+        {
+          "time_s": 0.000184,
+          "pressure_max_Pa": 647629.875,
+          "reaction_rate_max_per_s": 94192.2421875,
+          "thermal_conversion_W": 393605.5964447365,
+          "conversion_height_quantiles_m": [
+            0.009436885302152597,
+            0.018461134534450686,
+            0.025781516209729176
+          ],
+          "conversion_fraction_p_above_threshold": 0.0,
+          "conversion_fraction_below_initial_fill": 0.008710346585825191
+        },
+        {
+          "time_s": 0.000186,
+          "pressure_max_Pa": 636851.0,
+          "reaction_rate_max_per_s": 93330.9921875,
+          "thermal_conversion_W": 387117.08707847673,
+          "conversion_height_quantiles_m": [
+            0.00953280282699234,
+            0.018684124349220278,
+            0.026099209666152826
+          ],
+          "conversion_fraction_p_above_threshold": 0.0,
+          "conversion_fraction_below_initial_fill": 0.006485644812252721
+        },
+        {
+          "time_s": 0.000188,
+          "pressure_max_Pa": 621664.25,
+          "reaction_rate_max_per_s": 93795.2265625,
+          "thermal_conversion_W": 380837.2449212264,
+          "conversion_height_quantiles_m": [
+            0.009615112651917649,
+            0.01891883007388073,
+            0.02646174522068026
+          ],
+          "conversion_fraction_p_above_threshold": 0.0,
+          "conversion_fraction_below_initial_fill": 0.004462638732176563
+        },
+        {
+          "time_s": 0.0001893939393939394,
+          "pressure_max_Pa": 607945.0625,
+          "reaction_rate_max_per_s": 91980.484375,
+          "thermal_conversion_W": 376716.82375136635,
+          "conversion_height_quantiles_m": [
+            0.009678340763635876,
+            0.01909609474897575,
+            0.026724691272638573
+          ],
+          "conversion_fraction_p_above_threshold": 0.0,
+          "conversion_fraction_below_initial_fill": 0.003248995471250004
+        }
+      ],
+      "native_chemical_conversion_J": 122.4080348730987,
+      "snapshot_trapezoid_conversion_J": 122.30560267904198,
+      "confirmed_detonation_passages": null,
+      "plot_source_sha256": "27bf91bc9368de65b8b1391f0a2bcb8f47901e37a5735f5edf9aeed8e372bad2",
+      "rings": [
+        {
+          "z_m": 0.0007519736842105263,
+          "candidate_track_segment_count": 9,
+          "cadence_ambiguous_intervals": 0,
+          "last_candidate_time_s": 0.00016999999999999999
+        },
+        {
+          "z_m": 0.003759868421052632,
+          "candidate_track_segment_count": 11,
+          "cadence_ambiguous_intervals": 0,
+          "last_candidate_time_s": 0.000164
+        },
+        {
+          "z_m": 0.0077703947368421055,
+          "candidate_track_segment_count": 12,
+          "cadence_ambiguous_intervals": 0,
+          "last_candidate_time_s": 0.00016999999999999999
+        },
+        {
+          "z_m": 0.015791447368421054,
+          "candidate_track_segment_count": 6,
+          "cadence_ambiguous_intervals": 0,
+          "last_candidate_time_s": 0.000122
+        }
+      ]
+    }
+  },
+  "variant_run_summary": {
+    "average": {
+      "available": true,
+      "duration_s": 0.0001893939393939394,
+      "end_s": 0.0001893939393939394,
+      "interpretation": "transient short-window mean; startup may be included",
+      "pressure_profile_Pa": [
+        457271.96984628297,
+        550643.2272793691,
+        551739.0500560562,
+        546441.434302452,
+        542067.3225883754,
+        537424.6526378754,
+        532454.0384681012,
+        526872.693453919,
+        521038.6547596787,
+        515261.12198019295,
+        510003.97295331204,
+        505253.4619831139,
+        500886.9690804306,
+        496628.86117485655,
+        492112.5093136875,
+        487409.923167147,
+        484415.0283677421,
+        482444.2655888151,
+        480875.43870849715,
+        479505.94070722925,
+        478159.90742534806,
+        476717.1227891158,
+        475251.1335209075,
+        473875.4668909773,
+        472548.0205699588,
+        471251.41657985473,
+        469967.9545558596,
+        468699.8484162696,
+        467400.5163223937,
+        466079.37295718474,
+        464689.7261374612,
+        463340.0327324509,
+        462067.78550952993,
+        460876.9576293484,
+        459715.6668658846,
+        458592.75579816045,
+        457496.4088988141,
+        456439.8002259392,
+        455418.501864432,
+        454401.4283605856,
+        453391.9932554951,
+        452408.9005207368,
+        451427.56316767,
+        450376.0157601329,
+        449271.3923170192,
+        448143.1664197576,
+        446996.5865522153,
+        445831.2836094685,
+        444652.11133575754,
+        443462.61418121157,
+        442266.0047213574,
+        441059.4317007637,
+        439838.9429768405,
+        438601.07090729725,
+        437341.97564774874,
+        436058.6706906518,
+        434748.60664617433,
+        433410.4181979841,
+        432042.7184020576,
+        430644.48898367165,
+        429215.63080659584,
+        427756.55791534786,
+        426270.2125505888,
+        424757.65324136935,
+        423220.4134724604,
+        421657.97861382854,
+        420071.4198237147,
+        418460.19348237436,
+        416826.78485102986,
+        415172.03585019714,
+        413497.4362744748,
+        411803.2952541241,
+        410092.81290824834,
+        408364.1057081649,
+        406618.51128960785,
+        404854.7868231247,
+        403073.71548047225,
+        401274.32010375644,
+        399456.6507666222,
+        397619.93211118336,
+        395763.91492754925,
+        393889.0226833229,
+        391993.49955136364,
+        390077.5509195835,
+        388140.85211886937,
+        386183.4804697402,
+        384205.50646056095,
+        382206.7414097583,
+        380187.0680338464,
+        378145.28525001695,
+        376081.6808688267,
+        373995.4253726387,
+        371886.2589517588,
+        369752.91847578884,
+        367594.40993152774,
+        365409.4542060712,
+        363196.71162982396,
+        360954.39651052695,
+        358680.44264170626,
+        356372.6340936817,
+        354028.47537282226,
+        351645.29573424516,
+        349220.6729001321,
+        346753.01140120416,
+        344241.0744368791,
+        341683.43322903325,
+        339080.95189537323,
+        336436.5154820753,
+        333755.01734661096,
+        331043.9773959555,
+        328314.1423045872,
+        325572.91134492244,
+        322827.449184232,
+        320082.68892315263,
+        317341.62297040084,
+        314605.98689073056,
+        311876.02211335616,
+        309151.20787341817,
+        306430.1732403402,
+        303711.55549997906,
+        300994.1599785698,
+        298276.8854279861,
+        295558.5905993741,
+        292838.1604929766,
+        290114.3526259506,
+        287385.9922377283,
+        284651.8190302632,
+        281910.6436738246,
+        279161.08553076553,
+        276401.747232651,
+        273631.19425096974,
+        270847.96282117954,
+        268050.4941283058,
+        265237.11188544106,
+        262405.85177374,
+        259554.4170772938,
+        256680.08601975668,
+        253779.83752450958,
+        250850.13260587066,
+        247887.02257254365,
+        244885.73946511882,
+        241840.6988489074,
+        238744.6805053749,
+        235588.99137216696,
+        232361.53226362242,
+        229046.25537692956,
+        225617.74568961086,
+        222039.89877689397,
+        218247.92851222662,
+        214175.96532069638,
+        209455.796595585,
+        204451.5399961648
+      ],
+      "reason": null,
+      "start_s": 0.0
+    },
+    "budgets": {
+      "angular_inventory": 3.347269322274076e-05,
+      "angular_net": 3.347269322274078e-05,
+      "angular_residual": -2.315855840429038e-20,
+      "angular_storage": 3.347269322274076e-05,
+      "boundary_integral": [
+        [
+          -3.3351256847843157e-06,
+          0.031352808984720676,
+          -0.0018535972829085492,
+          -11.9957445688619,
+          -3.1076556148625655e-06
+        ],
+        [
+          -3.3351256847843157e-06,
+          0.031352808984720676,
+          -0.0018535972829085492,
+          -11.9957445688619,
+          -3.1076556148625655e-06
+        ],
+        [
+          4.760430895435651e-05,
+          0.0,
+          0.12142551352289398,
+          285.46081361056946,
+          0.0
+        ],
+        [
+          7.147750709441555e-05,
+          -0.0009402441916500218,
+          0.10457902108844162,
+          222.2697151577399,
+          7.147750668022666e-05
+        ]
+      ],
+      "inventory": [
+        7.152734976278775e-05,
+        0.0009402441916500212,
+        0.016846492434453145,
+        390.5341669864646,
+        1.7396089470223643e-05
+      ],
+      "net_influx_and_source": [
+        -2.3873198140059048e-05,
+        0.0009402441916500218,
+        0.01684649243445235,
+        63.19109845282954,
+        -4.922150033966326e-05
+      ],
+      "residual": [
+        -1.6195269951502222e-18,
+        -6.505213034913027e-19,
+        7.945033519973776e-16,
+        8.292033726320369e-12,
+        2.574980159653073e-19
+      ],
+      "source_integral": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        2.22560063405634e-05
+      ],
+      "storage": [
+        -2.3873198140060667e-05,
+        0.0009402441916500212,
+        0.016846492434453145,
+        63.191098452837835,
+        -4.9221500339663e-05
+      ]
+    },
+    "engine_torque_Nm": null,
+    "error": null,
+    "format_version": 2,
+    "invalid_state_count": 0,
+    "last_failure": null,
+    "observed_passages": null,
+    "observed_passages_reason": "pressure events are reported by plotting; detonation passages require field inspection",
+    "progress_roundoff_max": 8.881784197001252e-16,
+    "progress_tolerance": 1.4210854715202004e-14,
+    "reference_frequency_Hz": 15840.0,
+    "status": "completed_limit",
+    "steps": 13165,
+    "t": 0.0001893939393939394,
+    "target_time_s": 0.0001893939393939394,
+    "torque_reason": "no wall-traction model; angular residual is a conservation check"
+  },
+  "variant_final_native_row": {
+    "step": 13165,
+    "t": 0.0001893939393939394,
+    "dt": 6.284998192349588e-09,
+    "inventory": [
+      7.152734976278775e-05,
+      0.0009402441916500212,
+      0.016846492434453145,
+      390.5341669864646,
+      1.7396089470223643e-05
+    ],
+    "residual": [
+      -1.6195269951502222e-18,
+      -6.505213034913027e-19,
+      7.945033519973776e-16,
+      8.292033726320369e-12,
+      2.574980159653073e-19
+    ],
+    "angular_residual": -2.315855840429038e-20,
+    "pressure_stations": [
+      222570.5145751245,
+      256083.13687974765,
+      238601.72243975982,
+      231956.10169481236,
+      223962.07337282388,
+      205171.466682827
+    ],
+    "exit_cell_force_estimate_N": 337.75945974584283,
+    "probe_pressure_Pa": 302086.5116254124,
+    "probe_progress": 1.6191713496190577e-05,
+    "probe_temperature_K": 305.0155255264045,
+    "progress_min": 1.9946215159991445e-07,
+    "progress_max": 1.0000000000000007,
+    "pressure_min_Pa": 80359.2240036775,
+    "pressure_max_Pa": 607945.0601142086,
+    "exit_cell_axial_mach_min": 0.9233604535607199,
+    "exit_cell_axial_mach_max": 1.073184794682673,
+    "exit_cell_subsonic_fraction": 0.8165548098434005,
+    "exit_cell_reverse_fraction": 0.0,
+    "boundary_integral": [
+      [
+        1.2334795984453138e-10,
+        6.738931165928157e-07,
+        6.222631305615388e-08,
+        0.0007049464169207265,
+        1.1131022535078687e-10
+      ],
+      [
+        1.2334795984453138e-10,
+        6.738931165928157e-07,
+        6.222631305615388e-08,
+        0.0007049464169207265,
+        1.1131022535078687e-10
+      ],
+      [
+        1.6828473303269646e-09,
+        0.0,
+        2.5212822255602955e-06,
+        0.010091249692504498,
+        0.0
+      ],
+      [
+        1.747937147183616e-09,
+        7.469278991811315e-08,
+        2.806609923913482e-06,
+        0.006759711735228015,
+        1.7479369915305917e-09
+      ]
+    ],
+    "source_integral": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      4.3049488634844944e-10
+    ],
+    "mdot_in": 0.26775621548712775,
+    "mdot_out": 0.27811259346284173,
+    "exit_numerical_force_N": 334.4926179288117
+  },
+  "variant_max_inventory_storage_scaled_budget_residual": 3.0175737081400337e-14,
+  "tests": {
+    "passed": 51,
+    "failed": 0,
+    "errors": 0,
+    "skipped": 0,
+    "seconds": 56.944,
+    "directory": "/private/tmp/prox_rde_d2_work/rde_sim_starter",
+    "command": "RDE_RUN_REACTIVE_BASELINE=1 NUMBA_NUM_THREADS=2 <repository .venv>/bin/python -m unittest discover -s tests -v",
+    "log_sha256": "ef83266cdc320dadb004c5563a692631b48e063c3ea84a7941d02ac8cb79c1f7"
+  },
+  "source_sha256": {
+    "coupling.py": "d77b7184dbd806759b87939b5b467edcd2ac79d00b830bbe5ef8c9d2ae1147e7",
+    "plot.py": "27bf91bc9368de65b8b1391f0a2bcb8f47901e37a5735f5edf9aeed8e372bad2",
+    "tests/test_coupling.py": "dca10034bf5b12020d8adee9a8e03eda6e3e39742d0cfee690d1911c7baaff9f",
+    "tests/test_imports.py": "14109da0e34f2ed32a814d1b3f0ff9ebf777d40cbb5fce9551c003f3137a6a32",
+    "cases/run937_fill_7p6mm.yaml": "2a48ec695c5aa5f69d95df6d4ba9223b1562c6c515d0a8095966000b370effbc"
+  },
+  "figures_sha256": {
+    "baseline_axial_evolution.png": "87b2c3f4dbb20885bc40fba508c9be874383b1c5f1ad5bc4166f7a288a8439f5",
+    "baseline_reaction_fields.png": "362b6bafd13206dbe8fdded749f4ea0f63cb559e8f4984d421ff0b30888f3fda",
+    "baseline_ring_tracks.png": "be432c4e0be012f07db1d58ba56d5e3bb926d61036a00cbcc83b434e222ccbe9",
+    "comparison.png": "71d53e26757a8cab423ca9423fc0b600548a73371b0925a25ab1da8a76a0bbbf",
+    "variant_axial_evolution.png": "f2e3efe19d3340bbc79ebbf15912b77608a8e42d7d3d6ea22b098c2852ae6410",
+    "variant_reaction_fields.png": "3b4f8d7ce79a50c32894666f860ab8d9c4c03171d1caa400a237a0e9e7a70074",
+    "variant_ring_tracks.png": "0875474bff2fb48806a043b3e1a783df5e482ec41a20c37535e43b0021630f84"
+  },
+  "interpretation": "Stronger early startup transient, but no sustained rotating detonation demonstrated. Interface-associated reaction persists; its physical/numerical cause is not isolated."
+}

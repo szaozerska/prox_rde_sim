@@ -8,7 +8,7 @@ x (index i) = around the circumference, y (index j) = along the axis.
 """
 import numpy as np
 from numba import njit, prange
-from physics import cons_to_prim, prim_to_cons_cell, injector_flux, reaction_rate, state_error, total_energy
+from physics import cons_to_prim, prim_to_cons_cell, injector_flux, reaction_rate, state_error, total_energy, source_step_limit
 
 NG = 2
 # boundary codes
@@ -170,7 +170,7 @@ class InvalidStateError(ValueError):
 
 
 class Solver:
-    def __init__(self, nx, ny, dx, dy, gas, bc, inj=(0.0, 300.0, 0.0, 1.0), p_back=1e5, cfl=0.4):
+    def __init__(self, nx, ny, dx, dy, gas, bc, inj=(0.0, 300.0, 0.0, 1.0), p_back=1e5, cfl=0.4, source_cfl=0.05):
         if not isinstance(nx, (int, np.integer)) or not isinstance(ny, (int, np.integer)) or nx < NG or ny < 1:
             raise ValueError("nx must be an integer >= 2 and ny an integer >= 1")
         if not np.all(np.isfinite([dx, dy, p_back, cfl])) or dx <= 0 or dy <= 0 or p_back <= 0 or not 0 < cfl <= 1:
@@ -188,6 +188,10 @@ class Solver:
             raise ValueError("invalid injector p0, T0, area ratio or discharge coefficient")
         if bc[2] == INJECTOR and inj[0] <= 0:
             raise ValueError("an injector needs positive plenum pressure")
+        if source_cfl is not None and (not np.isfinite(source_cfl) or not 0 < source_cfl <= .25):
+            raise ValueError("source_cfl must lie in (0, .25], or None for a baseline")
+        self.source_cfl = source_cfl
+        self.progress_roundoff_max = 0.0
         self.nx, self.ny, self.dx, self.dy = nx, ny, dx, dy
         self.bc, self.inj = tuple(bc), np.array(inj, dtype=np.float64)
         self.p_back, self.cfl = p_back, cfl
@@ -211,7 +215,8 @@ class Solver:
     def _check_state(self, U, stage):
         if not np.all(np.isfinite([self.rho_min, self.p_min])) or min(self.rho_min, self.p_min) < 0:
             raise ValueError("state thresholds must be finite and nonnegative")
-        code, i, j, component, value = state_error(U, self.g, self.q, NG, self.rho_min, self.p_min)
+        code, i, j, component, value, roundoff = state_error(U, self.g, self.q, NG, self.rho_min, self.p_min)
+        self.progress_roundoff_max = max(self.progress_roundoff_max, roundoff)
         if code:
             reason = {1: "nonfinite conserved value", 2: "invalid density", 3: "progress outside [0, 1]", 4: "invalid pressure"}[code]
             error = InvalidStateError(stage, reason, (i-NG, j-NG), component, value)
@@ -265,14 +270,15 @@ class Solver:
     def step(self, dt_max=None):
         """One SSP-RK2 step; invalid stages are rejected without advancing U or t.
 
-        dt_max caps the step for exact test end times. General reactive-source
-        accuracy control remains follow-on work; flow CFL alone is not enough.
+        dt_max caps output/end events. A global reaction-slope bound additionally
+        resolves source depletion/heating; verify accuracy by reducing source_cfl.
         """
         if dt_max is not None and (not np.isfinite(dt_max) or dt_max <= 0):
             raise ValueError("dt_max must be finite and positive")
         boundary1, source1 = self._L(self.U, self.k1, "step input")
         sx, sy = max_speed(self.W, self.g)
-        dt = self.cfl / (sx / self.dx + sy / self.dy)
+        dt = min(self.cfl / (sx / self.dx + sy / self.dy),
+                 source_step_limit(self.g, self.q, self.R, self.k, self.Ea, self.source_cfl))
         if dt_max is not None:
             dt = min(dt, dt_max)
         if not np.isfinite(dt) or dt <= 0 or self.t + dt == self.t:

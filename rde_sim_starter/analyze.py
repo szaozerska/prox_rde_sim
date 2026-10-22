@@ -89,3 +89,55 @@ def conservation_budget(current, initial, boundary_integral, source_integral, de
                 residual=residual, angular_inventory=current[1] * depth * mean_radius,
                 angular_storage=storage[1] * mean_radius, angular_net=net[1] * mean_radius,
                 angular_residual=residual[1] * mean_radius)
+
+
+def pressure_arrivals(times, pressure, high, low):
+    """Hysteretic upward pressure crossings, not confirmed detonation passages.
+
+    Initial high pressure is not counted. Re-arm only below low. Times are
+    interpolated on native samples; thresholds are explicit and dimensional.
+    """
+    t,p=np.asarray(times,dtype=float),np.asarray(pressure,dtype=float)
+    if t.ndim!=1 or p.shape!=t.shape or t.size<2 or not np.isfinite(t).all() or not np.isfinite(p).all() or np.any(np.diff(t)<=0):
+        raise ValueError('at least two finite, strictly increasing samples required')
+    if not np.isfinite(high) or not np.isfinite(low) or not high>low>0:
+        raise ValueError('pressure thresholds must satisfy high > low > 0')
+    armed=p[0]<=low
+    arrivals=[]
+    for i in range(1,len(t)):
+        if p[i]<=low:
+            armed=True
+        elif armed and p[i]>=high and p[i-1]<high:
+            arrivals.append(t[i-1]+(t[i]-t[i-1])*(high-p[i-1])/(p[i]-p[i-1]))
+            armed=False
+    return np.asarray(arrivals)
+
+
+def load_saved_run(directory):
+    """Read only the completed/checkpointed prefix, without importing the solver."""
+    import json
+    from pathlib import Path
+    directory=Path(directory)
+    inputs=json.loads((directory/'inputs.json').read_text())
+    summary=json.loads((directory/'summary.json').read_text())
+    rows=[]
+    for line in (directory/'history.jsonl').read_text().splitlines():
+        try:
+            row=json.loads(line)
+        except json.JSONDecodeError:
+            break  # a crash can leave a partial tail beyond the checkpoint
+        if row['step']<=summary['steps'] and row['t']<=summary['t']:
+            rows.append(row)
+    if not rows or rows[-1]['step']!=summary['steps'] or rows[-1]['t']!=summary['t']:
+        raise ValueError('summary does not match the saved history prefix')
+    times=np.array([r['t'] for r in rows])
+    if rows[0]['step']!=0 or np.any(np.diff(times)<=0) or [r['step'] for r in rows]!=list(range(summary['steps']+1)):
+        raise ValueError('saved history has gaps or nonmonotone times')
+    fields=[]
+    for path in sorted((directory/'fields').glob('step_*.npz')):
+        with np.load(path,allow_pickle=False) as saved:
+            if int(saved['step'])<=summary['steps'] and float(saved['t'])<=summary['t']:
+                fields.append({key:saved[key].copy() for key in saved.files})
+    if not fields:
+        raise ValueError('no committed field snapshots')
+    return dict(inputs=inputs,summary=summary,history=rows,fields=fields)

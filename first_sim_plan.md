@@ -1,6 +1,13 @@
 # RDE simulation plan — revision 6
 
-**Status: foundation and D0 run plumbing implemented.** Small synthetic cases verify bounded output, restart, averaging and native conservation budgets; source-accuracy checks and D1 propagation remain pending; see [HANDOFF.md](HANDOFF.md) for verified progress and remaining work. This remains the current implementation plan. Revision 6 prioritizes the overnight deadline, short tests covering only a few wave passages, and a simple separation of physics, testing, analysis, and plotting files. The complete Chapter 3–4 roadmap remains follow-on work. The full 2D workflow and subsequent milestones are not yet implemented. [Revision 4](docs/plans/first_sim_plan_rev4.md) (only archive link paths adjusted) and unchanged [revision 3](docs/plans/first_sim_plan_rev3.md) are retained for comparison; the local [planning review](sim_plan_review.md) explains revision 3's physics and implementation issues. Historical proposals do not override this plan.
+**Status: D2 reusable coupling diagnostics and one startup comparison implemented.** The source cap, roundoff handling, injector-plane closure and saved-field diagnostics are checked; 1D and bounded Run 937 evidence is recorded in [the D1 report](docs/verification/d1_propagation.md). D2 adds full-height chemical-conversion fields and periodic pressure-peak tracks; its controlled startup comparison is recorded in [the D2 report](docs/verification/d2_coupling.md). See [HANDOFF.md](HANDOFF.md) for the observed outcome and remaining model limitations. This remains the current implementation plan. Revision 6 prioritizes the overnight deadline, short tests covering only a few wave passages, and a simple separation of physics, testing, analysis, and plotting files. The complete Chapter 3–4 roadmap remains follow-on work. Longer physical validation, confirmed mode tracking and subsequent milestones remain pending. [Revision 4](docs/plans/first_sim_plan_rev4.md) (only archive link paths adjusted) and unchanged [revision 3](docs/plans/first_sim_plan_rev3.md) are retained for comparison; the local, Git-ignored `sim_plan_review.md` explains revision 3's physics and implementation issues. Historical proposals do not override this plan.
+
+**Known open case: [RDE-001](docs/verification/run937_unresolved.md).** D1's 3.8 mm
+and D2's 7.6 mm Run 937 starts do not demonstrate sustained detonation by 189.394
+microseconds. D0-D2 completion refers to the short development increments below,
+not completion of the broader numbered physics stages in section 7. Stage 1
+physical-reference/refinement work is incomplete and Stage 3's sustained-wave
+criterion is not met. The first working physical 2D iteration remains pending.
 
 **Immediate deliverable:** a runnable reduced 2D Run 937 prototype, meaningful fast numerical checks, a few passages of pressure/reaction fields if the model sustains them, and short-window pressure/force diagnostics. The fuller first working iteration adds sufficient numerical/averaging evidence for pressure comparisons and qualified thrust/torque estimates. Human inspection remains the primary wave assessment. These are intermediate research models on the path to simulation of imported 3D engine geometry.
 
@@ -73,6 +80,15 @@ Maintain two reference calculations:
 
 1. Physical thermochemistry and, where needed, detailed-chemistry CJ/ZND results for the documented mixture and state. Record mechanism, thermodynamic data, solver version, and induction definition. A constant-volume ignition calculation at a selected VN state is a useful auxiliary reference, but is not itself a ZND calculation.
 2. The constant-gamma, constant-gas-constant surrogate actually solved by the prototype. Fitting its CJ speed does not establish correct product thermodynamics, reaction structure, or mixing behavior.
+
+For the initial Run 937 physical reference, use Cantera with SDToolbox and the
+paper's GRI-Mech 3.0 mechanism for CJ, frozen post-shock and ZND calculations.
+Reproduce the CEA CJ-equilibrium heat-release convention, or identify another
+package/database as an independent cross-check rather than exact CEA replication.
+Record package/mechanism versions, state definitions and convergence. These
+reference calculations remain unimplemented; they do not require replacing the
+2D CFD source with the full mechanism in every cell. Complete this focused G0
+subset alongside the contact/refinement investigation in RDE-001.
 
 A two-step induction/reaction model is a candidate repair for the starter's observed premature burning. Verify it before making it the production default. Use distinct progress variables for induction and reaction; conserve stored chemical energy consistently. If total energy already contains unspent chemical energy, do not add that heat a second time as an energy source.
 

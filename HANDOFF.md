@@ -1,149 +1,182 @@
-# Handoff after D0 run plumbing
+# Handoff after D2 coupling diagnostics
 
-Snapshot: **October 21, 2026**, in `/Users/sgfx/Desktop/Projects/prox_rde_sim`.
+Snapshot: **October 21, 2026**. Repository:
+`/Users/sgfx/Desktop/Projects/prox_rde_sim`.
 
 ## Start here
 
-The authoritative plan remains [first_sim_plan.md](first_sim_plan.md), revision 6,
-especially §0 and §4.5. The foundation was pushed as commit `6ae65ad` on
-`origin/main`. The user then asked for the next implementation increment: bounded
-runs, saved inputs/output, restart, averaging and native conservation accounting.
-These are implemented and checked with small synthetic cases. No reactive Run 937
-simulation has been launched in these increments.
+The current plan remains [revision 6](first_sim_plan.md). Foundation and D0 were
+pushed through commit `5ed8aa7`; this publication adds the implemented D1/D2
+source, tests, selected evidence and unresolved-case record. The user authorized
+pushing these increments with clear limitations. Bulk simulation runs remain local
+and Git-ignored.
 
-**Next concrete step: source-accuracy and focused boundary checks, then D1.**
-Assess reactive-source time integration with fixed chemistry and a small 1D
-propagation check. Once those checks support it, run one Run 937 case for three
-expected passage intervals and inspect pressure/reaction together. Implement the
-minimal saved-field plotting needed for that inspection. Extend the same saved run
-to five intervals only for a specific unresolved observation.
+**D2 result:** the 7.6 mm starting layer produces a stronger early transient than
+the D1 3.8 mm layer, but neither demonstrates sustained rotating detonation by
+189.394 µs. Both complete without invalid states. The larger layer also enlarges
+the ignition/product masks: initialization energy rises from 5.027 to 9.425 J.
+This is a startup sensitivity, not a pure fill-height change at fixed ignition.
+See [D2 verification](docs/verification/d2_coupling.md) and its comparison figures.
 
-Do not rebuild the environment or repeat the full paper review. See the
-[run-plumbing verification](docs/verification/d0_run_plumbing.md), the historical
-[foundation record](docs/verification/foundation_session.md), and the
-[README](README.md) for commands and output format. The detailed inherited audit
-is in the [archived planning handoff](docs/archive/HANDOFF_planning_20261021.md);
-its source lines and environment/status claims are historical.
+**OPEN RDE-001:** [Run 937 sustained detonation unresolved](docs/verification/run937_unresolved.md)
+is the canonical issue record. D0-D2 are short development increments; they do not
+mean the broader numbered physics stages have passed. Physical-reference/refinement
+work in Stage 1 remains incomplete, Stage 3's sustained-wave criterion is not met,
+and the first working physical 2D iteration has not been delivered. The reactive
+solver can attempt propagation and passes its short 1D check, but the tested 2D
+configuration fails to demonstrate the intended phenomenon. Missing reference work
+and unresolved model/numerical behavior must be investigated; no automatic recovery
+with a longer run or a guaranteed chemistry fix is established.
 
-## Implemented
+**Next work:** a controlled hot-product/fresh-gas contact problem with fixed-chemistry
+spatial refinement, and the Run 937 physical-reference subset of G0 (Cantera with
+SDToolbox / GRI-Mech 3.0 CJ/ZND; CEA heat-release reproduction or an explicitly
+labeled independent equilibrium cross-check). Use the evidence to select a bounded
+2D refinement, boundary experiment or verified chemistry change. RDE-001 records
+candidate causes, startup confounding, evidence provenance and fix criteria.
+No longer run or parameter sweep is justified by D2 alone.
 
-The existing HLL/minmod/SSP-RK2 solver and inherited one-step surrogate remain.
-The foundation extracted `physics.py`, fixed conservative ghost conversion and
-single-row/transmissive boundary issues, made imports inert, and replaced silent
-floors with explicit initialization/stage/final-state rejection. `calibrate.py`
-contains pure surrogate calculations; `plot.py` handles rendering separately.
-`test_1d.py` delegates to the common solver tests.
+## D2 additions
 
-This increment adds:
+- `coupling.py`: chemical-to-thermal conversion, full-height distributions,
+  periodic pressure-peak candidates and conservative tracking across saved frames.
+  Dropouts, ambiguous matches and inadequate cadence break tracks. These are
+  inspection operators, not a shock detector or detonation/mode classifier.
+- `plot.py --coupling`: full-height pressure/reaction fields, conversion-height
+  histories and several ring heights with candidate tracks. `--compare-run`
+  renders both cases and explicitly reports every changed input and source equality.
+- `cases/run937_fill_7p6mm.yaml`: only fill_height_mm differs from the D1 case.
+  Chemistry, numerical sources, grid, plenum and outlet are byte-identical to D1.
+- Eight new tests plus import coverage. The full 51-test suite passed, including
+  the opt-in 1D reactive baseline. The log records Matplotlib pending-deprecation
+  notices; no failures or skips occurred. Existing dependencies were reused.
+- Run data: `rde_sim_starter/runs/d2_fill_7p6mm/`; derived comparison:
+  `rde_sim_starter/runs/d2_coupling_comparison/`. Both are Git-ignored. Selected
+  figures, compact metrics and the test log are retained in `docs/verification/`.
 
-- A schema-1 case with explicit constant-annulus, equivalent-premixed-feed,
-  inviscid-wall and chemistry choices. Measured O2/CH4 feed states remain separate
-  reference data; the inherited rounded equivalent feed and surrogate parameters
-  are preserved. Supplied calibration is checked against the case, not refitted
-  silently. Mass flow remains predicted by the plenum boundary.
-- A guarded CLI with a three-interval new-run cap and a same-run extension to five
-  total. Steps stop at output events and the remaining end time. Startup counts.
-  The reference frequency does not impose or detect simulated wave passages.
-- Periodic ignition masks with explicit patch count, widths and offset. Saved
-  initialization energy change is signed relative to the specified fresh/product
-  baseline; replacing chemical reservoirs can make it negative. It is not a
-  universal positive heat-deposition model.
-- Initial/early/final field snapshots, per-step station-pressure and axial-Mach
-  diagnostics, explicit transient means with clipped window weights, and null
-  means when no accepted step overlaps the selected window.
-- Actual boundary-face fluxes from both RK stages, weighted consistently with the
-  accepted update. Budgets include mass, both momenta, total energy, reacted mass
-  and constant-mean-radius angular momentum, with storage. Reaction changes the
-  progress reservoir only; it does not add chemical heat to total energy twice.
-- Atomic checkpoints with float64 state, cumulative budgets, averaging accumulators
-  and output schedule/history position. Input hashes, source/environment matching,
-  state checks and a Unix process lock guard resume. Restart archives writes after
-  the checkpoint before continuing its history prefix. Failed RK states are never
-  saved as accepted states. Interruptions during bookkeeping fall back to the last
-  complete checkpoint. Disk failure can prevent a fresh status file.
-- Failure details and scoped exit-force diagnostics. Angular residual is a
-  conservation check, not mechanical engine torque; detected passages remain null.
+The diagnostic quantity rho*q*omega measures internal chemical-to-thermal
+conversion; do not add it to total energy again. Pressure peaks and high-pressure
+conversion fractions do not establish shock/reaction coupling on their own.
+D2 numerical source files and checkpoint format are unchanged, so D1 checkpoints
+remain compatible. Plot/report hashes identify the analysis implementation.
 
-`config.yaml` has intentionally changed from the inherited 1 ms/0.4 ms timing.
-Its original bytes remain in `docs/archive/starter_pre_foundation.zip`. Supplied
-calibration JSON, tube JSON/PNGs, historical plans and local review remain unchanged.
-The old baseline hash manifest describes the foundation snapshot, not today's config.
+## Earlier D1 changes
 
-## Verification
+- Added a conservative global reaction-slope time-step bound. For the inherited
+  calibration, `source_cfl=0.05` gives **14.455 ns**. The bound includes reactant
+  depletion and constant-energy thermal acceleration. It does not change k, Ea,
+  q, gamma or reaction length, and it is not an adaptive error estimator.
+- The independent closed-reactor reference uses SciPy DOP853 and the scalar
+  constant-total-energy ODE. Fresh, preheated and partly reacted states were
+  checked. Halving the source fraction gives about fourfold error reduction in
+  the active cases. Source tests conserve total energy without adding heat twice.
+- The first strict 1D baseline stopped on progress `1.0000000000000002`.
+  Validation now permits **64 float64 epsilons** (~1.42e-14) around [0,1], records
+  the maximum excursion, and leaves conserved values untouched. Substantial
+  excursions, NaNs and nonphysical density/pressure still stop the run. The source
+  rate is zero beyond complete reaction within that roundoff tolerance. There are
+  no state floors, clipping, repairs or repair budgets.
+- Corrected the equivalent converging injector opening. Choked flow uses one sonic
+  opening-plane pressure/temperature/velocity; the old implementation combined
+  choked mass flow with further expansion to chamber pressure. Normal momentum
+  now includes nominal open-area jet pressure plus chamber pressure on the closed
+  area. Cd still scales transmitted flow, and its inherited value 0.76 is not
+  retuned or independently validated. Separate fuel/oxidizer mixing is unresolved.
+- Verified that outlet selection uses axial Mach even with large azimuthal
+  velocity. The inherited pressure outlet remains a simple closure; reverse-flow
+  behavior and downstream sensitivity are not physically validated.
+- Extended `test_1d.py` with a saved, bounded 1D experiment; its initialization is
+  shared with the opt-in propagation test. Added native fixed-probe histories and
+  reaction-rate fields to the engine runner.
+- Added read-only `plot.py --tube` and `--run` interfaces: field panels,
+  pressure/progress/reaction space–time maps, station traces/profile, mass-flow,
+  conservation and axial-Mach diagnostics. Hysteretic pressure event times are
+  explicitly not confirmed detonation passages or mode counts. Plotting never
+  advances or mutates a saved run; the reader ignores post-checkpoint tails.
 
-From the repository root, with the installed environment:
+## Results and artifacts
+
+The 95 µs, 0.25 mm 1D experiment gives **2490.157 m/s**, **+0.7753%** relative to
+its fitted CJ reference. Halving the source fraction changes the speed by
+**0.0222 m/s** (~0.00089%). The final pressure-to-50%-reaction-front separation is
+1.25 mm, measured on the grid; this is not a spatial convergence study or detailed-
+chemistry validation. Both source fractions complete without invalid states.
+
+The Run 937 experiment uses the frozen one-step chemistry, 0.5 mm requested grid,
+447 × 152 cells, the documented initial patch, corrected injector and three
+expected passage intervals. It completed 13,165 steps to 189.394 µs without
+invalid states, but the pressure fronts weakened and sustained rotating detonation
+was not demonstrated. Reaction remains near the fresh/product interface. One
+initiation pressure crossing is not a confirmed detonation passage. No extension
+was made; short-window averages include startup. See the report and saved figures.
+
+Generated data (Git-ignored):
+
+- `rde_sim_starter/runs/d1_tube_default/`
+- `rde_sim_starter/runs/d1_tube_half_step/`
+- `rde_sim_starter/runs/d1_run937/`
+
+Selected figures and compact metrics are in `docs/verification/`. The earlier
+foundation/D0 reports are historical evidence. Original calibration and supplied
+JSON/PNGs remain unchanged. Updated source intentionally cannot resume D0
+checkpoints: resume requires the original numerical implementation/environment.
+D1 checkpoints use format version 2 and persist the roundoff diagnostic.
+
+## Commands
+
+With the existing environment, from the repository root:
 
 ```sh
 cd rde_sim_starter
 NUMBA_NUM_THREADS=2 ../.venv/bin/python -m unittest discover -s tests -v
+RDE_RUN_REACTIVE_BASELINE=1 NUMBA_NUM_THREADS=2 ../.venv/bin/python -m unittest discover -s tests -v
 ```
 
-The suite covers the original physics/Sod/analysis checks plus open-domain native
-flux/source closure, rejected-step budget atomicity, depth scaling of integrals,
-bounded output, CLI creation/resume, immutable inputs, weighted averages across
-restart, bitwise equality with uninterrupted step replay, partial-output recovery,
-failed atomic writes and exclusive writer locking. See the current verification
-record for the final count and measured metrics.
+The first command keeps the 95 µs propagation check opt-in; the second includes it.
+The final D2 full run passed all 51 tests, including the opt-in reactive check. To create new artifacts:
 
-The inherited **95 µs 1D detonation test remains opt-in and was not run**. Its
-old saved +0.8% CJ-speed result is inherited evidence. Removing clipping may expose
-failure; diagnose it before changing chemistry or enabling repair. Tiny disabled-
-chemistry runner tests use an artificial frequency only to exercise I/O. They say
-nothing about wave survival or experimental agreement.
+```sh
+NUMBA_NUM_THREADS=2 ../.venv/bin/python test_1d.py --out runs/new_tube
+../.venv/bin/python plot.py --tube runs/new_tube --out runs/new_tube/plots
+NUMBA_NUM_THREADS=2 ../.venv/bin/python run.py --out runs/new_run937
+../.venv/bin/python plot.py --run runs/new_run937 --out runs/new_run937/plots
+```
 
-Generated probes are in `rde_sim_starter/runs/d0_plumbing_probe/` (Git-ignored).
-Durable metrics are in `docs/verification/`. Test cases never overwrite baselines.
+Output destinations must be new. Reuse saved flow data for plot changes. The
+optional `source_cfl=None` solver API exists only for explicit baseline/failure
+experiments; the production case runner requires a positive source fraction.
 
-## Remaining work and limits
+## Preserve these limits
 
-1. **Reactive time integration:** flow CFL and an optional user step cap do not
-   establish source accuracy. Check fixed-parameter source/propagation behavior,
-   including partly reacted material. Two-step induction remains a candidate only;
-   validate its timing/event crossing before adoption. Do not retune chemistry with grid size.
-2. **Feed/outlet physics:** inherited subsonic pressure closure and no-backflow
-   injector remain. Basic injector-limit/boundary tests and native conservation
-   are implemented, but characteristic/outlet sensitivity and injector-plane
-   momentum/enthalpy behavior still need assessment before physical claims.
-3. **D1/D2 visibility:** render saved pressure/reaction fields, short space–time
-   traces and fronts; count actual observed passages. No full mode classifier or
-   fine-frequency spectrum is justified by the short window. The saved outputs
-   support later analysis without rerunning the flow.
-4. **Focused confirmation:** resolve numerical concerns with a small time-step or
-   resolution comparison; short startup-contaminated means are not converged data.
-5. **Loads and geometry:** no wall-friction/heat-loss model or full engine force
-   balance exists. Exit numerical momentum/pressure contribution is scoped to the
-   annulus exit. Angular storage/flux balance does not determine mechanical torque.
-   Physical thermochemistry, external force validation, CAD/backend/3D and wider
-   figure campaigns remain follow-on work.
+- Run 937 default: three expected intervals = **189.394 µs**. Extend the same saved
+  run only for a specific unresolved observation, to five total = **315.657 µs**.
+  Reference frequency budgets duration and does not impose a wave count or speed.
+- Pressure fronts alone are insufficient evidence of detonation. Compare pressure
+  and reaction in the same saved fields. Failure and inconclusive outcomes are useful.
+- Initial pressure is an inherited empirical fit, and initial fill/ignition can
+  select transients. Startup pressure agreement is not independent validation.
+- Native flux closure verifies discrete accounting, not correct boundary physics.
+  The annulus-exit contribution is not whole-engine thrust. Angular storage/flux
+  balance does not determine mechanical torque without wall-traction physics.
+- No wall-friction/heat-loss closure, physical thermochemistry, independent force
+  validation, CAD mesher or 3D solver was added. Constant depth does not resolve
+  radial dynamics. Keep outer-radius and mean-radius wave speeds distinct.
+- Do not restore the historical incorrect 0.75 mm reaction-zone claim or retune
+  reaction length with the mesh. Two-step event timing needs independent tests.
+- Keep `.venv`, caches, bulk runs and the local review out of Git. This publication
+  includes D1/D2 source, tests and selected evidence under the user's push request;
+  no sustained-wave fix or new CFD experiment is part of the publication.
 
-## Decisions to preserve
+## Environment and workspace
 
-- Run 937: 76-FI-5, straight constant gap in circumferential–axial 2D, simplified
-  premixed injection. Three intervals at 15.84 kHz are **189.394 µs**; five total
-  are **315.657 µs**. Stop on invalid state; do not wait indefinitely for a wave.
-- Human inspection comes first. Failure or an inconclusive short window is useful;
-  pressure pulses alone do not demonstrate a shock-coupled detonation.
-- Keep physical thermochemistry separate from the fitted constant-gamma surrogate.
-  Total energy already stores unspent chemical energy.
-- Do not restore revision 3's 0.75 mm reaction-zone claim: audited candidate
-  two-step shock-to-90/95% lengths were about 1.65/2.28 mm.
-- Uniform depth scales integrals without adding radial dynamics. Gap/CAD claims
-  need geometry-resolving work. Mean-radius angular momentum is an approximation.
-- Mundt reports peripheral speed at the outer radius; keep mean-radius speed
-  distinct. No measured Mundt thrust/torque target exists for validating those loads.
-- Keep generated runs, `.venv`, caches and the local review out of Git. No destructive
-  checkout/reset/clean is required. The user has authorized committing
-  and pushing this D0 increment to `origin/main` alongside the foundation snapshot.
+Python 3.12.0, macOS x86_64, workspace `.venv`; versions remain pinned in
+`requirements.txt`. No new dependency or backend installation was needed.
+Use two Numba threads for these small checks. See the verification metrics for
+measured timings; they are not general solver throughput benchmarks.
 
-## Environment
-
-Python **3.12.0**, macOS **x86_64**, `.venv/bin/python`; NumPy **2.3.5**, SciPy
-**1.18.1**, Numba **0.62.1**, llvmlite **0.45.1**, Matplotlib **3.11.2**, PyYAML
-**6.0.3**. `requirements.txt` records the full resolved environment. Install with
-`pip install --only-binary=:all: -r requirements.txt` to avoid an unnecessary source
-build. Initial Numba compilation costs more than subsequent runs.
-
-The chat sandbox retained the removed workspace path. Edits/tests were staged
-under `/private/tmp` and copied to the actual repository with concurrent-change
-checks through the normal write-approval mechanism. The repository path above is
-current; do not recreate the removed `RDEPathwaySpaceXBackyard` folder.
+The sandbox still lists the removed `RDEPathwaySpaceXBackyard` folder. Edits and
+D2 experiments and tests were staged under `/private/tmp/prox_rde_d2_work` using
+the repository environment. Transfer uses concurrent-change checks and byte
+verification through the normal approval path. The first transfer request timed
+out in automatic review before process creation; the staged work was unaffected.
+The abandoned Google Drive troubleshooting is unrelated and must remain stopped.

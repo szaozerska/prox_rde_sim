@@ -2,7 +2,7 @@
 schema_version: 1
 model:
   geometry: constant_annulus
-  feed: premixed_plenum
+  feed: premixed_plenum  # converging opening, sonic or chamber-pressure matched
   walls: inviscid
   chemistry: one_step
   discharge_coefficient: 0.76  # inherited effective value; not independently validated
@@ -41,10 +41,11 @@ chemistry:
 numerics:
   dx_mm: 0.5
   cfl: 0.4
+  source_cfl: 0.05         # global one-step source-slope cap; check by halving
   average_start_us: 0.0     # explicitly transient: startup included
   snapshot_every_us: 2.0
   checkpoint_every_us: 10.0
-  max_step_ns: null        # optional cap; not an automatic reactive-source accuracy test
+  max_step_ns: null        # optional additional step cap
   probe_y_mm: 1.0
 
 initialization:

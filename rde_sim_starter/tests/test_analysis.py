@@ -37,3 +37,14 @@ class AnalysisTests(unittest.TestCase):
         for times in [[0,1,2],[0,1,1,2],[0,1,np.nan,3]]:
             with self.assertRaises(ValueError):
                 directional_spectrum(np.ones((len(times),4)),times)
+
+
+class SavedSignalTests(unittest.TestCase):
+    def test_pressure_arrivals_need_hysteresis_and_do_not_count_initial_high(self):
+        from analyze import pressure_arrivals
+        p=[3.,2.,1.,1.5,2.5,2.1,2.6,1.,3.]
+        got=pressure_arrivals(np.arange(len(p),dtype=float),p,2.,1.2)
+        np.testing.assert_allclose(got,[3.5,7.5])
+        self.assertEqual(pressure_arrivals([0,1,2],[1,1,1],2.,1.2).size,0)
+        with self.assertRaises(ValueError):
+            pressure_arrivals([0,1,1],[1,2,1],2.,1.)

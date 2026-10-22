@@ -1,0 +1,117 @@
+{
+  "implementation": {
+    "source_sha256": {
+      "solver.py": "f2ecf8fa01ca5228b996872f5b8e29722eb5f314c4aba3c97a7db3aef45b2b83",
+      "physics.py": "6766f8caed3b4d09d77489f5cfc657d848a473094e155d5ac48b3eddc33d975a",
+      "run.py": "18d850b6448259fe546d1a1c48aaae99a4ab74942b56d85b421fc23dee3112af",
+      "analyze.py": "84dee7247d1db42074805858295e3b3fe8c7713fd2c695b3edcafd68c59d8247",
+      "calibrate.py": "e43a8522a46ac0d2808adb032aef66e4b019cb5f94ae03ae43c8f490ea0870fa"
+    },
+    "python": "3.12.0",
+    "packages": {
+      "numpy": "2.3.5",
+      "numba": "0.62.1",
+      "llvmlite": "0.45.1",
+      "scipy": "1.18.1",
+      "PyYAML": "6.0.3"
+    }
+  },
+  "progress_tolerance": 1.4210854715202004e-14,
+  "source_cap_s": 1.4454733289035721e-08,
+  "reference": "Independent scalar constant-energy ODE, SciPy DOP853, rtol=2e-12, atol=2e-14",
+  "cases": [
+    {
+      "initial_temperature_K": 1000.0,
+      "initial_progress": 0.0,
+      "duration_s": 3e-05,
+      "runs": [
+        {
+          "source_cfl": 0.1,
+          "steps": 1038,
+          "max_progress_error": 3.0374675865418865e-05,
+          "final_progress": 0.9999994553976209,
+          "energy_error": 0.0,
+          "invalid_state_count": 0
+        },
+        {
+          "source_cfl": 0.05,
+          "steps": 2076,
+          "max_progress_error": 7.620006458264328e-06,
+          "final_progress": 0.99999945590452,
+          "energy_error": 0.0,
+          "invalid_state_count": 0
+        },
+        {
+          "source_cfl": 0.025,
+          "steps": 4151,
+          "max_progress_error": 1.9082727199526417e-06,
+          "final_progress": 0.9999994560301799,
+          "energy_error": 0.0,
+          "invalid_state_count": 0
+        }
+      ]
+    },
+    {
+      "initial_temperature_K": 2116.248966,
+      "initial_progress": 0.35,
+      "duration_s": 6e-06,
+      "runs": [
+        {
+          "source_cfl": 0.1,
+          "steps": 208,
+          "max_progress_error": 9.128510524258893e-06,
+          "final_progress": 0.9618777090965891,
+          "energy_error": 0.0,
+          "invalid_state_count": 0
+        },
+        {
+          "source_cfl": 0.05,
+          "steps": 416,
+          "max_progress_error": 2.2814635604051503e-06,
+          "final_progress": 0.9618819811150499,
+          "energy_error": 0.0,
+          "invalid_state_count": 0
+        },
+        {
+          "source_cfl": 0.025,
+          "steps": 831,
+          "max_progress_error": 5.702820725650426e-07,
+          "final_progress": 0.961883047958143,
+          "energy_error": 0.0,
+          "invalid_state_count": 0
+        }
+      ]
+    },
+    {
+      "initial_temperature_K": 300.0,
+      "initial_progress": 0.0,
+      "duration_s": 1e-05,
+      "runs": [
+        {
+          "source_cfl": 0.1,
+          "steps": 346,
+          "max_progress_error": 1.6212740006039342e-21,
+          "final_progress": 5.1992230396139066e-08,
+          "energy_error": 0.0,
+          "invalid_state_count": 0
+        },
+        {
+          "source_cfl": 0.05,
+          "steps": 692,
+          "max_progress_error": 1.8727369068200547e-21,
+          "final_progress": 5.199223039613924e-08,
+          "energy_error": 0.0,
+          "invalid_state_count": 0
+        },
+        {
+          "source_cfl": 0.025,
+          "steps": 1384,
+          "max_progress_error": 7.213014941462401e-22,
+          "final_progress": 5.1992230396140674e-08,
+          "energy_error": 0.0,
+          "invalid_state_count": 0
+        }
+      ]
+    }
+  ]
+}

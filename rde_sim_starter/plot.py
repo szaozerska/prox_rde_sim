@@ -1,7 +1,7 @@
 """Rendering from supplied/saved data only; never advances the solver.
 
-The first available CLI renders saved surrogate calibration data. The planned
-run-directory field/report CLI belongs to the next increment.
+CLIs render saved calibration, 1D experiments, or bounded engine-run directories.
+Plots are diagnostics; pressure crossings alone are not detonation classification.
 """
 import argparse
 import json
@@ -56,19 +56,355 @@ def plot_sod(x, primitive, destination):
         plt.close(fig)
 
 
+
+def _pyplot():
+    import matplotlib
+    matplotlib.use('Agg')
+    import matplotlib.pyplot as plt
+    return plt
+
+
+def plot_tube(directory, destination):
+    import numpy as np
+    directory,destination=Path(directory),Path(destination)
+    summary=json.loads((directory/'summary.json').read_text())
+    with np.load(directory/'fields.npz',allow_pickle=False) as saved:
+        x,t,W,h=(saved[key].copy() for key in ['x','times','primitive','history'])
+    destination.mkdir(parents=True,exist_ok=False)
+    plt=_pyplot()
+    fig,axes=plt.subplots(2,2,figsize=(12,7),layout='constrained')
+    try:
+        for index in np.unique(np.round(np.linspace(0,len(t)-1,5)).astype(int)):
+            label=f'{t[index]*1e6:.0f} µs'
+            axes[0,0].plot(x*1e3,W[index,3]/1e6,label=label)
+            axes[0,1].plot(x*1e3,W[index,4],label=label)
+        axes[0,0].set(xlabel='Axial distance [mm]',ylabel='Pressure [MPa]',yscale='log')
+        axes[0,1].set(xlabel='Axial distance [mm]',ylabel='Reaction progress',ylim=(-.02,1.02))
+        axes[0,0].legend(ncol=2,fontsize=8)
+        if h.size:
+            axes[1,0].plot(h[:,0]*1e6,h[:,1]*1e3,label='Pressure front > 2p₁')
+            axes[1,0].plot(h[:,0]*1e6,h[:,2]*1e3,label='50% reaction front')
+            axes[1,1].plot(h[:,0]*1e6,(h[:,1]-h[:,2])*1e3)
+        axes[1,0].set(xlabel='Time [µs]',ylabel='Front position [mm]')
+        axes[1,0].legend(fontsize=8)
+        axes[1,1].set(xlabel='Time [µs]',ylabel='Pressure-to-50% front distance [mm]')
+        for ax in axes.flat:
+            ax.grid(alpha=.2)
+        speed=summary['speed_mps']
+        label='not enough samples' if speed is None else f'{speed:.1f} m/s, {summary["speed_relative_error"]:+.2%} relative error against fitted CJ'
+        fig.suptitle(f'1D one-step propagation: {summary["status"]} — {label}')
+        fig.savefig(destination/'propagation.png',dpi=150)
+    finally:
+        plt.close(fig)
+    return summary
+
+
+def plot_run(directory, destination):
+    import numpy as np
+    from matplotlib.colors import LogNorm
+    from analyze import load_saved_run, pressure_arrivals
+    data=load_saved_run(directory)
+    destination=Path(destination)
+    destination.mkdir(parents=True,exist_ok=False)
+    inputs,summary,rows,fields=(data[key] for key in ['inputs','summary','history','fields'])
+    r=inputs['resolved']; config=inputs['config']; calibration=inputs['calibration']
+    t=np.array([row['t'] for row in rows]); ts=np.array([float(f['t']) for f in fields])
+    x=(np.arange(r['nx'])+.5)*r['dx']*1e3
+    z=(np.arange(r['ny'])+.5)*r['dy']*1e3
+    pressure=np.stack([f['pressure'] for f in fields])/1e6
+    progress=np.stack([f['progress'] for f in fields])
+    rate_available=all('reaction_rate' in f for f in fields)
+    rate=np.stack([f['reaction_rate'] for f in fields]) if rate_available else None
+    low=float(pressure.min()); high=float(pressure.max())
+    norm=LogNorm(max(low,1e-9),max(high,low*1.01))
+    plt=_pyplot()
+    chosen=np.unique(np.round(np.linspace(0,len(fields)-1,4)).astype(int))
+    fig,axes=plt.subplots(2,len(chosen),figsize=(3.4*len(chosen)+1,6),squeeze=False,layout='constrained')
+    try:
+        for column,index in enumerate(chosen):
+            extent=[0,r['width']*1e3,0,r['length']*1e3]
+            im=axes[0,column].imshow(pressure[index].T,origin='lower',extent=extent,aspect='auto',norm=norm,cmap='magma')
+            xi=axes[1,column].imshow(progress[index].T,origin='lower',extent=extent,aspect='auto',vmin=0,vmax=1,cmap='viridis')
+            axes[0,column].set_title(f'{ts[index]*1e6:.2f} µs')
+            for row in range(2):
+                axes[row,column].set_xlabel('Circumferential distance [mm]')
+                if column==0:
+                    axes[row,column].set_ylabel('Axial distance [mm]')
+        fig.colorbar(im,ax=axes[0,:].tolist(),label='Pressure [MPa], logarithmic')
+        fig.colorbar(xi,ax=axes[1,:].tolist(),label='Reaction progress')
+        fig.suptitle(f'Reduced annulus: {summary["status"]}; pressure and reaction share the saved times')
+        fig.savefig(destination/'fields.png',dpi=150)
+    finally:
+        plt.close(fig)
+
+    probe=r['probe_index']
+    fig,axes=plt.subplots(1,3,figsize=(13,5),sharex=True,sharey=True,layout='constrained')
+    try:
+        arrays=[pressure[:,:,probe],progress[:,:,probe],rate[:,:,probe] if rate_available else None]
+        titles=['Pressure [MPa], log','Reaction progress','Reaction rate [1/s], log']
+        for i,(ax,values,title) in enumerate(zip(axes,arrays,titles)):
+            if values is None:
+                ax.text(.5,.5,'Reaction rate was not saved',ha='center',transform=ax.transAxes)
+            elif len(ts)<2 or (i==2 and not np.any(values>0)):
+                ax.text(.5,.5,'Insufficient time samples' if len(ts)<2 else 'No active reaction',ha='center',transform=ax.transAxes)
+            else:
+                options=dict(cmap='viridis',vmin=0,vmax=1) if i==1 else dict(cmap='magma',norm=norm)
+                if i==2:
+                    positive=values[values>0]
+                    options=dict(cmap='inferno',norm=LogNorm(max(float(positive.min()),float(positive.max())*1e-6),float(positive.max())*1.001))
+                    values=np.ma.masked_less_equal(values,0.)
+                image=ax.pcolormesh(x,ts*1e6,values,shading='nearest',**options)
+                fig.colorbar(image,ax=ax)
+            ax.set(title=title,xlabel='Circumferential distance [mm]')
+        axes[0].set_ylabel('Time from startup [µs]')
+        fig.suptitle(f'Saved rings at z={z[probe]:.3f} mm; field cadence is not native step cadence')
+        fig.savefig(destination/'space_time.png',dpi=150)
+    finally:
+        plt.close(fig)
+
+    fig,axes=plt.subplots(3,2,figsize=(13,10),layout='constrained')
+    events=[]
+    try:
+        stations=np.array([row['pressure_stations'] for row in rows])/1e3
+        for index,station in enumerate(r['pressure_stations']):
+            axes[0,0].plot(t*1e6,stations[:,index],label=f'{station*1e3:g} mm')
+        axes[0,0].set(xlabel='Time [µs]',ylabel='Circumferential mean pressure [kPa]')
+        axes[0,0].legend(ncol=3,fontsize=7)
+        average=summary['average']
+        if average['available']:
+            axes[0,1].plot(z,np.array(average['pressure_profile_Pa'])/1e3,label='Model: transient window')
+        else:
+            axes[0,1].text(.5,.5,'No averaging-window overlap',ha='center',transform=axes[0,1].transAxes)
+        reference=config.get('experimental_reference',{})
+        # Only overlay the engine references when their stations fit this geometry.
+        zr=reference.get('pressure_stations_mm',[])
+        if zr and max(zr)<=r['length']*1e3:
+            axes[0,1].scatter(zr,reference['mean_pressures_kPa'],marker='x',c='k',label='Mundt Run 937: long-window mean')
+        axes[0,1].set(xlabel='Axial distance [mm]',ylabel='Mean pressure [kPa]')
+        axes[0,1].legend(fontsize=8)
+        if len(rows)>1:
+            axes[1,0].plot(t[1:]*1e6,[row['mdot_in']*1e3 for row in rows[1:]],label='Inlet')
+            axes[1,0].plot(t[1:]*1e6,[row['mdot_out']*1e3 for row in rows[1:]],label='Outlet')
+        axes[1,0].set(xlabel='Time [µs]',ylabel='Native numerical mass flow [g/s]')
+        axes[1,0].legend()
+        inventory=np.array([row['inventory'] for row in rows]); residual=np.array([row['residual'] for row in rows])
+        scale=np.maximum(np.maximum(np.abs(inventory[0]),np.max(np.abs(inventory-inventory[0]),axis=0)),1e-30)
+        for index,label in enumerate(['Mass','θ momentum','Axial momentum','Energy','Reacted mass']):
+            axes[1,1].semilogy(t*1e6,np.maximum(np.abs(residual[:,index])/scale[index],1e-18),label=label)
+        axes[1,1].set(xlabel='Time [µs]',ylabel='Inventory/storage-scaled budget residual')
+        axes[1,1].legend(ncol=2,fontsize=8)
+        if 'probe_pressure_Pa' in rows[0]:
+            pp=np.array([row['probe_pressure_Pa'] for row in rows])
+            axes[2,0].plot(t*1e6,pp/1e6,label='Local pressure')
+            twin=axes[2,0].twinx()
+            twin.plot(t*1e6,[row['probe_progress'] for row in rows],color='tab:orange',alpha=.7)
+            twin.set(ylabel='Reaction progress',ylim=(-.05,1.05))
+            if len(t)>1:
+                events=pressure_arrivals(t,pp,2*calibration['p1'],1.25*calibration['p1']).tolist()
+            for arrival in events:
+                axes[2,0].axvline(arrival*1e6,color='gray',lw=.6,alpha=.6)
+        axes[2,0].set(xlabel='Time [µs]',ylabel='Fixed-probe pressure [MPa]',title='Pressure events need reaction/front inspection')
+        axes[2,1].fill_between(t*1e6,[row['exit_cell_axial_mach_min'] for row in rows],
+                              [row['exit_cell_axial_mach_max'] for row in rows],alpha=.4,label='Exit axial Mach range')
+        axes[2,1].axhline(1,color='k',ls='--',lw=.8)
+        axes[2,1].axhline(0,color='k',ls=':',lw=.8)
+        axes[2,1].set(xlabel='Time [µs]',ylabel='Axial Mach')
+        axes[2,1].legend(fontsize=8)
+        for ax in axes.flat:
+            ax.grid(alpha=.2)
+        fig.suptitle(f'{summary["status"]}; {summary["t"]*1e6:.3f} µs — transient diagnostics, not converged engine performance')
+        fig.savefig(destination/'diagnostics.png',dpi=150)
+    finally:
+        plt.close(fig)
+    report=dict(status=summary['status'],time_s=summary['t'],snapshot_count=len(fields),native_rows=len(rows),
+                reaction_rate_available=rate_available,
+                pressure_event_times_s=events,pressure_event_count=len(events),
+                event_high_Pa=2*calibration['p1'],event_rearm_Pa=1.25*calibration['p1'],
+                interpretation='Pressure crossings only, not confirmed detonation passages or a mode count.',
+                max_inventory_storage_scaled_residual=float(np.max(np.abs(residual)/scale)))
+    (destination/'analysis.json').write_text(json.dumps(report,indent=2,allow_nan=False)+'\n')
+    return report
+
+
+def _render_coupling(report, arrays, destination):
+    """Render one inspected prefix; all numerical inputs have already been read."""
+    import numpy as np
+    from matplotlib.colors import LogNorm
+    plt=_pyplot()
+    saved=arrays['saved']; fields=saved['fields']; r=saved['inputs']['resolved']
+    times=arrays['times']; threshold=report['definitions']['pressure_threshold_Pa']
+    pressure=np.stack([f['pressure'] for f in fields])/1e6
+    heat=np.array(arrays['heat_fields'])
+    pnorm=LogNorm(max(float(pressure.min()),1e-9),max(float(pressure.max()),float(pressure.min())*1.01))
+    active=bool(np.any(heat>0))
+    hmax=max(float(heat.max()),1.)
+    hnorm=LogNorm(hmax*1e-6,hmax*1.001)
+    heat_cmap=plt.get_cmap('inferno').copy()
+    heat_cmap.set_bad(heat_cmap(0.))
+    heat_cmap.set_under(heat_cmap(0.))
+    x=(np.arange(r['nx'])+.5)*r['dx']*1e3
+    z=(np.arange(r['ny'])+.5)*r['dy']*1e3
+    chosen=np.unique([int(np.argmin(abs(times-target))) for target in [20e-6,40e-6,100e-6,times[-1]]])
+    fig,axes=plt.subplots(2,len(chosen),figsize=(3.5*len(chosen)+1,6),squeeze=False,layout='constrained')
+    try:
+        for column,index in enumerate(chosen):
+            extent=[0,r['width']*1e3,0,r['length']*1e3]
+            pimage=axes[0,column].imshow(pressure[index].T,origin='lower',extent=extent,aspect='auto',norm=pnorm,cmap='magma')
+            himage=axes[1,column].imshow(np.ma.masked_less_equal(heat[index].T,0.),origin='lower',extent=extent,aspect='auto',norm=hnorm,cmap=heat_cmap)
+            if not active:
+                axes[1,column].text(.5,.5,'No active reaction',ha='center',transform=axes[1,column].transAxes)
+            if len(x)>1 and len(z)>1:
+                p=fields[index]['pressure']; xi=fields[index]['progress']
+                levels=[value for value in [threshold,2*threshold] if p.min()<value<p.max()]
+                if levels:
+                    axes[1,column].contour(x,z,p.T,levels=levels,colors='white',linewidths=.6)
+                if xi.min()<.5<xi.max():
+                    axes[1,column].contour(x,z,xi.T,levels=[.5],colors='cyan',linewidths=.6)
+            axes[0,column].set_title(f'{times[index]*1e6:.2f} µs')
+            for row in range(2):
+                axes[row,column].set(xlabel='Circumferential distance [mm]',ylabel='Axial distance [mm]' if column==0 else '')
+        fig.colorbar(pimage,ax=axes[0].tolist(),label='Pressure [MPa], log')
+        fig.colorbar(himage,ax=axes[1].tolist(),label='Chemical-to-thermal conversion [W/m³], log')
+        fig.suptitle('Saved full-height fields; white contours: p=2p₁ / 4p₁; cyan: progress 0.5')
+        fig.savefig(destination/'reaction_fields.png',dpi=140)
+    finally:
+        plt.close(fig)
+
+    fig,axes=plt.subplots(1,3,figsize=(14,5),layout='constrained')
+    try:
+        if len(times)>1:
+            image=axes[0].pcolormesh(times*1e6,z,np.ma.masked_less_equal(arrays['axial_heat'].T,0.),shading='nearest',norm=hnorm,cmap=heat_cmap)
+            fig.colorbar(image,ax=axes[0],label='Circumferential mean conversion [W/m³]')
+            image=axes[1].pcolormesh(times*1e6,z,arrays['axial_pressure'].T/1e6,shading='nearest',norm=pnorm,cmap='magma')
+            fig.colorbar(image,ax=axes[1],label='Circumferential maximum pressure [MPa]')
+        else:
+            for ax in axes[:2]:
+                ax.text(.5,.5,'One saved time only',ha='center',transform=ax.transAxes)
+        quantiles=np.array([row['conversion_height_quantiles_m'] for row in report['snapshots']],dtype=float)*1e3
+        axes[2].fill_between(times*1e6,quantiles[:,0],quantiles[:,2],alpha=.25,label='10–90% conversion height')
+        axes[2].plot(times*1e6,quantiles[:,1],label='Median conversion height')
+        fill=saved['inputs']['config']['initialization'].get('fill_height_mm')
+        if fill is not None:
+            axes[2].axhline(fill,color='k',ls='--',label='Initial fill height')
+        for ax in axes:
+            ax.set(xlabel='Time [µs]',ylabel='Axial distance [mm]',ylim=(0,r['length']*1e3))
+        axes[2].legend(fontsize=8)
+        fig.suptitle('Where reaction occurs; conversion height does not identify a flame or detonation front')
+        fig.savefig(destination/'axial_evolution.png',dpi=140)
+    finally:
+        plt.close(fig)
+
+    rings=arrays['rings']
+    fig,axes=plt.subplots(len(rings),3,figsize=(14,3.3*len(rings)),squeeze=False,layout='constrained')
+    try:
+        for row,ring in enumerate(rings):
+            for column,(values,title) in enumerate([(ring['pressure']/1e6,'Pressure [MPa]'),
+                    (ring['thermal_conversion'],'Chemical-to-thermal conversion [W/m³]'),(ring['progress'],'Reaction progress')]):
+                ax=axes[row,column]
+                if len(times)>1:
+                    options=dict(cmap='viridis',vmin=0,vmax=1) if column==2 else dict(cmap='magma' if column==0 else heat_cmap,norm=pnorm if column==0 else hnorm)
+                    shown=np.ma.masked_less_equal(values,0.) if column==1 else values
+                    image=ax.pcolormesh(x,times*1e6,shown,shading='nearest',**options)
+                    fig.colorbar(image,ax=ax)
+                else:
+                    ax.text(.5,.5,'One saved time only',ha='center',transform=ax.transAxes)
+                if column<2:
+                    for track in ring['tracks']:
+                        samples=track['samples']
+                        xx=np.array([s['x_m'] for s in samples])*1e3
+                        tt=np.array([s['time_s'] for s in samples])*1e6
+                        segments=np.split(np.arange(len(xx)),np.flatnonzero(abs(np.diff(xx))>r['width']*500)+1)
+                        for segment in segments:
+                            ax.plot(xx[segment],tt[segment],color='white',lw=.65,marker='.',ms=1.5)
+                ax.set(xlabel='Circumferential distance [mm]',ylabel='Time [µs]' if column==0 else '',
+                       title=f'z={ring["z_m"]*1e3:.3f} mm — {title}')
+        fig.suptitle('White tracks: pressure-peak candidates; a track is not a confirmed detonation')
+        fig.savefig(destination/'ring_tracks.png',dpi=140)
+    finally:
+        plt.close(fig)
+    (destination/'coupling.json').write_text(json.dumps(report,indent=2,allow_nan=False)+'\n')
+
+
+def plot_coupling(directory, destination, compare_directory=None, heights_mm=(1.,4.,8.,16.)):
+    """Inspect saved fields and optionally compare two declared cases; no CFD calls."""
+    import hashlib
+    import numpy as np
+    from coupling import inspect_run, compare_inputs
+    first,first_arrays=inspect_run(directory,heights_mm=heights_mm)
+    if compare_directory is not None:
+        second,second_arrays=inspect_run(compare_directory,heights_mm=heights_mm)
+    destination=Path(destination)
+    destination.mkdir(parents=True,exist_ok=False)
+    first['plot_source_sha256']=hashlib.sha256(Path(__file__).read_bytes()).hexdigest()
+    if compare_directory is None:
+        _render_coupling(first,first_arrays,destination)
+        return first
+    second['plot_source_sha256']=first['plot_source_sha256']
+    for name,report,arrays in [('baseline',first,first_arrays),('variant',second,second_arrays)]:
+        (destination/name).mkdir()
+        _render_coupling(report,arrays,destination/name)
+    inputs=[arrays['saved']['inputs'] for arrays in [first_arrays,second_arrays]]
+    comparison=compare_inputs(*inputs)
+    comparison.update(baseline=str(Path(directory).resolve()),variant=str(Path(compare_directory).resolve()),
+        interpretation='Controlled inputs must be inspected. Pressure/conversion overlap and short tracks do not establish sustained detonation.',
+        cases=[dict(status=report['status'],time_s=report['time_s'],prefix_step=report['prefix_step'],
+                    last_snapshot=report['snapshots'][-1],native_chemical_conversion_J=report['native_chemical_conversion_J'],
+                    snapshot_trapezoid_conversion_J=report['snapshot_trapezoid_conversion_J']) for report in [first,second]])
+    plt=_pyplot()
+    fig,axes=plt.subplots(2,2,figsize=(12,8),layout='constrained')
+    try:
+        for label,report in [('Baseline',first),('Variant',second)]:
+            rows=report['snapshots']; t=np.array([row['time_s'] for row in rows])*1e6
+            axes[0,0].plot(t,[row['pressure_max_Pa']/1e6 for row in rows],label=label)
+            axes[0,1].plot(t,[row['thermal_conversion_W']/1e6 for row in rows],label=label)
+            axes[1,0].plot(t,[row['conversion_fraction_p_above_threshold'] for row in rows],label=label)
+            quantiles=np.array([row['conversion_height_quantiles_m'] for row in rows],dtype=float)*1e3
+            line,=axes[1,1].plot(t,quantiles[:,1],label=label)
+            axes[1,1].fill_between(t,quantiles[:,0],quantiles[:,2],color=line.get_color(),alpha=.15)
+        for ax in axes.flat:
+            ax.set_xlabel('Time [µs]'); ax.grid(alpha=.2); ax.legend(fontsize=8)
+        axes[0,0].set(ylabel='Domain maximum pressure [MPa]',yscale='log')
+        axes[0,1].set_ylabel('Chemical-to-thermal conversion [MW]')
+        axes[1,0].set(ylabel='Conversion fraction at p ≥ 2p₁',ylim=(-.02,1.02))
+        axes[1,1].set_ylabel('Median and 10–90% conversion heights [mm]')
+        energies=comparison['initialization_energy_change_J']
+        energy_label='not available' if any(e is None for e in energies) else f'{energies[0]:.3f} / {energies[1]:.3f} J'
+        fig.suptitle(f'Saved-run comparison; initialization energy changes: {energy_label}')
+        fig.savefig(destination/'comparison.png',dpi=150)
+    finally:
+        plt.close(fig)
+    (destination/'comparison.json').write_text(json.dumps(comparison,indent=2,allow_nan=False)+'\n')
+    return comparison
+
+
 def main(argv=None):
     parser=argparse.ArgumentParser(description=__doc__)
-    parser.add_argument('--calibration',type=Path,required=True,help='saved calibration JSON')
-    parser.add_argument('--out',type=Path,required=True,help='new PNG destination')
+    source=parser.add_mutually_exclusive_group(required=True)
+    source.add_argument('--calibration',type=Path,help='saved calibration JSON')
+    source.add_argument('--run',type=Path,help='saved engine run directory')
+    source.add_argument('--tube',type=Path,help='saved 1D experiment directory')
+    source.add_argument('--coupling',type=Path,help='saved engine run for full-height reaction and candidate-track diagnostics')
+    parser.add_argument('--compare-run',type=Path,help='second saved run; requires --coupling')
+    parser.add_argument('--heights-mm',type=float,nargs='+',default=[1.,4.,8.,16.],help='ring heights for --coupling')
+    parser.add_argument('--out',type=Path,required=True,help='new PNG for calibration; new directory for run/tube plots')
     args=parser.parse_args(argv)
     if args.out.exists():
-        parser.error('output exists; choose a new filename')
-    from calibrate import znd_profile
-    with args.calibration.open() as stream:
-        calibration=json.load(stream)
-    plot_znd(znd_profile(calibration),calibration,args.out)
+        parser.error('output exists; choose a new destination')
+    if args.compare_run and not args.coupling:
+        parser.error('--compare-run requires --coupling')
+    if args.coupling:
+        plot_coupling(args.coupling,args.out,args.compare_run,args.heights_mm)
+    elif args.run:
+        plot_run(args.run,args.out)
+    elif args.tube:
+        plot_tube(args.tube,args.out)
+    else:
+        from calibrate import znd_profile
+        with args.calibration.open() as stream:
+            calibration=json.load(stream)
+        plot_znd(znd_profile(calibration),calibration,args.out)
     print(args.out)
 
 
-if __name__ == '__main__':
+if __name__=='__main__':
     main()
