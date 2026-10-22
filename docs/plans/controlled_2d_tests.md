@@ -126,3 +126,27 @@ rates, since global burning persists even when the leading shock loses coupling.
 Explicitly retain numerical interface mixing as an unresolved contributor.
 Do not add 7.6/30 mm merely to populate a sweep, and do not change chemistry
 until the refinement evidence is assessed.
+
+## C3 review: initial interface averaging
+
+The 3.8 mm cut row starts at 435.36 K / 2.315 s^-1 on the 0.5 mm grid,
+but 843.99 K / 1127.47 s^-1 on the 0.25 mm grid, despite conserved totals
+agreeing to roundoff. This is a subcell averaging effect, not a calibration
+change; it must not be omitted from interpretation. The 15 mm interface is
+already face-aligned apart from roundoff.
+
+Add **one** face-aligned 3.8 mm control at nominal 0.5 mm before C4. Eight
+lower rows give dy=0.475 mm; 274 product rows give a 130.15 mm buffer. The
+fresh-layer height and formed-wave excess mass/momentum/energy are unchanged.
+The extra 0.15 mm of products lies beyond the conservative causal bound.
+This changes vertical spacing by 4.85% as well as initial cell phase, so it is a
+combined startup-averaging/vertical-mesh sensitivity, not a pure phase experiment.
+Refinement of this aligned geometry, if justified, subdivides the same domain.
+It removes initial mixed cells but does not suppress subsequent HLL contact
+diffusion or reaction. Check whether the leading shock still separates from
+reaction; select any further comparison from the result, not an automatic sweep.
+
+C4 remains conditional on the C3 evidence. Its blast comparator must retain the
+documented 10 mm patch, 2×CJ pressure, CJ temperature, zero initial momentum and
+20 mm of 1500 K products behind it. Record its different conserved inventory
+relative to the formed wave; do not call it an equal-energy comparison.

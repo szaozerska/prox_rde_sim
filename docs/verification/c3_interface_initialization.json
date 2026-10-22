@@ -1,0 +1,78 @@
+{
+  "c3_layer_038_050": {
+    "fresh_volume_fraction": [
+      0.6113602391629287
+    ],
+    "temperature_K": [
+      435.3579175704995
+    ],
+    "progress": [
+      0.11279826464208288
+    ],
+    "rate_per_s": [
+      2.314746318982228
+    ],
+    "substantial_mixed_rows": 1,
+    "definition": "Ahead of initial shock only; mathematically fractional rows within 1e-12 of pure are excluded from this bookkeeping count; no solver-state clipping.",
+    "conserved": [
+      0.055001773924946686,
+      4.9215394564033605,
+      0.0,
+      150162.9874071625,
+      0.05055142509468352
+    ]
+  },
+  "c3_layer_038_025": {
+    "fresh_volume_fraction": [
+      0.1943198804185344
+    ],
+    "temperature_K": [
+      843.9865433137104
+    ],
+    "progress": [
+      0.453322119428092
+    ],
+    "rate_per_s": [
+      1127.4719501634975
+    ],
+    "substantial_mixed_rows": 1,
+    "definition": "Ahead of initial shock only; mathematically fractional rows within 1e-12 of pure are excluded from this bookkeeping count; no solver-state clipping.",
+    "conserved": [
+      0.05500177392494651,
+      4.921539456403367,
+      0.0,
+      150162.98740716217,
+      0.05055142509468363
+    ]
+  },
+  "c3_layer_150_050": {
+    "fresh_volume_fraction": [],
+    "temperature_K": [],
+    "progress": [],
+    "rate_per_s": [],
+    "substantial_mixed_rows": 0,
+    "definition": "Ahead of initial shock only; mathematically fractional rows within 1e-12 of pure are excluded from this bookkeeping count; no solver-state clipping.",
+    "conserved": [
+      0.0807953476095355,
+      19.427129433171167,
+      0.0,
+      319480.1781255436,
+      0.06322818117428632
+    ]
+  },
+  "c3_layer_150_025": {
+    "fresh_volume_fraction": [],
+    "temperature_K": [],
+    "progress": [],
+    "rate_per_s": [],
+    "substantial_mixed_rows": 0,
+    "definition": "Ahead of initial shock only; mathematically fractional rows within 1e-12 of pure are excluded from this bookkeeping count; no solver-state clipping.",
+    "conserved": [
+      0.08079534760953565,
+      19.42712943317115,
+      0.0,
+      319480.1781255443,
+      0.06322818117428634
+    ]
+  }
+}

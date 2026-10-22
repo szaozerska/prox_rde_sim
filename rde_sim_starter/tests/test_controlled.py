@@ -148,3 +148,22 @@ class LayerControlTests(unittest.TestCase):
                 self.assertEqual(a['primitive'].ndim,4)
                 self.assertEqual(a['primitive'].shape[0],len(r['history']))
             with self.assertRaises(ValueError):run_layer(C,Path(tmp)/'bad',.0038,end=1.)
+
+    def test_aligned_interface_removes_initial_mixing_and_preserves_charge(self):
+        from controlled import formed_layer,conserved_state
+        c=self.profile;totals=[];excess=[]
+        for dx in (.5e-3,.25e-3,.125e-3):
+            s,x,z,info=formed_layer(C,c,.0038,dx=dx,length=.1,shock=.04137,buffer=.002,align_interface=True)
+            self.assertEqual(info['interface_mixed_row_count'],0)
+            self.assertTrue(info['interface_aligned'])
+            self.assertAlmostEqual(info['initial_layer_volume_m2'],.0038*.1,places=15)
+            w=s.prim();ahead=x>.06
+            np.testing.assert_allclose(w[4,ahead,:][:,z<.0038],0,atol=1e-14)
+            np.testing.assert_allclose(w[4,ahead,:][:,z>.0038],1,atol=1e-14)
+            totals.append(s.conserved_totals());excess.append(info['initial_excess_over_unignited_layer'])
+        for values in [totals,excess]:np.testing.assert_allclose(values,np.broadcast_to(values[0],(3,5)),rtol=2e-11,atol=1e-8)
+        unaligned,_,_,info=formed_layer(C,c,.0038,length=.1,shock=.04137,buffer=.002)
+        hot=conserved_state(C['p1']/(C['R']*1500),0.,C['p1'],1.,C)
+        extra_height=s.ny*s.dy-info['height_m']
+        np.testing.assert_allclose(totals[0]-unaligned.conserved_totals(),hot*.1*extra_height,rtol=1e-10,atol=1e-9)
+        np.testing.assert_allclose(excess[0],info['initial_excess_over_unignited_layer'],rtol=1e-11,atol=1e-8)

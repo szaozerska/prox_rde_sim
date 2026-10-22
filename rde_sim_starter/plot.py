@@ -572,7 +572,8 @@ def plot_layer(directory,destination):
         axes[2,1].axhline(0,color='k',lw=.7);axes[2,1].set(xlabel='Time [µs]',ylabel='Remote-boundary cone margin [mm]')
         for ax in axes[1:].flat:ax.grid(alpha=.25)
         axes[1,0].legend(fontsize=8);axes[2,1].legend(fontsize=8)
-        fig.suptitle(f"C3: h = {h*1e3:g} mm, Δx = {inputs['initialization']['dx_m']*1e3:g} mm, t = {report['time_s']*1e6:.1f} µs")
+        alignment='face aligned' if inputs['initialization'].get('interface_aligned',False) else 'uniform grid'
+        fig.suptitle(f"C3: h = {h*1e3:g} mm, Δx = {inputs['initialization']['dx_m']*1e3:g} mm, t = {report['time_s']*1e6:.1f} µs ({alignment})")
         fig.savefig(destination/'layer_control.png',dpi=140)
     finally:plt.close(fig)
     return report

@@ -154,3 +154,26 @@ the C1/C2 controls and coarse layer comparison had not been run. Added direct
 CLI reproduction commands. This documentation-only synchronization changes no
 inputs or source; the 67-test result above remains applicable. Refinement is
 still in progress and RDE-001 remains open.
+
+### C3 initial-interface audit and verifiable correction
+
+The [initialization audit](c3_interface_initialization.json) confirms conserved
+charge matches across grids to roundoff, but the thin layer's cut-cell
+temperature/rate changes from 435.36 K / 2.315 s^-1 to 843.99 K / 1127.47 s^-1.
+That sensitivity prevents treating equal inventory as equal local ignition
+conditions. No changes were made to the running refinement cases.
+
+Added explicit `--align-interface` to the layer diagnostic. Its nested vertical
+mesh puts the interface on a face, with the same fresh-layer height and formed
+wave excess charge. The small additional remote product buffer is recorded and
+its contribution to total conserved inventory is independently checked. No
+clipping, source suppression, solver change or chemistry tuning is involved.
+Nine targeted control tests passed in 21.761 s, including aligned-interface
+purity and inventory checks across three meshes; [log](c3_alignment_tests.log).
+The bounded aligned run is still pending. The execution plan records the
+vertical-spacing qualification and keeps C4 gated on the combined C3 evidence.
+
+Resource decision: this Mac has four physical CPU cores. The 15 mm fine run was
+temporarily stopped without discarding state to let the thin fine run finish;
+it must be resumed. Its native scheduling record will accompany its eventual
+results. Wall times from overlapping/paused runs are not clean performance data.

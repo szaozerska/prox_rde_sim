@@ -269,23 +269,34 @@ def run_formed(c,directory,dx=.5e-3,end=40e-6,source_cfl=.05,profile=None):
     return summary
 
 
-def formed_layer(c,profile,layer_height,dx=.5e-3,length=.45,shock=.16,buffer=.13):
+def formed_layer(c,profile,layer_height,dx=.5e-3,length=.45,shock=.16,buffer=.13,align_interface=False):
     """Conservative area average: formed wave below h, static hot products above."""
     if not np.isfinite([layer_height,buffer]).all() or not 0<layer_height<=.03 or buffer<=0:
         raise ValueError('0<h<=30 mm and positive product buffer required')
     s0,x=formed_strip(c,profile,dx=dx,length=length,shock=shock,rows=2)
-    height=layer_height+buffer;ny=round(height/s0.dx);dy=height/ny
+    if align_interface:
+        # Nested transverse meshes place h exactly on a face. The small extra
+        # product buffer is constant across the permitted refinement levels.
+        refinement=.5e-3/s0.dx
+        if not np.isclose(refinement,round(refinement)) or refinement<1:
+            raise ValueError('aligned interface requires 0.5 mm divided by an integer')
+        refinement=round(refinement);base_rows=int(np.ceil(layer_height/.5e-3))
+        base_dy=layer_height/base_rows;buffer_rows=int(np.ceil(buffer/base_dy))
+        ny=(base_rows+buffer_rows)*refinement;dy=base_dy/refinement;height=ny*dy
+        fraction=(np.arange(ny)<base_rows*refinement).astype(float)
+    else:
+        height=layer_height+buffer;ny=round(height/s0.dx);dy=height/ny
+        fraction=np.clip((layer_height-np.arange(ny)*dy)/dy,0,1)
     if ny<2:raise ValueError('layer domain needs at least two rows')
-    fraction=np.clip((layer_height-np.arange(ny)*dy)/dy,0,1)
     hot=conserved_state(c['p1']/(c['R']*1500.),0.,c['p1'],1.,c)
     from solver import NG
     s=Solver(s0.nx,ny,s0.dx,dy,tuple(c[k] for k in ('gamma','q','R','k','Ea')),
              (TRANSMIT,TRANSMIT,WALL,WALL),source_cfl=.05)
     s.U[:,NG:-NG,NG:-NG]=s0.U[:,NG:-NG,NG][:,:,None]*fraction+hot[:,None,None]*(1-fraction)
     s._check_state(s.U,'conservative layer initialization')
-    baseline=(profile['fresh']*layer_height+hot*buffer)*length
+    baseline=(profile['fresh']*layer_height+hot*(height-layer_height))*length
     info=dict(layer_height_m=layer_height,height_m=height,dx_m=s.dx,dy_m=s.dy,
-        product_temperature_K=1500.,initial_layer_volume_m2=float(fraction.sum()*dy*length),
+        product_temperature_K=1500.,interface_aligned=bool(align_interface),initial_layer_volume_m2=float(fraction.sum()*dy*length),
         interface_mixed_row_count=int(np.count_nonzero((fraction>0)&(fraction<1))),
         initial_conserved_per_m_depth=s.conserved_totals().tolist(),
         initial_excess_over_unignited_layer=(s.conserved_totals()-baseline).tolist())
@@ -311,12 +322,12 @@ def row_front_metrics(w,x,c,roi=.03):
         near_front_heat_W_per_m2=float(np.sum(c['q']*w[0,region]*rate[region])*(x[1]-x[0])))
 
 
-def run_layer(c,directory,layer_height,dx=.5e-3,end=40e-6,profile=None):
+def run_layer(c,directory,layer_height,dx=.5e-3,end=40e-6,profile=None,align_interface=False):
     """C3 finite-layer control; finite physical causal bounds and native budgets."""
     if not np.isfinite(end) or not 0<end<=40e-6:raise ValueError('0<end<=40 us required')
     profile=formed_profile(c) if profile is None else profile
     if max(profile['verification']['jump_max_relative_error'])>1e-8:raise ValueError('steady jump check failed')
-    s,x,z,init=formed_layer(c,profile,layer_height,dx=dx)
+    s,x,z,init=formed_layer(c,profile,layer_height,dx=dx,align_interface=align_interface)
     length=s.nx*s.dx;height=s.ny*s.dy;bx=4000.;bz=3000.;roi=.03
     # Bottom, middle and last completely fresh/profile row; full fields retain the interface.
     indexes=sorted(set([0,int(np.argmin(abs(z-layer_height/2))),max(0,int(layer_height/s.dy)-1)]))
@@ -386,15 +397,17 @@ def main(argv=None):
     parser.add_argument('--dx-mm',type=float,default=.5)
     parser.add_argument('--source-cfl',type=float,default=.05)
     parser.add_argument('--height-mm',type=float)
+    parser.add_argument('--align-interface',action='store_true')
     args=parser.parse_args(argv)
     c=json.loads(args.calibration.read_text())
+    if args.align_interface and args.experiment!='layer':parser.error('--align-interface requires layer')
     if args.experiment=='strip':
         if args.source_cfl!=.05:parser.error('strip fixes source-cfl=0.05')
         result=run_strip(c,args.out,dx=args.dx_mm*1e-3)
     elif args.experiment=='formed':result=run_formed(c,args.out,dx=args.dx_mm*1e-3,source_cfl=args.source_cfl)
     else:
         if args.height_mm is None or args.source_cfl!=.05:parser.error('layer needs --height-mm and fixes source-cfl=0.05')
-        result=run_layer(c,args.out,args.height_mm*1e-3,dx=args.dx_mm*1e-3)
+        result=run_layer(c,args.out,args.height_mm*1e-3,dx=args.dx_mm*1e-3,align_interface=args.align_interface)
     print(json.dumps({k:v for k,v in result.items() if k!='history'},indent=2))
     return 0 if result.get('control_passed',result['status']=='completed') else 2
 

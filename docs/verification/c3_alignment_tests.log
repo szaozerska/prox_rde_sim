@@ -1,0 +1,14 @@
+test_coordinate_mapping_preserves_reactive_state (test_controlled.ControlledTests.test_coordinate_mapping_preserves_reactive_state) ... ok
+test_multistep_reactive_control_is_symmetric_and_conservative (test_controlled.ControlledTests.test_multistep_reactive_control_is_symmetric_and_conservative) ... ok
+test_conservative_cell_integrals_and_profile_refinement (test_controlled.FormedProfileTests.test_conservative_cell_integrals_and_profile_refinement) ... ok
+test_formed_multistep_budgets_and_causal_accounting (test_controlled.FormedProfileTests.test_formed_multistep_budgets_and_causal_accounting) ... ok
+test_jump_invariants_and_finite_tail (test_controlled.FormedProfileTests.test_jump_invariants_and_finite_tail) ... ok
+test_aligned_interface_removes_initial_mixing_and_preserves_charge (test_controlled.LayerControlTests.test_aligned_interface_removes_initial_mixing_and_preserves_charge) ... ok
+test_layer_driver_preserves_budgets_and_renders_saved_fields (test_controlled.LayerControlTests.test_layer_driver_preserves_budgets_and_renders_saved_fields) ... ok
+test_layer_inventory_is_mesh_independent (test_controlled.LayerControlTests.test_layer_inventory_is_mesh_independent) ... ok
+test_layer_row_metrics_distinguish_reaction_and_pressure (test_controlled.LayerControlTests.test_layer_row_metrics_distinguish_reaction_and_pressure) ... ok
+
+----------------------------------------------------------------------
+Ran 9 tests in 21.761s
+
+OK
