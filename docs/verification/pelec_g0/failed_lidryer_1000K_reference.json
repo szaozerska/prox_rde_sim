@@ -1,0 +1,46 @@
+{
+  "passed": false,
+  "checks": {
+    "energy": false,
+    "elements": true,
+    "density": true,
+    "tolerance_temperature": true,
+    "tolerance_species": true,
+    "finite_states": true
+  },
+  "metrics": {
+    "relative_energy_error": 6.411410472103085e-08,
+    "max_element_error": 1.5543122344752192e-15,
+    "relative_density_error": 0.0
+  },
+  "tolerance_temperature_relative": 3.8367378385473216e-08,
+  "tolerance_species_absolute": 6.6563014544662735e-09,
+  "mechanism_sha256": "d0f5a97e56a52ef70af0bab90d98df01fc6034b5ac384747594fa2255ac62cb7",
+  "cantera_version": "3.2.0",
+  "species": [
+    "H2",
+    "O2",
+    "H2O",
+    "H",
+    "O",
+    "OH",
+    "HO2",
+    "H2O2",
+    "N2"
+  ],
+  "elements": [
+    "H",
+    "O",
+    "N"
+  ],
+  "input": {
+    "temperature_K": 1000.0,
+    "pressure_Pa": 101325.0,
+    "mass_fractions": {
+      "H2": 0.06,
+      "O2": 0.5,
+      "N2": 0.44
+    }
+  },
+  "scope": "Independent upstream hydrogen reactor control; not CH4/O2 validation"
+}

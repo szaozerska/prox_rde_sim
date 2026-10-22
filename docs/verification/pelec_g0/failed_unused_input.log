@@ -1,0 +1,270 @@
+Initializing AMReX (26.07)...
+Initializing CUDA...
+CUDA initialized with 1 device.
+AMReX (26.07) initialized
+Initializing SUNDIALS with 1 threads...
+SUNDIALS initialized.
+
+Starting run at 20:35:16 UTC on 2026-10-22.
+Successfully read inputs file ... 
+
+PeleC git hash: 949e2bb
+AMReX git hash: 1546c1c
+PelePhysics git hash: 6e8026f
+SUNDIALS git hash: 0eff396
+
+0 Advected Variables: 
+
+1 Species: 
+AIR  
+0 Auxiliary Variables: 
+
+Initializing EB2
+Successfully read inputs file ... 
+Starting to call amrex_probinit ... 
+Successfully run amrex_probinit
+Initializing the data at level 0
+Done initializing level 0 data 
+
+TIME = 0 MASS        = 0.03515625
+TIME = 0 XMOM        = 0
+TIME = 0 YMOM        = 0
+TIME = 0 ZMOM        = 0
+TIME = 0 RHO*e       = 0.0859375
+TIME = 0 RHO*K       = 0
+TIME = 0 RHO*E       = 0.0859375
+TIME = 0 FUEL PROD   = 0
+
+TIME = 0 density     MIN = 0.125            MAX = 1              
+TIME = 0 x_velocity  MIN = 0                MAX = 0              
+TIME = 0 y_velocity  MIN = 0                MAX = 0              
+TIME = 0 z_velocity  MIN = 0                MAX = 0              
+TIME = 0 eint_e      MIN = 2                MAX = 2.5            
+TIME = 0 Temp        MIN = 2.7874321e-07    MAX = 3.4842901e-07  
+TIME = 0 pressure    MIN = 0.1              MAX = 1              
+TIME = 0 massfrac    MIN = 1                MAX = 1              
+TIME = 0 sumYminus1  MIN = 0                MAX = 0              
+INITIAL GRIDS 
+  Level 0   1 grids  2048 cells  100 % of domain
+
+PLOTFILE: file = plt00000
+Write plotfile time = 0.005311886  seconds
+
+[Level 0 step 1] ADVANCE at time 0 with dt = 0.0001
+... Computing Godunov hydro advance
+[Level 0 step 1] Advanced 2048 cells
+
+TIME = 0.0001 MASS        = 0.03515625
+TIME = 0.0001 XMOM        = 5.625e-06
+TIME = 0.0001 YMOM        = 0
+TIME = 0.0001 ZMOM        = 0
+TIME = 0.0001 RHO*e       = 0.08593748967
+TIME = 0.0001 RHO*K       = 1.033330489e-08
+TIME = 0.0001 RHO*E       = 0.0859375
+TIME = 0.0001 FUEL PROD   = 0
+
+TIME = 0.0001 density     MIN = 0.125            MAX = 1              
+TIME = 0.0001 x_velocity  MIN = 0                MAX = 0.007316869    
+TIME = 0.0001 y_velocity  MIN = 0                MAX = 0              
+TIME = 0.0001 z_velocity  MIN = 0                MAX = 0              
+TIME = 0.0001 eint_e      MIN = 1.9986154        MAX = 2.5006314      
+TIME = 0.0001 Temp        MIN = 2.7855023e-07    MAX = 3.4851701e-07  
+TIME = 0.0001 pressure    MIN = 0.1              MAX = 1              
+TIME = 0.0001 massfrac    MIN = 1                MAX = 1              
+TIME = 0.0001 sumYminus1  MIN = 0                MAX = 0              
+
+[STEP 1] Coarse TimeStep time: 0.005538812
+[STEP 1] FAB kilobyte spread across MPI nodes: [16492 ... 16492]
+
+STEP = 1 TIME = 0.0001 DT = 0.0001
+
+PLOTFILE: file = plt00001
+Write plotfile time = 0.003964233  seconds
+
+[Level 0 step 2] ADVANCE at time 0.0001 with dt = 0.001
+... Computing Godunov hydro advance
+[Level 0 step 2] Advanced 2048 cells
+
+TIME = 0.0011 MASS        = 0.03515625
+TIME = 0.0011 XMOM        = 6.1875e-05
+TIME = 0.0011 YMOM        = 0
+TIME = 0.0011 ZMOM        = 0
+TIME = 0.0011 RHO*e       = 0.08593630098
+TIME = 0.0011 RHO*K       = 1.199021918e-06
+TIME = 0.0011 RHO*E       = 0.0859375
+TIME = 0.0011 FUEL PROD   = 0
+
+TIME = 0.0011 density     MIN = 0.125            MAX = 1              
+TIME = 0.0011 x_velocity  MIN = 0                MAX = 0.075131477    
+TIME = 0.0011 y_velocity  MIN = 0                MAX = 0              
+TIME = 0.0011 z_velocity  MIN = 0                MAX = 0              
+TIME = 0.0011 eint_e      MIN = 1.9834342        MAX = 2.5068041      
+TIME = 0.0011 Temp        MIN = 2.764344e-07     MAX = 3.4937731e-07  
+TIME = 0.0011 pressure    MIN = 0.1              MAX = 1              
+TIME = 0.0011 massfrac    MIN = 1                MAX = 1              
+TIME = 0.0011 sumYminus1  MIN = 0                MAX = 0              
+
+[STEP 2] Coarse TimeStep time: 0.003355081
+[STEP 2] FAB kilobyte spread across MPI nodes: [16492 ... 16492]
+
+STEP = 2 TIME = 0.0011 DT = 0.001
+
+PLOTFILE: file = plt00002
+Write plotfile time = 0.004274364  seconds
+
+[Level 0 step 3] ADVANCE at time 0.0011 with dt = 0.0009
+... Computing Godunov hydro advance
+[Level 0 step 3] Advanced 2048 cells
+
+TIME = 0.002 MASS        = 0.03515625
+TIME = 0.002 XMOM        = 0.0001125
+TIME = 0.002 YMOM        = 0
+TIME = 0.002 ZMOM        = 0
+TIME = 0.002 RHO*e       = 0.0859336865
+TIME = 0.002 RHO*K       = 3.813498054e-06
+TIME = 0.002 RHO*E       = 0.0859375
+TIME = 0.002 FUEL PROD   = 0
+
+TIME = 0.002 density     MIN = 0.125            MAX = 1              
+TIME = 0.002 x_velocity  MIN = 0                MAX = 0.12993143     
+TIME = 0.002 y_velocity  MIN = 0                MAX = 0              
+TIME = 0.002 z_velocity  MIN = 0                MAX = 0              
+TIME = 0.002 eint_e      MIN = 1.9695343        MAX = 2.512203       
+TIME = 0.002 Temp        MIN = 2.7449716e-07    MAX = 3.5012976e-07  
+TIME = 0.002 pressure    MIN = 0.1              MAX = 1              
+TIME = 0.002 massfrac    MIN = 1                MAX = 1              
+TIME = 0.002 sumYminus1  MIN = 0                MAX = 0              
+
+[STEP 3] Coarse TimeStep time: 0.003315554
+[STEP 3] FAB kilobyte spread across MPI nodes: [16492 ... 16492]
+
+STEP = 3 TIME = 0.002 DT = 0.0009
+
+PLOTFILE: file = plt00003
+Write plotfile time = 0.003658337  seconds
+
+
+Ending run at 20:35:16 UTC on 2026-10-22.
+Run time = 0.03801786
+Run time w/o init = 0.024737881
+CPU(0): Heap Space (bytes) used by Coalescing FAB Arena: 63757025280
+
+
+TinyProfiler total time across processes [min...avg...max]: 0.03812 ... 0.03812 ... 0.03812
+
+--------------------------------------------------------------------------------------------
+Name                                         NCalls  Excl. Min  Excl. Avg  Excl. Max   Max %
+--------------------------------------------------------------------------------------------
+VisMF::Write(FabArray)                            4   0.008497   0.008497   0.008497  22.29%
+PeleCAmr::writePlotFile()                         4   0.004961   0.004961   0.004961  13.02%
+AmrLevel::derive()                              108   0.004527   0.004527   0.004527  11.88%
+WriteMultiLevelPlotfile()                         4   0.001969   0.001969   0.001969   5.17%
+PeleC::initData()                                 1   0.001576   0.001576   0.001576   4.14%
+AmrLevel::AmrLevel(dm)                            1   0.001572   0.001572   0.001572   4.12%
+amrex::Copy()                                   146   0.001541   0.001541   0.001541   4.04%
+PeleC::umeth()                                    3   0.001378   0.001378   0.001378   3.62%
+MultiFab::max()                                  36   0.001197   0.001197   0.001197   3.14%
+FillPatchIterator::Initialize                   111   0.001167   0.001167   0.001167   3.06%
+FabArray::ParallelCopy_nowait()                 112   0.001151   0.001151   0.001151   3.02%
+MultiFab::min()                                  36   0.001122   0.001122   0.001122   2.94%
+amrex::Dot()                                     32   0.001041   0.001041   0.001041   2.73%
+StateData::FillBoundary(geom)                     3  0.0009393  0.0009393  0.0009393   2.46%
+StateDataPhysBCFunct::()                        111  0.0007222  0.0007222  0.0007222   1.89%
+Amr::InitAmr()                                    1   0.000459   0.000459   0.000459   1.20%
+PeleC::construct_hydro_source()                   3  0.0003468  0.0003468  0.0003468   0.91%
+AmrLevel::FillPatch()                           111  0.0003207  0.0003207  0.0003207   0.84%
+FabArray::setVal()                               23   0.000312   0.000312   0.000312   0.82%
+MultiFab::contains_nan()                          5  0.0003061  0.0003061  0.0003061   0.80%
+PeleC::do_sdc_iteration()                         3  0.0002866  0.0002866  0.0002866   0.75%
+FabArray::setDomainBndry()                      111  0.0002818  0.0002818  0.0002818   0.74%
+PeleC::monitor_extrema()                          4  0.0002763  0.0002763  0.0002763   0.72%
+PeleC::sum_integrated_quantities()                4  0.0002401  0.0002401  0.0002401   0.63%
+main()                                            1    0.00022    0.00022    0.00022   0.58%
+UtilCreateCleanDirectory()                        8  0.0002121  0.0002121  0.0002121   0.56%
+MultiFab::contains_inf()                          5  0.0001539  0.0001539  0.0001539   0.40%
+StateData::define()                               3  0.0001121  0.0001121  0.0001121   0.29%
+PeleC::post_timestep()                            3  0.0001034  0.0001034  0.0001034   0.27%
+FabArray::Saxpy()                                 6  0.0001007  0.0001007  0.0001007   0.26%
+Amr::defBaseLevel()                               1  9.968e-05  9.968e-05  9.968e-05   0.26%
+PeleC::ctoprim()                                  3  7.637e-05  7.637e-05  7.637e-05   0.20%
+PeleC::initialize_sdc_advance()                   3  7.111e-05  7.111e-05  7.111e-05   0.19%
+amrex::Add()                                      4  7.072e-05  7.072e-05  7.072e-05   0.19%
+PeleC::umdrv()                                    3  5.925e-05  5.925e-05  5.925e-05   0.16%
+Amr::timeStep()                                   3    5.7e-05    5.7e-05    5.7e-05   0.15%
+PeleC::volWgtSum()                               32  4.869e-05  4.869e-05  4.869e-05   0.13%
+Amr::coarseTimeStep()                             3   4.76e-05   4.76e-05   4.76e-05   0.12%
+FillPatchIterator::FillFromLevel0()             111  4.586e-05  4.586e-05  4.586e-05   0.12%
+FillPatchSingleLevel                            111  2.999e-05  2.999e-05  2.999e-05   0.08%
+FabArray::ParallelCopy()                        112  2.624e-05  2.624e-05  2.624e-05   0.07%
+Amr::FinalizeInit()                               1  1.486e-05  1.486e-05  1.486e-05   0.04%
+Amr::InitializeInit()                             1  6.467e-06  6.467e-06  6.467e-06   0.02%
+PeleC::do_sdc_advance()                           3  3.427e-06  3.427e-06  3.427e-06   0.01%
+PeleC::advance()                                  3  2.144e-06  2.144e-06  2.144e-06   0.01%
+Amr::init()                                       1  1.824e-06  1.824e-06  1.824e-06   0.00%
+PeleC::post_init()                                1  1.822e-06  1.822e-06  1.822e-06   0.00%
+AmrLevel::FillPatcherFill()                       3  1.645e-06  1.645e-06  1.645e-06   0.00%
+Amr::initialInit()                                1  1.169e-06  1.169e-06  1.169e-06   0.00%
+Other                                            61  0.0002761  0.0002761  0.0002761   0.72%
+--------------------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------------------
+Name                                         NCalls  Incl. Min  Incl. Avg  Incl. Max   Max %
+--------------------------------------------------------------------------------------------
+main()                                            1    0.03803    0.03803    0.03803  99.78%
+Amr::coarseTimeStep()                             3    0.02421    0.02421    0.02421  63.52%
+PeleCAmr::writePlotFile()                         4     0.0173     0.0173     0.0173  45.39%
+Amr::init()                                       1    0.01265    0.01265    0.01265  33.19%
+Amr::timeStep()                                   3     0.0122     0.0122     0.0122  32.01%
+WriteMultiLevelPlotfile()                         4    0.01068    0.01068    0.01068  28.01%
+AmrLevel::derive()                              108   0.008653   0.008653   0.008653  22.70%
+VisMF::Write(FabArray)                            4   0.008497   0.008497   0.008497  22.29%
+PeleC::monitor_extrema()                          4   0.007906   0.007906   0.007906  20.74%
+PeleC::post_timestep()                            3   0.007848   0.007848   0.007848  20.59%
+Amr::initialInit()                                1   0.007304   0.007304   0.007304  19.16%
+AmrLevel::FillPatch()                           111   0.005781   0.005781   0.005781  15.17%
+FillPatchIterator::Initialize                   111   0.004357   0.004357   0.004357  11.43%
+PeleC::advance()                                  3   0.004295   0.004295   0.004295  11.27%
+PeleC::do_sdc_advance()                           3   0.004293   0.004293   0.004293  11.26%
+PeleC::do_sdc_iteration()                         3   0.004218   0.004218   0.004218  11.07%
+Amr::InitializeInit()                             1   0.003735   0.003735   0.003735   9.80%
+Amr::defBaseLevel()                               1   0.003715   0.003715   0.003715   9.75%
+Amr::FinalizeInit()                               1   0.003568   0.003568   0.003568   9.36%
+PeleC::post_init()                                1   0.003549   0.003549   0.003549   9.31%
+PeleC::sum_integrated_quantities()                4   0.003384   0.003384   0.003384   8.88%
+PeleC::volWgtSum()                               32   0.003144   0.003144   0.003144   8.25%
+FillPatchIterator::FillFromLevel0()             111   0.002908   0.002908   0.002908   7.63%
+FillPatchSingleLevel                            111   0.002862   0.002862   0.002862   7.51%
+PeleC::construct_hydro_source()                   3   0.002078   0.002078   0.002078   5.45%
+AmrLevel::AmrLevel(dm)                            1   0.001806   0.001806   0.001806   4.74%
+StateDataPhysBCFunct::()                        111   0.001662   0.001662   0.001662   4.36%
+AmrLevel::FillPatcherFill()                       3   0.001657   0.001657   0.001657   4.35%
+PeleC::initData()                                 1   0.001602   0.001602   0.001602   4.20%
+PeleC::umdrv()                                    3   0.001541   0.001541   0.001541   4.04%
+amrex::Copy()                                   146   0.001541   0.001541   0.001541   4.04%
+PeleC::umeth()                                    3   0.001378   0.001378   0.001378   3.62%
+MultiFab::max()                                  36   0.001197   0.001197   0.001197   3.14%
+FabArray::ParallelCopy()                        112   0.001177   0.001177   0.001177   3.09%
+FabArray::ParallelCopy_nowait()                 112   0.001151   0.001151   0.001151   3.02%
+MultiFab::min()                                  36   0.001122   0.001122   0.001122   2.94%
+amrex::Dot()                                     32   0.001041   0.001041   0.001041   2.73%
+StateData::FillBoundary(geom)                     3  0.0009393  0.0009393  0.0009393   2.46%
+Amr::InitAmr()                                    1  0.0004617  0.0004617  0.0004617   1.21%
+FabArray::setVal()                               23   0.000312   0.000312   0.000312   0.82%
+MultiFab::contains_nan()                          5  0.0003061  0.0003061  0.0003061   0.80%
+FabArray::setDomainBndry()                      111  0.0002818  0.0002818  0.0002818   0.74%
+UtilCreateCleanDirectory()                        8  0.0002121  0.0002121  0.0002121   0.56%
+MultiFab::contains_inf()                          5  0.0001539  0.0001539  0.0001539   0.40%
+StateData::define()                               3  0.0001121  0.0001121  0.0001121   0.29%
+FabArray::Saxpy()                                 6  0.0001007  0.0001007  0.0001007   0.26%
+PeleC::ctoprim()                                  3  7.637e-05  7.637e-05  7.637e-05   0.20%
+PeleC::initialize_sdc_advance()                   3  7.111e-05  7.111e-05  7.111e-05   0.19%
+amrex::Add()                                      4  7.072e-05  7.072e-05  7.072e-05   0.19%
+Other                                            61   0.000337   0.000337   0.000337   0.88%
+--------------------------------------------------------------------------------------------
+
+Unused ParmParse Variables:
+  [TOP]::amr.ref_ratio(nvals = 4)  :: [2, 2, 2, 2]
+
+amrex::Abort::0::ERROR: unused ParmParse variables. !!!
+SIGABRT
+See Backtrace.0 file for details

@@ -243,3 +243,58 @@ Fetched/pinned PeleC 949e2bb67386bf4b16324b06555e303ff411e179 and its recursive
 submodules in ignored .tooling/PeleC. Source inspection found no true 1D build: use
 transversely uniform thin 2D/3D domains for physical 1D controls, verify transverse
 uniformity, and retain the native dimensional kernels. No custom flux code needed.
+
+
+## G0 — native PeleC CUDA smoke passed
+
+Pinned PeleC/submodule lock is `tools/pelec/source_lock.json`; CUDA 12.8.1 image is
+pinned by amd64 digest. CPU build used GCC 13.3.0, nvcc 12.8.93, CMake 3.28.3,
+3D/FP64, CUDA architecture 90, no MPI/OMP/particles. Build took 350.92 s on the
+requested 16 CPU cores / 64 GiB; cached Modal image `im-V2C5LChGVbI5m0zzVwbH7u`.
+The upstream Sod executable initialized CUDA on one H100, reached t=0.002, and
+exited cleanly in 1.031 s including startup/output. This tiny nonreacting case
+is not a reacting-engine performance proxy.
+
+Independent native-field checks passed: all requested fields finite, positive
+density/pressure/temperature, correct final time and mesh, zero measured mass and
+energy drift, zero transverse motion/nonuniformity, and the expected wall-pressure
+impulse. The nondimensional Sod pressure scale maps to extremely small Kelvin
+values with the GammaLaw gas constant; it is a mathematical gas-dynamics control,
+not physical methane thermodynamics. Native binary/inputs/field artifacts are in
+ignored runs3d/pelec_smoke_02; compact evidence is in pelec_g0/.
+
+Issues and fixes:
+- Modal build callback was imported by module name even with automatic source
+  upload disabled. The first attempt failed before compiling. Explicitly upload
+  only `build_native.py`; preserve no shared/private workspace mount.
+- Upstream `--describe` crashed before AMReX initialization. Source main.cpp calls
+  writeBuildInfo before Initialize; that path calls AMReX Print. This points to an
+  initialization-order defect; no debugger-confirmed exact fault site is claimed.
+  Normal initialized execution and plot job_info work. Preserve the failure code;
+  use build manifest/job_info instead, with no numerical-source patch.
+- Strict unused-input validation caught inactive AMR ref_ratio/regrid_int from the
+  upstream input after max_level=0. Removed those settings; kept strict checking.
+- First analysis report hit a NumPy boolean serialization error, corrected by
+  converting check values to Python booleans. Reanalysis passed.
+- Initial Matplotlib cache generation was slow; use the isolated writable cache
+  for subsequent analysis rather than recreating a temporary cache each run.
+
+G1 reference preparation caught a nonzero closed-reactor energy residual at the
+upstream LiDryer initial 1000 K (6.41e-8 normalized). Tightening relative ODE
+tolerance from 1e-10 to 1e-12 did not remove it; starting at 999 K retained it,
+while starting at 1001 K reduced it to ~1e-10 or below. Independent thermodynamic
+evaluation across the 1000 K polynomial join gives 6.43e-8, identifying the fit
+discontinuity as the dominant cause. Preserve the failed reference and investigation.
+Use a declared 1001 K control for strict energy validation, without altering the
+mechanism or loosening the 1e-8 energy threshold. That reference passes energy,
+element/density and tolerance-refinement checks. This is hydrogen test chemistry;
+methane requires its own native/reference checks and thermo-join audit.
+
+Three artifact-integrity tests passed: reject checksum corruption/path escape,
+preserve failed status, refuse overwriting evidence. G1 CPU/GPU/refinement/zeroD
+controls start only after the G0 field checks pass. No 3D engine flow has run.
+
+G0 fast-suite environment correction: invoking the full 3D suite with the isolated
+Modal client failed importing PyYAML (that environment intentionally contains only
+client dependencies). Re-ran with the existing read-only project Python environment;
+all ten tests passed. No packages or files in the 2D checkout were changed.

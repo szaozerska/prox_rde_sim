@@ -14,7 +14,7 @@ Current direction: [revision 12](first_sim_plan.md) evaluates PeleC for Modal GP
 production, with small same-backend CPU checks and the installed detonationFoam
 fallback. No separate CPU/GPU model branches. See [solver choices and speed/accuracy
 tradeoffs](docs/plans/3d_literature_runtime_review.md). Modal CPU access passed;
-no GPU run has been performed yet. The current objective is measured <=2-hour
+the pinned native GPU installation smoke has now passed (see [evidence](docs/verification/pelec_g0/result.json)). The current objective is measured <=2-hour
 routine cases and eventual sustained-detonation design screening. Short diagnostic
 propagation is not yet proof of long-term or real-engine stability.
 

@@ -1,0 +1,25 @@
+{
+  "status": "installation_smoke_passed",
+  "checked_at_utc": "2026-10-22T20:36:43.759541+00:00",
+  "command": [
+    "/opt/PeleC/build-gpu/Exec/RegTests/Sod/PeleC-Sod",
+    "inputs.inp",
+    "amr.max_level=0",
+    "max_step=10",
+    "stop_time=0.002",
+    "pelec.fixed_dt=0.001",
+    "amr.plot_int=1",
+    "amr.plot_vars=density Temp",
+    "amr.derive_plot_vars=pressure x_velocity y_velocity z_velocity",
+    "amrex.abort_on_unused_inputs=1"
+  ],
+  "returncode": 0,
+  "describe_returncode": -11,
+  "describe_note": "Observed --describe failure before AMReX initialization; use build manifest and plot job_info; no numerical source patch",
+  "target_time": 0.002,
+  "final_time": 0.002,
+  "integration_wall_seconds": 1.0312766359999999,
+  "device": "NVIDIA H100 80GB HBM3, 81559, 610.57.04",
+  "native_plot_count": 4,
+  "scope": "Upstream nonreacting Sod installation smoke only; field accuracy and methane/engine gates pending"
+}

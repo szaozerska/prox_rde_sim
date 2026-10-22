@@ -391,10 +391,10 @@ References: [Mundt thesis](Mundt2023.pdf), [model audit](docs/verification/mundt
 
 ## Baseline and current status
 
-Revision 12 plan is reviewed; native GPU G0-G5 remain pending at plan handoff.
-Modal authentication and eight-core CPU execution passed; GPU allocation and CFD
-performance are unverified. Start G0 now; do not complete a duplicate full
-detonationFoam pipeline.
+Revision 12 plan is reviewed. G0 native CUDA installation smoke and independent
+field/budget checks passed on one H100; G1 controls are next. Reacting throughput,
+multi-GPU capacity/scaling and G2-G5 physics remain unverified. Do not complete a
+duplicate full detonationFoam pipeline. See [G0 evidence](docs/verification/pelec_g0/result.json).
 
 T0 complete. Separate clone based on `0f435aad6b23e063a35f1017a985d5ee8ee8145d`,
 committed 2026-10-22 01:35:05 PDT. T1 installation and T2 parametric mesh checks passed; no 3D reactive model has been validated. The new C1-C6 controlled 2D

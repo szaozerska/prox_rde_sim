@@ -1,0 +1,63 @@
+{
+  "time": 0.002,
+  "shape": [
+    32,
+    8,
+    8
+  ],
+  "checks": {
+    "initial_time": true,
+    "final_time": true,
+    "same_mesh": true,
+    "finite_fields": true,
+    "positive_density_pressure_temperature": true,
+    "mass_conservation": true,
+    "energy_conservation": true,
+    "transverse_velocity": true,
+    "transverse_uniformity": true,
+    "wall_pressure_impulse": true
+  },
+  "initial_integrals": {
+    "mass": 0.03515625,
+    "energy": 0.0859375,
+    "xmomentum": 0.0
+  },
+  "final_integrals": {
+    "mass": 0.03515625,
+    "energy": 0.0859375,
+    "xmomentum": 0.0001125
+  },
+  "relative_drift": {
+    "mass": 0.0,
+    "energy": 0.0
+  },
+  "max_transverse_velocity": 0.0,
+  "relative_transverse_nonuniformity": 0.0,
+  "native_minmax": {
+    "density": [
+      0.125,
+      1.0
+    ],
+    "Temp": [
+      2.7449715997619467e-07,
+      3.501297598964164e-07
+    ],
+    "pressure": [
+      0.1,
+      1.0
+    ],
+    "x_velocity": [
+      0.0,
+      0.12993142669789326
+    ],
+    "y_velocity": [
+      0.0,
+      0.0
+    ],
+    "z_velocity": [
+      0.0,
+      0.0
+    ]
+  },
+  "passed": true
+}

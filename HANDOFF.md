@@ -12,12 +12,12 @@ The [3D plan](first_sim_plan.md) supersedes implementation ordering in inherited
 Keep the [implementation record](docs/verification/3d_progress.md) current.
 
 T0-T2 are complete for detonationFoam. Revision 12 prioritizes a bounded
-PeleC/Modal GPU trial (G0 next), retaining detonationFoam as fallback. Do not
+PeleC/Modal GPU trial (G0 smoke passed; G1 controls next), retaining detonationFoam as fallback. Do not
 complete two full CPU/GPU engine stacks. About eight GPUs are authorized initially;
-Modal authentication/eight-core CPU execution passed; GPU access/topology and
-solver performance are unverified. See [the literature/runtime decision record](docs/plans/3d_literature_runtime_review.md).
+Modal CPU and one-H100 access passed. Native PeleC CUDA smoke and independent
+field/budget checks passed; reacting throughput and multi-GPU scaling are unknown. See [the literature/runtime decision record](docs/plans/3d_literature_runtime_review.md).
 User authorized early implementation; the 14:30 kickoff is paused. Start now with
-G0. Routine cases must fit the measured two-hour gate; no full-engine runtime has
+G1. Routine cases must fit the measured two-hour gate; no full-engine runtime has
 been measured. Sustained-wave design screening requires the coupling/refill,
 window, numerical/model sensitivity and negative-control gates in revision 12. All physics gates remain
 in the selected backend; no OpenFOAM mesh pass transfers to PeleC embedded geometry.

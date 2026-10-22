@@ -1,0 +1,20 @@
+{
+  "pelec_repository": "https://github.com/Pele-Suite/PeleC.git",
+  "pelec_commit": "949e2bb67386bf4b16324b06555e303ff411e179",
+  "submodules": {
+    "Submodules/PelePhysics": "6e8026fc6ed121c07e32c9d3fe1d1c919bafc64b",
+    "Submodules/PelePhysics/Submodules/amrex": "1546c1ccbf41c704a33790f4bf445a2fcee1372e",
+    "Submodules/PelePhysics/Submodules/sundials": "0eff39663606f2ff280c4059a947ed62ae38180a",
+    "Submodules/PelePhysics/Submodules/sundials/.gitlab/radiuss-spack-configs": "89c2074e466d454c77ec17249cbdf8555d183388",
+    "Submodules/PelePhysics/Submodules/sundials/.gitlab/uberenv": "ec6fd144c814ce30a6487db9fb8294def606afda",
+    "Submodules/PelePhysics/Submodules/sundials/external/sundials-addon-example": "ff9a45d82c12f24c9363185e4149a9ca97906ed1",
+    "Submodules/PelePhysics/Submodules/sundials/test/answers": "2a8beef77b5b6f76c5c25e3381704b9199f36749"
+  },
+  "cuda_image": "nvidia/cuda@sha256:4b9ed5fa8361736996499f64ecebf25d4ec37ff56e4d11323ccde10aa36e0c43",
+  "cuda_image_tag_at_resolution": "12.8.1-devel-ubuntu24.04",
+  "cuda_architectures": "90",
+  "dimension": 3,
+  "precision": "DOUBLE",
+  "mpi": false,
+  "scope": "G0 upstream Sod installation smoke; not methane or RDE validation"
+}
