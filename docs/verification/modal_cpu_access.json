@@ -1,0 +1,17 @@
+{
+  "status": "cpu_execution_passed",
+  "checked_at_utc": "2026-10-22T19:37:04.413225+00:00",
+  "requested_physical_cpu_cores": 8,
+  "requested_memory_mib": 1024,
+  "gpu_requested": false,
+  "cpu_model": "unknown",
+  "architecture": "x86_64",
+  "visible_logical_cpus": 8,
+  "cgroup_limits": {
+    "cpu.max": "unavailable",
+    "memory.max": "unavailable"
+  },
+  "visible_nvidia_device_nodes": [],
+  "checksum": 332833500,
+  "scope": "CPU allocation and execution only; not a CFD/MPI benchmark or quota maximum"
+}

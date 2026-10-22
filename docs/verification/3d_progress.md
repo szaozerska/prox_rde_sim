@@ -185,3 +185,20 @@ read workspace settings and billing rates. Credentials remain outside Git and
 were not read or copied into this record. Workspace settings did not expose GPU
 quotas. No GPU allocation, solver build or performance measurement has run yet;
 prices are not proof of capacity. G0 hardware verification remains pending.
+
+
+## G0 hardware access — CPU-only Modal execution verified
+
+On October 22 at 19:37 UTC, an explicit temporary Modal function successfully
+executed a checksum test with a request/limit of 8 CPU cores, 1 GiB RAM, no GPU,
+30-second function timeout and no retries. The app stopped normally. The returned
+checksum matched 332833500. Remote x86_64 runtime exposed eight logical CPUs and
+no NVIDIA device nodes; CPU model and cgroup limits were unavailable. Record in
+`modal_cpu_access.json`; reproducible opt-in probe in `tools/modal/check_cpu.py`.
+This verifies allocation/execution access, not maximum quota, MPI scaling or CFD
+performance. No engine data or repository automount was uploaded.
+
+Live billing-rate query returned CPU $0.04730/core-hour and RAM $0.008/GiB-hour:
+requested 8-core/1-GiB baseline is $0.3864/hour, not a measured invoice. Only this
+short access probe ran. GPU allocation and PeleC/detonationFoam remote execution
+remain pending. JSON/checksum assertions and git diff whitespace checks passed.
