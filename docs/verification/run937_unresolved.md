@@ -173,8 +173,8 @@ surrogate-structure hypotheses without isolating the 2D failure's root cause:
   initialized with a formed wave. They do not reproduce the complete engine,
   isolate all numerical mixing effects, or exclude a separate initiation problem.
 
-**Next work:** C5b–e model/source/resolution verification after the completed
-[C5a readiness audit](c5_model_readiness.md). C4's 15 mm blast remains
+**Next work:** C6a conservative formed-engine initialization and a short
+cost/validity benchmark after the completed [quarter-length C5b–e controls](c5_short_reaction.md). C4's 15 mm blast remains
 reacting but weaker at 40 µs; a startup-only engine remedy is not established.
 Keep chemistry frozen across the comparison. Do not launch an engine rerun
 merely because the isolated thick layer supports a wave. The [reviewed plan](../plans/controlled_2d_tests.md)
@@ -208,3 +208,15 @@ errors and would need at least 91.09 million steps with the current global sourc
 cap. It is **not adopted**. No new engine run or stable-wave claim follows.
 The open gate is now documented as small model/source/filled-profile/layer
 increments, not an unspecified missing feature or an assumed 3D remedy.
+
+
+### C5b–e quarter-length sensitivity
+
+The explicitly selected L50=0.25 mm surrogate, with unchanged EOS/activation
+energy/integrator, passed independent reactors, filled-wave and contact checks.
+Both 0.125/0.0625 mm meshes retain strong near-wall/middle reaction through a
+10 us formed-layer control at h=3.8 mm. Budgets and causal margins pass. Upper
+structure, initial contact mixing and late transient peaks remain mesh sensitive;
+this is not a steady-wave result or a physical chemistry fit. Details and graphs:
+[completed experiment](c5_short_reaction.md). RDE-001 remains open because no
+new periodic, replenished engine case has demonstrated sustained rotation.

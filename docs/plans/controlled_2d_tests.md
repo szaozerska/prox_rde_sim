@@ -8,9 +8,10 @@ assignment; this session must not change, merge or push the other branch.
 
 ## Current gate
 
-C1–C4 diagnostics are complete within their stated windows. C5a's saved-reference
-feasibility audit is complete, but **C5 model readiness remains open and C6 is
-not launched**. See the [readiness decision](../verification/c5_model_readiness.md).
+C1–C4 and C5a are complete within their stated scopes. **C5b–e's declared
+quarter-length surrogate experiment is complete:** both meshes retain wall/middle
+shock-associated reaction through 10 us. **C6a initializer/benchmark is next;
+no engine run has been launched.** See the [new results and decision](../verification/c5_short_reaction.md).
 This status supersedes earlier running/conditional language in the dated reviews
 below. No stable rotating-wave milestone is claimed.
 
@@ -272,8 +273,9 @@ are a starting point, not sufficient evidence of multidimensional convergence.
 
 Review 3 — inference: C3 and scale similarity motivate the selected length but
 do not establish a critical h/L50 of 15 or a universal margin. A successful
-10 us result warrants a separately justified longer layer check before C6;
-a failed or grid-sensitive result requires diagnosis first. Inspect native
+10 us result warrants a review of the next discriminating experiment; the final
+gate review below selects C6a instead of an automatic longer layer rerun.
+A failed or materially contradictory result requires diagnosis first. Inspect native
 fields alongside summary tracks. Do not import the independent report's wrong
 outlet timing or its comparison of source slope with reaction rate.
 
@@ -291,3 +293,23 @@ verification record; compare all five far-field primitives against an independen
 homogeneous ODE, with 1e-9 scaled tolerance. A synthetic boundary perturbation
 must fail that check. Reuse matching completed CFD cases; do not rerun them or
 relax the physical-state checks. Solver and chemistry are unchanged.
+
+
+## Completed C5b–e gate and next C6a increment
+
+Both meshes complete the predeclared window with valid budgets and continuing
+near-wall/middle reaction. See [results](../verification/c5_short_reaction.md)
+for the nonconverged upper layer, transient pressure pulse, initial contact
+mixing, unequal time/grid comparison with old C3 and retained physical-model limits.
+These are qualifications of a successful bounded experiment, not a new arbitrary
+stop on all implementation. No sustained engine or unique-root-cause claim.
+
+Next implement one conservative, periodic formed-wave engine initializer for
+an explicitly named 0.25 mm reaction-length / 0.125 mm grid case. Verify seam
+behavior, correct lab-frame momentum, initial inventories and energy accounting,
+state validity and checkpoint/native-budget behavior. Run a separately labelled
+2 us cost/validity benchmark only after those checks. Use measured cost to select
+the bounded three-interval engine experiment or a separately verified source
+integration improvement; freeze chemistry in either path. An additional longer
+layer control is conditional on a specific new ambiguity, not an automatic sweep.
+The existing three/five-interval policy remains the engine study limit.

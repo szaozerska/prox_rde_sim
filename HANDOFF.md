@@ -68,12 +68,16 @@ lengths are subcell on the current grid; a two-distance fit would require at
 least 91.09 million steps under the present global source cap, while retaining
 EOS/held-out profile errors. The algebraic candidate was not adopted.
 
-**Next planned increment:** C5b–e model hypothesis, source verification, resolved
-filled-profile control and thin-layer reassessment. C6 is not launched. The full
-73-test suite passed; final plotting changes have separate passing checks. Freeze chemistry and quantify source/time/grid effects, initial
-inventory and boundary causality. Stop advancement on a critical inconsistency.
-Document each increment and push it to main after verification. The old automatic
-0.25 mm engine refinement is superseded by these causal controls.
+**Next planned increment:** C6a conservative formed-engine initialization and a
+2 us cost/validity benchmark, after seam/inventory/budget tests. C5b–e's explicit
+0.25 mm surrogate passed source/planar/contact controls and retains wall/middle
+coupling through 10 us at 0.125/0.0625 mm. See the [completed experiment](docs/verification/c5_short_reaction.md).
+No engine run or stable-rotation claim follows yet. The old physical-scale
+91-million-step fit is a rejected candidate, not a blocker on this surrogate.
+Freeze chemistry across comparisons. A longer layer control or revised source
+integrator needs a specific reason; neither is an automatic prerequisite sweep.
+Document each increment and publish to main. Final regression: 77 passed,
+one opt-in baseline skipped; saved layer fields and comparison plots inspected.
 
 ## Subsequent diagnostic review
 
@@ -193,7 +197,8 @@ NUMBA_NUM_THREADS=2 ../.venv/bin/python controlled.py layer --height-mm 15 --dx-
 C4's `--start blast` comparator completed at 15 mm / 0.5 mm. It is a weaker
 reacting transient, not a demonstrated long-term ignition failure or success.
 Compare saved cases with `plot.py --layer-comparison RUN1 RUN2 --out NEW`.
-C5a readiness review is complete; C5b–e remain gated before an engine change.
+C5a readiness review is complete; its successor quarter-length C5b–e controls
+are now complete. C6a initializer/benchmark work is next.
 `model_audit.py --evidence ../docs/verification/d3_metrics.json --out NEW.json`
 reproduces the saved-reference algebra without CFD or calibration changes.
 
@@ -201,8 +206,8 @@ reproduces the saved-reference algebra without CFD or calibration changes.
 ## October 22 update: authorized quarter-length experiment
 
 C5b–d now pass for the declared L50=0.25 mm sensitivity (k times four; unchanged
-Ea/EOS/source integrator). C5e's two-mesh 3.8 mm layer pair is running through
-10 us in compact, causally buffered domains. See [experiment and evidence](docs/verification/c5_short_reaction.md).
+Ea/EOS/source integrator). C5e's two-mesh 3.8 mm layer pair completed
+10 us with near-wall/middle coupling in compact, causally buffered domains. See [experiment and evidence](docs/verification/c5_short_reaction.md).
 The previous unspecified model-choice stop is superseded; C6 remains gated.
 A reactive-contact boundary check was corrected to account for homogeneous
 background chemistry; the stopped attempt and corrected evidence are retained.

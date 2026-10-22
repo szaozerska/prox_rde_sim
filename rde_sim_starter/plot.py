@@ -522,7 +522,7 @@ def plot_formed(directory,destination):
         front=np.array([np.nan if r['front_m'] is None else r['front_m'] for r in h])
         axes[1,0].plot(times*1e6,(front-inputs['shock_initial_m']-c['D_CJ']*times)*1e3)
         axes[1,0].set(xlabel='Time [µs]',ylabel='Front departure from CJ travel [mm]')
-        for key,label in [('left_causal_margin_m','Left, including 30 mm reaction region'),('right_causal_margin_m','Right')]:
+        for key,label in [('left_causal_margin_m',f"Left, including {inputs['reaction_roi_behind_front_m']*1e3:g} mm reaction region"),('right_causal_margin_m','Right')]:
             axes[1,1].plot(times*1e6,[r[key]*1e3 if r[key] is not None else np.nan for r in h],label=label)
         axes[1,1].axhline(0,color='k',linewidth=.7)
         axes[1,1].set(xlabel='Time [µs]',ylabel='Remote-boundary cone margin [mm]')
@@ -573,7 +573,7 @@ def plot_layer(directory,destination):
         for ax in axes[1:].flat:ax.grid(alpha=.25)
         axes[1,0].legend(fontsize=8);axes[2,1].legend(fontsize=8)
         alignment='face aligned' if inputs['initialization'].get('interface_aligned',False) else 'uniform grid'
-        label='C4 blast' if inputs['initialization'].get('start','formed')=='blast' else 'C3 formed'
+        label='Blast layer' if inputs['initialization'].get('start','formed')=='blast' else 'Formed layer'
         fig.suptitle(f"{label}: h = {h*1e3:g} mm, Δx = {inputs['initialization']['dx_m']*1e3:g} mm, t = {report['time_s']*1e6:.1f} µs ({alignment})")
         fig.savefig(destination/'layer_control.png',dpi=140)
     finally:plt.close(fig)
@@ -625,7 +625,7 @@ def plot_layer_comparison(directories,destination):
         axes[1,1].set(xlabel='Time [µs]',ylabel='Peak rate within 2 mm behind wall front [1/s]',yscale='log')
         axes[0,0].legend(fontsize=8)
         for ax in axes.flat:ax.grid(alpha=.25)
-        fig.suptitle('Bounded layer controls: wall-row comparison\nDifferent initial energy/momentum; pressure track alone is not a detonation criterion')
+        fig.suptitle('Bounded layer controls: wall-row comparison\nInitial inventories recorded separately; pressure track alone is not a detonation criterion')
         fig.savefig(destination/'layer_comparison.png',dpi=140)
     finally:plt.close(fig)
     return cases

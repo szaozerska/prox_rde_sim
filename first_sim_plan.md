@@ -1,6 +1,6 @@
 # RDE simulation plan — revision 10
 
-**Status: C1–C4 diagnostics and C5a feasibility audit completed; C5 model-readiness gate open; C6 not launched. Sustained rotation unresolved.**
+**Status: C1–C4, C5a and the C5b–e quarter-length bounded experiment completed. C6a formed-engine initialization/benchmark is next. Sustained rotation unresolved.**
 The [controlled-test plan](docs/plans/controlled_2d_tests.md) records three review
 passes and the C1–C6 increments. First verify multirow/direction equivalence and
 formed-profile propagation, then distinguish thin-layer survival from initiation.
@@ -28,11 +28,11 @@ Paper references mean Mundt (2023), *Geometric Scaling of Cylindrical Rotating D
 
 ## 0. Short-test scope and current investigation
 
-**Authorized next experiment (October 22):** C5b–e now select a declared
+**Completed authorized experiment (October 22):** C5b–e tested a declared
 0.25 mm half-reaction-length surrogate (k multiplied by four, unchanged Ea/EOS).
-Keep the existing source integrator; verify reactors, planar propagation and
-contact behavior before the 3.8 mm layer at 0.125/0.0625 mm. See the
-[predeclared protocol](docs/plans/controlled_2d_tests.md#c5b–e-declared-quarter-length-surrogate)
+The existing source integrator passed reactor, planar and contact checks; the
+3.8 mm layer retained near-wall/middle coupling through 10 us on both meshes. See the
+[predeclared protocol](docs/plans/controlled_2d_tests.md)
 and [new evidence record](docs/verification/c5_short_reaction.md).
 This supersedes the prior unspecified model-choice stop, not the engine gate.
 
@@ -61,7 +61,7 @@ Small algebraic/source tests need no engine-length run. Use short localized 1D s
 | **D2. Reusable analysis and plots** | Unrolled fields, short space–time plot/front tracks, pressure station traces/profile, and mass/energy/momentum budgets. Compute instantaneous thrust/torque diagnostics with storage where the implemented model supports them. | Full spectra/spectrogram suite, wrapped-cylinder polish, multi-engine/mode maps. |
 | **D3. Focused investigation — completed** | Run 937 physical CJ/ZND and independent equilibrium heat release; six frozen/reactive contact tests at 0.5/0.25/0.125 mm; three fixed-chemistry 1D propagation grids; reference/contact/front graphs and regression checks. | Exact NASA CEA replication, full G0 curves, new 2D runs, chemistry replacement, broad convergence and engine sweeps. |
 
-**Next increment: C5b model hypothesis, then source/mesh verification.** C1 passed its 95 µs matched
+**Next increment: C6a formed-engine initialization and a 2 us cost/validity benchmark.** C1 passed its 95 µs matched
 propagation check. C2 passed conservative initialization and 40 µs filled-strip
 propagation at three meshes plus a source-step comparison; see the
 [increment log](docs/verification/controlled_2d_progress.md). C3 confirms a bounded
@@ -70,7 +70,9 @@ completed blast/profile comparison in the 15 mm layer: the blast is weaker but
 still reacting behind its leading shock at 40 µs. Stable rotation remains unproved.
 C5a found that substituting physical reaction lengths on the current mesh/source
 treatment is not ready for an engine run; see the [readiness review](docs/verification/c5_model_readiness.md).
-C5b–e separate model, reactor, filled-profile and layer checks. C6 remains gated. See
+C5b–e passed the declared quarter-length surrogate controls through 10 us.
+C6a will verify the engine initializer, seam and budgets before a bounded
+propagation comparison; no stable-engine claim follows from the layer test. See
 [controlled-test plan and three reviews](docs/plans/controlled_2d_tests.md) for
 unit tests, diagnostic requirements, causal-domain checks and stopping criteria.
 

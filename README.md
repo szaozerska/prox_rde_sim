@@ -15,6 +15,12 @@ sustained-wave milestone is not met. See [RDE-001](docs/verification/run937_unre
 for the exact cases, evidence, candidate causes and criteria for a fix. D0-D3 are
 short development increments, not completion of the broader physics stages.
 
+The [quarter-length chemistry experiment](docs/verification/c5_short_reaction.md)
+now passes its reactor/planar/contact checks and retains near-wall/middle
+shock-associated reaction in a 3.8 mm isolated layer through 10 us on two meshes.
+This is an explicit surrogate test variant, not a solved rotating-engine case.
+Next is a verified formed-engine initializer and short cost/validity benchmark.
+
 ## Run the fast checks
 
 From the project root (Python 3.12; verified on macOS x86_64):
@@ -209,7 +215,7 @@ metrics are retained with [the D2 report](docs/verification/d2_coupling.md).
 - [D1 propagation verification](docs/verification/d1_propagation.md).
 - [Run-plumbing verification](docs/verification/d0_run_plumbing.md).
 - [Foundation verification](docs/verification/foundation_session.md): historical first-increment baseline.
-- [Current simulation plan — revision 9](first_sim_plan.md).
+- [Current simulation plan — revision 10](first_sim_plan.md).
 - [Paper/model audit](docs/verification/mundt_model_audit.md): checked assumptions and requirements before new studies.
 - [Figure validation roadmap](docs/plans/figure_validation_roadmap.md): later Chapter 3–4 campaigns.
 - Local `sim_plan_review.md`: historical revision-3 review, retained locally and excluded from Git.

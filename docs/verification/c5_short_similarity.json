@@ -1,0 +1,25 @@
+{
+  "initial_scaled_difference": 7.18941544797041e-11,
+  "after_10_steps_scaled_difference": 5.7786740980511464e-11,
+  "time_scale_ratio": 4.0,
+  "invalid_states": [
+    0,
+    0
+  ],
+  "steps": 10,
+  "original_geometry_m": {
+    "layer": 0.015,
+    "dx": 0.0005,
+    "length": 0.1,
+    "shock": 0.04,
+    "product_buffer": 0.01
+  },
+  "scaled_geometry_m": {
+    "layer": 0.00375,
+    "dx": 0.000125,
+    "length": 0.025,
+    "shock": 0.01,
+    "product_buffer": 0.0025
+  },
+  "rate_multiplier": 4.0
+}

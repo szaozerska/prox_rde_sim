@@ -1,7 +1,7 @@
 # C5b–e quarter-length reaction experiment
 
 October 22, 2026. Predeclared protocol: [controlled plan](../plans/controlled_2d_tests.md).
-Status: C5b–d reactor/planar/contact verification passed; C5e two-mesh layer runs in progress. C6 not launched.
+Status: C5b–e bounded experiment completed. Both layer meshes retain near-wall/middle shock-associated reaction through 10 us. C6 not launched; RDE-001 remains open.
 
 The independent investigation correctly motivates testing a shorter surrogate.
 Its confirmed-root-cause, universal h/L50 threshold, outlet timing and 12x source
@@ -61,7 +61,7 @@ No timestep, chemistry, flux or numerical tolerance was relaxed. Two test-comman
 invocations initially used the repository root instead of the documented starter
 working directory; rerunning from the starter fixed those invocation errors.
 
-## Tests and running layer protocol
+## Tests and layer execution protocol
 
 - Focused harness/import checks: 17 passed, 23.6 s (`c5_short_tests.log`).
 - Regression suite before the contact-gate correction: 77 tests, 76 passed and
@@ -75,4 +75,139 @@ verification used two. This only changes execution parallelism. The fixed local
 model, 3.8 mm layer, 0.125/0.0625 mm meshes, 10 us cap, causal bounds and conserved
 initialization are predeclared in the plan. No automatic engine run follows.
 The coarse/fine domains have about 261,000/1,045,800 cells. The source cap is
-about 3.61 ns, so each takes about 2,770 steps. Results remain pending here.
+about 3.61 ns, so each takes about 2,770 steps. Completed outcomes are recorded below.
+
+
+## Additional interpretation checks during execution
+
+A ten-step discrete scale-similarity check compares a 15 mm / 0.5 mm model with
+its fully scaled 3.75 mm / 0.125 mm counterpart, including all remote dimensions
+and k times four. Primitive states agree to 5.78e-11 after ten steps, the elapsed
+time ratio is exactly four, and neither run has invalid states. See
+[c5_short_similarity.json](c5_short_similarity.json). This verifies the scaling
+argument, not the actual 3.8 mm layer outcome or an engine configuration. Its first
+invocation required the normal repository permission because Numba's cache cannot
+be initialized under the stale workspace sandbox; the permitted invocation passed.
+
+Independent steady-profile quadrature gives 0.5653 us to half heat and 1.4306 us
+to 95% heat for the shortened model. The illustrative original-layer h/a_VN
+scale is 4.1580 us. This makes the reaction/relief hypothesis plausible but is not
+a sufficient extinction or survival criterion. L95 remains about 20 times the
+physical D3 reference; shortening k's timescale has not validated physical chemistry.
+
+The output clock retains a roundoff-separated final snapshot at 10 us. The raw
+histories are preserved; quantitative postprocessing keeps the last member of
+pairs separated by less than 1 ps (versus the 1 us layer output cadence). Using
+unique samples and an inclusive 5–10 us fit, planar speeds are
+2472.727/2471.591 m/s, with 2472.727 m/s for the half-source-step control. The
+raw verifier values above use its original window/endpoint selection. Both
+versions pass the predeclared speed gates. This is a sampling-weight correction,
+not a change to the solver or a reason to rerun the flow.
+
+The coarse layer has completed: top-state changes are zero apart from an axial
+velocity perturbation below 1e-150 on its reference scale. Near-wall/middle
+reaction remains close to the front, but the wall pressure rises sharply late
+in the window; the endpoint is transient. This was the interim coarse assessment; both completed results follow.
+
+
+## Completed two-mesh result
+
+Both cases completed 10 us / 2,771 steps with zero invalid states and positive
+causal margins. The endpoint top margin is 0.5 mm; the top four rows retain
+initial pressure, density, transverse velocity and progress exactly, with only
+negligible axial-velocity tails. Maximum characteristic speeds are below the
+predeclared 4000/3200 m/s limits (fine: 3515.1/3101.7 m/s). Native endpoint
+integrals agree with the saved conserved checkpoints. The two meshes have the
+same initial conserved inventory and 4389.637 J/m excess energy to roundoff.
+
+| Measurement | 0.125 mm | 0.0625 mm |
+|---|---:|---:|
+| Maximum scaled budget residual | 5.91e-16 | 1.77e-15 |
+| Wall-row final pressure maximum [MPa] | 34.249 | 30.379 |
+| Wall-row front–rate-peak gap [mm] | 0.375 | 0.1875 |
+| Wall-row near-front peak rate [1/s] | 1.134e6 | 1.115e6 |
+| Middle-row front–rate-peak gap [mm] | 0.500 | 0.4375 |
+| Middle-row near-front peak rate [1/s] | 7.286e5 | 6.992e5 |
+| Upper sampled-row front–rate-peak gap [mm] | 1.375 | 1.9375 |
+| Wall-row pressure-front speed, 4–10 us fit [m/s] | 1977.7 | 1910.7 |
+| Middle-row pressure-front speed, 4–10 us fit [m/s] | 2098.2 | 2044.6 |
+| Total converted chemical energy [J/m depth] | 1830.618 | 1759.464 |
+| Measured wall-clock time, four threads [s] | 420.8 | 1245.2 |
+
+Pressure/rate histories and full fields jointly show continuing near-front
+reaction near the wall and middle on both meshes. Upper-layer coupling is weaker.
+The wave slows during part of the interval and develops a late near-wall
+transverse interaction with a strong pressure/reaction pulse. Thus the final
+30–34 MPa peak is a transient, not an operating pressure or proof of stability.
+The 6–10 us wall-speed fits are 1950/1856 m/s; the 8–10 us fits rise to
+2063/2000 m/s, confirming window sensitivity. These threshold-track speeds must
+not be presented as settled detonation speeds or matches to Mundt.
+
+Refinement changes total conversion by 3.89%, wall endpoint pressure by 11.3%,
+and the 4–10 us wall speed by 3.39%. The upper-layer pressure/structure differs
+more strongly. This is qualitative agreement in bounded coupling, not numerical
+convergence. Conservatively averaged initial mixed-row temperatures are
+616.65/350.16 K despite identical total inventories; evolving contact burning
+remains visible. The native diagnostic heights differ slightly between meshes
+and are retained in the metrics. No initial-interface sensitivity was silently
+removed or confused with a pure cell-size change.
+
+**Decision:** the selected shorter surrogate passes this bounded experiment.
+The result supports the reaction-length/finite-layer hypothesis; it does not
+confirm a unique cause of the failed original engine run. Compared with the old
+C3 controls, physical grid spacing and remote geometry also changed, and those
+older cases ran 40 us rather than 10 us. Do not describe this as a same-grid,
+same-window chemistry-only A/B test. The independent similarity check and
+within-model mesh/source checks provide the supporting numerical evidence.
+
+The initial formed charge remains substantial, and 10 us cannot prove eventual
+survival. No injection, periodic rotation or engine outlet is present here.
+RDE-001 and physical Run 937 validation remain open. The surrogate EOS and
+physical reaction-profile mismatch are unchanged; this is not a fitted physical
+mechanism or a replacement of the baseline default calibration.
+
+## Gate review and concrete next increment
+
+No critical implementation, source-accuracy, admissibility or causal-domain
+inconsistency was found in this bounded comparison. Spatial/contact/transient
+qualifications remain explicit. The next increment is **C6a: conservative formed
+engine initialization plus a short, explicitly labelled cost/validity benchmark**,
+keeping the selected chemistry fixed. Test the periodic seam, conserved initial
+charge/momentum/energy and restart/budget behavior before advancing the engine.
+Start with a 2 us benchmark at 0.125 mm, then estimate the existing three-interval
+run cost from measured steps/throughput; do not promise runtime from GPU estimates.
+If source integration materially limits that run, improve and verify it as a
+separate numerical change before the longer engine comparison.
+
+This refines the earlier protocol's suggestion to require another longer layer
+run before C6. A 20 us causally buffered two-grid layer rerun would add roughly
+an order of magnitude in cell-step work without testing engine replenishment.
+The successful bounded gate justifies a bounded engine experiment, while claims
+of steady operation still require longer evidence. A longer layer control stays
+available for a specific ambiguity; it is not an automatic extra sweep. No rate,
+height or ignition-energy tuning follows from the endpoint pressure.
+
+## Reproduction and verification record
+
+Native cases: `rde_sim_starter/runs/c5_short_layers/layer_0.125` and
+`layer_0.0625`. [Metrics and provenance](c5_short_layer_metrics.json) include
+source fingerprints, file hashes, histories, mixed-row temperatures, top-state
+checks and speed windows. Reduce saved files from the repository root with:
+
+```sh
+.venv/bin/python docs/verification/c5_short_reduce.py rde_sim_starter/runs/c5_short_layers /tmp/NEW_metrics.json
+```
+
+The final regression suite ran **78 tests: 77 passed, one opt-in baseline
+skipped**, in 113.955 s (`c5_short_final_tests.log`). The additional ten-step
+similarity check passed. Final plot-only edits correct the compact-domain legend
+and generic case labels; the coarse, fine and comparison renders were inspected.
+No further simulation was run for rendering or postprocessing.
+
+![Two-mesh wall-row comparison](c5_short_layer_comparison.png)
+
+[Coarse fields](c5_short_layer_coarse.png) · [Fine fields](c5_short_layer_fine.png).
+
+Final saved-data audit passed: matching frozen calibration/source fingerprints,
+completed endpoints, positive causal margins, unchanged output hashes, eleven
+unique layer snapshots, equal initial inventories and checkpoint integrals.

@@ -1,5 +1,9 @@
 # C5a: model correction is not ready for an engine run
 
+**Successor:** the [declared quarter-length experiment](c5_short_reaction.md)
+completed its bounded C5b–e controls. The rejected physical-scale fit below remains
+historical evidence; it does not prohibit the verified surrogate sensitivity.
+
 This is a saved-reference and numerical-feasibility review after C1–C4. C4's
 separate initiation outcome is recorded in the controlled progress report.
 **Production chemistry, engine inputs and solver are unchanged. RDE-001 is open.**
