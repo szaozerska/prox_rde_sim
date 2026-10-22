@@ -31,6 +31,65 @@ detonation from pressure alone, or use larger ignition energy as an automatic fi
 The inferred 3.8 mm refill height uses *measured* two-wave frequency; it is not a
 fixed operating layer for a simulation that may select one wave.
 
+## Added user-requested case check: 25-FI-5
+
+The user requested another engine configuration to check whether the chosen
+test itself contains a silent problem. Selected **25-FI-5**, whose high-flux
+Table 3-3 row has one wave at all three back pressures. Checked the original
+table text and rendered page 69, plus Tables 2-1/4-1 and pp.56–57,72–73.
+Geometry: outer/inner radius 12.7/7.7 mm, length 25.4 mm, nominal injector area
+ratio .110, 48 pairs. The table reports 319.20 kg/s/m2, 102.29 g/s, phi=1.19,
+and one wave at 3.5/52/97 kPa. These are three-run averages, not one named run.
+
+H6: case-specific geometry, operating point, or silently retained metadata
+causes the observed failure. Two bounded secondary controls distinguish these:
+
+1. `cases/detwave_25fi5_geometry.yaml`: only geometry, geometry-scaled total
+   reference mass flow and diagnostic stations change from the short-chemistry
+   Run 937 control. Same EOS, kinetics, initial pressure, plenum/back pressure,
+   initial layer and finite charge. This is **not** an experimental 25-FI-5 run.
+2. `cases/detwave_25fi5_high_flux.yaml`: same small geometry and frozen gas/rate
+   constants, but mass-flux reference 319.20 and back pressure 97 kPa. The
+   equivalent reservoir pressure is derived as 1799.936 kPa to give a choked
+   capacity of 319.20 kg/s/m2 with unchanged Cd=.76; it is not a measured feed
+   pressure. Transient flow is still predicted, not imposed alongside pressure.
+   Initial pressure follows the existing Eq.4.1 fit. Active phi remains 1.176
+   to keep **exactly** the original gas/kinetics; Table 3-3's 1.19 is recorded
+   separately (1.18% difference). Thus this is a near-condition surrogate
+   cross-check, not a precise replication. No chemistry is retuned for success.
+
+Both use 0.125 mm cells, source fraction .20, 3.8 mm initial layer and the same
+25 mm finite charge. The charge occupies 39% of this circumference, versus 11%
+in Run 937; periodic startup interaction changes. The inferred layer height is
+not silently recomputed using an assumed simulated wave count. Durations are
+189.394 us for the geometry control and 142.857 us for high flux (three intervals
+using an approximate 21 kHz plot reading solely as a budget, not this row's
+measured frequency). Both are shorter, cheaper domains; no extra mesh sweep.
+
+**Limit:** gap/mean radius is .4902 versus .1404 in the original engine. The
+unrolled model omits the stronger radial curvature and injector structure.
+Agreement/disagreement can diagnose case sensitivity but cannot validate those
+omitted effects. A shorter chamber also brings outlet influence earlier.
+
+Input audit fixes prevent silent carry-over: secondary cases replace Run 937
+experimental pressure arrays, restrict pressure stations to the actual chamber,
+recompute annulus area/total reference flow, label estimated frequency and
+derived plenum, and assert that every gas/kinetic constant stays identical.
+
+Seven focused tests passed (12.624 s): geometry/area/constant preservation,
+analytical choked capacity, actual saved-case execution with budgets, and the
+four independent initializer checks. The secondary cases run sequentially with
+one Numba thread to limit contention; execution log is `detwave_secondary.log`.
+Output directories are `runs/detwave_25fi5_geometry` and
+`runs/detwave_25fi5_high_flux`. No physics result from them is claimed yet.
+
+The two active original runs keep their already-loaded numerical code. Before
+adding generic `--case` support, exact copies of all fingerprinted source files
+were preserved and hash-checked in `rde_sim_starter/runs/source_snapshot_v1`.
+If one of those original processes is interrupted, resume with that archived
+`detwave_study.py` and an **absolute** run directory. The current driver handles
+the new cases; do not attempt an old checkpoint with its changed fingerprint.
+
 ## Predeclared test list and stop rules
 
 1. Fast existing regression plus independent initialization/seam/inventory checks.

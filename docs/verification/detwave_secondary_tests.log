@@ -1,0 +1,15 @@
+test_geometry_and_chemistry_are_explicit_and_fixed (tests.test_detwave_cases.SecondaryCaseTests.test_geometry_and_chemistry_are_explicit_and_fixed) ... ok
+test_high_flux_plenum_has_declared_choked_capacity (tests.test_detwave_cases.SecondaryCaseTests.test_high_flux_plenum_has_declared_choked_capacity) ... ok
+test_saved_secondary_run_uses_supplied_case (tests.test_detwave_cases.SecondaryCaseTests.test_saved_secondary_run_uses_supplied_case) ... run: 0.000/0.030 us, 0 steps, 0.0 s
+run: 0.030/0.030 us, 3 steps, 0.0 s
+run: 0.030/0.030 us, 3 steps, 0.1 s
+ok
+test_arbitrary_phase_and_mesh_preserve_all_five_inventories (tests.test_detwave_initialization.FormedEngineTests.test_arbitrary_phase_and_mesh_preserve_all_five_inventories) ... ok
+test_lab_momentum_and_energy_match_normal_shock_relations (tests.test_detwave_initialization.FormedEngineTests.test_lab_momentum_and_energy_match_normal_shock_relations) ... ok
+test_periodic_cell_integrals_against_independent_piecewise_quadrature (tests.test_detwave_initialization.FormedEngineTests.test_periodic_cell_integrals_against_independent_piecewise_quadrature) ... ok
+test_seam_translation_commutes_with_initialization_and_flow_steps (tests.test_detwave_initialization.FormedEngineTests.test_seam_translation_commutes_with_initialization_and_flow_steps) ... ok
+
+----------------------------------------------------------------------
+Ran 7 tests in 12.624s
+
+OK

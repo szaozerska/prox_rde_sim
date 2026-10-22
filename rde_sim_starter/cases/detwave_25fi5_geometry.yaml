@@ -1,0 +1,64 @@
+schema_version: 1
+model:
+  geometry: constant_annulus
+  feed: premixed_plenum
+  walls: inviscid
+  chemistry: one_step
+  discharge_coefficient: 0.76
+geometry:
+  r_outer_mm: 12.7
+  r_inner_mm: 7.7
+  length_mm: 25.4
+  area_ratio: 0.11
+operating_point:
+  mass_flux: 240.21
+  mdot_target_gps: 76.97348107451802
+  phi: 1.176
+  p_plenum_kPa: 1350.0
+  T_plenum_K: 300.0
+  p_back_kPa: 100.2
+  D_CJ: 2471.0
+  q_MJkg: 5.5
+  f_paper_kHz: 15.84
+  N_paper: 2
+experimental_reference:
+  configuration: 25-FI-5
+  geometry_source: Mundt Table 2-1, printed p.28
+  injector_pairs: 48
+  fuel_diameter_mm: 0.51
+  oxygen_diameter_mm: 0.81
+  scope: Geometry-only control at Run 937 surrogate conditions; not a measured 25-FI-5
+    operating point. Reference frequency 15.84 kHz only retains common duration budget.
+chemistry:
+  Ea_over_RT1: 20.0
+  L_half_mm: 0.25
+numerics:
+  dx_mm: 0.125
+  cfl: 0.4
+  source_cfl: 0.2
+  average_start_us: 0.0
+  snapshot_every_us: 1.0
+  checkpoint_every_us: 1.0
+  max_step_ns: null
+  probe_y_mm: 1.0
+initialization:
+  kind: formed
+  fill_height_mm: 3.8
+  product_temperature_K: 1500.0
+  charge_length_mm: 25.0
+  shock_fraction: 0.1
+diagnostics:
+  pressure_stations_mm:
+  - 0
+  - 16.5
+  - 18.5
+  - 20.3
+  - 22.4
+study_provenance:
+  kind: geometry_only
+  held_fixed: Run 937 gas, rate constants, fresh pressure, plenum, back pressure,
+    3.8 mm initial layer and 25 mm charge
+  changed: outer/inner radii, length, total reference flow by annulus area, diagnostic
+    stations
+  limitations: gap/mean radius is 0.4902; radial curvature and injector details remain
+    absent. Initial charge occupies 39% of circumference.

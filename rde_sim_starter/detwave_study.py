@@ -1,5 +1,6 @@
 """Opt-in bounded engine investigation. Production solver/defaults are unchanged."""
 import argparse
+import copy
 import hashlib
 import json
 from pathlib import Path
@@ -15,12 +16,16 @@ from run import resolve_case, build_solver, _fingerprint, _write_json, _write_np
 from solver import NG
 
 
-def setup(dx_mm=.125, half_mm=.25, source_cfl=.2):
-    cfg=yaml.safe_load(Path(__file__).with_name('config.yaml').read_text())
+def setup(dx_mm=.125, half_mm=.25, source_cfl=.2, config=None):
+    cfg=(yaml.safe_load(Path(__file__).with_name('config.yaml').read_text())
+         if config is None else copy.deepcopy(config))
     cfg['chemistry']['L_half_mm']=half_mm
     cfg['numerics'].update(dx_mm=dx_mm,source_cfl=source_cfl)
-    cfg['initialization']=dict(kind='formed',fill_height_mm=3.8,
-        product_temperature_K=1500.,charge_length_mm=25.,shock_fraction=.1)
+    if config is None:
+        cfg['initialization']=dict(kind='formed',fill_height_mm=3.8,
+            product_temperature_K=1500.,charge_length_mm=25.,shock_fraction=.1)
+    if cfg['initialization']['kind']!='formed':
+        raise ValueError('this investigation requires explicit formed initialization')
     c=calibrate(cfg);r=resolve_case(cfg,c);s=build_solver(r,c,initialize=False)
     initialize_engine(s,r,c)
     return cfg,c,r,s
@@ -33,15 +38,17 @@ def fingerprint():
     return fp
 
 
-def run(directory, dx_mm=.125, half_mm=.25, source_cfl=.2, end_us=None, resume=False):
+def run(directory, dx_mm=.125, half_mm=.25, source_cfl=.2, end_us=None, resume=False, case_path=None):
     directory=Path(directory)
+    config=None if case_path is None else yaml.safe_load(Path(case_path).read_text())
     if resume:
         manifest=json.loads((directory/'inputs.json').read_text())
         if manifest['fingerprint']!=fingerprint():
             raise ValueError('resume requires unchanged source/environment')
         dx_mm,half_mm,source_cfl=(manifest[k] for k in ('dx_mm','half_mm','source_cfl'))
         end_us=manifest['end_us']
-    cfg,c,r,s=setup(dx_mm,half_mm,source_cfl)
+        config=manifest['config']
+    cfg,c,r,s=setup(dx_mm,half_mm,source_cfl,config)
     cap=3/r['f_ref'];end=cap if end_us is None else end_us*1e-6
     if not np.isfinite(end) or not 0<end<=cap+1e-15:
         raise ValueError('study must end within three reference passage intervals')
@@ -133,7 +140,10 @@ def main():
     p.add_argument('--half-mm',type=float,default=.25)
     p.add_argument('--source-cfl',type=float,default=.2)
     p.add_argument('--end-us',type=float);p.add_argument('--resume',action='store_true')
-    a=p.parse_args();run(a.out,a.dx_mm,a.half_mm,a.source_cfl,a.end_us,a.resume)
+    p.add_argument('--case',type=Path,help='explicit geometry/operating-point study case')
+    a=p.parse_args()
+    if a.resume and a.case:p.error('--resume uses saved inputs; do not supply --case')
+    run(a.out,a.dx_mm,a.half_mm,a.source_cfl,a.end_us,a.resume,a.case)
 
 
 if __name__=='__main__':main()
