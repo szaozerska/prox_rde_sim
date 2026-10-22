@@ -1,0 +1,93 @@
+{
+  "interpretation": "Startup-prefix comparison only; no sustained periodic return demonstrated. Different charge lengths alter initial fresh inventory and energy.",
+  "cases": [
+    {
+      "case": "25fi5_high_flux",
+      "inputs_sha256": "1bcbb6f308acea822a646dc3bf0c79f1ec3e9cccb2e8f4d26355f1ad70760c9f",
+      "initial_excess_energy_J": 19.78322288657271,
+      "charge_mm": 25.0,
+      "records": [
+        {
+          "time_s": 0.0,
+          "fresh_mass_kg": 4.21485150693397e-06,
+          "injected_mass_kg": 0.0,
+          "converted_J": 0.0,
+          "pressure_max_Pa": 28077581.111996517,
+          "high_pressure_heat_fraction": 0.999908066693679,
+          "budget_scaled_residual": 0.0
+        },
+        {
+          "time_s": 1.4999999999999999e-05,
+          "fresh_mass_kg": 1.1515575065551688e-06,
+          "injected_mass_kg": 8.575640401903179e-07,
+          "converted_J": 21.564719222431247,
+          "pressure_max_Pa": 25466511.854869504,
+          "high_pressure_heat_fraction": 0.9241134942546989,
+          "budget_scaled_residual": 2.1244997919556152e-16
+        },
+        {
+          "time_s": 1.9999999999999998e-05,
+          "fresh_mass_kg": 3.9883542314355563e-07,
+          "injected_mass_kg": 1.2171230158824782e-06,
+          "converted_J": 27.682265047498355,
+          "pressure_max_Pa": 17301706.45086829,
+          "high_pressure_heat_fraction": 0.8463318843111447,
+          "budget_scaled_residual": 2.630333075754571e-16
+        },
+        {
+          "time_s": 2.4999999999999998e-05,
+          "fresh_mass_kg": 4.870517931046467e-07,
+          "injected_mass_kg": 1.654774674346677e-06,
+          "converted_J": 29.60415913426536,
+          "pressure_max_Pa": 5946452.2771540135,
+          "high_pressure_heat_fraction": 0.5902303407687424,
+          "budget_scaled_residual": 4.3501662406710215e-16
+        }
+      ]
+    },
+    {
+      "case": "25fi5_high_flux_compact_seed",
+      "inputs_sha256": "ef28d4dbe2840ffe2d17b56648e889b88fc747b1c4dec62ab1e227964e3cbc13",
+      "initial_excess_energy_J": 7.282057134452273,
+      "charge_mm": 7.1629213483146055,
+      "records": [
+        {
+          "time_s": 0.0,
+          "fresh_mass_kg": 6.064093101833191e-06,
+          "injected_mass_kg": 0.0,
+          "converted_J": 0.0,
+          "pressure_max_Pa": 28077581.111996517,
+          "high_pressure_heat_fraction": 0.9998586501387695,
+          "budget_scaled_residual": 0.0
+        },
+        {
+          "time_s": 1.4999999999999999e-05,
+          "fresh_mass_kg": 3.3375407218826634e-06,
+          "injected_mass_kg": 1.168569418638798e-06,
+          "converted_J": 21.42316989190339,
+          "pressure_max_Pa": 24198619.706512585,
+          "high_pressure_heat_fraction": 0.9003013670029537,
+          "budget_scaled_residual": 1.3426811022401782e-16
+        },
+        {
+          "time_s": 1.9999999999999998e-05,
+          "fresh_mass_kg": 2.2214415275842774e-06,
+          "injected_mass_kg": 1.5610649982550457e-06,
+          "converted_J": 29.720441147932487,
+          "pressure_max_Pa": 34978500.90537252,
+          "high_pressure_heat_fraction": 0.9123061538325776,
+          "budget_scaled_residual": 3.641999643352483e-16
+        },
+        {
+          "time_s": 2.4999999999999998e-05,
+          "fresh_mass_kg": 1.0511293245097434e-06,
+          "injected_mass_kg": 1.9645430659067494e-06,
+          "converted_J": 38.376287636898915,
+          "pressure_max_Pa": 44271647.18136038,
+          "high_pressure_heat_fraction": 0.9300875527358962,
+          "budget_scaled_residual": 4.3942290618769465e-16
+        }
+      ]
+    }
+  ]
+}

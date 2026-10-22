@@ -450,6 +450,21 @@ Evidence: `detwave_engine_20to40us.json`, the generic read-only reduction
 compact-seed small-engine job and short-chemistry Run 937 remain active. No
 extension of the failed original control is needed before the main checkpoint.
 
+## Compact-seed startup prefix (20:34 UTC)
+
+The smaller charge retains a strong forward pressure/reaction feature through
+25 us, beyond the larger-charge control's initial loss time. Visually inspected
+space-time rings show the trailing disturbance shifted later; this remains a
+startup comparison, not proof of successful return through refill. The compact
+start has 7.282 J initial excess energy versus 19.783 J for the 25 mm charge,
+and 6.064 versus 4.215 mg initial fresh mass. At 25 us, it has 1.051 mg fresh
+mass versus 0.487 mg in the large-charge control; respective maximum pressures
+are 44.27 and 5.95 MPa. Peak pressure may include transient interactions and is
+not by itself evidence of sustained detonation. Exact snapshots are retained in
+`detwave_compact_seed_prefix25.json`. Continue the declared 80 us cap and assess
+return, rather than declaring success from longer travel in initially fresh gas.
+The root cause/sustaining fix remains unresolved for the 13:40 main checkpoint.
+
 ## Active-run handoff (replace with results when complete)
 
 Both simulations run in this branch's worktree, not the original checkout.
