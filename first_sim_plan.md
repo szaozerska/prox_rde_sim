@@ -1,6 +1,6 @@
 # RDE simulation plan — revision 13
 
-**Status: C1–C4, C5a and the C5b–e quarter-length bounded experiment completed. C6a functional initialization/benchmark is complete. F1 saved-window reporting is complete (98 tests passed, one opt-in skipped). F2 contracts complete; next F3–F4 workflow completion. Sustained-wave investigation is assigned to a separate chat.**
+**Status: C1–C4, C5a and the C5b–e quarter-length bounded experiment completed. C6a functional initialization/benchmark is complete. F1 saved-window reporting is complete (98 tests passed, one opt-in skipped). F2 contracts complete; F3 optional wall-friction/torque implemented; F4 workflow acceptance remains. Sustained-wave investigation is assigned to a separate chat.**
 The [controlled-test plan](docs/plans/controlled_2d_tests.md) records three review
 passes and the C1–C6 increments. First verify multirow/direction equivalence and
 formed-profile propagation, then distinguish thin-layer survival from initiation.
@@ -41,7 +41,7 @@ Functional increments after C6a, drawn from sections 4.5, 5.2 and 9:
 | **F1: saved-window reporting — implemented** | Explicit time-window selection, native mass/energy/momentum balances and annulus-exit force summary; preserve storage, missing-data reasons and transient qualifications. | Analytical constant/time-varying signals and known-flow force signs; uneven time steps and partial-window overlap; read-only saved-run smoke check. No CFD campaign. |
 | **F2: minimal geometry/result contract — implemented** | Versioned SI geometry and capability metadata for the supported constant annulus, preserving source provenance and exposing omitted features for future backend/CAD adapters. | Known dimensions/areas and unit conversions; reject unsupported coreless/nonuniform/CAD geometry instead of silently reducing it. No general plugin framework or 3D work. |
 
-| **F3: optional wall friction and qualified torque** | Explicit constant-Cf adiabatic momentum sink, native source budgets, mean-radius engine torque and optional constant-inertia roll response. Inviscid default retained. | Analytic uniform decay/heating; zero-Cf equivalence; sign reversal, coefficient/time sensitivity, angular balance including storage; saved-run/restart checks. |
+| **F3: optional wall friction and qualified torque — implemented** | Explicit constant-Cf adiabatic momentum sink, native source budgets, mean-radius engine torque and optional constant-inertia roll response. Inviscid default retained. | Analytic uniform decay/heating; zero-Cf equivalence; sign reversal, coefficient/time sensitivity, angular balance including storage; saved-run/restart checks. |
 | **F4: complete saved-data workflow** | Streaming field preview/animation and labelled wrapped/head-end views; windowed pressure spectrum/spectrogram; explicit reference comparison and reusable multi-run sensitivity tables; documented run/resume/report commands. | Known-signal frequency/alias/window tests, corrupted/missing input rejection, read-only outputs and a tiny complete CLI run/resume/analyze/plot acceptance test. |
 
 **Completion boundary (latest request):** finish F2–F4 and audit the complete fast
@@ -219,7 +219,7 @@ A zero-gradient outlet **does not impose choking**. Diagnose the velocity normal
 
 Begin with a smooth-wall Euler baseline. Add a separate, tested wall-friction closure for the torque estimate; optional heat loss is another model choice. For a constant annulus, lateral wall area per volume is `2/g`. If `C_f` uses the convention `tau_w = 0.5 C_f rho |U|²`, the corresponding mean momentum sink has the `C_f/g` factor. Stationary adiabatic wall friction redistributes resolved kinetic/internal energy without removing total energy; a heat-loss model has a separate energy sink.
 
-Do not tune friction or heat loss simply to reproduce the gap trend. The closure coefficients and thermal assumptions need sensitivity studies; the starter does not presently implement these wall models.
+Do not tune friction or heat loss simply to reproduce the gap trend. The closure coefficients and thermal assumptions need sensitivity studies; the starter now implements an opt-in constant-Cf adiabatic wall-drag model with mean-radius torque. It does not implement heat loss, centrifugal pressure reconstruction, curvature losses or separate inner/outer wall states. See [F3 verification](docs/verification/f3_wall_friction.md).
 
 Use periodic ignition masks and record discretized fresh inventory, geometry and net energy change relative to the pre-mask state; this is not a measured igniter energy. Startup choices can select modes. An operating refill height obtained from measured frequency may be adopted for initialization, but is not a paper-specified startup state, and recovering it is not independent validation. Control or quantify the charge/energy change when refining cell-center masks. Exclude startup from reported means only after checking histories. A second initialization is needed when mode selection materially affects the result.
 

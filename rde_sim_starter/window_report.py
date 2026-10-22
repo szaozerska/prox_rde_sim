@@ -124,6 +124,20 @@ def reduce_window(inputs, summary, history, start, end):
     if S is not None and q is not None:
         conversion=dict(available=True,chemical_to_thermal_J=float(q*S[4]),
                         definition='q times reacted-mass source; internal conversion, not an extra total-energy source')
+    torque=unavailable('no wall-traction model; angular conservation residual is not engine torque')
+    if inputs.get('config', {}).get('model', {}).get('walls') == 'constant_cf':
+        if budget['available']:
+            angular_impulse = -radius * S[1]
+            balance_impulse = radius * (B[0,1]-B[1,1]+B[2,1]-B[3,1]-storage[1])
+            torque=dict(available=True, mean_Nm=float(angular_impulse/duration),
+                angular_impulse_Nm_s=float(angular_impulse),
+                balance_mean_Nm=float(balance_impulse/duration),
+                traction_minus_balance_Nm=float((angular_impulse-balance_impulse)/duration),
+                wall_cf=inputs['config']['model']['wall_cf'],
+                definition='reaction torque on engine = negative native wall momentum source times mean radius',
+                qualification='constant-Cf adiabatic closure, unvalidated; mean-radius approximation; no vehicle stability claim')
+        else:
+            torque=unavailable('native storage/flux/source needed for the applied wall model')
     return dict(report_schema_version=1,run_status=summary.get('status','unknown'),
         run_mode=summary.get('run_mode','engine_intervals'),
         run_invalid_state_count=summary.get('invalid_state_count'),
@@ -134,7 +148,7 @@ def reduce_window(inputs, summary, history, start, end):
         budgets=budget,mass_flow=mass_flow,exit_numerical_force=force,
         exit_force_from_control_volume=control_force,exit_cell_force_estimate=cell_result,
         annulus_exit_effective_isp=isp,pressure_stations=pressure,chemical_conversion=conversion,
-        engine_torque=unavailable('no wall-traction model; angular conservation residual is not engine torque'),
+        engine_torque=torque,
         physical_validation='not established by this report; transient window, no steady-state or sustained-detonation classification')
 
 
@@ -192,6 +206,7 @@ def render_markdown(report):
         f"Saved invalid-state count: {report['run_invalid_state_count']}.",'',
         '| Quantity | Result |','|---|---|']
     for title,item,key,unit in [
+        ('Mean modeled engine wall torque',report['engine_torque'],'mean_Nm','N m'),
         ('Mean native annulus-exit force',report['exit_numerical_force'],'mean_N','N'),
         ('Mean exit force from control-volume balance',report['exit_force_from_control_volume'],'mean_N','N'),
         ('Mean cell-centre exit estimate',report['exit_cell_force_estimate'],'mean_N','N'),
@@ -221,7 +236,8 @@ def render_markdown(report):
         w['operator']+'.',w['qualification']+'.','',
         'Native and control-volume exit forces describe the same contribution; do not add them. These are not whole-engine thrust estimates.',
         'Effective Isp uses net injected mass over this same window; it is not validated engine performance.',
-        'Engine torque unavailable: '+report['engine_torque']['reason']+'.','']
+        ('Engine torque: '+report['engine_torque']['qualification'] if report['engine_torque']['available']
+         else 'Engine torque unavailable: '+report['engine_torque']['reason'])+'.','']
     return '\n'.join(lines)
 
 

@@ -85,7 +85,8 @@ native data, and never run CFD. Full regression: 98 passed, one opt-in long prop
 CLI/import checks passed. Saved C6a and D1 examples are linked in the F1 report.
 
 **F2 minimal geometry/result contracts are implemented**; see [evidence](docs/verification/f2_contracts.md).
-Next are optional wall friction/torque and the completed saved-data workflow (F3–F4).
+F3 optional wall friction/torque is implemented; see [verification](docs/verification/f3_wall_friction.md).
+Next is the completed saved-data workflow and final acceptance (F4).
 Finish these software capabilities without treating them as physical validation. Retain
 the C5 chemistry/model qualifications. The new named formed case does not replace
 `config.yaml` or imply a model of Mundt's actual pre-detonator. Commit and push

@@ -1,0 +1,12 @@
+test_decay_step_cap_prevents_unresolved_source (test_wall_friction.WallTests.test_decay_step_cap_prevents_unresolved_source) ... ok
+test_no_implicit_friction_coefficient (test_wall_friction.WallTests.test_no_implicit_friction_coefficient) ... ok
+test_reversal_and_coefficient_sensitivity (test_wall_friction.WallTests.test_reversal_and_coefficient_sensitivity) ... ok
+test_saved_restart_and_independent_angular_balance (test_wall_friction.WallTests.test_saved_restart_and_independent_angular_balance) ... ok
+test_two_component_drag_factor_and_zero_velocity (test_wall_friction.WallTests.test_two_component_drag_factor_and_zero_velocity) ... ok
+test_uniform_drag_exact_solution_energy_and_second_order (test_wall_friction.WallTests.test_uniform_drag_exact_solution_energy_and_second_order) ... ok
+test_zero_cf_is_bitwise_baseline_and_invalid_parameters_rejected (test_wall_friction.WallTests.test_zero_cf_is_bitwise_baseline_and_invalid_parameters_rejected) ... ok
+
+----------------------------------------------------------------------
+Ran 7 tests in 51.070s
+
+OK

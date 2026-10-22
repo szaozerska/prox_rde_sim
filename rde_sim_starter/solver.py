@@ -8,7 +8,7 @@ x (index i) = around the circumference, y (index j) = along the axis.
 """
 import numpy as np
 from numba import njit, prange
-from physics import cons_to_prim, prim_to_cons_cell, injector_flux, reaction_rate, state_error, total_energy, source_step_limit
+from physics import cons_to_prim, prim_to_cons_cell, injector_flux, reaction_rate, state_error, total_energy, source_step_limit, wall_drag_rhs
 
 NG = 2
 # boundary codes
@@ -170,7 +170,7 @@ class InvalidStateError(ValueError):
 
 
 class Solver:
-    def __init__(self, nx, ny, dx, dy, gas, bc, inj=(0.0, 300.0, 0.0, 1.0), p_back=1e5, cfl=0.4, source_cfl=0.05):
+    def __init__(self, nx, ny, dx, dy, gas, bc, inj=(0.0, 300.0, 0.0, 1.0), p_back=1e5, cfl=0.4, source_cfl=0.05, wall_cf=0., wall_gap=None):
         if not isinstance(nx, (int, np.integer)) or not isinstance(ny, (int, np.integer)) or nx < NG or ny < 1:
             raise ValueError("nx must be an integer >= 2 and ny an integer >= 1")
         if not np.all(np.isfinite([dx, dy, p_back, cfl])) or dx <= 0 or dy <= 0 or p_back <= 0 or not 0 < cfl <= 1:
@@ -190,6 +190,15 @@ class Solver:
             raise ValueError("an injector needs positive plenum pressure")
         if source_cfl is not None and (not np.isfinite(source_cfl) or not 0 < source_cfl <= .25):
             raise ValueError("source_cfl must lie in (0, .25], or None for a baseline")
+        if not np.isfinite(wall_cf) or wall_cf < 0:
+            raise ValueError("wall_cf must be finite and nonnegative")
+        if wall_gap is not None and (not np.isfinite(wall_gap) or wall_gap <= 0):
+            raise ValueError("wall_gap must be finite and positive")
+        if wall_cf > 0 and wall_gap is None:
+            raise ValueError("positive wall_cf requires wall_gap")
+        self.wall_cf = wall_cf
+        self.wall_gap = wall_gap
+        self.wall_rate_max = 0.
         self.source_cfl = source_cfl
         self.progress_roundoff_max = 0.0
         self.nx, self.ny, self.dx, self.dy = nx, ny, dx, dy
@@ -265,6 +274,9 @@ class Solver:
         boundary[2:] *= self.dx
         source = np.zeros(5)
         source[4] = self.source_columns.sum()
+        if self.wall_cf > 0:
+            source[1], source[2], self.wall_rate_max = wall_drag_rhs(
+                self.W, out, self.wall_cf/self.wall_gap, NG, self.dx*self.dy)
         return boundary, source
 
     def step(self, dt_max=None):
@@ -279,6 +291,8 @@ class Solver:
         sx, sy = max_speed(self.W, self.g)
         dt = min(self.cfl / (sx / self.dx + sy / self.dy),
                  source_step_limit(self.g, self.q, self.R, self.k, self.Ea, self.source_cfl))
+        if self.wall_rate_max > 0:
+            dt = min(dt, .1/self.wall_rate_max)  # resolve momentum decay; independent of chemical cap
         if dt_max is not None:
             dt = min(dt, dt_max)
         if not np.isfinite(dt) or dt <= 0 or self.t + dt == self.t:

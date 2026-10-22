@@ -64,7 +64,7 @@ def case_contract(config, resolved):
             initialization=config['initialization'].copy(), pressure_stations_m=resolved['pressure_stations']),
         backend=dict(name='custom_reactive_euler_2d', dimension=2, schema_version=1,
             capabilities=dict(geometry=['constant_annulus'], feeds=['premixed_plenum'],
-                walls=['inviscid'], chemistry=['one_step', 'disabled'],
+                walls=['inviscid', 'constant_cf'], chemistry=['one_step', 'disabled'],
                 restart='native checkpoint, identical code/environment only', cad=False, radial_dynamics=False),
             numerical_settings={k: resolved[k] for k in ('nx', 'ny', 'dx', 'dy', 'cfl', 'source_cfl', 'max_dt')}),
         results=dict(schema_version=1, native_format_version=2,

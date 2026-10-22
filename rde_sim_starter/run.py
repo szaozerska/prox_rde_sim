@@ -109,8 +109,13 @@ def resolve_case(config, calibration):
     geometry_contract(config)  # reject unsupported geometry before allocation or output
     geo, op, nm = config['geometry'], config['operating_point'], config['numerics']
     model = config['model']
-    if model['geometry'] != 'constant_annulus' or model['feed'] != 'premixed_plenum' or model['walls'] != 'inviscid':
-        raise ValueError('this backend supports only a constant annulus, equivalent premixed plenum, and inviscid walls')
+    if model['geometry'] != 'constant_annulus' or model['feed'] != 'premixed_plenum' or model['walls'] not in ('inviscid', 'constant_cf'):
+        raise ValueError('this backend supports only a constant annulus, equivalent premixed plenum, and inviscid or constant_cf walls')
+    wall_cf = _positive(model.get('wall_cf', 0.), 'wall_cf', True)
+    if model['walls'] == 'constant_cf' and 'wall_cf' not in model:
+        raise ValueError('constant_cf walls require an explicit wall_cf; no fitted default')
+    if model['walls'] == 'inviscid' and wall_cf != 0:
+        raise ValueError('inviscid walls cannot silently ignore nonzero wall_cf')
     if model['chemistry'] not in ('one_step', 'disabled'):
         raise ValueError('unsupported chemistry')
     ro = _positive(geo['r_outer_mm'], 'outer radius') * 1e-3
@@ -153,7 +158,7 @@ def resolve_case(config, calibration):
         raise ValueError('probe must lie inside the axial domain')
     resolved = dict(nx=nx, ny=ny, dx=width / nx, dy=length / ny,
                     width=width, length=length, r_outer=ro, r_mean=rm, gap=gap,
-                    gas=gas, cfl=nm['cfl'], source_cfl=source_cfl,
+                    gas=gas, wall_cf=wall_cf, wall_model=model['walls'], cfl=nm['cfl'], source_cfl=source_cfl,
                     injector=[op['p_plenum_kPa'] * 1e3, op['T_plenum_K'], geo['area_ratio'], model['discharge_coefficient']],
                     p_back=op['p_back_kPa'] * 1e3, f_ref=f_ref,
                     average_start=average_start, snapshot_interval=snapshot_interval,
@@ -173,7 +178,8 @@ def build_solver(resolved, calibration, initialize=True):
     r = resolved
     solver = Solver(r['nx'], r['ny'], r['dx'], r['dy'], tuple(r['gas']),
                     (PERIODIC, PERIODIC, INJECTOR, OUTFLOW), inj=r['injector'],
-                    p_back=r['p_back'], cfl=r['cfl'], source_cfl=r['source_cfl'])
+                    p_back=r['p_back'], cfl=r['cfl'], source_cfl=r['source_cfl'],
+                    wall_cf=r.get('wall_cf', 0.), wall_gap=r['gap'])
     if not initialize:
         return solver
     x = (np.arange(solver.nx) + .5) * solver.dx
@@ -296,6 +302,9 @@ def _history_row(solver, r):
                    source_integral=step['source'] * r['gap'],
                    mdot_in=rates[2, 0], mdot_out=rates[3, 0],
                    exit_numerical_force_N=rates[3, 2] - r['p_back'] * r['width'] * r['gap'])
+        if r.get('wall_model') == 'constant_cf':
+            row['wall_engine_angular_impulse_Nm_s'] = -r['r_mean'] * r['gap'] * step['source'][1]
+            row['wall_engine_torque_Nm'] = row['wall_engine_angular_impulse_Nm_s'] / step['dt']
     return row, profile
 
 
@@ -317,6 +326,9 @@ def _save_summary(solver, r, state, directory, status, target, error=None):
                   last_failure=solver.last_failure, error=error,
                   progress_roundoff_max=solver.progress_roundoff_max, progress_tolerance=PROGRESS_TOL,
                   engine_torque_Nm=None, torque_reason='no wall-traction model; angular residual is a conservation check')
+    if r.get('wall_model') == 'constant_cf' and solver.t > 0:
+        result['engine_torque_Nm'] = float(-r['r_mean'] * r['gap'] * solver.cumulative_source[1] / solver.t)
+        result['torque_reason'] = 'whole-run mean, mean-radius adiabatic constant-Cf wall model; unvalidated coefficient'
     _write_json(Path(directory) / 'summary.json', result)
     return _safe_json(result)
 

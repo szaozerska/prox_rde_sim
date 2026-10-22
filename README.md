@@ -270,3 +270,12 @@ allocates the selected mesh. Saved native inputs retain this contract and the
 original experimental stream references. Only manual constant-annulus geometry
 is supported; CAD/nonuniform/coreless input is rejected. See
 [F2 evidence](docs/verification/f2_contracts.md).
+
+## Optional wall friction
+
+Set `model.walls: constant_cf` and an explicit `model.wall_cf` in a separate case
+file, then recalibrate if the chemistry/operating reference changed. Inviscid is
+still the default. The adiabatic drag closure saves native momentum sources and
+provides mean-radius wall torque with angular storage/flux checks. No coefficient
+is calibrated by default. It does not add radial dynamics, heat loss, centrifugal
+pressure split or curvature losses. See [F3 verification](docs/verification/f3_wall_friction.md).
