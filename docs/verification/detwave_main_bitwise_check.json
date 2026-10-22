@@ -1,0 +1,13 @@
+{
+  "purpose": "Ten-step reactive compact-case check at 0.5 mm of merged inviscid path against archived pre-merge source. Compatibility check, not wave validation.",
+  "checks_bitwise_equal": {
+    "U": true,
+    "t": true,
+    "boundary": true,
+    "source": true
+  },
+  "physical_time_s": 1.4454733289035732e-07,
+  "steps": 10,
+  "main_reviewed": "f12cca10eb11a6a547cac6c9c71188934965b21b",
+  "old_source": "runs/source_snapshot_v2"
+}

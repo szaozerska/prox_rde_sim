@@ -50,3 +50,28 @@ class SavedOutputTests(unittest.TestCase):
             path.write_text('\n'.join(original.splitlines()[:-1])+'\n')
             with self.assertRaisesRegex(ValueError,'summary does not match'):
                 load_saved_run(case)
+
+    def test_benchmark_plot_retains_scope_and_omits_experimental_mean_overlay(self):
+        from tests.test_formed_engine import formed_case
+        with tempfile.TemporaryDirectory() as temporary:
+            root=Path(temporary);case=root/'case'
+            config,calibration=formed_case()
+            config['experimental_reference'].update(pressure_stations_mm=[0.,2.,4.],mean_pressures_kPa=[1.,2.,3.])
+            start_run(config,calibration,case,benchmark_us=.03)
+            with patch.object(Solver,'step',side_effect=AssertionError('plot advanced solver')):
+                result=plot_run(case,root/'plots')
+            self.assertEqual(result['run_mode'],'development_benchmark')
+            self.assertFalse(result['experimental_pressure_overlay'])
+            self.assertEqual(result['time_s'],.03e-6)
+
+
+    def test_legacy_viewer_rejects_changed_inputs_and_corrupt_uncommitted_field_is_ignored(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            native=Path(tmp)/'run';config,calibration=toy_case()
+            start_run(config,calibration,native)
+            (native/'fields'/'step_999999999.npz').write_bytes(b'partial')
+            self.assertTrue(load_saved_run(native)['fields'])
+            path=native/'inputs.json';manifest=json.loads(path.read_text())
+            manifest['resolved']['gap']*=2;path.write_text(json.dumps(manifest))
+            with self.assertRaisesRegex(ValueError,'verified native prefix'):
+                load_saved_run(native)

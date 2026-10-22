@@ -1,0 +1,49 @@
+# Fast software acceptance fixture, not an engine prediction.
+schema_version: 1
+model:
+  geometry: constant_annulus
+  feed: premixed_plenum
+  walls: constant_cf
+  chemistry: disabled
+  discharge_coefficient: 0.76
+  wall_cf: 0.01
+geometry:
+  r_outer_mm: 6.0
+  r_inner_mm: 4.0
+  length_mm: 4.0
+  area_ratio: 0.11
+operating_point:
+  mass_flux: 240.21
+  mdot_target_gps: 268.65
+  phi: 1.176
+  p_plenum_kPa: 1350.0
+  T_plenum_K: 300.0
+  p_back_kPa: 100.2
+  D_CJ: 2471.0
+  q_MJkg: 5.5
+  f_paper_kHz: 10000.0
+  N_paper: 2
+chemistry:
+  Ea_over_RT1: 20.0
+  L_half_mm: 1.0
+numerics:
+  dx_mm: 2.0
+  cfl: 0.4
+  source_cfl: 0.05
+  average_start_us: 0.055
+  snapshot_every_us: 0.04
+  checkpoint_every_us: 0.1
+  max_step_ns: 5.0
+  probe_y_mm: 1.0
+initialization:
+  kind: uniform
+  progress: 0.2
+  u_theta: 10.0
+  u_z: 5.0
+diagnostics:
+  pressure_stations_mm:
+  - 0.0
+  - 2.0
+  - 4.0
+description: Nonreactive 16 x 2 workflow plumbing fixture. Not a physical Run 937
+  case; frequency only sets a short test budget.

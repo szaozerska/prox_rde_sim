@@ -1,0 +1,13 @@
+test_asymmetric_walls_and_actual_lever_arms (test_radial.RadialTests.test_asymmetric_walls_and_actual_lever_arms) ... ok
+test_coupled_drag_cooling_reaction_matches_independent_ode_and_second_order (test_radial.RadialTests.test_coupled_drag_cooling_reaction_matches_independent_ode_and_second_order) ... ok
+test_disabled_losses_leave_centifugal_observer_bitwise_inert (test_radial.RadialTests.test_disabled_losses_leave_centifugal_observer_bitwise_inert) ... ok
+test_heat_sign_reversal_adiabatic_energy_and_stiff_cooling_cap (test_radial.RadialTests.test_heat_sign_reversal_adiabatic_energy_and_stiff_cooling_cap) ... ok
+test_radial_equilibrium_volume_mean_and_gradient_independent_quadrature (test_radial.RadialTests.test_radial_equilibrium_volume_mean_and_gradient_independent_quadrature) ... ok
+test_restart_per_wall_budget_fields_reports_and_corruption (test_radial.RadialTests.test_restart_per_wall_budget_fields_reports_and_corruption) ... ok
+test_uniform_pressure_two_wall_drag_reduces_to_existing_closure (test_radial.RadialTests.test_uniform_pressure_two_wall_drag_reduces_to_existing_closure) ... ok
+test_validation_rejects_ignored_options_and_missing_coefficients (test_radial.RadialTests.test_validation_rejects_ignored_options_and_missing_coefficients) ... ok
+
+----------------------------------------------------------------------
+Ran 8 tests in 20.939s
+
+OK

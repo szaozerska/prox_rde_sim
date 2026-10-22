@@ -1,0 +1,85 @@
+# Exploratory wall assumptions, not measured or fitted Run 937 values.
+chemistry:
+  Ea_over_RT1: 20.0
+  L_half_mm: 1.0
+diagnostics:
+  pressure_stations_mm:
+  - 0
+  - 22.2
+  - 34.9
+  - 47.6
+  - 60.3
+  - 73.0
+experimental_reference:
+  mean_pressures_kPa:
+  - 368.5
+  - 323.3
+  - 292.3
+  - 281.1
+  - 255.4
+  - 238.4
+  methane_plenum_K: 301.0
+  methane_plenum_kPa: 1399.4
+  oxygen_plenum_K: 303.0
+  oxygen_plenum_kPa: 1309.5
+  peripheral_speed_mps: 1893.0
+  pressure_stations_mm:
+  - 0
+  - 22.2
+  - 34.9
+  - 47.6
+  - 60.3
+  - 73.0
+geometry:
+  area_ratio: 0.11
+  length_mm: 76.2
+  r_inner_mm: 33.1
+  r_outer_mm: 38.1
+initialization:
+  fill_height_mm: 3.8
+  kind: ignition
+  offset_fraction: 0.1
+  patch_width_mm: 10.0
+  patches: 1
+  pressure_multiplier: 2.0
+  product_temperature_K: 1500.0
+  products_behind_mm: 20.0
+  u_theta: 0.0
+  u_z: 0.0
+model:
+  chemistry: one_step
+  discharge_coefficient: 0.76
+  feed: premixed_plenum
+  geometry: constant_annulus
+  walls: annular_closure
+  radial:
+    centrifugal: false
+    inner:
+      cf: 0.005
+      temperature_K: 300.0
+    outer:
+      cf: 0.005
+      temperature_K: 300.0
+    analogy_factor: 1.0
+    recovery_factor: 0.9
+numerics:
+  average_start_us: 0.0
+  cfl: 0.4
+  checkpoint_every_us: 10.0
+  dx_mm: 0.5
+  max_step_ns: null
+  probe_y_mm: 1.0
+  snapshot_every_us: 2.0
+  source_cfl: 0.05
+operating_point:
+  D_CJ: 2471.0
+  N_paper: 2
+  T_plenum_K: 300.0
+  f_paper_kHz: 15.84
+  mass_flux: 240.21
+  mdot_target_gps: 268.65
+  p_back_kPa: 100.2
+  p_plenum_kPa: 1350.0
+  phi: 1.176
+  q_MJkg: 5.5
+schema_version: 1

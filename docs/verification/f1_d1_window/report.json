@@ -1,0 +1,191 @@
+{
+  "report_schema_version": 1,
+  "run_status": "completed_limit",
+  "run_mode": "engine_intervals",
+  "run_invalid_state_count": 0,
+  "committed_end_s": 0.0001893939393939394,
+  "window": {
+    "start_s": 9.999999999999999e-05,
+    "end_s": 0.00017999999999999998,
+    "duration_s": 7.999999999999999e-05,
+    "contributing_steps": 5561,
+    "partially_included_steps": 0,
+    "operator": "native integrals prorated within partial steps; inventory linearly interpolated between accepted states; other samples use step-end rectangles",
+    "qualification": "partial-step closure checks this interpolation, not an independently evolved state"
+  },
+  "budgets": {
+    "available": true,
+    "conserved_order": [
+      "mass",
+      "azimuthal_momentum",
+      "axial_momentum",
+      "total_energy",
+      "reacted_mass"
+    ],
+    "conserved_units": [
+      "kg",
+      "kg m/s",
+      "kg m/s",
+      "J",
+      "kg"
+    ],
+    "start_inventory": [
+      7.779883307479363e-05,
+      -1.011755288964516e-05,
+      0.02479476363612538,
+      318.46739054043155,
+      4.5044932979518665e-05
+    ],
+    "end_inventory": [
+      6.597012895295084e-05,
+      0.0003160045145908273,
+      0.0169698728792626,
+      348.2578604470918,
+      1.870427477228613e-05
+    ],
+    "storage": [
+      -1.1828704121842791e-05,
+      0.00032612206748047247,
+      -0.007824890756862778,
+      29.790469906660235,
+      -2.6340658207232535e-05
+    ],
+    "boundary_integral": [
+      [
+        4.427603517931425e-07,
+        0.009026783062315668,
+        0.00023013804283616692,
+        2.8991672505784605,
+        3.629327817665682e-07
+      ],
+      [
+        4.427603517931425e-07,
+        0.009026783062315668,
+        0.00023013804283616692,
+        2.8991672505784605,
+        3.629327817665682e-07
+      ],
+      [
+        2.138446503800484e-05,
+        0.0,
+        0.03974401781666838,
+        128.2326520952008,
+        0.0
+      ],
+      [
+        3.3213169159846655e-05,
+        -0.0003261220674804724,
+        0.04756890857353126,
+        98.44218218852527,
+        3.3213168258956154e-05
+      ]
+    ],
+    "source_integral": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      6.872510051723683e-06
+    ],
+    "net_influx_and_source": [
+      -1.1828704121841815e-05,
+      0.0003261220674804724,
+      -0.007824890756862879,
+      29.790469906675526,
+      -2.634065820723247e-05
+    ],
+    "residual": [
+      -9.75781955236954e-19,
+      5.421010862427522e-20,
+      1.0061396160665481e-16,
+      -1.5290879673557356e-11,
+      -6.437450399132683e-20
+    ],
+    "residual_scale": [
+      7.779883307479363e-05,
+      0.16460271915101546,
+      0.16460271915101546,
+      348.2578604470918,
+      7.779883307479363e-05
+    ],
+    "scale_definition": "inventory/transport scale with sqrt(mass * total energy) momentum reference",
+    "max_scaled_residual": 4.390677543911571e-14,
+    "closure_tolerance": 1e-10,
+    "closure_within_tolerance": true,
+    "angular_storage_kg_m2_s": 1.1609945602304822e-05,
+    "angular_net_influx_kg_m2_s": 1.160994560230482e-05,
+    "angular_residual_kg_m2_s": 1.9298798670241983e-21
+  },
+  "mass_flow": {
+    "available": true,
+    "injected_mass_kg": 2.138446503800484e-05,
+    "exited_mass_kg": 3.3213169159846655e-05,
+    "mean_inlet_kg_s": 0.2673058129750605,
+    "mean_outlet_kg_s": 0.41516461449808323
+  },
+  "exit_numerical_force": {
+    "available": true,
+    "mean_N": 482.54697730440864,
+    "impulse_N_s": 0.03860375818435269,
+    "ambient_pressure_Pa": 100200.0,
+    "exit_area_m2": 0.0011184069846779659,
+    "definition": "top-face numerical axial momentum flux minus ambient pressure times exit area"
+  },
+  "exit_force_from_control_volume": {
+    "available": true,
+    "mean_N": 482.54697730440745,
+    "impulse_N_s": 0.03860375818435259,
+    "native_minus_balance_mean_N": 1.1937117960769683e-12
+  },
+  "exit_cell_force_estimate": {
+    "available": true,
+    "mean_N": 482.7490549513746,
+    "definition": "step-end cell-centre estimate; rectangle-rule time average, not the RK numerical face flux"
+  },
+  "annulus_exit_effective_isp": {
+    "available": true,
+    "value_s": 184.08165943129225,
+    "g0_m_s2": 9.80665,
+    "definition": "annulus-exit effective Isp: exit impulse / (net injected mass in same window * g0); not whole-engine Isp"
+  },
+  "pressure_stations": {
+    "available": true,
+    "stations_m": [
+      0.0,
+      0.0222,
+      0.0349,
+      0.0476,
+      0.0603,
+      0.073
+    ],
+    "mean_Pa": [
+      325684.71153623384,
+      345425.04494097806,
+      319011.9660894624,
+      287246.5573077225,
+      254232.84535138117,
+      221810.56902275945
+    ],
+    "definition": "step-end circumferential means, weighted by interval overlap"
+  },
+  "chemical_conversion": {
+    "available": true,
+    "chemical_to_thermal_J": 37.79880528448026,
+    "definition": "q times reacted-mass source; internal conversion, not an extra total-energy source"
+  },
+  "engine_torque": {
+    "available": false,
+    "reason": "no wall-traction model; angular conservation residual is not engine torque"
+  },
+  "physical_validation": "not established by this report; transient window, no steady-state or sustained-detonation classification",
+  "provenance": {
+    "directory": "/Users/sgfx/Desktop/Projects/prox_rde_sim/rde_sim_starter/runs/d1_run937",
+    "inputs_sha256": "794de1f8a3229b1dfba7a17d8d3bd1f7cf5da7981d2ce31627fec1069ef5f86d",
+    "summary_sha256": "bbbcc8d0985cf310220036d17bbb2f3886d4219c34edb241cfe78cdaebbd7d97",
+    "committed_history_sha256": "6bc9c9ffb97a3a7b2e442bba8d91c527b525b98083a29c9a39a58e0b8496f169",
+    "committed_history_bytes": 21600102,
+    "checkpoint_step": 13165,
+    "report_source_sha256": "d7dc19a5a1053d47f279f52a9ce9016a1457e8dea05e90d3c1188b9e3a8530e6",
+    "analysis_source_sha256": "84dee7247d1db42074805858295e3b3fe8c7713fd2c695b3edcafd68c59d8247"
+  }
+}

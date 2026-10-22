@@ -10,6 +10,7 @@ import json
 from pathlib import Path
 import time
 import numpy as np
+from formed import conserved_state, formed_profile, profile_integral, profile_cell_average
 from analyze import conservation_budget
 from physics import source_step_limit
 from run import _write_json, _write_npz, _fingerprint
@@ -104,84 +105,6 @@ def run_strip(c,directory,dx=.5e-3,rows=8,end=95e-6,length=.25):
     _write_npz(directory/'fields.npz',x=x,times=np.asarray(times),primitive=np.asarray(fields))
     _write_json(directory/'summary.json',result)
     return result
-
-
-def conserved_state(rho,u,p,xi,c):
-    rho,u,p,xi=np.broadcast_arrays(rho,u,p,xi)
-    return np.array([rho,rho*u,np.zeros_like(rho),
-        p/(c['gamma']-1)+.5*rho*u*u+rho*c['q']*(1-xi),rho*xi])
-
-
-def formed_profile(c,samples=2401):
-    """Tabulated strong-branch ZND in laboratory coordinates, finite 1e-6 tail.
-
-    Exact antiderivatives below conserve this piecewise-linear table. Increasing
-    the table density is an independent check on interpolation of the steady ODE.
-    """
-    from scipy.integrate import quad,solve_ivp
-    from calibrate import state,dx_dxi
-    if not isinstance(samples,int) or samples<101:raise ValueError('at least 101 profile nodes required')
-    eta=np.linspace(0,np.log(1e6),samples)
-    xi=-np.expm1(-eta)
-    vals=np.array([state(float(a),c) for a in xi])
-    rho=vals[:,1]*c['p1']/(c['R']*vals[:,0]*c['T1']);u=c['D_CJ']-vals[:,3]
-    U=conserved_state(rho,u,vals[:,1]*c['p1'],xi,c)
-    def derivative(e,_):
-        temperature,_,_,w=state(float(-np.expm1(-e)),c)
-        return [w/c['k']*np.exp(c['Ea']/(c['R']*temperature*c['T1']))]
-    distance_solution=solve_ivp(derivative,(0.,eta[-1]),[0.],t_eval=eta,
-                                method='DOP853',rtol=1e-10,atol=1e-13)
-    if not distance_solution.success:raise RuntimeError(distance_solution.message)
-    dist=distance_solution.y[0]
-    fresh=conserved_state(c['p1']/(c['R']*c['T1']),0.,c['p1'],0.,c)
-    T,p,_,w=state(1.,c)
-    burned=conserved_state(p*c['p1']/(c['R']*T*c['T1']),c['D_CJ']-w,p*c['p1'],1.,c)
-    increments=.5*(U[:,1:]+U[:,:-1])*np.diff(dist)
-    cumulative=np.column_stack((np.zeros(5),np.cumsum(increments,axis=1)))
-    # Independent shock-frame flux/enthalpy identities, evaluated from saved U.
-    joined=np.column_stack((U,burned));r=joined[0];vel=joined[1]/r;progress=joined[4]/r
-    pressure=(c['gamma']-1)*(joined[3]-.5*r*vel**2-c['q']*(r-joined[4]))
-    w=c['D_CJ']-vel; temp=pressure/(r*c['R']);rf=fresh[0]
-    targets=np.array([rf*c['D_CJ'],c['p1']+rf*c['D_CJ']**2,
-                     c['gamma']*c['R']*c['T1']/(c['gamma']-1)+.5*c['D_CJ']**2+c['q']])
-    invariants=np.array([r*w,pressure+r*w*w,
-        c['gamma']*c['R']*temp/(c['gamma']-1)+.5*w*w+c['q']*(1-progress)])
-    lengths={str(a):quad(dx_dxi,0,a,args=(c['k'],c),epsabs=1e-12)[0] for a in (.5,.9,.95)}
-    return dict(distance=dist,U=U,cumulative=cumulative,fresh=fresh,burned=burned,
-        verification=dict(samples=samples,tail_progress=float(xi[-1]),tail_distance_m=float(dist[-1]),
-            tail_pressure_relative_jump=float(abs(burned[0]*c['R']*T*c['T1']/pressure[-2]-1)),
-            jump_max_relative_error=np.max(np.abs(invariants/targets[:,None]-1),axis=1).tolist(),
-            length_m=lengths,table_length_relative_error={str(a):float(np.interp(a,xi,dist)/lengths[str(a)]-1) for a in (.5,.9,.95)}))
-
-
-def profile_integral(profile,position):
-    """Integral of conserved density from the shock to signed distance behind it."""
-    x=np.asarray(position,dtype=float)
-    if x.ndim!=1 or not np.isfinite(x).all():raise ValueError('finite one-dimensional positions required')
-    d=profile['distance'];U=profile['U'];idx=np.clip(np.searchsorted(d,x,side='right')-1,0,len(d)-2)
-    h=np.clip(x,0,d[-1])-d[idx]
-    result=profile['cumulative'][:,idx]+U[:,idx]*h+.5*(U[:,idx+1]-U[:,idx])/np.diff(d)[idx]*h*h
-    left=x<0;right=x>d[-1]
-    result[:,left]=profile['fresh'][:,None]*x[left]
-    result[:,right]=profile['cumulative'][:,-1,None]+profile['burned'][:,None]*(x[right]-d[-1])
-    return result
-
-
-def profile_cell_average(profile,lo,hi):
-    """Split constant fresh/burned regions before subtraction to avoid cancellation.
-
-    This preserves exactly reacted cells without clipping conserved progress.
-    """
-    lo=np.asarray(lo,dtype=float);hi=np.asarray(hi,dtype=float)
-    if lo.shape!=hi.shape or lo.ndim!=1 or not np.isfinite([lo,hi]).all() or np.any(hi<=lo):
-        raise ValueError('finite ordered cell intervals required')
-    tail=profile['distance'][-1]
-    fresh_width=np.maximum(np.minimum(hi,0)-lo,0)
-    burned_width=np.maximum(hi-np.maximum(lo,tail),0)
-    inner_lo=np.clip(lo,0,tail);inner_hi=np.clip(hi,0,tail)
-    integral=profile_integral(profile,inner_hi)-profile_integral(profile,inner_lo)
-    integral+=profile['fresh'][:,None]*fresh_width+profile['burned'][:,None]*burned_width
-    return integral/(hi-lo)
 
 
 def formed_strip(c,profile,dx=.5e-3,rows=8,length=.45,shock=.16,source_cfl=.05):

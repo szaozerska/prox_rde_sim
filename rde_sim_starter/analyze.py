@@ -1,8 +1,7 @@
-"""Numerical reductions only: no file loading, rendering, or solver execution.
+"""Numerical reductions and read-only native loading; no rendering or solver execution.
 
-The old automatic mode/roll-stability report is retired. It mixed heuristic
-classification with unsupported torque claims. Front tracking, native flux
-budgets and short-run reporting are the next increment, not validated here.
+The old automatic mode/stability classifier is retired. Reductions retain native
+fluxes and storage; physical validation is separate from software verification.
 """
 import numpy as np
 
@@ -118,23 +117,15 @@ def load_saved_run(directory):
     import json
     from pathlib import Path
     directory=Path(directory)
-    inputs=json.loads((directory/'inputs.json').read_text())
-    summary=json.loads((directory/'summary.json').read_text())
-    rows=[]
-    for line in (directory/'history.jsonl').read_text().splitlines():
-        try:
-            row=json.loads(line)
-        except json.JSONDecodeError:
-            break  # a crash can leave a partial tail beyond the checkpoint
-        if row['step']<=summary['steps'] and row['t']<=summary['t']:
-            rows.append(row)
-    if not rows or rows[-1]['step']!=summary['steps'] or rows[-1]['t']!=summary['t']:
-        raise ValueError('summary does not match the saved history prefix')
-    times=np.array([r['t'] for r in rows])
-    if rows[0]['step']!=0 or np.any(np.diff(times)<=0) or [r['step'] for r in rows]!=list(range(summary['steps']+1)):
-        raise ValueError('saved history has gaps or nonmonotone times')
+    from window_report import load_native_prefix
+    try:
+        inputs,summary,rows,_=load_native_prefix(directory)
+    except ValueError as error:
+        raise ValueError(f'summary does not match a verified native prefix: {error}') from error
     fields=[]
     for path in sorted((directory/'fields').glob('step_*.npz')):
+        if int(path.stem.split('_')[-1])>summary['steps']:
+            continue
         with np.load(path,allow_pickle=False) as saved:
             if int(saved['step'])<=summary['steps'] and float(saved['t'])<=summary['t']:
                 fields.append({key:saved[key].copy() for key in saved.files})

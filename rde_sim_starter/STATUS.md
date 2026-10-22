@@ -1,55 +1,36 @@
-# Starter status — controlled 2D investigation
+# Reduced 2D workflow status
 
-**RDE-001 remains OPEN:** the original 3.8 and 7.6 mm Run 937 starts do not
-show sustained rotating detonation by 189.394 µs. Software checks and isolated
-controls are not experimental validation. This session publishes only on main;
-the separate 3D checkout/branch remains independent.
+The functional workflow F1–F4 is implemented on **main**. Acceptance: 122 tests passed with no skips; 16 affected checks were repeated after
+review and one additional coupled wall-heating/chemistry check passed (123 distinct
+passing tests). Details are recorded in [the completion report](../docs/verification/f4_workflow_completion.md).
+See the [capability/verification matrix](../docs/plans/2d_workflow_completion.md).
 
-## Current evidence
+**RDE-001 remains OPEN.** The original 3.8 and 7.6 mm Run 937 starts did not show
+sustained rotating detonation by 189.394 µs. C1–C5 bounded controls and C6a's 2 µs
+formed-engine benchmark are evidence within their stated limits, not a validated
+engine solution. The broader sustaining-wave study belongs to the separate investigation;
+3D belongs to the separate branch.
 
-- C1: matched 1D/multirow/rotated controls agree exactly at saved times through
-  95 µs; no transverse drift or invalid states.
-- C2: conservative formed profile passes jump/inventory checks and propagates
-  through 40 µs on three meshes; half-source-step sensitivity is small.
-- C3: 3.8 mm loses leading shock/reaction coupling on both 0.5/0.25 mm grids
-  and with the aligned interface. The 15 mm formed layer retains strong
-  wall/middle coupling at 40 µs on both grids. This is a bounded contrast,
-  not a converged critical height or indefinite-survival claim.
-- C4: 15 mm blast completes 40 µs, still reacting behind the leading shock but
-  weaker/slower than the formed cases. Long-term initiation outcome is unresolved.
-  Different initial energy/momentum and a reverse-going disturbance are recorded.
-- C3/C4 states and native budgets are valid, with checked remote-boundary
-  margins. The refined-thick speed-bound stop was corrected by audited
-  continuation, preserving the original evidence and cumulative budgets.
-- Numerical interface burning, physical reaction/EOS mismatch, equivalent
-  injection, startup and engine outlet assumptions remain open contributors.
+Implemented: strict reactive Euler/source controls; conservative formed startup;
+case/calibration preflight and versioned SI contracts; bounded saved runs and
+checked restart; native mass/energy/momentum/storage accounting; selected-window
+exit force/Isp; opt-in adiabatic constant-Cf drag and mean-radius torque; pressure,
+reaction and candidate-front inspection; PSD/rolling spectra; case-guarded pressure
+comparison; saved-run sensitivity tables; offline playback, wrapped/head-end
+views and checkpoint refresh; illustrative constant-inertia roll response.
 
-The full **73-test suite passed**, including the opt-in reactive baseline.
-Final comparison plotting changes also pass their targeted checks. Current logs and later checks are in the
-[increment report](../docs/verification/controlled_2d_progress.md).
+The default case is still inviscid. No friction coefficient is calibrated by
+default. An opt-in `annular_closure` now reconstructs separate wall pressures
+from radial equilibrium and applies per-wall drag and optional heat exchange.
+Acceptance passed (130 full-suite tests plus two additional tests; 132 distinct).
+The requested controlled engine comparison is in progress. Radial
+momentum/velocity, empirical curvature loss and inner-wall detachment are not
+resolved. See the [reviewed closure plan](../docs/plans/radial_closures_2d.md).
+CAD/coreless/nonuniform geometry and 3D are explicitly unsupported by this backend.
 
-## Implemented tools
+Production sensitivity campaigns, steady-wave/pressure validation and matched
+measured thrust/torque comparisons remain open. Native version-2 historical runs
+can be analyzed; exact restart requires their original source/environment.
 
-| Module | Purpose |
-|---|---|
-| `physics.py`, `solver.py` | Constant-gamma reactive Euler, strict state checks, source/flow caps and native RK-weighted budgets. |
-| `calibrate.py` | Pure inherited-surrogate calibration; not a physical-chemistry validation. |
-| `run.py`, `analyze.py` | Bounded engine runs, checked checkpoints, stored diagnostics and pure reductions. |
-| `coupling.py` | Multi-height pressure/reaction candidates; no automatic detonation classifier. |
-| `experiments.py`, `reference.py` | Contact/1D numerical controls and optional pinned Cantera/SDToolbox physical references. |
-| `controlled.py` | Row/direction, formed-strip and finite-layer/blast controls, conservative initialization and checked continuation. |
-| `plot.py` | Saved-data fields, histories and comparisons; no CFD execution. |
-| `model_audit.py` | Saved-reference rate/profile and source/mesh feasibility; no adopted calibration change. |
-
-**C5a feasibility audit completed; C5 readiness remains open.** Physical lengths
-are subcell on the engine grid; an algebraic two-distance fit is not adopted and
-would need at least 91.09 million steps with the present source cap. C5b–e must
-verify a model hypothesis, source treatment and resolved local propagation/layer
-controls before C6. See the [readiness review](../docs/verification/c5_model_readiness.md). No arbitrary chemistry change,
-engine-fill increase or longer engine run follows from C3/C4. Production solver,
-physics, calibration, engine driver, config and calibrated inputs are unchanged.
-See the [reviewed plan](../docs/plans/controlled_2d_tests.md),
-[handoff](../HANDOFF.md), [paper audit](../docs/verification/mundt_model_audit.md)
-and [open issue](../docs/verification/run937_unresolved.md). Historical progress
-and test counts are retained in the dated increment report, rather than competing
-with this current status.
+Latest follow-on request: implement and evaluate the independent report's radial
+closures after this workflow completion. This is a new physics increment, distinct from workflow completion. No CAD work.

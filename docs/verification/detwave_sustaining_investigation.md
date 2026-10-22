@@ -465,6 +465,51 @@ not by itself evidence of sustained detonation. Exact snapshots are retained in
 return, rather than declaring success from longer travel in initially fresh gas.
 The root cause/sustaining fix remains unresolved for the 13:40 main checkpoint.
 
+## Main checkpoint: reviewed integration at 13:40 Pacific
+
+Fetched GitHub main at the requested checkpoint: `f12cca10eb11a6a547cac6c9c71188934965b21b`,
+six commits beyond the investigation's original `9695ae5` base. Reviewed solver,
+source, case resolution, formed-profile extraction, wall-closure equations and
+their verification reports before integration. No tracked AGENTS.md was added.
+Historical HANDOFF directions to commit on main do not override this user's
+explicit investigation-branch instruction. The original checkout is untouched.
+
+The update adds a shared formed initializer, geometry/result contracts, reporting
+and viewing, optional adiabatic drag and optional annular wall pressure/heat/drag
+closures. It does **not** change the one-step kinetics or injector flux law and
+does not contain a demonstrated sustained-wave fix. The separate main-branch
+radial comparison is already running elsewhere; do not duplicate it here.
+
+Critical review distinctions:
+
+- The radial option reconstructs equilibrium wall pressures using local gas
+  swirl, not wave speed. It evolves no radial momentum or detonation curvature.
+  Its pressure reconstruction changes the flow through explicitly selected wall
+  losses; it is not an additional tangential centrifugal drive. The previous
+  report's lack-of-gap-loss statement describes the inviscid investigations;
+  the new code now offers optional gap-dependent wall losses.
+- Adiabatic drag redistributes resolved kinetic energy into internal energy
+  without an artificial total-energy sink. Heat exchange is a separate signed
+  source, included in native conservation. Wall parameters remain assumptions,
+  not experimentally calibrated sustaining fixes.
+- All current investigation cases select inviscid walls. Do not silently enable
+  new losses or reinterpret their saved results as radial-closure simulations.
+  Existing jobs retain v1/v2 source; new work uses the reviewed merged source.
+- One merge conflict in `plot.py` was resolved by retaining both the investigation
+  renderer and the new workflow renderer, including their separate CLI paths.
+
+The seven investigation initializer/case checks passed on the merged source.
+The first combined test command could not import the radial test module because
+that module expects `tests` on the import path; its failed invocation is retained,
+and all eight radial checks passed with `PYTHONPATH=tests` (20.939 s).
+The two invocation logs are retained as `detwave_main_integration_tests.log`
+and `detwave_main_radial_tests.log`. A separate
+10-step reactive inviscid compatibility comparison against archived v2 gives
+**bitwise-identical state, time, boundary and source integrals** at 0.5 mm.
+See `detwave_main_bitwise_check.json`; this is compatibility evidence, not a
+coarse-grid physics claim. No restart/duplication of the active equivalent
+inviscid studies is needed solely because of the merge.
+
 ## Active-run handoff (replace with results when complete)
 
 Both simulations run in this branch's worktree, not the original checkout.

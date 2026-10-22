@@ -1,0 +1,760 @@
+{
+  "summary": {
+    "average": {
+      "available": true,
+      "duration_s": 2e-06,
+      "end_s": 2e-06,
+      "interpretation": "transient short-window mean; startup may be included",
+      "pressure_profile_Pa": [
+        1341146.0069900055,
+        1333808.5724083066,
+        1306301.2998584483,
+        1276041.4380252878,
+        1227304.3566933754,
+        1148200.5141400911,
+        1029751.6842239203,
+        860782.4256243989,
+        637677.8522630596,
+        535931.5404385417,
+        497142.12106030947,
+        472611.5163014344,
+        453481.69768255384,
+        435971.3578721811,
+        418990.82369329355,
+        402939.47322298854,
+        389381.45581285725,
+        380848.46001168544,
+        378220.0977433076,
+        377935.9398649985,
+        377918.0538951281,
+        377917.033567334,
+        377916.9757745472,
+        377916.97249061865,
+        377916.9723031618,
+        377916.972292419,
+        377916.97229180206,
+        377916.97229176684,
+        377916.972291765,
+        377916.972291765,
+        377916.972291765,
+        377916.972291765,
+        377916.972291765,
+        377916.972291765,
+        377916.972291765,
+        377916.972291765,
+        377916.972291765,
+        377916.972291765,
+        377916.972291765,
+        377916.972291765,
+        377916.972291765,
+        377916.972291765,
+        377916.972291765,
+        377916.972291765,
+        377916.972291765,
+        377916.972291765,
+        377916.972291765,
+        377916.972291765,
+        377916.972291765,
+        377916.972291765,
+        377916.972291765,
+        377916.972291765,
+        377916.972291765,
+        377916.972291765,
+        377916.972291765,
+        377916.972291765,
+        377916.972291765,
+        377916.972291765,
+        377916.972291765,
+        377916.972291765,
+        377916.972291765,
+        377916.972291765,
+        377916.972291765,
+        377916.972291765,
+        377916.972291765,
+        377916.972291765,
+        377916.972291765,
+        377916.972291765,
+        377916.972291765,
+        377916.972291765,
+        377916.972291765,
+        377916.972291765,
+        377916.972291765,
+        377916.972291765,
+        377916.972291765,
+        377916.972291765,
+        377916.972291765,
+        377916.972291765,
+        377916.972291765,
+        377916.972291765,
+        377916.972291765,
+        377916.972291765,
+        377916.972291765,
+        377916.972291765,
+        377916.972291765,
+        377916.972291765,
+        377916.972291765,
+        377916.972291765,
+        377916.972291765,
+        377916.972291765,
+        377916.972291765,
+        377916.972291765,
+        377916.972291765,
+        377916.972291765,
+        377916.972291765,
+        377916.972291765,
+        377916.972291765,
+        377916.972291765,
+        377916.972291765,
+        377916.972291765,
+        377916.972291765,
+        377916.972291765,
+        377916.972291765,
+        377916.972291765,
+        377916.972291765,
+        377916.972291765,
+        377916.972291765,
+        377916.972291765,
+        377916.972291765,
+        377916.972291765,
+        377916.972291765,
+        377916.972291765,
+        377916.972291765,
+        377916.972291765,
+        377916.972291765,
+        377916.972291765,
+        377916.972291765,
+        377916.972291765,
+        377916.972291765,
+        377916.972291765,
+        377916.972291765,
+        377916.972291765,
+        377916.972291765,
+        377916.972291765,
+        377916.972291765,
+        377916.972291765,
+        377916.972291765,
+        377916.972291765,
+        377916.972291765,
+        377916.972291765,
+        377916.972291765,
+        377916.972291765,
+        377916.9722917645,
+        377916.97229176346,
+        377916.97229175735,
+        377916.97229169036,
+        377916.9722909255,
+        377916.97228263924,
+        377916.972198399,
+        377916.97139880457,
+        377916.96434923186,
+        377916.90696764376,
+        377916.47883750027,
+        377913.5761586576,
+        377895.883052454,
+        377800.20397137804,
+        377348.6716034765,
+        375524.655841211,
+        369338.7391289956,
+        351956.0262028841,
+        314272.95086592116,
+        271443.90145555383
+      ],
+      "reason": null,
+      "start_s": 0.0
+    },
+    "budgets": {
+      "angular_inventory": 9.48908399488758e-09,
+      "angular_net": 9.489083994890405e-09,
+      "angular_residual": -2.823203164845946e-21,
+      "angular_storage": 9.48908399488758e-09,
+      "boundary_integral": [
+        [
+          1.0432497195721961e-13,
+          0.0002872448551113391,
+          6.211383618318365e-13,
+          6.957956692289445e-07,
+          -2.055382843055037e-14
+        ],
+        [
+          1.0432497195721961e-13,
+          0.0002872448551113391,
+          6.211383618318365e-13,
+          6.957956692289445e-07,
+          -2.055382843055037e-14
+        ],
+        [
+          5.011289989903725e-07,
+          0.0,
+          0.0032431144612690456,
+          3.0050366220589595,
+          0.0
+        ],
+        [
+          3.6283588816749224e-07,
+          -5.622467819304611e-267,
+          0.0005479067195416609,
+          0.9569286100563708,
+          3.6283588816749224e-07
+        ]
+      ],
+      "inventory": [
+        8.246137632809256e-05,
+        2.665473032271792e-07,
+        0.002692458010488042,
+        239.6409377868095,
+        6.664332641791506e-05
+      ],
+      "net_influx_and_source": [
+        1.382931108228803e-07,
+        2.665473032272585e-07,
+        0.002692458010488041,
+        2.0260046302035537,
+        -3.288458164416602e-07
+      ],
+      "residual": [
+        2.9116757561866574e-21,
+        -7.930345968668387e-20,
+        8.673617379884035e-19,
+        -2.1316282072803006e-14,
+        1.3923104070492562e-20
+      ],
+      "source_integral": [
+        0.0,
+        2.665473032272585e-07,
+        -2.7497312393437446e-06,
+        -0.02210338179903489,
+        3.399007172583202e-08
+      ],
+      "storage": [
+        1.382931108228832e-07,
+        2.665473032271792e-07,
+        0.002692458010488042,
+        2.0260046302035324,
+        -3.2884581644164626e-07
+      ]
+    },
+    "engine_torque_Nm": -0.004744541997445202,
+    "error": null,
+    "format_version": 2,
+    "invalid_state_count": 0,
+    "last_failure": null,
+    "observed_passages": null,
+    "observed_passages_reason": "pressure events are reported by plotting; detonation passages require field inspection",
+    "progress_roundoff_max": 0.0,
+    "progress_tolerance": 1.4210854715202004e-14,
+    "reference_frequency_Hz": 15840.0,
+    "run_mode": "development_benchmark",
+    "status": "completed_limit",
+    "steps": 139,
+    "steps_this_invocation": 139,
+    "t": 2e-06,
+    "target_time_s": 2e-06,
+    "torque_reason": "whole-run mean, mean-radius adiabatic constant-Cf wall model; unvalidated coefficient",
+    "wall_seconds_this_invocation": 43.9866125289991
+  },
+  "inputs": {
+    "calibration": {
+      "CJ": {
+        "T": 4885.151457540693,
+        "p": 10951531.152722448
+      },
+      "D_CJ": 2471.0,
+      "Ea": 1912039.7726565108,
+      "L_half": 0.001,
+      "MW": 26.09085894206549,
+      "M_CJ": 7.181250184592161,
+      "Q": 11.076804691270638,
+      "R": 318.6732954427518,
+      "T1": 300.0,
+      "VN": {
+        "M": 0.3348675875993769,
+        "T": 2116.2489661145023,
+        "p": 21525145.333159216,
+        "u_shock_frame": 306.03320728412723
+      },
+      "a1": 344.0905046452345,
+      "cp": 1655.110281738685,
+      "gamma": 1.2384499222264016,
+      "induction_real": 2.7586206896551727e-05,
+      "k": 2522464.136488483,
+      "lambda_real": 0.0008,
+      "p1": 377916.97229176015,
+      "q": 5500000.0
+    },
+    "config": {
+      "chemistry": {
+        "Ea_over_RT1": 20.0,
+        "L_half_mm": 1.0
+      },
+      "diagnostics": {
+        "pressure_stations_mm": [
+          0,
+          22.2,
+          34.9,
+          47.6,
+          60.3,
+          73.0
+        ]
+      },
+      "experimental_reference": {
+        "mean_pressures_kPa": [
+          368.5,
+          323.3,
+          292.3,
+          281.1,
+          255.4,
+          238.4
+        ],
+        "methane_plenum_K": 301.0,
+        "methane_plenum_kPa": 1399.4,
+        "oxygen_plenum_K": 303.0,
+        "oxygen_plenum_kPa": 1309.5,
+        "peripheral_speed_mps": 1893.0,
+        "pressure_stations_mm": [
+          0,
+          22.2,
+          34.9,
+          47.6,
+          60.3,
+          73.0
+        ]
+      },
+      "geometry": {
+        "area_ratio": 0.11,
+        "length_mm": 76.2,
+        "r_inner_mm": 33.1,
+        "r_outer_mm": 38.1
+      },
+      "initialization": {
+        "fill_height_mm": 3.8,
+        "kind": "ignition",
+        "offset_fraction": 0.1,
+        "patch_width_mm": 10.0,
+        "patches": 1,
+        "pressure_multiplier": 2.0,
+        "product_temperature_K": 1500.0,
+        "products_behind_mm": 20.0,
+        "u_theta": 0.0,
+        "u_z": 0.0
+      },
+      "model": {
+        "chemistry": "one_step",
+        "discharge_coefficient": 0.76,
+        "feed": "premixed_plenum",
+        "geometry": "constant_annulus",
+        "radial": {
+          "analogy_factor": 1.0,
+          "centrifugal": true,
+          "inner": {
+            "cf": 0.005,
+            "temperature_K": 300.0
+          },
+          "outer": {
+            "cf": 0.005,
+            "temperature_K": 300.0
+          },
+          "recovery_factor": 0.9
+        },
+        "walls": "annular_closure"
+      },
+      "numerics": {
+        "average_start_us": 0.0,
+        "cfl": 0.4,
+        "checkpoint_every_us": 10.0,
+        "dx_mm": 0.5,
+        "max_step_ns": null,
+        "probe_y_mm": 1.0,
+        "snapshot_every_us": 2.0,
+        "source_cfl": 0.05
+      },
+      "operating_point": {
+        "D_CJ": 2471.0,
+        "N_paper": 2,
+        "T_plenum_K": 300.0,
+        "f_paper_kHz": 15.84,
+        "mass_flux": 240.21,
+        "mdot_target_gps": 268.65,
+        "p_back_kPa": 100.2,
+        "p_plenum_kPa": 1350.0,
+        "phi": 1.176,
+        "q_MJkg": 5.5
+      },
+      "schema_version": 1
+    },
+    "contracts": {
+      "backend": {
+        "capabilities": {
+          "cad": false,
+          "chemistry": [
+            "one_step",
+            "disabled"
+          ],
+          "feeds": [
+            "premixed_plenum"
+          ],
+          "geometry": [
+            "constant_annulus"
+          ],
+          "radial_dynamics": false,
+          "radial_equilibrium_closure": true,
+          "restart": "native checkpoint, identical code/environment only",
+          "walls": [
+            "inviscid",
+            "constant_cf",
+            "annular_closure"
+          ]
+        },
+        "dimension": 2,
+        "name": "custom_reactive_euler_2d",
+        "numerical_settings": {
+          "cfl": 0.4,
+          "dx": 0.0005004058096993139,
+          "dy": 0.0005013157894736842,
+          "max_dt": null,
+          "nx": 447,
+          "ny": 152,
+          "source_cfl": 0.05
+        },
+        "schema_version": 1
+      },
+      "geometry": {
+        "boundaries": {
+          "exit": "z=length",
+          "inlet": "z=0",
+          "inner_wall": "radially averaged closure",
+          "outer_wall": "radially averaged closure",
+          "seam": "periodic theta"
+        },
+        "coordinates": {
+          "axis": "+z",
+          "azimuth": "right-handed about +z",
+          "origin_m": [
+            0,
+            0,
+            0
+          ],
+          "reduced_coordinates": [
+            "x = r_mean * theta",
+            "z"
+          ],
+          "velocity_basis": [
+            "e_r",
+            "e_theta",
+            "e_z"
+          ]
+        },
+        "dimensions": {
+          "circumference_m": 0.2236813969355933,
+          "exit_area_m2": 0.0011184069846779656,
+          "gap_m": 0.0049999999999999975,
+          "injector_open_area_m2": 0.00012302476831457622,
+          "lateral_wall_area_m2": 0.03408904489298442,
+          "length_m": 0.0762,
+          "r_inner_m": 0.033100000000000004,
+          "r_mean_m": 0.03560000000000001,
+          "r_outer_m": 0.0381,
+          "volume_m3": 8.522261223246098e-05
+        },
+        "identity": "sha256:8648f285f4638df01429c084c7ca5f9f0536be6619ca6920d6e8f7c18033afbd",
+        "kind": "constant_annulus",
+        "omissions": [
+          "radial gradients and curvature dynamics",
+          "separate impinging fuel/oxidizer jets",
+          "downstream expansion/nozzle",
+          "physical pre-detonator",
+          "CAD surfaces"
+        ],
+        "schema_version": 1,
+        "source": {
+          "kind": "manual_dimensions",
+          "length_to_m": 0.001,
+          "length_unit": "mm",
+          "sha256": "8648f285f4638df01429c084c7ca5f9f0536be6619ca6920d6e8f7c18033afbd",
+          "values": {
+            "area_ratio": 0.11,
+            "length_mm": 76.2,
+            "r_inner_mm": 33.1,
+            "r_outer_mm": 38.1
+          }
+        },
+        "units": "SI"
+      },
+      "physical": {
+        "ambient_pressure_Pa": 100200.0,
+        "equivalent_plenum": {
+          "discharge_coefficient": 0.76,
+          "open_area_ratio": 0.11,
+          "pressure_Pa": 1350000.0,
+          "temperature_K": 300.0
+        },
+        "feed_model": "premixed_plenum",
+        "feed_reduction": "explicit equivalent premixed plenum; separate jet mixing is not resolved",
+        "initialization": {
+          "fill_height_mm": 3.8,
+          "kind": "ignition",
+          "offset_fraction": 0.1,
+          "patch_width_mm": 10.0,
+          "patches": 1,
+          "pressure_multiplier": 2.0,
+          "product_temperature_K": 1500.0,
+          "products_behind_mm": 20.0,
+          "u_theta": 0.0,
+          "u_z": 0.0
+        },
+        "models": {
+          "chemistry": "one_step",
+          "discharge_coefficient": 0.76,
+          "feed": "premixed_plenum",
+          "geometry": "constant_annulus",
+          "radial": {
+            "analogy_factor": 1.0,
+            "centrifugal": true,
+            "inner": {
+              "cf": 0.005,
+              "temperature_K": 300.0
+            },
+            "outer": {
+              "cf": 0.005,
+              "temperature_K": 300.0
+            },
+            "recovery_factor": 0.9
+          },
+          "walls": "annular_closure"
+        },
+        "original_experimental_stream_reference": {
+          "mean_pressures_kPa": [
+            368.5,
+            323.3,
+            292.3,
+            281.1,
+            255.4,
+            238.4
+          ],
+          "methane_plenum_K": 301.0,
+          "methane_plenum_kPa": 1399.4,
+          "oxygen_plenum_K": 303.0,
+          "oxygen_plenum_kPa": 1309.5,
+          "peripheral_speed_mps": 1893.0,
+          "pressure_stations_mm": [
+            0,
+            22.2,
+            34.9,
+            47.6,
+            60.3,
+            73.0
+          ]
+        },
+        "pressure_stations_m": [
+          0.0,
+          0.0222,
+          0.0349,
+          0.0476,
+          0.0603,
+          0.073
+        ]
+      },
+      "results": {
+        "authoritative_integrals": "RK-weighted native faces and cell sources in history; display fields are float32",
+        "energy_reference": "thermal + kinetic + unspent chemical energy",
+        "fields": {
+          "density": {
+            "location": "cell",
+            "unit": "kg/m^3"
+          },
+          "inner_pressure": {
+            "location": "cell",
+            "unit": "Pa"
+          },
+          "outer_pressure": {
+            "location": "cell",
+            "unit": "Pa"
+          },
+          "pressure": {
+            "location": "cell",
+            "unit": "Pa"
+          },
+          "progress": {
+            "location": "cell",
+            "unit": "1"
+          },
+          "reaction_rate": {
+            "location": "cell",
+            "unit": "1/s"
+          },
+          "temperature": {
+            "location": "cell",
+            "unit": "K"
+          },
+          "u_theta": {
+            "location": "cell",
+            "unit": "m/s"
+          },
+          "u_z": {
+            "location": "cell",
+            "unit": "m/s"
+          }
+        },
+        "mesh": {
+          "axes": [
+            "x",
+            "z"
+          ],
+          "kind": "structured_uniform",
+          "location": "cell",
+          "radial_velocity": "assumed zero; not resolved",
+          "shape": [
+            447,
+            152
+          ],
+          "spacing_m": [
+            0.0005004058096993139,
+            0.0005013157894736842
+          ],
+          "topology": "fixed"
+        },
+        "native_files": {
+          "checkpoint": "checkpoint.npz",
+          "fields": "fields/step_*.npz",
+          "history": "history.jsonl"
+        },
+        "native_format_version": 2,
+        "pressure_type": "absolute",
+        "schema_version": 1
+      },
+      "schema_version": 1
+    },
+    "created_utc": "2026-10-22T20:28:30.392223+00:00",
+    "definitions": {
+      "angular_momentum_units": "kg m^2/s",
+      "boundary_normals": [
+        "+theta",
+        "+theta",
+        "+z",
+        "+z"
+      ],
+      "boundary_order": [
+        "left",
+        "right",
+        "bottom",
+        "top"
+      ],
+      "conserved_order": [
+        "mass",
+        "azimuthal_momentum",
+        "axial_momentum",
+        "total_energy",
+        "reacted_mass"
+      ],
+      "conserved_units": [
+        "kg",
+        "kg m/s",
+        "kg m/s",
+        "J",
+        "kg"
+      ],
+      "force": "annulus-exit numerical momentum/pressure contribution; not whole-engine thrust",
+      "injector_plane": "converging opening: sonic or chamber-pressure matched; open/closed face pressure weighted by nominal area",
+      "pressure_operator": "circumferential cell-centre mean, axial interpolation with endpoint extension",
+      "pressure_units": "Pa",
+      "probe": "first circumferential cell at saved probe_index; native step sampling",
+      "progress_tolerance": 1.4210854715202004e-14,
+      "source_step": "global reaction-slope bound, see physics.source_step_limit",
+      "time_units": "s",
+      "total_energy": "thermal + kinetic + unspent chemical energy"
+    },
+    "format_version": 2,
+    "implementation": {
+      "packages": {
+        "PyYAML": "6.0.3",
+        "llvmlite": "0.45.1",
+        "numba": "0.62.1",
+        "numpy": "2.3.5",
+        "scipy": "1.18.1"
+      },
+      "python": "3.12.0",
+      "source_sha256": {
+        "analyze.py": "3ee0021a4406ae52c90c87ccbb7af782113738ab2a7d982c8bf1dc631a059b7a",
+        "calibrate.py": "e43a8522a46ac0d2808adb032aef66e4b019cb5f94ae03ae43c8f490ea0870fa",
+        "contracts.py": "d8097d883a8517caa3254e0da84f7a92e251667c29b49a6ac0c2b103c3e25118",
+        "formed.py": "24e6b5579a4bfdf032294358a7a9e67a29cf0938b046c3fbfb4632102f746dae",
+        "physics.py": "0150132690fc1d951aaf55d7da2f17681771d25605ce3288ebbd300cc612472a",
+        "radial.py": "9594b5e06d505baa382a80014ced7e4a294b7776c2bc3abd82c3cd1b3e280e87",
+        "run.py": "b337d782ce3914a6c54b4700725786c35407fe5fde383928efaebb7c5e7c5bb4",
+        "solver.py": "7eae1a7f1cd346463fd60217b67619dc065b0f51ff152e5e0b9854862d689bf9"
+      }
+    },
+    "resolved": {
+      "average_start": 0.0,
+      "benchmark_end_s": 2e-06,
+      "cfl": 0.4,
+      "checkpoint_interval": 9.999999999999999e-06,
+      "dx": 0.0005004058096993139,
+      "dy": 0.0005013157894736842,
+      "f_ref": 15840.0,
+      "gap": 0.0049999999999999975,
+      "gas": [
+        1.2384499222264016,
+        5500000.0,
+        318.6732954427518,
+        2522464.136488483,
+        1912039.7726565108
+      ],
+      "initialization": {
+        "fill_height_mm": 3.8,
+        "kind": "ignition",
+        "offset_fraction": 0.1,
+        "patch_width_mm": 10.0,
+        "patches": 1,
+        "pressure_multiplier": 2.0,
+        "product_temperature_K": 1500.0,
+        "products_behind_mm": 20.0,
+        "u_theta": 0.0,
+        "u_z": 0.0
+      },
+      "initialization_energy_change_J": 5.026505930902999,
+      "injector": [
+        1350000.0,
+        300.0,
+        0.11,
+        0.76
+      ],
+      "length": 0.0762,
+      "max_dt": null,
+      "nx": 447,
+      "ny": 152,
+      "p_back": 100200.0,
+      "pressure_stations": [
+        0.0,
+        0.0222,
+        0.0349,
+        0.0476,
+        0.0603,
+        0.073
+      ],
+      "probe_index": 1,
+      "r_mean": 0.03560000000000001,
+      "r_outer": 0.0381,
+      "radial": [
+        0.033100000000000004,
+        0.0381,
+        1.0,
+        0.005,
+        300.0,
+        0.005,
+        300.0,
+        1.0,
+        0.9
+      ],
+      "run_mode": "development_benchmark",
+      "snapshot_interval": 2e-06,
+      "source_cfl": 0.05,
+      "wall_cf": 0.0,
+      "wall_model": "annular_closure",
+      "width": 0.2236813969355933
+    },
+    "source_text": {
+      "calibration_json": "{\n  \"R\": 318.6732954427518,\n  \"MW\": 26.09085894206549,\n  \"gamma\": 1.2384499222264016,\n  \"cp\": 1655.110281738685,\n  \"Q\": 11.076804691270638,\n  \"q\": 5500000.0,\n  \"T1\": 300.0,\n  \"p1\": 377916.97229176015,\n  \"a1\": 344.0905046452345,\n  \"M_CJ\": 7.181250184592161,\n  \"D_CJ\": 2471.0,\n  \"k\": 2522464.136488483,\n  \"Ea\": 1912039.7726565108,\n  \"L_half\": 0.001,\n  \"VN\": {\n    \"p\": 21525145.333159216,\n    \"T\": 2116.2489661145023,\n    \"M\": 0.3348675875993769,\n    \"u_shock_frame\": 306.03320728412723\n  },\n  \"CJ\": {\n    \"p\": 10951531.152722448,\n    \"T\": 4885.151457540693\n  },\n  \"lambda_real\": 0.0008,\n  \"induction_real\": 2.7586206896551727e-05\n}",
+      "case_yaml": "# Exploratory wall assumptions, not measured or fitted Run 937 values.\nchemistry:\n  Ea_over_RT1: 20.0\n  L_half_mm: 1.0\ndiagnostics:\n  pressure_stations_mm:\n  - 0\n  - 22.2\n  - 34.9\n  - 47.6\n  - 60.3\n  - 73.0\nexperimental_reference:\n  mean_pressures_kPa:\n  - 368.5\n  - 323.3\n  - 292.3\n  - 281.1\n  - 255.4\n  - 238.4\n  methane_plenum_K: 301.0\n  methane_plenum_kPa: 1399.4\n  oxygen_plenum_K: 303.0\n  oxygen_plenum_kPa: 1309.5\n  peripheral_speed_mps: 1893.0\n  pressure_stations_mm:\n  - 0\n  - 22.2\n  - 34.9\n  - 47.6\n  - 60.3\n  - 73.0\ngeometry:\n  area_ratio: 0.11\n  length_mm: 76.2\n  r_inner_mm: 33.1\n  r_outer_mm: 38.1\ninitialization:\n  fill_height_mm: 3.8\n  kind: ignition\n  offset_fraction: 0.1\n  patch_width_mm: 10.0\n  patches: 1\n  pressure_multiplier: 2.0\n  product_temperature_K: 1500.0\n  products_behind_mm: 20.0\n  u_theta: 0.0\n  u_z: 0.0\nmodel:\n  chemistry: one_step\n  discharge_coefficient: 0.76\n  feed: premixed_plenum\n  geometry: constant_annulus\n  walls: annular_closure\n  radial:\n    centrifugal: true\n    inner:\n      cf: 0.005\n      temperature_K: 300.0\n    outer:\n      cf: 0.005\n      temperature_K: 300.0\n    analogy_factor: 1.0\n    recovery_factor: 0.9\nnumerics:\n  average_start_us: 0.0\n  cfl: 0.4\n  checkpoint_every_us: 10.0\n  dx_mm: 0.5\n  max_step_ns: null\n  probe_y_mm: 1.0\n  snapshot_every_us: 2.0\n  source_cfl: 0.05\noperating_point:\n  D_CJ: 2471.0\n  N_paper: 2\n  T_plenum_K: 300.0\n  f_paper_kHz: 15.84\n  mass_flux: 240.21\n  mdot_target_gps: 268.65\n  p_back_kPa: 100.2\n  p_plenum_kPa: 1350.0\n  phi: 1.176\n  q_MJkg: 5.5\nschema_version: 1\n"
+    }
+  }
+}

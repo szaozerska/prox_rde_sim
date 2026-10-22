@@ -6,6 +6,13 @@ This is a known unsuccessful propagation result in the current model. The root
 cause has not been isolated. Numerical validity and passing software tests do
 not close this issue.
 
+**Current ownership:** the broader sustaining-wave study remains in its separate
+chat. After completing F1–F4, the user explicitly authorized a bounded radial-wall
+closure comparison here; see the [plan](../plans/radial_closures_2d.md). [C6a](c6a_functional_pipeline.md) supplies
+a conservative formed initializer and <=2 us persistence/budget benchmark;
+its success cannot close this issue or establish compatibility with the paper's
+sustained-wave result.
+
 ## Was this stage supposed to produce a working RDE?
 
 Sustained detonation is the intended physical target: Mundt Run 937 reports two
@@ -173,7 +180,7 @@ surrogate-structure hypotheses without isolating the 2D failure's root cause:
   initialized with a formed wave. They do not reproduce the complete engine,
   isolate all numerical mixing effects, or exclude a separate initiation problem.
 
-**Next work:** C6a conservative formed-engine initialization and a short
+**Prior next-work decision (superseded by the ownership note above):** C6a conservative formed-engine initialization and a short
 cost/validity benchmark after the completed [quarter-length C5b–e controls](c5_short_reaction.md). C4's 15 mm blast remains
 reacting but weaker at 40 µs; a startup-only engine remedy is not established.
 Keep chemistry frozen across the comparison. Do not launch an engine rerun

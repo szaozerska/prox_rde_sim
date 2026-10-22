@@ -125,3 +125,26 @@ def source_step_limit(gamma, q, R, k, Ea, fraction):
         raise ValueError('source_cfl must be in (0, 0.25], or None for an explicit baseline')
     gain = 0. if Ea == 0 else 4*np.exp(-2)*(gamma-1)*q/Ea*(1+PROGRESS_TOL)
     return fraction / (k*(1+gain))
+
+
+@njit(cache=True)
+def wall_drag_rhs(W, out, cf_over_gap, ng, cell_area):
+    """Adiabatic two-wall drag: S_m = -(Cf/gap) rho |u| u.
+
+    tau_w = .5 Cf rho |u|^2 and wall area/volume = 2/gap.
+    The stationary adiabatic wall has zero total-energy source: lost resolved
+    kinetic energy becomes internal energy. Return integrated momentum sources
+    per radial depth and the largest local decay coefficient [1/s].
+    """
+    theta, axial, rate_max = 0., 0., 0.
+    for i in range(ng, W.shape[1]-ng):
+        for j in range(ng, W.shape[2]-ng):
+            rho, u, v = W[0,i,j], W[1,i,j], W[2,i,j]
+            rate = cf_over_gap * np.sqrt(u*u + v*v)
+            a, b = -rate*rho*u, -rate*rho*v
+            out[1,i,j] += a
+            out[2,i,j] += b
+            theta += a*cell_area
+            axial += b*cell_area
+            rate_max = max(rate_max, rate)
+    return theta, axial, rate_max

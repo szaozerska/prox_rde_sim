@@ -1,9 +1,11 @@
 """One saved reduced-annulus run, bounded by expected passage intervals.
 
-New runs stop at three intervals; --resume extends the same saved run to five.
+Engine runs stop at three intervals; --resume extends the same saved run to five.
 Reference frequency budgets time only. No wave count or actual passage detection
-is inferred from that cap. Chemistry/source and outlet validation remain separate.
+is inferred from that cap. --benchmark-us labels a separate <=2 us development check.
+Chemistry/source and outlet validation remain separate.
 """
+from radial import resolve_radial, wall_pressures
 import argparse
 from contextlib import contextmanager
 from datetime import datetime, timezone
@@ -23,6 +25,7 @@ import yaml
 
 from analyze import conservation_budget, exit_contribution
 from calibrate import calibrate
+from contracts import geometry_contract, case_contract
 from physics import total_energy, reaction_rate, PROGRESS_TOL
 from solver import Solver, InvalidStateError, NG, PERIODIC, INJECTOR, OUTFLOW
 
@@ -87,7 +90,7 @@ def _run_lock(directory):
 def _fingerprint():
     return dict(
         source_sha256={name: hashlib.sha256((HERE / name).read_bytes()).hexdigest()
-                       for name in ['solver.py', 'physics.py', 'run.py', 'analyze.py', 'calibrate.py']},
+                       for name in ['solver.py', 'physics.py', 'run.py', 'analyze.py', 'calibrate.py', 'formed.py', 'contracts.py', 'radial.py']},
         python=sys.version.split()[0],
         packages={name: version(name) for name in ['numpy', 'numba', 'llvmlite', 'scipy', 'PyYAML']},
     )
@@ -104,10 +107,16 @@ def resolve_case(config, calibration):
     """Resolve explicit model/units and numerical settings before creating output."""
     if config.get('schema_version') != 1:
         raise ValueError('case schema_version must be 1; use the current config.yaml')
+    geometry_contract(config)  # reject unsupported geometry before allocation or output
     geo, op, nm = config['geometry'], config['operating_point'], config['numerics']
     model = config['model']
-    if model['geometry'] != 'constant_annulus' or model['feed'] != 'premixed_plenum' or model['walls'] != 'inviscid':
-        raise ValueError('this backend supports only a constant annulus, equivalent premixed plenum, and inviscid walls')
+    if model['geometry'] != 'constant_annulus' or model['feed'] != 'premixed_plenum' or model['walls'] not in ('inviscid', 'constant_cf', 'annular_closure'):
+        raise ValueError('this backend supports only a constant annulus, equivalent premixed plenum, and inviscid, constant_cf or annular_closure walls')
+    wall_cf = _positive(model.get('wall_cf', 0.), 'wall_cf', True)
+    if model['walls'] == 'constant_cf' and 'wall_cf' not in model:
+        raise ValueError('constant_cf walls require an explicit wall_cf; no fitted default')
+    if model['walls'] == 'inviscid' and wall_cf != 0:
+        raise ValueError('inviscid walls cannot silently ignore nonzero wall_cf')
     if model['chemistry'] not in ('one_step', 'disabled'):
         raise ValueError('unsupported chemistry')
     ro = _positive(geo['r_outer_mm'], 'outer radius') * 1e-3
@@ -115,6 +124,7 @@ def resolve_case(config, calibration):
     length = _positive(geo['length_mm'], 'length') * 1e-3
     if ri >= ro:
         raise ValueError('inner radius must be smaller than outer radius; coreless geometry is unsupported')
+    radial = resolve_radial(model, ri, ro)
     gap, rm = ro - ri, (ro + ri) / 2
     width = 2 * math.pi * rm
     requested_dx = _positive(nm['dx_mm'], 'cell spacing') * 1e-3
@@ -150,7 +160,7 @@ def resolve_case(config, calibration):
         raise ValueError('probe must lie inside the axial domain')
     resolved = dict(nx=nx, ny=ny, dx=width / nx, dy=length / ny,
                     width=width, length=length, r_outer=ro, r_mean=rm, gap=gap,
-                    gas=gas, cfl=nm['cfl'], source_cfl=source_cfl,
+                    gas=gas, wall_cf=wall_cf, radial=radial, wall_model=model['walls'], cfl=nm['cfl'], source_cfl=source_cfl,
                     injector=[op['p_plenum_kPa'] * 1e3, op['T_plenum_K'], geo['area_ratio'], model['discharge_coefficient']],
                     p_back=op['p_back_kPa'] * 1e3, f_ref=f_ref,
                     average_start=average_start, snapshot_interval=snapshot_interval,
@@ -170,13 +180,18 @@ def build_solver(resolved, calibration, initialize=True):
     r = resolved
     solver = Solver(r['nx'], r['ny'], r['dx'], r['dy'], tuple(r['gas']),
                     (PERIODIC, PERIODIC, INJECTOR, OUTFLOW), inj=r['injector'],
-                    p_back=r['p_back'], cfl=r['cfl'], source_cfl=r['source_cfl'])
+                    p_back=r['p_back'], cfl=r['cfl'], source_cfl=r['source_cfl'],
+                    wall_cf=r.get('wall_cf', 0.), wall_gap=r['gap'], radial=r.get('radial'))
     if not initialize:
         return solver
     x = (np.arange(solver.nx) + .5) * solver.dx
     z = (np.arange(solver.ny) + .5) * solver.dy
     X, Z = np.meshgrid(x, z, indexing='ij')
     init = r['initialization']
+    if init['kind'] == 'formed':
+        from formed import initialize_engine
+        initialize_engine(solver, r, calibration)
+        return solver
     p1, T1 = calibration['p1'], calibration['T1']
     if init['kind'] == 'uniform':
         pressure = np.full_like(X, init.get('pressure_Pa', p1))
@@ -216,7 +231,7 @@ def build_solver(resolved, calibration, initialize=True):
             temperature[patch] = calibration['CJ']['T']
             progress[patch] = 1.
     else:
-        raise ValueError('initialization kind must be uniform or ignition')
+        raise ValueError('initialization kind must be uniform, ignition or formed')
     if not np.all(np.isfinite(temperature)) or np.any(temperature <= 0):
         raise ValueError('initial temperature must be finite and positive')
     solver.set_prim(pressure / (solver.R * temperature), init.get('u_theta', 0.),
@@ -234,12 +249,16 @@ def _snapshot(solver, resolved, directory):
     W = solver.prim()
     temperature=W[3]/(solver.R*W[0])
     rate=reaction_rate(W[4],temperature,solver.R,solver.k,solver.Ea)
+    extras = {}
+    if solver.radial is not None:
+        pi,po = wall_pressures(W,solver.radial)
+        extras = dict(inner_pressure=pi.astype('float32'), outer_pressure=po.astype('float32'))
     _write_npz(Path(directory) / 'fields' / f'step_{solver.steps:09d}.npz',
                t=np.array(solver.t), step=np.array(solver.steps), pressure=W[3].astype('float32'),
                progress=W[4].astype('float32'), density=W[0].astype('float32'),
                u_theta=W[1].astype('float32'), u_z=W[2].astype('float32'),
                temperature=temperature.astype('float32'),
-               reaction_rate=rate.astype('float32'))
+               reaction_rate=rate.astype('float32'), **extras)
 
 
 def _checkpoint(solver, state, directory, history):
@@ -258,6 +277,7 @@ def _checkpoint(solver, state, directory, history):
                state_json=np.array(_json_bytes(metadata).decode()),
                U=solver.U[:, NG:-NG, NG:-NG], initial_totals=state['initial_totals'],
                cumulative_boundary=solver.cumulative_boundary, cumulative_source=solver.cumulative_source,
+               cumulative_wall_sources=solver.cumulative_wall_sources,
                average_sum=state['average_sum'])
 
 
@@ -289,6 +309,14 @@ def _history_row(solver, r):
                    source_integral=step['source'] * r['gap'],
                    mdot_in=rates[2, 0], mdot_out=rates[3, 0],
                    exit_numerical_force_N=rates[3, 2] - r['p_back'] * r['width'] * r['gap'])
+        if r.get('wall_model') in ('constant_cf', 'annular_closure'):
+            row['wall_engine_angular_impulse_Nm_s'] = -r['r_mean'] * r['gap'] * step['source'][1]
+            row['wall_engine_torque_Nm'] = row['wall_engine_angular_impulse_Nm_s'] / step['dt']
+        if solver.radial is not None:
+            walls = step['walls']*r['gap']
+            row['radial_wall_integral'] = walls
+            row['wall_heat_to_gas_J'] = float(walls[:,2].sum())
+            row['actual_radius_traction_impulse_Nm_s'] = float(-np.dot(solver.radial[:2],walls[:,0]))
     return row, profile
 
 
@@ -301,19 +329,27 @@ def _save_summary(solver, r, state, directory, status, target, error=None):
                    pressure_profile_Pa=(state['average_sum'] / weight).tolist() if weight > 0 else None,
                    reason=None if weight > 0 else 'no accepted steps overlap the averaging window')
     result = dict(format_version=FORMAT_VERSION, status=status, t=solver.t, steps=solver.steps,
+                  run_mode=r.get('run_mode', 'engine_intervals'),
+                  wall_seconds_this_invocation=time.monotonic()-state['drive_started'],
+                  steps_this_invocation=solver.steps-state['drive_start_steps'],
                   target_time_s=target, reference_frequency_Hz=r['f_ref'], observed_passages=None,
                   observed_passages_reason='pressure events are reported by plotting; detonation passages require field inspection',
                   average=average, budgets=budget, invalid_state_count=solver.invalid_state_count,
                   last_failure=solver.last_failure, error=error,
                   progress_roundoff_max=solver.progress_roundoff_max, progress_tolerance=PROGRESS_TOL,
                   engine_torque_Nm=None, torque_reason='no wall-traction model; angular residual is a conservation check')
+    if r.get('wall_model') in ('constant_cf', 'annular_closure') and solver.t > 0:
+        result['engine_torque_Nm'] = float(-r['r_mean'] * r['gap'] * solver.cumulative_source[1] / solver.t)
+        result['torque_reason'] = 'whole-run mean, mean-radius wall model; unvalidated coefficients; see saved heat-exchange settings'
     _write_json(Path(directory) / 'summary.json', result)
     return _safe_json(result)
 
 
 def _drive(solver, r, state, directory, target_passages):
     directory = Path(directory)
-    target = target_passages / r['f_ref']
+    target = r['benchmark_end_s'] if r.get('run_mode') == 'development_benchmark' else target_passages / r['f_ref']
+    state['drive_started'] = time.monotonic()
+    state['drive_start_steps'] = solver.steps
     if target <= solver.t:
         raise ValueError('requested total cap must be later than the saved state')
     r = dict(r, initial_totals=state['initial_totals'])
@@ -383,6 +419,7 @@ def _drive(solver, r, state, directory, target_passages):
                     pass  # retain the original error and the previous atomic checkpoint
             try:
                 saved_solver, saved_r, saved_state, _ = _load_checkpoint(directory)
+                saved_state.update(drive_started=state['drive_started'], drive_start_steps=state['drive_start_steps'])
                 _save_summary(saved_solver, saved_r, saved_state, directory,
                               'interrupted' if isinstance(error, KeyboardInterrupt) else 'failed',
                               target, failure)
@@ -391,20 +428,26 @@ def _drive(solver, r, state, directory, target_passages):
             raise
 
 
-def start_run(config, calibration, directory, test_passages=3, source_text=None):
+def start_run(config, calibration, directory, test_passages=3, source_text=None, *, benchmark_us=None):
     if test_passages != 3:
         raise ValueError('new development runs use three intervals; resume the saved run to extend to five')
     # JSON round trip isolates the run from later mutation of caller dictionaries.
     config = json.loads(json.dumps(config, allow_nan=False))
     calibration = json.loads(json.dumps(calibration, allow_nan=False))
     r = resolve_case(config, calibration)
+    r['run_mode'] = 'engine_intervals'
+    if benchmark_us is not None:
+        benchmark_us = _positive(benchmark_us, 'benchmark_us')
+        if benchmark_us > 2:
+            raise ValueError('development benchmark is capped at 2 us; it is not an engine study')
+        r.update(run_mode='development_benchmark', benchmark_end_s=benchmark_us*1e-6)
     solver = build_solver(r, calibration)
     directory = Path(directory)
     directory.mkdir(parents=True, exist_ok=False)
     with _run_lock(directory):
         (directory / 'fields').mkdir()
         manifest = dict(format_version=FORMAT_VERSION, created_utc=datetime.now(timezone.utc).isoformat(),
-                        config=config, calibration=calibration, resolved=r,
+                        config=config, calibration=calibration, resolved=r, contracts=case_contract(config, r),
                         source_text=source_text, implementation=_fingerprint(),
                         definitions=dict(boundary_order=['left', 'right', 'bottom', 'top'],
                             boundary_normals=['+theta', '+theta', '+z', '+z'],
@@ -441,14 +484,14 @@ def _load_checkpoint(directory):
             raise ValueError('checkpoint shape does not match saved geometry')
         solver.U[:, NG:-NG, NG:-NG] = interior
         solver.t, solver.steps = metadata['t'], metadata['steps']
-        if not math.isfinite(solver.t) or not 0 <= solver.t <= 5 / r['f_ref'] or not isinstance(solver.steps, int) or solver.steps < 0:
+        if not math.isfinite(solver.t) or not 0 <= solver.t <= r.get('benchmark_end_s', 5 / r['f_ref']) or not isinstance(solver.steps, int) or solver.steps < 0:
             raise ValueError('invalid checkpoint time/step')
         solver.rho_min, solver.p_min = metadata['rho_min'], metadata['p_min']
         solver.invalid_state_count = metadata['invalid_state_count']
         solver.last_failure = metadata['last_failure']
         solver.progress_roundoff_max = metadata['progress_roundoff_max']
         solver._check_state(solver.U, 'checkpoint load')
-        for name, shape in [('cumulative_boundary', (4, 5)), ('cumulative_source', (5,))]:
+        for name, shape in [('cumulative_boundary', (4, 5)), ('cumulative_source', (5,)), ('cumulative_wall_sources', (2,3))]:
             value = saved[name]
             if value.shape != shape or not np.all(np.isfinite(value)):
                 raise ValueError('invalid checkpoint ' + name)
@@ -498,16 +541,20 @@ def _recover_outputs(directory, metadata):
             p.rename(recovery / p.name)
 
 
-def resume_run(directory, test_passages=5):
-    if test_passages not in (3, 5):
+def resume_run(directory, test_passages=None):
+    if test_passages not in (None, 3, 5):
         raise ValueError('resume total cap must be three or five intervals')
     directory = Path(directory)
     with _run_lock(directory):
         solver, r, state, metadata = _load_checkpoint(directory)
-        if test_passages / r['f_ref'] <= solver.t:
+        benchmark = r.get('run_mode') == 'development_benchmark'
+        if benchmark and test_passages is not None:
+            raise ValueError('benchmark restart retains its saved duration; no passage override')
+        target = r['benchmark_end_s'] if benchmark else (test_passages or 5) / r['f_ref']
+        if target <= solver.t:
             raise ValueError('requested total cap must be later than the saved state')
         _recover_outputs(directory, metadata)
-        return _drive(solver, r, state, directory, test_passages)
+        return _drive(solver, r, state, directory, test_passages or 5)
 
 
 def main(argv=None):
@@ -515,23 +562,35 @@ def main(argv=None):
     parser.add_argument('--case', type=Path, help='new-run YAML case; defaults to config.yaml')
     parser.add_argument('--calibration', type=Path, help='new-run surrogate JSON; defaults to calib.json')
     parser.add_argument('--out', type=Path, help='new output directory; must not exist')
+    parser.add_argument('--preflight', action='store_true', help='validate and print SI contracts without running or creating output')
     parser.add_argument('--resume', type=Path, help='existing run directory; uses only its saved inputs')
     parser.add_argument('--test-passages', type=int, choices=(3, 5), help='total expected intervals, not additional intervals')
+    parser.add_argument('--benchmark-us', type=float, help='new-run development cost/validity check, at most 2 us; not a passage study')
     args = parser.parse_args(argv)
+    if args.preflight and (args.resume or args.out or args.benchmark_us or args.test_passages):
+        parser.error('--preflight accepts only --case and --calibration')
+    if args.benchmark_us is not None and (args.test_passages is not None or args.resume):
+        parser.error('--benchmark-us cannot be combined with --test-passages or --resume')
     try:
         if args.resume:
             if args.case or args.calibration or args.out:
                 parser.error('--resume cannot be combined with new-run inputs/output')
-            result = resume_run(args.resume, args.test_passages or 5)
+            result = resume_run(args.resume, args.test_passages)
         else:
-            if args.out is None:
+            if args.out is None and not args.preflight:
                 parser.error('a new run needs --out')
             case = args.case or HERE / 'config.yaml'
             calibration = args.calibration or HERE / 'calib.json'
             case_text, calibration_text = case.read_text(), calibration.read_text()
+            if args.preflight:
+                config, calibrated = yaml.safe_load(case_text), json.loads(calibration_text)
+                resolved = resolve_case(config, calibrated)
+                build_solver(resolved, calibrated)  # check initialization as well as metadata
+                print(json.dumps(case_contract(config, resolved), indent=2, allow_nan=False))
+                return 0
             result = start_run(yaml.safe_load(case_text), json.loads(calibration_text), args.out,
                                args.test_passages or 3,
-                               dict(case_yaml=case_text, calibration_json=calibration_text))
+                               dict(case_yaml=case_text, calibration_json=calibration_text), benchmark_us=args.benchmark_us)
     except KeyboardInterrupt:
         print('Interrupted; resume uses the last complete checkpoint.', file=sys.stderr)
         return 130

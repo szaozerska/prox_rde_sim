@@ -1,0 +1,10 @@
+test_cli_outputs_new_json_and_markdown_and_rejects_overwrite_or_in_run_output (tests.test_window_report.SavedWindowTests.test_cli_outputs_new_json_and_markdown_and_rejects_overwrite_or_in_run_output) ... Report stopped: [Errno 17] File exists: '/var/folders/06/4mfw39l90p15785y1mn_4fsh0000gn/T/tmptpuc1h42/report'
+Report stopped: report output must be outside the saved run directory
+ok
+test_imports_do_not_read_cases_run_solver_or_render (tests.test_imports.ImportTests.test_imports_do_not_read_cases_run_solver_or_render) ... ok
+
+----------------------------------------------------------------------
+Ran 2 tests in 13.625s
+
+OK
+/var/folders/06/4mfw39l90p15785y1mn_4fsh0000gn/T/tmptpuc1h42/report

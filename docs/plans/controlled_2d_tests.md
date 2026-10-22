@@ -1,6 +1,6 @@
 # Controlled 2D investigation — execution plan
 
-October 22, 2026. Companion to master-plan revision 10.
+October 22, 2026. Companion to master-plan revision 13.
 **This session commits and pushes only `main`.** The separate session owns
 `3d-modelling` in its separate checkout. The final reference to that branch in
 the overnight instruction is interpreted in light of the explicit main-only
@@ -10,8 +10,10 @@ assignment; this session must not change, merge or push the other branch.
 
 C1–C4 and C5a are complete within their stated scopes. **C5b–e's declared
 quarter-length surrogate experiment is complete:** both meshes retain wall/middle
-shock-associated reaction through 10 us. **C6a initializer/benchmark is next;
-no engine run has been launched.** See the [new results and decision](../verification/c5_short_reaction.md).
+shock-associated reaction through 10 us. **C6a functional initializer/benchmark is complete:** 2 us, 556 steps, zero
+invalid states; 86 distinct passing tests and one opt-in skip. The latest instruction
+assigns sustained-wave studies to a separate chat; no three-interval engine
+study is launched here. See the [new results and decision](../verification/c5_short_reaction.md).
 This status supersedes earlier running/conditional language in the dated reviews
 below. No stable rotating-wave milestone is claimed.
 
@@ -295,7 +297,7 @@ must fail that check. Reuse matching completed CFD cases; do not rerun them or
 relax the physical-state checks. Solver and chemistry are unchanged.
 
 
-## Completed C5b–e gate and next C6a increment
+## C5b–e gate review that selected C6a (now completed)
 
 Both meshes complete the predeclared window with valid budgets and continuing
 near-wall/middle reaction. See [results](../verification/c5_short_reaction.md)
@@ -313,3 +315,17 @@ the bounded three-interval engine experiment or a separately verified source
 integration improvement; freeze chemistry in either path. An additional longer
 layer control is conditional on a specific new ambiguity, not an automatic sweep.
 The existing three/five-interval policy remains the engine study limit.
+
+## Latest assignment: functional work proceeds independently
+
+The user assigned the sustained-wave investigation to a separate chat. C6a is a
+functional initializer, persistence and bounded cost/validity check, not a
+survival test. It does not decide that RDE-001 is fixed. See the
+[C6a implementation and test review](../verification/c6a_functional_pipeline.md).
+F1 saved-window reporting is now implemented; see its [accounting review and
+results](../verification/f1_window_reporting.md). F2 contracts, F3 optional drag/torque and F4 saved-data workflow are implemented; see the [completion matrix](2d_workflow_completion.md) and [final acceptance](../verification/f4_workflow_completion.md).
+The separate study owns any C6 propagation experiment; preserve the three/five
+interval limits when that experiment is selected. No automatic longer layer
+control, integrator rewrite, chemistry change or parameter sweep is authorized
+by a passing benchmark. This assignment supersedes the earlier next-study
+suggestions above without deleting their evidence or qualifications.
