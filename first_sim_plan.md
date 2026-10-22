@@ -1,6 +1,15 @@
-# RDE simulation plan — revision 14
+# RDE simulation plan — revision 15
 
 **Status: reduced 2D software workflow F1–F4 complete. Full acceptance: 122 tests passed, no skips; 16 affected checks repeated after review, plus one new coupled-physics check (123 distinct passing tests). RDE-001 remains open. The radial-wall increment and matched 189.394 us comparison are also complete: 132 distinct verification tests passed, but sustained detonation was not restored in the original case. See [radial results](docs/verification/radial_closures.md). No CAD work.**
+
+**Final presentation increment complete:** produce unwrapped and cylinder-wrapped
+pressure/reaction GIFs from every saved time in final workflow reports. Mark the
+time limit rather than inventing an extinction time. Check native replenishment
+and unreacted inventory alongside wave fields; document the result and report-text
+corrections in [GIF/fuel review](docs/verification/propagation_gifs.md). Acceptance:
+137 tests passed, zero skips; both 96-frame GIFs visually and structurally checked. No new
+CFD campaign, physical retuning or CAD work in this increment.
+
 The [controlled-test plan](docs/plans/controlled_2d_tests.md) records three review
 passes and the C1–C6 increments. First verify multirow/direction equivalence and
 formed-profile propagation, then distinguish thin-layer survival from initiation.

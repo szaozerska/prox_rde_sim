@@ -352,3 +352,12 @@ still the default. The adiabatic drag closure saves native momentum sources and
 provides mean-radius wall torque with angular storage/flux checks. No coefficient
 is calibrated by default. It does not add radial dynamics, heat loss, centrifugal
 pressure split or curvature losses. See [F3 verification](docs/verification/f3_wall_friction.md).
+
+## Final propagation GIFs
+
+Final static workflow reports now include timed **unwrapped and wrapped GIFs**,
+each pairing pressure with reaction on fixed scales. The standalone command is
+`../.venv/bin/python animate.py --run runs/radial_active --out ../reports/radial_movie`
+from `rde_sim_starter`. See the [movies and fuel-balance explanation](docs/verification/propagation_gifs.md).
+This case continues to receive fresh mixture; it does not stop because fuel is
+exhausted. The saved window ends at 189.394 us with RDE-001 still open.

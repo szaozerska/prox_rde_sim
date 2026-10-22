@@ -1,0 +1,22 @@
+test_failed_encoder_cannot_leave_complete_marker (test_animate.AnimationTests.test_failed_encoder_cannot_leave_complete_marker) ... /Users/sgfx/Desktop/Projects/prox_rde_sim/rde_sim_starter/animate.py:85: PendingDeprecationWarning: The set_bad function will be deprecated in a future version. Use cmap.with_extremes(bad=...) or Colormap(bad=...) instead.
+  cmap.set_bad(cmap(0.)); cmap.set_under(cmap(0.))
+/Users/sgfx/Desktop/Projects/prox_rde_sim/rde_sim_starter/animate.py:85: PendingDeprecationWarning: The set_under function will be deprecated in a future version. Use cmap.with_extremes(under=...) or Colormap(under=...) instead.
+  cmap.set_bad(cmap(0.)); cmap.set_under(cmap(0.))
+ok
+test_native_end_to_end_gifs_readonly_zero_reaction_and_fuel_budget (test_animate.AnimationTests.test_native_end_to_end_gifs_readonly_zero_reaction_and_fuel_budget) ... ok
+test_surface_cells_conserve_mean_and_close_periodic_seam (test_animate.AnimationTests.test_surface_cells_conserve_mean_and_close_periodic_seam) ... ok
+test_timing_preserves_unequal_physical_intervals_and_endpoint_hold (test_animate.AnimationTests.test_timing_preserves_unequal_physical_intervals_and_endpoint_hold) ... ok
+test_corrupt_checkpoint_does_not_wait_forever (test_workflow.WatchTests.test_corrupt_checkpoint_does_not_wait_forever) ... Waiting for a coherent checkpoint: corrupt
+Waiting for a coherent checkpoint: corrupt
+ok
+test_refreshes_changed_checkpoints_and_stops_without_solver (test_workflow.WatchTests.test_refreshes_changed_checkpoints_and_stops_without_solver) ... Preview 1: committed step 1, 1 µs
+Preview 2: committed step 2, 2 µs
+ok
+test_comparison_records_confounds_and_refuses_nonoverlap (test_workflow.WorkflowTests.test_comparison_records_confounds_and_refuses_nonoverlap) ... ok
+test_end_to_end_preflight_run_resume_viewer_and_readonly_rejection (test_workflow.WorkflowTests.test_end_to_end_preflight_run_resume_viewer_and_readonly_rejection) ... ok
+test_failure_marks_incomplete_instead_of_success (test_workflow.WorkflowTests.test_failure_marks_incomplete_instead_of_success) ... ok
+
+----------------------------------------------------------------------
+Ran 9 tests in 39.802s
+
+OK

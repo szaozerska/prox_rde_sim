@@ -245,3 +245,14 @@ close to roundoff and independent source/ODE/restart tests pass. This narrows th
 claim to the tested simplified closures; radial dynamics, curvature calibration,
 reaction/spatial modeling, startup/refill and hardware-boundary mismatches remain
 open. The full-height plots and explicit assumptions are linked in the report.
+
+## Saved-run replenishment audit and final GIFs
+
+[The GIF/fuel review](propagation_gifs.md) checks the completed radial-active
+native histories: initial unreacted mixture 15.3509 mg, incoming fresh mixture
+49.8683 mg, reacted mixture 15.5755 mg, final unreacted mixture 49.6436 mg.
+Late mean injection is 267.495 g/s versus the 268.65 g/s experimental reference.
+The run stops at its configured time limit, not an empty reservoir. This rules
+out global fuel exhaustion/gross missing feed as a sufficient explanation; it
+does not validate local refill or the state of mixture encountered by the shock.
+Both timed pressure/reaction GIFs cover all 96 saved fields through 189.394 us.

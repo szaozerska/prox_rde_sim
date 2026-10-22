@@ -119,7 +119,9 @@ def write_data(data, destination, comparison=None):
     destination=Path(destination);report=data['report']
     (destination/'report.json').write_text(json.dumps(report,default=_json_default,indent=2,allow_nan=False)+'\n')
     extra=['','## Workflow qualifications','',report['radial_physics']['qualification'],
-        'Radial momentum, centrifugal pressure split, curvature loss and heat loss are not implemented.',
+        'Resolved radial momentum and curvature losses are absent. Enabled closures: '
+        + ', '.join(f'{key}={report["radial_physics"][key]}' for key in
+            ('centrifugal_pressure_split', 'heat_loss', 'separate_inner_outer_wall_states', 'wall_drag')) + '.',
         'Spectral peaks are pressure oscillations, not a detected detonation mode.']
     reference=report['experimental_comparison']
     if reference['available']:

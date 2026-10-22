@@ -35,3 +35,12 @@ can be analyzed; exact restart requires their original source/environment.
 
 Latest follow-on request: implement and evaluate the independent report's radial
 closures after this workflow completion. This is a new physics increment, distinct from workflow completion. No CAD work.
+
+## Timed final GIFs and replenishment review
+
+Final static workflow reports now export every saved frame to wrapped/unwrapped
+pressure-and-reaction GIFs; `animate.py` also provides a standalone CLI.
+[Evidence and interpretation](../docs/verification/propagation_gifs.md): the
+radial-active run receives 49.87 mg of fresh mixture and ends with 49.64 mg
+unreacted, compared with 15.35 mg initially. No global fuel exhaustion.
+RDE-001 remains open; the time-limit endpoint is not a detected extinction.

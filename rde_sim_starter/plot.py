@@ -682,7 +682,7 @@ def plot_controlled(directory, destination):
     return report
 
 
-def plot_workflow(directory, destination, start, end, frames=12, segment_s=None, inertia=None, compare_runs=None):
+def plot_workflow(directory, destination, start, end, frames=12, segment_s=None, inertia=None, compare_runs=None, gifs=True):
     """Streaming saved-field viewer plus native window report; never advances CFD."""
     import html
     import numpy as np
@@ -816,7 +816,7 @@ def plot_workflow(directory, destination, start, end, frames=12, segment_s=None,
                 axes[0,1].step(tt,[row.get('wall_engine_torque_Nm',np.nan) for row in selected],where='pre')
                 axes[0,1].axhline(torque['mean_Nm'],ls='--',color='k',label='Selected-window mean');axes[0,1].legend()
             else: axes[0,1].text(.5,.5,'No modeled wall torque',ha='center',transform=axes[0,1].transAxes)
-            axes[0,1].set(ylabel='Modeled engine torque [N m]',title='Mean-radius constant-Cf closure, when enabled')
+            axes[0,1].set(ylabel='Modeled engine torque [N m]',title='Mean-radius wall closure, when enabled')
             for key,label in [('mdot_in','Inlet'),('mdot_out','Outlet')]:
                 axes[1,0].step(tt,[row.get(key,np.nan) for row in selected],where='pre',label=label)
             axes[1,0].legend();axes[1,0].set(ylabel='Native mass flow [kg/s]')
@@ -840,6 +840,11 @@ def plot_workflow(directory, destination, start, end, frames=12, segment_s=None,
                 fig.suptitle('Specified constant inertia, zero initial roll; no damping/control/stability prediction')
                 fig.savefig(destination/'roll.png',dpi=120)
             finally: plt.close(fig)
+        if gifs and len(steps) >= 2:
+            from animate import render_gifs
+            animation = render_gifs(directory, destination/'animations', start, end)
+            report['animations'] = dict(manifest='animations/manifest.json', frames=len(animation['frames']),
+                unwrapped='animations/unwrapped.gif', wrapped='animations/wrapped.gif')
         write_data(data,destination,comparison)
         images=['signals.png','loads.png','space_time.png']+(['wrapped.png'] if last is not None else [])+(['roll.png'] if roll['available'] else [])
         body=''.join(f'<figure><img src="{name}" alt="{name}" loading="lazy"></figure>' for name in images)
@@ -854,10 +859,12 @@ slider.oninput=show;let timer=null;document.getElementById('play').onclick=()=>{
 <style>body{font:16px system-ui;max-width:1200px;margin:2rem auto;padding:0 1rem;color:#172230;background:#fafafa}img{width:100%;height:auto}figure{margin:1.5rem 0}input{width:45%}button{padding:.5rem}aside{padding:1rem;background:#fff0d6}a{color:#1250a0}</style>
 <h1>Reduced 2D RDE saved-data report</h1>'''
         page+=f'<p>{html.escape(summary.get("run_mode","engine_intervals"))}; selected window {start*1e6:g}–{end*1e6:g} µs. Committed step {summary["steps"]}.</p>'
-        page+='<aside>RDE-001 remains unresolved on main. These outputs do not establish sustained detonation or validated engine performance. Radial momentum, centrifugal pressure split, curvature loss and heat loss are absent. Wrapped/head-end views are synthetic 2D displays.</aside>'
+        page+='<aside>RDE-001 remains unresolved on main. These outputs do not establish sustained detonation or validated engine performance. Resolved radial motion and curvature losses are absent. Enabled radial/wall closures are recorded in the report. Wrapped/head-end views are synthetic 2D displays.</aside>'
         page+='<p><a href="report.md">Report</a> · <a href="report.json">JSON and provenance</a> · <a href="history.csv">History CSV</a>'
+        if 'animations' in report:
+            page+=' · <a href="animations/unwrapped.gif">Unwrapped GIF</a> · <a href="animations/wrapped.gif">Wrapped GIF</a>'
         if comparison: page+=' · <a href="comparison.csv">Sensitivity comparison CSV</a>'
-        page+='</p><p>Playback uses equal display intervals; actual saved timestamps are shown. Re-run this read-only command into a new output directory to refresh a running case.</p>'+playback+body+'</html>'
+        page+='</p><p>The PNG slider uses equal display intervals. GIF timing follows saved physical intervals with a final hold; actual timestamps are shown. Re-run this read-only command into a new output directory to refresh a running case.</p>'+playback+body+'</html>'
         (destination/'index.html').write_text(page)
         (destination/'COMPLETE').write_text('Saved-data workflow completed. Physical validation remains separate.\n')
     except Exception:
@@ -906,7 +913,7 @@ def watch_workflow(directory, destination, start=0., end=None, frames=4, refresh
         identity=(summary['steps'],summary['status'])
         if finish>start and identity!=previous:
             name=f'update_{updates:04d}_step_{summary["steps"]:09d}'
-            plot_workflow(directory,destination/name,start,finish,frames=frames)
+            plot_workflow(directory,destination/name,start,finish,frames=frames,gifs=False)
             page=f'''<!doctype html><html lang="en"><meta charset="utf-8"><meta http-equiv="refresh" content="{refresh_seconds:g}"><title>RDE checkpoint preview</title><p>Read-only checkpoint preview: step {summary['steps']}, {summary['t']*1e6:g} µs; status {summary['status']}. CFD is not controlled by this page.</p><iframe title="Latest verified report" src="{name}/index.html" style="width:100%;height:90vh;border:0"></iframe></html>'''
             temporary=destination/'.index.tmp';temporary.write_text(page);temporary.replace(destination/'index.html')
             updates+=1;previous=identity
