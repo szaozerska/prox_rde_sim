@@ -1,0 +1,39 @@
+{
+  "command": [
+    "blockMesh"
+  ],
+  "image_id": "sha256:ecfef04e386b8b48bc61c8d14c09e1efc294935d7ba47d878740cd650afa82c6",
+  "input_sha256": {
+    "0/H2": "ed4eb24b803eec8c754b90da8e5e5ae92da992f34197fffdf479a2a88b867e73",
+    "0/N2": "6e01002f4defb239a259292b391bff7981e3b5e039da0dc888f65bd05235c92e",
+    "0/NH3": "666a5467b63e18875912a712a14cde992a65cf5a644c01f88d5801e8d9098710",
+    "0/O2": "bbb092c3491a083058f141e1a724e00f9637163b4a8ee68aec7c863856ed7ee3",
+    "0/T": "e52fd830c6802a5271f918c202166fd7a35c8caea27b362e4cab37454dfa2223",
+    "0/U": "503855d198e514139b0815fd7c51726442fd0204645598f0ef81d77a7e7353c5",
+    "0/Ydefault": "2429439a6d7c0d02bc88fcda1c89e0a8f0dcd4e5733c120c28e3b2b9ebecd9fb",
+    "0/p": "b39ae811d77ba0549dbf6032f935b516901bdfb9f9a3429fdb2c1efcbf3df4e8",
+    "constant/chemistryProperties": "a5c7769b24bf21e546e6eddb066b2920d80f57b3fc09eb21923abb74002383a6",
+    "constant/combustionProperties": "5030ddebb65cea8bddf0b5447d5d5033b79454325f4997f978f6f4bb5c4b35a0",
+    "constant/foam/reactions.foam": "63666879ecb0fb7fb3a748a9e824ba7aa462a1746adf75a50d9767efc9e8b2c9",
+    "constant/foam/species.foam": "01cf4223cdcde70e0b0e7325a7c5751f721a63c850608f863741250ca0662e5e",
+    "constant/foam/thermo.foam": "11322fb7927c1a3e74f47f948d05b900771694188c3df378aecd24e7471b3ee0",
+    "constant/momentumTransport": "75cbd7b05f5162e3dad6b1a8211aaace2e8e7a5cb5e2302a6af848cb245d4724",
+    "constant/polyMesh/boundary": "c8c57c5637595bba2788d2017d7ead66ca89c61a10e8f6fcd96ff183429379b6",
+    "constant/polyMesh/faces": "2149427285041adeba219024885acfa8107f486403bb58fd75ad3f29b18ed215",
+    "constant/polyMesh/neighbour": "394c0161a5c28949aca1286da71131d2dc97059ed932d40ae5cbb259d16020e9",
+    "constant/polyMesh/owner": "a54f4cc8a204e3507ba4d89ecd44a38b891183c36fc073ae17473ad5cb8838e6",
+    "constant/polyMesh/points": "b27ee29d685997e4678d074dcf677992ee18a2cbdfd979eccf3dc00bdc4c597a",
+    "constant/solverTypeProperties": "fc552a3ad97e1a30df46126d4dc8aecda444fc228ea467138e5e30ccbfacd5ec",
+    "constant/thermophysicalProperties": "5ed9da009de3c6ca915ab721bd14b912a8397ee7a3ab881cf0bdc8bf574a3a96",
+    "system/blockMeshDict": "63128a49f3395458aea45a366d220c901707364521ce0480d386eca5ccd2bc52",
+    "system/controlDict": "f05282947c031391c1141a47d653b636c7de31bd537f91ffbe056e725c09120c",
+    "system/decomposeParDict": "70201fd642869bac8f37b7788da105a76a901db9981a6a8711f30b23e93be53f",
+    "system/fvSchemes": "2494fc1eb76bd75dfba2b0a07ed51a41ea207a6a42e55d999d88147fef6fab06",
+    "system/fvSolution": "8a5eab139b83f046e414ec2d5659ebd4aeaaa3b358d911dcc54945fb0f069d39",
+    "system/setFieldsDict": "07c9c8387c4d7bdedc831763d4fb92902087835b07fcbffa2d98a5828b469578"
+  },
+  "wall_timeout_s": 120,
+  "status": "process_completed",
+  "returncode": 0,
+  "wall_time_s": 1.4121311159979086
+}

@@ -1,0 +1,1030 @@
+/*---------------------------------------------------------------------------*\
+  =========                 |
+  \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox
+   \\    /   O peration     | Website:  https://openfoam.org
+    \\  /    A nd           | Version:  8
+     \\/     M anipulation  |
+\*---------------------------------------------------------------------------*/
+Build  : 8-1c9b5879390b
+Exec   : detonationFoam_V2.0
+Date   : Oct 22 2026
+Time   : 08:51:22
+Host   : "3d8a97a24d12"
+PID    : 128
+I/O    : uncollated
+Case   : //case
+nProcs : 1
+sigFpe : Enabling floating point exception trapping (FOAM_SIGFPE).
+fileModificationChecking : Monitoring run-time modified files using timeStampMaster (fileModificationSkew 10)
+allowSystemOperations : Allowing user-supplied system call operations
+
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+Create time
+
+Create mesh for time = 0
+
+Reading thermophysical properties
+
+Selecting thermodynamics package 
+{
+    type            hePsiThermo;
+    mixture         multiComponentMixture;
+    transport       sutherland;
+    thermo          janaf;
+    energy          sensibleInternalEnergy;
+    equationOfState perfectGas;
+    specie          specie;
+}
+
+Reading field U
+
+Reading solverTypeProperties
+
+Creating turbulence model
+
+Selecting turbulence model type laminar
+Selecting laminar stress model Stokes
+Creating thermophysical transport model
+
+Selecting thermophysical transport type laminar
+Selecting default laminar thermophysical transport model Fourier
+Creating reaction model
+
+Selecting combustion model laminar
+Selecting chemistry solver 
+{
+    solver          ode;
+    method          loadBalanced;
+}
+
+StandardChemistryModel: Number of species = 33 and reactions = 251
+Selecting ODE solver seulex
+    using integrated reaction rate
+Selecting fluxScheme: Kurganov
+SW_position_limit = 1
+solverType = NS_Sutherland
+
+Starting time loop
+
+Max Courant Number =  0
+Time = 1e-10
+
+diagonal:  Solving for rho, Initial residual = 0, Final residual = 0, No Iterations 0
+diagonal:  Solving for rhoUx, Initial residual = 0, Final residual = 0, No Iterations 0
+DICPBiCGStab:  Solving for Ux, Initial residual = 2.71879573181e-08, Final residual = 4.10204102899e-24, No Iterations 1
+DILUPBiCGStab:  Solving for N2, Initial residual = 0.999983435896, Final residual = 1.41099810438e-16, No Iterations 1
+DILUPBiCGStab:  Solving for H, Initial residual = 1, Final residual = 1.28450412289e-16, No Iterations 1
+DILUPBiCGStab:  Solving for H2, Initial residual = 0.999999999693, Final residual = 7.86458574524e-17, No Iterations 1
+DILUPBiCGStab:  Solving for HE, Initial residual = 0, Final residual = 0, No Iterations 0
+DILUPBiCGStab:  Solving for O, Initial residual = 1, Final residual = 3.92342118125e-21, No Iterations 1
+DILUPBiCGStab:  Solving for OH, Initial residual = 1, Final residual = 6.32787758034e-17, No Iterations 1
+DILUPBiCGStab:  Solving for H2O, Initial residual = 1, Final residual = 1.28652298057e-16, No Iterations 1
+DILUPBiCGStab:  Solving for HO2, Initial residual = 1, Final residual = 3.05146864534e-17, No Iterations 1
+DILUPBiCGStab:  Solving for H2O2, Initial residual = 1, Final residual = 1.17209793012e-16, No Iterations 1
+DILUPBiCGStab:  Solving for O2, Initial residual = 0.999999992338, Final residual = 2.11526919485e-16, No Iterations 1
+DILUPBiCGStab:  Solving for N, Initial residual = 0.999999984228, Final residual = 4.97713415504e-17, No Iterations 1
+DILUPBiCGStab:  Solving for NH, Initial residual = 1, Final residual = 1.20683375927e-16, No Iterations 1
+DILUPBiCGStab:  Solving for NH2, Initial residual = 1, Final residual = 6.41763143371e-17, No Iterations 1
+DILUPBiCGStab:  Solving for NH3, Initial residual = 0.999999993919, Final residual = 1.46576927774e-16, No Iterations 1
+DILUPBiCGStab:  Solving for NNH, Initial residual = 1, Final residual = 1.50503884745e-16, No Iterations 1
+DILUPBiCGStab:  Solving for N2H2, Initial residual = 1, Final residual = 1.7647781321e-16, No Iterations 1
+DILUPBiCGStab:  Solving for N2H3, Initial residual = 1, Final residual = 5.71718231862e-17, No Iterations 1
+DILUPBiCGStab:  Solving for N2H4, Initial residual = 1, Final residual = 3.74347803521e-17, No Iterations 1
+DILUPBiCGStab:  Solving for H2NN, Initial residual = 0.99999999994, Final residual = 1.56103959074e-16, No Iterations 1
+DILUPBiCGStab:  Solving for NO, Initial residual = 0.999999999998, Final residual = 1.09628516242e-16, No Iterations 1
+DILUPBiCGStab:  Solving for N2O, Initial residual = 1, Final residual = 2.05787747533e-17, No Iterations 1
+DILUPBiCGStab:  Solving for NO2, Initial residual = 0.999999981541, Final residual = 5.24220330837e-17, No Iterations 1
+DILUPBiCGStab:  Solving for HNO, Initial residual = 1, Final residual = 1.58976173901e-16, No Iterations 1
+DILUPBiCGStab:  Solving for HON, Initial residual = 0.999380995453, Final residual = 7.15314663643e-17, No Iterations 1
+DILUPBiCGStab:  Solving for HONO, Initial residual = 0.999935664861, Final residual = 8.92139956148e-17, No Iterations 1
+DILUPBiCGStab:  Solving for H2NO, Initial residual = 1, Final residual = 8.87014599143e-17, No Iterations 1
+DILUPBiCGStab:  Solving for HNOH, Initial residual = 0.999999999999, Final residual = 1.28504037557e-16, No Iterations 1
+DILUPBiCGStab:  Solving for NH2OH, Initial residual = 0.999999999976, Final residual = 1.31181629757e-16, No Iterations 1
+DILUPBiCGStab:  Solving for HNO2, Initial residual = 0.996608838356, Final residual = 7.34754196169e-17, No Iterations 1
+DILUPBiCGStab:  Solving for HONO2, Initial residual = 0.00309438736423, Final residual = 1.83104314462e-19, No Iterations 1
+DILUPBiCGStab:  Solving for NO3, Initial residual = 0.0184780957777, Final residual = 2.01911581576e-18, No Iterations 1
+DILUPBiCGStab:  Solving for HNO3, Initial residual = 0.988297645477, Final residual = 1.33818951146e-16, No Iterations 1
+diagonal:  Solving for rhoE, Initial residual = 0, Final residual = 0, No Iterations 0
+DICPBiCGStab:  Solving for e, Initial residual = 4.11625853605e-10, Final residual = 4.46871175845e-26, No Iterations 1
+min/max(p) = 101325, 9119178.74501
+min/max(T) = 300, 1999.98428691
+Leading shock location = 0.005125 m
+
+ExecutionTime = 0.28 s
+
+ClockTime = 0 s
+
+Max Courant Number =  0
+Time = 2e-10
+
+diagonal:  Solving for rho, Initial residual = 0, Final residual = 0, No Iterations 0
+diagonal:  Solving for rhoUx, Initial residual = 0, Final residual = 0, No Iterations 0
+DICPBiCGStab:  Solving for Ux, Initial residual = 2.91430174253e-08, Final residual = 5.14140597595e-24, No Iterations 1
+DILUPBiCGStab:  Solving for N2, Initial residual = 0.311140977265, Final residual = 3.17533832754e-17, No Iterations 1
+DILUPBiCGStab:  Solving for H, Initial residual = 0.324469909008, Final residual = 2.40331263217e-17, No Iterations 1
+DILUPBiCGStab:  Solving for H2, Initial residual = 0.336253842812, Final residual = 5.31269644201e-17, No Iterations 1
+DILUPBiCGStab:  Solving for HE, Initial residual = 0, Final residual = 0, No Iterations 0
+DILUPBiCGStab:  Solving for O, Initial residual = 0.575403481591, Final residual = 3.83144396674e-17, No Iterations 1
+DILUPBiCGStab:  Solving for OH, Initial residual = 0.576380974556, Final residual = 9.19479999519e-17, No Iterations 1
+DILUPBiCGStab:  Solving for H2O, Initial residual = 0.810917861489, Final residual = 5.52089590357e-17, No Iterations 1
+DILUPBiCGStab:  Solving for HO2, Initial residual = 0.328962299472, Final residual = 6.27118734787e-17, No Iterations 1
+DILUPBiCGStab:  Solving for H2O2, Initial residual = 0.592909832045, Final residual = 1.96907047949e-17, No Iterations 1
+DILUPBiCGStab:  Solving for O2, Initial residual = 0.330858454508, Final residual = 1.33581324787e-16, No Iterations 1
+DILUPBiCGStab:  Solving for N, Initial residual = 0.809046251834, Final residual = 8.94149044216e-17, No Iterations 1
+DILUPBiCGStab:  Solving for NH, Initial residual = 0.736160435721, Final residual = 3.56648343066e-17, No Iterations 1
+DILUPBiCGStab:  Solving for NH2, Initial residual = 0.328327962195, Final residual = 9.05395602545e-18, No Iterations 1
+DILUPBiCGStab:  Solving for NH3, Initial residual = 0.328480028642, Final residual = 1.70239990962e-17, No Iterations 1
+DILUPBiCGStab:  Solving for NNH, Initial residual = 0.307179236629, Final residual = 5.80634556008e-17, No Iterations 1
+DILUPBiCGStab:  Solving for N2H2, Initial residual = 0.807232250623, Final residual = 3.55643765773e-17, No Iterations 1
+DILUPBiCGStab:  Solving for N2H3, Initial residual = 0.582369108524, Final residual = 7.01995482752e-17, No Iterations 1
+DILUPBiCGStab:  Solving for N2H4, Initial residual = 0.796725578641, Final residual = 1.78983714684e-16, No Iterations 1
+DILUPBiCGStab:  Solving for H2NN, Initial residual = 0.790029231609, Final residual = 5.62159206198e-17, No Iterations 1
+DILUPBiCGStab:  Solving for NO, Initial residual = 0.829677017592, Final residual = 7.98530621658e-17, No Iterations 1
+DILUPBiCGStab:  Solving for N2O, Initial residual = 0.377817543648, Final residual = 3.1373942801e-18, No Iterations 1
+DILUPBiCGStab:  Solving for NO2, Initial residual = 0.851718879215, Final residual = 2.03165898705e-17, No Iterations 1
+DILUPBiCGStab:  Solving for HNO, Initial residual = 0.594348603945, Final residual = 7.50525363697e-17, No Iterations 1
+DILUPBiCGStab:  Solving for HON, Initial residual = 0.866467593347, Final residual = 9.9882251082e-17, No Iterations 1
+DILUPBiCGStab:  Solving for HONO, Initial residual = 0.911223591732, Final residual = 4.13994626732e-17, No Iterations 1
+DILUPBiCGStab:  Solving for H2NO, Initial residual = 0.594028820227, Final residual = 3.85004784119e-17, No Iterations 1
+DILUPBiCGStab:  Solving for HNOH, Initial residual = 0.823121442735, Final residual = 2.59214702149e-16, No Iterations 1
+DILUPBiCGStab:  Solving for NH2OH, Initial residual = 0.839514619896, Final residual = 5.34034162697e-17, No Iterations 1
+DILUPBiCGStab:  Solving for HNO2, Initial residual = 0.906011432653, Final residual = 4.82120884082e-17, No Iterations 1
+DILUPBiCGStab:  Solving for HONO2, Initial residual = 0.345791152615, Final residual = 1.52837774548e-17, No Iterations 1
+DILUPBiCGStab:  Solving for NO3, Initial residual = 0.534853377894, Final residual = 2.10624390007e-17, No Iterations 1
+DILUPBiCGStab:  Solving for HNO3, Initial residual = 0.890047619802, Final residual = 4.27577656293e-17, No Iterations 1
+diagonal:  Solving for rhoE, Initial residual = 0, Final residual = 0, No Iterations 0
+DICPBiCGStab:  Solving for e, Initial residual = 4.12087829134e-10, Final residual = 4.47783486403e-26, No Iterations 1
+min/max(p) = 101325, 9119107.42919
+min/max(T) = 300, 1999.96856923
+Leading shock location = 0.005125 m
+
+ExecutionTime = 0.5 s
+
+ClockTime = 1 s
+
+Max Courant Number =  4.60125514545e-07
+Time = 3e-10
+
+diagonal:  Solving for rho, Initial residual = 0, Final residual = 0, No Iterations 0
+diagonal:  Solving for rhoUx, Initial residual = 0, Final residual = 0, No Iterations 0
+DICPBiCGStab:  Solving for Ux, Initial residual = 2.98699739985e-08, Final residual = 7.1735128618e-25, No Iterations 1
+DILUPBiCGStab:  Solving for N2, Initial residual = 0.18433453857, Final residual = 2.79503762019e-17, No Iterations 1
+DILUPBiCGStab:  Solving for H, Initial residual = 0.193724703436, Final residual = 1.11441180727e-17, No Iterations 1
+DILUPBiCGStab:  Solving for H2, Initial residual = 0.206241313147, Final residual = 2.31399249056e-17, No Iterations 1
+DILUPBiCGStab:  Solving for HE, Initial residual = 0, Final residual = 0, No Iterations 0
+DILUPBiCGStab:  Solving for O, Initial residual = 0.357479594028, Final residual = 3.07942971333e-17, No Iterations 1
+DILUPBiCGStab:  Solving for OH, Initial residual = 0.358557612206, Final residual = 2.89658971136e-17, No Iterations 1
+DILUPBiCGStab:  Solving for H2O, Initial residual = 0.537654088614, Final residual = 1.05710468472e-16, No Iterations 1
+DILUPBiCGStab:  Solving for HO2, Initial residual = 0.196888574866, Final residual = 3.00183784008e-17, No Iterations 1
+DILUPBiCGStab:  Solving for H2O2, Initial residual = 0.377185737629, Final residual = 1.13760830731e-17, No Iterations 1
+DILUPBiCGStab:  Solving for O2, Initial residual = 0.198900792825, Final residual = 7.65432842257e-17, No Iterations 1
+DILUPBiCGStab:  Solving for N, Initial residual = 0.548837818359, Final residual = 3.28516631702e-17, No Iterations 1
+DILUPBiCGStab:  Solving for NH, Initial residual = 0.510169936982, Final residual = 5.60508983423e-17, No Iterations 1
+DILUPBiCGStab:  Solving for NH2, Initial residual = 0.196362555869, Final residual = 2.53042573328e-17, No Iterations 1
+DILUPBiCGStab:  Solving for NH3, Initial residual = 0.196517610009, Final residual = 6.79686565682e-18, No Iterations 1
+DILUPBiCGStab:  Solving for NNH, Initial residual = 0.180330015148, Final residual = 1.58689461471e-17, No Iterations 1
+DILUPBiCGStab:  Solving for N2H2, Initial residual = 0.54249413484, Final residual = 6.18955124305e-17, No Iterations 1
+DILUPBiCGStab:  Solving for N2H3, Initial residual = 0.36484976942, Final residual = 8.3284776924e-17, No Iterations 1
+DILUPBiCGStab:  Solving for N2H4, Initial residual = 0.541472481779, Final residual = 8.22561030427e-17, No Iterations 1
+DILUPBiCGStab:  Solving for H2NN, Initial residual = 0.548343174153, Final residual = 4.77738934804e-17, No Iterations 1
+DILUPBiCGStab:  Solving for NO, Initial residual = 0.557033884346, Final residual = 3.48010914895e-17, No Iterations 1
+DILUPBiCGStab:  Solving for N2O, Initial residual = 0.246743354287, Final residual = 2.03535639656e-17, No Iterations 1
+DILUPBiCGStab:  Solving for NO2, Initial residual = 0.678520990575, Final residual = 7.84728753667e-17, No Iterations 1
+DILUPBiCGStab:  Solving for HNO, Initial residual = 0.379302833442, Final residual = 2.12089125029e-17, No Iterations 1
+DILUPBiCGStab:  Solving for HON, Initial residual = 0.663201083184, Final residual = 1.41513167182e-16, No Iterations 1
+DILUPBiCGStab:  Solving for HONO, Initial residual = 0.764658990849, Final residual = 1.26681588216e-16, No Iterations 1
+DILUPBiCGStab:  Solving for H2NO, Initial residual = 0.378585909279, Final residual = 2.95698043907e-17, No Iterations 1
+DILUPBiCGStab:  Solving for HNOH, Initial residual = 0.548481902495, Final residual = 4.33391785333e-17, No Iterations 1
+DILUPBiCGStab:  Solving for NH2OH, Initial residual = 0.576501542799, Final residual = 5.2670240966e-17, No Iterations 1
+DILUPBiCGStab:  Solving for HNO2, Initial residual = 0.776056206212, Final residual = 1.22256166824e-16, No Iterations 1
+DILUPBiCGStab:  Solving for HONO2, Initial residual = 0.787177634457, Final residual = 7.65416391082e-17, No Iterations 1
+DILUPBiCGStab:  Solving for NO3, Initial residual = 0.808264330793, Final residual = 5.81117624825e-17, No Iterations 1
+DILUPBiCGStab:  Solving for HNO3, Initial residual = 0.784430619403, Final residual = 5.46849560382e-17, No Iterations 1
+diagonal:  Solving for rhoE, Initial residual = 0, Final residual = 0, No Iterations 0
+DICPBiCGStab:  Solving for e, Initial residual = 4.12527076339e-10, Final residual = 4.47795734366e-26, No Iterations 1
+min/max(p) = 101325, 9119036.07841
+min/max(T) = 300, 1999.95285241
+Leading shock location = 0.005125 m
+
+ExecutionTime = 0.77 s
+
+ClockTime = 1 s
+
+Max Courant Number =  9.20356422736e-07
+Time = 4e-10
+
+diagonal:  Solving for rho, Initial residual = 0, Final residual = 0, No Iterations 0
+diagonal:  Solving for rhoUx, Initial residual = 0, Final residual = 0, No Iterations 0
+DICPBiCGStab:  Solving for Ux, Initial residual = 3.02881131173e-08, Final residual = 7.18760646778e-34, No Iterations 1
+DILUPBiCGStab:  Solving for N2, Initial residual = 0.132222821054, Final residual = 1.83152454276e-17, No Iterations 1
+DILUPBiCGStab:  Solving for H, Initial residual = 0.138588475978, Final residual = 2.31661902465e-17, No Iterations 1
+DILUPBiCGStab:  Solving for H2, Initial residual = 0.151120791744, Final residual = 9.70305016528e-18, No Iterations 1
+DILUPBiCGStab:  Solving for HE, Initial residual = 0, Final residual = 0, No Iterations 0
+DILUPBiCGStab:  Solving for O, Initial residual = 0.253734171893, Final residual = 1.06585823746e-17, No Iterations 1
+DILUPBiCGStab:  Solving for OH, Initial residual = 0.254803075168, Final residual = 3.57285750772e-17, No Iterations 1
+DILUPBiCGStab:  Solving for H2O, Initial residual = 0.392022883495, Final residual = 1.17749783695e-17, No Iterations 1
+DILUPBiCGStab:  Solving for HO2, Initial residual = 0.140498151068, Final residual = 1.92708156903e-17, No Iterations 1
+DILUPBiCGStab:  Solving for H2O2, Initial residual = 0.273163000111, Final residual = 2.96866044872e-17, No Iterations 1
+DILUPBiCGStab:  Solving for O2, Initial residual = 0.142529311212, Final residual = 1.41384988403e-17, No Iterations 1
+DILUPBiCGStab:  Solving for N, Initial residual = 0.41446810668, Final residual = 1.16984433482e-16, No Iterations 1
+DILUPBiCGStab:  Solving for NH, Initial residual = 0.383795446356, Final residual = 9.82042307614e-17, No Iterations 1
+DILUPBiCGStab:  Solving for NH2, Initial residual = 0.140140187888, Final residual = 1.03235048684e-17, No Iterations 1
+DILUPBiCGStab:  Solving for NH3, Initial residual = 0.140290183679, Final residual = 1.45510946661e-17, No Iterations 1
+DILUPBiCGStab:  Solving for NNH, Initial residual = 0.128542320774, Final residual = 9.52652130411e-18, No Iterations 1
+DILUPBiCGStab:  Solving for N2H2, Initial residual = 0.39881798703, Final residual = 6.45546097391e-17, No Iterations 1
+DILUPBiCGStab:  Solving for N2H3, Initial residual = 0.260556766258, Final residual = 4.21572027249e-17, No Iterations 1
+DILUPBiCGStab:  Solving for N2H4, Initial residual = 0.400307380972, Final residual = 8.60453104311e-17, No Iterations 1
+DILUPBiCGStab:  Solving for H2NN, Initial residual = 0.411099529363, Final residual = 3.88108044443e-17, No Iterations 1
+DILUPBiCGStab:  Solving for NO, Initial residual = 0.411651537487, Final residual = 6.83410092595e-17, No Iterations 1
+DILUPBiCGStab:  Solving for N2O, Initial residual = 0.188441161393, Final residual = 1.09530556189e-17, No Iterations 1
+DILUPBiCGStab:  Solving for NO2, Initial residual = 0.527860456353, Final residual = 4.08770757121e-17, No Iterations 1
+DILUPBiCGStab:  Solving for HNO, Initial residual = 0.275755508763, Final residual = 3.14646056905e-17, No Iterations 1
+DILUPBiCGStab:  Solving for HON, Initial residual = 0.51116152793, Final residual = 1.53497021917e-17, No Iterations 1
+DILUPBiCGStab:  Solving for HONO, Initial residual = 0.607531176297, Final residual = 8.1601957271e-17, No Iterations 1
+DILUPBiCGStab:  Solving for H2NO, Initial residual = 0.27471829466, Final residual = 1.28211844787e-17, No Iterations 1
+DILUPBiCGStab:  Solving for HNOH, Initial residual = 0.402229124657, Final residual = 4.19817511166e-17, No Iterations 1
+DILUPBiCGStab:  Solving for NH2OH, Initial residual = 0.431803997445, Final residual = 3.74092437057e-17, No Iterations 1
+DILUPBiCGStab:  Solving for HNO2, Initial residual = 0.617274827687, Final residual = 3.7651324662e-17, No Iterations 1
+DILUPBiCGStab:  Solving for HONO2, Initial residual = 0.741235684861, Final residual = 4.79043644384e-17, No Iterations 1
+DILUPBiCGStab:  Solving for NO3, Initial residual = 0.714219045361, Final residual = 4.6389665825e-17, No Iterations 1
+DILUPBiCGStab:  Solving for HNO3, Initial residual = 0.627251801761, Final residual = 7.1822131026e-17, No Iterations 1
+diagonal:  Solving for rhoE, Initial residual = 0, Final residual = 0, No Iterations 0
+DICPBiCGStab:  Solving for e, Initial residual = 4.12944067414e-10, Final residual = 8.93869985228e-26, No Iterations 1
+min/max(p) = 101325, 9118964.71392
+min/max(T) = 300, 1999.93714092
+Leading shock location = 0.005125 m
+
+ExecutionTime = 0.99 s
+
+ClockTime = 1 s
+
+Max Courant Number =  1.38063117129e-06
+Time = 5e-10
+
+diagonal:  Solving for rho, Initial residual = 0, Final residual = 0, No Iterations 0
+diagonal:  Solving for rhoUx, Initial residual = 0, Final residual = 0, No Iterations 0
+DICPBiCGStab:  Solving for Ux, Initial residual = 3.05813303052e-08, Final residual = 2.07319836644e-24, No Iterations 1
+DILUPBiCGStab:  Solving for N2, Initial residual = 0.103897973567, Final residual = 1.28242593497e-17, No Iterations 1
+DILUPBiCGStab:  Solving for H, Initial residual = 0.108327151482, Final residual = 5.6033242336e-18, No Iterations 1
+DILUPBiCGStab:  Solving for H2, Initial residual = 0.12069357439, Final residual = 4.91505859287e-18, No Iterations 1
+DILUPBiCGStab:  Solving for HE, Initial residual = 0, Final residual = 0, No Iterations 0
+DILUPBiCGStab:  Solving for O, Initial residual = 0.194585494641, Final residual = 1.55235356995e-17, No Iterations 1
+DILUPBiCGStab:  Solving for OH, Initial residual = 0.195622840015, Final residual = 9.08671471435e-18, No Iterations 1
+DILUPBiCGStab:  Solving for H2O, Initial residual = 0.305719577103, Final residual = 7.16089281775e-17, No Iterations 1
+DILUPBiCGStab:  Solving for HO2, Initial residual = 0.109224925846, Final residual = 7.4888263776e-18, No Iterations 1
+DILUPBiCGStab:  Solving for H2O2, Initial residual = 0.21324236707, Final residual = 6.06271250066e-18, No Iterations 1
+DILUPBiCGStab:  Solving for O2, Initial residual = 0.111258577576, Final residual = 1.01012631616e-17, No Iterations 1
+DILUPBiCGStab:  Solving for N, Initial residual = 0.337753786494, Final residual = 3.77624839106e-17, No Iterations 1
+DILUPBiCGStab:  Solving for NH, Initial residual = 0.306267664504, Final residual = 1.57909750536e-17, No Iterations 1
+DILUPBiCGStab:  Solving for NH2, Initial residual = 0.1090528682, Final residual = 4.01405722049e-18, No Iterations 1
+DILUPBiCGStab:  Solving for NH3, Initial residual = 0.109196530345, Final residual = 1.22535506514e-17, No Iterations 1
+DILUPBiCGStab:  Solving for NNH, Initial residual = 0.100723865295, Final residual = 3.35833507972e-18, No Iterations 1
+DILUPBiCGStab:  Solving for N2H2, Initial residual = 0.312955347741, Final residual = 6.5996834262e-18, No Iterations 1
+DILUPBiCGStab:  Solving for N2H3, Initial residual = 0.200744650087, Final residual = 2.18312933875e-17, No Iterations 1
+DILUPBiCGStab:  Solving for N2H4, Initial residual = 0.315323443486, Final residual = 1.66357991945e-17, No Iterations 1
+DILUPBiCGStab:  Solving for H2NN, Initial residual = 0.327448322271, Final residual = 3.09372007939e-17, No Iterations 1
+DILUPBiCGStab:  Solving for NO, Initial residual = 0.325256556324, Final residual = 2.89434597094e-17, No Iterations 1
+DILUPBiCGStab:  Solving for N2O, Initial residual = 0.154764393011, Final residual = 1.08356359886e-17, No Iterations 1
+DILUPBiCGStab:  Solving for NO2, Initial residual = 0.425778041867, Final residual = 5.68120182462e-17, No Iterations 1
+DILUPBiCGStab:  Solving for HNO, Initial residual = 0.216235144504, Final residual = 9.58100252851e-18, No Iterations 1
+DILUPBiCGStab:  Solving for HON, Initial residual = 0.410643598218, Final residual = 3.93635502996e-18, No Iterations 1
+DILUPBiCGStab:  Solving for HONO, Initial residual = 0.492743272074, Final residual = 1.1592771649e-16, No Iterations 1
+DILUPBiCGStab:  Solving for H2NO, Initial residual = 0.214923954469, Final residual = 2.34836444474e-17, No Iterations 1
+DILUPBiCGStab:  Solving for HNOH, Initial residual = 0.315381587962, Final residual = 4.63105102087e-17, No Iterations 1
+DILUPBiCGStab:  Solving for NH2OH, Initial residual = 0.343997137261, Final residual = 3.10417463759e-17, No Iterations 1
+DILUPBiCGStab:  Solving for HNO2, Initial residual = 0.500002869317, Final residual = 7.45032472455e-17, No Iterations 1
+DILUPBiCGStab:  Solving for HONO2, Initial residual = 0.633768538448, Final residual = 6.12243589939e-17, No Iterations 1
+DILUPBiCGStab:  Solving for NO3, Initial residual = 0.603486176463, Final residual = 2.81381452445e-17, No Iterations 1
+DILUPBiCGStab:  Solving for HNO3, Initial residual = 0.511004183844, Final residual = 9.03123983955e-17, No Iterations 1
+diagonal:  Solving for rhoE, Initial residual = 0, Final residual = 0, No Iterations 0
+DICPBiCGStab:  Solving for e, Initial residual = 4.13339531093e-10, Final residual = 1.74597545033e-28, No Iterations 1
+min/max(p) = 101325, 9118893.35343
+min/max(T) = 300, 1999.92143857
+Leading shock location = 0.005125 m
+
+ExecutionTime = 1.25 s
+
+ClockTime = 1 s
+
+Max Courant Number =  1.84089266828e-06
+Time = 6e-10
+
+diagonal:  Solving for rho, Initial residual = 0, Final residual = 0, No Iterations 0
+diagonal:  Solving for rhoUx, Initial residual = 0, Final residual = 0, No Iterations 0
+DICPBiCGStab:  Solving for Ux, Initial residual = 3.08109554126e-08, Final residual = 2.12714247992e-24, No Iterations 1
+DILUPBiCGStab:  Solving for N2, Initial residual = 0.0859287622983, Final residual = 5.28931634082e-18, No Iterations 1
+DILUPBiCGStab:  Solving for H, Initial residual = 0.0892437124683, Final residual = 6.62494434929e-18, No Iterations 1
+DILUPBiCGStab:  Solving for H2, Initial residual = 0.101374787707, Final residual = 4.90642797553e-18, No Iterations 1
+DILUPBiCGStab:  Solving for HE, Initial residual = 0, Final residual = 0, No Iterations 0
+DILUPBiCGStab:  Solving for O, Initial residual = 0.156726546688, Final residual = 1.76909222262e-17, No Iterations 1
+DILUPBiCGStab:  Solving for OH, Initial residual = 0.157727021557, Final residual = 1.65324011171e-17, No Iterations 1
+DILUPBiCGStab:  Solving for H2O, Initial residual = 0.249379160097, Final residual = 1.98376542826e-17, No Iterations 1
+DILUPBiCGStab:  Solving for HO2, Initial residual = 0.0893443398925, Final residual = 1.63289426269e-17, No Iterations 1
+DILUPBiCGStab:  Solving for H2O2, Initial residual = 0.174514536742, Final residual = 1.96579038756e-17, No Iterations 1
+DILUPBiCGStab:  Solving for O2, Initial residual = 0.0913775398908, Final residual = 9.59681500988e-18, No Iterations 1
+DILUPBiCGStab:  Solving for N, Initial residual = 0.289383000628, Final residual = 1.58857703978e-17, No Iterations 1
+DILUPBiCGStab:  Solving for NH, Initial residual = 0.254460790809, Final residual = 2.82667243105e-17, No Iterations 1
+DILUPBiCGStab:  Solving for NH2, Initial residual = 0.0893634157173, Final residual = 4.9244557985e-18, No Iterations 1
+DILUPBiCGStab:  Solving for NH3, Initial residual = 0.0895006590488, Final residual = 3.85350596033e-17, No Iterations 1
+DILUPBiCGStab:  Solving for NNH, Initial residual = 0.0834115667196, Final residual = 8.35858368126e-18, No Iterations 1
+DILUPBiCGStab:  Solving for N2H2, Initial residual = 0.25662071678, Final residual = 2.22006577242e-17, No Iterations 1
+DILUPBiCGStab:  Solving for N2H3, Initial residual = 0.162256632274, Final residual = 1.83696373125e-17, No Iterations 1
+DILUPBiCGStab:  Solving for N2H4, Initial residual = 0.259369732825, Final residual = 2.31914802191e-17, No Iterations 1
+DILUPBiCGStab:  Solving for H2NN, Initial residual = 0.271944452071, Final residual = 2.13814047146e-17, No Iterations 1
+DILUPBiCGStab:  Solving for NO, Initial residual = 0.268674766686, Final residual = 4.37929779235e-17, No Iterations 1
+DILUPBiCGStab:  Solving for N2O, Initial residual = 0.132454904099, Final residual = 1.1566985141e-17, No Iterations 1
+DILUPBiCGStab:  Solving for NO2, Initial residual = 0.355314334266, Final residual = 3.38403859356e-17, No Iterations 1
+DILUPBiCGStab:  Solving for HNO, Initial residual = 0.177865642533, Final residual = 3.47225576013e-17, No Iterations 1
+DILUPBiCGStab:  Solving for HON, Initial residual = 0.341852313648, Final residual = 1.45212304011e-17, No Iterations 1
+DILUPBiCGStab:  Solving for HONO, Initial residual = 0.41080810819, Final residual = 5.64391091209e-17, No Iterations 1
+DILUPBiCGStab:  Solving for H2NO, Initial residual = 0.176312820517, Final residual = 1.89679837247e-17, No Iterations 1
+DILUPBiCGStab:  Solving for HNOH, Initial residual = 0.258526669832, Final residual = 7.10950222458e-17, No Iterations 1
+DILUPBiCGStab:  Solving for NH2OH, Initial residual = 0.285574136793, Final residual = 4.45388725761e-17, No Iterations 1
+DILUPBiCGStab:  Solving for HNO2, Initial residual = 0.416233233579, Final residual = 1.32035347515e-17, No Iterations 1
+DILUPBiCGStab:  Solving for HONO2, Initial residual = 0.541036091951, Final residual = 1.55374444583e-16, No Iterations 1
+DILUPBiCGStab:  Solving for NO3, Initial residual = 0.514988276436, Final residual = 3.35294621265e-17, No Iterations 1
+DILUPBiCGStab:  Solving for HNO3, Initial residual = 0.42799699711, Final residual = 4.76104417931e-17, No Iterations 1
+diagonal:  Solving for rhoE, Initial residual = 0, Final residual = 0, No Iterations 0
+DICPBiCGStab:  Solving for e, Initial residual = 4.13713908629e-10, Final residual = 1.4141683333e-32, No Iterations 1
+min/max(p) = 101325, 9118822.01197
+min/max(T) = 300, 1999.90574861
+Leading shock location = 0.005125 m
+
+ExecutionTime = 1.51 s
+
+ClockTime = 2 s
+
+Max Courant Number =  2.301087896e-06
+Time = 7e-10
+
+diagonal:  Solving for rho, Initial residual = 0, Final residual = 0, No Iterations 0
+diagonal:  Solving for rhoUx, Initial residual = 0, Final residual = 0, No Iterations 0
+DICPBiCGStab:  Solving for Ux, Initial residual = 3.1003299032e-08, Final residual = 3.04216911253e-24, No Iterations 1
+DILUPBiCGStab:  Solving for N2, Initial residual = 0.0733202453614, Final residual = 1.12485908322e-17, No Iterations 1
+DILUPBiCGStab:  Solving for H, Initial residual = 0.0761150000926, Final residual = 1.7660883777e-17, No Iterations 1
+DILUPBiCGStab:  Solving for H2, Initial residual = 0.0879810874246, Final residual = 7.90352181684e-22, No Iterations 1
+DILUPBiCGStab:  Solving for HE, Initial residual = 0, Final residual = 0, No Iterations 0
+DILUPBiCGStab:  Solving for O, Initial residual = 0.130560623945, Final residual = 1.11895596273e-17, No Iterations 1
+DILUPBiCGStab:  Solving for OH, Initial residual = 0.131523791515, Final residual = 1.51797994956e-17, No Iterations 1
+DILUPBiCGStab:  Solving for H2O, Initial residual = 0.209938233536, Final residual = 1.65921997767e-17, No Iterations 1
+DILUPBiCGStab:  Solving for HO2, Initial residual = 0.0755904772383, Final residual = 4.60396468281e-18, No Iterations 1
+DILUPBiCGStab:  Solving for H2O2, Initial residual = 0.147489777971, Final residual = 9.45528410031e-18, No Iterations 1
+DILUPBiCGStab:  Solving for O2, Initial residual = 0.077623475621, Final residual = 6.35131552556e-18, No Iterations 1
+DILUPBiCGStab:  Solving for N, Initial residual = 0.256303733729, Final residual = 1.51317745268e-17, No Iterations 1
+DILUPBiCGStab:  Solving for NH, Initial residual = 0.217573434142, Final residual = 1.65658753166e-17, No Iterations 1
+DILUPBiCGStab:  Solving for NH2, Initial residual = 0.0757995458259, Final residual = 2.0816671001e-18, No Iterations 1
+DILUPBiCGStab:  Solving for NH3, Initial residual = 0.0759306050732, Final residual = 3.91010617637e-18, No Iterations 1
+DILUPBiCGStab:  Solving for NNH, Initial residual = 0.0715969646427, Final residual = 6.54595483933e-18, No Iterations 1
+DILUPBiCGStab:  Solving for N2H2, Initial residual = 0.217046319248, Final residual = 1.14320968669e-17, No Iterations 1
+DILUPBiCGStab:  Solving for N2H3, Initial residual = 0.135526506528, Final residual = 3.99647116618e-18, No Iterations 1
+DILUPBiCGStab:  Solving for N2H4, Initial residual = 0.219986612655, Final residual = 1.89936807474e-17, No Iterations 1
+DILUPBiCGStab:  Solving for H2NN, Initial residual = 0.232637830335, Final residual = 2.19237205656e-17, No Iterations 1
+DILUPBiCGStab:  Solving for NO, Initial residual = 0.22893419231, Final residual = 2.93221033706e-17, No Iterations 1
+DILUPBiCGStab:  Solving for N2O, Initial residual = 0.116380403229, Final residual = 1.52707930194e-17, No Iterations 1
+DILUPBiCGStab:  Solving for NO2, Initial residual = 0.304494505028, Final residual = 1.03098535387e-17, No Iterations 1
+DILUPBiCGStab:  Solving for HNO, Initial residual = 0.151169442736, Final residual = 3.13180922067e-17, No Iterations 1
+DILUPBiCGStab:  Solving for HON, Initial residual = 0.292506188642, Final residual = 2.27329864629e-17, No Iterations 1
+DILUPBiCGStab:  Solving for HONO, Initial residual = 0.350754406168, Final residual = 1.79691059427e-17, No Iterations 1
+DILUPBiCGStab:  Solving for H2NO, Initial residual = 0.149399964256, Final residual = 1.66631734571e-17, No Iterations 1
+DILUPBiCGStab:  Solving for HNOH, Initial residual = 0.218603892404, Final residual = 1.5919745938e-17, No Iterations 1
+DILUPBiCGStab:  Solving for NH2OH, Initial residual = 0.244016374355, Final residual = 5.19129578635e-17, No Iterations 1
+DILUPBiCGStab:  Solving for HNO2, Initial residual = 0.35490749474, Final residual = 1.78296137465e-17, No Iterations 1
+DILUPBiCGStab:  Solving for HONO2, Initial residual = 0.467601141761, Final residual = 5.15654525768e-17, No Iterations 1
+DILUPBiCGStab:  Solving for NO3, Initial residual = 0.446600971145, Final residual = 3.62408148033e-17, No Iterations 1
+DILUPBiCGStab:  Solving for HNO3, Initial residual = 0.367103353898, Final residual = 4.16935523114e-17, No Iterations 1
+diagonal:  Solving for rhoE, Initial residual = 0, Final residual = 0, No Iterations 0
+DICPBiCGStab:  Solving for e, Initial residual = 4.14067821358e-10, Final residual = 4.4869037801e-26, No Iterations 1
+min/max(p) = 101325, 9118750.70253
+min/max(T) = 300, 1999.89007386
+Leading shock location = 0.005125 m
+
+ExecutionTime = 1.74 s
+
+ClockTime = 2 s
+
+Max Courant Number =  2.76116756012e-06
+Time = 8e-10
+
+diagonal:  Solving for rho, Initial residual = 0, Final residual = 0, No Iterations 0
+diagonal:  Solving for rhoUx, Initial residual = 0, Final residual = 0, No Iterations 0
+DICPBiCGStab:  Solving for Ux, Initial residual = 3.11715391359e-08, Final residual = 7.31610380738e-24, No Iterations 1
+DILUPBiCGStab:  Solving for N2, Initial residual = 0.0638143188345, Final residual = 1.27194821336e-17, No Iterations 1
+DILUPBiCGStab:  Solving for H, Initial residual = 0.0665248057789, Final residual = 6.33477511095e-18, No Iterations 1
+DILUPBiCGStab:  Solving for H2, Initial residual = 0.0781146779002, Final residual = 6.15176145795e-18, No Iterations 1
+DILUPBiCGStab:  Solving for HE, Initial residual = 0, Final residual = 0, No Iterations 0
+DILUPBiCGStab:  Solving for O, Initial residual = 0.111470294056, Final residual = 5.56990080182e-18, No Iterations 1
+DILUPBiCGStab:  Solving for OH, Initial residual = 0.112397399575, Final residual = 9.62987543466e-18, No Iterations 1
+DILUPBiCGStab:  Solving for H2O, Initial residual = 0.180881959756, Final residual = 9.29519111422e-18, No Iterations 1
+DILUPBiCGStab:  Solving for HO2, Initial residual = 0.0655095445353, Final residual = 2.49261180377e-18, No Iterations 1
+DILUPBiCGStab:  Solving for H2O2, Initial residual = 0.127582576606, Final residual = 2.95012287406e-17, No Iterations 1
+DILUPBiCGStab:  Solving for O2, Initial residual = 0.0675433516692, Final residual = 7.96986209075e-18, No Iterations 1
+DILUPBiCGStab:  Solving for N, Initial residual = 0.232078145203, Final residual = 1.10088408142e-17, No Iterations 1
+DILUPBiCGStab:  Solving for NH, Initial residual = 0.190037577951, Final residual = 1.33730501705e-17, No Iterations 1
+DILUPBiCGStab:  Solving for NH2, Initial residual = 0.0659036904347, Final residual = 5.40701253237e-18, No Iterations 1
+DILUPBiCGStab:  Solving for NH3, Initial residual = 0.0660289023721, Final residual = 7.33244622921e-18, No Iterations 1
+DILUPBiCGStab:  Solving for NNH, Initial residual = 0.0630158594739, Final residual = 5.18933281254e-18, No Iterations 1
+DILUPBiCGStab:  Solving for N2H2, Initial residual = 0.187815584039, Final residual = 1.5149899432e-17, No Iterations 1
+DILUPBiCGStab:  Solving for N2H3, Initial residual = 0.115938870622, Final residual = 1.23839790007e-17, No Iterations 1
+DILUPBiCGStab:  Solving for N2H4, Initial residual = 0.190862002858, Final residual = 1.50060313305e-17, No Iterations 1
+DILUPBiCGStab:  Solving for H2NN, Initial residual = 0.203405718698, Final residual = 1.87458439244e-17, No Iterations 1
+DILUPBiCGStab:  Solving for NO, Initial residual = 0.199560484184, Final residual = 1.89538749118e-17, No Iterations 1
+DILUPBiCGStab:  Solving for N2O, Initial residual = 0.104128766334, Final residual = 8.6140232813e-18, No Iterations 1
+DILUPBiCGStab:  Solving for NO2, Initial residual = 0.266339297705, Final residual = 2.10603494561e-17, No Iterations 1
+DILUPBiCGStab:  Solving for HNO, Initial residual = 0.131566795304, Final residual = 1.65886043299e-17, No Iterations 1
+DILUPBiCGStab:  Solving for HON, Initial residual = 0.255626317316, Final residual = 8.64981586501e-18, No Iterations 1
+DILUPBiCGStab:  Solving for HONO, Initial residual = 0.305321972501, Final residual = 3.13523887777e-17, No Iterations 1
+DILUPBiCGStab:  Solving for H2NO, Initial residual = 0.12960103478, Final residual = 1.48348706732e-17, No Iterations 1
+DILUPBiCGStab:  Solving for HNOH, Initial residual = 0.189100717296, Final residual = 1.05165351205e-17, No Iterations 1
+DILUPBiCGStab:  Solving for NH2OH, Initial residual = 0.212975517631, Final residual = 8.68928451064e-18, No Iterations 1
+DILUPBiCGStab:  Solving for HNO2, Initial residual = 0.308583435835, Final residual = 5.00118198244e-17, No Iterations 1
+DILUPBiCGStab:  Solving for HONO2, Initial residual = 0.409717524367, Final residual = 2.58637126976e-17, No Iterations 1
+DILUPBiCGStab:  Solving for NO3, Initial residual = 0.393153855948, Final residual = 3.67023881213e-17, No Iterations 1
+DILUPBiCGStab:  Solving for HNO3, Initial residual = 0.320947502731, Final residual = 6.82893627412e-18, No Iterations 1
+diagonal:  Solving for rhoE, Initial residual = 0, Final residual = 0, No Iterations 0
+DICPBiCGStab:  Solving for e, Initial residual = 4.14401737644e-10, Final residual = 5.50245528828e-30, No Iterations 1
+min/max(p) = 101325, 9118679.43645
+min/max(T) = 300, 1999.87441683
+Leading shock location = 0.005125 m
+
+ExecutionTime = 1.96 s
+
+ClockTime = 2 s
+
+Max Courant Number =  3.22108577748e-06
+Time = 9e-10
+
+diagonal:  Solving for rho, Initial residual = 0, Final residual = 0, No Iterations 0
+diagonal:  Solving for rhoUx, Initial residual = 0, Final residual = 0, No Iterations 0
+DICPBiCGStab:  Solving for Ux, Initial residual = 3.13230166805e-08, Final residual = 2.3857126875e-24, No Iterations 1
+DILUPBiCGStab:  Solving for N2, Initial residual = 0.0562422370724, Final residual = 2.59803022626e-18, No Iterations 1
+DILUPBiCGStab:  Solving for H, Initial residual = 0.0592055053165, Final residual = 3.60753278388e-18, No Iterations 1
+DILUPBiCGStab:  Solving for H2, Initial residual = 0.0705176031266, Final residual = 2.35029515981e-18, No Iterations 1
+DILUPBiCGStab:  Solving for HE, Initial residual = 0, Final residual = 0, No Iterations 0
+DILUPBiCGStab:  Solving for O, Initial residual = 0.0969725828653, Final residual = 1.28778015045e-17, No Iterations 1
+DILUPBiCGStab:  Solving for OH, Initial residual = 0.0978654821023, Final residual = 5.38539516875e-18, No Iterations 1
+DILUPBiCGStab:  Solving for H2O, Initial residual = 0.158635554385, Final residual = 1.31628862332e-17, No Iterations 1
+DILUPBiCGStab:  Solving for HO2, Initial residual = 0.0578037736188, Final residual = 2.63927276134e-18, No Iterations 1
+DILUPBiCGStab:  Solving for H2O2, Initial residual = 0.112318154911, Final residual = 2.10162964795e-17, No Iterations 1
+DILUPBiCGStab:  Solving for O2, Initial residual = 0.0598394715314, Final residual = 6.12671065418e-18, No Iterations 1
+DILUPBiCGStab:  Solving for N, Initial residual = 0.213283148541, Final residual = 3.0227638644e-17, No Iterations 1
+DILUPBiCGStab:  Solving for NH, Initial residual = 0.168725599497, Final residual = 1.51861318629e-17, No Iterations 1
+DILUPBiCGStab:  Solving for NH2, Initial residual = 0.0583757752491, Final residual = 2.64756251802e-18, No Iterations 1
+DILUPBiCGStab:  Solving for NH3, Initial residual = 0.058495507705, Final residual = 4.47211303841e-18, No Iterations 1
+DILUPBiCGStab:  Solving for NNH, Initial residual = 0.0565021320859, Final residual = 8.26993607362e-18, No Iterations 1
+DILUPBiCGStab:  Solving for N2H2, Initial residual = 0.16539025529, Final residual = 1.05765087731e-17, No Iterations 1
+DILUPBiCGStab:  Solving for N2H3, Initial residual = 0.10100516301, Final residual = 9.93462531258e-18, No Iterations 1
+DILUPBiCGStab:  Solving for N2H4, Initial residual = 0.168499317484, Final residual = 3.46998250448e-17, No Iterations 1
+DILUPBiCGStab:  Solving for H2NN, Initial residual = 0.180835010854, Final residual = 2.37618265106e-17, No Iterations 1
+DILUPBiCGStab:  Solving for NO, Initial residual = 0.176996936635, Final residual = 2.19590250655e-17, No Iterations 1
+DILUPBiCGStab:  Solving for N2O, Initial residual = 0.0944112932991, Final residual = 4.6923161497e-18, No Iterations 1
+DILUPBiCGStab:  Solving for NO2, Initial residual = 0.236723348608, Final residual = 4.11907254284e-17, No Iterations 1
+DILUPBiCGStab:  Solving for HNO, Initial residual = 0.116586259142, Final residual = 5.37132318212e-18, No Iterations 1
+DILUPBiCGStab:  Solving for HON, Initial residual = 0.227121202382, Final residual = 8.5794278316e-17, No Iterations 1
+DILUPBiCGStab:  Solving for HONO, Initial residual = 0.269953189725, Final residual = 1.44741375944e-17, No Iterations 1
+DILUPBiCGStab:  Solving for H2NO, Initial residual = 0.114441374304, Final residual = 8.01443801107e-18, No Iterations 1
+DILUPBiCGStab:  Solving for HNOH, Initial residual = 0.166441711066, Final residual = 4.7609370529e-17, No Iterations 1
+DILUPBiCGStab:  Solving for NH2OH, Initial residual = 0.18892020835, Final residual = 2.16341981453e-17, No Iterations 1
+DILUPBiCGStab:  Solving for HNO2, Initial residual = 0.272573705285, Final residual = 4.84649007244e-17, No Iterations 1
+DILUPBiCGStab:  Solving for HONO2, Initial residual = 0.363530156623, Final residual = 4.23144901477e-17, No Iterations 1
+DILUPBiCGStab:  Solving for NO3, Initial residual = 0.350579244246, Final residual = 3.38281673978e-17, No Iterations 1
+DILUPBiCGStab:  Solving for HNO3, Initial residual = 0.284922763448, Final residual = 2.56238100602e-17, No Iterations 1
+diagonal:  Solving for rhoE, Initial residual = 0, Final residual = 0, No Iterations 0
+DICPBiCGStab:  Solving for e, Initial residual = 4.14716221806e-10, Final residual = 3.4932458138e-28, No Iterations 1
+min/max(p) = 101325, 9118608.22376
+min/max(T) = 300, 1999.85877974
+Leading shock location = 0.005125 m
+
+ExecutionTime = 2.17 s
+
+ClockTime = 2 s
+
+Max Courant Number =  3.68079979659e-06
+Time = 1e-09
+
+diagonal:  Solving for rho, Initial residual = 0, Final residual = 0, No Iterations 0
+diagonal:  Solving for rhoUx, Initial residual = 0, Final residual = 0, No Iterations 0
+DICPBiCGStab:  Solving for Ux, Initial residual = 3.1462153122e-08, Final residual = 4.14415239793e-25, No Iterations 1
+DILUPBiCGStab:  Solving for N2, Initial residual = 0.0499409307692, Final residual = 5.05147522875e-18, No Iterations 1
+DILUPBiCGStab:  Solving for H, Initial residual = 0.0534298087342, Final residual = 2.92490661383e-18, No Iterations 1
+DILUPBiCGStab:  Solving for H2, Initial residual = 0.0644679113808, Final residual = 1.02429225e-17, No Iterations 1
+DILUPBiCGStab:  Solving for HE, Initial residual = 0, Final residual = 0, No Iterations 0
+DILUPBiCGStab:  Solving for O, Initial residual = 0.0856179232777, Final residual = 8.02160759994e-18, No Iterations 1
+DILUPBiCGStab:  Solving for OH, Initial residual = 0.0864786572005, Final residual = 6.44853382958e-18, No Iterations 1
+DILUPBiCGStab:  Solving for H2O, Initial residual = 0.141084921132, Final residual = 7.76360523945e-18, No Iterations 1
+DILUPBiCGStab:  Solving for HO2, Initial residual = 0.0517223672393, Final residual = 2.75490187286e-18, No Iterations 1
+DILUPBiCGStab:  Solving for H2O2, Initial residual = 0.100246820101, Final residual = 6.20829335063e-18, No Iterations 1
+DILUPBiCGStab:  Solving for O2, Initial residual = 0.0537609120959, Final residual = 5.06856514961e-18, No Iterations 1
+DILUPBiCGStab:  Solving for N, Initial residual = 0.198003188541, Final residual = 2.59430160068e-17, No Iterations 1
+DILUPBiCGStab:  Solving for NH, Initial residual = 0.151755448812, Final residual = 1.46101829975e-17, No Iterations 1
+DILUPBiCGStab:  Solving for NH2, Initial residual = 0.0524636418353, Final residual = 4.25807270383e-18, No Iterations 1
+DILUPBiCGStab:  Solving for NH3, Initial residual = 0.0525782662127, Final residual = 2.21836585963e-18, No Iterations 1
+DILUPBiCGStab:  Solving for NNH, Initial residual = 0.0513950927842, Final residual = 2.88140459871e-18, No Iterations 1
+DILUPBiCGStab:  Solving for N2H2, Initial residual = 0.147670298382, Final residual = 9.23025383147e-18, No Iterations 1
+DILUPBiCGStab:  Solving for N2H3, Initial residual = 0.0892685024578, Final residual = 2.45847183018e-18, No Iterations 1
+DILUPBiCGStab:  Solving for N2H4, Initial residual = 0.150817279717, Final residual = 3.76058528035e-18, No Iterations 1
+DILUPBiCGStab:  Solving for H2NN, Initial residual = 0.162886555007, Final residual = 2.79038655459e-17, No Iterations 1
+DILUPBiCGStab:  Solving for NO, Initial residual = 0.159137443265, Final residual = 9.17184542108e-18, No Iterations 1
+DILUPBiCGStab:  Solving for N2O, Initial residual = 0.0864732083461, Final residual = 2.63438833028e-17, No Iterations 1
+DILUPBiCGStab:  Solving for NO2, Initial residual = 0.213102427403, Final residual = 2.74518176859e-17, No Iterations 1
+DILUPBiCGStab:  Solving for HNO, Initial residual = 0.10478039759, Final residual = 1.02908831036e-17, No Iterations 1
+DILUPBiCGStab:  Solving for HON, Initial residual = 0.204476999499, Final residual = 6.79461997426e-18, No Iterations 1
+DILUPBiCGStab:  Solving for HONO, Initial residual = 0.241738771252, Final residual = 5.48372765019e-17, No Iterations 1
+DILUPBiCGStab:  Solving for H2NO, Initial residual = 0.102471129857, Final residual = 2.78513177335e-17, No Iterations 1
+DILUPBiCGStab:  Solving for HNOH, Initial residual = 0.148510561595, Final residual = 1.99357850589e-17, No Iterations 1
+DILUPBiCGStab:  Solving for NH2OH, Initial residual = 0.169737137907, Final residual = 8.00533646073e-18, No Iterations 1
+DILUPBiCGStab:  Solving for HNO2, Initial residual = 0.243886081432, Final residual = 1.81671070463e-17, No Iterations 1
+DILUPBiCGStab:  Solving for HONO2, Initial residual = 0.326091717267, Final residual = 2.06892325878e-17, No Iterations 1
+DILUPBiCGStab:  Solving for NO3, Initial residual = 0.31601363373, Final residual = 9.24777680666e-18, No Iterations 1
+DILUPBiCGStab:  Solving for HNO3, Initial residual = 0.256099504073, Final residual = 2.31032905746e-17, No Iterations 1
+diagonal:  Solving for rhoE, Initial residual = 0, Final residual = 0, No Iterations 0
+DICPBiCGStab:  Solving for e, Initial residual = 4.15011745003e-10, Final residual = 4.50474581772e-26, No Iterations 1
+min/max(p) = 101325, 9118537.07349
+min/max(T) = 300, 1999.84316462
+Leading shock location = 0.005125 m
+
+ExecutionTime = 2.38 s
+
+ClockTime = 2 s
+
+Max Courant Number =  4.14026974651e-06
+Time = 1.1e-09
+
+diagonal:  Solving for rho, Initial residual = 0, Final residual = 0, No Iterations 0
+diagonal:  Solving for rhoUx, Initial residual = 0, Final residual = 0, No Iterations 0
+DICPBiCGStab:  Solving for Ux, Initial residual = 3.15917778159e-08, Final residual = 2.66334224906e-24, No Iterations 1
+DILUPBiCGStab:  Solving for N2, Initial residual = 0.0445038160946, Final residual = 4.23600371555e-18, No Iterations 1
+DILUPBiCGStab:  Solving for H, Initial residual = 0.0487513290608, Final residual = 6.8495976375e-18, No Iterations 1
+DILUPBiCGStab:  Solving for H2, Initial residual = 0.0595221669505, Final residual = 4.51364903256e-18, No Iterations 1
+DILUPBiCGStab:  Solving for HE, Initial residual = 0, Final residual = 0, No Iterations 0
+DILUPBiCGStab:  Solving for O, Initial residual = 0.0765050397471, Final residual = 1.31504790084e-17, No Iterations 1
+DILUPBiCGStab:  Solving for OH, Initial residual = 0.0773356467741, Final residual = 5.03839023522e-18, No Iterations 1
+DILUPBiCGStab:  Solving for H2O, Initial residual = 0.1269036673, Final residual = 1.40368907595e-17, No Iterations 1
+DILUPBiCGStab:  Solving for HO2, Initial residual = 0.046800799781, Final residual = 4.62591081049e-18, No Iterations 1
+DILUPBiCGStab:  Solving for H2O2, Initial residual = 0.0904642230036, Final residual = 1.20849188501e-17, No Iterations 1
+DILUPBiCGStab:  Solving for O2, Initial residual = 0.0488429802595, Final residual = 1.33424330547e-17, No Iterations 1
+DILUPBiCGStab:  Solving for N, Initial residual = 0.185124815569, Final residual = 3.09337892784e-17, No Iterations 1
+DILUPBiCGStab:  Solving for NH, Initial residual = 0.137930367682, Final residual = 2.81001168904e-17, No Iterations 1
+DILUPBiCGStab:  Solving for NH2, Initial residual = 0.0477020417597, Final residual = 8.11640709445e-18, No Iterations 1
+DILUPBiCGStab:  Solving for NH3, Initial residual = 0.0478119211029, Final residual = 8.01884899379e-19, No Iterations 1
+DILUPBiCGStab:  Solving for NNH, Initial residual = 0.0472919429896, Final residual = 6.70062308679e-18, No Iterations 1
+DILUPBiCGStab:  Solving for N2H2, Initial residual = 0.133334345689, Final residual = 9.24443153615e-18, No Iterations 1
+DILUPBiCGStab:  Solving for N2H3, Initial residual = 0.0798204254499, Final residual = 6.20452790457e-18, No Iterations 1
+DILUPBiCGStab:  Solving for N2H4, Initial residual = 0.136503808167, Final residual = 5.614431933e-18, No Iterations 1
+DILUPBiCGStab:  Solving for H2NN, Initial residual = 0.148271933802, Final residual = 4.06422504271e-17, No Iterations 1
+DILUPBiCGStab:  Solving for NO, Initial residual = 0.144658887238, Final residual = 1.88473515811e-17, No Iterations 1
+DILUPBiCGStab:  Solving for N2O, Initial residual = 0.0798406830346, Final residual = 4.94275795618e-18, No Iterations 1
+DILUPBiCGStab:  Solving for NO2, Initial residual = 0.1938377888, Final residual = 1.90679258407e-17, No Iterations 1
+DILUPBiCGStab:  Solving for HNO, Initial residual = 0.0952465692413, Final residual = 1.39943656191e-17, No Iterations 1
+DILUPBiCGStab:  Solving for HON, Initial residual = 0.186078532857, Final residual = 1.25391904727e-17, No Iterations 1
+DILUPBiCGStab:  Solving for HONO, Initial residual = 0.218763713985, Final residual = 2.56727987951e-17, No Iterations 1
+DILUPBiCGStab:  Solving for H2NO, Initial residual = 0.0927857584782, Final residual = 1.69793925559e-17, No Iterations 1
+DILUPBiCGStab:  Solving for HNOH, Initial residual = 0.133978076142, Final residual = 7.97585093546e-18, No Iterations 1
+DILUPBiCGStab:  Solving for NH2OH, Initial residual = 0.154086265778, Final residual = 1.29493497525e-17, No Iterations 1
+DILUPBiCGStab:  Solving for HNO2, Initial residual = 0.220552889765, Final residual = 2.74278506579e-17, No Iterations 1
+DILUPBiCGStab:  Solving for HONO2, Initial residual = 0.295270796492, Final residual = 1.97933368262e-17, No Iterations 1
+DILUPBiCGStab:  Solving for NO3, Initial residual = 0.287463532088, Final residual = 1.48747008924e-17, No Iterations 1
+DILUPBiCGStab:  Solving for HNO3, Initial residual = 0.232553557585, Final residual = 2.5452494451e-18, No Iterations 1
+diagonal:  Solving for rhoE, Initial residual = 0, Final residual = 0, No Iterations 0
+DICPBiCGStab:  Solving for e, Initial residual = 4.15288775186e-10, Final residual = 3.49299650492e-28, No Iterations 1
+min/max(p) = 101325, 9118465.99381
+min/max(T) = 300, 1999.82757329
+Leading shock location = 0.005125 m
+
+ExecutionTime = 2.58 s
+
+ClockTime = 3 s
+
+Max Courant Number =  4.59945841101e-06
+Time = 1.2e-09
+
+diagonal:  Solving for rho, Initial residual = 0, Final residual = 0, No Iterations 0
+diagonal:  Solving for rhoUx, Initial residual = 0, Final residual = 0, No Iterations 0
+DICPBiCGStab:  Solving for Ux, Initial residual = 3.17137904621e-08, Final residual = 1.42751518944e-24, No Iterations 1
+DILUPBiCGStab:  Solving for N2, Initial residual = 0.0396629932669, Final residual = 5.83133876071e-18, No Iterations 1
+DILUPBiCGStab:  Solving for H, Initial residual = 0.044881185684, Final residual = 4.78918714958e-19, No Iterations 1
+DILUPBiCGStab:  Solving for H2, Initial residual = 0.055393049127, Final residual = 5.62178227205e-18, No Iterations 1
+DILUPBiCGStab:  Solving for HE, Initial residual = 0, Final residual = 0, No Iterations 0
+DILUPBiCGStab:  Solving for O, Initial residual = 0.0690449752244, Final residual = 4.69235597927e-18, No Iterations 1
+DILUPBiCGStab:  Solving for OH, Initial residual = 0.0698474042515, Final residual = 5.06037389489e-18, No Iterations 1
+DILUPBiCGStab:  Solving for H2O, Initial residual = 0.11521913105, Final residual = 6.93008583832e-18, No Iterations 1
+DILUPBiCGStab:  Solving for HO2, Initial residual = 0.0427362496031, Final residual = 4.2220059686e-18, No Iterations 1
+DILUPBiCGStab:  Solving for H2O2, Initial residual = 0.082377445868, Final residual = 1.01361391599e-17, No Iterations 1
+DILUPBiCGStab:  Solving for O2, Initial residual = 0.0447826960203, Final residual = 4.1490680217e-18, No Iterations 1
+DILUPBiCGStab:  Solving for N, Initial residual = 0.173978390528, Final residual = 1.99956530222e-17, No Iterations 1
+DILUPBiCGStab:  Solving for NH, Initial residual = 0.12645448543, Final residual = 1.93888240767e-17, No Iterations 1
+DILUPBiCGStab:  Solving for NH2, Initial residual = 0.0437878682079, Final residual = 1.94597438405e-18, No Iterations 1
+DILUPBiCGStab:  Solving for NH3, Initial residual = 0.0438933516069, Final residual = 6.93237961358e-18, No Iterations 1
+DILUPBiCGStab:  Solving for NNH, Initial residual = 0.0439324750102, Final residual = 6.78424816839e-18, No Iterations 1
+DILUPBiCGStab:  Solving for N2H2, Initial residual = 0.121510909933, Final residual = 6.23981543938e-18, No Iterations 1
+DILUPBiCGStab:  Solving for N2H3, Initial residual = 0.0720654893798, Final residual = 1.41748001576e-17, No Iterations 1
+DILUPBiCGStab:  Solving for N2H4, Initial residual = 0.124692391085, Final residual = 8.60555042996e-18, No Iterations 1
+DILUPBiCGStab:  Solving for H2NN, Initial residual = 0.136139091127, Final residual = 2.18988714901e-17, No Iterations 1
+DILUPBiCGStab:  Solving for NO, Initial residual = 0.13268962627, Final residual = 3.24725481549e-17, No Iterations 1
+DILUPBiCGStab:  Solving for N2O, Initial residual = 0.0741996733372, Final residual = 7.04125841478e-18, No Iterations 1
+DILUPBiCGStab:  Solving for NO2, Initial residual = 0.177832002703, Final residual = 5.21848029589e-18, No Iterations 1
+DILUPBiCGStab:  Solving for HNO, Initial residual = 0.0873932514083, Final residual = 2.84654228499e-17, No Iterations 1
+DILUPBiCGStab:  Solving for HON, Initial residual = 0.170846441759, Final residual = 2.85063364352e-17, No Iterations 1
+DILUPBiCGStab:  Solving for HONO, Initial residual = 0.199726820831, Final residual = 3.90489225718e-17, No Iterations 1
+DILUPBiCGStab:  Solving for H2NO, Initial residual = 0.0847921932317, Final residual = 6.35257938332e-18, No Iterations 1
+DILUPBiCGStab:  Solving for HNOH, Initial residual = 0.121968713137, Final residual = 9.21889326043e-18, No Iterations 1
+DILUPBiCGStab:  Solving for NH2OH, Initial residual = 0.141077381935, Final residual = 1.81070279539e-17, No Iterations 1
+DILUPBiCGStab:  Solving for HNO2, Initial residual = 0.201238869377, Final residual = 1.67704847678e-17, No Iterations 1
+DILUPBiCGStab:  Solving for HONO2, Initial residual = 0.269534088281, Final residual = 1.76960059691e-17, No Iterations 1
+DILUPBiCGStab:  Solving for NO3, Initial residual = 0.263523292771, Final residual = 4.30988763962e-17, No Iterations 1
+DILUPBiCGStab:  Solving for HNO3, Initial residual = 0.212978919055, Final residual = 2.09673668441e-17, No Iterations 1
+diagonal:  Solving for rhoE, Initial residual = 0, Final residual = 0, No Iterations 0
+DICPBiCGStab:  Solving for e, Initial residual = 4.15547900262e-10, Final residual = 8.97613268026e-26, No Iterations 1
+min/max(p) = 101325, 9118394.99218
+min/max(T) = 300, 1999.81200745
+Leading shock location = 0.005125 m
+
+ExecutionTime = 2.79 s
+
+ClockTime = 3 s
+
+Max Courant Number =  5.05833102451e-06
+Time = 1.3e-09
+
+diagonal:  Solving for rho, Initial residual = 0, Final residual = 0, No Iterations 0
+diagonal:  Solving for rhoUx, Initial residual = 0, Final residual = 0, No Iterations 0
+DICPBiCGStab:  Solving for Ux, Initial residual = 3.18295186786e-08, Final residual = 3.59845994451e-25, No Iterations 1
+DILUPBiCGStab:  Solving for N2, Initial residual = 0.0352290271926, Final residual = 1.80147656924e-18, No Iterations 1
+DILUPBiCGStab:  Solving for H, Initial residual = 0.0416242378931, Final residual = 2.63192505228e-18, No Iterations 1
+DILUPBiCGStab:  Solving for H2, Initial residual = 0.0518861454252, Final residual = 3.24003828544e-18, No Iterations 1
+DILUPBiCGStab:  Solving for HE, Initial residual = 0, Final residual = 0, No Iterations 0
+DILUPBiCGStab:  Solving for O, Initial residual = 0.0628370415819, Final residual = 1.3682604305e-18, No Iterations 1
+DILUPBiCGStab:  Solving for OH, Initial residual = 0.0636131126407, Final residual = 1.89319276257e-18, No Iterations 1
+DILUPBiCGStab:  Solving for H2O, Initial residual = 0.10543441472, Final residual = 5.53527919502e-18, No Iterations 1
+DILUPBiCGStab:  Solving for HO2, Initial residual = 0.0393228695433, Final residual = 3.28649759059e-18, No Iterations 1
+DILUPBiCGStab:  Solving for H2O2, Initial residual = 0.0755817784308, Final residual = 7.96714463832e-18, No Iterations 1
+DILUPBiCGStab:  Solving for O2, Initial residual = 0.0413740774449, Final residual = 2.04692269798e-18, No Iterations 1
+DILUPBiCGStab:  Solving for N, Initial residual = 0.164146280867, Final residual = 7.07569581879e-18, No Iterations 1
+DILUPBiCGStab:  Solving for NH, Initial residual = 0.116778592862, Final residual = 1.40529257437e-17, No Iterations 1
+DILUPBiCGStab:  Solving for NH2, Initial residual = 0.040515288055, Final residual = 2.49913275273e-18, No Iterations 1
+DILUPBiCGStab:  Solving for NH3, Initial residual = 0.040616707977, Final residual = 2.34306537222e-18, No Iterations 1
+DILUPBiCGStab:  Solving for NNH, Initial residual = 0.041140592459, Final residual = 1.55520137729e-18, No Iterations 1
+DILUPBiCGStab:  Solving for N2H2, Initial residual = 0.111602604088, Final residual = 1.05461165183e-17, No Iterations 1
+DILUPBiCGStab:  Solving for N2H3, Initial residual = 0.0655973545423, Final residual = 8.2152661694e-18, No Iterations 1
+DILUPBiCGStab:  Solving for N2H4, Initial residual = 0.11478850016, Final residual = 4.49541213158e-18, No Iterations 1
+DILUPBiCGStab:  Solving for H2NN, Initial residual = 0.125902904862, Final residual = 7.4526984447e-18, No Iterations 1
+DILUPBiCGStab:  Solving for NO, Initial residual = 0.122632701867, Final residual = 4.69446378793e-18, No Iterations 1
+DILUPBiCGStab:  Solving for N2O, Initial residual = 0.0693327796066, Final residual = 7.29999374289e-18, No Iterations 1
+DILUPBiCGStab:  Solving for NO2, Initial residual = 0.164324884293, Final residual = 2.75971911399e-17, No Iterations 1
+DILUPBiCGStab:  Solving for HNO, Initial residual = 0.0808169302829, Final residual = 4.89450539658e-18, No Iterations 1
+DILUPBiCGStab:  Solving for HON, Initial residual = 0.158034601689, Final residual = 6.79389187075e-18, No Iterations 1
+DILUPBiCGStab:  Solving for HONO, Initial residual = 0.183717610113, Final residual = 5.27790026158e-17, No Iterations 1
+DILUPBiCGStab:  Solving for H2NO, Initial residual = 0.0780856380488, Final residual = 1.24200705973e-17, No Iterations 1
+DILUPBiCGStab:  Solving for HNOH, Initial residual = 0.111882846944, Final residual = 9.68695617242e-18, No Iterations 1
+DILUPBiCGStab:  Solving for NH2OH, Initial residual = 0.130096137049, Final residual = 1.61587095383e-17, No Iterations 1
+DILUPBiCGStab:  Solving for HNO2, Initial residual = 0.185010964585, Final residual = 1.83651263177e-17, No Iterations 1
+DILUPBiCGStab:  Solving for HONO2, Initial residual = 0.247767451176, Final residual = 1.03949550053e-17, No Iterations 1
+DILUPBiCGStab:  Solving for NO3, Initial residual = 0.243182694781, Final residual = 4.45231797556e-18, No Iterations 1
+DILUPBiCGStab:  Solving for HNO3, Initial residual = 0.196462046808, Final residual = 4.03146524978e-17, No Iterations 1
+diagonal:  Solving for rhoE, Initial residual = 0, Final residual = 0, No Iterations 0
+DICPBiCGStab:  Solving for e, Initial residual = 4.15789488901e-10, Final residual = 9.01020006361e-26, No Iterations 1
+min/max(p) = 101325, 9118324.07553
+min/max(T) = 300, 1999.79646868
+Leading shock location = 0.005125 m
+
+ExecutionTime = 3 s
+
+ClockTime = 3 s
+
+Max Courant Number =  5.51685508768e-06
+Time = 1.4e-09
+
+diagonal:  Solving for rho, Initial residual = 0, Final residual = 0, No Iterations 0
+diagonal:  Solving for rhoUx, Initial residual = 0, Final residual = 0, No Iterations 0
+DICPBiCGStab:  Solving for Ux, Initial residual = 3.19399216112e-08, Final residual = 2.45252039984e-24, No Iterations 1
+DILUPBiCGStab:  Solving for N2, Initial residual = 0.031062914234, Final residual = 1.68325900152e-18, No Iterations 1
+DILUPBiCGStab:  Solving for H, Initial residual = 0.038843902716, Final residual = 1.61752404999e-18, No Iterations 1
+DILUPBiCGStab:  Solving for H2, Initial residual = 0.0488651012705, Final residual = 1.52671595577e-17, No Iterations 1
+DILUPBiCGStab:  Solving for HE, Initial residual = 0, Final residual = 0, No Iterations 0
+DILUPBiCGStab:  Solving for O, Initial residual = 0.0575994072159, Final residual = 1.69386442371e-17, No Iterations 1
+DILUPBiCGStab:  Solving for OH, Initial residual = 0.0583507964449, Final residual = 9.47556601975e-18, No Iterations 1
+DILUPBiCGStab:  Solving for H2O, Initial residual = 0.0971278217171, Final residual = 6.7562728067e-18, No Iterations 1
+DILUPBiCGStab:  Solving for HO2, Initial residual = 0.0364158461202, Final residual = 3.04345835491e-18, No Iterations 1
+DILUPBiCGStab:  Solving for H2O2, Initial residual = 0.0697916302224, Final residual = 4.00787013216e-18, No Iterations 1
+DILUPBiCGStab:  Solving for O2, Initial residual = 0.038472201452, Final residual = 2.42542036689e-18, No Iterations 1
+DILUPBiCGStab:  Solving for N, Initial residual = 0.155356934606, Final residual = 2.04180718414e-17, No Iterations 1
+DILUPBiCGStab:  Solving for NH, Initial residual = 0.108511773553, Final residual = 4.29690946446e-18, No Iterations 1
+DILUPBiCGStab:  Solving for NH2, Initial residual = 0.0377397032962, Final residual = 1.31925452194e-18, No Iterations 1
+DILUPBiCGStab:  Solving for NH3, Initial residual = 0.0378373744071, Final residual = 1.97792509991e-17, No Iterations 1
+DILUPBiCGStab:  Solving for NNH, Initial residual = 0.0387925216438, Final residual = 3.44043416008e-18, No Iterations 1
+DILUPBiCGStab:  Solving for N2H2, Initial residual = 0.103186557893, Final residual = 2.71162080949e-17, No Iterations 1
+DILUPBiCGStab:  Solving for N2H3, Initial residual = 0.060129342948, Final residual = 3.16166949696e-18, No Iterations 1
+DILUPBiCGStab:  Solving for N2H4, Initial residual = 0.106371017907, Final residual = 7.17719313412e-18, No Iterations 1
+DILUPBiCGStab:  Solving for H2NN, Initial residual = 0.11714866129, Final residual = 7.99804753302e-18, No Iterations 1
+DILUPBiCGStab:  Solving for NO, Initial residual = 0.114065858618, Final residual = 1.22930244655e-17, No Iterations 1
+DILUPBiCGStab:  Solving for N2O, Initial residual = 0.0650840550216, Final residual = 7.95750262321e-18, No Iterations 1
+DILUPBiCGStab:  Solving for NO2, Initial residual = 0.152774281935, Final residual = 1.73046055687e-17, No Iterations 1
+DILUPBiCGStab:  Solving for HNO, Initial residual = 0.0752330727915, Final residual = 1.67007839404e-18, No Iterations 1
+DILUPBiCGStab:  Solving for HON, Initial residual = 0.147112013584, Final residual = 3.31766806302e-18, No Iterations 1
+DILUPBiCGStab:  Solving for HONO, Initial residual = 0.170082057863, Final residual = 1.7072449148e-17, No Iterations 1
+DILUPBiCGStab:  Solving for H2NO, Initial residual = 0.0723804775555, Final residual = 9.94444391948e-18, No Iterations 1
+DILUPBiCGStab:  Solving for HNOH, Initial residual = 0.103296297332, Final residual = 3.89049986658e-18, No Iterations 1
+DILUPBiCGStab:  Solving for NH2OH, Initial residual = 0.120704908186, Final residual = 1.37667439211e-17, No Iterations 1
+DILUPBiCGStab:  Solving for HNO2, Initial residual = 0.1711998136, Final residual = 1.37444407232e-17, No Iterations 1
+DILUPBiCGStab:  Solving for HONO2, Initial residual = 0.229149181792, Final residual = 1.75185948109e-17, No Iterations 1
+DILUPBiCGStab:  Solving for NO3, Initial residual = 0.225701054526, Final residual = 1.23787999403e-17, No Iterations 1
+DILUPBiCGStab:  Solving for HNO3, Initial residual = 0.182346600129, Final residual = 8.64211570862e-18, No Iterations 1
+diagonal:  Solving for rhoE, Initial residual = 0, Final residual = 0, No Iterations 0
+DICPBiCGStab:  Solving for e, Initial residual = 4.16014032991e-10, Final residual = 3.60199961405e-28, No Iterations 1
+min/max(p) = 101325, 9118253.25027
+min/max(T) = 300, 1999.78095845
+Leading shock location = 0.005125 m
+
+ExecutionTime = 3.2 s
+
+ClockTime = 3 s
+
+Max Courant Number =  5.97500020008e-06
+Time = 1.5e-09
+
+diagonal:  Solving for rho, Initial residual = 0, Final residual = 0, No Iterations 0
+diagonal:  Solving for rhoUx, Initial residual = 0, Final residual = 0, No Iterations 0
+DICPBiCGStab:  Solving for Ux, Initial residual = 3.2045713072e-08, Final residual = 2.29160922689e-24, No Iterations 1
+DILUPBiCGStab:  Solving for N2, Initial residual = 0.0270517515982, Final residual = 2.90877066555e-18, No Iterations 1
+DILUPBiCGStab:  Solving for H, Initial residual = 0.0364416815948, Final residual = 4.48977188507e-18, No Iterations 1
+DILUPBiCGStab:  Solving for H2, Initial residual = 0.0462313492047, Final residual = 2.94861716347e-18, No Iterations 1
+DILUPBiCGStab:  Solving for HE, Initial residual = 0, Final residual = 0, No Iterations 0
+DILUPBiCGStab:  Solving for O, Initial residual = 0.0531282145217, Final residual = 5.41407316486e-19, No Iterations 1
+DILUPBiCGStab:  Solving for OH, Initial residual = 0.0538564521376, Final residual = 3.4815549702e-18, No Iterations 1
+DILUPBiCGStab:  Solving for H2O, Initial residual = 0.0899931834179, Final residual = 1.36472384989e-17, No Iterations 1
+DILUPBiCGStab:  Solving for HO2, Initial residual = 0.033910340275, Final residual = 5.14908438023e-18, No Iterations 1
+DILUPBiCGStab:  Solving for H2O2, Initial residual = 0.0647997585837, Final residual = 4.99279696731e-18, No Iterations 1
+DILUPBiCGStab:  Solving for O2, Initial residual = 0.0359721418795, Final residual = 6.24599595934e-18, No Iterations 1
+DILUPBiCGStab:  Solving for N, Initial residual = 0.14742528935, Final residual = 3.42537172611e-17, No Iterations 1
+DILUPBiCGStab:  Solving for NH, Initial residual = 0.101368369264, Final residual = 7.6322711657e-18, No Iterations 1
+DILUPBiCGStab:  Solving for NH2, Initial residual = 0.0353566220458, Final residual = 1.00999287196e-17, No Iterations 1
+DILUPBiCGStab:  Solving for NH3, Initial residual = 0.035450840848, Final residual = 2.86819388198e-18, No Iterations 1
+DILUPBiCGStab:  Solving for NNH, Initial residual = 0.0367985040554, Final residual = 3.18527863078e-18, No Iterations 1
+DILUPBiCGStab:  Solving for N2H2, Initial residual = 0.0959551996775, Final residual = 8.3019182194e-18, No Iterations 1
+DILUPBiCGStab:  Solving for N2H3, Initial residual = 0.0554534726651, Final residual = 1.32496273746e-17, No Iterations 1
+DILUPBiCGStab:  Solving for N2H4, Initial residual = 0.099133516506, Final residual = 9.45927642872e-18, No Iterations 1
+DILUPBiCGStab:  Solving for H2NN, Initial residual = 0.109574425599, Final residual = 1.26957210145e-17, No Iterations 1
+DILUPBiCGStab:  Solving for NO, Initial residual = 0.106682165501, Final residual = 3.92686642183e-18, No Iterations 1
+DILUPBiCGStab:  Solving for N2O, Initial residual = 0.0613382819709, Final residual = 7.46202070289e-18, No Iterations 1
+DILUPBiCGStab:  Solving for NO2, Initial residual = 0.142783671129, Final residual = 1.27985452607e-17, No Iterations 1
+DILUPBiCGStab:  Solving for HNO, Initial residual = 0.0704353878975, Final residual = 7.91931741617e-18, No Iterations 1
+DILUPBiCGStab:  Solving for HON, Initial residual = 0.137691159347, Final residual = 1.6123454343e-17, No Iterations 1
+DILUPBiCGStab:  Solving for HONO, Initial residual = 0.158339340725, Final residual = 2.1599976114e-17, No Iterations 1
+DILUPBiCGStab:  Solving for H2NO, Initial residual = 0.0674694957177, Final residual = 5.54424405224e-18, No Iterations 1
+DILUPBiCGStab:  Solving for HNOH, Initial residual = 0.0959006811245, Final residual = 1.0321608525e-17, No Iterations 1
+DILUPBiCGStab:  Solving for NH2OH, Initial residual = 0.112583516209, Final residual = 6.90592107467e-18, No Iterations 1
+DILUPBiCGStab:  Solving for HNO2, Initial residual = 0.159313922657, Final residual = 1.26103351147e-17, No Iterations 1
+DILUPBiCGStab:  Solving for HONO2, Initial residual = 0.213063477125, Final residual = 3.03606919386e-17, No Iterations 1
+DILUPBiCGStab:  Solving for NO3, Initial residual = 0.210524846775, Final residual = 2.28625104843e-17, No Iterations 1
+DILUPBiCGStab:  Solving for HNO3, Initial residual = 0.170149792309, Final residual = 2.00928101247e-17, No Iterations 1
+diagonal:  Solving for rhoE, Initial residual = 0, Final residual = 0, No Iterations 0
+DICPBiCGStab:  Solving for e, Initial residual = 4.16222039244e-10, Final residual = 1.10082236311e-29, No Iterations 1
+min/max(p) = 101325, 9118182.52246
+min/max(T) = 300, 1999.76547816
+Leading shock location = 0.005125 m
+
+ExecutionTime = 3.4 s
+
+ClockTime = 3 s
+
+Max Courant Number =  6.43273790821e-06
+Time = 1.6e-09
+
+diagonal:  Solving for rho, Initial residual = 0, Final residual = 0, No Iterations 0
+diagonal:  Solving for rhoUx, Initial residual = 0, Final residual = 0, No Iterations 0
+DICPBiCGStab:  Solving for Ux, Initial residual = 3.21474372112e-08, Final residual = 5.2625866428e-24, No Iterations 1
+DILUPBiCGStab:  Solving for N2, Initial residual = 0.0230998702265, Final residual = 2.01010814419e-18, No Iterations 1
+DILUPBiCGStab:  Solving for H, Initial residual = 0.0343447059442, Final residual = 6.9688659056e-19, No Iterations 1
+DILUPBiCGStab:  Solving for H2, Initial residual = 0.0439117797348, Final residual = 9.41397007865e-18, No Iterations 1
+DILUPBiCGStab:  Solving for HE, Initial residual = 0, Final residual = 0, No Iterations 0
+DILUPBiCGStab:  Solving for O, Initial residual = 0.0492724470783, Final residual = 6.32867024745e-18, No Iterations 1
+DILUPBiCGStab:  Solving for OH, Initial residual = 0.0499789223933, Final residual = 4.47338285385e-18, No Iterations 1
+DILUPBiCGStab:  Solving for H2O, Initial residual = 0.0838029566311, Final residual = 2.85827466347e-17, No Iterations 1
+DILUPBiCGStab:  Solving for HO2, Initial residual = 0.0317285848724, Final residual = 2.64914692951e-18, No Iterations 1
+DILUPBiCGStab:  Solving for H2O2, Initial residual = 0.0604521529877, Final residual = 3.51472420962e-18, No Iterations 1
+DILUPBiCGStab:  Solving for O2, Initial residual = 0.0337960631758, Final residual = 9.07440873372e-18, No Iterations 1
+DILUPBiCGStab:  Solving for N, Initial residual = 0.14021881708, Final residual = 2.79268341713e-17, No Iterations 1
+DILUPBiCGStab:  Solving for NH, Initial residual = 0.0951348723104, Final residual = 6.8151170678e-18, No Iterations 1
+DILUPBiCGStab:  Solving for NH2, Initial residual = 0.0332887061741, Final residual = 3.99431440431e-18, No Iterations 1
+DILUPBiCGStab:  Solving for NH3, Initial residual = 0.0333797511394, Final residual = 5.08039219923e-18, No Iterations 1
+DILUPBiCGStab:  Solving for NNH, Initial residual = 0.0350917252135, Final residual = 3.70046089854e-18, No Iterations 1
+DILUPBiCGStab:  Solving for N2H2, Initial residual = 0.0896795668904, Final residual = 6.10720344672e-18, No Iterations 1
+DILUPBiCGStab:  Solving for N2H3, Initial residual = 0.0514152290793, Final residual = 3.96095646977e-18, No Iterations 1
+DILUPBiCGStab:  Solving for N2H4, Initial residual = 0.0928478260843, Final residual = 4.78707515762e-18, No Iterations 1
+DILUPBiCGStab:  Solving for H2NN, Initial residual = 0.102955235882, Final residual = 1.39404903995e-17, No Iterations 1
+DILUPBiCGStab:  Solving for NO, Initial residual = 0.100253262614, Final residual = 3.1805519963e-18, No Iterations 1
+DILUPBiCGStab:  Solving for N2O, Initial residual = 0.0580081946351, Final residual = 7.43334196032e-18, No Iterations 1
+DILUPBiCGStab:  Solving for NO2, Initial residual = 0.134056608456, Final residual = 3.34023227603e-17, No Iterations 1
+DILUPBiCGStab:  Solving for HNO, Initial residual = 0.0662707308454, Final residual = 6.26883998895e-19, No Iterations 1
+DILUPBiCGStab:  Solving for HON, Initial residual = 0.129482983165, Final residual = 9.44374205642e-18, No Iterations 1
+DILUPBiCGStab:  Solving for HONO, Initial residual = 0.148128663156, Final residual = 1.09899671636e-17, No Iterations 1
+DILUPBiCGStab:  Solving for H2NO, Initial residual = 0.063198749462, Final residual = 5.39341737305e-18, No Iterations 1
+DILUPBiCGStab:  Solving for HNOH, Initial residual = 0.089466502507, Final residual = 1.11739815351e-17, No Iterations 1
+DILUPBiCGStab:  Solving for NH2OH, Initial residual = 0.105492298117, Final residual = 1.26391083006e-17, No Iterations 1
+DILUPBiCGStab:  Solving for HNO2, Initial residual = 0.148984909727, Final residual = 1.02277349688e-17, No Iterations 1
+DILUPBiCGStab:  Solving for HONO2, Initial residual = 0.199041550292, Final residual = 7.9612237074e-18, No Iterations 1
+DILUPBiCGStab:  Solving for NO3, Initial residual = 0.197233059606, Final residual = 4.74810726559e-17, No Iterations 1
+DILUPBiCGStab:  Solving for HNO3, Initial residual = 0.159509066298, Final residual = 1.14779484353e-17, No Iterations 1
+diagonal:  Solving for rhoE, Initial residual = 0, Final residual = 0, No Iterations 0
+DICPBiCGStab:  Solving for e, Initial residual = 4.16413810637e-10, Final residual = 6.98611418009e-28, No Iterations 1
+min/max(p) = 101325, 9118111.8978
+min/max(T) = 300, 1999.75002913
+Leading shock location = 0.005125 m
+
+ExecutionTime = 3.62 s
+
+ClockTime = 4 s
+
+Max Courant Number =  6.89004156705e-06
+Time = 1.7e-09
+
+diagonal:  Solving for rho, Initial residual = 0, Final residual = 0, No Iterations 0
+diagonal:  Solving for rhoUx, Initial residual = 0, Final residual = 0, No Iterations 0
+DICPBiCGStab:  Solving for Ux, Initial residual = 3.22455186434e-08, Final residual = 9.8247556581e-25, No Iterations 1
+DILUPBiCGStab:  Solving for N2, Initial residual = 0.0191163935078, Final residual = 2.64759923666e-18, No Iterations 1
+DILUPBiCGStab:  Solving for H, Initial residual = 0.0324978699201, Final residual = 6.50477217627e-18, No Iterations 1
+DILUPBiCGStab:  Solving for H2, Initial residual = 0.041850952028, Final residual = 3.69622478195e-18, No Iterations 1
+DILUPBiCGStab:  Solving for HE, Initial residual = 0, Final residual = 0, No Iterations 0
+DILUPBiCGStab:  Solving for O, Initial residual = 0.0459179072546, Final residual = 5.74452887961e-18, No Iterations 1
+DILUPBiCGStab:  Solving for OH, Initial residual = 0.0466038774121, Final residual = 7.7029097999e-18, No Iterations 1
+DILUPBiCGStab:  Solving for H2O, Initial residual = 0.0783845826758, Final residual = 4.40514485851e-18, No Iterations 1
+DILUPBiCGStab:  Solving for HO2, Initial residual = 0.0298116765739, Final residual = 2.48806950164e-18, No Iterations 1
+DILUPBiCGStab:  Solving for H2O2, Initial residual = 0.0566319900601, Final residual = 3.12024673686e-18, No Iterations 1
+DILUPBiCGStab:  Solving for O2, Initial residual = 0.0318850086094, Final residual = 2.39431214451e-18, No Iterations 1
+DILUPBiCGStab:  Solving for N, Initial residual = 0.133637945846, Final residual = 4.82591738302e-18, No Iterations 1
+DILUPBiCGStab:  Solving for NH, Initial residual = 0.0896485459111, Final residual = 1.88175931058e-17, No Iterations 1
+DILUPBiCGStab:  Solving for NH2, Initial residual = 0.0314775276326, Final residual = 5.07452987101e-18, No Iterations 1
+DILUPBiCGStab:  Solving for NH3, Initial residual = 0.0315656596155, Final residual = 7.50822719444e-18, No Iterations 1
+DILUPBiCGStab:  Solving for NNH, Initial residual = 0.0336213353358, Final residual = 6.44020266289e-18, No Iterations 1
+DILUPBiCGStab:  Solving for N2H2, Initial residual = 0.0841857620361, Final residual = 1.21498064407e-17, No Iterations 1
+DILUPBiCGStab:  Solving for N2H3, Initial residual = 0.0478974501388, Final residual = 1.62780117219e-18, No Iterations 1
+DILUPBiCGStab:  Solving for N2H4, Initial residual = 0.0873406303673, Final residual = 3.48612373018e-18, No Iterations 1
+DILUPBiCGStab:  Solving for H2NN, Initial residual = 0.0971200814077, Final residual = 6.06403467473e-18, No Iterations 1
+DILUPBiCGStab:  Solving for NO, Initial residual = 0.0946057943151, Final residual = 9.1244911823e-18, No Iterations 1
+DILUPBiCGStab:  Solving for N2O, Initial residual = 0.0550262879135, Final residual = 5.15328868165e-18, No Iterations 1
+DILUPBiCGStab:  Solving for NO2, Initial residual = 0.126367174854, Final residual = 6.82876106215e-18, No Iterations 1
+DILUPBiCGStab:  Solving for HNO, Initial residual = 0.0626230709889, Final residual = 2.19782295331e-18, No Iterations 1
+DILUPBiCGStab:  Solving for HON, Initial residual = 0.122267707097, Final residual = 1.09574356613e-17, No Iterations 1
+DILUPBiCGStab:  Solving for HONO, Initial residual = 0.139174353737, Final residual = 1.74189318625e-17, No Iterations 1
+DILUPBiCGStab:  Solving for H2NO, Initial residual = 0.0594515137587, Final residual = 4.75934192202e-18, No Iterations 1
+DILUPBiCGStab:  Solving for HNOH, Initial residual = 0.0838194910961, Final residual = 1.81812517058e-17, No Iterations 1
+DILUPBiCGStab:  Solving for NH2OH, Initial residual = 0.0992482875463, Final residual = 1.53879270706e-17, No Iterations 1
+DILUPBiCGStab:  Solving for HNO2, Initial residual = 0.139931601727, Final residual = 4.57098634478e-18, No Iterations 1
+DILUPBiCGStab:  Solving for HONO2, Initial residual = 0.186721219751, Final residual = 1.25157357961e-17, No Iterations 1
+DILUPBiCGStab:  Solving for NO3, Initial residual = 0.185500290579, Final residual = 1.56523811775e-18, No Iterations 1
+DILUPBiCGStab:  Solving for HNO3, Initial residual = 0.150147131989, Final residual = 2.3006289643e-17, No Iterations 1
+diagonal:  Solving for rhoE, Initial residual = 0, Final residual = 0, No Iterations 0
+DICPBiCGStab:  Solving for e, Initial residual = 4.16589845467e-10, Final residual = 4.54160356588e-26, No Iterations 1
+min/max(p) = 101325, 9118041.38173
+min/max(T) = 300, 1999.73461264
+Leading shock location = 0.005125 m
+
+ExecutionTime = 3.82 s
+
+ClockTime = 4 s
+
+Max Courant Number =  7.3468862138e-06
+Time = 1.8e-09
+
+diagonal:  Solving for rho, Initial residual = 0, Final residual = 0, No Iterations 0
+diagonal:  Solving for rhoUx, Initial residual = 0, Final residual = 0, No Iterations 0
+DICPBiCGStab:  Solving for Ux, Initial residual = 3.23402952923e-08, Final residual = 2.80121756432e-24, No Iterations 1
+DILUPBiCGStab:  Solving for N2, Initial residual = 0.0150131221875, Final residual = 1.16207299498e-18, No Iterations 1
+DILUPBiCGStab:  Solving for H, Initial residual = 0.0308586967155, Final residual = 8.843261439e-18, No Iterations 1
+DILUPBiCGStab:  Solving for H2, Initial residual = 0.0400060084595, Final residual = 3.40032597212e-18, No Iterations 1
+DILUPBiCGStab:  Solving for HE, Initial residual = 0, Final residual = 0, No Iterations 0
+DILUPBiCGStab:  Solving for O, Initial residual = 0.042976677727, Final residual = 8.07191149685e-18, No Iterations 1
+DILUPBiCGStab:  Solving for OH, Initial residual = 0.0436432782145, Final residual = 4.0683520634e-18, No Iterations 1
+DILUPBiCGStab:  Solving for H2O, Initial residual = 0.0736048733063, Final residual = 7.54709221492e-18, No Iterations 1
+DILUPBiCGStab:  Solving for HO2, Initial residual = 0.0281141833569, Final residual = 4.0505473878e-18, No Iterations 1
+DILUPBiCGStab:  Solving for H2O2, Initial residual = 0.0532490574609, Final residual = 1.15062044034e-17, No Iterations 1
+DILUPBiCGStab:  Solving for O2, Initial residual = 0.0301935046271, Final residual = 5.3103637087e-18, No Iterations 1
+DILUPBiCGStab:  Solving for N, Initial residual = 0.127604609901, Final residual = 1.29364073426e-17, No Iterations 1
+DILUPBiCGStab:  Solving for NH, Initial residual = 0.0847832062957, Final residual = 1.023931561e-17, No Iterations 1
+DILUPBiCGStab:  Solving for NH2, Initial residual = 0.029878150814, Final residual = 1.75670137626e-18, No Iterations 1
+DILUPBiCGStab:  Solving for NH3, Initial residual = 0.0299636137021, Final residual = 2.11589317115e-18, No Iterations 1
+DILUPBiCGStab:  Solving for NNH, Initial residual = 0.0323478901748, Final residual = 3.44069435435e-18, No Iterations 1
+DILUPBiCGStab:  Solving for N2H2, Initial residual = 0.0793393781338, Final residual = 1.40746660866e-17, No Iterations 1
+DILUPBiCGStab:  Solving for N2H3, Initial residual = 0.0448097050236, Final residual = 5.03365057461e-18, No Iterations 1
+DILUPBiCGStab:  Solving for N2H4, Initial residual = 0.0824779707993, Final residual = 1.00516175726e-17, No Iterations 1
+DILUPBiCGStab:  Solving for H2NN, Initial residual = 0.0919366543952, Final residual = 1.75024416487e-17, No Iterations 1
+DILUPBiCGStab:  Solving for NO, Initial residual = 0.0896058295469, Final residual = 1.08040185585e-17, No Iterations 1
+DILUPBiCGStab:  Solving for N2O, Initial residual = 0.0523393878334, Final residual = 1.84727014178e-17, No Iterations 1
+DILUPBiCGStab:  Solving for NO2, Initial residual = 0.119540257756, Final residual = 1.06291687967e-17, No Iterations 1
+DILUPBiCGStab:  Solving for HNO, Initial residual = 0.05940292454, Final residual = 2.90980469682e-18, No Iterations 1
+DILUPBiCGStab:  Solving for HON, Initial residual = 0.115875382176, Final residual = 1.48958104189e-17, No Iterations 1
+DILUPBiCGStab:  Solving for HONO, Initial residual = 0.131262372611, Final residual = 2.7211522583e-17, No Iterations 1
+DILUPBiCGStab:  Solving for H2NO, Initial residual = 0.0561376970062, Final residual = 3.3837395359e-18, No Iterations 1
+DILUPBiCGStab:  Solving for HNOH, Initial residual = 0.078824961985, Final residual = 5.60226414541e-18, No Iterations 1
+DILUPBiCGStab:  Solving for NH2OH, Initial residual = 0.0937093800732, Final residual = 7.90187731663e-18, No Iterations 1
+DILUPBiCGStab:  Solving for HNO2, Initial residual = 0.131935896751, Final residual = 1.84674831403e-17, No Iterations 1
+DILUPBiCGStab:  Solving for HONO2, Initial residual = 0.175818808094, Final residual = 9.87109521426e-18, No Iterations 1
+DILUPBiCGStab:  Solving for NO3, Initial residual = 0.17507134964, Final residual = 6.49477230257e-18, No Iterations 1
+DILUPBiCGStab:  Solving for HNO3, Initial residual = 0.141848449844, Final residual = 4.26882625467e-17, No Iterations 1
+diagonal:  Solving for rhoE, Initial residual = 0, Final residual = 0, No Iterations 0
+DICPBiCGStab:  Solving for e, Initial residual = 4.16750570292e-10, Final residual = 8.94269229602e-26, No Iterations 1
+min/max(p) = 101325, 9117970.97947
+min/max(T) = 300, 1999.7192299
+Leading shock location = 0.005125 m
+
+ExecutionTime = 4.11 s
+
+ClockTime = 4 s
+
+Max Courant Number =  7.80324845242e-06
+Time = 1.9e-09
+
+diagonal:  Solving for rho, Initial residual = 0, Final residual = 0, No Iterations 0
+diagonal:  Solving for rhoUx, Initial residual = 0, Final residual = 0, No Iterations 0
+DICPBiCGStab:  Solving for Ux, Initial residual = 3.24320408767e-08, Final residual = 3.62035112616e-24, No Iterations 1
+DILUPBiCGStab:  Solving for N2, Initial residual = 0.0106886182604, Final residual = 1.24517856066e-18, No Iterations 1
+DILUPBiCGStab:  Solving for H, Initial residual = 0.0293938921758, Final residual = 2.58176984289e-18, No Iterations 1
+DILUPBiCGStab:  Solving for H2, Initial residual = 0.03834325769, Final residual = 1.38137779392e-17, No Iterations 1
+DILUPBiCGStab:  Solving for HE, Initial residual = 0, Final residual = 0, No Iterations 0
+DILUPBiCGStab:  Solving for O, Initial residual = 0.0403799992155, Final residual = 3.33619989186e-18, No Iterations 1
+DILUPBiCGStab:  Solving for OH, Initial residual = 0.0410282549972, Final residual = 3.05237521076e-18, No Iterations 1
+DILUPBiCGStab:  Solving for H2O, Initial residual = 0.0693594201249, Final residual = 1.95764836784e-18, No Iterations 1
+DILUPBiCGStab:  Solving for HO2, Initial residual = 0.0266005017868, Final residual = 9.27581432502e-18, No Iterations 1
+DILUPBiCGStab:  Solving for H2O2, Initial residual = 0.0502325903879, Final residual = 4.07921901007e-18, No Iterations 1
+DILUPBiCGStab:  Solving for O2, Initial residual = 0.0286859155089, Final residual = 2.50124940555e-18, No Iterations 1
+DILUPBiCGStab:  Solving for N, Initial residual = 0.122055426069, Final residual = 5.01376999327e-18, No Iterations 1
+DILUPBiCGStab:  Solving for NH, Initial residual = 0.0804395210539, Final residual = 7.3207021227e-18, No Iterations 1
+DILUPBiCGStab:  Solving for NH2, Initial residual = 0.0284554722326, Final residual = 2.12947032592e-18, No Iterations 1
+DILUPBiCGStab:  Solving for NH3, Initial residual = 0.0285384936623, Final residual = 3.09948632043e-18, No Iterations 1
+DILUPBiCGStab:  Solving for NNH, Initial residual = 0.0312402803313, Final residual = 1.81397306893e-18, No Iterations 1
+DILUPBiCGStab:  Solving for N2H2, Initial residual = 0.0750349191906, Final residual = 2.77508881946e-18, No Iterations 1
+DILUPBiCGStab:  Solving for N2H3, Initial residual = 0.0420811000766, Final residual = 3.25258566039e-18, No Iterations 1
+DILUPBiCGStab:  Solving for N2H4, Initial residual = 0.0781547127753, Final residual = 4.97868732853e-18, No Iterations 1
+DILUPBiCGStab:  Solving for H2NN, Initial residual = 0.0873009845232, Final residual = 8.8521867734e-18, No Iterations 1
+DILUPBiCGStab:  Solving for NO, Initial residual = 0.0851482846556, Final residual = 8.82878930048e-22, No Iterations 1
+DILUPBiCGStab:  Solving for N2O, Initial residual = 0.0499049465012, Final residual = 2.97203091033e-18, No Iterations 1
+DILUPBiCGStab:  Solving for NO2, Initial residual = 0.1134380701, Final residual = 4.88875120299e-18, No Iterations 1
+DILUPBiCGStab:  Solving for HNO, Initial residual = 0.0565401976768, Final residual = 2.58549716773e-18, No Iterations 1
+DILUPBiCGStab:  Solving for HON, Initial residual = 0.110172605989, Final residual = 6.37050826756e-18, No Iterations 1
+DILUPBiCGStab:  Solving for HONO, Initial residual = 0.124224136448, Final residual = 2.99544060458e-17, No Iterations 1
+DILUPBiCGStab:  Solving for H2NO, Initial residual = 0.053186670574, Final residual = 4.91959029264e-18, No Iterations 1
+DILUPBiCGStab:  Solving for HNOH, Initial residual = 0.0743771988125, Final residual = 2.39587224311e-18, No Iterations 1
+DILUPBiCGStab:  Solving for NH2OH, Initial residual = 0.0887635261502, Final residual = 5.24929337763e-18, No Iterations 1
+DILUPBiCGStab:  Solving for HNO2, Initial residual = 0.124826163044, Final residual = 5.2402274039e-17, No Iterations 1
+DILUPBiCGStab:  Solving for HONO2, Initial residual = 0.166109309811, Final residual = 5.21883107442e-18, No Iterations 1
+DILUPBiCGStab:  Solving for NO3, Initial residual = 0.165743455934, Final residual = 9.16584468865e-18, No Iterations 1
+DILUPBiCGStab:  Solving for HNO3, Initial residual = 0.134443044834, Final residual = 1.05374654321e-17, No Iterations 1
+diagonal:  Solving for rhoE, Initial residual = 0, Final residual = 0, No Iterations 0
+DICPBiCGStab:  Solving for e, Initial residual = 4.16896343276e-10, Final residual = 8.94290005577e-26, No Iterations 1
+min/max(p) = 101325, 9117900.69603
+min/max(T) = 300, 1999.70388211
+Leading shock location = 0.005125 m
+
+ExecutionTime = 4.7 s
+
+ClockTime = 5 s
+
+Max Courant Number =  8.25910634792e-06
+Time = 2e-09
+
+diagonal:  Solving for rho, Initial residual = 0, Final residual = 0, No Iterations 0
+diagonal:  Solving for rhoUx, Initial residual = 0, Final residual = 0, No Iterations 0
+DICPBiCGStab:  Solving for Ux, Initial residual = 3.25209811128e-08, Final residual = 8.9012822285e-25, No Iterations 1
+DILUPBiCGStab:  Solving for N2, Initial residual = 0.00602264403074, Final residual = 7.23319142733e-19, No Iterations 1
+DILUPBiCGStab:  Solving for H, Initial residual = 0.0280769724956, Final residual = 5.4072604453e-18, No Iterations 1
+DILUPBiCGStab:  Solving for H2, Initial residual = 0.0368358201368, Final residual = 1.93846839837e-18, No Iterations 1
+DILUPBiCGStab:  Solving for HE, Initial residual = 0, Final residual = 0, No Iterations 0
+DILUPBiCGStab:  Solving for O, Initial residual = 0.038073340953, Final residual = 6.84404311633e-19, No Iterations 1
+DILUPBiCGStab:  Solving for OH, Initial residual = 0.0387041775301, Final residual = 4.06608399471e-18, No Iterations 1
+DILUPBiCGStab:  Solving for H2O, Initial residual = 0.0655652412124, Final residual = 3.41123171442e-18, No Iterations 1
+DILUPBiCGStab:  Solving for HO2, Initial residual = 0.0252423356348, Final residual = 1.91351793862e-18, No Iterations 1
+DILUPBiCGStab:  Solving for H2O2, Initial residual = 0.0475263024102, Final residual = 4.54380385514e-18, No Iterations 1
+DILUPBiCGStab:  Solving for O2, Initial residual = 0.0273339199313, Final residual = 6.1774533025e-18, No Iterations 1
+DILUPBiCGStab:  Solving for N, Initial residual = 0.116937523203, Final residual = 6.7353054634e-18, No Iterations 1
+DILUPBiCGStab:  Solving for NH, Initial residual = 0.0765382370577, Final residual = 1.36118836552e-17, No Iterations 1
+DILUPBiCGStab:  Solving for NH2, Initial residual = 0.0271816870677, Final residual = 3.35137636082e-18, No Iterations 1
+DILUPBiCGStab:  Solving for NH3, Initial residual = 0.0272624792457, Final residual = 5.43869075287e-18, No Iterations 1
+DILUPBiCGStab:  Solving for NNH, Initial residual = 0.0302736077633, Final residual = 5.48980534039e-18, No Iterations 1
+DILUPBiCGStab:  Solving for N2H2, Initial residual = 0.0711884439807, Final residual = 4.38327496212e-18, No Iterations 1
+DILUPBiCGStab:  Solving for N2H3, Initial residual = 0.0396552881866, Final residual = 4.98784160966e-18, No Iterations 1
+DILUPBiCGStab:  Solving for N2H4, Initial residual = 0.0742872168486, Final residual = 1.40031448517e-17, No Iterations 1
+DILUPBiCGStab:  Solving for H2NN, Initial residual = 0.0831302291435, Final residual = 2.71358601e-17, No Iterations 1
+DILUPBiCGStab:  Solving for NO, Initial residual = 0.0811495724269, Final residual = 3.81547890344e-18, No Iterations 1
+DILUPBiCGStab:  Solving for N2O, Initial residual = 0.0476884488678, Final residual = 8.07289112957e-18, No Iterations 1
+DILUPBiCGStab:  Solving for NO2, Initial residual = 0.10795072952, Final residual = 8.91600750809e-18, No Iterations 1
+DILUPBiCGStab:  Solving for HNO, Initial residual = 0.0539792226278, Final residual = 2.31005254074e-18, No Iterations 1
+DILUPBiCGStab:  Solving for HON, Initial residual = 0.105053251378, Final residual = 1.31505331941e-17, No Iterations 1
+DILUPBiCGStab:  Solving for HONO, Initial residual = 0.117925150786, Final residual = 1.96531592471e-17, No Iterations 1
+DILUPBiCGStab:  Solving for H2NO, Initial residual = 0.0505422940809, Final residual = 8.85208627418e-18, No Iterations 1
+DILUPBiCGStab:  Solving for HNOH, Initial residual = 0.0703920756355, Final residual = 2.06724570619e-18, No Iterations 1
+DILUPBiCGStab:  Solving for NH2OH, Initial residual = 0.0843211828223, Final residual = 8.06595476733e-18, No Iterations 1
+DILUPBiCGStab:  Solving for HNO2, Initial residual = 0.118465584213, Final residual = 1.31655682109e-17, No Iterations 1
+DILUPBiCGStab:  Solving for HONO2, Initial residual = 0.157412183519, Final residual = 1.74956225024e-17, No Iterations 1
+DILUPBiCGStab:  Solving for NO3, Initial residual = 0.157353538438, Final residual = 1.42715121424e-17, No Iterations 1
+DILUPBiCGStab:  Solving for HNO3, Initial residual = 0.127795131856, Final residual = 8.95821351233e-18, No Iterations 1
+diagonal:  Solving for rhoE, Initial residual = 0, Final residual = 0, No Iterations 0
+DICPBiCGStab:  Solving for e, Initial residual = 4.17025012774e-10, Final residual = 4.47318507732e-26, No Iterations 1
+min/max(p) = 101325, 9117830.53628
+min/max(T) = 300, 1999.68857042
+Leading shock location = 0.005125 m
+
+ExecutionTime = 5.16 s
+
+ClockTime = 5 s
+
+End
+

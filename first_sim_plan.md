@@ -232,7 +232,7 @@ References: [Mundt thesis](Mundt2023.pdf), [model audit](docs/verification/mundt
 ## Baseline and current status
 
 T0 complete. Separate clone based on `0f435aad6b23e063a35f1017a985d5ee8ee8145d`,
-committed 2026-10-22 01:35:05 PDT. T1 installation and T2 mesh preparation are in
+committed 2026-10-22 01:35:05 PDT. T1 installation passed; T2 mesh verification is in
 progress; no 3D reactive model has been validated. The new C1-C6 controlled 2D
 plan was re-read after branching; its source/formed-profile/layer controls can
 provide additional evidence later, without changing this frozen checkout.

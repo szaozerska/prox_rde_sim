@@ -1,0 +1,12 @@
+{
+  "status": "passed",
+  "claim": "installation_only",
+  "final_time_s": 2e-09,
+  "species_min": 0.0,
+  "species_sum_max_error": 1.1367573549136978e-12,
+  "acoustic_step_bound": 0.002202309645756987,
+  "p_min_Pa": 101325.0,
+  "p_max_Pa": 9117830.53628,
+  "T_min_K": 300.0,
+  "T_max_K": 1999.68857042
+}

@@ -1,0 +1,9 @@
+{
+  "repository": "https://github.com/JieSun-pku/detonationFoam.git",
+  "branch": "detonationFoam_V2.0_OF8",
+  "commit": "4bd2e86003447fdb143b475f199c846146f754e3",
+  "openfoam_version": "8",
+  "image_tag": "prox-rde/detonationfoam:4bd2e86",
+  "openfoam_image": "openfoam/openfoam8-graphical-apps@sha256:1ccf8ef688f8757635a0c2361f53d1957ed84e3f5993d53da81a72abb760d9e0",
+  "verified_image_id": "sha256:ecfef04e386b8b48bc61c8d14c09e1efc294935d7ba47d878740cd650afa82c6"
+}

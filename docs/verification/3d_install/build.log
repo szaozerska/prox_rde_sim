@@ -1,0 +1,173 @@
+DEPRECATED: The legacy builder is deprecated and will be removed in a future release.
+            BuildKit is currently disabled; enable it by removing the DOCKER_BUILDKIT=0
+            environment-variable.
+
+Sending build context to Docker daemon  35.39MB
+
+Step 1/9 : ARG OPENFOAM_IMAGE=openfoam/openfoam8-graphical-apps:latest
+Step 2/9 : FROM ${OPENFOAM_IMAGE}
+ ---> 1ccf8ef688f8
+Step 3/9 : USER root
+ ---> Running in e464d4177401
+ ---> Removed intermediate container e464d4177401
+ ---> 2b4575b46d81
+Step 4/9 : SHELL ["/bin/bash", "-c"]
+ ---> Running in bd467551553d
+ ---> Removed intermediate container bd467551553d
+ ---> e2d0459b9e02
+Step 5/9 : COPY foam-env.sh /opt/foam-env.sh
+ ---> c585e2f19819
+Step 6/9 : COPY detonationFoam /opt/src/detonationFoam
+ ---> 89ee608c1677
+Step 7/9 : RUN source /opt/foam-env.sh &&     mkdir -p "$FOAM_USER_APPBIN" "$FOAM_USER_LIBBIN" &&     cd /opt/src/detonationFoam/applications/solvers/detonationFoam_V2.0 &&     wmake -j 2 dynamicMesh2D/dynamicMesh &&     wmake -j 2 dynamicMesh2D/dynamicFvMesh &&     wmake -j 2 DLBFoam-1.0-1.0_OF8/src/thermophysicalModels/chemistryModel &&     wmake -j 2 fluxSchemes_improved &&     wmake -j 2 &&     detonationFoam_V2.0 -help &&     ! ldd "$FOAM_USER_APPBIN/detonationFoam_V2.0" | grep 'not found'
+ ---> Running in 39ac2a6771db
+Compiling enabled on 2 cores
+wmake dynamicMesh2D/dynamicMesh
+wmakeLnInclude: linking include files to ./lnInclude
+Making dependency list for source file hexRef8axi.C
+Making dependency list for source file hexRef82D.C
+g++ -std=c++11 -m64 -Dlinux64 -DWM_ARCH_OPTION=64 -DWM_DP -DWM_LABEL_SIZE=32 -Wall -Wextra -Wold-style-cast -Wnon-virtual-dtor -Wno-unused-parameter -Wno-invalid-offsetof -Wno-attributes -O3  -DNoRepository -ftemplate-depth-100 -I/opt/openfoam8/src/triSurface/lnInclude -I/opt/openfoam8/src/meshTools/lnInclude -I/opt/openfoam8/src/dynamicMesh/lnInclude -I/opt/openfoam8/src/finiteVolume/lnInclude -I/opt/openfoam8/src/fvMotionSolver/lnInclude -IlnInclude -I. -I/opt/openfoam8/src/OpenFOAM/lnInclude -I/opt/openfoam8/src/OSspecific/POSIX/lnInclude   -fPIC -c polyTopoChange/polyTopoChange/hexRef82D.C -o Make/linux64GccDPInt32Opt/polyTopoChange/polyTopoChange/hexRef82D.o
+g++ -std=c++11 -m64 -Dlinux64 -DWM_ARCH_OPTION=64 -DWM_DP -DWM_LABEL_SIZE=32 -Wall -Wextra -Wold-style-cast -Wnon-virtual-dtor -Wno-unused-parameter -Wno-invalid-offsetof -Wno-attributes -O3  -DNoRepository -ftemplate-depth-100 -I/opt/openfoam8/src/triSurface/lnInclude -I/opt/openfoam8/src/meshTools/lnInclude -I/opt/openfoam8/src/dynamicMesh/lnInclude -I/opt/openfoam8/src/finiteVolume/lnInclude -I/opt/openfoam8/src/fvMotionSolver/lnInclude -IlnInclude -I. -I/opt/openfoam8/src/OpenFOAM/lnInclude -I/opt/openfoam8/src/OSspecific/POSIX/lnInclude   -fPIC -c polyTopoChange/polyTopoChange/hexRef8axi.C -o Make/linux64GccDPInt32Opt/polyTopoChange/polyTopoChange/hexRef8axi.o
+polyTopoChange/polyTopoChange/hexRef82D.C: In member function 'Foam::label Foam::hexRef82D::storeMidPointInfo(const labelListList&, const labelListList&, const labelList&, const labelList&, Foam::label, Foam::label, bool, Foam::label, Foam::label, Foam::label, Foam::Map<Foam::edge>&, Foam::Map<Foam::edge>&, Foam::polyTopoChange&) const':
+polyTopoChange/polyTopoChange/hexRef82D.C:1028:10: warning: variable 'haveTwoFaceMids' set but not used [-Wunused-but-set-variable]
+ 1028 |     bool haveTwoFaceMids = false;
+      |          ^~~~~~~~~~~~~~~
+polyTopoChange/polyTopoChange/hexRef8axi.C: In member function 'Foam::label Foam::hexRef8axi::storeMidPointInfo(const labelListList&, const labelListList&, const labelList&, const labelList&, Foam::label, Foam::label, bool, Foam::label, Foam::label, Foam::label, Foam::Map<Foam::edge>&, Foam::Map<Foam::edge>&, Foam::polyTopoChange&) const':
+polyTopoChange/polyTopoChange/hexRef8axi.C:1028:10: warning: variable 'haveTwoFaceMids' set but not used [-Wunused-but-set-variable]
+ 1028 |     bool haveTwoFaceMids = false;
+      |          ^~~~~~~~~~~~~~~
+polyTopoChange/polyTopoChange/hexRef8axi.C: In member function 'Foam::labelListList Foam::hexRef8axi::setRefinement(const labelList&, Foam::polyTopoChange&)':
+polyTopoChange/polyTopoChange/hexRef8axi.C:3951:21: warning: unused variable 'prevpointJ' [-Wunused-variable]
+ 3951 |               label prevpointJ = f[f.rcIndex(f.rcIndex(fp))];
+      |                     ^~~~~~~~~~
+g++ -std=c++11 -m64 -Dlinux64 -DWM_ARCH_OPTION=64 -DWM_DP -DWM_LABEL_SIZE=32 -Wall -Wextra -Wold-style-cast -Wnon-virtual-dtor -Wno-unused-parameter -Wno-invalid-offsetof -Wno-attributes -O3  -DNoRepository -ftemplate-depth-100 -I/opt/openfoam8/src/triSurface/lnInclude -I/opt/openfoam8/src/meshTools/lnInclude -I/opt/openfoam8/src/dynamicMesh/lnInclude -I/opt/openfoam8/src/finiteVolume/lnInclude -I/opt/openfoam8/src/fvMotionSolver/lnInclude -IlnInclude -I. -I/opt/openfoam8/src/OpenFOAM/lnInclude -I/opt/openfoam8/src/OSspecific/POSIX/lnInclude   -fPIC -fuse-ld=bfd -shared -Xlinker --add-needed -Xlinker --no-as-needed Make/linux64GccDPInt32Opt/polyTopoChange/polyTopoChange/hexRef82D.o Make/linux64GccDPInt32Opt/polyTopoChange/polyTopoChange/hexRef8axi.o -L/opt/openfoam8/platforms/linux64GccDPInt32Opt/lib \
+    -lsurfMesh -lmeshTools -ldynamicMesh -lfiniteVolume -lfvMotionSolvers   -o /opt/detonationfoam/lib/libdynamicMesh2D.so
+Compiling enabled on 2 cores
+wmake dynamicMesh2D/dynamicFvMesh
+wmakeLnInclude: linking include files to ./lnInclude
+Making dependency list for source file dynamicRefineFvMeshAxi.C
+Making dependency list for source file dynamicRefineFvMesh2D.C
+g++ -std=c++11 -m64 -Dlinux64 -DWM_ARCH_OPTION=64 -DWM_DP -DWM_LABEL_SIZE=32 -Wall -Wextra -Wold-style-cast -Wnon-virtual-dtor -Wno-unused-parameter -Wno-invalid-offsetof -Wno-attributes -O3  -DNoRepository -ftemplate-depth-100 -I/opt/openfoam8/src/triSurface/lnInclude -I/opt/openfoam8/src/meshTools/lnInclude -I/opt/openfoam8/src/finiteVolume/lnInclude -I/opt/openfoam8/src/dynamicMesh/lnInclude -I/opt/openfoam8/src/dynamicFvMesh/lnInclude -I/opt/openfoam8/src/fvMotionSolver/lnInclude -I../dynamicMesh/lnInclude -IlnInclude -I. -I/opt/openfoam8/src/OpenFOAM/lnInclude -I/opt/openfoam8/src/OSspecific/POSIX/lnInclude   -fPIC -c dynamicRefineFvMesh2D/dynamicRefineFvMesh2D.C -o Make/linux64GccDPInt32Opt/dynamicRefineFvMesh2D/dynamicRefineFvMesh2D.o
+g++ -std=c++11 -m64 -Dlinux64 -DWM_ARCH_OPTION=64 -DWM_DP -DWM_LABEL_SIZE=32 -Wall -Wextra -Wold-style-cast -Wnon-virtual-dtor -Wno-unused-parameter -Wno-invalid-offsetof -Wno-attributes -O3  -DNoRepository -ftemplate-depth-100 -I/opt/openfoam8/src/triSurface/lnInclude -I/opt/openfoam8/src/meshTools/lnInclude -I/opt/openfoam8/src/finiteVolume/lnInclude -I/opt/openfoam8/src/dynamicMesh/lnInclude -I/opt/openfoam8/src/dynamicFvMesh/lnInclude -I/opt/openfoam8/src/fvMotionSolver/lnInclude -I../dynamicMesh/lnInclude -IlnInclude -I. -I/opt/openfoam8/src/OpenFOAM/lnInclude -I/opt/openfoam8/src/OSspecific/POSIX/lnInclude   -fPIC -c dynamicRefineFvMeshAxi/dynamicRefineFvMeshAxi.C -o Make/linux64GccDPInt32Opt/dynamicRefineFvMeshAxi/dynamicRefineFvMeshAxi.o
+g++ -std=c++11 -m64 -Dlinux64 -DWM_ARCH_OPTION=64 -DWM_DP -DWM_LABEL_SIZE=32 -Wall -Wextra -Wold-style-cast -Wnon-virtual-dtor -Wno-unused-parameter -Wno-invalid-offsetof -Wno-attributes -O3  -DNoRepository -ftemplate-depth-100 -I/opt/openfoam8/src/triSurface/lnInclude -I/opt/openfoam8/src/meshTools/lnInclude -I/opt/openfoam8/src/finiteVolume/lnInclude -I/opt/openfoam8/src/dynamicMesh/lnInclude -I/opt/openfoam8/src/dynamicFvMesh/lnInclude -I/opt/openfoam8/src/fvMotionSolver/lnInclude -I../dynamicMesh/lnInclude -IlnInclude -I. -I/opt/openfoam8/src/OpenFOAM/lnInclude -I/opt/openfoam8/src/OSspecific/POSIX/lnInclude   -fPIC -fuse-ld=bfd -shared -Xlinker --add-needed -Xlinker --no-as-needed Make/linux64GccDPInt32Opt/dynamicRefineFvMesh2D/dynamicRefineFvMesh2D.o Make/linux64GccDPInt32Opt/dynamicRefineFvMeshAxi/dynamicRefineFvMeshAxi.o -L/opt/openfoam8/platforms/linux64GccDPInt32Opt/lib \
+    -lsurfMesh -lmeshTools -lfiniteVolume -ldynamicMesh -ldynamicFvMesh -lfvMotionSolvers -L/opt/detonationfoam/lib -ldynamicMesh2D  -o /opt/detonationfoam/lib/libdynamicFvMesh2D.so
+Compiling enabled on 2 cores
+wmake DLBFoam-1.0-1.0_OF8/src/thermophysicalModels/chemistryModel
+wmakeLnInclude: linking include files to ./lnInclude
+Making dependency list for source file DLBChemistrySolvers.C
+Making dependency list for source file LoadBalancer.C
+Making dependency list for source file mixtureFractionRefMapper.C
+Making dependency list for source file mixtureFraction.C
+Making dependency list for source file runtime_assert.C
+Making dependency list for source file algorithms_DLB.C
+Making dependency list for source file RecvBuffer.C
+Making dependency list for source file SendBuffer.C
+Making dependency list for source file LoadBalancerBase.C
+Making dependency list for source file ChemistryLoad.C
+Making dependency list for source file ChemistrySolution.C
+Making dependency list for source file ChemistryProblem.C
+g++ -std=c++11 -m64 -Dlinux64 -DWM_ARCH_OPTION=64 -DWM_DP -DWM_LABEL_SIZE=32 -Wall -Wextra -Wold-style-cast -Wnon-virtual-dtor -Wno-unused-parameter -Wno-invalid-offsetof -Wno-attributes -O3  -DNoRepository -ftemplate-depth-100 -I/opt/openfoam8/src/thermophysicalModels/reactionThermo/lnInclude -I/opt/openfoam8/src/thermophysicalModels/basic/lnInclude -I/opt/openfoam8/src/thermophysicalModels/specie/lnInclude -I/opt/openfoam8/src/thermophysicalModels/functions/Polynomial -I/opt/openfoam8/src/ODE/lnInclude -I/opt/openfoam8/src/finiteVolume/lnInclude -I/opt/openfoam8/src/meshTools/lnInclude -I/opt/openfoam8/src/thermophysicalModels/chemistryModel/lnInclude -DNDEBUG -IlnInclude -I. -I/opt/openfoam8/src/OpenFOAM/lnInclude -I/opt/openfoam8/src/OSspecific/POSIX/lnInclude   -fPIC -c loadBalancing/ChemistryProblem.C -o Make/linux64GccDPInt32Opt/loadBalancing/ChemistryProblem.o
+g++ -std=c++11 -m64 -Dlinux64 -DWM_ARCH_OPTION=64 -DWM_DP -DWM_LABEL_SIZE=32 -Wall -Wextra -Wold-style-cast -Wnon-virtual-dtor -Wno-unused-parameter -Wno-invalid-offsetof -Wno-attributes -O3  -DNoRepository -ftemplate-depth-100 -I/opt/openfoam8/src/thermophysicalModels/reactionThermo/lnInclude -I/opt/openfoam8/src/thermophysicalModels/basic/lnInclude -I/opt/openfoam8/src/thermophysicalModels/specie/lnInclude -I/opt/openfoam8/src/thermophysicalModels/functions/Polynomial -I/opt/openfoam8/src/ODE/lnInclude -I/opt/openfoam8/src/finiteVolume/lnInclude -I/opt/openfoam8/src/meshTools/lnInclude -I/opt/openfoam8/src/thermophysicalModels/chemistryModel/lnInclude -DNDEBUG -IlnInclude -I. -I/opt/openfoam8/src/OpenFOAM/lnInclude -I/opt/openfoam8/src/OSspecific/POSIX/lnInclude   -fPIC -c loadBalancing/ChemistrySolution.C -o Make/linux64GccDPInt32Opt/loadBalancing/ChemistrySolution.o
+g++ -std=c++11 -m64 -Dlinux64 -DWM_ARCH_OPTION=64 -DWM_DP -DWM_LABEL_SIZE=32 -Wall -Wextra -Wold-style-cast -Wnon-virtual-dtor -Wno-unused-parameter -Wno-invalid-offsetof -Wno-attributes -O3  -DNoRepository -ftemplate-depth-100 -I/opt/openfoam8/src/thermophysicalModels/reactionThermo/lnInclude -I/opt/openfoam8/src/thermophysicalModels/basic/lnInclude -I/opt/openfoam8/src/thermophysicalModels/specie/lnInclude -I/opt/openfoam8/src/thermophysicalModels/functions/Polynomial -I/opt/openfoam8/src/ODE/lnInclude -I/opt/openfoam8/src/finiteVolume/lnInclude -I/opt/openfoam8/src/meshTools/lnInclude -I/opt/openfoam8/src/thermophysicalModels/chemistryModel/lnInclude -DNDEBUG -IlnInclude -I. -I/opt/openfoam8/src/OpenFOAM/lnInclude -I/opt/openfoam8/src/OSspecific/POSIX/lnInclude   -fPIC -c loadBalancing/ChemistryLoad.C -o Make/linux64GccDPInt32Opt/loadBalancing/ChemistryLoad.o
+g++ -std=c++11 -m64 -Dlinux64 -DWM_ARCH_OPTION=64 -DWM_DP -DWM_LABEL_SIZE=32 -Wall -Wextra -Wold-style-cast -Wnon-virtual-dtor -Wno-unused-parameter -Wno-invalid-offsetof -Wno-attributes -O3  -DNoRepository -ftemplate-depth-100 -I/opt/openfoam8/src/thermophysicalModels/reactionThermo/lnInclude -I/opt/openfoam8/src/thermophysicalModels/basic/lnInclude -I/opt/openfoam8/src/thermophysicalModels/specie/lnInclude -I/opt/openfoam8/src/thermophysicalModels/functions/Polynomial -I/opt/openfoam8/src/ODE/lnInclude -I/opt/openfoam8/src/finiteVolume/lnInclude -I/opt/openfoam8/src/meshTools/lnInclude -I/opt/openfoam8/src/thermophysicalModels/chemistryModel/lnInclude -DNDEBUG -IlnInclude -I. -I/opt/openfoam8/src/OpenFOAM/lnInclude -I/opt/openfoam8/src/OSspecific/POSIX/lnInclude   -fPIC -c loadBalancing/LoadBalancerBase.C -o Make/linux64GccDPInt32Opt/loadBalancing/LoadBalancerBase.o
+g++ -std=c++11 -m64 -Dlinux64 -DWM_ARCH_OPTION=64 -DWM_DP -DWM_LABEL_SIZE=32 -Wall -Wextra -Wold-style-cast -Wnon-virtual-dtor -Wno-unused-parameter -Wno-invalid-offsetof -Wno-attributes -O3  -DNoRepository -ftemplate-depth-100 -I/opt/openfoam8/src/thermophysicalModels/reactionThermo/lnInclude -I/opt/openfoam8/src/thermophysicalModels/basic/lnInclude -I/opt/openfoam8/src/thermophysicalModels/specie/lnInclude -I/opt/openfoam8/src/thermophysicalModels/functions/Polynomial -I/opt/openfoam8/src/ODE/lnInclude -I/opt/openfoam8/src/finiteVolume/lnInclude -I/opt/openfoam8/src/meshTools/lnInclude -I/opt/openfoam8/src/thermophysicalModels/chemistryModel/lnInclude -DNDEBUG -IlnInclude -I. -I/opt/openfoam8/src/OpenFOAM/lnInclude -I/opt/openfoam8/src/OSspecific/POSIX/lnInclude   -fPIC -c loadBalancing/SendBuffer.C -o Make/linux64GccDPInt32Opt/loadBalancing/SendBuffer.o
+g++ -std=c++11 -m64 -Dlinux64 -DWM_ARCH_OPTION=64 -DWM_DP -DWM_LABEL_SIZE=32 -Wall -Wextra -Wold-style-cast -Wnon-virtual-dtor -Wno-unused-parameter -Wno-invalid-offsetof -Wno-attributes -O3  -DNoRepository -ftemplate-depth-100 -I/opt/openfoam8/src/thermophysicalModels/reactionThermo/lnInclude -I/opt/openfoam8/src/thermophysicalModels/basic/lnInclude -I/opt/openfoam8/src/thermophysicalModels/specie/lnInclude -I/opt/openfoam8/src/thermophysicalModels/functions/Polynomial -I/opt/openfoam8/src/ODE/lnInclude -I/opt/openfoam8/src/finiteVolume/lnInclude -I/opt/openfoam8/src/meshTools/lnInclude -I/opt/openfoam8/src/thermophysicalModels/chemistryModel/lnInclude -DNDEBUG -IlnInclude -I. -I/opt/openfoam8/src/OpenFOAM/lnInclude -I/opt/openfoam8/src/OSspecific/POSIX/lnInclude   -fPIC -c loadBalancing/RecvBuffer.C -o Make/linux64GccDPInt32Opt/loadBalancing/RecvBuffer.o
+g++ -std=c++11 -m64 -Dlinux64 -DWM_ARCH_OPTION=64 -DWM_DP -DWM_LABEL_SIZE=32 -Wall -Wextra -Wold-style-cast -Wnon-virtual-dtor -Wno-unused-parameter -Wno-invalid-offsetof -Wno-attributes -O3  -DNoRepository -ftemplate-depth-100 -I/opt/openfoam8/src/thermophysicalModels/reactionThermo/lnInclude -I/opt/openfoam8/src/thermophysicalModels/basic/lnInclude -I/opt/openfoam8/src/thermophysicalModels/specie/lnInclude -I/opt/openfoam8/src/thermophysicalModels/functions/Polynomial -I/opt/openfoam8/src/ODE/lnInclude -I/opt/openfoam8/src/finiteVolume/lnInclude -I/opt/openfoam8/src/meshTools/lnInclude -I/opt/openfoam8/src/thermophysicalModels/chemistryModel/lnInclude -DNDEBUG -IlnInclude -I. -I/opt/openfoam8/src/OpenFOAM/lnInclude -I/opt/openfoam8/src/OSspecific/POSIX/lnInclude   -fPIC -c loadBalancing/algorithms_DLB.C -o Make/linux64GccDPInt32Opt/loadBalancing/algorithms_DLB.o
+g++ -std=c++11 -m64 -Dlinux64 -DWM_ARCH_OPTION=64 -DWM_DP -DWM_LABEL_SIZE=32 -Wall -Wextra -Wold-style-cast -Wnon-virtual-dtor -Wno-unused-parameter -Wno-invalid-offsetof -Wno-attributes -O3  -DNoRepository -ftemplate-depth-100 -I/opt/openfoam8/src/thermophysicalModels/reactionThermo/lnInclude -I/opt/openfoam8/src/thermophysicalModels/basic/lnInclude -I/opt/openfoam8/src/thermophysicalModels/specie/lnInclude -I/opt/openfoam8/src/thermophysicalModels/functions/Polynomial -I/opt/openfoam8/src/ODE/lnInclude -I/opt/openfoam8/src/finiteVolume/lnInclude -I/opt/openfoam8/src/meshTools/lnInclude -I/opt/openfoam8/src/thermophysicalModels/chemistryModel/lnInclude -DNDEBUG -IlnInclude -I. -I/opt/openfoam8/src/OpenFOAM/lnInclude -I/opt/openfoam8/src/OSspecific/POSIX/lnInclude   -fPIC -c loadBalancing/runtime_assert.C -o Make/linux64GccDPInt32Opt/loadBalancing/runtime_assert.o
+g++ -std=c++11 -m64 -Dlinux64 -DWM_ARCH_OPTION=64 -DWM_DP -DWM_LABEL_SIZE=32 -Wall -Wextra -Wold-style-cast -Wnon-virtual-dtor -Wno-unused-parameter -Wno-invalid-offsetof -Wno-attributes -O3  -DNoRepository -ftemplate-depth-100 -I/opt/openfoam8/src/thermophysicalModels/reactionThermo/lnInclude -I/opt/openfoam8/src/thermophysicalModels/basic/lnInclude -I/opt/openfoam8/src/thermophysicalModels/specie/lnInclude -I/opt/openfoam8/src/thermophysicalModels/functions/Polynomial -I/opt/openfoam8/src/ODE/lnInclude -I/opt/openfoam8/src/finiteVolume/lnInclude -I/opt/openfoam8/src/meshTools/lnInclude -I/opt/openfoam8/src/thermophysicalModels/chemistryModel/lnInclude -DNDEBUG -IlnInclude -I. -I/opt/openfoam8/src/OpenFOAM/lnInclude -I/opt/openfoam8/src/OSspecific/POSIX/lnInclude   -fPIC -c refMapping/mixtureFraction.C -o Make/linux64GccDPInt32Opt/refMapping/mixtureFraction.o
+g++ -std=c++11 -m64 -Dlinux64 -DWM_ARCH_OPTION=64 -DWM_DP -DWM_LABEL_SIZE=32 -Wall -Wextra -Wold-style-cast -Wnon-virtual-dtor -Wno-unused-parameter -Wno-invalid-offsetof -Wno-attributes -O3  -DNoRepository -ftemplate-depth-100 -I/opt/openfoam8/src/thermophysicalModels/reactionThermo/lnInclude -I/opt/openfoam8/src/thermophysicalModels/basic/lnInclude -I/opt/openfoam8/src/thermophysicalModels/specie/lnInclude -I/opt/openfoam8/src/thermophysicalModels/functions/Polynomial -I/opt/openfoam8/src/ODE/lnInclude -I/opt/openfoam8/src/finiteVolume/lnInclude -I/opt/openfoam8/src/meshTools/lnInclude -I/opt/openfoam8/src/thermophysicalModels/chemistryModel/lnInclude -DNDEBUG -IlnInclude -I. -I/opt/openfoam8/src/OpenFOAM/lnInclude -I/opt/openfoam8/src/OSspecific/POSIX/lnInclude   -fPIC -c refMapping/mixtureFractionRefMapper.C -o Make/linux64GccDPInt32Opt/refMapping/mixtureFractionRefMapper.o
+g++ -std=c++11 -m64 -Dlinux64 -DWM_ARCH_OPTION=64 -DWM_DP -DWM_LABEL_SIZE=32 -Wall -Wextra -Wold-style-cast -Wnon-virtual-dtor -Wno-unused-parameter -Wno-invalid-offsetof -Wno-attributes -O3  -DNoRepository -ftemplate-depth-100 -I/opt/openfoam8/src/thermophysicalModels/reactionThermo/lnInclude -I/opt/openfoam8/src/thermophysicalModels/basic/lnInclude -I/opt/openfoam8/src/thermophysicalModels/specie/lnInclude -I/opt/openfoam8/src/thermophysicalModels/functions/Polynomial -I/opt/openfoam8/src/ODE/lnInclude -I/opt/openfoam8/src/finiteVolume/lnInclude -I/opt/openfoam8/src/meshTools/lnInclude -I/opt/openfoam8/src/thermophysicalModels/chemistryModel/lnInclude -DNDEBUG -IlnInclude -I. -I/opt/openfoam8/src/OpenFOAM/lnInclude -I/opt/openfoam8/src/OSspecific/POSIX/lnInclude   -fPIC -c loadBalancing/LoadBalancer.C -o Make/linux64GccDPInt32Opt/loadBalancing/LoadBalancer.o
+g++ -std=c++11 -m64 -Dlinux64 -DWM_ARCH_OPTION=64 -DWM_DP -DWM_LABEL_SIZE=32 -Wall -Wextra -Wold-style-cast -Wnon-virtual-dtor -Wno-unused-parameter -Wno-invalid-offsetof -Wno-attributes -O3  -DNoRepository -ftemplate-depth-100 -I/opt/openfoam8/src/thermophysicalModels/reactionThermo/lnInclude -I/opt/openfoam8/src/thermophysicalModels/basic/lnInclude -I/opt/openfoam8/src/thermophysicalModels/specie/lnInclude -I/opt/openfoam8/src/thermophysicalModels/functions/Polynomial -I/opt/openfoam8/src/ODE/lnInclude -I/opt/openfoam8/src/finiteVolume/lnInclude -I/opt/openfoam8/src/meshTools/lnInclude -I/opt/openfoam8/src/thermophysicalModels/chemistryModel/lnInclude -DNDEBUG -IlnInclude -I. -I/opt/openfoam8/src/OpenFOAM/lnInclude -I/opt/openfoam8/src/OSspecific/POSIX/lnInclude   -fPIC -c chemistrySolver/DLBChemistrySolvers.C -o Make/linux64GccDPInt32Opt/chemistrySolver/DLBChemistrySolvers.o
+chemistrySolver/DLBChemistrySolvers.C:42: warning: "defineChemistrySolvers" redefined
+   42 | #define defineChemistrySolvers(ReactionThermo, ThermoPhysics)                  \
+      | 
+In file included from chemistrySolver/DLBChemistrySolvers.C:37:
+/opt/openfoam8/src/thermophysicalModels/chemistryModel/lnInclude/makeChemistrySolver.H:72: note: this is the location of the previous definition
+   72 | #define defineChemistrySolvers(ReactionThermo, ThermoPhysics)                  \
+      | 
+chemistrySolver/DLBChemistrySolvers.C:50: warning: "makeChemistrySolvers" redefined
+   50 | #define makeChemistrySolvers(Solver, ReactionThermo, ThermoPhysics)            \
+      | 
+In file included from chemistrySolver/DLBChemistrySolvers.C:37:
+/opt/openfoam8/src/thermophysicalModels/chemistryModel/lnInclude/makeChemistrySolver.H:86: note: this is the location of the previous definition
+   86 | #define makeChemistrySolvers(Solver, ReactionThermo, ThermoPhysics)            \
+      | 
+g++ -std=c++11 -m64 -Dlinux64 -DWM_ARCH_OPTION=64 -DWM_DP -DWM_LABEL_SIZE=32 -Wall -Wextra -Wold-style-cast -Wnon-virtual-dtor -Wno-unused-parameter -Wno-invalid-offsetof -Wno-attributes -O3  -DNoRepository -ftemplate-depth-100 -I/opt/openfoam8/src/thermophysicalModels/reactionThermo/lnInclude -I/opt/openfoam8/src/thermophysicalModels/basic/lnInclude -I/opt/openfoam8/src/thermophysicalModels/specie/lnInclude -I/opt/openfoam8/src/thermophysicalModels/functions/Polynomial -I/opt/openfoam8/src/ODE/lnInclude -I/opt/openfoam8/src/finiteVolume/lnInclude -I/opt/openfoam8/src/meshTools/lnInclude -I/opt/openfoam8/src/thermophysicalModels/chemistryModel/lnInclude -DNDEBUG -IlnInclude -I. -I/opt/openfoam8/src/OpenFOAM/lnInclude -I/opt/openfoam8/src/OSspecific/POSIX/lnInclude   -fPIC -fuse-ld=bfd -shared -Xlinker --add-needed -Xlinker --no-as-needed Make/linux64GccDPInt32Opt/loadBalancing/ChemistryProblem.o Make/linux64GccDPInt32Opt/loadBalancing/ChemistrySolution.o Make/linux64GccDPInt32Opt/loadBalancing/ChemistryLoad.o Make/linux64GccDPInt32Opt/loadBalancing/LoadBalancerBase.o Make/linux64GccDPInt32Opt/loadBalancing/SendBuffer.o Make/linux64GccDPInt32Opt/loadBalancing/RecvBuffer.o Make/linux64GccDPInt32Opt/loadBalancing/algorithms_DLB.o Make/linux64GccDPInt32Opt/loadBalancing/runtime_assert.o Make/linux64GccDPInt32Opt/refMapping/mixtureFraction.o Make/linux64GccDPInt32Opt/refMapping/mixtureFractionRefMapper.o Make/linux64GccDPInt32Opt/loadBalancing/LoadBalancer.o Make/linux64GccDPInt32Opt/chemistrySolver/DLBChemistrySolvers.o -L/opt/openfoam8/platforms/linux64GccDPInt32Opt/lib \
+    -lfluidThermophysicalModels -lreactionThermophysicalModels -lspecie -lODE -lfiniteVolume -lmeshTools -lchemistryModel  -o /opt/detonationfoam/lib/libchemistryModel_DLB.so
+Compiling enabled on 2 cores
+wmake fluxSchemes_improved
+wmakeLnInclude: linking include files to ./lnInclude
+Making dependency list for source file AUSMPlusUp.C
+Making dependency list for source file AUSMPlus.C
+Making dependency list for source file Tadmor.C
+Making dependency list for source file Kurganov.C
+Making dependency list for source file HLL.C
+Making dependency list for source file HLLCP.C
+Making dependency list for source file HLLC.C
+Making dependency list for source file newFluxScheme.C
+Making dependency list for source file fluxScheme.C
+g++ -std=c++11 -m64 -Dlinux64 -DWM_ARCH_OPTION=64 -DWM_DP -DWM_LABEL_SIZE=32 -Wall -Wextra -Wold-style-cast -Wnon-virtual-dtor -Wno-unused-parameter -Wno-invalid-offsetof -Wno-attributes -O3  -DNoRepository -ftemplate-depth-100 -I/opt/openfoam8/src/finiteVolume/lnInclude -I/opt/openfoam8/src/meshTools/lnInclude  -IlnInclude -I. -I/opt/openfoam8/src/OpenFOAM/lnInclude -I/opt/openfoam8/src/OSspecific/POSIX/lnInclude   -fPIC -c fluxScheme/fluxScheme.C -o Make/linux64GccDPInt32Opt/fluxScheme/fluxScheme.o
+g++ -std=c++11 -m64 -Dlinux64 -DWM_ARCH_OPTION=64 -DWM_DP -DWM_LABEL_SIZE=32 -Wall -Wextra -Wold-style-cast -Wnon-virtual-dtor -Wno-unused-parameter -Wno-invalid-offsetof -Wno-attributes -O3  -DNoRepository -ftemplate-depth-100 -I/opt/openfoam8/src/finiteVolume/lnInclude -I/opt/openfoam8/src/meshTools/lnInclude  -IlnInclude -I. -I/opt/openfoam8/src/OpenFOAM/lnInclude -I/opt/openfoam8/src/OSspecific/POSIX/lnInclude   -fPIC -c fluxScheme/newFluxScheme.C -o Make/linux64GccDPInt32Opt/fluxScheme/newFluxScheme.o
+g++ -std=c++11 -m64 -Dlinux64 -DWM_ARCH_OPTION=64 -DWM_DP -DWM_LABEL_SIZE=32 -Wall -Wextra -Wold-style-cast -Wnon-virtual-dtor -Wno-unused-parameter -Wno-invalid-offsetof -Wno-attributes -O3  -DNoRepository -ftemplate-depth-100 -I/opt/openfoam8/src/finiteVolume/lnInclude -I/opt/openfoam8/src/meshTools/lnInclude  -IlnInclude -I. -I/opt/openfoam8/src/OpenFOAM/lnInclude -I/opt/openfoam8/src/OSspecific/POSIX/lnInclude   -fPIC -c HLLC/HLLC.C -o Make/linux64GccDPInt32Opt/HLLC/HLLC.o
+g++ -std=c++11 -m64 -Dlinux64 -DWM_ARCH_OPTION=64 -DWM_DP -DWM_LABEL_SIZE=32 -Wall -Wextra -Wold-style-cast -Wnon-virtual-dtor -Wno-unused-parameter -Wno-invalid-offsetof -Wno-attributes -O3  -DNoRepository -ftemplate-depth-100 -I/opt/openfoam8/src/finiteVolume/lnInclude -I/opt/openfoam8/src/meshTools/lnInclude  -IlnInclude -I. -I/opt/openfoam8/src/OpenFOAM/lnInclude -I/opt/openfoam8/src/OSspecific/POSIX/lnInclude   -fPIC -c HLLCP/HLLCP.C -o Make/linux64GccDPInt32Opt/HLLCP/HLLCP.o
+g++ -std=c++11 -m64 -Dlinux64 -DWM_ARCH_OPTION=64 -DWM_DP -DWM_LABEL_SIZE=32 -Wall -Wextra -Wold-style-cast -Wnon-virtual-dtor -Wno-unused-parameter -Wno-invalid-offsetof -Wno-attributes -O3  -DNoRepository -ftemplate-depth-100 -I/opt/openfoam8/src/finiteVolume/lnInclude -I/opt/openfoam8/src/meshTools/lnInclude  -IlnInclude -I. -I/opt/openfoam8/src/OpenFOAM/lnInclude -I/opt/openfoam8/src/OSspecific/POSIX/lnInclude   -fPIC -c HLL/HLL.C -o Make/linux64GccDPInt32Opt/HLL/HLL.o
+g++ -std=c++11 -m64 -Dlinux64 -DWM_ARCH_OPTION=64 -DWM_DP -DWM_LABEL_SIZE=32 -Wall -Wextra -Wold-style-cast -Wnon-virtual-dtor -Wno-unused-parameter -Wno-invalid-offsetof -Wno-attributes -O3  -DNoRepository -ftemplate-depth-100 -I/opt/openfoam8/src/finiteVolume/lnInclude -I/opt/openfoam8/src/meshTools/lnInclude  -IlnInclude -I. -I/opt/openfoam8/src/OpenFOAM/lnInclude -I/opt/openfoam8/src/OSspecific/POSIX/lnInclude   -fPIC -c Kurganov/Kurganov.C -o Make/linux64GccDPInt32Opt/Kurganov/Kurganov.o
+g++ -std=c++11 -m64 -Dlinux64 -DWM_ARCH_OPTION=64 -DWM_DP -DWM_LABEL_SIZE=32 -Wall -Wextra -Wold-style-cast -Wnon-virtual-dtor -Wno-unused-parameter -Wno-invalid-offsetof -Wno-attributes -O3  -DNoRepository -ftemplate-depth-100 -I/opt/openfoam8/src/finiteVolume/lnInclude -I/opt/openfoam8/src/meshTools/lnInclude  -IlnInclude -I. -I/opt/openfoam8/src/OpenFOAM/lnInclude -I/opt/openfoam8/src/OSspecific/POSIX/lnInclude   -fPIC -c Tadmor/Tadmor.C -o Make/linux64GccDPInt32Opt/Tadmor/Tadmor.o
+g++ -std=c++11 -m64 -Dlinux64 -DWM_ARCH_OPTION=64 -DWM_DP -DWM_LABEL_SIZE=32 -Wall -Wextra -Wold-style-cast -Wnon-virtual-dtor -Wno-unused-parameter -Wno-invalid-offsetof -Wno-attributes -O3  -DNoRepository -ftemplate-depth-100 -I/opt/openfoam8/src/finiteVolume/lnInclude -I/opt/openfoam8/src/meshTools/lnInclude  -IlnInclude -I. -I/opt/openfoam8/src/OpenFOAM/lnInclude -I/opt/openfoam8/src/OSspecific/POSIX/lnInclude   -fPIC -c AUSMPlus/AUSMPlus.C -o Make/linux64GccDPInt32Opt/AUSMPlus/AUSMPlus.o
+g++ -std=c++11 -m64 -Dlinux64 -DWM_ARCH_OPTION=64 -DWM_DP -DWM_LABEL_SIZE=32 -Wall -Wextra -Wold-style-cast -Wnon-virtual-dtor -Wno-unused-parameter -Wno-invalid-offsetof -Wno-attributes -O3  -DNoRepository -ftemplate-depth-100 -I/opt/openfoam8/src/finiteVolume/lnInclude -I/opt/openfoam8/src/meshTools/lnInclude  -IlnInclude -I. -I/opt/openfoam8/src/OpenFOAM/lnInclude -I/opt/openfoam8/src/OSspecific/POSIX/lnInclude   -fPIC -c AUSMPlusUp/AUSMPlusUp.C -o Make/linux64GccDPInt32Opt/AUSMPlusUp/AUSMPlusUp.o
+g++ -std=c++11 -m64 -Dlinux64 -DWM_ARCH_OPTION=64 -DWM_DP -DWM_LABEL_SIZE=32 -Wall -Wextra -Wold-style-cast -Wnon-virtual-dtor -Wno-unused-parameter -Wno-invalid-offsetof -Wno-attributes -O3  -DNoRepository -ftemplate-depth-100 -I/opt/openfoam8/src/finiteVolume/lnInclude -I/opt/openfoam8/src/meshTools/lnInclude  -IlnInclude -I. -I/opt/openfoam8/src/OpenFOAM/lnInclude -I/opt/openfoam8/src/OSspecific/POSIX/lnInclude   -fPIC -fuse-ld=bfd -shared -Xlinker --add-needed -Xlinker --no-as-needed Make/linux64GccDPInt32Opt/fluxScheme/fluxScheme.o Make/linux64GccDPInt32Opt/fluxScheme/newFluxScheme.o Make/linux64GccDPInt32Opt/HLLC/HLLC.o Make/linux64GccDPInt32Opt/HLLCP/HLLCP.o Make/linux64GccDPInt32Opt/HLL/HLL.o Make/linux64GccDPInt32Opt/Kurganov/Kurganov.o Make/linux64GccDPInt32Opt/Tadmor/Tadmor.o Make/linux64GccDPInt32Opt/AUSMPlus/AUSMPlus.o Make/linux64GccDPInt32Opt/AUSMPlusUp/AUSMPlusUp.o -L/opt/openfoam8/platforms/linux64GccDPInt32Opt/lib \
+      -o /opt/detonationfoam/lib/libfluxSchemes_improved.so
+Compiling enabled on 2 cores
+Making dependency list for source file detonationFoam_V2.0.C
+g++ -std=c++11 -m64 -Dlinux64 -DWM_ARCH_OPTION=64 -DWM_DP -DWM_LABEL_SIZE=32 -Wall -Wextra -Wold-style-cast -Wnon-virtual-dtor -Wno-unused-parameter -Wno-invalid-offsetof -Wno-attributes -O3  -DNoRepository -ftemplate-depth-100 -IfluxSchemes_improved/lnInclude -IsolverTypeEuler -IsolverTypeNS_Sutherland -IsolverTypeNS_mixtureAverage -IsolverTypeNS_mixtureAverage/transport -I/opt/openfoam8/src/finiteVolume/lnInclude -I/opt/openfoam8/src/MomentumTransportModels/momentumTransportModels/lnInclude -I/opt/openfoam8/src/MomentumTransportModels/compressible/lnInclude -I/opt/openfoam8/src/ThermophysicalTransportModels/lnInclude -I/opt/openfoam8/src/ThermophysicalTransportModels/psiReactionThermo/lnInclude -I/opt/openfoam8/src/thermophysicalModels/specie/lnInclude -I/opt/openfoam8/src/thermophysicalModels/reactionThermo/lnInclude -I/opt/openfoam8/src/thermophysicalModels/basic/lnInclude -I/opt/openfoam8/src/thermophysicalModels/chemistryModel/lnInclude -I/opt/openfoam8/src/dynamicFvMesh/lnInclude -I/opt/openfoam8/src/ODE/lnInclude -I/opt/openfoam8/src/combustionModels/lnInclude -I/opt/openfoam8/src/meshTools/lnInclude -IlnInclude -I. -I/opt/openfoam8/src/OpenFOAM/lnInclude -I/opt/openfoam8/src/OSspecific/POSIX/lnInclude   -fPIC -c detonationFoam_V2.0.C -o Make/linux64GccDPInt32Opt/detonationFoam_V2.0.o
+g++ -std=c++11 -m64 -Dlinux64 -DWM_ARCH_OPTION=64 -DWM_DP -DWM_LABEL_SIZE=32 -Wall -Wextra -Wold-style-cast -Wnon-virtual-dtor -Wno-unused-parameter -Wno-invalid-offsetof -Wno-attributes -O3  -DNoRepository -ftemplate-depth-100 -IfluxSchemes_improved/lnInclude -IsolverTypeEuler -IsolverTypeNS_Sutherland -IsolverTypeNS_mixtureAverage -IsolverTypeNS_mixtureAverage/transport -I/opt/openfoam8/src/finiteVolume/lnInclude -I/opt/openfoam8/src/MomentumTransportModels/momentumTransportModels/lnInclude -I/opt/openfoam8/src/MomentumTransportModels/compressible/lnInclude -I/opt/openfoam8/src/ThermophysicalTransportModels/lnInclude -I/opt/openfoam8/src/ThermophysicalTransportModels/psiReactionThermo/lnInclude -I/opt/openfoam8/src/thermophysicalModels/specie/lnInclude -I/opt/openfoam8/src/thermophysicalModels/reactionThermo/lnInclude -I/opt/openfoam8/src/thermophysicalModels/basic/lnInclude -I/opt/openfoam8/src/thermophysicalModels/chemistryModel/lnInclude -I/opt/openfoam8/src/dynamicFvMesh/lnInclude -I/opt/openfoam8/src/ODE/lnInclude -I/opt/openfoam8/src/combustionModels/lnInclude -I/opt/openfoam8/src/meshTools/lnInclude -IlnInclude -I. -I/opt/openfoam8/src/OpenFOAM/lnInclude -I/opt/openfoam8/src/OSspecific/POSIX/lnInclude   -fPIC -fuse-ld=bfd -Xlinker --add-needed -Xlinker --no-as-needed Make/linux64GccDPInt32Opt/detonationFoam_V2.0.o -L/opt/openfoam8/platforms/linux64GccDPInt32Opt/lib \
+    -lfiniteVolume -lfvOptions -lspecie -lrhoCentralFoam -lmomentumTransportModels -lfluidThermoMomentumTransportModels -lthermophysicalTransportModels -lpsiReactionThermophysicalTransportModels -lreactionThermophysicalModels -ldynamicFvMesh -ltopoChangerFvMesh -lfluidThermophysicalModels -lchemistryModel -lODE -lcombustionModels -lmeshTools -L/opt/detonationfoam/lib -lfluxSchemes_improved -lOpenFOAM -ldl  \
+     -lm -o /opt/detonationfoam/bin/detonationFoam_V2.0
+
+Usage: detonationFoam_V2.0 [OPTIONS]
+options:
+  -case <dir>       specify alternate case directory, default is the cwd
+  -fileHandler <handler>
+                    override the fileHandler
+  -hostRoots <(((host1 dir1) .. (hostN dirN))>
+                    slave root directories (per host) for distributed running
+  -libs <(lib1 .. libN)>
+                    pre-load libraries
+  -listFunctionObjects
+                    List functionObjects
+  -listMomentumTransportModels
+                    List momentumTransportModels
+  -listRegisteredSwitches
+                    List switches registered for run-time modification
+  -listScalarBCs    List scalar field boundary conditions (fvPatchField<scalar>)
+  -listSwitches     List switches declared in libraries but not set in
+                    etc/controlDict
+  -listUnsetSwitches
+                    List switches declared in libraries but not set in
+                    etc/controlDict
+  -listVectorBCs    List vector field boundary conditions (fvPatchField<vector>)
+  -noFunctionObjects
+                    do not execute functionObjects
+  -parallel         run in parallel
+  -postProcess      Execute functionObjects only
+  -roots <(dir1 .. dirN)>
+                    slave root directories for distributed running
+  -srcDoc           display source code in browser
+  -doc              display application documentation in browser
+  -help             print the usage
+
+Using: OpenFOAM-8 (see https://openfoam.org)
+Build: 8-1c9b5879390b
+
+ ---> Removed intermediate container 39ac2a6771db
+ ---> 62356a40b7d4
+Step 8/9 : WORKDIR /case
+ ---> Running in 8189d93644ef
+ ---> Removed intermediate container 8189d93644ef
+ ---> 3d97e9980d82
+Step 9/9 : ENTRYPOINT ["/bin/bash", "-c", "source /opt/foam-env.sh && exec \"$@\"", "bash"]
+ ---> Running in 5136358865de
+ ---> Removed intermediate container 5136358865de
+ ---> ecfef04e386b
+Successfully built ecfef04e386b
+Successfully tagged prox-rde/detonationfoam:4bd2e86

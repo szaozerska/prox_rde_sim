@@ -1,0 +1,16 @@
+{
+  "purpose": "installation_only",
+  "source": ".tooling/build/detonationFoam/tutorials/1D_NH3_O2_cracking_0.3_detonation",
+  "cells": 400,
+  "end_time_s": 2e-09,
+  "fixed_dt_s": 1e-10,
+  "modifications": [
+    "400 axial cells instead of 20000",
+    "2 ns end time",
+    "fixed dt and final-only output",
+    "shock cutoff beyond domain",
+    "omit nonexistent optional libODE_DLB.so",
+    "both transverse directions empty",
+    "fresh uniform mixture from upstream end state; zero velocity; setFields hot patch"
+  ]
+}

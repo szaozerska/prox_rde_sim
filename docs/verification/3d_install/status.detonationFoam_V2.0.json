@@ -1,0 +1,41 @@
+{
+  "command": [
+    "detonationFoam_V2.0"
+  ],
+  "image_id": "sha256:ecfef04e386b8b48bc61c8d14c09e1efc294935d7ba47d878740cd650afa82c6",
+  "input_sha256": {
+    "0/H2": "ed4eb24b803eec8c754b90da8e5e5ae92da992f34197fffdf479a2a88b867e73",
+    "0/N2": "6e01002f4defb239a259292b391bff7981e3b5e039da0dc888f65bd05235c92e",
+    "0/NH3": "666a5467b63e18875912a712a14cde992a65cf5a644c01f88d5801e8d9098710",
+    "0/O2": "bbb092c3491a083058f141e1a724e00f9637163b4a8ee68aec7c863856ed7ee3",
+    "0/T": "f7b89c535b3fa850422c0ed93c36e0b3c1ae22fc2281086e0a18a5def7aea39f",
+    "0/U": "503855d198e514139b0815fd7c51726442fd0204645598f0ef81d77a7e7353c5",
+    "0/Ydefault": "2429439a6d7c0d02bc88fcda1c89e0a8f0dcd4e5733c120c28e3b2b9ebecd9fb",
+    "0/p": "87beb1c1440e17a7f195002233fffa7ee620933c653f672ecac1fec4b0abbadd",
+    "constant/chemistryProperties": "a5c7769b24bf21e546e6eddb066b2920d80f57b3fc09eb21923abb74002383a6",
+    "constant/combustionProperties": "5030ddebb65cea8bddf0b5447d5d5033b79454325f4997f978f6f4bb5c4b35a0",
+    "constant/foam/reactions.foam": "63666879ecb0fb7fb3a748a9e824ba7aa462a1746adf75a50d9767efc9e8b2c9",
+    "constant/foam/species.foam": "01cf4223cdcde70e0b0e7325a7c5751f721a63c850608f863741250ca0662e5e",
+    "constant/foam/thermo.foam": "11322fb7927c1a3e74f47f948d05b900771694188c3df378aecd24e7471b3ee0",
+    "constant/momentumTransport": "75cbd7b05f5162e3dad6b1a8211aaace2e8e7a5cb5e2302a6af848cb245d4724",
+    "constant/polyMesh/boundary": "9c6ee7e5e73b394f42450b21fd1c45c703b76ded483f06bfac9e31056cb0d505",
+    "constant/polyMesh/faces": "1339afde54f6d2d463cee8265026e1510877510567e04b493e2a075927e0d1c9",
+    "constant/polyMesh/neighbour": "d74fbe2e2a5ac3a893dacff7c950d4191d89d58c35b0695ccf524395d0dafd5d",
+    "constant/polyMesh/owner": "fe6389cdd0300ffb9d7d411c1f301579928e8c7706ae8e7a941558bdb04eda2d",
+    "constant/polyMesh/points": "4aaba639930a2a4dc10e5679255be3e47928e58153bc4176104c046555395a52",
+    "constant/polyMesh/sets/oneInternalFaceCells": "47c16659d06825c987c7dd94c999bdc9fb9e1161508188632b6ec5e8deaea82b",
+    "constant/polyMesh/sets/twoInternalFacesCells": "9838f06cfc43125827c422ef0fbf35da17a0b5d0ef904393ad9b1c7a4287de7d",
+    "constant/solverTypeProperties": "fc552a3ad97e1a30df46126d4dc8aecda444fc228ea467138e5e30ccbfacd5ec",
+    "constant/thermophysicalProperties": "5ed9da009de3c6ca915ab721bd14b912a8397ee7a3ab881cf0bdc8bf574a3a96",
+    "system/blockMeshDict": "63128a49f3395458aea45a366d220c901707364521ce0480d386eca5ccd2bc52",
+    "system/controlDict": "f05282947c031391c1141a47d653b636c7de31bd537f91ffbe056e725c09120c",
+    "system/decomposeParDict": "70201fd642869bac8f37b7788da105a76a901db9981a6a8711f30b23e93be53f",
+    "system/fvSchemes": "2494fc1eb76bd75dfba2b0a07ed51a41ea207a6a42e55d999d88147fef6fab06",
+    "system/fvSolution": "8a5eab139b83f046e414ec2d5659ebd4aeaaa3b358d911dcc54945fb0f069d39",
+    "system/setFieldsDict": "07c9c8387c4d7bdedc831763d4fb92902087835b07fcbffa2d98a5828b469578"
+  },
+  "wall_timeout_s": 120,
+  "status": "process_completed",
+  "returncode": 0,
+  "wall_time_s": 6.569631035999919
+}

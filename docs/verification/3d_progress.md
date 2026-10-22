@@ -58,3 +58,52 @@ build; the installation smoke must diagnose this explicitly if loading fails.
   reference, clearly labelled as the other session's work; do not claim C1-C6 done.
 - Archived the inherited master plan at `first_sim_plan_2d_baseline.md`; revision
   10 now directs this branch. Five review rounds and all unresolved physics remain.
+
+## Frozen inherited baseline verification
+
+Command: `RDE_RUN_REACTIVE_BASELINE=1 NUMBA_NUM_THREADS=2 python -m unittest
+discover -s tests -v`, in this clone's `rde_sim_starter`, using the existing Python
+3.12 interpreter and dependencies read-only. **59 tests passed, none skipped,
+125.849 s.** Log: `docs/verification/3d_inherited_tests.log`. This includes the
+95 microsecond 1D reactive baseline; it does not resolve RDE-001.
+
+The isolated geometry checks passed four tests in 0.033 s after transfer. Native
+completion/ASCII-reader failure checks add two tests (all six passed in staging).
+OpenFOAM mesh checks and the tutorial are still pending; no new physical pass
+is inferred from these unit tests.
+
+## T1 first smoke failure and cause
+
+`runs3d/install_smoke` stopped at setFields: upstream 0/ files contain 20,000
+entries, incompatible with the explicitly coarsened 400-cell installation mesh.
+This is a setup error, not accumulated flow error or a chemistry conclusion.
+Full checkMesh additionally found zero transverse determinants: the single-row
+tutorial leaves y active while declaring only z empty. No timestep was taken.
+
+Fix: create uniform fresh fields from the upstream profile's far-upstream mixture,
+zero velocity, then the supplied setFields pressure/temperature hot patch; declare
+both transverse directions empty. All deviations are in the smoke manifest.
+Require the actual `Mesh OK.` marker, since checkMesh can return zero with failed
+checks. Preserve the failed destination; rerun in `install_smoke_v2`. This is
+installation verification only, not conservative remapping or physical validation.
+
+## T1 - installed and verified
+
+OpenFOAM `8-1c9b5879390b` and pinned detonationFoam built successfully, including
+upstream dynamicMesh2D, dynamicFvMesh2D, DLB and flux libraries. Executable help
+and dynamic linking passed. Rebuild instructions and image identity are in
+`tools/openfoam/`. Compiler warnings are retained in `3d_install/build.log`.
+
+The corrected 400-cell tutorial-based smoke passed full mesh checks and twenty
+fixed 0.1 ns steps, reaching exactly 2 ns with normal End and complete final
+fields. Native solver reported 5.16 CPU seconds / 5 wall seconds. All 33 species
+were finite and nonnegative; max species-sum error 1.14e-12. Pressure 101325 to
+9117830.54 Pa, temperature 300 to 1999.689 K. The conservative acoustic estimate
+from initial/final extrema is 0.002203 (project smoke limit 0.01). This is a very
+short installation check, not time/space-converged reactive physics. Upstream
+clipping remains unquantified and blocks quantitative chemistry claims.
+
+Two native reader/completion tests passed (0.009 s): early exits, missing fields,
+wrong field counts, truncated/nonfinite data and nonpositive states are rejected.
+Full logs, initial-input hashes and failure evidence are in `3d_install/`.
+T1 permits native geometry and cold controls; T4 chemistry validation remains open.

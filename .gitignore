@@ -11,3 +11,7 @@ __pycache__/
 .pytest_cache/
 .DS_Store
 rde_sim_starter/runs/
+
+# Isolated 3D backend build and native run output.
+.tooling/
+runs3d/
