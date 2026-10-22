@@ -216,6 +216,8 @@ error bars or proof of convergence. Before each numerical test, record the norm,
 reference, tolerance and intended claim. A mode change or extinction/survival change
 under refinement blocks a physical mode conclusion even if scalar errors are small.
 
+PeleC does not support a true 1D build. Implement physical 1D controls as
+transversely uniform thin native 2D/3D domains and check transverse invariance.
 Resolve the physical 1D reference sufficiently to measure its reaction structure.
 For the first 3D diagnostic, quantify the effect of under-resolution on the stated
 observables; global speed agreement alone does not demonstrate resolved chemistry

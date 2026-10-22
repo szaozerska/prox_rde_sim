@@ -228,3 +228,18 @@ trial, CPU controls, and detonationFoam fallback. Sustained-wave design screenin
 is the objective; short diagnostic outputs are intermediate, not a completed
 physical validation. Local documentation links, arithmetic and diff whitespace
 checks passed. No CFD job ran during the literature review.
+
+
+## G0 hardware access — one H100 allocated successfully
+
+Bounded 30-second GPU probe passed at 20:20:17 UTC. Modal allocated one NVIDIA
+H100 80GB HBM3 (81559 MiB reported), driver 610.57.04, compute capability 9.0.
+CUDA driver initialization and device enumeration passed. Temporary app
+`ap-sDAMXUchI80hG4L26p2OBR` completed/stopped. This is not kernel/CFD throughput,
+multi-GPU scaling or eight-device capacity evidence. No engine data uploaded.
+Probe source and JSON are reproducible; importing the script launches no job.
+
+Fetched/pinned PeleC 949e2bb67386bf4b16324b06555e303ff411e179 and its recursive
+submodules in ignored .tooling/PeleC. Source inspection found no true 1D build: use
+transversely uniform thin 2D/3D domains for physical 1D controls, verify transverse
+uniformity, and retain the native dimensional kernels. No custom flux code needed.

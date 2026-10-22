@@ -4,7 +4,7 @@ The official Modal Python CLI is installed in `.tooling/modal-venv`, isolated
 from the 2D environment. No Modal plugin was returned by the plugin catalog search.
 This is a CLI connection, not a plugin installation. Client authentication has
 been verified. An 8-core / 1 GiB CPU-only allocation and execution check passed;
-GPU allocation and solver execution have not yet been tested.
+A single H100 allocation/driver check also passed; solver execution remains pending.
 
 Reproduce this Intel macOS / Python 3.12 client environment from the repository root:
 
@@ -45,3 +45,14 @@ The October 22 check passed; saved evidence is in
 x86_64 and eight visible logical CPUs, but did not expose a CPU model or cgroup
 limits at the probed paths. Do not infer a particular processor, maximum quota,
 dedicated-node topology or MPI throughput from this check.
+
+
+## GPU access check
+
+Run `.tooling/modal-venv/bin/modal run --profile prox --write-result
+/private/tmp/prox_rde_3d_modal_gpu_check.json tools/modal/check_gpu.py` as one
+command. Requests one H100, two CPU cores and 2 GiB RAM for at most 30 function
+seconds, no retries. Requires the expected single CUDA 9.0 device and records
+actual device/driver/memory. Source automount is disabled. Saved evidence is in
+`../../docs/verification/modal_gpu_access.json`. This is a hardware/driver check,
+not a CUDA kernel or reacting-flow benchmark.

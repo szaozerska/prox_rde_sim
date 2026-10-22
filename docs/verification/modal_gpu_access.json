@@ -1,0 +1,21 @@
+{
+  "status": "gpu_allocation_and_driver_passed",
+  "checked_at_utc": "2026-10-22T20:20:17.224757+00:00",
+  "requested_gpu": "H100!",
+  "requested_gpu_count": 1,
+  "requested_physical_cpu_cores": 2,
+  "requested_memory_mib": 2048,
+  "cuda_device_count": 1,
+  "compute_capability": [
+    9,
+    0
+  ],
+  "nvidia_smi_columns": [
+    "name",
+    "memory_total_mib",
+    "driver_version",
+    "compute_capability"
+  ],
+  "nvidia_smi": "NVIDIA H100 80GB HBM3, 81559, 610.57.04, 9.0",
+  "scope": "Allocation and CUDA driver only; no CFD/kernel throughput or multi-GPU quota verified"
+}
