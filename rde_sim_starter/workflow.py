@@ -16,11 +16,13 @@ def collect_workflow(directory, start, end, segment_s=None, inertia=None):
     inputs, summary, rows, provenance = load_native_prefix(directory)
     report = dict(reduce_window(inputs, summary, rows, start, end), provenance=provenance)
     report['experimental_comparison'] = run937_reference(inputs['config'], inputs['resolved'], report)
+    radial = inputs['config']['model'].get('radial')
     report['radial_physics'] = dict(radial_momentum=False, radial_velocity=False,
-        centrifugal_pressure_split=False, curvature_loss=False, heat_loss=False,
-        separate_inner_outer_wall_states=False,
+        centrifugal_pressure_split=bool(radial and radial['centrifugal']), curvature_loss=False,
+        heat_loss=bool(radial and radial['analogy_factor'] > 0 and (radial['inner']['cf'] > 0 or radial['outer']['cf'] > 0)),
+        separate_inner_outer_wall_states=radial is not None, radial_assumptions=radial,
         wall_drag=inputs['config']['model']['walls'],
-        qualification='surface (theta,z) model; cylindrical display is not 3D or the full proposed 2.5D tier')
+        qualification='surface (theta,z) model; optional quasi-steady radial equilibrium and wall sources do not resolve radial motion or detachment')
     t = np.asarray([row['t'] for row in rows])
     if all('probe_pressure_Pa' in row for row in rows):
         p = np.asarray([row['probe_pressure_Pa'] for row in rows])

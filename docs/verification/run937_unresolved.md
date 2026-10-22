@@ -6,8 +6,9 @@ This is a known unsuccessful propagation result in the current model. The root
 cause has not been isolated. Numerical validity and passing software tests do
 not close this issue.
 
-**Current ownership:** the user assigned the sustaining-wave study to a separate
-chat. Functional 2D work continues here. [C6a](c6a_functional_pipeline.md) supplies
+**Current ownership:** the broader sustaining-wave study remains in its separate
+chat. After completing F1–F4, the user explicitly authorized a bounded radial-wall
+closure comparison here; see the [plan](../plans/radial_closures_2d.md). [C6a](c6a_functional_pipeline.md) supplies
 a conservative formed initializer and <=2 us persistence/budget benchmark;
 its success cannot close this issue or establish compatibility with the paper's
 sustained-wave result.

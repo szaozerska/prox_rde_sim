@@ -5,7 +5,7 @@ Snapshot: **October 22, 2026**. Repository:
 
 ## Current result and plan
 
-[Revision 13](first_sim_plan.md) records the completed D3 investigation and the
+[Revision 14](first_sim_plan.md) records the completed D3 investigation and the
 [paper/model audit](docs/verification/mundt_model_audit.md). The latest instruction authorizes controlled 2D tests, three plan reviews,
 small verified increments and publication on **main only**. The independent
 session handles 3D in another checkout/branch; do not push to its branch. D3 and
@@ -240,3 +240,7 @@ Current native verification: `runs/c5_short_verify_corrected`; current layer pai
 `runs/c5_short_layers`. Inspect their saved progress/results rather than rerunning.
 The independent report and pre-existing edits in `controlled_2d_progress.md` are
 preserved and are not included in this session's commits.
+
+Radial follow-on: [reviewed scope and equations](docs/plans/radial_closures_2d.md).
+Implementation/tests are complete; the controlled comparison is running.
+[Evidence and status](docs/verification/radial_closures.md). Inviscid defaults remain unchanged.

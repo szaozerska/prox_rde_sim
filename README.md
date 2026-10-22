@@ -21,7 +21,8 @@ shock-associated reaction in a 3.8 mm isolated layer through 10 us on two meshes
 This is an explicit surrogate test variant, not a solved rotating-engine case.
 The [formed-engine initializer and bounded benchmark](docs/verification/c6a_functional_pipeline.md)
 are implemented and tested (2 us, 556 steps, zero invalid states). The sustaining-wave investigation is
-assigned to a separate chat; this branch continues 2D functionality and tests.
+assigned to a separate chat; after finishing 2D functionality, this branch now
+adds the user-requested radial-wall closures and their controlled comparison.
 
 ## Complete 2D software workflow
 
@@ -64,10 +65,33 @@ Full native windows remain available through `window_report.py` without reading
 fields. The existing `--coupling` option provides candidate front tracks and
 multi-height reaction inspection; spectra alone do not classify detonation.
 
-**Radial physics:** circumference, annular area and mean-radius moments are
-represented; optional wall drag scales with gap. Radial momentum, centrifugal
-pressure splitting, curvature loss, heat loss and distinct inner/outer wall
-states are absent. Wrapped/head-end views add no physics.
+**Radial physics:** the default remains inviscid. The optional `annular_closure`
+reconstructs inner/outer pressure using radial equilibrium, applies separate wall
+drag, and supports Reynolds-analogy heat exchange with explicit wall temperatures
+and recovery factor. Radial velocity/momentum, wave detachment and calibrated
+curvature losses remain unresolved. Wrapped/head-end views add no physics.
+See the [reviewed equations, assumptions and experiment](docs/plans/radial_closures_2d.md).
+
+Named exploratory cases hold the original D1 mesh, chemistry and startup fixed:
+`cases/run937_wall_control.yaml` disables the centrifugal split;
+`cases/run937_radial.yaml` enables it. Both use explicitly assumed Cf=0.005,
+Tw=300 K, analogy factor=1 and recovery factor=0.9; these are not Run 937 fits.
+From `rde_sim_starter` (fresh output names):
+
+```sh
+NUMBA_NUM_THREADS=2 ../.venv/bin/python run.py --preflight --case cases/run937_radial.yaml
+NUMBA_NUM_THREADS=2 ../.venv/bin/python run.py --case cases/run937_wall_control.yaml --out runs/my_wall_control
+NUMBA_NUM_THREADS=2 ../.venv/bin/python run.py --case cases/run937_radial.yaml --out runs/my_radial
+../.venv/bin/python radial_study.py --runs runs/d1_run937 runs/my_wall_control runs/my_radial --out ../reports/my_radial_comparison
+```
+
+Native run directories are local and Git-ignored. If the historical D1 directory
+is unavailable, supply the two new directories only. The study reader preserves
+absolute reaction magnitudes and source budgets; it does not automatically label
+pressure pulses as detonations. Existing window/workflow reports also accept the
+new cases. Saved snapshots include `inner_pressure`/`outer_pressure` in Pa, labeled
+as reconstructions. Wall heat and actual-radius traction integrals are retained
+separately from the solver's mean-radius angular balance.
 
 ## Run the fast checks
 

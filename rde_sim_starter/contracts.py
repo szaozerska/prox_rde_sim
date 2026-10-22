@@ -64,8 +64,8 @@ def case_contract(config, resolved):
             initialization=config['initialization'].copy(), pressure_stations_m=resolved['pressure_stations']),
         backend=dict(name='custom_reactive_euler_2d', dimension=2, schema_version=1,
             capabilities=dict(geometry=['constant_annulus'], feeds=['premixed_plenum'],
-                walls=['inviscid', 'constant_cf'], chemistry=['one_step', 'disabled'],
-                restart='native checkpoint, identical code/environment only', cad=False, radial_dynamics=False),
+                walls=['inviscid', 'constant_cf', 'annular_closure'], chemistry=['one_step', 'disabled'],
+                restart='native checkpoint, identical code/environment only', cad=False, radial_dynamics=False, radial_equilibrium_closure=True),
             numerical_settings={k: resolved[k] for k in ('nx', 'ny', 'dx', 'dy', 'cfl', 'source_cfl', 'max_dt')}),
         results=dict(schema_version=1, native_format_version=2,
             mesh=dict(kind='structured_uniform', topology='fixed', location='cell',
@@ -73,7 +73,8 @@ def case_contract(config, resolved):
                 spacing_m=[resolved['dx'], resolved['dy']], radial_velocity='assumed zero; not resolved'),
             fields={name: dict(unit=unit, location='cell') for name, unit in
                 [('pressure', 'Pa'), ('density', 'kg/m^3'), ('temperature', 'K'),
-                 ('u_theta', 'm/s'), ('u_z', 'm/s'), ('progress', '1'), ('reaction_rate', '1/s')]},
+                 ('u_theta', 'm/s'), ('u_z', 'm/s'), ('progress', '1'), ('reaction_rate', '1/s')] +
+                ([('inner_pressure','Pa'),('outer_pressure','Pa')] if resolved.get('radial') is not None else [])},
             pressure_type='absolute', energy_reference='thermal + kinetic + unspent chemical energy',
             native_files=dict(fields='fields/step_*.npz', history='history.jsonl', checkpoint='checkpoint.npz'),
             authoritative_integrals='RK-weighted native faces and cell sources in history; display fields are float32'))
@@ -96,6 +97,11 @@ def iter_fields(directory, inputs, max_step, selected_steps=None):
             if not math.isfinite(t) or t <= previous:
                 raise ValueError('snapshot times must be finite and increasing')
             arrays = {k: saved[k] for k in ('pressure', 'density', 'temperature', 'u_theta', 'u_z', 'progress', 'reaction_rate')}
+            if r.get('radial') is not None:
+                for key in ('inner_pressure','outer_pressure'):
+                    arrays[key] = saved[key]
+                    if np.any(arrays[key] <= 0):
+                        raise ValueError('nonpositive reconstructed wall pressure')
             if any(v.shape != shape or not np.isfinite(v).all() for v in arrays.values()):
                 raise ValueError('snapshot fields must be finite and match the native mesh')
             if (np.any(arrays['density'] <= 0) or np.any(arrays['pressure'] <= 0)

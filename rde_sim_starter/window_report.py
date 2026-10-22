@@ -125,7 +125,7 @@ def reduce_window(inputs, summary, history, start, end):
         conversion=dict(available=True,chemical_to_thermal_J=float(q*S[4]),
                         definition='q times reacted-mass source; internal conversion, not an extra total-energy source')
     torque=unavailable('no wall-traction model; angular conservation residual is not engine torque')
-    if inputs.get('config', {}).get('model', {}).get('walls') == 'constant_cf':
+    if inputs.get('config', {}).get('model', {}).get('walls') in ('constant_cf','annular_closure'):
         if budget['available']:
             angular_impulse = -radius * S[1]
             balance_impulse = radius * (B[0,1]-B[1,1]+B[2,1]-B[3,1]-storage[1])
@@ -133,11 +133,23 @@ def reduce_window(inputs, summary, history, start, end):
                 angular_impulse_Nm_s=float(angular_impulse),
                 balance_mean_Nm=float(balance_impulse/duration),
                 traction_minus_balance_Nm=float((angular_impulse-balance_impulse)/duration),
-                wall_cf=inputs['config']['model']['wall_cf'],
+                wall_cf=inputs['config']['model'].get('wall_cf'),
+                radial_assumptions=inputs['config']['model'].get('radial'),
                 definition='reaction torque on engine = negative native wall momentum source times mean radius',
-                qualification='constant-Cf adiabatic closure, unvalidated; mean-radius approximation; no vehicle stability claim')
+                qualification='constant-Cf closure, unvalidated; mean-radius approximation; see radial assumptions for heat exchange; no vehicle stability claim')
         else:
             torque=unavailable('native storage/flux/source needed for the applied wall model')
+    wall_exchange=unavailable('separate radial wall integrals were not saved')
+    wall_steps=_array(history[1:],'radial_wall_integral',(2,3))
+    if wall_steps is not None:
+        integrated=np.einsum('t,tij->ij',fraction,wall_steps)
+        actual=float(-np.dot([radius-gap/2,radius+gap/2],integrated[:,0])/duration)
+        wall_exchange=dict(available=True,inner_outer_integrals=integrated,
+            columns=['theta_momentum_kg_m_s','axial_momentum_kg_m_s','energy_to_gas_J'],
+            heat_to_gas_J=float(integrated[:,2].sum()),
+            actual_radius_traction_moment_Nm=actual,
+            actual_minus_mean_radius_moment_Nm=actual-torque['mean_Nm'] if torque['available'] else None,
+            qualification='actual-radius traction reconstruction; solver angular inventory uses mean radius, so these moments are not interchangeable')
     return dict(report_schema_version=1,run_status=summary.get('status','unknown'),
         run_mode=summary.get('run_mode','engine_intervals'),
         run_invalid_state_count=summary.get('invalid_state_count'),
@@ -148,7 +160,7 @@ def reduce_window(inputs, summary, history, start, end):
         budgets=budget,mass_flow=mass_flow,exit_numerical_force=force,
         exit_force_from_control_volume=control_force,exit_cell_force_estimate=cell_result,
         annulus_exit_effective_isp=isp,pressure_stations=pressure,chemical_conversion=conversion,
-        engine_torque=torque,
+        engine_torque=torque, radial_wall_exchange=wall_exchange,
         physical_validation='not established by this report; transient window, no steady-state or sustained-detonation classification')
 
 

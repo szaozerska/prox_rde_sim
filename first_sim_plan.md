@@ -1,6 +1,6 @@
-# RDE simulation plan — revision 13
+# RDE simulation plan — revision 14
 
-**Status: reduced 2D software workflow F1–F4 complete. Full acceptance: 122 tests passed, no skips; 16 affected checks repeated after review, plus one new coupled-physics check (123 distinct passing tests). RDE-001 remains open. Next, per the latest user direction: separately verified radial closures and their sustainment effects; no CAD work.**
+**Status: reduced 2D software workflow F1–F4 complete. Full acceptance: 122 tests passed, no skips; 16 affected checks repeated after review, plus one new coupled-physics check (123 distinct passing tests). RDE-001 remains open. Radial closures are the next authorized physics increment; see the reviewed [radial plan](docs/plans/radial_closures_2d.md). No CAD work.**
 The [controlled-test plan](docs/plans/controlled_2d_tests.md) records three review
 passes and the C1–C6 increments. First verify multirow/direction equivalence and
 formed-profile propagation, then distinguish thin-layer survival from initiation.
@@ -28,11 +28,12 @@ Paper references mean Mundt (2023), *Geometric Scaling of Cylindrical Rotating D
 
 ## 0. Functional implementation track and separate investigation
 
-**Latest direction (October 22):** continue remaining 2D functionality on main;
-the user will launch the sustaining-wave study in a separate chat. Do not block
-independent functional work on RDE-001, and do not automatically launch more
-layer sweeps, full engine propagation studies or chemistry/integrator changes here.
-The physical validation gates still constrain claims. 3D stays on its separate track.
+**Latest direction (October 22):** F1–F4 are complete. The user now explicitly
+authorizes the report's reduced radial closures and a controlled sustainment
+comparison here on main. Follow the [radial plan](docs/plans/radial_closures_2d.md);
+hold chemistry, mesh and startup fixed. The separate broader sustaining-wave and
+3D investigations remain independent. Physical validation gates still constrain
+claims; no CAD changes are authorized in this increment.
 
 Functional increments after C6a, drawn from sections 4.5, 5.2 and 9:
 

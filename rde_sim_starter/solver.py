@@ -10,6 +10,8 @@ import numpy as np
 from numba import njit, prange
 from physics import cons_to_prim, prim_to_cons_cell, injector_flux, reaction_rate, state_error, total_energy, source_step_limit, wall_drag_rhs
 
+from radial import annular_rhs
+
 NG = 2
 # boundary codes
 PERIODIC, REFLECT, TRANSMIT = 0, 1, 2          # x-ends (left / right)
@@ -170,7 +172,7 @@ class InvalidStateError(ValueError):
 
 
 class Solver:
-    def __init__(self, nx, ny, dx, dy, gas, bc, inj=(0.0, 300.0, 0.0, 1.0), p_back=1e5, cfl=0.4, source_cfl=0.05, wall_cf=0., wall_gap=None):
+    def __init__(self, nx, ny, dx, dy, gas, bc, inj=(0.0, 300.0, 0.0, 1.0), p_back=1e5, cfl=0.4, source_cfl=0.05, wall_cf=0., wall_gap=None, radial=None):
         if not isinstance(nx, (int, np.integer)) or not isinstance(ny, (int, np.integer)) or nx < NG or ny < 1:
             raise ValueError("nx must be an integer >= 2 and ny an integer >= 1")
         if not np.all(np.isfinite([dx, dy, p_back, cfl])) or dx <= 0 or dy <= 0 or p_back <= 0 or not 0 < cfl <= 1:
@@ -196,6 +198,16 @@ class Solver:
             raise ValueError("wall_gap must be finite and positive")
         if wall_cf > 0 and wall_gap is None:
             raise ValueError("positive wall_cf requires wall_gap")
+        self.radial = None if radial is None else np.array(radial, dtype=float, copy=True)
+        if self.radial is not None:
+            a = self.radial
+            if (a.shape != (9,) or not np.all(np.isfinite(a)) or
+                not 0 < a[0] < a[1] or a[2] not in (0.,1.) or
+                min(a[3],a[5],a[7]) < 0 or min(a[4],a[6]) <= 0 or
+                not 0 <= a[8] <= 1 or wall_cf != 0):
+                raise ValueError('invalid or conflicting annular closure parameters')
+        self.wall_sources = np.zeros((2,3))
+        self.cumulative_wall_sources = np.zeros((2,3))
         self.wall_cf = wall_cf
         self.wall_gap = wall_gap
         self.wall_rate_max = 0.
@@ -277,6 +289,10 @@ class Solver:
         if self.wall_cf > 0:
             source[1], source[2], self.wall_rate_max = wall_drag_rhs(
                 self.W, out, self.wall_cf/self.wall_gap, NG, self.dx*self.dy)
+        if self.radial is not None:
+            self.wall_sources, self.wall_rate_max = annular_rhs(
+                self.W, out, self.radial, self.g, self.R, NG, self.dx*self.dy)
+            source[1:4] += self.wall_sources.sum(axis=0)
         return boundary, source
 
     def step(self, dt_max=None):
@@ -288,11 +304,12 @@ class Solver:
         if dt_max is not None and (not np.isfinite(dt_max) or dt_max <= 0):
             raise ValueError("dt_max must be finite and positive")
         boundary1, source1 = self._L(self.U, self.k1, "step input")
+        walls1 = self.wall_sources.copy()
         sx, sy = max_speed(self.W, self.g)
         dt = min(self.cfl / (sx / self.dx + sy / self.dy),
                  source_step_limit(self.g, self.q, self.R, self.k, self.Ea, self.source_cfl))
         if self.wall_rate_max > 0:
-            dt = min(dt, .1/self.wall_rate_max)  # resolve momentum decay; independent of chemical cap
+            dt = min(dt, .1/self.wall_rate_max)  # resolve wall momentum/thermal sources; independent of chemical cap
         if dt_max is not None:
             dt = min(dt, dt_max)
         if not np.isfinite(dt) or dt <= 0 or self.t + dt == self.t:
@@ -310,7 +327,9 @@ class Solver:
         self.steps += 1
         self.cumulative_boundary += boundary
         self.cumulative_source += source
-        self.last_step_budget = dict(dt=dt, boundary=boundary, source=source)
+        walls = .5 * dt * (walls1 + self.wall_sources)
+        self.cumulative_wall_sources += walls
+        self.last_step_budget = dict(dt=dt, boundary=boundary, source=source, walls=walls)
         return dt
 
     def conserved_totals(self):
