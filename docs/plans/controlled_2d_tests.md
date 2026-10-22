@@ -6,6 +6,14 @@ October 22, 2026. Companion to master-plan revision 9.
 the overnight instruction is interpreted in light of the explicit main-only
 assignment; this session must not change, merge or push the other branch.
 
+## Current gate
+
+C1–C4 diagnostics are complete within their stated windows. C5a's saved-reference
+feasibility audit is complete, but **C5 model readiness remains open and C6 is
+not launched**. See the [readiness decision](../verification/c5_model_readiness.md).
+This status supersedes earlier running/conditional language in the dated reviews
+below. No stable rotating-wave milestone is claimed.
+
 ## Purpose and evidence
 
 Separate implementation error, detonation-profile initialization, finite-layer
@@ -198,3 +206,25 @@ Proceed to C5's **decision and feasibility review**, keeping chemistry/engine
 inputs frozen. Review the physical reaction structure and cost of resolving it
 before adopting constants. C6 stays gated. No extra height or ignition-energy
 sweep is justified by the completed comparison.
+
+## C5 review and decomposition: do not promote unresolved constants
+
+The physical reference is not a uniform rescaling of the inherited surrogate.
+A two-distance Ea/k fit is underresolved on the engine grid and makes the current
+source cap impractical (91.09 million steps for the bounded engine window).
+It also leaves a held-out shape error and the existing thermodynamic mismatch.
+The candidate is retained as algebraic evidence only; no engine inputs change.
+
+Split the remaining C5 work into small, verifiable gates:
+
+| Next increment | Verification before the following increment |
+|---|---|
+| C5b: one documented reaction-model hypothesis, with fitted/held-out physical quantities | Reconcile or explicitly scope CJ/EOS differences; record whether the choice is physical or only a surrogate sensitivity. No parameters selected by successful engine appearance. |
+| C5c: source-treatment feasibility on homogeneous reactors and representative shock states | Independent converged ODE comparison, chemical/total-energy consistency, admissible states and runtime sample. A sharper timestep bound/integrator must be verified, not bypassed. |
+| C5d: short filled-profile propagation at fixed chosen chemistry | Independent jump/profile checks, source-step comparison and decisive mesh comparison before a thin-layer test. Domain/time selected from causal bounds. |
+| C5e: revisit the decisive 3.8 mm layer, then choose a justified engine variant | Reaction association, numerical mixing, native budgets and causal margins combined. C6 remains conditional on that assessment. |
+
+No immediate solver rewrite, broad mechanism/height sweep, new engine startup or
+3D switch is justified by this assessment. This stop honors the instruction not
+to advance past a critical model/numerical inconsistency. It is not a claim that
+the original implementation task or sustained-wave goal has been completed.

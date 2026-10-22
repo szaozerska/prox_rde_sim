@@ -352,3 +352,37 @@ these choices before the conditional full run.
   change. The existing paper audit and physical-reference discrepancies remain
   applicable; neither 15 mm startup nor these artificial kinetics are validated
   by Mundt's operating refill-height estimate.
+
+## C5a — physical-model/source/mesh feasibility review: completed; C6 blocked by readiness gate
+
+- Added a small, saved-evidence-only `model_audit.py`; it neither runs CFD nor
+  changes calibration. Rate-only changes cannot match the physical 50/90/95%
+  distances simultaneously: the required factors are 25.302/69.265/81.772.
+- A bounded algebraic Ea/k fit to physical 50%/95% distances (current EOS fixed)
+  yields Ea/(R T1)=71.61489, k=2.17877e10/s. It is explicitly **not adopted**.
+  Held-out 90% distance error is +6.29%; CJ thermodynamics remain unchanged.
+  Physical 50%/95% lengths span only 0.079/0.102 of a nominal 0.5 mm cell.
+  The current sufficient global source cap would be 2.079 ps, at least 91.09
+  million source-limited steps over three reference intervals. This is a cap/
+  resolution feasibility result, not a measured runtime or proof that chemistry
+  inherently needs that timestep. Tight quadrature changes results by <2.1e-11.
+- [Readiness review and next small gates](c5_model_readiness.md) combine resolution,
+  accumulation, initial/dynamic mixing, boundary and model evidence. The paper
+  does not validate the thickened one-step model, and C3/C4 do not uniquely
+  identify the complete engine root cause. The physical-reference CJ discrepancy
+  and EOS mismatch remain explicit.
+- **Decision:** no unsupported engine model change is promoted and C6 is not
+  launched. The next work must select a documented reaction-model hypothesis,
+  verify an affordable source treatment and resolved local controls, then revisit
+  the thin layer. Arbitrary fill/ignition increases or rate tuning would bypass
+  the inconsistency instead of resolving it. detonationFoam is not needed for
+  the completed controls; any future backend choice follows a small benchmark.
+- Two audit tests passed in 1.833 s; strict independent quadrature audit passed.
+  The full suite passed **73/73 in 203.681 s**, including the opt-in reactive
+  baseline and side-effect-free imports. [Log](c5_tests.log). Final plotting-only
+  refinements then passed the controlled 12-test set and one last display check
+  as recorded under C4. Production solver/physics/engine/calibration/config remain
+  unchanged; existing D1/D2 numerical checkpoints keep their fingerprint.
+- The current status, handoff, issue and master/controlled plans now agree on
+  completed C1–C4, completed C5a assessment, and the open C5 model-readiness gate.
+  Every completed increment is committed/pushed to main; the 3D branch is untouched.

@@ -1,0 +1,79 @@
+{
+  "policy": "Algebraic feasibility only; candidate NOT adopted; production calibration unchanged.",
+  "quadrature_rtol": 1e-10,
+  "heat_fractions": [
+    0.5,
+    0.9,
+    0.95
+  ],
+  "physical_length_m": [
+    3.952184602151543e-05,
+    4.533256174484289e-05,
+    5.108420899122969e-05
+  ],
+  "current_length_m": [
+    0.0009999999999999992,
+    0.003139948297637073,
+    0.004177269646566619
+  ],
+  "stretch_factors": [
+    25.30246181961252,
+    69.26474429815957,
+    81.77222920851699
+  ],
+  "physical_cells_at_current_0_5mm": [
+    0.07904369204303086,
+    0.09066512348968578,
+    0.10216841798245938
+  ],
+  "rate_only_match_half": {
+    "k_multiplier": 25.30246181961252,
+    "predicted_length_m": [
+      3.952184602151543e-05,
+      0.000124096553134732,
+      0.00016509340776195623
+    ]
+  },
+  "rate_only_match_95": {
+    "k_multiplier": 81.77222920851699,
+    "predicted_length_m": [
+      1.2229090605442907e-05,
+      3.839871222821001e-05,
+      5.108420899122969e-05
+    ]
+  },
+  "two_distance_candidate_not_adopted": {
+    "Ea_over_RT1": 71.614891428805,
+    "k_per_s": 21787704400.447575,
+    "predicted_length_m": [
+      3.9521846021515434e-05,
+      4.8183773868875966e-05,
+      5.1084208991229705e-05
+    ],
+    "held_out_90_relative_error": 0.06289545559064802,
+    "source_cfl": 0.05,
+    "global_source_cap_s": 2.079261870921036e-12,
+    "steps_for_three_reference_intervals_lower_bound": 91087102.61206536,
+    "source_step_work_multiplier": 6951.85800845413
+  },
+  "thermodynamics_unchanged": {
+    "CJ_speed_mps": 2471.0,
+    "CJ_temperature_K": 4885.151457540693,
+    "physical_CJ_speed_mps": 2531.861442929831,
+    "physical_CJ_temperature_K": 3994.1356901879003
+  },
+  "interpretation": "Matching 50% and 95% distances leaves a held-out 90% error and unchanged thermodynamic mismatch. Resolve the source/mesh/reference gate before engine use; no steady-wave prediction follows.",
+  "strict_quadrature_relative_changes": {
+    "Ea_over_RT1": 2.488009798184976e-12,
+    "k_per_s": 2.0510704246134992e-11,
+    "global_source_cap_s": -2.027678025484647e-11
+  },
+  "provenance": {
+    "evidence_sha256": "b05294066d214054cdd8030727a48d3bd1c859e6dcb89f066ce92b4148e8dc39",
+    "source_sha256": {
+      "model_audit.py": "81cb86f88896439aa62b3843ea4aa4b057a551c08f0990898d4bc31fd6bfdce1",
+      "calibrate.py": "e43a8522a46ac0d2808adb032aef66e4b019cb5f94ae03ae43c8f490ea0870fa",
+      "physics.py": "6766f8caed3b4d09d77489f5cfc657d848a473094e155d5ac48b3eddc33d975a"
+    }
+  }
+}

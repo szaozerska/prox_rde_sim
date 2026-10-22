@@ -173,7 +173,8 @@ surrogate-structure hypotheses without isolating the 2D failure's root cause:
   initialized with a formed wave. They do not reproduce the complete engine,
   isolate all numerical mixing effects, or exclude a separate initiation problem.
 
-**Next work:** C5 model/source/resolution review. C4's 15 mm blast remains
+**Next work:** C5b–e model/source/resolution verification after the completed
+[C5a readiness audit](c5_model_readiness.md). C4's 15 mm blast remains
 reacting but weaker at 40 µs; a startup-only engine remedy is not established.
 Keep chemistry frozen across the comparison. Do not launch an engine rerun
 merely because the isolated thick layer supports a wave. The [reviewed plan](../plans/controlled_2d_tests.md)
@@ -197,3 +198,13 @@ retain failure evidence. A model-specific critical layer height does not itself
 validate the chosen chemistry. Do not double-count chemical energy, hide invalid
 states with clipping, interpret pressure tracks alone as detonation, or treat
 matching a fitted CJ target as independent validation.
+
+
+### C5a readiness decision
+
+A rate-only change cannot match all physical heat-fraction lengths. A two-distance
+Ea/k fit remains underresolved on the engine grid, retains EOS/held-out-profile
+errors and would need at least 91.09 million steps with the current global source
+cap. It is **not adopted**. No new engine run or stable-wave claim follows.
+The open gate is now documented as small model/source/filled-profile/layer
+increments, not an unspecified missing feature or an assumed 3D remedy.

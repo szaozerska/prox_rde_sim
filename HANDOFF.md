@@ -47,7 +47,7 @@ at 0.5/0.25/0.125 mm through 40 µs, plus half-source-step control. Continued
 near-front reaction, no invalid states, budgets <2e-14 and positive causal margins.
 This verifies a surrogate control, not Run 937.
 
-**C3 coarse result:** 3.8 mm loses leading shock/reaction coupling while 15 mm
+**C3 completed bounded comparison:** 3.8 mm loses leading shock/reaction coupling while 15 mm
 retains strong coupling near the wall/middle at 40 µs. No invalid states or
 remote-boundary cone violation; numerical interface burning remains visible.
 The 0.25 mm thin case also loses coupling (25.75 mm wall-to-main-reaction gap
@@ -62,7 +62,15 @@ and slows more than the formed controls. No long-term initiation success/failure
 or startup-only engine remedy is established. Fields, inventories and direct
 comparison are in the increment log.
 
-**Next planned increment:** C5 model/source/resolution review before an engine change. Freeze chemistry and quantify source/time/grid effects, initial
+**C5a completed:** the [readiness review](docs/verification/c5_model_readiness.md)
+rejects promoting an unverified rate/profile fit to the engine. Physical reaction
+lengths are subcell on the current grid; a two-distance fit would require at
+least 91.09 million steps under the present global source cap, while retaining
+EOS/held-out profile errors. The algebraic candidate was not adopted.
+
+**Next planned increment:** C5b–e model hypothesis, source verification, resolved
+filled-profile control and thin-layer reassessment. C6 is not launched. The full
+73-test suite passed; final plotting changes have separate passing checks. Freeze chemistry and quantify source/time/grid effects, initial
 inventory and boundary causality. Stop advancement on a critical inconsistency.
 Document each increment and push it to main after verification. The old automatic
 0.25 mm engine refinement is superseded by these causal controls.
@@ -70,10 +78,9 @@ Document each increment and push it to main after verification. The old automati
 ## Subsequent diagnostic review
 
 The [layer-height / reaction-length review](docs/verification/layer_diagnostic_review.md)
-identified the central hypothesis as credible and untested at that time: at the time of that review no multirow reactive strip, formed-profile layer-height
-bracket, or matched ignition control had been run. C1 now passes; the latter
-layer comparison now confirms the bounded contrast on refinement; the
-blast/profile initiation comparison is now complete over its bounded window. Saved-profile postprocessing gives 5.72 µs to 95% surrogate heat
+identified the central hypothesis as credible before these controls existed.
+C1–C4 now provide row/direction checks, formed-profile verification, a refined
+layer comparison and a bounded blast/profile comparison. Saved-profile postprocessing gives 5.72 µs to 95% surrogate heat
 release versus a 4.16–4.39 µs illustrative transverse relief scale. This supports
 a targeted test, not a proven extinction criterion. The submitted diagnosis
 incorrectly asserted delayed outflow and broadly excluded outlet/contact effects.
@@ -186,4 +193,6 @@ NUMBA_NUM_THREADS=2 ../.venv/bin/python controlled.py layer --height-mm 15 --dx-
 C4's `--start blast` comparator completed at 15 mm / 0.5 mm. It is a weaker
 reacting transient, not a demonstrated long-term ignition failure or success.
 Compare saved cases with `plot.py --layer-comparison RUN1 RUN2 --out NEW`.
-C5 reviews model/source/resolution readiness before changing the engine.
+C5a readiness review is complete; C5b–e remain gated before an engine change.
+`model_audit.py --evidence ../docs/verification/d3_metrics.json --out NEW.json`
+reproduces the saved-reference algebra without CFD or calibration changes.

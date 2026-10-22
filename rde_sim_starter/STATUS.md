@@ -24,8 +24,8 @@ the separate 3D checkout/branch remains independent.
 - Numerical interface burning, physical reaction/EOS mismatch, equivalent
   injection, startup and engine outlet assumptions remain open contributors.
 
-The full 71-test suite passed after continuation support; the controlled tests
-also pass after C4 comparison plotting. Current logs and later checks are in the
+The full **73-test suite passed**, including the opt-in reactive baseline.
+Final comparison plotting changes also pass their targeted checks. Current logs and later checks are in the
 [increment report](../docs/verification/controlled_2d_progress.md).
 
 ## Implemented tools
@@ -39,8 +39,13 @@ also pass after C4 comparison plotting. Current logs and later checks are in the
 | `experiments.py`, `reference.py` | Contact/1D numerical controls and optional pinned Cantera/SDToolbox physical references. |
 | `controlled.py` | Row/direction, formed-strip and finite-layer/blast controls, conservative initialization and checked continuation. |
 | `plot.py` | Saved-data fields, histories and comparisons; no CFD execution. |
+| `model_audit.py` | Saved-reference rate/profile and source/mesh feasibility; no adopted calibration change. |
 
-**Next gate: C5 model/source/resolution review.** No arbitrary chemistry change,
+**C5a feasibility audit completed; C5 readiness remains open.** Physical lengths
+are subcell on the engine grid; an algebraic two-distance fit is not adopted and
+would need at least 91.09 million steps with the present source cap. C5b–e must
+verify a model hypothesis, source treatment and resolved local propagation/layer
+controls before C6. See the [readiness review](../docs/verification/c5_model_readiness.md). No arbitrary chemistry change,
 engine-fill increase or longer engine run follows from C3/C4. Production solver,
 physics, calibration, engine driver, config and calibrated inputs are unchanged.
 See the [reviewed plan](../docs/plans/controlled_2d_tests.md),
