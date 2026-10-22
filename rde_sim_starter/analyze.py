@@ -63,3 +63,29 @@ def directional_spectrum(pressure, times):
                 frequency=np.fft.fftfreq(times.size,uniform_times[1]-uniform_times[0]),
                 wave_number=np.fft.fftfreq(pressure.shape[1],1.0/pressure.shape[1]),
                 power=np.abs(np.fft.fft2(signal))**2)
+
+
+def conservation_budget(current, initial, boundary_integral, source_integral, depth, mean_radius):
+    """Storage minus actual RK-weighted net numerical transport/source.
+
+    Solver inputs are per radial depth. Boundary order: left/right/bottom/top,
+    each with a positive-coordinate normal, so net influx is L-R+B-T.
+    Angular momentum uses the reduced model's constant mean-radius approximation.
+    The angular residual is not an engine-torque estimate.
+    """
+    current, initial = np.asarray(current), np.asarray(initial)
+    boundary, source = np.asarray(boundary_integral), np.asarray(source_integral)
+    if current.shape != (5,) or initial.shape != (5,) or boundary.shape != (4, 5) or source.shape != (5,):
+        raise ValueError('unexpected conserved-budget shape')
+    if not all(np.all(np.isfinite(v)) for v in (current, initial, boundary, source)):
+        raise ValueError('nonfinite budget input')
+    if not np.isfinite(depth) or not np.isfinite(mean_radius) or min(depth, mean_radius) <= 0:
+        raise ValueError('positive finite depth and mean radius required')
+    storage = (current - initial) * depth
+    net = (boundary[0] - boundary[1] + boundary[2] - boundary[3] + source) * depth
+    residual = storage - net
+    return dict(inventory=current * depth, storage=storage, net_influx_and_source=net,
+                boundary_integral=boundary * depth, source_integral=source * depth,
+                residual=residual, angular_inventory=current[1] * depth * mean_radius,
+                angular_storage=storage[1] * mean_radius, angular_net=net[1] * mean_radius,
+                angular_residual=residual[1] * mean_radius)

@@ -93,12 +93,17 @@ def hll(rL, uL, vL, pL, xL, rR, uR, vR, pR, xR, nxd, g, q, F):
 
 
 @njit(cache=True, parallel=True)
-def rhs(W, dUdt, Fb, dx, dy, g, q, R, k, Ea, bcb, inj):
-    """Spatial operator + reaction source. inj = (p0, T0, sigma, Cd). Fb stores the bottom
-    face flux per column (for diagnostics)."""
+def rhs(W, dUdt, Fb, boundary_faces, source_columns, dx, dy, g, q, R, k, Ea, bcb, inj):
+    """Spatial operator plus source, retaining the actual boundary face fluxes.
+
+    boundary_faces order is left, right, bottom, top; all use +x/+z normals.
+    Each parallel column owns its output entries; there is no shared reduction.
+    Source integrals are per unit radial depth, as are Solver's stored budgets.
+    """
     nxg, nyg = W.shape[1], W.shape[2]
     nx, ny = nxg - 2 * NG, nyg - 2 * NG
     for i in prange(NG, nx + NG):
+        source_columns[i - NG] = 0.0
         F = np.empty(5); Fm = np.empty(5); Gp = np.empty(5); Gm = np.empty(5)
         L = np.empty(5); Rr = np.empty(5)
         for j in range(NG, ny + NG):
@@ -126,11 +131,21 @@ def rhs(W, dUdt, Fb, dx, dy, g, q, R, k, Ea, bcb, inj):
                 else:
                     hll(L[0], L[1], L[2], L[3], L[4], Rr[0], Rr[1], Rr[2], Rr[3], Rr[4], 0, g, q, Gp)
             for v in range(5):
+                if i == NG:
+                    boundary_faces[0, v, j - NG] = Fm[v]
+                if i == nx + NG - 1:
+                    boundary_faces[1, v, j - NG] = F[v]
+                if j == NG:
+                    boundary_faces[2, v, i - NG] = Gm[v]
+                if j == ny + NG - 1:
+                    boundary_faces[3, v, i - NG] = Gp[v]
                 dUdt[v, i, j] = -(F[v] - Fm[v]) / dx - (Gp[v] - Gm[v]) / dy
             # D12: one-step reaction source on rho*xi (Eq. 1.11)
             r = W[0, i, j]; xi = W[4, i, j]
             T = W[3, i, j] / (r * R)
-            dUdt[4, i, j] += r * reaction_rate(xi, T, R, k, Ea)
+            reaction_source = r * reaction_rate(xi, T, R, k, Ea)
+            dUdt[4, i, j] += reaction_source
+            source_columns[i - NG] += reaction_source * dx * dy
 
 
 @njit(cache=True, parallel=True)
@@ -180,6 +195,12 @@ class Solver:
         self.U = np.zeros(shape); self.W = np.zeros(shape)
         self.k1 = np.zeros(shape); self.U1 = np.zeros(shape)
         self.Fb = np.zeros(nx)
+        self.boundary_faces = np.zeros((4, 5, max(nx, ny)))
+        self.source_columns = np.zeros(nx)
+        self.cumulative_boundary = np.zeros((4, 5))
+        self.cumulative_source = np.zeros(5)
+        self.last_step_budget = None
+        self.steps = 0
         self.rho_min, self.p_min = 1e-6, 1.0
         # Compatibility field for the legacy runner: repairs are now disabled.
         self.floor_hits = 0
@@ -232,8 +253,14 @@ class Solver:
         self._check_state(U, stage)
         cons_to_prim(U, self.W, self.g, self.q, NG)
         fill_ghosts(self.W, *self.bc, self.p_back, self.g)
-        rhs(self.W, out, self.Fb, self.dx, self.dy, self.g, self.q, self.R, self.k, self.Ea,
-            self.bc[2], self.inj)
+        rhs(self.W, out, self.Fb, self.boundary_faces, self.source_columns,
+            self.dx, self.dy, self.g, self.q, self.R, self.k, self.Ea, self.bc[2], self.inj)
+        boundary = self.boundary_faces.sum(axis=2)
+        boundary[:2] *= self.dy
+        boundary[2:] *= self.dx
+        source = np.zeros(5)
+        source[4] = self.source_columns.sum()
+        return boundary, source
 
     def step(self, dt_max=None):
         """One SSP-RK2 step; invalid stages are rejected without advancing U or t.
@@ -243,7 +270,7 @@ class Solver:
         """
         if dt_max is not None and (not np.isfinite(dt_max) or dt_max <= 0):
             raise ValueError("dt_max must be finite and positive")
-        self._L(self.U, self.k1, "step input")
+        boundary1, source1 = self._L(self.U, self.k1, "step input")
         sx, sy = max_speed(self.W, self.g)
         dt = self.cfl / (sx / self.dx + sy / self.dy)
         if dt_max is not None:
@@ -251,12 +278,24 @@ class Solver:
         if not np.isfinite(dt) or dt <= 0 or self.t + dt == self.t:
             raise ValueError("time step must be finite, positive, and advance the clock")
         self.U1[:] = self.U + dt*self.k1
-        self._L(self.U1, self.k1, "RK stage 1")
+        boundary2, source2 = self._L(self.U1, self.k1, "RK stage 1")
         self.U1[:] = 0.5*self.U + 0.5*(self.U1 + dt*self.k1)
         self._check_state(self.U1, "RK final")
+        boundary = 0.5 * dt * (boundary1 + boundary2)
+        source = 0.5 * dt * (source1 + source2)
+        if not np.all(np.isfinite(boundary)) or not np.all(np.isfinite(source)):
+            raise FloatingPointError("nonfinite integrated numerical flux/source")
         self.U[:] = self.U1
         self.t += dt
+        self.steps += 1
+        self.cumulative_boundary += boundary
+        self.cumulative_source += source
+        self.last_step_budget = dict(dt=dt, boundary=boundary, source=source)
         return dt
+
+    def conserved_totals(self):
+        """Interior integrals per unit radial depth: rho, rho*u, rho*v, E, rho*xi."""
+        return self.U[:, NG:-NG, NG:-NG].sum(axis=(1, 2)) * self.dx * self.dy
 
     def prim(self):
         self._check_state(self.U, "primitive read")

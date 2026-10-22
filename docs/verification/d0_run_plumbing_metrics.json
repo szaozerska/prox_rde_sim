@@ -1,0 +1,59 @@
+{
+  "purpose": "Synthetic nonreactive D0 I/O verification; not Run 937 or a wave-passage experiment.",
+  "frequency_Hz": 10000000.0,
+  "nx": 16,
+  "ny": 2,
+  "chemistry": "disabled",
+  "first_cap_time_s": 3e-07,
+  "first_cap_steps": 15,
+  "final_cap_time_s": 5e-07,
+  "final_steps": 25,
+  "snapshots": 15,
+  "initial_snapshot_s": 0.0,
+  "first_nonzero_snapshot_s": 4e-08,
+  "history_prefix_preserved": true,
+  "bitwise_state_equal_to_uninterrupted_replay": true,
+  "bitwise_flux_equal_to_uninterrupted_replay": true,
+  "average_start_s": 5.4999999999999996e-08,
+  "averaging_duration_s": 4.45e-07,
+  "max_inventory_scaled_budget_residual": 6.820574554166561e-16,
+  "angular_budget_residual_kg_m2_per_s": -4.896909226313924e-24,
+  "invalid_state_count": 0,
+  "implementation": {
+    "source_sha256": {
+      "solver.py": "6669787910b5e5bb6528d87eca889b77ad6640babbd79d2346582e78e62e06a9",
+      "physics.py": "fbe7b46dc1b6c7a8fa08bade2ff2a09e6465e8a723245c940934c0706b8925b3",
+      "run.py": "28a37a23678d5286fa930fb7f6f13a1a66e772c7d4ba6cff2c59a49fa1e8d100",
+      "analyze.py": "6d238f0737cb8b0aaaad18178b1a6f248cdfd192feb011dc080cd3535d59cc42",
+      "calibrate.py": "e43a8522a46ac0d2808adb032aef66e4b019cb5f94ae03ae43c8f490ea0870fa"
+    },
+    "python": "3.12.0",
+    "packages": {
+      "numpy": "2.3.5",
+      "numba": "0.62.1",
+      "llvmlite": "0.45.1",
+      "scipy": "1.18.1",
+      "PyYAML": "6.0.3"
+    }
+  },
+  "open_domain_source_test": {
+    "steps": 12,
+    "t": 0.00012,
+    "max_inventory_scaled_budget_residual": 3.745362708182726e-16,
+    "source_integral": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      3.1709406687286305e-08
+    ],
+    "residual": [
+      1.6437733132653766e-20,
+      -2.837560373301906e-20,
+      -6.506271826097094e-20,
+      -1.1438332919722072e-17,
+      6.50494833711701e-21
+    ],
+    "angular_residual": -1.0101714928954785e-21
+  }
+}
