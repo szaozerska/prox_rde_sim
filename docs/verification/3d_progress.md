@@ -169,3 +169,19 @@ equivalent cells at uniform 0.5/0.25/0.125 mm. These are planning calculations, 
 new meshes or approved reactive resolutions. No extrapolated wall time is claimed.
 Seven existing 3D tests passed in 0.101 s; local links, arithmetic and whitespace
 checked for the changed docs. Original 2D checkout remains untouched. G0 is next.
+
+
+## G0 preparation — Modal client connected
+
+Plugin catalog search returned no Modal integration. Installed the official
+Modal CLI 1.6.2 into this clone's ignored `.tooling/modal-venv`, without modifying
+the original 2D environment. First installation failed because cbor2 6.1.5
+required Rust on Intel macOS. Retried with compatible prebuilt packages; cbor2
+5.9.0 installed, CLI version and `pip check` passed. Client dependencies and
+reproduction instructions are in `tools/modal/`.
+
+Browser authentication completed; the CLI verified its token successfully and
+read workspace settings and billing rates. Credentials remain outside Git and
+were not read or copied into this record. Workspace settings did not expose GPU
+quotas. No GPU allocation, solver build or performance measurement has run yet;
+prices are not proof of capacity. G0 hardware verification remains pending.
