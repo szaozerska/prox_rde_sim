@@ -11,7 +11,7 @@ remains unresolved. Native inputs and physics parameters are unchanged.
 
 ## Current result and plan
 
-[Revision 15](first_sim_plan.md) records the completed D3 investigation and the
+[Revision 16](first_sim_plan.md) records the completed D3 investigation and the
 [paper/model audit](docs/verification/mundt_model_audit.md). The latest instruction authorizes controlled 2D tests, three plan reviews,
 small verified increments and publication on **main only**. The independent
 session handles 3D in another checkout/branch; do not push to its branch. D3 and
@@ -254,3 +254,11 @@ Implementation/tests and the controlled comparison are complete. Both new cases
 ran 189.394 us/13,165 steps without invalid states; the radial closure did not
 restore sustained detonation in this case.
 [Evidence and status](docs/verification/radial_closures.md). Inviscid defaults remain unchanged.
+
+## Latest flow-structure view
+
+Static final workflow reports now use `flow_structure.py` for both GIFs.
+[Feature key, definitions and reproduction](docs/verification/flow_structure_gifs.md).
+The unwrapped movie exposes density edges, compressive fronts, reaction, shear
+and expansion; the cylinder shows the same composite from opposite views.
+Do not relabel progress=0.5 as the paper's new/old-product slip line.

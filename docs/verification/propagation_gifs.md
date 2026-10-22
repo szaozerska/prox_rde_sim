@@ -176,3 +176,7 @@ inspected for both views; the fuel-balance plot was also inspected. All 96
 source-frame hashes, committed input/summary/history hashes and renderer hash
 match the manifest after export. The unwrapped GIF is 1020 x 544 pixels and
 the wrapped GIF is 1020 x 697 pixels.
+
+Subsequent presentation refinement: [flow-structure GIFs](flow_structure_gifs.md)
+now replace the default final-report animation view. The two movies linked above
+and `animate.py` remain the original pressure/reaction-panel exports.

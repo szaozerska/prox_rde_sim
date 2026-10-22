@@ -44,3 +44,11 @@ pressure-and-reaction GIFs; `animate.py` also provides a standalone CLI.
 radial-active run receives 49.87 mg of fresh mixture and ends with 49.64 mg
 unreacted, compared with 15.35 mg initially. No global fuel exhaustion.
 RDE-001 remains open; the time-limit endpoint is not a detected extinction.
+
+## Flow-structure animations
+
+The final-report GIF exporter now uses numerical schlieren, compression, heat
+release, shear/contact candidates and injector blocking. The standalone entry
+point is `flow_structure.py`. [Definition and evidence](../docs/verification/flow_structure_gifs.md).
+12 affected tests pass; no new CFD or physics change. Canonical shock/slip-line
+identities remain unverified; progress=0.5 is not the paper's new/old-product slip line.

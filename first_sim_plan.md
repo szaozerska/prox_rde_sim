@@ -1,4 +1,4 @@
-# RDE simulation plan — revision 15
+# RDE simulation plan — revision 16
 
 **Status: reduced 2D software workflow F1–F4 complete. Full acceptance: 122 tests passed, no skips; 16 affected checks repeated after review, plus one new coupled-physics check (123 distinct passing tests). RDE-001 remains open. The radial-wall increment and matched 189.394 us comparison are also complete: 132 distinct verification tests passed, but sustained detonation was not restored in the original case. See [radial results](docs/verification/radial_closures.md). No CAD work.**
 
@@ -9,6 +9,18 @@ and unreacted inventory alongside wave fields; document the result and report-te
 corrections in [GIF/fuel review](docs/verification/propagation_gifs.md). Acceptance:
 137 tests passed, zero skips; both 96-frame GIFs visually and structurally checked. No new
 CFD campaign, physical retuning or CAD work in this increment.
+
+**Flow-structure presentation refinement:** final GIFs use numerical schlieren,
+compression, reaction and shear/contact diagnostics with the paper's Figure 1.10
+feature key. Preserve the distinction between the new/old-product slip line and
+the fresh/product interface; labels remain candidates where identification is
+unverified. See [operators and tests](docs/verification/flow_structure_gifs.md).
+No new solver physics or CFD study is part of this visualization increment.
+The subsequent directionality review distinguishes the displayed zero-velocity
+hot patch from the already implemented +theta formed initializer. Do not infer
+net injector swirl from the paper's 30-degree impingement angle. A startup-only
+comparison needs matched chemistry/mesh/feed and explicit initial inventories;
+it is not replaced by comparing the confounded C6a case to this baseline.
 
 The [controlled-test plan](docs/plans/controlled_2d_tests.md) records three review
 passes and the C1–C6 increments. First verify multirow/direction equivalence and

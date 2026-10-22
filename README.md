@@ -361,3 +361,13 @@ each pairing pressure with reaction on fixed scales. The standalone command is
 from `rde_sim_starter`. See the [movies and fuel-balance explanation](docs/verification/propagation_gifs.md).
 This case continues to receive fresh mixture; it does not stop because fuel is
 exhausted. The saved window ends at 189.394 us with RDE-001 still open.
+
+## Shock, interface and slip-line diagnostics
+
+The default final-report GIFs now show **numerical schlieren, compression fronts,
+reaction zones, fresh/product interfaces and shear/contact candidates** rather
+than just pressure panels. [Open the flow-structure movies and feature key](docs/verification/flow_structure_gifs.md).
+The standalone exporter is `flow_structure.py --run runs/radial_active --out ../reports/flow_structures`
+from `rde_sim_starter` with the project Python. The paper's new/old-product slip
+line is distinct from the fresh/product boundary; candidate features are labeled
+without claiming a steady detonation that this saved case does not demonstrate.

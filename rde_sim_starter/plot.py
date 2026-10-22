@@ -841,8 +841,8 @@ def plot_workflow(directory, destination, start, end, frames=12, segment_s=None,
                 fig.savefig(destination/'roll.png',dpi=120)
             finally: plt.close(fig)
         if gifs and len(steps) >= 2:
-            from animate import render_gifs
-            animation = render_gifs(directory, destination/'animations', start, end)
+            from flow_structure import render_structures
+            animation = render_structures(directory, destination/'animations', start, end)
             report['animations'] = dict(manifest='animations/manifest.json', frames=len(animation['frames']),
                 unwrapped='animations/unwrapped.gif', wrapped='animations/wrapped.gif')
         write_data(data,destination,comparison)
@@ -862,7 +862,7 @@ slider.oninput=show;let timer=null;document.getElementById('play').onclick=()=>{
         page+='<aside>RDE-001 remains unresolved on main. These outputs do not establish sustained detonation or validated engine performance. Resolved radial motion and curvature losses are absent. Enabled radial/wall closures are recorded in the report. Wrapped/head-end views are synthetic 2D displays.</aside>'
         page+='<p><a href="report.md">Report</a> · <a href="report.json">JSON and provenance</a> · <a href="history.csv">History CSV</a>'
         if 'animations' in report:
-            page+=' · <a href="animations/unwrapped.gif">Unwrapped GIF</a> · <a href="animations/wrapped.gif">Wrapped GIF</a>'
+            page+=' · <a href="animations/unwrapped.gif">Unwrapped flow-structure GIF</a> · <a href="animations/wrapped.gif">Wrapped flow-structure GIF</a>'
         if comparison: page+=' · <a href="comparison.csv">Sensitivity comparison CSV</a>'
         page+='</p><p>The PNG slider uses equal display intervals. GIF timing follows saved physical intervals with a final hold; actual timestamps are shown. Re-run this read-only command into a new output directory to refresh a running case.</p>'+playback+body+'</html>'
         (destination/'index.html').write_text(page)
