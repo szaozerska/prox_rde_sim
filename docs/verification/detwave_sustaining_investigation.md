@@ -642,6 +642,32 @@ was bitwise equal. These roundoff differences do not establish identical long
 nonlinear histories, but the default method and its focused regressions remain
 unchanged. The optional HLLC case is the deliberate substantive flux change.
 
+### Matched early engine comparison (21:12 UTC)
+
+At 10 us the HLLC engine retains a coupled forward pressure/reaction ridge.
+At the actual 0.938 mm ring its pressure peak is 20.883 MPa, with a nearby
+reaction rate 7.44e5/s and a 0.125 mm pressure/rate-peak separation. HLL gives
+20.011 MPa, 7.43e5/s and zero cell-quantized separation. Near 2.940 mm both have
+0.250 mm separation. This is comparable early coupling, not a completed return.
+
+In the same not-yet-passed x=35–45 mm strip (all axial cells), integrated reaction
+power drops from **8.982 kW HLL to 1.057 kW HLLC**, a factor of 8.50. Maximum
+pressure in this strip is only 0.649/0.625 MPa, below twice initial pressure;
+the forward wave lies around x=27.8 mm. This gives engine evidence of reduced
+off-front burning, rather than transferring the stationary control's 100,000x
+factor to a flowing engine. The actual total fresh inventory benefit is only
+**2.96%** at this time: 4.459 versus 4.331 mg. Integrated inlet mass is nearly
+unchanged, 0.7854 versus 0.7819 mg. Converted heat is 13.148 versus 13.833 J.
+Changed front structure/timing also contributes to these integral differences;
+they do not uniquely assign all saved fresh mass to contact preservation.
+
+Definitions, input hashes and ring measurements are saved in
+`detwave_hllc_10us_compare.json`; `detwave_hllc_prefix14/` contains the approximately
+15 us space-time prefix and 10 us full field. Both startup directions remain
+visible. The decisive 28–30 us return has not yet occurred in the HLLC run.
+The larger short-chemistry HLL job has reached 48 us with no invalid states;
+neither active case is yet evidence of sustained periodic operation.
+
 ## Active-run handoff (historical launch commands; see latest statuses above)
 
 Both simulations run in this branch's worktree, not the original checkout.

@@ -1,0 +1,75 @@
+{
+  "time_us": 10,
+  "definitions": {
+    "strip_x_mm": [
+      35,
+      45
+    ],
+    "strip_power": "sum(rho*rate)*dx*dy*gap*q over full axial height; same not-yet-passed strip in both cases at 10 us",
+    "front_search_x_mm": [
+      18,
+      40
+    ],
+    "rate_search": "largest reaction rate within 2 mm of largest pressure peak in specified front-search interval; gap is pressure position minus rate position"
+  },
+  "cases": {
+    "hll": {
+      "run": "detwave_25fi5_high_flux_compact_seed",
+      "input_sha256": "ef28d4dbe2840ffe2d17b56648e889b88fc747b1c4dec62ab1e227964e3cbc13",
+      "front_samples": [
+        {
+          "height_mm": 0.938423645320197,
+          "pressure_x_mm": 27.92159365453665,
+          "pressure_MPa": 20.010751724243164,
+          "near_rate_per_s": 742645.0625,
+          "gap_mm": 0.0
+        },
+        {
+          "height_mm": 2.9403940886699504,
+          "pressure_x_mm": 27.796664823867584,
+          "pressure_MPa": 18.09925079345703,
+          "near_rate_per_s": 618571.625,
+          "gap_mm": 0.24985766133813272
+        }
+      ],
+      "strip_power_W": 8982.214374994084,
+      "strip_max_pressure_MPa": 0.6490195989608765,
+      "history": {
+        "fresh_mass_kg": 4.330958034013656e-06,
+        "injected_mass_kg": 7.818886330871695e-07,
+        "converted_J": 13.832630354986886,
+        "chemical_power_W": 1451074.9371851308,
+        "budget_scaled_residual": 1.3731965818365459e-16
+      }
+    },
+    "hllc": {
+      "run": "detwave_25fi5_compact_hllc",
+      "input_sha256": "7c8621404fe93ab807ce4bf9c6b4795ad6b7746d8e3800627c1c1b786cfb9906",
+      "front_samples": [
+        {
+          "height_mm": 0.938423645320197,
+          "pressure_x_mm": 27.796664823867584,
+          "pressure_MPa": 20.882949829101562,
+          "near_rate_per_s": 743534.5625,
+          "gap_mm": 0.1249288306690681
+        },
+        {
+          "height_mm": 2.9403940886699504,
+          "pressure_x_mm": 27.796664823867584,
+          "pressure_MPa": 17.387693405151367,
+          "near_rate_per_s": 671546.0,
+          "gap_mm": 0.24985766133813272
+        }
+      ],
+      "strip_power_W": 1056.8338997105889,
+      "strip_max_pressure_MPa": 0.6245270371437073,
+      "history": {
+        "fresh_mass_kg": 4.458944638179563e-06,
+        "injected_mass_kg": 7.853817119872574e-07,
+        "converted_J": 13.14791596602486,
+        "chemical_power_W": 1368207.550871123,
+        "budget_scaled_residual": 9.104999108381208e-17
+      }
+    }
+  }
+}
