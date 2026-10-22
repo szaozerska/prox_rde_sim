@@ -261,3 +261,14 @@ Fix/recheck: seven native MOL cases now pass exact-solution grid/timestep checks
 all-axis invariance and CPU/GPU equivalence. Dynamic cut-cell corrections and
 AMR remain separate prerequisites, especially because default SRD slopes are zero
 and may add diffusion that could be mistaken for physical wave extinction.
+
+
+## Review 16 — do not confuse thermo sensitivity with validity
+
+Refined independent thermo substitution retains GRI forward kinetics and changes
+CJ speed by 0.044% and reaction length by 3.27%; numerical refinement is <4e-6.
+This supports a conditional formed-wave numerical check, not a physical-fit
+pass or uncertainty bound. Keep the existing full-GRI native baseline, declare
+the extrapolated polynomial law and 5000 K inverse interval, and block any
+engine/design conclusion pending the remaining dynamic, model and boundary
+gates. See the [G2 evidence](docs/verification/pelec_g2/README.md) for limitations.

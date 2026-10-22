@@ -471,3 +471,14 @@ for the method used with EB. Do not transfer this pass to dynamic cut-cell fluxe
 G1b local correction accounting and G1c AMR remain open. Default zero SRD slopes
 are robust but can add near-wall diffusion; moving-shock/refinement checks must
 assess that before interpreting an engine's extinction as physical.
+
+
+## Revision 16 — bounded propagation under an explicit model limitation
+
+Refined independent thermo substitution retains GRI forward kinetics and changes
+CJ speed by 0.044% and reaction length by 3.27%; numerical refinement is <4e-6.
+This supports a conditional formed-wave numerical check, not a physical-fit
+pass or uncertainty bound. Keep the existing full-GRI native baseline, declare
+the extrapolated polynomial law and 5000 K inverse interval, and block any
+engine/design conclusion pending the remaining dynamic, model and boundary
+gates. See the [G2 evidence](docs/verification/pelec_g2/README.md) for limitations.

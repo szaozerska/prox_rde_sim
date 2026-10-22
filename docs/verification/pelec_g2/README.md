@@ -157,3 +157,39 @@ throughput, optimized MPI performance, or multi-GPU scaling. The 1–2 hour engi
 requirement remains unmeasured.
 
 ![Saved methane preflight comparisons](preflight.png)
+
+## Refined thermodynamic sensitivity and provisional propagation scope
+
+Retaining all 53 GRI species and 325 forward reactions, substitute the available
+common-species thermodynamic polynomials from pinned FFCM1_Red in an independent
+reference only. Reverse rates change through thermodynamics. The 24-state direct
+forward-rate comparison differs by at most 2.86e-14; serialized coefficient
+roundoff is recorded. An initial exact-dictionary check rejected harmless YAML
+unit-conversion roundoff (about 1e-16). It was replaced by a strict structural and
+numeric check plus the direct operator comparison, not a chemistry retuning.
+
+CJ speed changes -0.0436%, CJ temperature -0.144%, induction time -3.053%, and
+half-heat-release distance -3.265%. Baseline/strict ZND refinement changes those
+length/time diagnostics by <4e-6 relative, far below the model sensitivity.
+Existing ZND energy/momentum residual gates pass. Internal SciPy overflow warnings
+are retained in logs; no failed integration is accepted.
+
+This is useful sensitivity evidence, **not a physical uncertainty bound**. The
+alternative still has up to 1.90% of mixture mass outside published species-fit
+ranges along the ZND profile; minor species can have important kinetic effects.
+GRI itself remains substantially outside its published high-temperature fits.
+No alternative thermodynamics were installed in native CFD.
+
+Decision: permit a bounded, formed-wave numerical propagation check of the
+explicit GRI polynomial law, using the already audited inverse interval, before
+building an engine. Keep full GRI initially to avoid conflating a solver change
+with an unverified reduced chemistry change. This conditional numerical check
+cannot pass the physical/design gate or establish experimental sustainability.
+For design conclusions, retain mechanism/thermo and boundary sensitivities and
+positive/negative experimental controls; changes in wave classification block a
+single verdict. Do not claim that agreement with an extrapolated reference
+validates the extrapolation itself.
+
+Reproduce with `thermo_sensitivity.py NEW_OUTPUT_DIRECTORY`. Evidence is in
+`thermo_sensitivity/`; raw profiles and failed serialization trials remain in
+ignored run artifacts.
