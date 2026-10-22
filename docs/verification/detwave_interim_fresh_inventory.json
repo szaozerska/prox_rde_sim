@@ -1,0 +1,130 @@
+{
+  "interpretation": "Global fresh inventory is not local refill height. Values are snapshots, not completed-run verdicts.",
+  "cases": [
+    {
+      "case": "original_40us",
+      "records": [
+        {
+          "time_us": 0,
+          "fresh_mass_mg": 15.39303588516649,
+          "injected_fresh_mg": 0.0,
+          "exited_fresh_mg": 0.0,
+          "reacted_mg": 0.0,
+          "fresh_balance_error_kg": 0.0,
+          "pressure_max_MPa": 21.040604593942415,
+          "high_pressure_heat_fraction": 0.9999358280615978
+        },
+        {
+          "time_us": 10,
+          "fresh_mass_mg": 16.28518718057456,
+          "injected_fresh_mg": 2.3250514644303,
+          "exited_fresh_mg": 0.0,
+          "reacted_mg": 1.4329001690222338,
+          "fresh_balance_error_kg": 0.0,
+          "pressure_max_MPa": 10.587459658550223,
+          "high_pressure_heat_fraction": 0.9356577743687666
+        },
+        {
+          "time_us": 20,
+          "fresh_mass_mg": 18.29533794751331,
+          "injected_fresh_mg": 4.854720034908952,
+          "exited_fresh_mg": 0.0,
+          "reacted_mg": 1.9524179725621313,
+          "fresh_balance_error_kg": 3.3881317890172014e-21,
+          "pressure_max_MPa": 5.554421884301801,
+          "high_pressure_heat_fraction": 0.5438682194168585
+        }
+      ]
+    },
+    {
+      "case": "short_189us",
+      "records": [
+        {
+          "time_us": 0,
+          "fresh_mass_mg": 15.040100176949984,
+          "injected_fresh_mg": 0.0,
+          "exited_fresh_mg": 0.0,
+          "reacted_mg": 0.0,
+          "fresh_balance_error_kg": 0.0,
+          "pressure_max_MPa": 19.372723910091942,
+          "high_pressure_heat_fraction": 0.9997458791501546
+        },
+        {
+          "time_us": 10,
+          "fresh_mass_mg": 15.437257460263037,
+          "injected_fresh_mg": 2.316641306127327,
+          "exited_fresh_mg": 0.0,
+          "reacted_mg": 1.9194840228142616,
+          "fresh_balance_error_kg": 1.3552527156068805e-20,
+          "pressure_max_MPa": 29.373665515294164,
+          "high_pressure_heat_fraction": 0.8434016450325872
+        },
+        {
+          "time_us": 20,
+          "fresh_mass_mg": 15.283709621567544,
+          "injected_fresh_mg": 4.745720286001243,
+          "exited_fresh_mg": 0.0,
+          "reacted_mg": 4.502110841383665,
+          "fresh_balance_error_kg": 2.0328790734103208e-20,
+          "pressure_max_MPa": 20.257412196990064,
+          "high_pressure_heat_fraction": 0.7368878168237165
+        }
+      ]
+    },
+    {
+      "case": "25fi5_geometry",
+      "records": [
+        {
+          "time_us": 0,
+          "fresh_mass_mg": 3.05348241920669,
+          "injected_fresh_mg": 0.0,
+          "exited_fresh_mg": 0.0,
+          "reacted_mg": 0.0,
+          "fresh_balance_error_kg": 0.0,
+          "pressure_max_MPa": 20.34102510095247,
+          "high_pressure_heat_fraction": 0.9999080666936793
+        },
+        {
+          "time_us": 10,
+          "fresh_mass_mg": 1.6331249275668862,
+          "injected_fresh_mg": 0.40612960745905535,
+          "exited_fresh_mg": 0.0,
+          "reacted_mg": 1.8264870990988609,
+          "fresh_balance_error_kg": -2.117582368135751e-21,
+          "pressure_max_MPa": 29.182796686041513,
+          "high_pressure_heat_fraction": 0.9246581091828018
+        },
+        {
+          "time_us": 20,
+          "fresh_mass_mg": 0.30671613315403584,
+          "injected_fresh_mg": 0.9271975114405593,
+          "exited_fresh_mg": 9.225584705896404e-11,
+          "reacted_mg": 3.673963797400969,
+          "fresh_balance_error_kg": -1.1434944787933055e-20,
+          "pressure_max_MPa": 13.212530941021527,
+          "high_pressure_heat_fraction": 0.85185417368159
+        },
+        {
+          "time_us": 30,
+          "fresh_mass_mg": 0.47345582419966337,
+          "injected_fresh_mg": 1.604926323182561,
+          "exited_fresh_mg": 9.530462356799328e-11,
+          "reacted_mg": 4.184952918094306,
+          "fresh_balance_error_kg": -2.3134587371883078e-20,
+          "pressure_max_MPa": 3.857669859046203,
+          "high_pressure_heat_fraction": 0.6321558455223906
+        },
+        {
+          "time_us": 40,
+          "fresh_mass_mg": 0.7360134701909656,
+          "injected_fresh_mg": 2.308641907742207,
+          "exited_fresh_mg": 1.1416432035837862e-10,
+          "reacted_mg": 4.62611085664378,
+          "fresh_balance_error_kg": -1.291725244562808e-20,
+          "pressure_max_MPa": 1.7227585724531862,
+          "high_pressure_heat_fraction": 0.48545992272821825
+        }
+      ]
+    }
+  ]
+}

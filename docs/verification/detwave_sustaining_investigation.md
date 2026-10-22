@@ -228,6 +228,51 @@ budget; completing 189 us is not promised. Continue existing jobs without
 duplication, reassess after the original 40 us job frees resources, and report
 the actual attained interval at the 22:00 UTC deadline.
 
+## Replenishment check and secondary stop decision (19:52 UTC)
+
+Global fresh-species accounting distinguishes the two early failure contexts.
+Original Run 937 has **more** unreacted mass at 20 us (18.295 mg) than initially
+(15.393 mg), having injected 4.855 mg and reacted 1.952 mg. Its early loss of
+coupling is therefore not explained by depletion of the engine's total fresh
+inventory. This does not exclude local starvation or interface diffusion.
+The short-chemistry Run 937 has 15.284 mg remaining at 20 us, versus 15.040 mg
+initially; its compact forward feature persists in the inspected 20 us field.
+
+The geometry-only small engine instead drops from 3.053 mg initially to
+0.307 mg at 20 us (about 10% remaining), then recovers to 0.736 mg by 40 us.
+At 20 us it has injected 0.927 mg but reacted 3.674 mg. Fresh mixture exiting
+is negligible; the unreacted-mass identity closes to less than 3e-20 kg in
+these snapshots. See `detwave_interim_fresh_inventory.json`. The initial
+charge occupies much more of this annulus and its rear disturbance meets
+the forward wave early. Thus this geometry-only transfer changes the startup
+interaction and refill demand even while preserving the nominal initial layer.
+
+The 0–50 us space-time plot shows the strong forward pressure/reaction feature
+fading around 15–20 us, followed by weak travelling pressure structures.
+At 50 us, full fields show broad low pressures and predominantly layer-interface
+reaction; no compact, strong forward coupled front survives in that field.
+This is failure to preserve the seeded wave, not proof that all later ignition
+is impossible. It is also **not** a failure of an exact experimental 25-FI-5
+operating point: this control deliberately retains Run 937 supply conditions.
+
+![Small-engine control through 50 us](detwave_25fi5_geometry_50us_space_time.png)
+
+To avoid spending the budget on a lost seeded wave, stopped the geometry-only
+job after its complete 52 us sample and advanced the predeclared high-flux case.
+The process caught the interrupt at 52.935 us and records `failed` with
+`KeyboardInterrupt`, not a numerical invalid-state failure (count remains zero).
+Do not use that incomplete interval as a new sampled result. The complete
+checkpoint was copied to `checkpoint_before_manual_stop.npz` and the decision
+is recorded in `manual_stop.json`. The 189.394 us target was **not completed**.
+The sequential wrapper exited before launching high flux; high flux was then
+started once with the unchanged current driver and one Numba thread. Its log
+is `docs/verification/detwave_high_flux.log`, separate from the stopped wrapper's
+`detwave_secondary.log`. No high-flux propagation result is available yet.
+
+This strengthens the need to separate H1 (reaction/expansion coupling) from H4
+and H6 (refill and case definition). Faster chemistry's early Run 937 improvement
+cannot by itself guarantee periodic survival in another geometry.
+
 ## Active-run handoff (replace with results when complete)
 
 Both simulations run in this branch's worktree, not the original checkout.
