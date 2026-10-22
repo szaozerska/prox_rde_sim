@@ -1,0 +1,37 @@
+[
+  {
+    "shock_speed_mps": 2471.0,
+    "postshock_T_K": 2116.248966118209,
+    "postshock_p_Pa": 21525145.33315314,
+    "constant_volume_half_reaction_us_kfactor_1": 1.9974404643461132,
+    "constant_volume_half_reaction_us_kfactor_4": 0.49936011608907216
+  },
+  {
+    "shock_speed_mps": 2000.0,
+    "postshock_T_K": 1487.0129838734479,
+    "postshock_p_Pa": 14087462.40792012,
+    "constant_volume_half_reaction_us_kfactor_1": 3.821268337083225,
+    "constant_volume_half_reaction_us_kfactor_4": 0.9553170842718168
+  },
+  {
+    "shock_speed_mps": 1800.0,
+    "postshock_T_K": 1259.828075779454,
+    "postshock_p_Pa": 11403195.636033215,
+    "constant_volume_half_reaction_us_kfactor_1": 5.671670426687883,
+    "constant_volume_half_reaction_us_kfactor_4": 1.4179176067279642
+  },
+  {
+    "shock_speed_mps": 1500.0,
+    "postshock_T_K": 963.6889842544252,
+    "postshock_p_Pa": 7906584.972654218,
+    "constant_volume_half_reaction_us_kfactor_1": 13.124968208574982,
+    "constant_volume_half_reaction_us_kfactor_4": 3.281242052035363
+  },
+  {
+    "shock_speed_mps": 1000.0,
+    "postshock_T_K": 588.4775269936986,
+    "postshock_p_Pa": 3491672.5188928586,
+    "constant_volume_half_reaction_us_kfactor_1": 199.61742775952294,
+    "constant_volume_half_reaction_us_kfactor_4": 49.904356939880714
+  }
+]

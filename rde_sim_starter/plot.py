@@ -663,9 +663,58 @@ def plot_controlled(directory, destination):
     return report
 
 
+def plot_detwave(directory, destination):
+    """Read-only investigation plots; pressure and rate are shown together."""
+    import numpy as np
+    directory,destination=Path(directory),Path(destination)
+    inputs=json.loads((directory/'inputs.json').read_text())
+    with np.load(directory/'checkpoint.npz',allow_pickle=False) as a:
+        times=a['times'].copy()*1e6;rings=a['rings'].copy()
+        history=json.loads(str(a['history']))
+    destination.mkdir(parents=True,exist_ok=False)
+    width=inputs['resolved']['width']*1e3
+    x=(np.arange(rings.shape[2])+.5)*width/rings.shape[2]
+    plt=_pyplot()
+    fig,axes=plt.subplots(3,2,figsize=(13,10),layout='constrained')
+    for column,row in enumerate([1,3]):
+        height=inputs['actual_ring_heights_m'][row]*1e3
+        arrays=[rings[:,3,:,row]/1e6,np.log10(np.maximum(rings[:,5,:,row],1.)),rings[:,4,:,row]]
+        for axis,values,label in zip(axes[:,column],arrays,['Pressure [MPa]','log10 reaction rate [1/s]','Reaction progress']):
+            im=axis.pcolormesh(x,times,values,shading='nearest',cmap='magma' if 'rate' in label else 'viridis')
+            fig.colorbar(im,ax=axis,label=label)
+            axis.set(xlabel='Mean-radius circumference [mm]',ylabel='Time [us]',title=f'z = {height:.3f} mm')
+    fig.suptitle(f"Bounded engine study: L50={inputs['half_mm']} mm, grid={inputs['dx_mm']} mm\nPressure ridges require continuing nearby reaction; startup included")
+    fig.savefig(destination/'space_time.png',dpi=140);plt.close(fig)
+    fig,axes=plt.subplots(2,2,figsize=(12,7),layout='constrained')
+    t=np.array([h['time_s'] for h in history])*1e6
+    axes[0,0].plot(t,[h['converted_J'] for h in history],label='Converted chemical energy')
+    axes[0,0].set(xlabel='Time [us]',ylabel='Energy [J]')
+    axes[0,1].plot(t,np.array([h['fresh_mass_kg'] for h in history])*1e6,label='Remaining unspent fuel-equivalent')
+    axes[0,1].plot(t,np.array([h['injected_mass_kg'] for h in history])*1e6,label='Cumulative inlet mass')
+    axes[0,1].set(xlabel='Time [us]',ylabel='Mixture mass [mg]');axes[0,1].legend(fontsize=8)
+    axes[1,0].plot(t,[h['high_pressure_heat_fraction'] for h in history])
+    axes[1,0].set(xlabel='Time [us]',ylabel='Heat fraction at p > 2 p_initial',ylim=(0,1.05))
+    axes[1,1].plot(t,[h['outlet_subsonic_fraction'] for h in history])
+    axes[1,1].set(xlabel='Time [us]',ylabel='Exit fraction with axial Mach < 1',ylim=(0,1.05))
+    for ax in axes.flat:ax.grid(alpha=.2)
+    fig.suptitle('Native budgets and replenishment; no automatic sustained-wave classification')
+    fig.savefig(destination/'budgets.png',dpi=140);plt.close(fig)
+    last=sorted((directory/'fields').glob('*.npz'))[-1]
+    with np.load(last,allow_pickle=False) as a:w=a['primitive'];rate=a['rate'];time_us=float(a['time'])*1e6
+    fig,axes=plt.subplots(3,1,figsize=(12,9),layout='constrained')
+    extent=[0,width,0,inputs['resolved']['length']*1e3]
+    for ax,values,label in zip(axes,[w[3]/1e6,np.log10(np.maximum(rate,1.)),w[4]],['Pressure [MPa]','log10 reaction rate [1/s]','Reaction progress']):
+        im=ax.imshow(values.T,origin='lower',extent=extent,aspect='auto',cmap='viridis')
+        ax.set(xlabel='Circumference [mm]',ylabel='Axial height [mm]',ylim=(0,25))
+        fig.colorbar(im,ax=ax,label=label)
+    fig.suptitle(f'Last full saved field, {time_us:.3f} us; lower 25 mm')
+    fig.savefig(destination/'fields.png',dpi=140);plt.close(fig)
+
+
 def main(argv=None):
     parser=argparse.ArgumentParser(description=__doc__)
     source=parser.add_mutually_exclusive_group(required=True)
+    source.add_argument('--detwave',type=Path,help='saved bounded detonation investigation')
     source.add_argument('--layer-comparison',type=Path,nargs='+',help='two or more saved layer controls, identical chemistry')
     source.add_argument('--controlled',type=Path,help='saved controlled 2D diagnostic')
     source.add_argument('--experiments',type=Path,help='saved contact or 1D refinement suite')
@@ -682,7 +731,9 @@ def main(argv=None):
         parser.error('output exists; choose a new destination')
     if args.compare_run and not args.coupling:
         parser.error('--compare-run requires --coupling')
-    if args.layer_comparison:
+    if args.detwave:
+        plot_detwave(args.detwave,args.out)
+    elif args.layer_comparison:
         plot_layer_comparison(args.layer_comparison,args.out)
     elif args.controlled:
         plot_controlled(args.controlled,args.out)

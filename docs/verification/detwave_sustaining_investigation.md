@@ -72,6 +72,13 @@ study finite reactive layers with yielding confinement and critical dimensions.
 Their pressure-dependent kinetics support the mechanism analogy, not a numerical
 threshold transferable to methane/oxygen or this one-step surrogate.
 
+[Wahba et al., 2026 preprint](https://arxiv.org/html/2603.24702v1), section 7.3,
+explicitly distinguishes a wall-confined inert layer from an RDE exhaust: its
+precursor-driven overdrive relies on upper-wall choking. Thus apparent survival
+or high pressure in a confined control cannot automatically transfer to an open
+engine. Their non-Arrhenius stable-front model is another mechanism analogy,
+not a methane chemistry validation or evidence for changing our outlet to a wall.
+
 ## Execution/provenance log
 
 - Initial literature/plan assessment complete. No new propagation result yet.
@@ -82,6 +89,39 @@ threshold transferable to methane/oxygen or this one-step surrogate.
 - Four initializer checks passed: independent normal-shock identities,
   piecewise quadrature through the periodic seam, all five inventories across
   meshes/phases, and translation invariance through actual flow steps.
+- Timestep prerequisite passed: nine independent reactor comparisons (300 K,
+  900 K/20% reacted, 2116 K; source fractions .20/.10/.05) give maximum errors
+  1.39148e-4 / 3.50421e-5 / 8.79328e-6 in the hot case, zero conserved-energy
+  error and zero invalid states. The three formed planar runs have identical
+  saved pressure-front speed fits (5–10 us: 2478.153 m/s), valid states and
+  budgets. See `detwave_temporal.json`. Threshold quantization limits this speed
+  comparison; the engine field/heat comparison remains required.
+- Baseline regression: 78 discovered, 77 passed and one opt-in long propagation
+  test skipped (294.6 s, concurrent work on host). Four new initializer tests
+  passed separately. Logs are retained.
+- Source-fraction .20 engine benchmark: 2 us, 240 accepted steps, no invalid
+  states, about 170 s under concurrent host load. Flow CFL limits many steps,
+  so increasing source fraction does not yield a fourfold engine acceleration.
+- Engine timestep comparison passed at 2 us: .20/.10 converted heat is
+  2.1393538/2.1396073 J (0.01185% difference), the forward pressure front at the
+  1 mm ring is in the identical cell (27.4444 mm), and maximum budget residual
+  is 6.22e-16. Conserved-state relative L1 difference is 1.18e-5 (energy-weighted;
+  not a componentwise field bound). Zero invalid states. See
+  `detwave_engine_temporal.json`. Both longer cases now use .20, unchanged
+  flow CFL .4, flux, EOS and integrator. This short check is not proof of
+  identical late nonlinear structures.
+- Runtime decision: first original-chemistry formed-start engine segment is
+  capped at 40 us, enough to inspect the already-observed thin-layer failure
+  timescale. Extend only if still ambiguous; do not spend the entire budget
+  integrating an unmistakably failed start. Short-chemistry target remains
+  189.394 us. Comparison beyond the common interval is not a matched A/B claim.
+- Auxiliary constant-volume reactors behind analytical frozen shocks quantify
+  the slowdown feedback, not extinction: at 1800 m/s the original/shortened
+  half-reaction times are 5.672/1.418 us; at 1500 m/s, 13.125/3.281 us.
+  See `detwave_shock_reactor.json`. Fixed-volume self-heating differs from ZND
+  expansion and the engine. At 1000 m/s the calculated temperature is 588 K;
+  older approximate 630 K/5 ms statements used a different timescale and must
+  not be substituted as this model's integrated reactor result.
 - Investigation initializer reuses C2 profile utilities from branch base and
   ports the finite periodic-charge construction from the concurrent uncommitted
   C6a implementation into an isolated module. The original files are untouched;

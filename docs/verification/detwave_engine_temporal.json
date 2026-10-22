@@ -1,0 +1,18 @@
+{
+  "heat_J": [
+    2.1393537759630012,
+    2.139607325858627
+  ],
+  "relative_heat_difference": 0.00011850300406124337,
+  "front_m": [
+    0.027444419579297222,
+    0.027444419579297222
+  ],
+  "front_difference_cells": 0.0,
+  "conserved_state_relative_L1": 1.1848330988379956e-05,
+  "max_budget_scaled_residual": 6.216339514480449e-16,
+  "invalid_states": [
+    0,
+    0
+  ]
+}

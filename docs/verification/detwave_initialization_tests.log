@@ -1,0 +1,9 @@
+test_arbitrary_phase_and_mesh_preserve_all_five_inventories (tests.test_detwave_initialization.FormedEngineTests.test_arbitrary_phase_and_mesh_preserve_all_five_inventories) ... ok
+test_lab_momentum_and_energy_match_normal_shock_relations (tests.test_detwave_initialization.FormedEngineTests.test_lab_momentum_and_energy_match_normal_shock_relations) ... ok
+test_periodic_cell_integrals_against_independent_piecewise_quadrature (tests.test_detwave_initialization.FormedEngineTests.test_periodic_cell_integrals_against_independent_piecewise_quadrature) ... ok
+test_seam_translation_commutes_with_initialization_and_flow_steps (tests.test_detwave_initialization.FormedEngineTests.test_seam_translation_commutes_with_initialization_and_flow_steps) ... ok
+
+----------------------------------------------------------------------
+Ran 4 tests in 56.158s
+
+OK
