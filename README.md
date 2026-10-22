@@ -244,3 +244,19 @@ outputs/plots. It cannot demonstrate sustained rotation. Resume an interrupted
 benchmark using only `--resume <directory>`; it keeps the original cap. Engine
 passage runs retain their separate three/five-interval policy. The finite charge
 has an explicitly recorded trailing jump; it is not a steady periodic solution.
+
+## Reports over a selected saved window
+
+F1 reports native conservation budgets, storage, pressure-station means and
+annulus-exit force from existing results. From `rde_sim_starter`:
+
+```sh
+../.venv/bin/python window_report.py --run runs/c6a_formed_benchmark \
+  --start-us 0.55 --end-us 1.75 --out ../reports/c6a_selected_window
+```
+
+The new output directory must be outside the saved run. JSON and Markdown retain
+run/input provenance, partial-step interpolation and unavailable-data reasons.
+No solver execution or full-field loading is needed. Force and effective Isp are
+qualified transient annulus-exit quantities, not validated whole-engine thrust,
+Isp or evidence of sustained detonation. See [F1 tests and examples](docs/verification/f1_window_reporting.md).

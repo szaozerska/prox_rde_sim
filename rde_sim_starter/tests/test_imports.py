@@ -19,7 +19,7 @@ import solver
 solver.Solver.step = lambda *a, **k: (_ for _ in ()).throw(AssertionError('simulation on import'))
 import calibrate
 calibrate.calibrate = lambda *a, **k: (_ for _ in ()).throw(AssertionError('calibration on import'))
-import run, analyze, plot, test_1d, physics, coupling, experiments, reference, controlled, model_audit, short_reaction, formed
+import run, analyze, plot, test_1d, physics, coupling, experiments, reference, controlled, model_audit, short_reaction, formed, window_report
 assert 'matplotlib.pyplot' not in sys.modules
 assert 'cantera' not in sys.modules
 assert 'sdtoolbox' not in sys.modules

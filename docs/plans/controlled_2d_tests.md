@@ -1,6 +1,6 @@
 # Controlled 2D investigation — execution plan
 
-October 22, 2026. Companion to master-plan revision 11.
+October 22, 2026. Companion to master-plan revision 12.
 **This session commits and pushes only `main`.** The separate session owns
 `3d-modelling` in its separate checkout. The final reference to that branch in
 the overnight instruction is interpreted in light of the explicit main-only
@@ -322,7 +322,8 @@ The user assigned the sustained-wave investigation to a separate chat. C6a is a
 functional initializer, persistence and bounded cost/validity check, not a
 survival test. It does not decide that RDE-001 is fixed. See the
 [C6a implementation and test review](../verification/c6a_functional_pipeline.md).
-Continue master-plan F1/F2 saved-window reporting and minimal contracts here.
+F1 saved-window reporting is now implemented; see its [accounting review and
+results](../verification/f1_window_reporting.md). Continue with F2 minimal contracts here.
 The separate study owns any C6 propagation experiment; preserve the three/five
 interval limits when that experiment is selected. No automatic longer layer
 control, integrator rewrite, chemistry change or parameter sweep is authorized

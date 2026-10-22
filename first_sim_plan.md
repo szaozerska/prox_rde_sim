@@ -1,6 +1,6 @@
-# RDE simulation plan — revision 11
+# RDE simulation plan — revision 12
 
-**Status: C1–C4, C5a and the C5b–e quarter-length bounded experiment completed. C6a functional initialization/benchmark is complete. Sustained-wave investigation is assigned to a separate chat.**
+**Status: C1–C4, C5a and the C5b–e quarter-length bounded experiment completed. C6a functional initialization/benchmark is complete. F1 saved-window reporting is complete (98 tests passed, one opt-in skipped). Next: F2 minimal contracts. Sustained-wave investigation is assigned to a separate chat.**
 The [controlled-test plan](docs/plans/controlled_2d_tests.md) records three review
 passes and the C1–C6 increments. First verify multirow/direction equivalence and
 formed-profile propagation, then distinguish thin-layer survival from initiation.
@@ -34,15 +34,22 @@ independent functional work on RDE-001, and do not automatically launch more
 layer sweeps, full engine propagation studies or chemistry/integrator changes here.
 The physical validation gates still constrain claims. 3D stays on its separate track.
 
-Small next increments after C6a, drawn from sections 4.5, 5.2 and 9:
+Functional increments after C6a, drawn from sections 4.5, 5.2 and 9:
 
 | Increment | Deliverable | Short verification |
 |---|---|---|
-| **F1: saved-window reporting** | Explicit time-window selection, native mass/energy/momentum balances and annulus-exit force summary; preserve storage, missing-data reasons and transient qualifications. | Analytical constant/time-varying signals and known-flow force signs; uneven time steps and partial-window overlap; read-only saved-run smoke check. No CFD campaign. |
+| **F1: saved-window reporting — implemented** | Explicit time-window selection, native mass/energy/momentum balances and annulus-exit force summary; preserve storage, missing-data reasons and transient qualifications. | Analytical constant/time-varying signals and known-flow force signs; uneven time steps and partial-window overlap; read-only saved-run smoke check. No CFD campaign. |
 | **F2: minimal geometry/result contract** | Versioned SI geometry and capability metadata for the supported constant annulus, preserving source provenance and exposing omitted features for future backend/CAD adapters. | Known dimensions/areas and unit conversions; reject unsupported coreless/nonuniform/CAD geometry instead of silently reducing it. No general plugin framework or 3D work. |
 
 C6a construction decisions, the test audit and its bounded measurements are
 recorded in [the functional increment report](docs/verification/c6a_functional_pipeline.md).
+
+F1 now provides `window_report.py --run ... --start-us ... --end-us ... --out ...`.
+It uses saved native step integrals with explicit partial-step semantics, retains
+storage and missing-data reasons, and writes JSON/Markdown without CFD or full
+field loading. [F1 evidence and accounting review](docs/verification/f1_window_reporting.md)
+include analytical force checks and reports from C6a and historical D1. Neither
+report is a new propagation result. F2 is the next implementation increment.
 
 ### Historical controlled-test scope
 

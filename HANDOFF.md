@@ -5,7 +5,7 @@ Snapshot: **October 22, 2026**. Repository:
 
 ## Current result and plan
 
-[Revision 11](first_sim_plan.md) records the completed D3 investigation and the
+[Revision 12](first_sim_plan.md) records the completed D3 investigation and the
 [paper/model audit](docs/verification/mundt_model_audit.md). The latest instruction authorizes controlled 2D tests, three plan reviews,
 small verified increments and publication on **main only**. The independent
 session handles 3D in another checkout/branch; do not push to its branch. D3 and
@@ -77,9 +77,15 @@ The latest user instruction assigns the sustaining-wave study to a separate
 chat; continue functional work here, preserving RDE-001 as open. Do not launch a
 three-interval engine study or another layer sweep in this chat by default.
 
-Next are master-plan **F1 saved-window reporting** (native budgets, storage and
-annulus-exit force) and **F2 minimal geometry/result contracts**. Each uses short
-analytical/synthetic and plumbing tests, not a physical-validation claim. Retain
+**F1 saved-window reporting is implemented:** native budgets, storage, station
+means, annulus-exit force and qualified effective Isp are available from saved
+history through `window_report.py`. See [F1 evidence and commands](docs/verification/f1_window_reporting.md).
+Reports use explicit time windows, show partial-step interpolation and missing
+native data, and never run CFD. Full regression: 98 passed, one opt-in long propagation test skipped; final
+CLI/import checks passed. Saved C6a and D1 examples are linked in the F1 report.
+
+Next is **F2 minimal geometry/result contracts**, with short analytical/synthetic
+and plumbing tests, not a physical-validation claim. Retain
 the C5 chemistry/model qualifications. The new named formed case does not replace
 `config.yaml` or imply a model of Mundt's actual pre-detonator. Commit and push
 2D work on main; leave the independent 3D branch alone.
