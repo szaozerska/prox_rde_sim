@@ -1,0 +1,11 @@
+test_benchmark_plot_retains_scope_and_omits_experimental_mean_overlay (tests.test_saved_outputs.SavedOutputTests.test_benchmark_plot_retains_scope_and_omits_experimental_mean_overlay) ... /Users/sgfx/Desktop/Projects/prox_rde_sim/rde_sim_starter/plot.py:187: UserWarning: No artists with labels found to put in legend.  Note that artists whose label start with an underscore are ignored when legend() is called with no argument.
+  axes[0,1].legend(fontsize=8)
+ok
+test_plotting_only_reads_saved_data (tests.test_saved_outputs.SavedOutputTests.test_plotting_only_reads_saved_data) ... ok
+test_reader_ignores_uncommitted_tail_and_rejects_missing_committed_rows (tests.test_saved_outputs.SavedOutputTests.test_reader_ignores_uncommitted_tail_and_rejects_missing_committed_rows) ... ok
+test_imports_do_not_read_cases_run_solver_or_render (tests.test_imports.ImportTests.test_imports_do_not_read_cases_run_solver_or_render) ... ok
+
+----------------------------------------------------------------------
+Ran 4 tests in 101.381s
+
+OK

@@ -1,11 +1,11 @@
-# Handoff: controlled 2D investigation on main
+# Handoff: functional 2D implementation on main
 
 Snapshot: **October 22, 2026**. Repository:
 `/Users/sgfx/Desktop/Projects/prox_rde_sim`.
 
 ## Current result and plan
 
-[Revision 10](first_sim_plan.md) records the completed D3 investigation and the
+[Revision 11](first_sim_plan.md) records the completed D3 investigation and the
 [paper/model audit](docs/verification/mundt_model_audit.md). The latest instruction authorizes controlled 2D tests, three plan reviews,
 small verified increments and publication on **main only**. The independent
 session handles 3D in another checkout/branch; do not push to its branch. D3 and
@@ -68,16 +68,21 @@ lengths are subcell on the current grid; a two-distance fit would require at
 least 91.09 million steps under the present global source cap, while retaining
 EOS/held-out profile errors. The algebraic candidate was not adopted.
 
-**Next planned increment:** C6a conservative formed-engine initialization and a
-2 us cost/validity benchmark, after seam/inventory/budget tests. C5b–e's explicit
-0.25 mm surrogate passed source/planar/contact controls and retains wall/middle
-coupling through 10 us at 0.125/0.0625 mm. See the [completed experiment](docs/verification/c5_short_reaction.md).
-No engine run or stable-rotation claim follows yet. The old physical-scale
-91-million-step fit is a rejected candidate, not a blocker on this surrogate.
-Freeze chemistry across comparisons. A longer layer control or revised source
-integrator needs a specific reason; neither is an automatic prerequisite sweep.
-Document each increment and publish to main. Final regression: 77 passed,
-one opt-in baseline skipped; saved layer fields and comparison plots inspected.
+**Completed functional increment:** C6a conservative periodic formed-engine
+initialization and an explicitly labelled <=2 us cost/validity benchmark.
+The 2 us check completed in 556 steps with zero invalid states; native budgets
+stay below 6.19e-15 scaled error. 86 distinct tests pass, one opt-in is skipped.
+See [implementation, test review and results](docs/verification/c6a_functional_pipeline.md).
+The latest user instruction assigns the sustaining-wave study to a separate
+chat; continue functional work here, preserving RDE-001 as open. Do not launch a
+three-interval engine study or another layer sweep in this chat by default.
+
+Next are master-plan **F1 saved-window reporting** (native budgets, storage and
+annulus-exit force) and **F2 minimal geometry/result contracts**. Each uses short
+analytical/synthetic and plumbing tests, not a physical-validation claim. Retain
+the C5 chemistry/model qualifications. The new named formed case does not replace
+`config.yaml` or imply a model of Mundt's actual pre-detonator. Commit and push
+2D work on main; leave the independent 3D branch alone.
 
 ## Subsequent diagnostic review
 
@@ -198,7 +203,7 @@ C4's `--start blast` comparator completed at 15 mm / 0.5 mm. It is a weaker
 reacting transient, not a demonstrated long-term ignition failure or success.
 Compare saved cases with `plot.py --layer-comparison RUN1 RUN2 --out NEW`.
 C5a readiness review is complete; its successor quarter-length C5b–e controls
-are now complete. C6a initializer/benchmark work is next.
+are now complete. C6a is the functional increment; see the current status above.
 `model_audit.py --evidence ../docs/verification/d3_metrics.json --out NEW.json`
 reproduces the saved-reference algebra without CFD or calibration changes.
 

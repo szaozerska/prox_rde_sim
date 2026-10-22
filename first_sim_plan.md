@@ -1,6 +1,6 @@
-# RDE simulation plan — revision 10
+# RDE simulation plan — revision 11
 
-**Status: C1–C4, C5a and the C5b–e quarter-length bounded experiment completed. C6a formed-engine initialization/benchmark is next. Sustained rotation unresolved.**
+**Status: C1–C4, C5a and the C5b–e quarter-length bounded experiment completed. C6a functional initialization/benchmark is complete. Sustained-wave investigation is assigned to a separate chat.**
 The [controlled-test plan](docs/plans/controlled_2d_tests.md) records three review
 passes and the C1–C6 increments. First verify multirow/direction equivalence and
 formed-profile propagation, then distinguish thin-layer survival from initiation.
@@ -26,7 +26,25 @@ criterion is not met. The first working physical 2D iteration remains pending.
 
 Paper references mean Mundt (2023), *Geometric Scaling of Cylindrical Rotating Detonation Rocket Engine Combustors*. Use printed page numbers; PDF page = printed page + 16. Fig. 1.1 is an illustrative flow/design image, not a measured 3D validation dataset.
 
-## 0. Short-test scope and current investigation
+## 0. Functional implementation track and separate investigation
+
+**Latest direction (October 22):** continue remaining 2D functionality on main;
+the user will launch the sustaining-wave study in a separate chat. Do not block
+independent functional work on RDE-001, and do not automatically launch more
+layer sweeps, full engine propagation studies or chemistry/integrator changes here.
+The physical validation gates still constrain claims. 3D stays on its separate track.
+
+Small next increments after C6a, drawn from sections 4.5, 5.2 and 9:
+
+| Increment | Deliverable | Short verification |
+|---|---|---|
+| **F1: saved-window reporting** | Explicit time-window selection, native mass/energy/momentum balances and annulus-exit force summary; preserve storage, missing-data reasons and transient qualifications. | Analytical constant/time-varying signals and known-flow force signs; uneven time steps and partial-window overlap; read-only saved-run smoke check. No CFD campaign. |
+| **F2: minimal geometry/result contract** | Versioned SI geometry and capability metadata for the supported constant annulus, preserving source provenance and exposing omitted features for future backend/CAD adapters. | Known dimensions/areas and unit conversions; reject unsupported coreless/nonuniform/CAD geometry instead of silently reducing it. No general plugin framework or 3D work. |
+
+C6a construction decisions, the test audit and its bounded measurements are
+recorded in [the functional increment report](docs/verification/c6a_functional_pipeline.md).
+
+### Historical controlled-test scope
 
 **Completed authorized experiment (October 22):** C5b–e tested a declared
 0.25 mm half-reaction-length surrogate (k multiplied by four, unchanged Ea/EOS).
@@ -61,7 +79,7 @@ Small algebraic/source tests need no engine-length run. Use short localized 1D s
 | **D2. Reusable analysis and plots** | Unrolled fields, short space–time plot/front tracks, pressure station traces/profile, and mass/energy/momentum budgets. Compute instantaneous thrust/torque diagnostics with storage where the implemented model supports them. | Full spectra/spectrogram suite, wrapped-cylinder polish, multi-engine/mode maps. |
 | **D3. Focused investigation — completed** | Run 937 physical CJ/ZND and independent equilibrium heat release; six frozen/reactive contact tests at 0.5/0.25/0.125 mm; three fixed-chemistry 1D propagation grids; reference/contact/front graphs and regression checks. | Exact NASA CEA replication, full G0 curves, new 2D runs, chemistry replacement, broad convergence and engine sweeps. |
 
-**Next increment: C6a formed-engine initialization and a 2 us cost/validity benchmark.** C1 passed its 95 µs matched
+**Completed functional increment: C6a formed-engine initialization and a 2 us cost/validity benchmark.** C1 passed its 95 µs matched
 propagation check. C2 passed conservative initialization and 40 µs filled-strip
 propagation at three meshes plus a source-step comparison; see the
 [increment log](docs/verification/controlled_2d_progress.md). C3 confirms a bounded
@@ -71,8 +89,9 @@ still reacting behind its leading shock at 40 µs. Stable rotation remains unpro
 C5a found that substituting physical reaction lengths on the current mesh/source
 treatment is not ready for an engine run; see the [readiness review](docs/verification/c5_model_readiness.md).
 C5b–e passed the declared quarter-length surrogate controls through 10 us.
-C6a will verify the engine initializer, seam and budgets before a bounded
-propagation comparison; no stable-engine claim follows from the layer test. See
+C6a verifies the engine initializer, seam, restart and budgets as functionality;
+the separate study owns any bounded propagation comparison. No stable-engine
+claim follows from the layer test or the 2 us benchmark. See
 [controlled-test plan and three reviews](docs/plans/controlled_2d_tests.md) for
 unit tests, diagnostic requirements, causal-domain checks and stopping criteria.
 

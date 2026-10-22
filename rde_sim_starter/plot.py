@@ -108,6 +108,9 @@ def plot_run(directory, destination):
     destination.mkdir(parents=True,exist_ok=False)
     inputs,summary,rows,fields=(data[key] for key in ['inputs','summary','history','fields'])
     r=inputs['resolved']; config=inputs['config']; calibration=inputs['calibration']
+    mode=summary.get('run_mode','engine_intervals')
+    benchmark=mode=='development_benchmark'
+    mode_label='Development benchmark (not a sustaining-wave study)' if benchmark else 'Reduced annulus'
     t=np.array([row['t'] for row in rows]); ts=np.array([float(f['t']) for f in fields])
     x=(np.arange(r['nx'])+.5)*r['dx']*1e3
     z=(np.arange(r['ny'])+.5)*r['dy']*1e3
@@ -132,7 +135,7 @@ def plot_run(directory, destination):
                     axes[row,column].set_ylabel('Axial distance [mm]')
         fig.colorbar(im,ax=axes[0,:].tolist(),label='Pressure [MPa], logarithmic')
         fig.colorbar(xi,ax=axes[1,:].tolist(),label='Reaction progress')
-        fig.suptitle(f'Reduced annulus: {summary["status"]}; pressure and reaction share the saved times')
+        fig.suptitle(f'{mode_label}: {summary["status"]}; pressure and reaction share the saved times')
         fig.savefig(destination/'fields.png',dpi=150)
     finally:
         plt.close(fig)
@@ -157,7 +160,10 @@ def plot_run(directory, destination):
                 fig.colorbar(image,ax=ax)
             ax.set(title=title,xlabel='Circumferential distance [mm]')
         axes[0].set_ylabel('Time from startup [µs]')
-        fig.suptitle(f'Saved rings at z={z[probe]:.3f} mm; field cadence is not native step cadence')
+        if len(ts)>1:
+            axes[0].set_ylim(ts[0]*1e6,ts[-1]*1e6)  # do not extend nearest-sample bins outside saved time
+        axes[0].set_xlim(0,r['width']*1e3)
+        fig.suptitle(f'{mode_label}: saved rings at z={z[probe]:.3f} mm; field cadence is not native step cadence')
         fig.savefig(destination/'space_time.png',dpi=150)
     finally:
         plt.close(fig)
@@ -178,7 +184,7 @@ def plot_run(directory, destination):
         reference=config.get('experimental_reference',{})
         # Only overlay the engine references when their stations fit this geometry.
         zr=reference.get('pressure_stations_mm',[])
-        if zr and max(zr)<=r['length']*1e3:
+        if not benchmark and zr and max(zr)<=r['length']*1e3:
             axes[0,1].scatter(zr,reference['mean_pressures_kPa'],marker='x',c='k',label='Mundt Run 937: long-window mean')
         axes[0,1].set(xlabel='Axial distance [mm]',ylabel='Mean pressure [kPa]')
         axes[0,1].legend(fontsize=8)
@@ -206,17 +212,22 @@ def plot_run(directory, destination):
         axes[2,0].set(xlabel='Time [µs]',ylabel='Fixed-probe pressure [MPa]',title='Pressure events need reaction/front inspection')
         axes[2,1].fill_between(t*1e6,[row['exit_cell_axial_mach_min'] for row in rows],
                               [row['exit_cell_axial_mach_max'] for row in rows],alpha=.4,label='Exit axial Mach range')
+        # A circumferentially uniform exit has a zero-width band; retain its limits.
+        axes[2,1].plot(t*1e6,[row['exit_cell_axial_mach_min'] for row in rows],color='tab:blue',lw=1.)
+        axes[2,1].plot(t*1e6,[row['exit_cell_axial_mach_max'] for row in rows],color='tab:blue',lw=1.)
         axes[2,1].axhline(1,color='k',ls='--',lw=.8)
         axes[2,1].axhline(0,color='k',ls=':',lw=.8)
         axes[2,1].set(xlabel='Time [µs]',ylabel='Axial Mach')
         axes[2,1].legend(fontsize=8)
         for ax in axes.flat:
             ax.grid(alpha=.2)
-        fig.suptitle(f'{summary["status"]}; {summary["t"]*1e6:.3f} µs — transient diagnostics, not converged engine performance')
+        fig.suptitle(f'{mode_label}: {summary["status"]}; {summary["t"]*1e6:.3f} µs — transient diagnostics, not converged engine performance')
         fig.savefig(destination/'diagnostics.png',dpi=150)
     finally:
         plt.close(fig)
-    report=dict(status=summary['status'],time_s=summary['t'],snapshot_count=len(fields),native_rows=len(rows),
+    report=dict(status=summary['status'],run_mode=mode,
+                experimental_pressure_overlay=bool(not benchmark and zr and max(zr)<=r['length']*1e3),
+                time_s=summary['t'],snapshot_count=len(fields),native_rows=len(rows),
                 reaction_rate_available=rate_available,
                 pressure_event_times_s=events,pressure_event_count=len(events),
                 event_high_Pa=2*calibration['p1'],event_rearm_Pa=1.25*calibration['p1'],

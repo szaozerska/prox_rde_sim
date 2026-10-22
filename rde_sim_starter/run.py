@@ -1,8 +1,9 @@
 """One saved reduced-annulus run, bounded by expected passage intervals.
 
-New runs stop at three intervals; --resume extends the same saved run to five.
+Engine runs stop at three intervals; --resume extends the same saved run to five.
 Reference frequency budgets time only. No wave count or actual passage detection
-is inferred from that cap. Chemistry/source and outlet validation remain separate.
+is inferred from that cap. --benchmark-us labels a separate <=2 us development check.
+Chemistry/source and outlet validation remain separate.
 """
 import argparse
 from contextlib import contextmanager
@@ -87,7 +88,7 @@ def _run_lock(directory):
 def _fingerprint():
     return dict(
         source_sha256={name: hashlib.sha256((HERE / name).read_bytes()).hexdigest()
-                       for name in ['solver.py', 'physics.py', 'run.py', 'analyze.py', 'calibrate.py']},
+                       for name in ['solver.py', 'physics.py', 'run.py', 'analyze.py', 'calibrate.py', 'formed.py']},
         python=sys.version.split()[0],
         packages={name: version(name) for name in ['numpy', 'numba', 'llvmlite', 'scipy', 'PyYAML']},
     )
@@ -177,6 +178,10 @@ def build_solver(resolved, calibration, initialize=True):
     z = (np.arange(solver.ny) + .5) * solver.dy
     X, Z = np.meshgrid(x, z, indexing='ij')
     init = r['initialization']
+    if init['kind'] == 'formed':
+        from formed import initialize_engine
+        initialize_engine(solver, r, calibration)
+        return solver
     p1, T1 = calibration['p1'], calibration['T1']
     if init['kind'] == 'uniform':
         pressure = np.full_like(X, init.get('pressure_Pa', p1))
@@ -216,7 +221,7 @@ def build_solver(resolved, calibration, initialize=True):
             temperature[patch] = calibration['CJ']['T']
             progress[patch] = 1.
     else:
-        raise ValueError('initialization kind must be uniform or ignition')
+        raise ValueError('initialization kind must be uniform, ignition or formed')
     if not np.all(np.isfinite(temperature)) or np.any(temperature <= 0):
         raise ValueError('initial temperature must be finite and positive')
     solver.set_prim(pressure / (solver.R * temperature), init.get('u_theta', 0.),
@@ -301,6 +306,9 @@ def _save_summary(solver, r, state, directory, status, target, error=None):
                    pressure_profile_Pa=(state['average_sum'] / weight).tolist() if weight > 0 else None,
                    reason=None if weight > 0 else 'no accepted steps overlap the averaging window')
     result = dict(format_version=FORMAT_VERSION, status=status, t=solver.t, steps=solver.steps,
+                  run_mode=r.get('run_mode', 'engine_intervals'),
+                  wall_seconds_this_invocation=time.monotonic()-state['drive_started'],
+                  steps_this_invocation=solver.steps-state['drive_start_steps'],
                   target_time_s=target, reference_frequency_Hz=r['f_ref'], observed_passages=None,
                   observed_passages_reason='pressure events are reported by plotting; detonation passages require field inspection',
                   average=average, budgets=budget, invalid_state_count=solver.invalid_state_count,
@@ -313,7 +321,9 @@ def _save_summary(solver, r, state, directory, status, target, error=None):
 
 def _drive(solver, r, state, directory, target_passages):
     directory = Path(directory)
-    target = target_passages / r['f_ref']
+    target = r['benchmark_end_s'] if r.get('run_mode') == 'development_benchmark' else target_passages / r['f_ref']
+    state['drive_started'] = time.monotonic()
+    state['drive_start_steps'] = solver.steps
     if target <= solver.t:
         raise ValueError('requested total cap must be later than the saved state')
     r = dict(r, initial_totals=state['initial_totals'])
@@ -383,6 +393,7 @@ def _drive(solver, r, state, directory, target_passages):
                     pass  # retain the original error and the previous atomic checkpoint
             try:
                 saved_solver, saved_r, saved_state, _ = _load_checkpoint(directory)
+                saved_state.update(drive_started=state['drive_started'], drive_start_steps=state['drive_start_steps'])
                 _save_summary(saved_solver, saved_r, saved_state, directory,
                               'interrupted' if isinstance(error, KeyboardInterrupt) else 'failed',
                               target, failure)
@@ -391,13 +402,19 @@ def _drive(solver, r, state, directory, target_passages):
             raise
 
 
-def start_run(config, calibration, directory, test_passages=3, source_text=None):
+def start_run(config, calibration, directory, test_passages=3, source_text=None, *, benchmark_us=None):
     if test_passages != 3:
         raise ValueError('new development runs use three intervals; resume the saved run to extend to five')
     # JSON round trip isolates the run from later mutation of caller dictionaries.
     config = json.loads(json.dumps(config, allow_nan=False))
     calibration = json.loads(json.dumps(calibration, allow_nan=False))
     r = resolve_case(config, calibration)
+    r['run_mode'] = 'engine_intervals'
+    if benchmark_us is not None:
+        benchmark_us = _positive(benchmark_us, 'benchmark_us')
+        if benchmark_us > 2:
+            raise ValueError('development benchmark is capped at 2 us; it is not an engine study')
+        r.update(run_mode='development_benchmark', benchmark_end_s=benchmark_us*1e-6)
     solver = build_solver(r, calibration)
     directory = Path(directory)
     directory.mkdir(parents=True, exist_ok=False)
@@ -441,7 +458,7 @@ def _load_checkpoint(directory):
             raise ValueError('checkpoint shape does not match saved geometry')
         solver.U[:, NG:-NG, NG:-NG] = interior
         solver.t, solver.steps = metadata['t'], metadata['steps']
-        if not math.isfinite(solver.t) or not 0 <= solver.t <= 5 / r['f_ref'] or not isinstance(solver.steps, int) or solver.steps < 0:
+        if not math.isfinite(solver.t) or not 0 <= solver.t <= r.get('benchmark_end_s', 5 / r['f_ref']) or not isinstance(solver.steps, int) or solver.steps < 0:
             raise ValueError('invalid checkpoint time/step')
         solver.rho_min, solver.p_min = metadata['rho_min'], metadata['p_min']
         solver.invalid_state_count = metadata['invalid_state_count']
@@ -498,16 +515,20 @@ def _recover_outputs(directory, metadata):
             p.rename(recovery / p.name)
 
 
-def resume_run(directory, test_passages=5):
-    if test_passages not in (3, 5):
+def resume_run(directory, test_passages=None):
+    if test_passages not in (None, 3, 5):
         raise ValueError('resume total cap must be three or five intervals')
     directory = Path(directory)
     with _run_lock(directory):
         solver, r, state, metadata = _load_checkpoint(directory)
-        if test_passages / r['f_ref'] <= solver.t:
+        benchmark = r.get('run_mode') == 'development_benchmark'
+        if benchmark and test_passages is not None:
+            raise ValueError('benchmark restart retains its saved duration; no passage override')
+        target = r['benchmark_end_s'] if benchmark else (test_passages or 5) / r['f_ref']
+        if target <= solver.t:
             raise ValueError('requested total cap must be later than the saved state')
         _recover_outputs(directory, metadata)
-        return _drive(solver, r, state, directory, test_passages)
+        return _drive(solver, r, state, directory, test_passages or 5)
 
 
 def main(argv=None):
@@ -517,12 +538,15 @@ def main(argv=None):
     parser.add_argument('--out', type=Path, help='new output directory; must not exist')
     parser.add_argument('--resume', type=Path, help='existing run directory; uses only its saved inputs')
     parser.add_argument('--test-passages', type=int, choices=(3, 5), help='total expected intervals, not additional intervals')
+    parser.add_argument('--benchmark-us', type=float, help='new-run development cost/validity check, at most 2 us; not a passage study')
     args = parser.parse_args(argv)
+    if args.benchmark_us is not None and (args.test_passages is not None or args.resume):
+        parser.error('--benchmark-us cannot be combined with --test-passages or --resume')
     try:
         if args.resume:
             if args.case or args.calibration or args.out:
                 parser.error('--resume cannot be combined with new-run inputs/output')
-            result = resume_run(args.resume, args.test_passages or 5)
+            result = resume_run(args.resume, args.test_passages)
         else:
             if args.out is None:
                 parser.error('a new run needs --out')
@@ -531,7 +555,7 @@ def main(argv=None):
             case_text, calibration_text = case.read_text(), calibration.read_text()
             result = start_run(yaml.safe_load(case_text), json.loads(calibration_text), args.out,
                                args.test_passages or 3,
-                               dict(case_yaml=case_text, calibration_json=calibration_text))
+                               dict(case_yaml=case_text, calibration_json=calibration_text), benchmark_us=args.benchmark_us)
     except KeyboardInterrupt:
         print('Interrupted; resume uses the last complete checkpoint.', file=sys.stderr)
         return 130

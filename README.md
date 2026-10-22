@@ -19,7 +19,9 @@ The [quarter-length chemistry experiment](docs/verification/c5_short_reaction.md
 now passes its reactor/planar/contact checks and retains near-wall/middle
 shock-associated reaction in a 3.8 mm isolated layer through 10 us on two meshes.
 This is an explicit surrogate test variant, not a solved rotating-engine case.
-Next is a verified formed-engine initializer and short cost/validity benchmark.
+The [formed-engine initializer and bounded benchmark](docs/verification/c6a_functional_pipeline.md)
+are implemented and tested (2 us, 556 steps, zero invalid states). The sustaining-wave investigation is
+assigned to a separate chat; this branch continues 2D functionality and tests.
 
 ## Run the fast checks
 
@@ -223,3 +225,22 @@ metrics are retained with [the D2 report](docs/verification/d2_coupling.md).
 - [Reference dissertation](Mundt2023.pdf) and [starter status](rde_sim_starter/STATUS.md).
 - [Pre-foundation source archive](docs/archive/starter_pre_foundation.zip) and
   [planning handoff](docs/archive/HANDOFF_planning_20261021.md): historical reference only.
+
+## Formed-charge functional benchmark
+
+The named quarter-length surrogate case preserves the original baseline. From
+`rde_sim_starter`:
+
+```sh
+NUMBA_NUM_THREADS=4 ../.venv/bin/python run.py \
+  --case cases/run937_formed_lhalf_0p25mm.yaml \
+  --calibration cases/run937_formed_lhalf_0p25mm.calib.json \
+  --benchmark-us 2 --out runs/new_formed_benchmark
+../.venv/bin/python plot.py --run runs/new_formed_benchmark --out runs/new_formed_benchmark/plots
+```
+
+This mode is capped at 2 us and labelled as a development benchmark in saved
+outputs/plots. It cannot demonstrate sustained rotation. Resume an interrupted
+benchmark using only `--resume <directory>`; it keeps the original cap. Engine
+passage runs retain their separate three/five-interval policy. The finite charge
+has an explicitly recorded trailing jump; it is not a steady periodic solution.

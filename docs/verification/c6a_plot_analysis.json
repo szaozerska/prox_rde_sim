@@ -1,0 +1,15 @@
+{
+  "status": "completed_limit",
+  "run_mode": "development_benchmark",
+  "experimental_pressure_overlay": false,
+  "time_s": 2e-06,
+  "snapshot_count": 5,
+  "native_rows": 557,
+  "reaction_rate_available": true,
+  "pressure_event_times_s": [],
+  "pressure_event_count": 0,
+  "event_high_Pa": 755833.9445835203,
+  "event_rearm_Pa": 472396.2153647002,
+  "interpretation": "Pressure crossings only, not confirmed detonation passages or a mode count.",
+  "max_inventory_storage_scaled_residual": 6.180120029710588e-15
+}

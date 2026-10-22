@@ -52,7 +52,9 @@ def reactor_check(c,T0,xi0,end,fraction):
 
 
 def require_run(result):
-    if result['status']!='completed' or result['invalid_state_count'] or result['max_budget_scaled_residual']>1e-10:
+    error=result['max_budget_scaled_residual']
+    if (result['status']!='completed' or result['invalid_state_count']
+            or not np.isfinite(error) or not 0 <= error <= 1e-10):
         raise RuntimeError('state/budget gate failed; inspect saved case')
 
 

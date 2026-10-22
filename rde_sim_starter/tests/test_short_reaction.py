@@ -79,3 +79,15 @@ class ShortReactionTests(unittest.TestCase):
             data['primitive'][-1,3,-1]*=1.001
             np.savez_compressed(root/'fields.npz',**data)
             self.assertGreater(contact_boundary_check(c,root)['homogeneous_boundary_scaled_error'],1e-4)
+
+
+class VerificationGateTests(unittest.TestCase):
+    def test_budget_gate_rejects_nonfinite_negative_and_corrupted_evidence(self):
+        from short_reaction import require_run
+        valid=dict(status='completed',invalid_state_count=0,max_budget_scaled_residual=1e-14)
+        require_run(valid)
+        for value in (np.nan,np.inf,-np.inf,-1.,1e-4):
+            with self.subTest(value=value),self.assertRaises(RuntimeError):
+                require_run(dict(valid,max_budget_scaled_residual=value))
+        for change in (dict(status='failed'),dict(invalid_state_count=1)):
+            with self.assertRaises(RuntimeError):require_run(dict(valid,**change))
