@@ -1,0 +1,10 @@
+{'flux': 'hll', 'hot_K': 1500, 'reactive': False, 'burned_equivalent_mm': np.float64(0.0), 'mixed_cells': 22, 'energy_relative_change': 1.033177598353612e-15, 'invalid_states': 0, 'steps': 308}
+{'flux': 'hll', 'hot_K': 1500, 'reactive': True, 'burned_equivalent_mm': np.float64(0.029376402736314564), 'mixed_cells': 21, 'energy_relative_change': -4.132710393414448e-16, 'invalid_states': 0, 'steps': 692}
+{'flux': 'hll', 'hot_K': 3000, 'reactive': False, 'burned_equivalent_mm': np.float64(0.0), 'mixed_cells': 24, 'energy_relative_change': 8.265420786828896e-16, 'invalid_states': 0, 'steps': 436}
+{'flux': 'hll', 'hot_K': 3000, 'reactive': True, 'burned_equivalent_mm': np.float64(0.17040288622931132), 'mixed_cells': 16, 'energy_relative_change': -4.132710393414448e-16, 'invalid_states': 0, 'steps': 692}
+{'flux': 'hll', 'end_us': 10.0, 'threshold_speed_mps': 2474.999999999999, 'pressure_front_m': [0.0525625, 0.0649375], 'invalid_states': 0, 'steps': 907}
+{'flux': 'hllc', 'hot_K': 1500, 'reactive': False, 'burned_equivalent_mm': np.float64(0.0), 'mixed_cells': 0, 'energy_relative_change': -2.066355196707224e-16, 'invalid_states': 0, 'steps': 308}
+{'flux': 'hllc', 'hot_K': 1500, 'reactive': True, 'burned_equivalent_mm': np.float64(1.326948431961749e-06), 'mixed_cells': 0, 'energy_relative_change': 0.0, 'invalid_states': 0, 'steps': 692}
+{'flux': 'hllc', 'hot_K': 3000, 'reactive': False, 'burned_equivalent_mm': np.float64(0.0), 'mixed_cells': 0, 'energy_relative_change': 0.0, 'invalid_states': 0, 'steps': 436}
+{'flux': 'hllc', 'hot_K': 3000, 'reactive': True, 'burned_equivalent_mm': np.float64(1.5558136849984372e-06), 'mixed_cells': 0, 'energy_relative_change': 0.0, 'invalid_states': 0, 'steps': 692}
+{'flux': 'hllc', 'end_us': 10.0, 'threshold_speed_mps': 2474.999999999999, 'pressure_front_m': [0.0525625, 0.0649375], 'invalid_states': 0, 'steps': 907}

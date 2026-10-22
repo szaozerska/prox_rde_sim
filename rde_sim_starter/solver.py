@@ -94,8 +94,49 @@ def hll(rL, uL, vL, pL, xL, rR, uR, vR, pR, xR, nxd, g, q, F):
         F[4] = (sR * fL4 - sL * fR4 + sL * sR * (rR * xR - rL * xL)) * inv
 
 
+@njit(cache=True, inline="always")
+def riemann(rL, uL, vL, pL, xL, rR, uR, vR, pR, xR, nxd, g, q, F, flux_code):
+    """Opt-in HLLC contact restoration; HLL remains the default.
+
+    Toro, Spruce & Speares (1994), doi:10.1007/BF01414629.
+    Uses the same outer acoustic bounds as HLL. Progress and chemical energy
+    are transported conservatively through the contact. No state clipping,
+    pressure floor or silent fallback is introduced.
+    """
+    if flux_code == 0:
+        hll(rL,uL,vL,pL,xL,rR,uR,vR,pR,xR,nxd,g,q,F)
+        return
+    unL = uL if nxd == 1 else vL
+    unR = uR if nxd == 1 else vR
+    aL = np.sqrt(g*pL/rL); aR = np.sqrt(g*pR/rR)
+    sl = min(unL-aL,unR-aR); sr = max(unL+aL,unR+aR)
+    sm = (pR-pL+rL*unL*(sl-unL)-rR*unR*(sr-unR))/(rL*(sl-unL)-rR*(sr-unR))
+    if sl >= 0 or (sr > 0 and sm >= 0):
+        r,u,v,p,xi,un,sk = rL,uL,vL,pL,xL,unL,sl
+    else:
+        r,u,v,p,xi,un,sk = rR,uR,vR,pR,xR,unR,sr
+    energy = total_energy(r,u,v,p,xi,g,q)
+    F[0] = r*un
+    F[1] = r*u*un + (p if nxd == 1 else 0.)
+    F[2] = r*v*un + (p if nxd == 0 else 0.)
+    F[3] = (energy+p)*un
+    F[4] = r*xi*un
+    if sl >= 0 or sr <= 0:
+        return
+    rs = r*(sk-un)/(sk-sm)
+    us = sm if nxd == 1 else u
+    vs = sm if nxd == 0 else v
+    ps = p+r*(sk-un)*(sm-un)
+    es = ((sk-un)*energy-p*un+ps*sm)/(sk-sm)
+    F[0] += sk*(rs-r)
+    F[1] += sk*(rs*us-r*u)
+    F[2] += sk*(rs*vs-r*v)
+    F[3] += sk*(es-energy)
+    F[4] += sk*(rs*xi-r*xi)
+
+
 @njit(cache=True, parallel=True)
-def rhs(W, dUdt, Fb, boundary_faces, source_columns, dx, dy, g, q, R, k, Ea, bcb, inj):
+def rhs(W, dUdt, Fb, boundary_faces, source_columns, dx, dy, g, q, R, k, Ea, bcb, inj, flux_code=0):
     """Spatial operator plus source, retaining the actual boundary face fluxes.
 
     boundary_faces order is left, right, bottom, top; all use +x/+z normals.
@@ -116,9 +157,9 @@ def rhs(W, dUdt, Fb, boundary_faces, source_columns, dx, dy, g, q, R, k, Ea, bcb
                     L[v] = W[v, ia, j] + 0.5 * minmod(W[v, ia, j] - W[v, ia - 1, j], W[v, ia + 1, j] - W[v, ia, j])
                     Rr[v] = W[v, ia + 1, j] - 0.5 * minmod(W[v, ia + 1, j] - W[v, ia, j], W[v, ia + 2, j] - W[v, ia + 1, j])
                 if side == 0:
-                    hll(L[0], L[1], L[2], L[3], L[4], Rr[0], Rr[1], Rr[2], Rr[3], Rr[4], 1, g, q, Fm)
+                    riemann(L[0], L[1], L[2], L[3], L[4], Rr[0], Rr[1], Rr[2], Rr[3], Rr[4], 1, g, q, Fm, flux_code)
                 else:
-                    hll(L[0], L[1], L[2], L[3], L[4], Rr[0], Rr[1], Rr[2], Rr[3], Rr[4], 1, g, q, F)
+                    riemann(L[0], L[1], L[2], L[3], L[4], Rr[0], Rr[1], Rr[2], Rr[3], Rr[4], 1, g, q, F, flux_code)
             # y-faces j-1/2 and j+1/2
             for side in range(2):
                 ja = j - 1 + side
@@ -129,9 +170,9 @@ def rhs(W, dUdt, Fb, boundary_faces, source_columns, dx, dy, g, q, R, k, Ea, bcb
                     L[v] = W[v, i, ja] + 0.5 * minmod(W[v, i, ja] - W[v, i, ja - 1], W[v, i, ja + 1] - W[v, i, ja])
                     Rr[v] = W[v, i, ja + 1] - 0.5 * minmod(W[v, i, ja + 1] - W[v, i, ja], W[v, i, ja + 2] - W[v, i, ja + 1])
                 if side == 0:
-                    hll(L[0], L[1], L[2], L[3], L[4], Rr[0], Rr[1], Rr[2], Rr[3], Rr[4], 0, g, q, Gm)
+                    riemann(L[0], L[1], L[2], L[3], L[4], Rr[0], Rr[1], Rr[2], Rr[3], Rr[4], 0, g, q, Gm, flux_code)
                 else:
-                    hll(L[0], L[1], L[2], L[3], L[4], Rr[0], Rr[1], Rr[2], Rr[3], Rr[4], 0, g, q, Gp)
+                    riemann(L[0], L[1], L[2], L[3], L[4], Rr[0], Rr[1], Rr[2], Rr[3], Rr[4], 0, g, q, Gp, flux_code)
             for v in range(5):
                 if i == NG:
                     boundary_faces[0, v, j - NG] = Fm[v]
@@ -172,7 +213,11 @@ class InvalidStateError(ValueError):
 
 
 class Solver:
-    def __init__(self, nx, ny, dx, dy, gas, bc, inj=(0.0, 300.0, 0.0, 1.0), p_back=1e5, cfl=0.4, source_cfl=0.05, wall_cf=0., wall_gap=None, radial=None):
+    def __init__(self, nx, ny, dx, dy, gas, bc, inj=(0.0, 300.0, 0.0, 1.0), p_back=1e5, cfl=0.4, source_cfl=0.05, wall_cf=0., wall_gap=None, radial=None, flux='hll'):
+        if flux not in ('hll', 'hllc'):
+            raise ValueError('flux must be hll or hllc')
+        self.flux = flux
+        self.flux_code = int(flux == 'hllc')
         if not isinstance(nx, (int, np.integer)) or not isinstance(ny, (int, np.integer)) or nx < NG or ny < 1:
             raise ValueError("nx must be an integer >= 2 and ny an integer >= 1")
         if not np.all(np.isfinite([dx, dy, p_back, cfl])) or dx <= 0 or dy <= 0 or p_back <= 0 or not 0 < cfl <= 1:
@@ -280,7 +325,7 @@ class Solver:
         cons_to_prim(U, self.W, self.g, self.q, NG)
         fill_ghosts(self.W, *self.bc, self.p_back, self.g)
         rhs(self.W, out, self.Fb, self.boundary_faces, self.source_columns,
-            self.dx, self.dy, self.g, self.q, self.R, self.k, self.Ea, self.bc[2], self.inj)
+            self.dx, self.dy, self.g, self.q, self.R, self.k, self.Ea, self.bc[2], self.inj, self.flux_code)
         boundary = self.boundary_faces.sum(axis=2)
         boundary[:2] *= self.dy
         boundary[2:] *= self.dx

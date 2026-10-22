@@ -1,0 +1,22 @@
+{
+  "U": {
+    "equal": false,
+    "max_absolute_difference": 7.897615432739258e-07,
+    "max_scaled_difference": 5.058235643976861e-15
+  },
+  "t": {
+    "equal": true,
+    "max_absolute_difference": 0.0,
+    "max_scaled_difference": 0.0
+  },
+  "boundary": {
+    "equal": false,
+    "max_absolute_difference": 2.1316282072803006e-14,
+    "max_scaled_difference": 4.667283146197143e-16
+  },
+  "source": {
+    "equal": false,
+    "max_absolute_difference": 1.6771252355635147e-19,
+    "max_scaled_difference": 1.690986621732102e-14
+  }
+}

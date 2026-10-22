@@ -1,0 +1,12 @@
+test_sod_exact_star_state_and_shock (test_hllc.HllcTests.test_sod_exact_star_state_and_shock) ... ok
+test_geometry_and_chemistry_are_explicit_and_fixed (test_detwave_cases.SecondaryCaseTests.test_geometry_and_chemistry_are_explicit_and_fixed) ... ok
+test_high_flux_plenum_has_declared_choked_capacity (test_detwave_cases.SecondaryCaseTests.test_high_flux_plenum_has_declared_choked_capacity) ... ok
+test_saved_secondary_run_uses_supplied_case (test_detwave_cases.SecondaryCaseTests.test_saved_secondary_run_uses_supplied_case) ... run: 0.000/0.030 us, 0 steps, 0.0 s
+run: 0.030/0.030 us, 3 steps, 0.2 s
+run: 0.030/0.030 us, 3 steps, 0.2 s
+ok
+
+----------------------------------------------------------------------
+Ran 4 tests in 16.642s
+
+OK

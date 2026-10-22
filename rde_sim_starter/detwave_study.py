@@ -1,4 +1,4 @@
-"""Opt-in bounded engine investigation. Production solver/defaults are unchanged."""
+"""Opt-in bounded engine investigation; production default settings are unchanged."""
 import argparse
 import copy
 import hashlib

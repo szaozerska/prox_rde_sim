@@ -1,0 +1,11 @@
+{
+  "only_active_input_change": {
+    "numerics.flux": [
+      "hll",
+      "hllc"
+    ]
+  },
+  "all_other_case_fields_equal": true,
+  "initial_inventory_relative_error": 1.1483049388772879e-15,
+  "flux": "hllc"
+}

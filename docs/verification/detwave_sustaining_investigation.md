@@ -565,6 +565,83 @@ upstream output, not modified as part of this physics investigation. The one-sho
 main checkpoint automation was deleted after completion; the investigation
 follow-up remains active until completion or 22:00 UTC.
 
+## Targeted contact-diffusion test (predeclared, 20:54 UTC)
+
+The observed consumption ahead of wave return motivates a specific H3 check,
+not another generic parameter sweep. Current HLL smears contact discontinuities.
+An aligned stationary hot-product/fresh-gas interface has zero imposed velocity,
+equal pressure, no physical diffusion and no injector. At 0.125 mm, 10 us,
+quarter-length chemistry and 3000 K products, current HLL consumes **0.1704 mm**
+fresh-equivalent depth; with 1500 K products it consumes 0.02938 mm. The cold
+300 K homogeneous chemical contribution is negligible on this interval. Frozen
+controls spread progress over 22–24 cells without chemical conversion. This is
+direct evidence of artificial contact mixing/burning in this controlled Euler
+problem, not proof that all observed engine interface burning has this origin.
+
+Added an **opt-in** HLLC flux, preserving the contact wave and conservative
+chemical energy/progress transport. HLL remains the default. The primary source
+is [Toro, Spruce & Speares (1994)](https://doi.org/10.1007/BF01414629), with the
+author's [HLLC derivation](https://prague-sum.com/download/2012/Toro_2-HLLC-RiemannSolver.pdf).
+Contact restoration directly addresses the missing intermediate wave. It is not
+a chemistry model or physical turbulent-mixing model. HLLC shock instabilities
+are a known limitation ([Simon & Mandal](https://arxiv.org/abs/1803.04954));
+there is no state clipping or silent fallback in this comparison.
+
+Before an engine comparison: check exact stationary/moving contact and shear
+fluxes in both directions, supersonic consistency, a frozen stationary contact,
+Sod star states/shock location, existing solver regression, and 10 us formed
+planar propagation with unchanged chemistry. The same stationary reactive
+control must show a substantial reduction in artificial conversion, with
+conserved energy and valid states. `detwave_contact_test.py` records those
+comparisons. A planar speed difference above 3% or invalid states prevents
+claiming a clean contact comparison and requires review.
+
+Conditional engine test: `cases/detwave_25fi5_compact_hllc.yaml` changes only the
+flux from the compact high-flux case. Same mesh, startup, chemistry, supply and
+exit. Cap at 80 us or the 22:00 UTC deadline, stop on invalid state or clear
+coupling loss. Evaluate cold refill ahead of first return and subsequent coupled
+circuits. Do not call sharp pressure features or sustained forced ignition a
+success. The old HLL small-engine control is already complete and must not be
+duplicated; the active larger Run 937 job retains its loaded v1 source.
+
+### Contact-restoration gate results (20:58 UTC)
+
+Passed: 14 focused flux/solver checks (one inherited long test intentionally
+skipped), plus HLLC Sod and three case checks. The stationary 3000 K reactive
+contact converts 0.170403 mm with HLL versus **0.000001556 mm with HLLC**;
+the 1500 K comparison is 0.0293764 versus 0.000001327 mm. Frozen HLLC contacts
+retain zero mixed cells by the stated progress threshold. Maximum relative
+energy drift is 1.03e-15, no invalid states. Both fluxes give the same
+cell-quantized planar 5–10 us speed, **2475 m/s**, and identical sampled leading
+pressure-front cells. These are prerequisites for the controlled engine test,
+not a proof that every HLLC shock or under-resolved reactive structure is accurate.
+See `detwave_contact_comparison.json` and the two `detwave_hllc_*tests.log` files.
+
+Preflight confirms **only active input change is HLL -> HLLC**, all physical
+case fields unchanged, initial inventory matching the old compact control to
+1.15e-15 relative. The default HLL 10-step replay is also compared against the
+pre-integration snapshot in `detwave_hll_default_check.json`.
+The new engine test is `runs/detwave_25fi5_compact_hllc`, one Numba thread,
+80 us cap, log `detwave_hllc_engine.log`. Current merged-plus-HLLC sources are
+archived as `runs/source_snapshot_v3` and hash-checked against the new job's
+saved fingerprint immediately after launch. Preserve the active v1
+larger-engine run and v2 secondary evidence. Do not duplicate this new job.
+
+**Critical miss now tested directly:** numerical contact diffusion was already
+documented in the earlier D3 refinement study. Passing energy/time-integration
+checks did not remove it. The present change targets that mechanism without
+changing reaction rates or disabling chemistry in selected cells. Whether it
+explains engine quenching remains the question for the new bounded comparison.
+
+Default-HLL replay is numerically equivalent but no longer bitwise equal after
+the new compiled flux selector: exact time, maximum state-scaled difference
+5.06e-15, boundary difference 4.67e-16 and source difference 1.69e-14. The initial
+strict equality assertion failed on this roundoff; it was not hidden by changing
+reference data. This is distinct from the earlier main-only integration, which
+was bitwise equal. These roundoff differences do not establish identical long
+nonlinear histories, but the default method and its focused regressions remain
+unchanged. The optional HLLC case is the deliberate substantive flux change.
+
 ## Active-run handoff (historical launch commands; see latest statuses above)
 
 Both simulations run in this branch's worktree, not the original checkout.

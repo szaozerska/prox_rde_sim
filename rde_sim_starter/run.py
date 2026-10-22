@@ -109,6 +109,9 @@ def resolve_case(config, calibration):
         raise ValueError('case schema_version must be 1; use the current config.yaml')
     geometry_contract(config)  # reject unsupported geometry before allocation or output
     geo, op, nm = config['geometry'], config['operating_point'], config['numerics']
+    flux = nm.get('flux', 'hll')
+    if flux not in ('hll', 'hllc'):
+        raise ValueError('numerics.flux must be hll or hllc')
     model = config['model']
     if model['geometry'] != 'constant_annulus' or model['feed'] != 'premixed_plenum' or model['walls'] not in ('inviscid', 'constant_cf', 'annular_closure'):
         raise ValueError('this backend supports only a constant annulus, equivalent premixed plenum, and inviscid, constant_cf or annular_closure walls')
@@ -158,7 +161,7 @@ def resolve_case(config, calibration):
     probe_z = _positive(nm['probe_y_mm'], 'probe position', True) * 1e-3
     if probe_z >= length:
         raise ValueError('probe must lie inside the axial domain')
-    resolved = dict(nx=nx, ny=ny, dx=width / nx, dy=length / ny,
+    resolved = dict(nx=nx, ny=ny, dx=width / nx, dy=length / ny, flux=flux,
                     width=width, length=length, r_outer=ro, r_mean=rm, gap=gap,
                     gas=gas, wall_cf=wall_cf, radial=radial, wall_model=model['walls'], cfl=nm['cfl'], source_cfl=source_cfl,
                     injector=[op['p_plenum_kPa'] * 1e3, op['T_plenum_K'], geo['area_ratio'], model['discharge_coefficient']],
@@ -181,7 +184,7 @@ def build_solver(resolved, calibration, initialize=True):
     solver = Solver(r['nx'], r['ny'], r['dx'], r['dy'], tuple(r['gas']),
                     (PERIODIC, PERIODIC, INJECTOR, OUTFLOW), inj=r['injector'],
                     p_back=r['p_back'], cfl=r['cfl'], source_cfl=r['source_cfl'],
-                    wall_cf=r.get('wall_cf', 0.), wall_gap=r['gap'], radial=r.get('radial'))
+                    wall_cf=r.get('wall_cf', 0.), wall_gap=r['gap'], radial=r.get('radial'), flux=r.get('flux', 'hll'))
     if not initialize:
         return solver
     x = (np.arange(solver.nx) + .5) * solver.dx
