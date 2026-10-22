@@ -1,6 +1,6 @@
 # RDE simulation plan — revision 14
 
-**Status: reduced 2D software workflow F1–F4 complete. Full acceptance: 122 tests passed, no skips; 16 affected checks repeated after review, plus one new coupled-physics check (123 distinct passing tests). RDE-001 remains open. Radial closures are the next authorized physics increment; see the reviewed [radial plan](docs/plans/radial_closures_2d.md). No CAD work.**
+**Status: reduced 2D software workflow F1–F4 complete. Full acceptance: 122 tests passed, no skips; 16 affected checks repeated after review, plus one new coupled-physics check (123 distinct passing tests). RDE-001 remains open. The radial-wall increment and matched 189.394 us comparison are also complete: 132 distinct verification tests passed, but sustained detonation was not restored in the original case. See [radial results](docs/verification/radial_closures.md). No CAD work.**
 The [controlled-test plan](docs/plans/controlled_2d_tests.md) records three review
 passes and the C1–C6 increments. First verify multirow/direction equivalence and
 formed-profile propagation, then distinguish thin-layer survival from initiation.
@@ -29,8 +29,8 @@ Paper references mean Mundt (2023), *Geometric Scaling of Cylindrical Rotating D
 ## 0. Functional implementation track and separate investigation
 
 **Latest direction (October 22):** F1–F4 are complete. The user now explicitly
-authorizes the report's reduced radial closures and a controlled sustainment
-comparison here on main. Follow the [radial plan](docs/plans/radial_closures_2d.md);
+authorized the report's reduced radial closures and a controlled sustainment
+comparison here on main; both are now complete with RDE-001 still open. See the [radial plan](docs/plans/radial_closures_2d.md);
 hold chemistry, mesh and startup fixed. The separate broader sustaining-wave and
 3D investigations remain independent. Physical validation gates still constrain
 claims; no CAD changes are authorized in this increment.

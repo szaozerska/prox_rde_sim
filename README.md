@@ -70,7 +70,10 @@ reconstructs inner/outer pressure using radial equilibrium, applies separate wal
 drag, and supports Reynolds-analogy heat exchange with explicit wall temperatures
 and recovery factor. Radial velocity/momentum, wave detachment and calibrated
 curvature losses remain unresolved. Wrapped/head-end views add no physics.
-See the [reviewed equations, assumptions and experiment](docs/plans/radial_closures_2d.md).
+See the [reviewed equations and assumptions](docs/plans/radial_closures_2d.md) and
+[completed comparison with plots](docs/verification/radial_closures.md). Both new
+cases completed 189.394 us with no invalid states; these closures did not restore
+sustained rotating detonation in the original case.
 
 Named exploratory cases hold the original D1 mesh, chemistry and startup fixed:
 `cases/run937_wall_control.yaml` disables the centrifugal split;

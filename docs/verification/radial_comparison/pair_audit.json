@@ -1,0 +1,28 @@
+{
+  "identical_implementation": true,
+  "identical_calibration": true,
+  "identical_initial_saved_fields": true,
+  "identical_all_accepted_times_and_timesteps": true,
+  "steps": 13165,
+  "native_hashes_match_postprocessing_provenance": true,
+  "cases": [
+    {
+      "run": "radial_wall_control",
+      "max_wall_sum_vs_applied_source_scaled_difference": 1.3181380535944355e-21,
+      "hashes": {
+        "inputs.json": "55a5dcc94a8f5d120dfe42dd7b44b320f8de690699a675536ce22020e6df7a75",
+        "summary.json": "49cb6d6035af9c362ce4d4863500912785855761e0b9b9882c56dbff146a00cf",
+        "history.jsonl": "8f1e44a78b4ea39c2ae80e3996a484dc0c425d7b34e4504889fdf4b1a0c616c5"
+      }
+    },
+    {
+      "run": "radial_active",
+      "max_wall_sum_vs_applied_source_scaled_difference": 1.3179198358795519e-21,
+      "hashes": {
+        "inputs.json": "9feea9410733db3c5737ae67067b664890255e5e83832eeceb9e91bfa8ed37f3",
+        "summary.json": "c62def91f740dade3716ac6395c99bf8e86173ce31e360d341d6ff1d5500578a",
+        "history.jsonl": "fe2dcdc92cda537eee2b83188a4dc9f3301a8f709ac1486a863368d4c3f3c36f"
+      }
+    }
+  ]
+}

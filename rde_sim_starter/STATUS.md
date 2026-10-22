@@ -23,7 +23,8 @@ The default case is still inviscid. No friction coefficient is calibrated by
 default. An opt-in `annular_closure` now reconstructs separate wall pressures
 from radial equilibrium and applies per-wall drag and optional heat exchange.
 Acceptance passed (130 full-suite tests plus two additional tests; 132 distinct).
-The requested controlled engine comparison is in progress. Radial
+The matched 189.394 us engine comparison is complete: zero invalid states,
+no restored sustained detonation in this case. See [results](../docs/verification/radial_closures.md). Radial
 momentum/velocity, empirical curvature loss and inner-wall detachment are not
 resolved. See the [reviewed closure plan](../docs/plans/radial_closures_2d.md).
 CAD/coreless/nonuniform geometry and 3D are explicitly unsupported by this backend.

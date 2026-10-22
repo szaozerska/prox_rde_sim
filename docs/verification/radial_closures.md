@@ -1,6 +1,9 @@
 # Radial-wall closure verification and controlled engine experiment
 
-Implementation complete; long comparison running. RDE-001 remains OPEN. No CAD.
+**Completed: the requested reduced radial closures did not restore sustained
+rotating detonation in the original D1-style case through 189.394 us.** RDE-001
+remains OPEN. Numerical verification passed; the sustaining-wave criterion did
+not. No CAD changes.
 The [reviewed plan](../plans/radial_closures_2d.md) records three reviews, equations,
 assumptions, literature and the omitted radial dynamics/curvature calibration.
 
@@ -46,7 +49,7 @@ integrals survive restart. The actual-radius traction moment is available as a
 separate reconstruction; it must not replace the mean-radius moment in the
 solver's angular inventory/balance. No friction or heat fit to Run 937 is claimed.
 
-## Controlled experiment (results pending)
+## Controlled experiment — completed
 
 Original D1 physical geometry, equivalent feed, original 1 mm half-reaction length,
 0.5 mm grid, 3.8 mm fill and original hot patch are fixed. No ignition or chemical
@@ -68,4 +71,96 @@ space-time plots, final reconstructed wall pressures, configuration differences,
 implementation hashes and native window budgets. Distance alone is not proof of
 shock/reaction coupling, especially when the absolute reaction signal vanishes.
 A failed coarse case cannot establish that radial physics is irrelevant or that
-no 2D model can sustain a wave. No outcome is asserted before inspection.
+no 2D model can sustain a wave. The conclusions below follow inspection of the
+completed runs, not their numerical validity alone.
+
+
+## Results and interpretation
+
+Both new runs completed 189.393939 us, **13,165 accepted steps**, zero invalid
+states. The nominal 0.5 mm mesh is 447 by 152 cells. Input configurations differ
+only in `model.radial.centrifugal`; numerical source, calibration, initial saved
+fields and every accepted timestamp/timestep match. The historical D1 run remains
+context with its own older implementation provenance. The matched intervention
+is wall control versus radial active.
+
+| Quantity | Historical inviscid D1 | Wall control | Centrifugal active |
+|---|---:|---:|---:|
+| Final domain-maximum pressure [kPa] | 450.731 | 438.154 | 438.144 |
+| Final near-injector maximum reaction rate [1/s] | 0.008635 | 0.008987 | 0.008989 |
+| Final whole-domain maximum reaction rate [1/s] | 87,924 | 86,630 | 86,616 |
+| Final median heat-release height [mm] | 18.323 | 18.662 | 18.662 |
+| Whole-run chemical-to-thermal conversion [J] | 87.2670 | 85.6669 | 85.6653 |
+| Whole-run heat transferred to radial walls [J] | 0, model disabled | 9.58020 | 9.58223 |
+| 100–180 us mean annulus-exit force contribution [N] | 482.54698 | 458.81775 | 458.81401 |
+| 100–180 us maximum scaled conservation residual | 4.41e-14 | 4.33e-14 | 4.36e-14 |
+
+Near-injector values refer to the actual cell center **z=0.751974 mm**; the second
+sample ring is z=3.258553 mm. Requested 1 and 3.5 mm locations are snapped to the
+native mesh and their actual coordinates are saved. Force is the transient
+annulus-exit momentum/pressure contribution, not measured whole-engine thrust or
+a steady performance validation.
+
+The centrifugal intervention changes late-window exit force by **-0.003737 N
+(-0.000814%)**, final maximum pressure by **-10.69 Pa (-0.00244%)**, and total wall
+heat loss by **+0.002023 J (+0.0211%)**. Reconstructed wall pressures are nevertheless
+distinct: the largest saved (outer-inner)/mean split is **44.68% at 8 us**, falling
+to a domain maximum of **2.95%** at the end. This is consistent with a locally
+appreciable radial pressure split but weak feedback through the chosen wall laws.
+
+Pressure pulses persist. Their near-injector reaction signal falls from roughly
+47,500/s at 20 us to 11/s at 40 us and about 0.009/s at the end. Full-height fields
+show continued burning along the fresh/product interface higher in the channel;
+this is **loss of sustained shock-coupled rotating detonation, not extinction of
+all combustion**. By the end, the reaction median is near 18.7 mm. The existing
+spatial-overlap diagnostic has zero heat release above 2*p1 = 755,833.945 Pa at
+the endpoint; this threshold is a diagnostic, not a universal detonation criterion.
+
+A deliberately retained diagnostic warning: at the endpoint, the strongest
+pressure face is only half a cell from a half-peak reaction cell on the lower
+ring. That apparent proximity is meaningless by itself because the absolute rate
+is only ~0.009/s. Normalizing a nearly vanished signal could falsely suggest
+coupling. Absolute rates, full-height structure, time history and native budgets
+are therefore inspected together. No automatic classifier declares a successful
+wave from either pressure peaks or proximity.
+
+This experiment does not establish the root cause of RDE-001, exclude later
+startup recovery beyond this window, or rule out effects from resolved radial
+flow, inner-wall detachment or calibrated curvature dynamics. It tests one
+coarse, original-chemistry/ignition setup with explicitly assumed wall parameters.
+No coefficient fitting/sweep was undertaken to manufacture a sustained wave.
+The new wall-loss fraction is about 11% of chemical conversion over this window;
+these closures do not dominate the energy balance. Quantitative wall/torque
+prediction still requires coefficient and thermal-boundary validation.
+
+## Inspectable evidence and reproduction
+
+- [Pressure/reaction space-time comparison](radial_comparison/comparison.png):
+  common logarithmic pressure and reaction scales; absolute units retained.
+- [Full-height final pressure, reaction and progress](radial_comparison/final_fields.png).
+- [Endpoint inner/outer/mean pressure](radial_comparison/final_wall_pressures.png):
+  at z=0.751974 mm, t=189.393939 us; read each pressure axis's numerical labels.
+- [All inputs, hashes, per-frame metrics and native window reductions](radial_comparison/metrics.json).
+- [Matched-input/timestep and separate-source audit](radial_comparison/pair_audit.json).
+- Full console records: `radial_wall_control_run.txt`, `radial_active_run.txt`.
+
+The final renderer reuses the already-tested full-height thermal diagnostics,
+saves their threshold and source hash, and includes whole-domain fields to avoid
+single-probe conclusions. Two read-only analysis/import tests were repeated after
+that integration; the renderer was smoke-checked on saved fixtures and all three
+final figures were visually inspected. Pressure history uses a shared logarithmic
+scale so the initial hot patch does not hide later weak structures. All native
+input, summary and history hashes match their postprocessing provenance.
+
+From `rde_sim_starter`, with local saved run directories present:
+
+```sh
+../.venv/bin/python radial_study.py --runs runs/d1_run937 runs/radial_wall_control runs/radial_active --out ../reports/new_radial_comparison
+```
+
+Native results remain local and Git-ignored; the compact evidence/figures are
+committed. Two threads per engine run, concurrent on the shared host: elapsed
+32.81 min for wall control and 36.70 min for centrifugal active. These are actual
+shared-host timings, not clean hardware benchmarks. The physical source stayed
+frozen at f12cca1 throughout; later edits only improve read-only diagnostics and
+documentation. No further engine studies are running for this increment.

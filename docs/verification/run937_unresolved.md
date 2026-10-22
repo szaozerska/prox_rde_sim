@@ -227,3 +227,21 @@ structure, initial contact mixing and late transient peaks remain mesh sensitive
 this is not a steady-wave result or a physical chemistry fit. Details and graphs:
 [completed experiment](c5_short_reaction.md). RDE-001 remains open because no
 new periodic, replenished engine case has demonstrated sustained rotation.
+
+
+## Completed radial-wall experiment on main
+
+The user-requested [radial closure comparison](radial_closures.md) is complete.
+Both new cases retain D1's mesh/chemistry/startup and run 189.394 us / 13,165 steps
+with zero invalid states. Separate radial-wall friction/heat transfer is enabled
+in both; only centrifugal reconstruction differs. Adding it does not restore
+sustained rotating detonation in this case. It changes the 100–180 us annulus-exit
+force contribution by -0.000814% relative to the same wall model without the split.
+
+Burning persists higher in the channel, while the lower-ring reaction signal
+falls to ~0.009/s. Do not call that complete combustion extinction or treat weak
+reaction-peak proximity to a pressure face as confirmed coupling. Native balances
+close to roundoff and independent source/ODE/restart tests pass. This narrows the
+claim to the tested simplified closures; radial dynamics, curvature calibration,
+reaction/spatial modeling, startup/refill and hardware-boundary mismatches remain
+open. The full-height plots and explicit assumptions are linked in the report.
