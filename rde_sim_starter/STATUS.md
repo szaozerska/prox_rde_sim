@@ -65,3 +65,9 @@ C3 is open and this is not an experimental critical-height result. Default suite
 The 0.25 mm thin case completed and also loses shock/reaction coupling, with
 25.75 mm wall-to-main-reaction gap at 40 µs and no invalid states. Thick
 refinement and aligned thin-interface control are still running; C3 remains open.
+
+Aligned thin-layer control also loses coupling. Refined thick run stopped at
+23.56 µs because its declared 3000 m/s transverse bound was exceeded by
+0.0206 m/s; state and budgets remain valid. Checked continuation at 3200 m/s
+is underway. Twelve targeted continuation/control tests pass. C4 software is
+ready; its full diagnostic is still gated on C3.

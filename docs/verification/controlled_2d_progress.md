@@ -208,3 +208,62 @@ The thick refinement has been resumed after the recorded scheduling pause.
 The extra aligned thin control is running with one Numba thread while the
 thick refinement uses two. C3's combined gate and C4 remain pending. The
 2449 s elapsed thin-run time includes contention; it is not a clean benchmark.
+
+### C3c — aligned thin layer completed; initial cut cell is not sufficient explanation
+
+The face-aligned 3.8 mm control completed 40 µs with zero invalid states and
+maximum normalized budget residual 5.19e-16. It also loses leading coupling:
+wall-row pressure 2.741 MPa, 24–40 µs front fit 1306.25 m/s, 25.5 mm gap to
+the global reaction maximum, and only 13.23/s peak rate in the inclusive 2 mm
+front window. This closely resembles the original and refined thin outcomes.
+Removing the initial mixed row does not rescue the formed wave. Subsequent
+HLL contact mixing remains present, so this does not exclude numerical mixing
+or validate physical kinetics. The vertical-spacing/remote-buffer qualification
+is retained. [Metrics](c3_aligned_metrics.json), [inspected figure](c3_aligned.png).
+
+### C3d — refined thick run stopped at a diagnostic bound; corrected before C4
+
+- The 0.25 mm, 15 mm layer reached 23.555864 µs / 1631 steps. Its observed
+  transverse characteristic speed reached 3000.020623 m/s, just above the
+  predeclared 3000 m/s bound; the driver correctly stopped. This was not a
+  negative/invalid state or an observed detonation failure. Wall/middle reaction
+  remained near the fronts. Native budget residual stayed <1.30e-15.
+- Root cause of this stop: the coarse-derived travel-speed allowance was too
+  small for the refined transverse dynamics. This is a diagnostic-domain
+  assumption to correct, not evidence of accumulated conservation error or a
+  missing 3D mechanism. The failed assumption and original run are preserved
+  in [stopped metrics](c3_thick_stopped_metrics.json).
+- All five primitive variables in the top four rows were exactly unchanged
+  at every saved time. Replacing the bound with 3200 m/s gives a 54.62 mm top
+  margin at the stop and 2 mm at 40 µs; axial bounds/margins are unchanged.
+  This revised bound is declared before continuation and remains checked at
+  every intermediate/accepted step. It changes neither fluxes, source terms,
+  timestep limits nor the physical boundary condition. Stop again if exceeded.
+- Added narrow layer continuation with case/calibration/numerical-fingerprint
+  checks, preserved fields/history/native flux and source totals, and exact
+  conserved-state checkpoints for new runs. The older C3 file stores float64
+  primitives; its conserved state is reconstructed through the unchanged EOS,
+  without clipping. Actual restored integrated totals match the saved totals
+  exactly in all five components. [Audit](c3_thick_continuation_audit.json).
+- Twelve targeted tests passed in 17.890 s, including exact checkpoint recovery,
+  legacy per-cell roundtrip/next-step equivalence, invariant old field history,
+  continuation budgets, changed-calibration rejection and travel-bound rejection.
+  [Log](controlled_continuation_tests.log). The original report/data remain
+  immutable; continuation writes `runs/c3_layer_150_025_continued/`. Its prefix
+  causal margins are recomputed under the new, more conservative speed bound.
+- C3 remains open until the continued run reaches the agreed window or a new
+  critical inconsistency is assessed. C4 has not been launched as a full study.
+
+### C4 software preparation while C3 runs
+
+Implemented the explicit blast comparator with conservative 10 mm patch / 20 mm
+product-strip geometry, 2×CJ pressure, CJ temperature and zero momentum, matching
+the existing engine-start constants. Independent box integrals check its
+initial inventory on three grids. Short source/flow, budget and saved-only
+rendering checks pass as part of the 12-test control set above. This is software
+readiness, not a C4 physical result. A hotter blast has larger declared travel
+bounds: 5000/3500 m/s, with a 550 mm axial domain, initial front at 200 mm and
+150 mm of products above the layer. Compare displacement from the respective
+initial front. Boundary types/medium stay the same; the larger remote domain
+keeps the intended comparison outside boundary influence. The plan records
+these choices before the conditional full run.

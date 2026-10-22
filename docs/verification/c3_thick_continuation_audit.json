@@ -1,0 +1,35 @@
+{
+  "restart": {
+    "parent_directory": "/private/tmp/prox_rde_controlled_work/rde_sim_starter/runs/c3_layer_150_025",
+    "parent_inputs_sha256": "618462564566fd18344445b79029801d147aeda3bba8e95a4e81f6dd5efd9f68",
+    "parent_fields_sha256": "d0e10642624a27552c2dcaf5698d26ae90f4e92b72b30eb6b5645413f3907962",
+    "state_storage": "legacy float64 primitives, conserved state reconstructed without clipping",
+    "inventory_difference": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "max_relative_inventory_difference": 0.0,
+    "continued_from_time_s": 2.355586438910266e-05,
+    "continued_from_steps": 1631
+  },
+  "stop_reason": "predeclared characteristic bound exceeded",
+  "old_observed_characteristics": [
+    3327.895492839225,
+    3000.020622517398
+  ],
+  "old_transverse_bound_mps": 3000,
+  "new_transverse_bound_mps": 3200,
+  "new_top_margin_at_40us_m": 0.0020000000000000018,
+  "interpretation": "Diagnostic bound underestimated refined transverse speed; valid state is retained, physics and numerics unchanged.",
+  "top_four_rows_max_scaled_departure_at_saved_times": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0
+  ],
+  "new_top_margin_at_stop_m": 0.05462123395487149
+}

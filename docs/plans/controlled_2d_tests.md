@@ -150,3 +150,22 @@ C4 remains conditional on the C3 evidence. Its blast comparator must retain the
 documented 10 mm patch, 2×CJ pressure, CJ temperature, zero initial momentum and
 20 mm of 1500 K products behind it. Record its different conserved inventory
 relative to the formed wave; do not call it an equal-energy comparison.
+
+## Refined-thick bound review and continuation gate
+
+The first refined 15 mm run stops at 23.555864 µs because its maximum transverse
+characteristic speed exceeds 3000 m/s by 0.020623 m/s. State/budgets remain valid,
+and the saved top four rows are unchanged. Continue its checked saved state with
+an explicitly recorded 3200 m/s bound: the same domain retains 2 mm of top
+margin at 40 µs. Preserve the failed-bound record. No physical/numerical
+parameters change. Reject continuation if calibration/source hashes differ,
+state/inventory recovery fails, or the revised cone reaches the measured region.
+
+The aligned thin control also loses coupling, so no further initial-interface
+phase sweep is justified now. C4 still waits for the refined thick endpoint.
+The prepared C4 blast uses 5000/3500 m/s bounds with L=550 mm, initial front
+x=200 mm and 150 mm product buffer; this gives room for its hotter expansion.
+Those are remote-domain changes, not changes to the local mixture or boundary
+types. Compare front displacement from initialization and record the different
+initial conserved inventory. A bound stop is a protocol issue to assess, not
+a detonation-failure label. Full production chemistry remains unchanged.

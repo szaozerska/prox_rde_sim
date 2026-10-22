@@ -296,11 +296,38 @@ def formed_layer(c,profile,layer_height,dx=.5e-3,length=.45,shock=.16,buffer=.13
     s._check_state(s.U,'conservative layer initialization')
     baseline=(profile['fresh']*layer_height+hot*(height-layer_height))*length
     info=dict(layer_height_m=layer_height,height_m=height,dx_m=s.dx,dy_m=s.dy,
-        product_temperature_K=1500.,interface_aligned=bool(align_interface),initial_layer_volume_m2=float(fraction.sum()*dy*length),
+        start='formed',product_temperature_K=1500.,interface_aligned=bool(align_interface),initial_layer_volume_m2=float(fraction.sum()*dy*length),
         interface_mixed_row_count=int(np.count_nonzero((fraction>0)&(fraction<1))),
         initial_conserved_per_m_depth=s.conserved_totals().tolist(),
         initial_excess_over_unignited_layer=(s.conserved_totals()-baseline).tolist())
     return s,x,(np.arange(ny)+.5)*dy,info
+
+
+def blast_layer(c,profile,layer_height,dx=.5e-3,length=.45,shock=.16,buffer=.13,align_interface=False):
+    """C4 comparator: original 10 mm hot patch and 20 mm product strip, at rest.
+
+    Geometry is integrated conservatively. This intentionally differs in energy,
+    momentum and reacted inventory from a formed wave; it is not an equal-energy
+    or experimentally reconstructed pre-detonator.
+    """
+    if shock<.03:raise ValueError('blast and product strips must fit inside the domain')
+    s,x,z,info=formed_layer(c,profile,layer_height,dx,length,shock,buffer,align_interface)
+    fraction=(z<layer_height).astype(float) if align_interface else np.clip((layer_height-(z-s.dy/2))/s.dy,0,1)
+    def overlap(left,right):
+        return np.clip((np.minimum(x+s.dx/2,right)-np.maximum(x-s.dx/2,left))/s.dx,0,1)
+    patch=overlap(shock-.01,shock);behind=overlap(shock-.03,shock-.01)
+    hot=conserved_state(c['p1']/(c['R']*1500.),0.,c['p1'],1.,c)
+    pressure=2*c['CJ']['p'];ignition=conserved_state(pressure/(c['R']*c['CJ']['T']),0.,pressure,1.,c)
+    avg=profile['fresh'][:,None]+(hot-profile['fresh'])[:,None]*behind+(ignition-profile['fresh'])[:,None]*patch
+    from solver import NG
+    s.U[:,NG:-NG,NG:-NG]=avg[:,:,None]*fraction+hot[:,None,None]*(1-fraction)
+    s._check_state(s.U,'conservative blast comparator initialization')
+    baseline=(profile['fresh']*layer_height+hot*(s.ny*s.dy-layer_height))*length
+    info.update(start='blast',patch_width_m=.01,products_behind_width_m=.02,
+        patch_pressure_Pa=pressure,patch_temperature_K=c['CJ']['T'],initial_velocity_mps=[0.,0.],
+        initial_conserved_per_m_depth=s.conserved_totals().tolist(),
+        initial_excess_over_unignited_layer=(s.conserved_totals()-baseline).tolist())
+    return s,x,z,info
 
 
 def row_front_metrics(w,x,c,roi=.03):
@@ -322,27 +349,98 @@ def row_front_metrics(w,x,c,roi=.03):
         near_front_heat_W_per_m2=float(np.sum(c['q']*w[0,region]*rate[region])*(x[1]-x[0])))
 
 
-def run_layer(c,directory,layer_height,dx=.5e-3,end=40e-6,profile=None,align_interface=False):
+def restore_layer(directory,c):
+    """Restore a valid bounded layer run; legacy float64 fields are audited.
+
+    New runs save exact conserved state. Older C3 runs require EOS inversion
+    from float64 primitives; the inventory error is explicitly checked/reported.
+    """
+    from solver import NG
+    from physics import total_energy
+    directory=Path(directory);inp=json.loads((directory/'inputs.json').read_text())
+    report=json.loads((directory/'summary.json').read_text())
+    if (inp['kind']!='layer' or inp['calibration']!=c or report['invalid_state_count']
+            or report['error'] not in (None,'predeclared characteristic bound exceeded')
+            or inp['implementation']!=_fingerprint()):
+        raise ValueError('continuation requires unchanged calibration/numerics and a valid layer state')
+    with np.load(directory/'fields.npz',allow_pickle=False) as data:
+        x=data['x'].copy();z=data['z'].copy();times=data['times'].copy();fields=data['primitive'].copy()
+    if fields.dtype!=np.float64 or fields.shape!=(len(times),5,len(x),len(z)) or times[-1]!=report['time_s']:
+        raise ValueError('complete float64 layer snapshots required')
+    info=report['initialization'];dx=info['dx_m'];dy=info['dy_m']
+    if not (np.allclose(x,(np.arange(len(x))+.5)*dx,rtol=0,atol=1e-13)
+            and np.allclose(z,(np.arange(len(z))+.5)*dy,rtol=0,atol=1e-13)):
+        raise ValueError('saved geometry does not match its coordinates')
+    s=Solver(len(x),len(z),dx,dy,tuple(c[k] for k in ('gamma','q','R','k','Ea')),
+             (TRANSMIT,TRANSMIT,WALL,WALL),source_cfl=inp['source_cfl'])
+    state_path=directory/'state.npz'
+    if state_path.exists():
+        with np.load(state_path,allow_pickle=False) as a:
+            if float(a['time_s'])!=report['time_s'] or int(a['steps'])!=report['steps']:
+                raise ValueError('saved conserved state and report disagree')
+            s.U[:,NG:-NG,NG:-NG]=a['conserved']
+        storage='exact conserved state'
+    else:
+        rho,u,v,p,xi=fields[-1]
+        s.U[:,NG:-NG,NG:-NG]=np.array([rho,rho*u,rho*v,total_energy(rho,u,v,p,xi,c['gamma'],c['q']),rho*xi])
+        storage='legacy float64 primitives, conserved state reconstructed without clipping'
+    s._check_state(s.U,'layer continuation')
+    delta=s.conserved_totals()-np.asarray(report['final_conserved_per_m_depth'])
+    scaled=float(np.max(abs(delta)/np.maximum(abs(np.asarray(report['final_conserved_per_m_depth'])),1e-12)))
+    if scaled>1e-11:raise ValueError('continuation inventory differs from saved state')
+    s.t=report['time_s'];s.steps=report['steps']
+    s.cumulative_boundary[:]=report['cumulative_boundary'];s.cumulative_source[:]=report['cumulative_source']
+    audit=dict(parent_directory=str(directory.resolve()),parent_inputs_sha256=hashlib.sha256((directory/'inputs.json').read_bytes()).hexdigest(),
+        parent_fields_sha256=hashlib.sha256((directory/'fields.npz').read_bytes()).hexdigest(),
+        state_storage=storage,inventory_difference=delta.tolist(),max_relative_inventory_difference=scaled,
+        continued_from_time_s=s.t,continued_from_steps=s.steps)
+    return s,x,z,inp,report,list(times),list(fields),audit
+
+
+def run_layer(c,directory,layer_height,dx=.5e-3,end=40e-6,profile=None,align_interface=False,start='formed',resume=None,transverse_bound=None):
     """C3 finite-layer control; finite physical causal bounds and native budgets."""
     if not np.isfinite(end) or not 0<end<=40e-6:raise ValueError('0<end<=40 us required')
-    profile=formed_profile(c) if profile is None else profile
-    if max(profile['verification']['jump_max_relative_error'])>1e-8:raise ValueError('steady jump check failed')
-    s,x,z,init=formed_layer(c,profile,layer_height,dx=dx,align_interface=align_interface)
-    length=s.nx*s.dx;height=s.ny*s.dy;bx=4000.;bz=3000.;roi=.03
-    # Bottom, middle and last completely fresh/profile row; full fields retain the interface.
-    indexes=sorted(set([0,int(np.argmin(abs(z-layer_height/2))),max(0,int(layer_height/s.dy)-1)]))
+    if start not in ('formed','blast'):raise ValueError('layer start must be formed or blast')
+    if resume is None:
+        profile=formed_profile(c) if profile is None else profile
+        if max(profile['verification']['jump_max_relative_error'])>1e-8:raise ValueError('steady jump check failed')
+    initialize=formed_layer if start=='formed' else blast_layer
+    # The hotter blast can drive faster expansion: predeclare larger remote
+    # margins rather than interpreting a violated travel bound as extinction.
+    length,shock,buffer,bx,bz=((.45,.16,.13,4000.,3000.) if start=='formed'
+                              else (.55,.20,.15,5000.,3500.))
+    if resume is None:
+        s,x,z,init=initialize(c,profile,layer_height,dx=dx,length=length,shock=shock,
+                             buffer=buffer,align_interface=align_interface)
+        initial=s.conserved_totals();history=[];times=[];fields=[];observed=np.zeros(2);restart=None
+        verification=profile['verification']
+        indexes=sorted(set([0,int(np.argmin(abs(z-layer_height/2))),max(0,int(layer_height/s.dy)-1)]))
+    else:
+        s,x,z,old,previous,times,fields,restart=restore_layer(resume,c);init=previous['initialization']
+        if (init.get('start','formed')!=start or init.get('interface_aligned',False)!=align_interface
+                or init['layer_height_m']!=layer_height or not np.isclose(s.dx,dx,rtol=1e-12,atol=0) or end<=s.t):
+            raise ValueError('continuation must preserve the case and extend its physical time')
+        length=old['length_m'];shock=old['shock_initial_m'];bx=old['axial_characteristic_bound_mps'];bz=old['transverse_characteristic_bound_mps']
+        initial=np.asarray(previous['initial_conserved_per_m_depth']);history=previous['history']
+        observed=np.asarray(previous['observed_characteristic_max_mps']);verification=old['profile_verification']
+        indexes=old['diagnostic_row_indexes']
+    height=s.ny*s.dy;roi=.03
+    if transverse_bound is not None:bz=float(transverse_bound)
+    if not np.isfinite(bz) or bz<=0 or observed[0]>bx or observed[1]>bz or height-layer_height-bz*end<=0:
+        raise ValueError('declared characteristic bounds must cover observed speeds and retain an endpoint top margin')
+    for row in history:row['top_causal_margin_m']=height-layer_height-bz*row['time_s']
     directory=Path(directory);directory.mkdir(parents=True,exist_ok=False)
     _write_json(directory/'inputs.json',dict(kind='layer',calibration=c,end_s=end,source_cfl=.05,
-        length_m=length,shock_initial_m=.16,axial_characteristic_bound_mps=bx,
+        length_m=length,shock_initial_m=shock,axial_characteristic_bound_mps=bx,
         transverse_characteristic_bound_mps=bz,reaction_roi_behind_front_m=roi,
         diagnostic_row_indexes=indexes,diagnostic_row_z_m=z[indexes].tolist(),
-        profile_verification=profile['verification'],initialization=init,
+        profile_verification=verification,initialization=init,restart=restart,
         implementation=_fingerprint(),driver_sha256=hashlib.sha256(Path(__file__).read_bytes()).hexdigest(),
-        policy='formed-wave propagation under hot products; exact conservative layer fractions; no injection or driver'))
-    initial=s.conserved_totals();history=[];times=[];fields=[];status='completed';error=None
+        policy='layer propagation under hot products; explicit formed/blast start and conserved inventory; no injection or imposed driver'))
+    status='completed';error=None
     rho1=c['p1']/(c['R']*c['T1']);volume=length*height
     scale=np.maximum(abs(initial),np.array([rho1,rho1*c['D_CJ'],rho1*c['D_CJ'],c['p1']/(c['gamma']-1)+rho1*c['q'],rho1])*volume)
-    observed=np.zeros(2);started=time.monotonic();layer_rows=z<layer_height
+    started=time.monotonic();layer_rows=z<layer_height
     def save():
         w=s.prim().copy();rows=[row_front_metrics(w[:,:,j],x,c,roi) for j in indexes]
         T=w[3]/(c['R']*w[0]);rate=c['k']*np.maximum(0,1-w[4])*np.exp(-c['Ea']/(c['R']*T))
@@ -360,7 +458,8 @@ def run_layer(c,directory,layer_height,dx=.5e-3,end=40e-6,profile=None,align_int
         times.append(s.t);fields.append(w)
         _write_json(directory/'progress.json',dict(time_s=s.t,steps=s.steps,wall_seconds=time.monotonic()-started,
             observed_characteristic_max_mps=observed.tolist(),latest=history[-1]))
-    save();tick=1
+    if not history:save()
+    tick=int(np.floor(s.t/4e-6))+1
     from solver import NG
     try:
         while s.t<end:
@@ -377,13 +476,14 @@ def run_layer(c,directory,layer_height,dx=.5e-3,end=40e-6,profile=None,align_int
                     raise RuntimeError('remote-boundary causal cone reaches measurement region')
     except (InvalidStateError,RuntimeError) as caught:status='stopped';error=str(caught)
     if times[-1]!=s.t:save()
-    summary=dict(kind='layer',status=status,error=error,time_s=s.t,steps=s.steps,wall_seconds=time.monotonic()-started,
+    summary=dict(kind='layer',status=status,error=error,time_s=s.t,steps=s.steps,wall_seconds=time.monotonic()-started,restart=restart,
         observed_characteristic_max_mps=observed.tolist(),invalid_state_count=s.invalid_state_count,
         initialization=init,initial_conserved_per_m_depth=initial.tolist(),
         final_conserved_per_m_depth=s.conserved_totals().tolist(),
         cumulative_boundary=s.cumulative_boundary.tolist(),cumulative_source=s.cumulative_source.tolist(),
         max_budget_scaled_residual=max(h['budget_scaled_residual'] for h in history),history=history,
         interpretation='bounded response only: combine spatial pressure/reaction association, relief, causality and mesh evidence')
+    _write_npz(directory/'state.npz',conserved=s.U[:,NG:-NG,NG:-NG],time_s=np.array(s.t),steps=np.array(s.steps))
     _write_npz(directory/'fields.npz',x=x,z=z,times=np.array(times),primitive=np.array(fields))
     _write_json(directory/'summary.json',summary)
     return summary
@@ -398,16 +498,19 @@ def main(argv=None):
     parser.add_argument('--source-cfl',type=float,default=.05)
     parser.add_argument('--height-mm',type=float)
     parser.add_argument('--align-interface',action='store_true')
+    parser.add_argument('--start',choices=['formed','blast'],default='formed')
+    parser.add_argument('--resume',type=Path)
+    parser.add_argument('--transverse-bound',type=float)
     args=parser.parse_args(argv)
     c=json.loads(args.calibration.read_text())
-    if args.align_interface and args.experiment!='layer':parser.error('--align-interface requires layer')
+    if (args.align_interface or args.start!='formed' or args.resume or args.transverse_bound is not None) and args.experiment!='layer':parser.error('layer-specific options require layer')
     if args.experiment=='strip':
         if args.source_cfl!=.05:parser.error('strip fixes source-cfl=0.05')
         result=run_strip(c,args.out,dx=args.dx_mm*1e-3)
     elif args.experiment=='formed':result=run_formed(c,args.out,dx=args.dx_mm*1e-3,source_cfl=args.source_cfl)
     else:
         if args.height_mm is None or args.source_cfl!=.05:parser.error('layer needs --height-mm and fixes source-cfl=0.05')
-        result=run_layer(c,args.out,args.height_mm*1e-3,dx=args.dx_mm*1e-3,align_interface=args.align_interface)
+        result=run_layer(c,args.out,args.height_mm*1e-3,dx=args.dx_mm*1e-3,align_interface=args.align_interface,start=args.start,resume=args.resume,transverse_bound=args.transverse_bound)
     print(json.dumps({k:v for k,v in result.items() if k!='history'},indent=2))
     return 0 if result.get('control_passed',result['status']=='completed') else 2
 

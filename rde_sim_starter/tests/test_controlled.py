@@ -167,3 +167,65 @@ class LayerControlTests(unittest.TestCase):
         extra_height=s.ny*s.dy-info['height_m']
         np.testing.assert_allclose(totals[0]-unaligned.conserved_totals(),hot*.1*extra_height,rtol=1e-10,atol=1e-9)
         np.testing.assert_allclose(excess[0],info['initial_excess_over_unignited_layer'],rtol=1e-11,atol=1e-8)
+
+    def test_blast_inventory_matches_independent_box_integrals(self):
+        from controlled import blast_layer,conserved_state,formed_layer
+        p=self.profile;totals=[]
+        h=.015;length=.1
+        hot=conserved_state(C['p1']/(C['R']*1500.),0.,C['p1'],1.,C)
+        pressure=2*C['CJ']['p'];ignition=conserved_state(pressure/(C['R']*C['CJ']['T']),0.,pressure,1.,C)
+        expected=h*(.01*(ignition-p['fresh'])+.02*(hot-p['fresh']))
+        for dx in (.5e-3,.25e-3,.125e-3):
+            s,x,z,info=blast_layer(C,p,h,dx=dx,length=length,shock=.04137,buffer=.002)
+            np.testing.assert_allclose(info['initial_excess_over_unignited_layer'],expected,rtol=1e-11,atol=1e-8)
+            self.assertEqual(s.conserved_totals()[1],0.)
+            self.assertEqual(s.conserved_totals()[2],0.)
+            self.assertEqual(info['start'],'blast')
+            totals.append(s.conserved_totals())
+        np.testing.assert_allclose(totals,np.broadcast_to(totals[0],(3,5)),rtol=1e-11,atol=1e-8)
+        formed,_,_,info=formed_layer(C,p,h,length=length,shock=.04137,buffer=.002)
+        self.assertGreater(formed.conserved_totals()[1],0.)
+        self.assertGreater(abs(info['initial_excess_over_unignited_layer'][3]-expected[3]),100.)
+        with self.assertRaises(ValueError):blast_layer(C,p,h,shock=.02)
+
+    def test_blast_driver_short_step_preserves_native_budgets(self):
+        from controlled import run_layer
+        with tempfile.TemporaryDirectory() as tmp:
+            out=Path(tmp)/'blast';r=run_layer(C,out,.015,end=.03e-6,profile=self.profile,start='blast')
+            self.assertEqual(r['status'],'completed')
+            self.assertEqual(r['initialization']['start'],'blast')
+            self.assertEqual(r['invalid_state_count'],0)
+            self.assertLess(r['max_budget_scaled_residual'],1e-12)
+            with patch.object(Solver,'step',side_effect=AssertionError('render ran CFD')):
+                plot_controlled(out,Path(tmp)/'plots')
+            self.assertGreater((Path(tmp)/'plots/layer_control.png').stat().st_size,1000)
+            with self.assertRaises(ValueError):run_layer(C,Path(tmp)/'bad',.015,start='unknown')
+
+    def test_layer_continuation_checks_legacy_roundtrip_and_preserves_history(self):
+        from controlled import run_layer,restore_layer
+        from solver import NG
+        with tempfile.TemporaryDirectory() as tmp:
+            old=Path(tmp)/'old';new=Path(tmp)/'continued'
+            first=run_layer(C,old,.0038,end=.03e-6,profile=self.profile)
+            exact,*_=restore_layer(old,C)
+            with np.load(old/'state.npz') as a:expected=a['conserved'].copy()
+            np.testing.assert_array_equal(exact.U[:,NG:-NG,NG:-NG],expected)
+            # Old C3 cases contain float64 primitive snapshots but no conserved checkpoint.
+            (old/'state.npz').unlink()
+            legacy,*rest=restore_layer(old,C)
+            self.assertLess(rest[-1]['max_relative_inventory_difference'],1e-12)
+            np.testing.assert_allclose(legacy.U[:,NG:-NG,NG:-NG],expected,rtol=5e-15,atol=1e-8)
+            self.assertEqual(legacy.steps,first['steps']);self.assertEqual(legacy.t,first['time_s'])
+            exact.step(dt_max=5e-9);legacy.step(dt_max=5e-9)
+            np.testing.assert_allclose(legacy.U,exact.U,rtol=1e-12,atol=1e-7)
+            result=run_layer(C,new,.0038,end=.05e-6,resume=old,transverse_bound=3200.)
+            self.assertEqual(result['status'],'completed');self.assertEqual(result['invalid_state_count'],0)
+            self.assertLess(result['max_budget_scaled_residual'],1e-12)
+            self.assertGreater(result['steps'],first['steps'])
+            with np.load(old/'fields.npz') as a,np.load(new/'fields.npz') as b:
+                np.testing.assert_array_equal(a['primitive'],b['primitive'][:len(a['times'])])
+            self.assertIn('reconstructed',result['restart']['state_storage'])
+            bad=copy.deepcopy(C);bad['q']+=1
+            with self.assertRaises(ValueError):restore_layer(old,bad)
+            with self.assertRaises(ValueError):run_layer(C,Path(tmp)/'bad',.0038,end=.05e-6,resume=old,transverse_bound=100.)
+            with self.assertRaises(ValueError):run_layer(C,Path(tmp)/'bad2',.0038,resume=old,transverse_bound=10000.)

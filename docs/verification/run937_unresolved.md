@@ -159,11 +159,14 @@ surrogate-structure hypotheses without isolating the 2D failure's root cause:
   40 µs, while a 15 mm layer retains strong coupling near its wall/middle.
   Both are valid and conservative with positive remote-boundary margins.
   Interface burning remains visible. The 0.25 mm thin case also loses coupling, with a 25.75 mm wall-to-main-reaction
-  gap at 40 µs; thick refinement is still in progress;
+  gap at 40 µs; the aligned thin control also loses coupling. Thick refinement stopped on
+  its diagnostic speed bound at 23.56 µs and is being continued under an audited
+  3200 m/s bound without changing the model;
   no converged critical-height threshold or unique root cause is established.
   The initial cut-cell temperature also changes with refinement despite equal
-  conserved inventory; an explicit face-aligned thin-layer control is being
-  added before interpreting this as a chemistry-only thickness limit.
+  conserved inventory; the explicit face-aligned thin-layer control also loses coupling. This
+  excludes the initial mixed row as a sufficient explanation, but not dynamic
+  contact diffusion or other numerical/model effects.
 - These are isolated unforced propagation controls. They show that the declared
   model can propagate in 2D and can lose coupling in a thin layer even when
   initialized with a formed wave. They do not reproduce the complete engine,

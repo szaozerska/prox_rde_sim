@@ -51,8 +51,9 @@ This verifies a surrogate control, not Run 937.
 retains strong coupling near the wall/middle at 40 µs. No invalid states or
 remote-boundary cone violation; numerical interface burning remains visible.
 The 0.25 mm thin case also loses coupling (25.75 mm wall-to-main-reaction gap
-at 40 µs). The thick refinement and aligned-interface thin control remain
-pending before closing C3.
+at 40 µs). The aligned thin control also loses coupling. The thick refinement stopped
+at 23.56 µs on its declared speed bound (valid state, no failure of coupling);
+a checked continuation with a 3200 m/s bound is underway before closing C3.
 
 **Next planned increment:** complete C3 refinement and assessment; C4 compares initiation methods in a demonstrated
 supporting layer. Freeze chemistry and quantify source/time/grid effects, initial
@@ -168,3 +169,13 @@ NUMBA_NUM_THREADS=2 ../.venv/bin/python controlled.py layer --height-mm 3.8 --dx
 The strip/formed/layer CLI caps are 95/40/40 µs. Do not automatically rerun
 these commands when inspecting existing plots; render their saved run instead.
 Layer runs retain `progress.json` while advancing and final native fields/budgets.
+
+Large layer controls now save an exact `state.npz`. For the reviewed thick
+continuation (new output path; original remains immutable):
+
+```sh
+NUMBA_NUM_THREADS=2 ../.venv/bin/python controlled.py layer --height-mm 15 --dx-mm 0.25 --resume runs/c3_layer_150_025 --transverse-bound 3200 --out runs/new_thick_continuation
+```
+
+C4's `--start blast` comparator is implemented/tested but its full study remains
+conditional on C3. Do not interpret software readiness as a passed physical gate.

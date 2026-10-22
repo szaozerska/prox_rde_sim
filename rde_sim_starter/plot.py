@@ -573,7 +573,8 @@ def plot_layer(directory,destination):
         for ax in axes[1:].flat:ax.grid(alpha=.25)
         axes[1,0].legend(fontsize=8);axes[2,1].legend(fontsize=8)
         alignment='face aligned' if inputs['initialization'].get('interface_aligned',False) else 'uniform grid'
-        fig.suptitle(f"C3: h = {h*1e3:g} mm, Δx = {inputs['initialization']['dx_m']*1e3:g} mm, t = {report['time_s']*1e6:.1f} µs ({alignment})")
+        label='C4 blast' if inputs['initialization'].get('start','formed')=='blast' else 'C3 formed'
+        fig.suptitle(f"{label}: h = {h*1e3:g} mm, Δx = {inputs['initialization']['dx_m']*1e3:g} mm, t = {report['time_s']*1e6:.1f} µs ({alignment})")
         fig.savefig(destination/'layer_control.png',dpi=140)
     finally:plt.close(fig)
     return report
