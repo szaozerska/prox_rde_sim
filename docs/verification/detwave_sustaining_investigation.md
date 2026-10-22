@@ -386,9 +386,29 @@ targeted startup control is therefore added, **without another chemistry change*
   on return through refill. If failure is merely delayed, do not call it sustained.
   This is one discriminating test, not an iterative ignition-size search.
 
-At this writing the compact case is prepared, **not yet running**. No production
-source or ongoing numerical fingerprint has changed. Complete the existing
-high-flux control assessment first; do not launch duplicate secondary jobs.
+At 20:22 UTC the high-flux control's 40 us full field confirms loss of the
+compact coupled front; reaction is predominantly along the layer interface.
+Stopped it after its complete 43 us sample, preserving
+`checkpoint_before_manual_stop.npz` and `manual_stop.json`. Its 142.857 us target
+was not completed; the intentional interrupt is not a numerical failure.
+The predeclared compact case is now running once with `--end-us 80` and one
+Numba thread; log `docs/verification/detwave_compact_seed.log`. No propagation
+result is available yet. No production source or numerical fingerprint changed.
+
+## User's 13:40 Pacific main-update checkpoint
+
+The user explicitly prioritized observing sustained detonation and authorized
+bringing in the latest GitHub main if the root cause is not identified before
+13:40 Pacific today (20:40 UTC, October 22). Working hypotheses alone do not
+count as a resolved cause or demonstrated sustaining fix. At that checkpoint,
+if still unresolved, fetch GitHub main, review its changes for critical
+numerical/physical issues and applicable instructions, then integrate it into
+this investigation branch. Do not switch work to main or touch the dirty original
+checkout. Preserve old run provenance and distinguish pre-/post-integration data.
+Current secondary sources have been copied and fingerprint-verified under
+`runs/source_snapshot_v2`; the original two Run 937 jobs still use v1. These
+snapshots allow recovery without silently changing the numerical model of a run.
+After integration, check affected code before launching tests with the new source.
 
 ## Active-run handoff (replace with results when complete)
 
