@@ -499,11 +499,47 @@ def plot_reference(directory, destination):
     return report
 
 
+def plot_formed(directory,destination):
+    """Inspect already saved C2 pressure/reaction association and causal margins."""
+    import numpy as np
+    directory,destination=Path(directory),Path(destination)
+    report=json.loads((directory/'summary.json').read_text());inputs=json.loads((directory/'inputs.json').read_text())
+    with np.load(directory/'fields.npz',allow_pickle=False) as a:
+        x=a['x'].copy();w=a['primitive'].copy();times=a['times'].copy()
+    c=inputs['calibration'];h=report['history']
+    destination.mkdir(parents=True,exist_ok=False)
+    plt=_pyplot();fig,axes=plt.subplots(2,2,figsize=(11,7),layout='constrained')
+    try:
+        for i in sorted(set([0,len(times)//2,len(times)-1])):
+            front=h[i]['front_m']
+            if front is None:continue
+            offset=(x-front)*1e3;label=f'{times[i]*1e6:.1f} µs'
+            temp=w[i,3]/(c['R']*w[i,0]);rate=c['k']*(1-w[i,4])*np.exp(-c['Ea']/(c['R']*temp))
+            axes[0,0].plot(offset,w[i,3]/1e6,label=label)
+            axes[0,1].plot(offset,rate/1e6,label=label)
+        axes[0,0].set(xlim=(-15,5),xlabel='Distance from pressure-threshold front [mm]',ylabel='Pressure [MPa]')
+        axes[0,1].set(xlim=(-15,5),xlabel='Distance from pressure-threshold front [mm]',ylabel='Reaction rate [1/µs]')
+        front=np.array([np.nan if r['front_m'] is None else r['front_m'] for r in h])
+        axes[1,0].plot(times*1e6,(front-inputs['shock_initial_m']-c['D_CJ']*times)*1e3)
+        axes[1,0].set(xlabel='Time [µs]',ylabel='Front departure from CJ travel [mm]')
+        for key,label in [('left_causal_margin_m','Left, including 30 mm reaction region'),('right_causal_margin_m','Right')]:
+            axes[1,1].plot(times*1e6,[r[key]*1e3 if r[key] is not None else np.nan for r in h],label=label)
+        axes[1,1].axhline(0,color='k',linewidth=.7)
+        axes[1,1].set(xlabel='Time [µs]',ylabel='Remote-boundary cone margin [mm]')
+        for ax in axes.flat:ax.grid(alpha=.25)
+        axes[0,0].legend();axes[1,1].legend(fontsize=8)
+        fig.suptitle(f"C2: formed wave, Δx = {inputs['dx_m']*1e3:g} mm, source fraction {inputs['source_cfl']:g}")
+        fig.savefig(destination/'formed_control.png',dpi=140)
+    finally:plt.close(fig)
+    return report
+
+
 def plot_controlled(directory, destination):
     """C1 strip fields and comparison histories from saved data only."""
     import numpy as np
     directory,destination=Path(directory),Path(destination)
     report=json.loads((directory/'summary.json').read_text())
+    if report['kind']=='formed':return plot_formed(directory,destination)
     if report['kind']!='strip':raise ValueError('unsupported controlled diagnostic')
     with np.load(directory/'fields.npz',allow_pickle=False) as data:
         x=data['x'].copy();fields=data['primitive'].copy()

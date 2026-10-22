@@ -1,6 +1,6 @@
 # RDE simulation plan — revision 9
 
-**Status: baseline diagnostics published; C1 multirow/direction control passed.**
+**Status: C1 equivalence and C2 formed-wave controls passed; C3 layer tests next.**
 The [controlled-test plan](docs/plans/controlled_2d_tests.md) records three review
 passes and the C1–C6 increments. First verify multirow/direction equivalence and
 formed-profile propagation, then distinguish thin-layer survival from initiation.
@@ -51,10 +51,10 @@ Small algebraic/source tests need no engine-length run. Use short localized 1D s
 | **D2. Reusable analysis and plots** | Unrolled fields, short space–time plot/front tracks, pressure station traces/profile, and mass/energy/momentum budgets. Compute instantaneous thrust/torque diagnostics with storage where the implemented model supports them. | Full spectra/spectrogram suite, wrapped-cylinder polish, multi-engine/mode maps. |
 | **D3. Focused investigation — completed** | Run 937 physical CJ/ZND and independent equilibrium heat release; six frozen/reactive contact tests at 0.5/0.25/0.125 mm; three fixed-chemistry 1D propagation grids; reference/contact/front graphs and regression checks. | Exact NASA CEA replication, full G0 curves, new 2D runs, chemistry replacement, broad convergence and engine sweeps. |
 
-**Next increment: C2 formed-profile control.** C1 passed its 95 µs matched
-propagation check; see the [increment log](docs/verification/controlled_2d_progress.md). C2 must establish
-that the conservative formed detonation profile propagates in a fully filled
-channel before C3 tests layer survival. C3 starts with 3.8 and 15 mm layers at
+**Next increment: C3 finite-layer response.** C1 passed its 95 µs matched
+propagation check. C2 passed conservative initialization and 40 µs filled-strip
+propagation at three meshes plus a source-step comparison; see the
+[increment log](docs/verification/controlled_2d_progress.md). C3 starts with 3.8 and 15 mm layers at
 fixed chemistry and grid; follow-up heights/refinement are selected from results.
 C4 compares blast/profile starts only in a layer that supports the formed wave.
 C5 selects a supported model change; C6 returns to a bounded engine case. See

@@ -106,15 +106,184 @@ def run_strip(c,directory,dx=.5e-3,rows=8,end=95e-6,length=.25):
     return result
 
 
+def conserved_state(rho,u,p,xi,c):
+    rho,u,p,xi=np.broadcast_arrays(rho,u,p,xi)
+    return np.array([rho,rho*u,np.zeros_like(rho),
+        p/(c['gamma']-1)+.5*rho*u*u+rho*c['q']*(1-xi),rho*xi])
+
+
+def formed_profile(c,samples=2401):
+    """Tabulated strong-branch ZND in laboratory coordinates, finite 1e-6 tail.
+
+    Exact antiderivatives below conserve this piecewise-linear table. Increasing
+    the table density is an independent check on interpolation of the steady ODE.
+    """
+    from scipy.integrate import quad,solve_ivp
+    from calibrate import state,dx_dxi
+    if not isinstance(samples,int) or samples<101:raise ValueError('at least 101 profile nodes required')
+    eta=np.linspace(0,np.log(1e6),samples)
+    xi=-np.expm1(-eta)
+    vals=np.array([state(float(a),c) for a in xi])
+    rho=vals[:,1]*c['p1']/(c['R']*vals[:,0]*c['T1']);u=c['D_CJ']-vals[:,3]
+    U=conserved_state(rho,u,vals[:,1]*c['p1'],xi,c)
+    def derivative(e,_):
+        temperature,_,_,w=state(float(-np.expm1(-e)),c)
+        return [w/c['k']*np.exp(c['Ea']/(c['R']*temperature*c['T1']))]
+    distance_solution=solve_ivp(derivative,(0.,eta[-1]),[0.],t_eval=eta,
+                                method='DOP853',rtol=1e-10,atol=1e-13)
+    if not distance_solution.success:raise RuntimeError(distance_solution.message)
+    dist=distance_solution.y[0]
+    fresh=conserved_state(c['p1']/(c['R']*c['T1']),0.,c['p1'],0.,c)
+    T,p,_,w=state(1.,c)
+    burned=conserved_state(p*c['p1']/(c['R']*T*c['T1']),c['D_CJ']-w,p*c['p1'],1.,c)
+    increments=.5*(U[:,1:]+U[:,:-1])*np.diff(dist)
+    cumulative=np.column_stack((np.zeros(5),np.cumsum(increments,axis=1)))
+    # Independent shock-frame flux/enthalpy identities, evaluated from saved U.
+    joined=np.column_stack((U,burned));r=joined[0];vel=joined[1]/r;progress=joined[4]/r
+    pressure=(c['gamma']-1)*(joined[3]-.5*r*vel**2-c['q']*(r-joined[4]))
+    w=c['D_CJ']-vel; temp=pressure/(r*c['R']);rf=fresh[0]
+    targets=np.array([rf*c['D_CJ'],c['p1']+rf*c['D_CJ']**2,
+                     c['gamma']*c['R']*c['T1']/(c['gamma']-1)+.5*c['D_CJ']**2+c['q']])
+    invariants=np.array([r*w,pressure+r*w*w,
+        c['gamma']*c['R']*temp/(c['gamma']-1)+.5*w*w+c['q']*(1-progress)])
+    lengths={str(a):quad(dx_dxi,0,a,args=(c['k'],c),epsabs=1e-12)[0] for a in (.5,.9,.95)}
+    return dict(distance=dist,U=U,cumulative=cumulative,fresh=fresh,burned=burned,
+        verification=dict(samples=samples,tail_progress=float(xi[-1]),tail_distance_m=float(dist[-1]),
+            tail_pressure_relative_jump=float(abs(burned[0]*c['R']*T*c['T1']/pressure[-2]-1)),
+            jump_max_relative_error=np.max(np.abs(invariants/targets[:,None]-1),axis=1).tolist(),
+            length_m=lengths,table_length_relative_error={str(a):float(np.interp(a,xi,dist)/lengths[str(a)]-1) for a in (.5,.9,.95)}))
+
+
+def profile_integral(profile,position):
+    """Integral of conserved density from the shock to signed distance behind it."""
+    x=np.asarray(position,dtype=float)
+    if x.ndim!=1 or not np.isfinite(x).all():raise ValueError('finite one-dimensional positions required')
+    d=profile['distance'];U=profile['U'];idx=np.clip(np.searchsorted(d,x,side='right')-1,0,len(d)-2)
+    h=np.clip(x,0,d[-1])-d[idx]
+    result=profile['cumulative'][:,idx]+U[:,idx]*h+.5*(U[:,idx+1]-U[:,idx])/np.diff(d)[idx]*h*h
+    left=x<0;right=x>d[-1]
+    result[:,left]=profile['fresh'][:,None]*x[left]
+    result[:,right]=profile['cumulative'][:,-1,None]+profile['burned'][:,None]*(x[right]-d[-1])
+    return result
+
+
+def profile_cell_average(profile,lo,hi):
+    """Split constant fresh/burned regions before subtraction to avoid cancellation.
+
+    This preserves exactly reacted cells without clipping conserved progress.
+    """
+    lo=np.asarray(lo,dtype=float);hi=np.asarray(hi,dtype=float)
+    if lo.shape!=hi.shape or lo.ndim!=1 or not np.isfinite([lo,hi]).all() or np.any(hi<=lo):
+        raise ValueError('finite ordered cell intervals required')
+    tail=profile['distance'][-1]
+    fresh_width=np.maximum(np.minimum(hi,0)-lo,0)
+    burned_width=np.maximum(hi-np.maximum(lo,tail),0)
+    inner_lo=np.clip(lo,0,tail);inner_hi=np.clip(hi,0,tail)
+    integral=profile_integral(profile,inner_hi)-profile_integral(profile,inner_lo)
+    integral+=profile['fresh'][:,None]*fresh_width+profile['burned'][:,None]*burned_width
+    return integral/(hi-lo)
+
+
+def formed_strip(c,profile,dx=.5e-3,rows=8,length=.45,shock=.16,source_cfl=.05):
+    if (not np.isfinite([dx,length,shock]).all() or not 0<dx<=1e-3 or not isinstance(rows,int)
+            or rows<2 or not profile['distance'][-1]<shock<length):
+        raise ValueError('valid spacing, rows and shock separated from domain ends required')
+    nx=round(length/dx);dx=length/nx;x=(np.arange(nx)+.5)*dx
+    avg=profile_cell_average(profile,shock-(x+dx/2),shock-(x-dx/2))
+    s=Solver(nx,rows,dx,dx,tuple(c[k] for k in ('gamma','q','R','k','Ea')),
+             (TRANSMIT,TRANSMIT,WALL,WALL),source_cfl=source_cfl)
+    from solver import NG
+    s.U[:,NG:-NG,NG:-NG]=avg[:,:,None]
+    s._check_state(s.U,'formed profile initialization')
+    return s,x
+
+
+def run_formed(c,directory,dx=.5e-3,end=40e-6,source_cfl=.05,profile=None):
+    """C2 fully filled propagation, with a predeclared 4000 m/s axial cone bound."""
+    if not np.isfinite(end) or not 0<end<=40e-6:raise ValueError('0<end<=40 us required')
+    profile=formed_profile(c) if profile is None else profile
+    if max(profile['verification']['jump_max_relative_error'])>1e-8:raise ValueError('steady jump check failed')
+    length=.45;shock=.16;s,x=formed_strip(c,profile,dx=dx,source_cfl=source_cfl)
+    directory=Path(directory);directory.mkdir(parents=True,exist_ok=False)
+    bound=4000.;roi=.03
+    _write_json(directory/'inputs.json',dict(kind='formed',calibration=c,dx_m=s.dx,
+        rows=s.ny,length_m=length,shock_initial_m=shock,end_s=end,source_cfl=source_cfl,
+        axial_characteristic_bound_mps=bound,reaction_roi_behind_front_m=roi,
+        profile_verification=profile['verification'],implementation=_fingerprint(),
+        driver_sha256=hashlib.sha256(Path(__file__).read_bytes()).hexdigest(),
+        policy='unforced formed wave; uniform transverse state; no imposed driver; fixed chemistry'))
+    initial=s.conserved_totals();history=[];fields=[];times=[];status='completed';error=None
+    rho1=c['p1']/(c['R']*c['T1']);volume=length*s.ny*s.dy
+    scale=np.maximum(abs(initial),np.array([rho1,rho1*c['D_CJ'],rho1*c['D_CJ'],c['p1']/(c['gamma']-1)+rho1*c['q'],rho1])*volume)
+    observed=0.;started=time.monotonic()
+    def save():
+        w=s.prim().copy();p=w[3,:,0];xi=w[4,:,0];T=p/(c['R']*w[0,:,0])
+        rate=c['k']*(1-xi)*np.exp(-c['Ea']/(c['R']*T))
+        ii=np.flatnonzero(p>2*c['p1']);front=float(x[ii[-1]]) if ii.size else None
+        region=(x>=front-roi)&(x<=front) if front is not None else np.zeros(x.size,dtype=bool)
+        peak=int(np.argmax(np.where(region,rate,-1))) if region.any() else None
+        # Local fresh state ahead of the pressure front; no assumed lab Mach.
+        ahead=(x>front+2*s.dx)&(x<front+roi) if front is not None else np.zeros(x.size,dtype=bool)
+        budget=conservation_budget(s.conserved_totals(),initial,s.cumulative_boundary,s.cumulative_source,1.,1.)
+        history.append(dict(time_s=s.t,front_m=front,pressure_max_Pa=float(p.max()),
+            reaction_peak_m=float(x[peak]) if peak is not None else None,
+            front_rate_peak_separation_m=float(front-x[peak]) if peak is not None else None,
+            reaction_max_per_s=float(rate[peak]) if peak is not None else None,
+            upstream_u_mps=float(w[1,:,0][ahead].mean()) if ahead.any() else None,
+            upstream_sound_mps=float(np.sqrt(c['gamma']*p[ahead]/w[0,:,0][ahead]).mean()) if ahead.any() else None,
+            converted_J_per_m_depth=float(c['q']*s.cumulative_source[4]),
+            budget_scaled_residual=float(np.max(abs(budget['residual'])/scale)),
+            left_causal_margin_m=float(front-roi-bound*s.t) if front is not None else None,
+            right_causal_margin_m=float(length-front-bound*s.t) if front is not None else None,
+            transverse_max_scaled=float(np.max(abs(w-w[:,:,:1])/np.array([rho1,c['D_CJ'],c['D_CJ'],c['CJ']['p'],1.])[:,None,None]))))
+        fields.append(w[:,:,0]);times.append(s.t)
+    save();tick=1
+    from solver import NG
+    try:
+        while s.t<end:
+            target=min(end,tick*2e-6);s.step(dt_max=target-s.t)
+            # Include the retained intermediate RK state and final accepted state.
+            for w in (s.W[:,NG:-NG,NG:-NG].copy(),s.prim()):
+                observed=max(observed,float(np.max(abs(w[1])+np.sqrt(c['gamma']*w[3]/w[0]))))
+            if observed>bound:raise RuntimeError('predeclared axial characteristic bound exceeded')
+            if s.t>=target:
+                save();tick+=1
+                if min(history[-1]['left_causal_margin_m'],history[-1]['right_causal_margin_m'])<=0:
+                    raise RuntimeError('remote-boundary causal cone reaches measurement region')
+    except (InvalidStateError,RuntimeError) as caught:status='failed';error=str(caught)
+    if times[-1]!=s.t:save()
+    fits={}
+    for start in (10e-6,20e-6,30e-6):
+        hh=[h for h in history if h['time_s']>=start and h['front_m'] is not None]
+        fits[str(start)]=float(np.polyfit([h['time_s'] for h in hh],[h['front_m'] for h in hh],1)[0]) if len(hh)>=3 else None
+    summary=dict(kind='formed',status=status,error=error,time_s=s.t,steps=s.steps,
+        wall_seconds=time.monotonic()-started,dx_m=s.dx,source_cfl=source_cfl,
+        observed_axial_characteristic_max_mps=observed,speed_from_time_mps=fits,
+        invalid_state_count=s.invalid_state_count,max_budget_scaled_residual=max(h['budget_scaled_residual'] for h in history),
+        initial_conserved_per_m_depth=initial.tolist(),final_conserved_per_m_depth=s.conserved_totals().tolist(),
+        cumulative_boundary=s.cumulative_boundary.tolist(),cumulative_source=s.cumulative_source.tolist(),
+        profile_verification=profile['verification'],history=history,
+        interpretation='finite-window formed-wave propagation; inspect pressure, reaction and causality together; no automatic detonation label')
+    _write_npz(directory/'fields.npz',x=x,times=np.array(times),primitive=np.array(fields))
+    _write_json(directory/'summary.json',summary)
+    return summary
+
+
 def main(argv=None):
     parser=argparse.ArgumentParser(description=__doc__)
-    parser.add_argument('experiment',choices=['strip'])
+    parser.add_argument('experiment',choices=['strip','formed'])
     parser.add_argument('--out',type=Path,required=True)
     parser.add_argument('--calibration',type=Path,default=Path(__file__).with_name('calib.json'))
+    parser.add_argument('--dx-mm',type=float,default=.5)
+    parser.add_argument('--source-cfl',type=float,default=.05)
     args=parser.parse_args(argv)
-    result=run_strip(json.loads(args.calibration.read_text()),args.out)
+    c=json.loads(args.calibration.read_text())
+    if args.experiment=='strip':
+        if args.source_cfl!=.05:parser.error('strip fixes source-cfl=0.05')
+        result=run_strip(c,args.out,dx=args.dx_mm*1e-3)
+    else:result=run_formed(c,args.out,dx=args.dx_mm*1e-3,source_cfl=args.source_cfl)
     print(json.dumps({k:v for k,v in result.items() if k!='history'},indent=2))
-    return 0 if result['control_passed'] else 2
+    return 0 if result.get('control_passed',result['status']=='completed') else 2
 
 
 if __name__=='__main__':

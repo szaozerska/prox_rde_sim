@@ -46,3 +46,10 @@ C1 passed at 0.5 mm through 95 µs: identical saved fields/fronts in 1D, multiro
 rotated and original-open controls; no invalid states; residual <4e-15. Default
 suite 60 passed/one opt-in skipped. C2 formed-profile verification is next.
 See [increment log](../docs/verification/controlled_2d_progress.md).
+
+## C2 formed-wave update
+
+Conservative initializer, jump/inventory/table checks and four bounded formed-wave
+runs passed. Three meshes give 20–40 µs speeds 2478.15/2472.97/2472.07 m/s with
+continued near-front reaction and isolated remote boundaries. C3 layer response
+is next; Run 937 remains unresolved. See the increment log for qualifications.

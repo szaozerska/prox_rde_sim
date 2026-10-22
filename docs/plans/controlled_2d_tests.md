@@ -100,3 +100,18 @@ is not a dependency for C1–C4 using the existing solver.
   causes versus hypotheses, and the selected next action in the verification
   report/handoff. Check the current branch is `main`; commit only task files and
   push `HEAD:main` without force. Preserve the other session's branch and checkout.
+
+## Gate update after C2
+
+C1 and C2 passed their bounded checks; see the increment log. C3 uses the same
+0.45 m axial domain, shock initially at 0.16 m and a 40 µs cap. Add 130 mm of
+hot products above the layer, with a remote reflecting top (no pressure driver).
+Check an axial characteristic bound of 4000 m/s and transverse bound of 3000 m/s
+against all RK intermediate/accepted states; stop if exceeded or if their cones
+reach the 30 mm front/reaction region. At 40 µs the top cone has a 10 mm margin.
+The nominal h/a_VN relief times are 4.16 and 16.41 µs for 3.8 and 15 mm: 40 µs
+covers initial transverse communication for both, but cannot prove asymptotic
+survival. Use conservative cell fractions for the cut layer. Initial products
+are at p1, 1500 K, progress 1, zero velocity; the formed profile occupies only
+the lower layer. This discontinuity launches the intended transverse release.
+This is an isolated propagation control, not the experimental startup history.

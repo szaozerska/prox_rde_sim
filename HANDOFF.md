@@ -42,9 +42,12 @@ See [D3 evidence and graphs](docs/verification/d3_investigation.md):
 fronts and zero transverse variation; conservation residual <4e-15, zero invalid
 states. Default suite: 60 passed, one opt-in skipped.
 
-**Next planned increment:** C2's
-conservative formed-profile verification in a fully filled strip. Only then run
-C3's bounded layer comparison; C4 compares initiation methods in a demonstrated
+**C2 passed:** conservative formed-profile and filled-strip propagation checks
+at 0.5/0.25/0.125 mm through 40 µs, plus half-source-step control. Continued
+near-front reaction, no invalid states, budgets <2e-14 and positive causal margins.
+This verifies a surrogate control, not Run 937.
+
+**Next planned increment:** C3's bounded layer comparison; C4 compares initiation methods in a demonstrated
 supporting layer. Freeze chemistry and quantify source/time/grid effects, initial
 inventory and boundary causality. Stop advancement on a critical inconsistency.
 Document each increment and push it to main after verification. The old automatic
