@@ -1,0 +1,12 @@
+# Local planning review, retained for inspection but excluded from normal commits.
+/sim_plan_review.md
+
+# Local environments, compiled caches and generated results.
+.venv/
+__pycache__/
+*.py[cod]
+*.nbc
+*.nbi
+.pytest_cache/
+.DS_Store
+rde_sim_starter/runs/

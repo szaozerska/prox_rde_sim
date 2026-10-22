@@ -1,0 +1,33 @@
+# First RDE simulation: Mundt (2023) 76-FI-5, Run 937.
+# Decision numbers (Dxx) refer to first_sim_plan.md.
+
+geometry:            # D3: the only four numbers taken from the CAD
+  r_outer_mm: 38.1   # Table 2-1 (76.2 mm OD)
+  r_inner_mm: 33.1   # Table 4-1
+  length_mm: 76.2    # Table 2-1
+  area_ratio: 0.110  # A_inj / A_e, Tables 2-1 and 4-1
+
+operating_point:     # D4: Run 937, Table 3-2
+  mass_flux: 240.21        # kg/s/m^2
+  mdot_target_gps: 268.65  # g/s
+  phi: 1.176
+  p_plenum_kPa: 1350.0     # mean of 1309.5 (O2) and 1399.4 (CH4)
+  T_plenum_K: 300.0
+  p_back_kPa: 100.2
+  D_CJ: 2471.0             # m/s, Table 3-2
+  q_MJkg: 5.5              # Fig. 4.4, phi~1.18, ~400 kPa (D9)
+  f_paper_kHz: 15.84       # Table 3-2
+  N_paper: 2
+
+chemistry:           # D8, D12-D14
+  Ea_over_RT1: 20.0
+  L_half_mm: 1.0
+
+numerics:            # D18-D22, D30
+  dx_mm: 0.5         # 0.5 debug, 0.25 result
+  cfl: 0.4
+  t_end_ms: 1.0
+  t_avg_start_ms: 0.4
+  snap_every_us: 2.0
+  probe_y_mm: 1.0
+  fill_height_mm: 3.8  # D27, Eq. 4.5

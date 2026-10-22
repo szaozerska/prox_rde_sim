@@ -1,0 +1,17 @@
+{
+  "case": "nondimensional Sod",
+  "nx": 400,
+  "t_final": 0.2,
+  "pressure_star": 0.3031368287574924,
+  "pressure_star_exact": 0.30313017805064685,
+  "velocity_star": 0.9274700177463662,
+  "velocity_star_exact": 0.9274526200489499,
+  "shock_x": 0.84875,
+  "shock_x_exact": 0.850431146406,
+  "invalid_state_count": 0,
+  "repair_count": 0,
+  "wall_seconds": 1.3007915470006992,
+  "python": "3.12.0",
+  "platform": "macOS-15.7.9-x86_64-i386-64bit",
+  "note": "Foundation hydrodynamic check only; no 2D RDE run or reactive detonation validation."
+}
