@@ -1,0 +1,205 @@
+{
+  "schema_version": 1,
+  "name": "Mundt 76 mm review archive, 2026-10-21 snapshot",
+  "reader_version": "4.15.2",
+  "source_archive": {
+    "url": "https://drive.google.com/file/d/1PiaV5FJ-eQU_Gb608xQXWwWx9fEbi9pL/view",
+    "name": "Mundt-76mm-budget-RFQ.zip",
+    "sha256": "b5c8f4ff174f9e1991814dbd1286bda24da6708c540928b6f16a8a4b52f8d341",
+    "drive_modified_time": "2026-10-22T01:02:34.385Z"
+  },
+  "coordinates": {
+    "axis": [
+      0,
+      0,
+      1
+    ],
+    "origin_m": [
+      0,
+      0,
+      0
+    ],
+    "azimuth_zero": [
+      1,
+      0,
+      0
+    ],
+    "azimuth": "right-handed; +x is local CAD zero, not certified paper top"
+  },
+  "tolerances": {
+    "length_m": 1e-08,
+    "axis_sine": 1e-07,
+    "interpretation": "numeric matching tolerance, not manufacturing uncertainty"
+  },
+  "parts": {
+    "core": {
+      "file": "76-208-r01-Core__REVIEW.step",
+      "sha256": "15faa13ff543b496235cf4d5ff55cc34c64cf08f09d92cb5ddb35f07791876f7",
+      "transform": {
+        "rotation": [
+          [
+            1,
+            0,
+            0
+          ],
+          [
+            0,
+            1,
+            0
+          ],
+          [
+            0,
+            0,
+            1
+          ]
+        ],
+        "translation_m": [
+          0,
+          0,
+          0
+        ]
+      },
+      "placement_evidence": "local core front plane selected as reduced inlet datum"
+    },
+    "sleeve": {
+      "file": "76-207-r01-Sleeve__REVIEW.step",
+      "sha256": "d878d8610f7d51f8a48b12b1f4d25937cf2da87486d1f1a89861e738afac9a5c",
+      "transform": {
+        "rotation": [
+          [
+            1,
+            0,
+            0
+          ],
+          [
+            0,
+            1,
+            0
+          ],
+          [
+            0,
+            0,
+            1
+          ]
+        ],
+        "translation_m": [
+          0,
+          0,
+          -0.004445
+        ]
+      },
+      "placement_evidence": "inferred axial registration from drawing/pressure-station pattern; assembly fit unverified"
+    },
+    "injector": {
+      "file": "76-212-r03-Finished-Injector__REVIEW.step",
+      "sha256": "7f4bc2c883f7020d4ccd18ffaf6fba39f465710b3454aa2814e10e2c980227f6",
+      "transform": {
+        "rotation": [
+          [
+            1,
+            0,
+            0
+          ],
+          [
+            0,
+            1,
+            0
+          ],
+          [
+            0,
+            0,
+            1
+          ]
+        ],
+        "translation_m": [
+          0,
+          0,
+          0
+        ]
+      },
+      "placement_evidence": "local finished face selected as inlet plane; assembly fit unverified"
+    }
+  },
+  "roles": {
+    "inner_wall": {
+      "part": "core",
+      "face_tag": 1
+    },
+    "outer_wall": {
+      "part": "sleeve",
+      "face_tag": 8
+    },
+    "inlet_datum": {
+      "part": "core",
+      "face_tag": 3
+    },
+    "exit_datum": {
+      "part": "core",
+      "face_tag": 2
+    },
+    "injector_face": {
+      "part": "injector",
+      "face_tag": 528
+    }
+  },
+  "bore_families": {
+    "fuel": {
+      "part": "injector",
+      "diameter_range_m": [
+        0.0007,
+        0.0009
+      ],
+      "inclination_range_deg": [
+        25,
+        35
+      ]
+    },
+    "oxidizer": {
+      "part": "injector",
+      "diameter_range_m": [
+        0.0011,
+        0.0014
+      ],
+      "inclination_range_deg": [
+        25,
+        35
+      ]
+    },
+    "instrument_port_candidates": {
+      "part": "sleeve",
+      "diameter_range_m": [
+        0.0031,
+        0.0034
+      ],
+      "inclination_range_deg": [
+        89,
+        91
+      ]
+    }
+  },
+  "reduction_omissions": [
+    "Separate fuel/oxidizer jets and mixing become an equivalent premixed inlet.",
+    "Axial/radial end features, port cavities and the downstream expansion are omitted.",
+    "Radial gradients and full CAD wall surfaces are not represented by the 2D backend.",
+    "Solid-part volume is not a validated connected gas domain.",
+    "Only the selected cylindrical wall radii and datum separation enter the constant-annulus case; enlarged sleeve seat near the inlet is continued as the nominal outer cylinder."
+  ],
+  "warnings": [
+    "These are review reconstructions, not author-certified CAD or final CNC/print exports.",
+    "The archive predates the onshape-applied-validation.json correction record in output/cad-fix; this audit does not certify the latest injector revision.",
+    "Sleeve translation -4.445 mm aligns the port-station pattern approximately; this is inferred registration, not a verified assembly constraint.",
+    "Do not mistake the sleeve full length or material volume for annular combustor length or gas volume.",
+    "Bore selectors are reviewed diameter/angle windows, not expected counts. New geometry or source hashes require a new feature mapping.",
+    "Pressure diagnostics remain the paper/base-case stations: CAD reveals candidate holes, not which holes were used."
+  ],
+  "additional_cylinders": {
+    "sleeve_inlet_seat": {
+      "part": "sleeve",
+      "face_tag": 172
+    },
+    "sleeve_outer_material": {
+      "part": "sleeve",
+      "face_tag": 1
+    }
+  }
+}

@@ -11,3 +11,7 @@ __pycache__/
 .pytest_cache/
 .DS_Store
 rde_sim_starter/runs/
+
+# Immutable downloaded CAD evidence and optional CAD environment.
+.cad-inputs/
+.cad-venv/

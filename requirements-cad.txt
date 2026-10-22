@@ -1,0 +1,3 @@
+# Optional CAD reader; install in a separate environment with requirements.txt.
+# Gmsh carries an OpenCASCADE kernel. No CAD dependency is added to the CFD stack.
+gmsh==4.15.2

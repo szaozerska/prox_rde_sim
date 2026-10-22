@@ -1,0 +1,284 @@
+schema_version: 1
+model:
+  geometry: constant_annulus
+  feed: premixed_plenum
+  walls: inviscid
+  chemistry: one_step
+  discharge_coefficient: 0.76
+geometry:
+  r_outer_mm: 38.1
+  r_inner_mm: 33.0962
+  length_mm: 76.2
+  area_ratio: 0.10959251418440369
+operating_point:
+  mass_flux: 240.21
+  mdot_target_gps: 268.65
+  phi: 1.176
+  p_plenum_kPa: 1350.0
+  T_plenum_K: 300.0
+  p_back_kPa: 100.2
+  D_CJ: 2471.0
+  q_MJkg: 5.5
+  f_paper_kHz: 15.84
+  N_paper: 2
+experimental_reference:
+  oxygen_plenum_kPa: 1309.5
+  methane_plenum_kPa: 1399.4
+  oxygen_plenum_K: 303.0
+  methane_plenum_K: 301.0
+  pressure_stations_mm:
+  - 0
+  - 22.2
+  - 34.9
+  - 47.6
+  - 60.3
+  - 73.0
+  mean_pressures_kPa:
+  - 368.5
+  - 323.3
+  - 292.3
+  - 281.1
+  - 255.4
+  - 238.4
+  peripheral_speed_mps: 1893.0
+chemistry:
+  Ea_over_RT1: 20.0
+  L_half_mm: 1.0
+numerics:
+  dx_mm: 0.5
+  cfl: 0.4
+  source_cfl: 0.05
+  average_start_us: 0.0
+  snapshot_every_us: 2.0
+  checkpoint_every_us: 10.0
+  max_step_ns: null
+  probe_y_mm: 1.0
+initialization:
+  kind: ignition
+  fill_height_mm: 3.8
+  product_temperature_K: 1500.0
+  patches: 1
+  patch_width_mm: 10.0
+  products_behind_mm: 20.0
+  offset_fraction: 0.1
+  pressure_multiplier: 2.0
+  u_theta: 0.0
+  u_z: 0.0
+diagnostics:
+  pressure_stations_mm:
+  - 0
+  - 22.2
+  - 34.9
+  - 47.6
+  - 60.3
+  - 73.0
+cad_provenance:
+  schema_version: 1
+  basis: cad
+  interpretation: provisional CAD selected-surface reduction; normal bore area, not
+    projected face ellipses
+  reference:
+    file: Mundt2023.pdf
+    sha256: 9b29881e98f4435c5a887b942ade010f13181a42a73e1bf78e50bf89f7b2195d
+    title: Geometric Scaling of Cylindrical Rotating Detonation Rocket Engine Combustors
+    locations:
+    - Table 2-1, printed p28 / PDF p44
+    - Figure 2.4, printed p29 / PDF p45
+    - Section 2.2.4, printed p34 / PDF p50
+    - Table 2-2, printed p37 / PDF p53
+    - 'Run 937: Table 3-2, printed p52 / PDF p68'
+    extraction: manually transcribed and visually checked; not CAD measurements
+  operating_conditions_source: unchanged supplied base case
+  fluid_domain_verified: false
+  omissions: &id001
+  - Separate fuel/oxidizer jets and mixing become an equivalent premixed inlet.
+  - Axial/radial end features, port cavities and the downstream expansion are omitted.
+  - Radial gradients and full CAD wall surfaces are not represented by the 2D backend.
+  - Solid-part volume is not a validated connected gas domain.
+  - Only the selected cylindrical wall radii and datum separation enter the constant-annulus
+    case; enlarged sleeve seat near the inlet is continued as the nominal outer cylinder.
+  sources:
+    core:
+      name: 76-208-r01-Core__REVIEW.step
+      sha256: 15faa13ff543b496235cf4d5ff55cc34c64cf08f09d92cb5ddb35f07791876f7
+      size_bytes: 45073
+      format: STEP
+      unit_policy: embedded STEP units converted by OCCTargetUnit=M
+    sleeve:
+      name: 76-207-r01-Sleeve__REVIEW.step
+      sha256: d878d8610f7d51f8a48b12b1f4d25937cf2da87486d1f1a89861e738afac9a5c
+      size_bytes: 1586505
+      format: STEP
+      unit_policy: embedded STEP units converted by OCCTargetUnit=M
+    injector:
+      name: 76-212-r03-Finished-Injector__REVIEW.step
+      sha256: 7f4bc2c883f7020d4ccd18ffaf6fba39f465710b3454aa2814e10e2c980227f6
+      size_bytes: 8801666
+      format: STEP
+      unit_policy: embedded STEP units converted by OCCTargetUnit=M
+  warnings:
+  - These are review reconstructions, not author-certified CAD or final CNC/print
+    exports.
+  - The archive predates the onshape-applied-validation.json correction record in
+    output/cad-fix; this audit does not certify the latest injector revision.
+  - Sleeve translation -4.445 mm aligns the port-station pattern approximately; this
+    is inferred registration, not a verified assembly constraint.
+  - Do not mistake the sleeve full length or material volume for annular combustor
+    length or gas volume.
+  - Bore selectors are reviewed diameter/angle windows, not expected counts. New geometry
+    or source hashes require a new feature mapping.
+  - 'Pressure diagnostics remain the paper/base-case stations: CAD reveals candidate
+    holes, not which holes were used.'
+  - outer_wall selected surface does not cover the entire annulus; scalar continuation
+    is an explicit approximation, not a measured gas boundary.
+  mapping:
+    schema_version: 1
+    name: Mundt 76 mm review archive, 2026-10-21 snapshot
+    reader_version: 4.15.2
+    source_archive:
+      url: https://drive.google.com/file/d/1PiaV5FJ-eQU_Gb608xQXWwWx9fEbi9pL/view
+      name: Mundt-76mm-budget-RFQ.zip
+      sha256: b5c8f4ff174f9e1991814dbd1286bda24da6708c540928b6f16a8a4b52f8d341
+      drive_modified_time: '2026-10-22T01:02:34.385Z'
+    coordinates:
+      axis:
+      - 0
+      - 0
+      - 1
+      origin_m:
+      - 0
+      - 0
+      - 0
+      azimuth_zero:
+      - 1
+      - 0
+      - 0
+      azimuth: right-handed; +x is local CAD zero, not certified paper top
+    tolerances:
+      length_m: 1.0e-08
+      axis_sine: 1.0e-07
+      interpretation: numeric matching tolerance, not manufacturing uncertainty
+    parts:
+      core:
+        file: 76-208-r01-Core__REVIEW.step
+        sha256: 15faa13ff543b496235cf4d5ff55cc34c64cf08f09d92cb5ddb35f07791876f7
+        transform:
+          rotation:
+          - - 1
+            - 0
+            - 0
+          - - 0
+            - 1
+            - 0
+          - - 0
+            - 0
+            - 1
+          translation_m:
+          - 0
+          - 0
+          - 0
+        placement_evidence: local core front plane selected as reduced inlet datum
+      sleeve:
+        file: 76-207-r01-Sleeve__REVIEW.step
+        sha256: d878d8610f7d51f8a48b12b1f4d25937cf2da87486d1f1a89861e738afac9a5c
+        transform:
+          rotation:
+          - - 1
+            - 0
+            - 0
+          - - 0
+            - 1
+            - 0
+          - - 0
+            - 0
+            - 1
+          translation_m:
+          - 0
+          - 0
+          - -0.004445
+        placement_evidence: inferred axial registration from drawing/pressure-station
+          pattern; assembly fit unverified
+      injector:
+        file: 76-212-r03-Finished-Injector__REVIEW.step
+        sha256: 7f4bc2c883f7020d4ccd18ffaf6fba39f465710b3454aa2814e10e2c980227f6
+        transform:
+          rotation:
+          - - 1
+            - 0
+            - 0
+          - - 0
+            - 1
+            - 0
+          - - 0
+            - 0
+            - 1
+          translation_m:
+          - 0
+          - 0
+          - 0
+        placement_evidence: local finished face selected as inlet plane; assembly
+          fit unverified
+    roles:
+      inner_wall:
+        part: core
+        face_tag: 1
+      outer_wall:
+        part: sleeve
+        face_tag: 8
+      inlet_datum:
+        part: core
+        face_tag: 3
+      exit_datum:
+        part: core
+        face_tag: 2
+      injector_face:
+        part: injector
+        face_tag: 528
+    bore_families:
+      fuel:
+        part: injector
+        diameter_range_m:
+        - 0.0007
+        - 0.0009
+        inclination_range_deg:
+        - 25
+        - 35
+      oxidizer:
+        part: injector
+        diameter_range_m:
+        - 0.0011
+        - 0.0014
+        inclination_range_deg:
+        - 25
+        - 35
+      instrument_port_candidates:
+        part: sleeve
+        diameter_range_m:
+        - 0.0031
+        - 0.0034
+        inclination_range_deg:
+        - 89
+        - 91
+    reduction_omissions: *id001
+    warnings:
+    - These are review reconstructions, not author-certified CAD or final CNC/print
+      exports.
+    - The archive predates the onshape-applied-validation.json correction record in
+      output/cad-fix; this audit does not certify the latest injector revision.
+    - Sleeve translation -4.445 mm aligns the port-station pattern approximately;
+      this is inferred registration, not a verified assembly constraint.
+    - Do not mistake the sleeve full length or material volume for annular combustor
+      length or gas volume.
+    - Bore selectors are reviewed diameter/angle windows, not expected counts. New
+      geometry or source hashes require a new feature mapping.
+    - 'Pressure diagnostics remain the paper/base-case stations: CAD reveals candidate
+      holes, not which holes were used.'
+    additional_cylinders:
+      sleeve_inlet_seat:
+        part: sleeve
+        face_tag: 172
+      sleeve_outer_material:
+        part: sleeve
+        face_tag: 1
+  mapping_sha256: 18af76156df8a1fc8d04d0a9a25bb3c85fc3ccc12bda9bdcd7e9b6ebf347b1b9
+  base_case_sha256: 99b81dce294d65498aaa8d2ae22ad8427b1ce4f6d12df829e947ca35a25470f9

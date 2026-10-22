@@ -1,0 +1,71 @@
+{
+  "schema_version": 1,
+  "case": "Mundt 76-FI-5 / Run 937",
+  "units": "SI",
+  "source": {
+    "file": "Mundt2023.pdf",
+    "sha256": "9b29881e98f4435c5a887b942ade010f13181a42a73e1bf78e50bf89f7b2195d",
+    "title": "Geometric Scaling of Cylindrical Rotating Detonation Rocket Engine Combustors",
+    "locations": [
+      "Table 2-1, printed p28 / PDF p44",
+      "Figure 2.4, printed p29 / PDF p45",
+      "Section 2.2.4, printed p34 / PDF p50",
+      "Table 2-2, printed p37 / PDF p53",
+      "Run 937: Table 3-2, printed p52 / PDF p68"
+    ],
+    "extraction": "manually transcribed and visually checked; not CAD measurements"
+  },
+  "geometry": {
+    "r_outer_m": 0.0381,
+    "r_inner_m": 0.0331,
+    "length_m": 0.0762,
+    "gap_m": 0.005,
+    "area_ratio": 0.11,
+    "fuel_count": 72,
+    "oxidizer_count": 72,
+    "fuel_diameter_m": 0.00079,
+    "oxidizer_diameter_m": 0.00124,
+    "impingement_height_m": 0.00216,
+    "impingement_diameter_m": 0.0712,
+    "injector_inclination_deg": 30
+  },
+  "annular_pressure_stations_mm": [
+    0,
+    22.2,
+    34.9,
+    47.6,
+    60.3,
+    73.0
+  ],
+  "annular_pressure_clocking_deg_from_paper_top": [
+    357.5,
+    330,
+    30,
+    330,
+    30,
+    330
+  ],
+  "downstream_pressure_stations_mm": [
+    85.7,
+    98.4
+  ],
+  "predetonator": {
+    "z_m": 0.073,
+    "clocking_deg_from_paper_top": 210,
+    "diameter_m": 0.0032
+  },
+  "not_from_cad": [
+    "Propellant identity, mixture ratio and separate feed thermodynamic states.",
+    "Mass flow, discharge coefficient, plenum dynamics and injector recovery.",
+    "Chemistry, reaction rates, transport, wall temperature and roughness.",
+    "Startup charge, pre-detonator forcing and initial gas state.",
+    "Observed wave count/frequency, pressure measurements and averaging window.",
+    "Which instrument ports are active and how their clocking maps to the assembled engine."
+  ],
+  "reduction_omissions": [
+    "Separate fuel/oxidizer jets and mixing become an equivalent premixed inlet.",
+    "Axial/radial end features, port cavities and the downstream expansion are omitted.",
+    "Radial gradients and full CAD wall surfaces are not represented by the 2D backend.",
+    "Solid-part volume is not a validated connected gas domain."
+  ]
+}

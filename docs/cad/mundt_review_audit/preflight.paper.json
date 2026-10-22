@@ -1,0 +1,221 @@
+{
+  "schema_version": 1,
+  "geometry": {
+    "schema_version": 1,
+    "kind": "constant_annulus",
+    "units": "SI",
+    "identity": "sha256:8648f285f4638df01429c084c7ca5f9f0536be6619ca6920d6e8f7c18033afbd",
+    "source": {
+      "kind": "manual_dimensions",
+      "values": {
+        "r_outer_mm": 38.1,
+        "r_inner_mm": 33.1,
+        "length_mm": 76.2,
+        "area_ratio": 0.11
+      },
+      "length_unit": "mm",
+      "length_to_m": 0.001,
+      "sha256": "8648f285f4638df01429c084c7ca5f9f0536be6619ca6920d6e8f7c18033afbd"
+    },
+    "coordinates": {
+      "axis": "+z",
+      "origin_m": [
+        0,
+        0,
+        0
+      ],
+      "azimuth": "right-handed about +z",
+      "reduced_coordinates": [
+        "x = r_mean * theta",
+        "z"
+      ],
+      "velocity_basis": [
+        "e_r",
+        "e_theta",
+        "e_z"
+      ]
+    },
+    "dimensions": {
+      "r_inner_m": 0.033100000000000004,
+      "r_outer_m": 0.0381,
+      "r_mean_m": 0.03560000000000001,
+      "gap_m": 0.0049999999999999975,
+      "length_m": 0.0762,
+      "circumference_m": 0.2236813969355933,
+      "exit_area_m2": 0.0011184069846779656,
+      "volume_m3": 8.522261223246098e-05,
+      "lateral_wall_area_m2": 0.03408904489298442,
+      "injector_open_area_m2": 0.00012302476831457622
+    },
+    "boundaries": {
+      "inlet": "z=0",
+      "exit": "z=length",
+      "seam": "periodic theta",
+      "inner_wall": "radially averaged closure",
+      "outer_wall": "radially averaged closure"
+    },
+    "omissions": [
+      "radial gradients and curvature dynamics",
+      "separate impinging fuel/oxidizer jets",
+      "downstream expansion/nozzle",
+      "physical pre-detonator",
+      "CAD surfaces"
+    ]
+  },
+  "physical": {
+    "feed_model": "premixed_plenum",
+    "equivalent_plenum": {
+      "pressure_Pa": 1350000.0,
+      "temperature_K": 300.0,
+      "open_area_ratio": 0.11,
+      "discharge_coefficient": 0.76
+    },
+    "original_experimental_stream_reference": {
+      "oxygen_plenum_kPa": 1309.5,
+      "methane_plenum_kPa": 1399.4,
+      "oxygen_plenum_K": 303.0,
+      "methane_plenum_K": 301.0,
+      "pressure_stations_mm": [
+        0,
+        22.2,
+        34.9,
+        47.6,
+        60.3,
+        73.0
+      ],
+      "mean_pressures_kPa": [
+        368.5,
+        323.3,
+        292.3,
+        281.1,
+        255.4,
+        238.4
+      ],
+      "peripheral_speed_mps": 1893.0
+    },
+    "feed_reduction": "explicit equivalent premixed plenum; separate jet mixing is not resolved",
+    "ambient_pressure_Pa": 100200.0,
+    "models": {
+      "geometry": "constant_annulus",
+      "feed": "premixed_plenum",
+      "walls": "inviscid",
+      "chemistry": "one_step",
+      "discharge_coefficient": 0.76
+    },
+    "initialization": {
+      "kind": "ignition",
+      "fill_height_mm": 3.8,
+      "product_temperature_K": 1500.0,
+      "patches": 1,
+      "patch_width_mm": 10.0,
+      "products_behind_mm": 20.0,
+      "offset_fraction": 0.1,
+      "pressure_multiplier": 2.0,
+      "u_theta": 0.0,
+      "u_z": 0.0
+    },
+    "pressure_stations_m": [
+      0.0,
+      0.0222,
+      0.0349,
+      0.0476,
+      0.0603,
+      0.073
+    ]
+  },
+  "backend": {
+    "name": "custom_reactive_euler_2d",
+    "dimension": 2,
+    "schema_version": 1,
+    "capabilities": {
+      "geometry": [
+        "constant_annulus"
+      ],
+      "feeds": [
+        "premixed_plenum"
+      ],
+      "walls": [
+        "inviscid",
+        "constant_cf",
+        "annular_closure"
+      ],
+      "chemistry": [
+        "one_step",
+        "disabled"
+      ],
+      "restart": "native checkpoint, identical code/environment only",
+      "cad": false,
+      "radial_dynamics": false,
+      "radial_equilibrium_closure": true
+    },
+    "numerical_settings": {
+      "nx": 447,
+      "ny": 152,
+      "dx": 0.0005004058096993139,
+      "dy": 0.0005013157894736842,
+      "cfl": 0.4,
+      "source_cfl": 0.05,
+      "max_dt": null
+    }
+  },
+  "results": {
+    "schema_version": 1,
+    "native_format_version": 2,
+    "mesh": {
+      "kind": "structured_uniform",
+      "topology": "fixed",
+      "location": "cell",
+      "shape": [
+        447,
+        152
+      ],
+      "axes": [
+        "x",
+        "z"
+      ],
+      "spacing_m": [
+        0.0005004058096993139,
+        0.0005013157894736842
+      ],
+      "radial_velocity": "assumed zero; not resolved"
+    },
+    "fields": {
+      "pressure": {
+        "unit": "Pa",
+        "location": "cell"
+      },
+      "density": {
+        "unit": "kg/m^3",
+        "location": "cell"
+      },
+      "temperature": {
+        "unit": "K",
+        "location": "cell"
+      },
+      "u_theta": {
+        "unit": "m/s",
+        "location": "cell"
+      },
+      "u_z": {
+        "unit": "m/s",
+        "location": "cell"
+      },
+      "progress": {
+        "unit": "1",
+        "location": "cell"
+      },
+      "reaction_rate": {
+        "unit": "1/s",
+        "location": "cell"
+      }
+    },
+    "pressure_type": "absolute",
+    "energy_reference": "thermal + kinetic + unspent chemical energy",
+    "native_files": {
+      "fields": "fields/step_*.npz",
+      "history": "history.jsonl",
+      "checkpoint": "checkpoint.npz"
+    },
+    "authoritative_integrals": "RK-weighted native faces and cell sources in history; display fields are float32"
+  }
+}

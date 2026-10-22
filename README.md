@@ -352,3 +352,11 @@ still the default. The adiabatic drag closure saves native momentum sources and
 provides mean-radius wall torque with angular storage/flux checks. No coefficient
 is calibrated by default. It does not add radial dynamics, heat loss, centrifugal
 pressure split or curvature losses. See [F3 verification](docs/verification/f3_wall_friction.md).
+
+## CAD parameter extraction
+
+The independent [CAD extraction workflow](docs/cad/README.md) reads source-locked
+Mundt STEP reconstructions, produces an SI geometry audit, and exports explicit
+paper-nominal and CAD-measured cases for the current solver. See the
+[geometry priorities for the simulation suite](docs/cad/physics_priorities.md) for
+injector, downstream expansion, port and wall inputs that require further modeling.
