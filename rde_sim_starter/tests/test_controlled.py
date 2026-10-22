@@ -101,3 +101,50 @@ class FormedProfileTests(unittest.TestCase):
                 plot_controlled(Path(tmp)/'formed',Path(tmp)/'plots')
             self.assertGreater((Path(tmp)/'plots/formed_control.png').stat().st_size,1000)
             with self.assertRaises(ValueError):run_formed(C,Path(tmp)/'bad',end=1.)
+
+
+class LayerControlTests(unittest.TestCase):
+    @classmethod
+    def setUpClass(cls):
+        from controlled import formed_profile
+        cls.profile=formed_profile(C)
+
+    def test_layer_inventory_is_mesh_independent(self):
+        from controlled import formed_layer
+        totals=[];excess=[]
+        for dx in (.5e-3,.25e-3,.125e-3):
+            s,x,z,info=formed_layer(C,self.profile,.0038,dx=dx,length=.1,shock=.04137,buffer=.002)
+            totals.append(s.conserved_totals());excess.append(info['initial_excess_over_unignited_layer'])
+            self.assertAlmostEqual(info['initial_layer_volume_m2'],.0038*.1,places=15)
+            self.assertEqual(info['interface_mixed_row_count'],1)
+            self.assertGreater(s.prim()[3].min(),0.)
+        for collection in [totals,excess]:np.testing.assert_allclose(collection,np.broadcast_to(collection[0],(3,5)),rtol=2e-11,atol=1e-8)
+        for h in (0.,.031,np.nan):
+            with self.assertRaises(ValueError):formed_layer(C,self.profile,h)
+
+    def test_layer_row_metrics_distinguish_reaction_and_pressure(self):
+        from controlled import formed_layer,row_front_metrics
+        s,x,z,info=formed_layer(C,self.profile,.0038,length=.1,shock=.04137,buffer=.002)
+        w=s.prim();row=row_front_metrics(w[:,:,0],x,C)
+        self.assertIsNotNone(row['front_m']);self.assertGreater(row['rate_peak_per_s'],1e5)
+        self.assertLess(row['front_rate_separation_m'],.004)
+        hot=row_front_metrics(w[:,:,-1],x,C)
+        self.assertIsNone(hot['front_m']);self.assertEqual(hot['near_front_heat_W_per_m2'],0.)
+        self.assertAlmostEqual(hot['pressure_max_Pa'],C['p1'],places=7)
+
+    def test_layer_driver_preserves_budgets_and_renders_saved_fields(self):
+        from controlled import run_layer
+        with tempfile.TemporaryDirectory() as tmp:
+            out=Path(tmp)/'layer';r=run_layer(C,out,.0038,end=.03e-6,profile=self.profile)
+            self.assertEqual(r['status'],'completed')
+            self.assertEqual(r['invalid_state_count'],0)
+            self.assertLess(r['max_budget_scaled_residual'],1e-12)
+            self.assertGreater(r['steps'],1)
+            self.assertEqual(len(r['history'][-1]['rows']),3)
+            with patch.object(Solver,'step',side_effect=AssertionError('render ran CFD')):
+                plot_controlled(out,Path(tmp)/'plots')
+            self.assertGreater((Path(tmp)/'plots/layer_control.png').stat().st_size,1000)
+            with np.load(out/'fields.npz') as a:
+                self.assertEqual(a['primitive'].ndim,4)
+                self.assertEqual(a['primitive'].shape[0],len(r['history']))
+            with self.assertRaises(ValueError):run_layer(C,Path(tmp)/'bad',.0038,end=1.)

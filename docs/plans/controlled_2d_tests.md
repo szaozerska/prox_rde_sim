@@ -115,3 +115,14 @@ survival. Use conservative cell fractions for the cut layer. Initial products
 are at p1, 1500 K, progress 1, zero velocity; the formed profile occupies only
 the lower layer. This discontinuity launches the intended transverse release.
 This is an isolated propagation control, not the experimental startup history.
+
+## C3 coarse gate review
+
+The two initial heights give a useful contrast. Repeat both at 0.25 mm before
+adding heights or comparing ignition. The thin case's main reaction detaches;
+the thick case remains strongly coupled near the wall/middle over the bounded
+window, with transverse structure. Inspect all saved fields and near-front
+rates, since global burning persists even when the leading shock loses coupling.
+Explicitly retain numerical interface mixing as an unresolved contributor.
+Do not add 7.6/30 mm merely to populate a sweep, and do not change chemistry
+until the refinement evidence is assessed.

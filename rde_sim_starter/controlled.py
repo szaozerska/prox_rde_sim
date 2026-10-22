@@ -269,19 +269,132 @@ def run_formed(c,directory,dx=.5e-3,end=40e-6,source_cfl=.05,profile=None):
     return summary
 
 
+def formed_layer(c,profile,layer_height,dx=.5e-3,length=.45,shock=.16,buffer=.13):
+    """Conservative area average: formed wave below h, static hot products above."""
+    if not np.isfinite([layer_height,buffer]).all() or not 0<layer_height<=.03 or buffer<=0:
+        raise ValueError('0<h<=30 mm and positive product buffer required')
+    s0,x=formed_strip(c,profile,dx=dx,length=length,shock=shock,rows=2)
+    height=layer_height+buffer;ny=round(height/s0.dx);dy=height/ny
+    if ny<2:raise ValueError('layer domain needs at least two rows')
+    fraction=np.clip((layer_height-np.arange(ny)*dy)/dy,0,1)
+    hot=conserved_state(c['p1']/(c['R']*1500.),0.,c['p1'],1.,c)
+    from solver import NG
+    s=Solver(s0.nx,ny,s0.dx,dy,tuple(c[k] for k in ('gamma','q','R','k','Ea')),
+             (TRANSMIT,TRANSMIT,WALL,WALL),source_cfl=.05)
+    s.U[:,NG:-NG,NG:-NG]=s0.U[:,NG:-NG,NG][:,:,None]*fraction+hot[:,None,None]*(1-fraction)
+    s._check_state(s.U,'conservative layer initialization')
+    baseline=(profile['fresh']*layer_height+hot*buffer)*length
+    info=dict(layer_height_m=layer_height,height_m=height,dx_m=s.dx,dy_m=s.dy,
+        product_temperature_K=1500.,initial_layer_volume_m2=float(fraction.sum()*dy*length),
+        interface_mixed_row_count=int(np.count_nonzero((fraction>0)&(fraction<1))),
+        initial_conserved_per_m_depth=s.conserved_totals().tolist(),
+        initial_excess_over_unignited_layer=(s.conserved_totals()-baseline).tolist())
+    return s,x,(np.arange(ny)+.5)*dy,info
+
+
+def row_front_metrics(w,x,c,roi=.03):
+    """Pressure and reaction association in one row, without a detonation label."""
+    p=w[3];T=p/(c['R']*w[0]);rate=c['k']*np.maximum(0,1-w[4])*np.exp(-c['Ea']/(c['R']*T))
+    ii=np.flatnonzero(p>2*c['p1']);front=float(x[ii[-1]]) if ii.size else None
+    region=(x>=front-roi)&(x<=front) if front is not None else np.zeros(x.size,dtype=bool)
+    peak=int(np.argmax(np.where(region,rate,-1))) if region.any() else None
+    ahead=(x>front+2*(x[1]-x[0]))&(x<front+roi) if front is not None else np.zeros(x.size,dtype=bool)
+    reacted=np.flatnonzero(region&(w[4]>=.5))
+    return dict(front_m=front,pressure_max_Pa=float(p.max()),
+        rate_peak_m=float(x[peak]) if peak is not None else None,
+        rate_peak_per_s=float(rate[peak]) if peak is not None else None,
+        peak_progress=float(w[4,peak]) if peak is not None else None,
+        front_rate_separation_m=float(front-x[peak]) if peak is not None else None,
+        front_half_reaction_separation_m=float(front-x[reacted[-1]]) if reacted.size else None,
+        upstream_u_mps=float(w[1,ahead].mean()) if ahead.any() else None,
+        upstream_sound_mps=float(np.sqrt(c['gamma']*p[ahead]/w[0,ahead]).mean()) if ahead.any() else None,
+        near_front_heat_W_per_m2=float(np.sum(c['q']*w[0,region]*rate[region])*(x[1]-x[0])))
+
+
+def run_layer(c,directory,layer_height,dx=.5e-3,end=40e-6,profile=None):
+    """C3 finite-layer control; finite physical causal bounds and native budgets."""
+    if not np.isfinite(end) or not 0<end<=40e-6:raise ValueError('0<end<=40 us required')
+    profile=formed_profile(c) if profile is None else profile
+    if max(profile['verification']['jump_max_relative_error'])>1e-8:raise ValueError('steady jump check failed')
+    s,x,z,init=formed_layer(c,profile,layer_height,dx=dx)
+    length=s.nx*s.dx;height=s.ny*s.dy;bx=4000.;bz=3000.;roi=.03
+    # Bottom, middle and last completely fresh/profile row; full fields retain the interface.
+    indexes=sorted(set([0,int(np.argmin(abs(z-layer_height/2))),max(0,int(layer_height/s.dy)-1)]))
+    directory=Path(directory);directory.mkdir(parents=True,exist_ok=False)
+    _write_json(directory/'inputs.json',dict(kind='layer',calibration=c,end_s=end,source_cfl=.05,
+        length_m=length,shock_initial_m=.16,axial_characteristic_bound_mps=bx,
+        transverse_characteristic_bound_mps=bz,reaction_roi_behind_front_m=roi,
+        diagnostic_row_indexes=indexes,diagnostic_row_z_m=z[indexes].tolist(),
+        profile_verification=profile['verification'],initialization=init,
+        implementation=_fingerprint(),driver_sha256=hashlib.sha256(Path(__file__).read_bytes()).hexdigest(),
+        policy='formed-wave propagation under hot products; exact conservative layer fractions; no injection or driver'))
+    initial=s.conserved_totals();history=[];times=[];fields=[];status='completed';error=None
+    rho1=c['p1']/(c['R']*c['T1']);volume=length*height
+    scale=np.maximum(abs(initial),np.array([rho1,rho1*c['D_CJ'],rho1*c['D_CJ'],c['p1']/(c['gamma']-1)+rho1*c['q'],rho1])*volume)
+    observed=np.zeros(2);started=time.monotonic();layer_rows=z<layer_height
+    def save():
+        w=s.prim().copy();rows=[row_front_metrics(w[:,:,j],x,c,roi) for j in indexes]
+        T=w[3]/(c['R']*w[0]);rate=c['k']*np.maximum(0,1-w[4])*np.exp(-c['Ea']/(c['R']*T))
+        heat=c['q']*w[0]*rate
+        fronts=[row['front_m'] for row in rows if row['front_m'] is not None]
+        budget=conservation_budget(s.conserved_totals(),initial,s.cumulative_boundary,s.cumulative_source,1.,1.)
+        history.append(dict(time_s=s.t,rows=rows,pressure_max_Pa=float(w[3].max()),
+            max_rate_per_s=float(rate.max()),total_heat_W_per_m_depth=float(heat.sum()*s.dx*s.dy),
+            layer_heat_W_per_m_depth=float(heat[:,layer_rows].sum()*s.dx*s.dy),
+            converted_J_per_m_depth=float(c['q']*s.cumulative_source[4]),
+            budget_scaled_residual=float(np.max(abs(budget['residual'])/scale)),
+            left_causal_margin_m=float(min(fronts)-roi-bx*s.t) if fronts else None,
+            right_causal_margin_m=float(length-max(fronts)-bx*s.t) if fronts else None,
+            top_causal_margin_m=float(height-layer_height-bz*s.t)))
+        times.append(s.t);fields.append(w)
+        _write_json(directory/'progress.json',dict(time_s=s.t,steps=s.steps,wall_seconds=time.monotonic()-started,
+            observed_characteristic_max_mps=observed.tolist(),latest=history[-1]))
+    save();tick=1
+    from solver import NG
+    try:
+        while s.t<end:
+            target=min(end,tick*4e-6);s.step(dt_max=target-s.t)
+            from solver import max_speed
+            observed=np.maximum(observed,max_speed(s.W,s.g))
+            s.prim()
+            observed=np.maximum(observed,max_speed(s.W,s.g))
+            if observed[0]>bx or observed[1]>bz:raise RuntimeError('predeclared characteristic bound exceeded')
+            if s.t>=target:
+                save();tick+=1;h=history[-1]
+                if h['left_causal_margin_m'] is None:raise RuntimeError('no tracked pressure front; inspect decay before continuing')
+                if min(h['left_causal_margin_m'],h['right_causal_margin_m'],h['top_causal_margin_m'])<=0:
+                    raise RuntimeError('remote-boundary causal cone reaches measurement region')
+    except (InvalidStateError,RuntimeError) as caught:status='stopped';error=str(caught)
+    if times[-1]!=s.t:save()
+    summary=dict(kind='layer',status=status,error=error,time_s=s.t,steps=s.steps,wall_seconds=time.monotonic()-started,
+        observed_characteristic_max_mps=observed.tolist(),invalid_state_count=s.invalid_state_count,
+        initialization=init,initial_conserved_per_m_depth=initial.tolist(),
+        final_conserved_per_m_depth=s.conserved_totals().tolist(),
+        cumulative_boundary=s.cumulative_boundary.tolist(),cumulative_source=s.cumulative_source.tolist(),
+        max_budget_scaled_residual=max(h['budget_scaled_residual'] for h in history),history=history,
+        interpretation='bounded response only: combine spatial pressure/reaction association, relief, causality and mesh evidence')
+    _write_npz(directory/'fields.npz',x=x,z=z,times=np.array(times),primitive=np.array(fields))
+    _write_json(directory/'summary.json',summary)
+    return summary
+
+
 def main(argv=None):
     parser=argparse.ArgumentParser(description=__doc__)
-    parser.add_argument('experiment',choices=['strip','formed'])
+    parser.add_argument('experiment',choices=['strip','formed','layer'])
     parser.add_argument('--out',type=Path,required=True)
     parser.add_argument('--calibration',type=Path,default=Path(__file__).with_name('calib.json'))
     parser.add_argument('--dx-mm',type=float,default=.5)
     parser.add_argument('--source-cfl',type=float,default=.05)
+    parser.add_argument('--height-mm',type=float)
     args=parser.parse_args(argv)
     c=json.loads(args.calibration.read_text())
     if args.experiment=='strip':
         if args.source_cfl!=.05:parser.error('strip fixes source-cfl=0.05')
         result=run_strip(c,args.out,dx=args.dx_mm*1e-3)
-    else:result=run_formed(c,args.out,dx=args.dx_mm*1e-3,source_cfl=args.source_cfl)
+    elif args.experiment=='formed':result=run_formed(c,args.out,dx=args.dx_mm*1e-3,source_cfl=args.source_cfl)
+    else:
+        if args.height_mm is None or args.source_cfl!=.05:parser.error('layer needs --height-mm and fixes source-cfl=0.05')
+        result=run_layer(c,args.out,args.height_mm*1e-3,dx=args.dx_mm*1e-3)
     print(json.dumps({k:v for k,v in result.items() if k!='history'},indent=2))
     return 0 if result.get('control_passed',result['status']=='completed') else 2
 

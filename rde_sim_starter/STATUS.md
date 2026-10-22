@@ -53,3 +53,11 @@ Conservative initializer, jump/inventory/table checks and four bounded formed-wa
 runs passed. Three meshes give 20–40 µs speeds 2478.15/2472.97/2472.07 m/s with
 continued near-front reaction and isolated remote boundaries. C3 layer response
 is next; Run 937 remains unresolved. See the increment log for qualifications.
+
+## C3 coarse layer update
+
+The 3.8 mm formed wave loses leading shock/reaction coupling by 40 µs; 15 mm
+retains strong coupling near the wall/middle. Both cases valid and conservative,
+with remote-boundary travel bounds satisfied. 0.25 mm checks are in progress;
+C3 is open and this is not an experimental critical-height result. Default suite:
+66 passed, one opt-in skipped. See the increment log and saved field figures.

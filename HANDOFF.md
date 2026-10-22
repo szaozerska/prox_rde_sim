@@ -47,7 +47,12 @@ at 0.5/0.25/0.125 mm through 40 µs, plus half-source-step control. Continued
 near-front reaction, no invalid states, budgets <2e-14 and positive causal margins.
 This verifies a surrogate control, not Run 937.
 
-**Next planned increment:** C3's bounded layer comparison; C4 compares initiation methods in a demonstrated
+**C3 coarse result:** 3.8 mm loses leading shock/reaction coupling while 15 mm
+retains strong coupling near the wall/middle at 40 µs. No invalid states or
+remote-boundary cone violation; numerical interface burning remains visible.
+Both decisive cases are being refined to 0.25 mm before closing the gate.
+
+**Next planned increment:** complete C3 refinement and assessment; C4 compares initiation methods in a demonstrated
 supporting layer. Freeze chemistry and quantify source/time/grid effects, initial
 inventory and boundary causality. Stop advancement on a critical inconsistency.
 Document each increment and push it to main after verification. The old automatic

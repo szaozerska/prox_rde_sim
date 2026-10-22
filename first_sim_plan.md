@@ -1,6 +1,6 @@
 # RDE simulation plan — revision 9
 
-**Status: C1 equivalence and C2 formed-wave controls passed; C3 layer tests next.**
+**Status: C1/C2 passed; C3 coarse layer contrast found, refinement in progress.**
 The [controlled-test plan](docs/plans/controlled_2d_tests.md) records three review
 passes and the C1–C6 increments. First verify multirow/direction equivalence and
 formed-profile propagation, then distinguish thin-layer survival from initiation.

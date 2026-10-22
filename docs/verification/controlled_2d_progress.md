@@ -96,3 +96,53 @@ RDE-001 remains open. Independent 3D work belongs to the other session/checkout.
   skipped. Four explicit C2 runs provide the separate propagation evidence.
 - Gate review: no critical initializer/filled-strip inconsistency remains. C3
   may now test 3.8 and 15 mm layers; no engine run or C4 initiation claim yet.
+
+## C3a — coarse finite-layer comparison: completed, refinement gate still open
+
+- Added exact conservative area fractions for a formed wave in a 3.8 or 15 mm
+  layer, with 1500 K, p1, fully reacted gas above it. The bottom is reflecting;
+  top is remote/reflecting, axial ends transmissive. No injector, outlet-pressure
+  closure, imposed driver, or engine geometry change is used. Same local formed
+  profile in both layers; integrated initial charge/energy scale with layer height.
+- Unit checks preserve the integrated layer volume, all five conserved totals
+  and initialization excess across 0.5/0.25/0.125 mm grids. This removes the old
+  cell-center inventory confound, not numerical contact diffusion. The 3.8 mm
+  interface cuts one row. The saved 15 mm `mixed_row_count=1` is a floating-point
+  edge classification (fraction differs from one only by roundoff); geometrically
+  that interface lies on a face. No state clipping is applied.
+- Both 0.5 mm cases completed 40 µs / 2771 steps. Wall times were 320.8/386.0 s.
+  No invalid states; budget residuals <4.7e-16 / 1.1e-15. Actual characteristic
+  maxima remain below the predeclared 4000/3000 m/s axial/transverse bounds.
+  All sampled front/reaction regions remain outside remote-boundary cones; the
+  conservative top margin is 10 mm at 40 µs.
+- **3.8 mm:** the leading pressure front and main reaction separate. The gap
+  grows from about 1 mm early to 20–25 mm by 32 µs; at 40 µs the strongest
+  reaction is about 26–30 mm behind the tracked fronts (the 30 mm search window
+  limits the upper-row value). Wall pressure falls to 2.74 MPa. The wall-row
+  peak rate within 2 mm behind the leading front falls from ~2.57e5/s initially
+  to ~10/s at 40 µs. A strong detached reaction/contact structure remains, so
+  this is loss of leading shock/reaction coupling, not cessation of all burning.
+- **15 mm:** strong shock-associated reaction remains near the wall and middle
+  at 40 µs, with pressure/rate peak separations 1.5/2 mm and rates 2.83e5/1.86e5/s.
+  Upper-layer response is more disrupted (6 mm separation). A transient wall
+  pressure peak of 32.33 MPa indicates transverse dynamics; it is not a steady
+  pressure target. Inspect the fields and histories, not one peak or fit.
+- [Native metrics, provenance and near-front postprocessing](c3_layer_coarse_metrics.json);
+  [3.8 mm fields](c3_layer_038_coarse.png); [15 mm fields](c3_layer_150_coarse.png).
+  Figures were inspected. Native fields are in ignored `runs/c3_layer_*_050/`.
+- Literature/physics review: this conditional difference is consistent with
+  yielding-confinement effects studied by [Li, Mi and Higgins](https://arxiv.org/abs/1405.7753),
+  whose reaction law differs. It does not transfer their critical dimensions or
+  prove a Run 937 extinction threshold. Mundt's 3.8 mm refill estimate is not a
+  measured startup layer, and the paper does not validate this thickened chemistry.
+- Numerical review: heat release along the hot/fresh interface exists ahead of
+  the main wave; numerical mixing remains a candidate contributor. The saved
+  `layer_heat` diagnostic uses row centers, while initial inventories and native
+  budgets use conservative integrals. Do not treat that row-center diagnostic
+  as an exact integral below a cut interface.
+- Default suite: 67 tests in 52.304 s, 66 passed and one opt-in skipped, including
+  the short 2D driver/budget check and saved-field-only rendering. [Log](c3_tests.log).
+- **Gate decision:** repeat these two decisive cases at 0.25 mm with identical
+  chemistry, physical domain, initial conserved charge and duration. Those runs
+  are underway. C3 is not yet closed; no formal critical-height bracket, stable
+  rotating wave, chemistry change or C4 initiation conclusion is claimed.

@@ -534,12 +534,57 @@ def plot_formed(directory,destination):
     return report
 
 
+def plot_layer(directory,destination):
+    """Saved C3 fields, several layer rows and independent causal diagnostics."""
+    import numpy as np
+    from matplotlib.colors import LogNorm
+    directory,destination=Path(directory),Path(destination)
+    report=json.loads((directory/'summary.json').read_text());inputs=json.loads((directory/'inputs.json').read_text())
+    with np.load(directory/'fields.npz',allow_pickle=False) as a:
+        x=a['x'].copy();z=a['z'].copy();w=a['primitive'][-1].copy();times=a['times'].copy()
+    c=inputs['calibration'];history=report['history'];h=inputs['initialization']['layer_height_m']
+    rows=inputs['diagnostic_row_indexes'];zs=inputs['diagnostic_row_z_m']
+    finalfront=[row['front_m'] for row in history[-1]['rows'] if row['front_m'] is not None]
+    reference=max(finalfront) if finalfront else inputs['shock_initial_m']
+    near=(x>reference-.04)&(x<reference+.01);low=z<h+.02
+    temp=w[3]/(c['R']*w[0]);rate=c['k']*np.maximum(0,1-w[4])*np.exp(-c['Ea']/(c['R']*temp))
+    heat=c['q']*w[0]*rate/1e12
+    destination.mkdir(parents=True,exist_ok=False)
+    plt=_pyplot();fig,axes=plt.subplots(3,2,figsize=(12,10),layout='constrained')
+    try:
+        X=x[near]*1e3;Z=z[low]*1e3
+        im=axes[0,0].pcolormesh(X,Z,w[3][np.ix_(near,low)].T/1e6,shading='auto',cmap='magma')
+        fig.colorbar(im,ax=axes[0,0],label='Pressure [MPa]')
+        vmax=max(1e-5,float(heat.max()));im=axes[0,1].pcolormesh(X,Z,np.maximum(heat[np.ix_(near,low)].T,1e-7),
+            shading='auto',cmap='inferno',norm=LogNorm(vmin=1e-6,vmax=vmax))
+        fig.colorbar(im,ax=axes[0,1],label='Heat release [TW/m³]')
+        for ax in axes[0]:ax.axhline(h*1e3,color='cyan',ls='--',lw=.8);ax.set(xlabel='x [mm]',ylabel='Height [mm]')
+        for j,(idx,height) in enumerate(zip(rows,zs)):
+            label=f'z = {height*1e3:.2f} mm'
+            axes[1,0].plot(x[near]*1e3,w[3,near,idx]/1e6,label=label)
+            axes[1,1].plot(x[near]*1e3,rate[near,idx]/1e6,label=label)
+            axes[2,0].plot(times*1e6,[hh['rows'][j]['front_m']*1e3 if hh['rows'][j]['front_m'] is not None else np.nan for hh in history],label=label)
+        axes[1,0].set(xlabel='x [mm]',ylabel='Final pressure [MPa]')
+        axes[1,1].set(xlabel='x [mm]',ylabel='Final reaction rate [1/µs]')
+        axes[2,0].set(xlabel='Time [µs]',ylabel='Pressure-threshold front [mm]')
+        for key,label in [('left_causal_margin_m','Left/reaction region'),('right_causal_margin_m','Right'),('top_causal_margin_m','Top/layer')]:
+            axes[2,1].plot(times*1e6,[hh[key]*1e3 if hh[key] is not None else np.nan for hh in history],label=label)
+        axes[2,1].axhline(0,color='k',lw=.7);axes[2,1].set(xlabel='Time [µs]',ylabel='Remote-boundary cone margin [mm]')
+        for ax in axes[1:].flat:ax.grid(alpha=.25)
+        axes[1,0].legend(fontsize=8);axes[2,1].legend(fontsize=8)
+        fig.suptitle(f"C3: h = {h*1e3:g} mm, Δx = {inputs['initialization']['dx_m']*1e3:g} mm, t = {report['time_s']*1e6:.1f} µs")
+        fig.savefig(destination/'layer_control.png',dpi=140)
+    finally:plt.close(fig)
+    return report
+
+
 def plot_controlled(directory, destination):
     """C1 strip fields and comparison histories from saved data only."""
     import numpy as np
     directory,destination=Path(directory),Path(destination)
     report=json.loads((directory/'summary.json').read_text())
     if report['kind']=='formed':return plot_formed(directory,destination)
+    if report['kind']=='layer':return plot_layer(directory,destination)
     if report['kind']!='strip':raise ValueError('unsupported controlled diagnostic')
     with np.load(directory/'fields.npz',allow_pickle=False) as data:
         x=data['x'].copy();fields=data['primitive'].copy()
