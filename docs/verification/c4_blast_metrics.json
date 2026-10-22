@@ -1,0 +1,1180 @@
+{
+  "inputs": {
+    "axial_characteristic_bound_mps": 5000.0,
+    "calibration": {
+      "CJ": {
+        "T": 4885.151457540693,
+        "p": 10951531.152722448
+      },
+      "D_CJ": 2471.0,
+      "Ea": 1912039.7726565108,
+      "L_half": 0.001,
+      "MW": 26.09085894206549,
+      "M_CJ": 7.181250184592161,
+      "Q": 11.076804691270638,
+      "R": 318.6732954427518,
+      "T1": 300.0,
+      "VN": {
+        "M": 0.3348675875993769,
+        "T": 2116.2489661145023,
+        "p": 21525145.333159216,
+        "u_shock_frame": 306.03320728412723
+      },
+      "a1": 344.0905046452345,
+      "cp": 1655.110281738685,
+      "gamma": 1.2384499222264016,
+      "induction_real": 2.7586206896551727e-05,
+      "k": 2522464.136488483,
+      "lambda_real": 0.0008,
+      "p1": 377916.97229176015,
+      "q": 5500000.0
+    },
+    "diagnostic_row_indexes": [
+      0,
+      15,
+      29
+    ],
+    "diagnostic_row_z_m": [
+      0.00024999999999999995,
+      0.007749999999999998,
+      0.014749999999999997
+    ],
+    "driver_sha256": "6992f762fd15552c40b8b36dcb3ab387b154dbb123975c1e0ccd04c78524d298",
+    "end_s": 4e-05,
+    "implementation": {
+      "packages": {
+        "PyYAML": "6.0.3",
+        "llvmlite": "0.45.1",
+        "numba": "0.62.1",
+        "numpy": "2.3.5",
+        "scipy": "1.18.1"
+      },
+      "python": "3.12.0",
+      "source_sha256": {
+        "analyze.py": "84dee7247d1db42074805858295e3b3fe8c7713fd2c695b3edcafd68c59d8247",
+        "calibrate.py": "e43a8522a46ac0d2808adb032aef66e4b019cb5f94ae03ae43c8f490ea0870fa",
+        "physics.py": "6766f8caed3b4d09d77489f5cfc657d848a473094e155d5ac48b3eddc33d975a",
+        "run.py": "18d850b6448259fe546d1a1c48aaae99a4ab74942b56d85b421fc23dee3112af",
+        "solver.py": "f2ecf8fa01ca5228b996872f5b8e29722eb5f314c4aba3c97a7db3aef45b2b83"
+      }
+    },
+    "initialization": {
+      "dx_m": 0.0005,
+      "dy_m": 0.0004999999999999999,
+      "height_m": 0.16499999999999998,
+      "initial_conserved_per_m_depth": [
+        0.09840610591948268,
+        0.0,
+        0.0,
+        326954.20357757504,
+        0.06757251735055618
+      ],
+      "initial_excess_over_unignited_layer": [
+        0.000568757575773654,
+        0.0,
+        0.0,
+        3756.9355496913777,
+        0.0023476184547501777
+      ],
+      "initial_layer_volume_m2": 0.00825,
+      "initial_velocity_mps": [
+        0.0,
+        0.0
+      ],
+      "interface_aligned": false,
+      "interface_mixed_row_count": 1,
+      "layer_height_m": 0.015,
+      "patch_pressure_Pa": 21903062.305444896,
+      "patch_temperature_K": 4885.151457540693,
+      "patch_width_m": 0.01,
+      "product_temperature_K": 1500.0,
+      "products_behind_width_m": 0.02,
+      "start": "blast"
+    },
+    "kind": "layer",
+    "length_m": 0.55,
+    "policy": "layer propagation under hot products; explicit formed/blast start and conserved inventory; no injection or imposed driver",
+    "profile_verification": {
+      "jump_max_relative_error": [
+        8.881784197001252e-16,
+        8.881784197001252e-16,
+        7.455147610357926e-13
+      ],
+      "length_m": {
+        "0.5": 0.0009999999999999992,
+        "0.9": 0.003139948297637085,
+        "0.95": 0.004177269646566619
+      },
+      "samples": 2401,
+      "table_length_relative_error": {
+        "0.5": 4.767893253321276e-06,
+        "0.9": 5.480949027969473e-12,
+        "0.95": 1.6107930318476349e-06
+      },
+      "tail_distance_m": 0.023768361935197036,
+      "tail_pressure_relative_jump": 0.0009645605834074367,
+      "tail_progress": 0.999999
+    },
+    "reaction_roi_behind_front_m": 0.03,
+    "restart": null,
+    "shock_initial_m": 0.2,
+    "source_cfl": 0.05,
+    "transverse_characteristic_bound_mps": 3500.0
+  },
+  "summary": {
+    "cumulative_boundary": [
+      [
+        0.0,
+        2.503155922958253,
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        2.503155922958253,
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        15.734914937351961,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        8.314173390418082,
+        0.0,
+        0.0
+      ]
+    ],
+    "cumulative_source": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.004019177590765226
+    ],
+    "error": null,
+    "final_conserved_per_m_depth": [
+      0.09840610591948268,
+      5.072826190086607e-16,
+      7.420741546933486,
+      326954.2035775748,
+      0.07159169494132132
+    ],
+    "history": [
+      {
+        "budget_scaled_residual": 0.0,
+        "converted_J_per_m_depth": 0.0,
+        "layer_heat_W_per_m_depth": 881.7026067639981,
+        "left_causal_margin_m": 0.16975,
+        "max_rate_per_s": 0.005199186092394659,
+        "pressure_max_Pa": 21903062.305444896,
+        "right_causal_margin_m": 0.35025000000000006,
+        "rows": [
+          {
+            "front_half_reaction_separation_m": 0.0,
+            "front_m": 0.19975,
+            "front_rate_separation_m": 0.03,
+            "near_front_heat_W_per_m2": 56.51939786948708,
+            "peak_progress": 0.0,
+            "pressure_max_Pa": 21903062.305444896,
+            "rate_peak_m": 0.16975,
+            "rate_peak_per_s": 0.005199186092394659,
+            "upstream_sound_mps": 344.0905046452346,
+            "upstream_u_mps": 0.0
+          },
+          {
+            "front_half_reaction_separation_m": 0.0,
+            "front_m": 0.19975,
+            "front_rate_separation_m": 0.03,
+            "near_front_heat_W_per_m2": 56.51939786948708,
+            "peak_progress": 0.0,
+            "pressure_max_Pa": 21903062.305444896,
+            "rate_peak_m": 0.16975,
+            "rate_peak_per_s": 0.005199186092394659,
+            "upstream_sound_mps": 344.0905046452346,
+            "upstream_u_mps": 0.0
+          },
+          {
+            "front_half_reaction_separation_m": 0.0,
+            "front_m": 0.19975,
+            "front_rate_separation_m": 0.03,
+            "near_front_heat_W_per_m2": 56.51939786948708,
+            "peak_progress": 0.0,
+            "pressure_max_Pa": 21903062.305444896,
+            "rate_peak_m": 0.16975,
+            "rate_peak_per_s": 0.005199186092394659,
+            "upstream_sound_mps": 344.0905046452346,
+            "upstream_u_mps": 0.0
+          }
+        ],
+        "time_s": 0.0,
+        "top_causal_margin_m": 0.14999999999999997,
+        "total_heat_W_per_m_depth": 881.702608573285
+      },
+      {
+        "budget_scaled_residual": 2.749688516067918e-17,
+        "converted_J_per_m_depth": 394.47580309895045,
+        "layer_heat_W_per_m_depth": 135008800.23327672,
+        "left_causal_margin_m": 0.15575000000000003,
+        "max_rate_per_s": 118346.56962161376,
+        "pressure_max_Pa": 16273149.440961221,
+        "right_causal_margin_m": 0.32325000000000004,
+        "rows": [
+          {
+            "front_half_reaction_separation_m": 0.0020000000000000018,
+            "front_m": 0.20675000000000002,
+            "front_rate_separation_m": 0.0020000000000000018,
+            "near_front_heat_W_per_m2": 10259475772.917606,
+            "peak_progress": 0.5486962458773813,
+            "pressure_max_Pa": 16273149.440961221,
+            "rate_peak_m": 0.20475000000000002,
+            "rate_peak_per_s": 118346.56962161376,
+            "upstream_sound_mps": 344.0905842817274,
+            "upstream_u_mps": 0.00022084486285301805
+          },
+          {
+            "front_half_reaction_separation_m": 0.0020000000000000018,
+            "front_m": 0.20675000000000002,
+            "front_rate_separation_m": 0.0020000000000000018,
+            "near_front_heat_W_per_m2": 10249135071.738047,
+            "peak_progress": 0.5485881535520725,
+            "pressure_max_Pa": 16152028.860278942,
+            "rate_peak_m": 0.20475000000000002,
+            "rate_peak_per_s": 118312.33846220339,
+            "upstream_sound_mps": 344.09058428291786,
+            "upstream_u_mps": 0.0002208523598973822
+          },
+          {
+            "front_half_reaction_separation_m": 0.0020000000000000018,
+            "front_m": 0.20575000000000002,
+            "front_rate_separation_m": 0.0020000000000000018,
+            "near_front_heat_W_per_m2": 3051143925.883206,
+            "peak_progress": 0.7037029307717745,
+            "pressure_max_Pa": 5824622.53749471,
+            "rate_peak_m": 0.20375000000000001,
+            "rate_peak_per_s": 81865.82228392667,
+            "upstream_sound_mps": 409.97621753189725,
+            "upstream_u_mps": 0.006364805585565215
+          }
+        ],
+        "time_s": 4e-06,
+        "top_causal_margin_m": 0.13599999999999995,
+        "total_heat_W_per_m_depth": 155615032.24324864
+      },
+      {
+        "budget_scaled_residual": 2.45408837579199e-16,
+        "converted_J_per_m_depth": 1201.138335898673,
+        "layer_heat_W_per_m_depth": 211665934.7198321,
+        "left_causal_margin_m": 0.14125,
+        "max_rate_per_s": 135293.37690066895,
+        "pressure_max_Pa": 9301774.822843801,
+        "right_causal_margin_m": 0.29725000000000007,
+        "rows": [
+          {
+            "front_half_reaction_separation_m": 0.0025000000000000022,
+            "front_m": 0.21275,
+            "front_rate_separation_m": 0.0025000000000000022,
+            "near_front_heat_W_per_m2": 18165843661.604973,
+            "peak_progress": 0.5707072742635458,
+            "pressure_max_Pa": 9301774.822843801,
+            "rate_peak_m": 0.21025,
+            "rate_peak_per_s": 135293.37690066895,
+            "upstream_sound_mps": 344.0909138721348,
+            "upstream_u_mps": 0.001991710041572414
+          },
+          {
+            "front_half_reaction_separation_m": 0.0025000000000000022,
+            "front_m": 0.21275,
+            "front_rate_separation_m": 0.0025000000000000022,
+            "near_front_heat_W_per_m2": 15758465418.90126,
+            "peak_progress": 0.5335703556293311,
+            "pressure_max_Pa": 8377115.761682149,
+            "rate_peak_m": 0.21025,
+            "rate_peak_per_s": 131385.11427754827,
+            "upstream_sound_mps": 344.090863705522,
+            "upstream_u_mps": 0.0016959077714570976
+          },
+          {
+            "front_half_reaction_separation_m": 0.0030000000000000027,
+            "front_m": 0.21125,
+            "front_rate_separation_m": 0.0030000000000000027,
+            "near_front_heat_W_per_m2": 4637829537.289765,
+            "peak_progress": 0.6111275042354186,
+            "pressure_max_Pa": 4175363.361363709,
+            "rate_peak_m": 0.20825,
+            "rate_peak_per_s": 94605.34322293123,
+            "upstream_sound_mps": 420.2479089683374,
+            "upstream_u_mps": 0.009317006246305864
+          }
+        ],
+        "time_s": 8e-06,
+        "top_causal_margin_m": 0.12199999999999997,
+        "total_heat_W_per_m_depth": 248027964.25254288
+      },
+      {
+        "budget_scaled_residual": 8.249065548203754e-17,
+        "converted_J_per_m_depth": 2522.8368381090927,
+        "layer_heat_W_per_m_depth": 354082810.9119617,
+        "left_causal_margin_m": 0.12725,
+        "max_rate_per_s": 150187.2735276199,
+        "pressure_max_Pa": 10653574.02592152,
+        "right_causal_margin_m": 0.27075000000000005,
+        "rows": [
+          {
+            "front_half_reaction_separation_m": 0.0030000000000000027,
+            "front_m": 0.21925,
+            "front_rate_separation_m": 0.0025000000000000022,
+            "near_front_heat_W_per_m2": 27405370036.684742,
+            "peak_progress": 0.46289876258525015,
+            "pressure_max_Pa": 10653574.02592152,
+            "rate_peak_m": 0.21675,
+            "rate_peak_per_s": 150187.2735276199,
+            "upstream_sound_mps": 344.09142961209193,
+            "upstream_u_mps": 0.00454189800984643
+          },
+          {
+            "front_half_reaction_separation_m": 0.003500000000000003,
+            "front_m": 0.21925,
+            "front_rate_separation_m": 0.0030000000000000027,
+            "near_front_heat_W_per_m2": 18495607127.541252,
+            "peak_progress": 0.4591809327424129,
+            "pressure_max_Pa": 7954344.375100334,
+            "rate_peak_m": 0.21625,
+            "rate_peak_per_s": 134755.9849587742,
+            "upstream_sound_mps": 344.09080000466815,
+            "upstream_u_mps": 0.0004053341085634824
+          },
+          {
+            "front_half_reaction_separation_m": 0.004500000000000004,
+            "front_m": 0.21725,
+            "front_rate_separation_m": 0.0040000000000000036,
+            "near_front_heat_W_per_m2": 6266308410.889263,
+            "peak_progress": 0.46254197770342176,
+            "pressure_max_Pa": 4569552.396923752,
+            "rate_peak_m": 0.21325,
+            "rate_peak_per_s": 101068.98490675961,
+            "upstream_sound_mps": 427.57619739425553,
+            "upstream_u_mps": 0.0041594293694812
+          }
+        ],
+        "time_s": 1.2e-05,
+        "top_causal_margin_m": 0.10799999999999996,
+        "total_heat_W_per_m_depth": 412560181.06849813
+      },
+      {
+        "budget_scaled_residual": 1.6894524656006435e-16,
+        "converted_J_per_m_depth": 4440.617870713745,
+        "layer_heat_W_per_m_depth": 454876112.9067369,
+        "left_causal_margin_m": 0.11325,
+        "max_rate_per_s": 152450.3699442731,
+        "pressure_max_Pa": 11418085.22846237,
+        "right_causal_margin_m": 0.24325000000000002,
+        "rows": [
+          {
+            "front_half_reaction_separation_m": 0.003500000000000003,
+            "front_m": 0.22675,
+            "front_rate_separation_m": 0.0030000000000000027,
+            "near_front_heat_W_per_m2": 35284081857.93964,
+            "peak_progress": 0.44872959062524137,
+            "pressure_max_Pa": 11418085.22846237,
+            "rate_peak_m": 0.22375,
+            "rate_peak_per_s": 152450.3699442731,
+            "upstream_sound_mps": 344.0907242022909,
+            "upstream_u_mps": 0.0001615785081099675
+          },
+          {
+            "front_half_reaction_separation_m": 0.0030000000000000027,
+            "front_m": 0.22525,
+            "front_rate_separation_m": 0.0030000000000000027,
+            "near_front_heat_W_per_m2": 21056825882.53673,
+            "peak_progress": 0.5146098612826518,
+            "pressure_max_Pa": 8154894.069352382,
+            "rate_peak_m": 0.22225,
+            "rate_peak_per_s": 138163.70878416736,
+            "upstream_sound_mps": 344.0954374023816,
+            "upstream_u_mps": 0.004825831424837653
+          },
+          {
+            "front_half_reaction_separation_m": 0.005500000000000005,
+            "front_m": 0.22325,
+            "front_rate_separation_m": 0.0050000000000000044,
+            "near_front_heat_W_per_m2": 7786662976.611688,
+            "peak_progress": 0.4580526290618092,
+            "pressure_max_Pa": 4789690.337228798,
+            "rate_peak_m": 0.21825,
+            "rate_peak_per_s": 103067.42113115905,
+            "upstream_sound_mps": 434.19024682897924,
+            "upstream_u_mps": 0.0090282169764189
+          }
+        ],
+        "time_s": 1.6e-05,
+        "top_causal_margin_m": 0.09399999999999997,
+        "total_heat_W_per_m_depth": 541850108.4007864
+      },
+      {
+        "budget_scaled_residual": 1.1121976875510497e-16,
+        "converted_J_per_m_depth": 6817.966394763242,
+        "layer_heat_W_per_m_depth": 521625032.3673976,
+        "left_causal_margin_m": 0.09975000000000002,
+        "max_rate_per_s": 158605.17037284217,
+        "pressure_max_Pa": 11063337.025343658,
+        "right_causal_margin_m": 0.21625000000000005,
+        "rows": [
+          {
+            "front_half_reaction_separation_m": 0.0030000000000000027,
+            "front_m": 0.23375,
+            "front_rate_separation_m": 0.0025000000000000022,
+            "near_front_heat_W_per_m2": 37021468623.20739,
+            "peak_progress": 0.46505593193304084,
+            "pressure_max_Pa": 11063337.025343658,
+            "rate_peak_m": 0.23125,
+            "rate_peak_per_s": 158605.17037284217,
+            "upstream_sound_mps": 344.0909950602528,
+            "upstream_u_mps": 0.0014881702495900526
+          },
+          {
+            "front_half_reaction_separation_m": 0.003500000000000003,
+            "front_m": 0.23225,
+            "front_rate_separation_m": 0.003500000000000003,
+            "near_front_heat_W_per_m2": 24339584025.225758,
+            "peak_progress": 0.5260179265460102,
+            "pressure_max_Pa": 8667415.042876706,
+            "rate_peak_m": 0.22875,
+            "rate_peak_per_s": 137955.7314307355,
+            "upstream_sound_mps": 344.1422112052368,
+            "upstream_u_mps": 0.00048825623103400216
+          },
+          {
+            "front_half_reaction_separation_m": 0.006500000000000006,
+            "front_m": 0.22975,
+            "front_rate_separation_m": 0.006500000000000006,
+            "near_front_heat_W_per_m2": 9810364886.50001,
+            "peak_progress": 0.5479117345343422,
+            "pressure_max_Pa": 5035391.555155447,
+            "rate_peak_m": 0.22325,
+            "rate_peak_per_s": 107886.71635632246,
+            "upstream_sound_mps": 440.7855270287133,
+            "upstream_u_mps": 0.006081922823452546
+          }
+        ],
+        "time_s": 1.9999999999999998e-05,
+        "top_causal_margin_m": 0.07999999999999997,
+        "total_heat_W_per_m_depth": 641178236.432916
+      },
+      {
+        "budget_scaled_residual": 1.8859004267169976e-16,
+        "converted_J_per_m_depth": 9523.453054827321,
+        "layer_heat_W_per_m_depth": 547433977.8092954,
+        "left_causal_margin_m": 0.08625000000000001,
+        "max_rate_per_s": 159099.6095753372,
+        "pressure_max_Pa": 10166164.742448106,
+        "right_causal_margin_m": 0.18875000000000008,
+        "rows": [
+          {
+            "front_half_reaction_separation_m": 0.002999999999999975,
+            "front_m": 0.24125,
+            "front_rate_separation_m": 0.0024999999999999745,
+            "near_front_heat_W_per_m2": 31301391496.97723,
+            "peak_progress": 0.45205713511298545,
+            "pressure_max_Pa": 10166164.742448106,
+            "rate_peak_m": 0.23875000000000002,
+            "rate_peak_per_s": 159099.6095753372,
+            "upstream_sound_mps": 344.09083460905,
+            "upstream_u_mps": 0.00024010039899849606
+          },
+          {
+            "front_half_reaction_separation_m": 0.003500000000000003,
+            "front_m": 0.23925000000000002,
+            "front_rate_separation_m": 0.003500000000000003,
+            "near_front_heat_W_per_m2": 28423008476.39677,
+            "peak_progress": 0.5571013610063849,
+            "pressure_max_Pa": 9070091.633168012,
+            "rate_peak_m": 0.23575000000000002,
+            "rate_peak_per_s": 139312.46411653064,
+            "upstream_sound_mps": 344.3678082503246,
+            "upstream_u_mps": 0.0010613165754634944
+          },
+          {
+            "front_half_reaction_separation_m": 0.007500000000000007,
+            "front_m": 0.23625000000000002,
+            "front_rate_separation_m": 0.007500000000000007,
+            "near_front_heat_W_per_m2": 13480540985.957067,
+            "peak_progress": 0.5765231311639938,
+            "pressure_max_Pa": 5647446.597561263,
+            "rate_peak_m": 0.22875,
+            "rate_peak_per_s": 107665.06526906544,
+            "upstream_sound_mps": 447.7805897257094,
+            "upstream_u_mps": 0.01744429443883813
+          }
+        ],
+        "time_s": 2.4e-05,
+        "top_causal_margin_m": 0.06599999999999996,
+        "total_heat_W_per_m_depth": 706756903.9489877
+      },
+      {
+        "budget_scaled_residual": 2.0239637822617102e-16,
+        "converted_J_per_m_depth": 12448.46408632623,
+        "layer_heat_W_per_m_depth": 540863231.9322023,
+        "left_causal_margin_m": 0.07375000000000001,
+        "max_rate_per_s": 151976.4168699221,
+        "pressure_max_Pa": 11312402.995515732,
+        "right_causal_margin_m": 0.1617500000000001,
+        "rows": [
+          {
+            "front_half_reaction_separation_m": 0.0030000000000000027,
+            "front_m": 0.24825,
+            "front_rate_separation_m": 0.0030000000000000027,
+            "near_front_heat_W_per_m2": 25404872471.33993,
+            "peak_progress": 0.5656268284359075,
+            "pressure_max_Pa": 9079113.594931403,
+            "rate_peak_m": 0.24525,
+            "rate_peak_per_s": 150075.5065146563,
+            "upstream_sound_mps": 344.09089645795007,
+            "upstream_u_mps": 0.00020352449509711496
+          },
+          {
+            "front_half_reaction_separation_m": 0.003500000000000003,
+            "front_m": 0.24675,
+            "front_rate_separation_m": 0.003500000000000003,
+            "near_front_heat_W_per_m2": 27298127079.47533,
+            "peak_progress": 0.5600450965409104,
+            "pressure_max_Pa": 8779580.851481965,
+            "rate_peak_m": 0.24325,
+            "rate_peak_per_s": 141750.13920100674,
+            "upstream_sound_mps": 344.61924116743904,
+            "upstream_u_mps": 0.00014219861234821023
+          },
+          {
+            "front_half_reaction_separation_m": 0.00849999999999998,
+            "front_m": 0.24375,
+            "front_rate_separation_m": 0.00849999999999998,
+            "near_front_heat_W_per_m2": 21633093624.543335,
+            "peak_progress": 0.5301951971282123,
+            "pressure_max_Pa": 6999990.222169976,
+            "rate_peak_m": 0.23525000000000001,
+            "rate_peak_per_s": 106758.08581782145,
+            "upstream_sound_mps": 455.445537581768,
+            "upstream_u_mps": 0.0015698552799365496
+          }
+        ],
+        "time_s": 2.8e-05,
+        "top_causal_margin_m": 0.05199999999999996,
+        "total_heat_W_per_m_depth": 754202159.7998681
+      },
+      {
+        "budget_scaled_residual": 3.35657359929541e-16,
+        "converted_J_per_m_depth": 15551.028036852114,
+        "layer_heat_W_per_m_depth": 495990390.51185185,
+        "left_causal_margin_m": 0.06125000000000003,
+        "max_rate_per_s": 150138.8278001409,
+        "pressure_max_Pa": 11824897.060681429,
+        "right_causal_margin_m": 0.13525,
+        "rows": [
+          {
+            "front_half_reaction_separation_m": 0.0030000000000000027,
+            "front_m": 0.25475000000000003,
+            "front_rate_separation_m": 0.0030000000000000027,
+            "near_front_heat_W_per_m2": 21310384927.66942,
+            "peak_progress": 0.5182057908384908,
+            "pressure_max_Pa": 8085150.358783204,
+            "rate_peak_m": 0.25175000000000003,
+            "rate_peak_per_s": 144294.25952867375,
+            "upstream_sound_mps": 344.0914422227621,
+            "upstream_u_mps": 0.0004072760646050981
+          },
+          {
+            "front_half_reaction_separation_m": 0.0030000000000000027,
+            "front_m": 0.25325000000000003,
+            "front_rate_separation_m": 0.0030000000000000027,
+            "near_front_heat_W_per_m2": 22535447744.308865,
+            "peak_progress": 0.5257120222840687,
+            "pressure_max_Pa": 7954242.511660421,
+            "rate_peak_m": 0.25025000000000003,
+            "rate_peak_per_s": 139724.55302877992,
+            "upstream_sound_mps": 344.7875032687691,
+            "upstream_u_mps": 0.002011341318236892
+          },
+          {
+            "front_half_reaction_separation_m": 0.008000000000000035,
+            "front_m": 0.25125000000000003,
+            "front_rate_separation_m": 0.008000000000000035,
+            "near_front_heat_W_per_m2": 33824312966.99218,
+            "peak_progress": 0.5546045152434569,
+            "pressure_max_Pa": 7292431.549219899,
+            "rate_peak_m": 0.24325,
+            "rate_peak_per_s": 108466.10031800835,
+            "upstream_sound_mps": 464.1448577936769,
+            "upstream_u_mps": 0.004884369487305315
+          }
+        ],
+        "time_s": 3.2e-05,
+        "top_causal_margin_m": 0.03799999999999998,
+        "total_heat_W_per_m_depth": 796837350.9863393
+      },
+      {
+        "budget_scaled_residual": 4.478771339955368e-16,
+        "converted_J_per_m_depth": 18824.989511872267,
+        "layer_heat_W_per_m_depth": 425314862.4341034,
+        "left_causal_margin_m": 0.04924999999999999,
+        "max_rate_per_s": 153364.95762374424,
+        "pressure_max_Pa": 12235220.797394302,
+        "right_causal_margin_m": 0.10925000000000007,
+        "rows": [
+          {
+            "front_half_reaction_separation_m": 0.003500000000000003,
+            "front_m": 0.26075,
+            "front_rate_separation_m": 0.0030000000000000027,
+            "near_front_heat_W_per_m2": 18293364757.375862,
+            "peak_progress": 0.4759883313742464,
+            "pressure_max_Pa": 7237958.480251551,
+            "rate_peak_m": 0.25775,
+            "rate_peak_per_s": 134757.52401231142,
+            "upstream_sound_mps": 344.09785945517,
+            "upstream_u_mps": 0.0019368451253657206
+          },
+          {
+            "front_half_reaction_separation_m": 0.003500000000000003,
+            "front_m": 0.25975,
+            "front_rate_separation_m": 0.003500000000000003,
+            "near_front_heat_W_per_m2": 18787925790.066162,
+            "peak_progress": 0.5644696094817647,
+            "pressure_max_Pa": 7171101.90527361,
+            "rate_peak_m": 0.25625,
+            "rate_peak_per_s": 133921.40464036207,
+            "upstream_sound_mps": 344.93003392036866,
+            "upstream_u_mps": 0.0011050255998725088
+          },
+          {
+            "front_half_reaction_separation_m": 0.0010000000000000009,
+            "front_m": 0.25925,
+            "front_rate_separation_m": 0.006999999999999951,
+            "near_front_heat_W_per_m2": 29747751880.135323,
+            "peak_progress": 0.539782798321703,
+            "pressure_max_Pa": 5493671.68583102,
+            "rate_peak_m": 0.25225000000000003,
+            "rate_peak_per_s": 116845.94806359468,
+            "upstream_sound_mps": 474.3106703572445,
+            "upstream_u_mps": 0.011701360974248027
+          }
+        ],
+        "time_s": 3.6e-05,
+        "top_causal_margin_m": 0.023999999999999966,
+        "total_heat_W_per_m_depth": 839302855.0793344
+      },
+      {
+        "budget_scaled_residual": 4.458732094586441e-16,
+        "converted_J_per_m_depth": 22105.47674920874,
+        "layer_heat_W_per_m_depth": 373741057.24448216,
+        "left_causal_margin_m": 0.035750000000000004,
+        "max_rate_per_s": 147299.81939112456,
+        "pressure_max_Pa": 12030069.691902805,
+        "right_causal_margin_m": 0.08225000000000007,
+        "rows": [
+          {
+            "front_half_reaction_separation_m": 0.0040000000000000036,
+            "front_m": 0.26675,
+            "front_rate_separation_m": 0.0040000000000000036,
+            "near_front_heat_W_per_m2": 15870475510.466911,
+            "peak_progress": 0.6116654160338973,
+            "pressure_max_Pa": 6531819.294384825,
+            "rate_peak_m": 0.26275,
+            "rate_peak_per_s": 127840.1993731134,
+            "upstream_sound_mps": 344.1439591812872,
+            "upstream_u_mps": 0.000926417400120162
+          },
+          {
+            "front_half_reaction_separation_m": 0.0040000000000000036,
+            "front_m": 0.26575,
+            "front_rate_separation_m": 0.0040000000000000036,
+            "near_front_heat_W_per_m2": 16645355230.841019,
+            "peak_progress": 0.6181044854329032,
+            "pressure_max_Pa": 6471183.1513695335,
+            "rate_peak_m": 0.26175,
+            "rate_peak_per_s": 132022.82834744253,
+            "upstream_sound_mps": 345.07489968772154,
+            "upstream_u_mps": 0.0011535802401958046
+          },
+          {
+            "front_half_reaction_separation_m": 0.0015000000000000013,
+            "front_m": 0.26775,
+            "front_rate_separation_m": 0.009000000000000008,
+            "near_front_heat_W_per_m2": 23521743594.440777,
+            "peak_progress": 0.558134537811371,
+            "pressure_max_Pa": 4115160.62251853,
+            "rate_peak_m": 0.25875,
+            "rate_peak_per_s": 110392.05473764286,
+            "upstream_sound_mps": 486.5629968490302,
+            "upstream_u_mps": 0.0021023473301738267
+          }
+        ],
+        "time_s": 3.9999999999999996e-05,
+        "top_causal_margin_m": 0.009999999999999981,
+        "total_heat_W_per_m_depth": 758594519.397693
+      },
+      {
+        "budget_scaled_residual": 4.438692849217513e-16,
+        "converted_J_per_m_depth": 22105.476749208745,
+        "layer_heat_W_per_m_depth": 373741057.24448204,
+        "left_causal_margin_m": 0.035749999999999976,
+        "max_rate_per_s": 147299.8193911242,
+        "pressure_max_Pa": 12030069.691902798,
+        "right_causal_margin_m": 0.08225000000000005,
+        "rows": [
+          {
+            "front_half_reaction_separation_m": 0.0040000000000000036,
+            "front_m": 0.26675,
+            "front_rate_separation_m": 0.0040000000000000036,
+            "near_front_heat_W_per_m2": 15870475510.466908,
+            "peak_progress": 0.6116654160338996,
+            "pressure_max_Pa": 6531819.294384825,
+            "rate_peak_m": 0.26275,
+            "rate_peak_per_s": 127840.1993731133,
+            "upstream_sound_mps": 344.1439591812872,
+            "upstream_u_mps": 0.0009264174001202223
+          },
+          {
+            "front_half_reaction_separation_m": 0.0040000000000000036,
+            "front_m": 0.26575,
+            "front_rate_separation_m": 0.0040000000000000036,
+            "near_front_heat_W_per_m2": 16645355230.841017,
+            "peak_progress": 0.6181044854329059,
+            "pressure_max_Pa": 6471183.1513695335,
+            "rate_peak_m": 0.26175,
+            "rate_peak_per_s": 132022.8283474423,
+            "upstream_sound_mps": 345.07489968772154,
+            "upstream_u_mps": 0.0011535802401958812
+          },
+          {
+            "front_half_reaction_separation_m": 0.0015000000000000013,
+            "front_m": 0.26775,
+            "front_rate_separation_m": 0.009000000000000008,
+            "near_front_heat_W_per_m2": 23521743594.440765,
+            "peak_progress": 0.5581345378113729,
+            "pressure_max_Pa": 4115160.6225185283,
+            "rate_peak_m": 0.25875,
+            "rate_peak_per_s": 110392.05473764283,
+            "upstream_sound_mps": 486.5629968490302,
+            "upstream_u_mps": 0.002102347330173996
+          }
+        ],
+        "time_s": 4e-05,
+        "top_causal_margin_m": 0.009999999999999953,
+        "total_heat_W_per_m_depth": 758594519.3976927
+      }
+    ],
+    "initial_conserved_per_m_depth": [
+      0.09840610591948268,
+      0.0,
+      0.0,
+      326954.20357757504,
+      0.06757251735055618
+    ],
+    "initialization": {
+      "dx_m": 0.0005,
+      "dy_m": 0.0004999999999999999,
+      "height_m": 0.16499999999999998,
+      "initial_conserved_per_m_depth": [
+        0.09840610591948268,
+        0.0,
+        0.0,
+        326954.20357757504,
+        0.06757251735055618
+      ],
+      "initial_excess_over_unignited_layer": [
+        0.000568757575773654,
+        0.0,
+        0.0,
+        3756.9355496913777,
+        0.0023476184547501777
+      ],
+      "initial_layer_volume_m2": 0.00825,
+      "initial_velocity_mps": [
+        0.0,
+        0.0
+      ],
+      "interface_aligned": false,
+      "interface_mixed_row_count": 1,
+      "layer_height_m": 0.015,
+      "patch_pressure_Pa": 21903062.305444896,
+      "patch_temperature_K": 4885.151457540693,
+      "patch_width_m": 0.01,
+      "product_temperature_K": 1500.0,
+      "products_behind_width_m": 0.02,
+      "start": "blast"
+    },
+    "interpretation": "bounded response only: combine spatial pressure/reaction association, relief, causality and mesh evidence",
+    "invalid_state_count": 0,
+    "kind": "layer",
+    "max_budget_scaled_residual": 4.478771339955368e-16,
+    "observed_characteristic_max_mps": [
+      3122.3299161907516,
+      3122.314699095259
+    ],
+    "restart": null,
+    "status": "completed",
+    "steps": 2771,
+    "time_s": 4e-05,
+    "wall_seconds": 1082.5972928580013
+  },
+  "postprocessed": {
+    "method": "Last p>2p1 pressure front; global row and forward observation region (initial shock - 30 mm to current front) are separate. Inclusive 2 mm near-front window. Fit removes duplicate endpoints. Not a detonation classifier.",
+    "history": [
+      {
+        "time_s": 0.0,
+        "rows": [
+          {
+            "global_peak_gap_m": 0.1995,
+            "global_rate_max_per_s": 0.005199186092394659,
+            "forward_peak_gap_m": 0.0295,
+            "forward_rate_max_per_s": 0.0,
+            "near_2mm_rate_max_per_s": 0.0
+          },
+          {
+            "global_peak_gap_m": 0.1995,
+            "global_rate_max_per_s": 0.005199186092394659,
+            "forward_peak_gap_m": 0.0295,
+            "forward_rate_max_per_s": 0.0,
+            "near_2mm_rate_max_per_s": 0.0
+          },
+          {
+            "global_peak_gap_m": 0.1995,
+            "global_rate_max_per_s": 0.005199186092394659,
+            "forward_peak_gap_m": 0.0295,
+            "forward_rate_max_per_s": 0.0,
+            "near_2mm_rate_max_per_s": 0.0
+          }
+        ]
+      },
+      {
+        "time_s": 4e-06,
+        "rows": [
+          {
+            "global_peak_gap_m": 0.0020000000000000018,
+            "global_rate_max_per_s": 118346.56962161376,
+            "forward_peak_gap_m": 0.0020000000000000018,
+            "forward_rate_max_per_s": 118346.56962161376,
+            "near_2mm_rate_max_per_s": 118346.56962161376
+          },
+          {
+            "global_peak_gap_m": 0.0020000000000000018,
+            "global_rate_max_per_s": 118312.33846220339,
+            "forward_peak_gap_m": 0.0020000000000000018,
+            "forward_rate_max_per_s": 118312.33846220339,
+            "near_2mm_rate_max_per_s": 118312.33846220339
+          },
+          {
+            "global_peak_gap_m": 0.0020000000000000018,
+            "global_rate_max_per_s": 81865.82228392667,
+            "forward_peak_gap_m": 0.0020000000000000018,
+            "forward_rate_max_per_s": 81865.82228392667,
+            "near_2mm_rate_max_per_s": 81865.82228392667
+          }
+        ]
+      },
+      {
+        "time_s": 8e-06,
+        "rows": [
+          {
+            "global_peak_gap_m": 0.0025000000000000022,
+            "global_rate_max_per_s": 135293.37690066895,
+            "forward_peak_gap_m": 0.0025000000000000022,
+            "forward_rate_max_per_s": 135293.37690066895,
+            "near_2mm_rate_max_per_s": 119141.85698332818
+          },
+          {
+            "global_peak_gap_m": 0.0025000000000000022,
+            "global_rate_max_per_s": 131385.11427754827,
+            "forward_peak_gap_m": 0.0025000000000000022,
+            "forward_rate_max_per_s": 131385.11427754827,
+            "near_2mm_rate_max_per_s": 106387.95192297306
+          },
+          {
+            "global_peak_gap_m": 0.0030000000000000027,
+            "global_rate_max_per_s": 94605.34322293123,
+            "forward_peak_gap_m": 0.0030000000000000027,
+            "forward_rate_max_per_s": 94605.34322293123,
+            "near_2mm_rate_max_per_s": 22022.781662836504
+          }
+        ]
+      },
+      {
+        "time_s": 1.2e-05,
+        "rows": [
+          {
+            "global_peak_gap_m": 0.0025000000000000022,
+            "global_rate_max_per_s": 150187.2735276199,
+            "forward_peak_gap_m": 0.0025000000000000022,
+            "forward_rate_max_per_s": 150187.2735276199,
+            "near_2mm_rate_max_per_s": 115099.81466790124
+          },
+          {
+            "global_peak_gap_m": 0.0030000000000000027,
+            "global_rate_max_per_s": 134755.9849587742,
+            "forward_peak_gap_m": 0.0030000000000000027,
+            "forward_rate_max_per_s": 134755.9849587742,
+            "near_2mm_rate_max_per_s": 50953.680343720516
+          },
+          {
+            "global_peak_gap_m": 0.0040000000000000036,
+            "global_rate_max_per_s": 101068.98490675961,
+            "forward_peak_gap_m": 0.0040000000000000036,
+            "forward_rate_max_per_s": 101068.98490675961,
+            "near_2mm_rate_max_per_s": 5883.377836806311
+          }
+        ]
+      },
+      {
+        "time_s": 1.6e-05,
+        "rows": [
+          {
+            "global_peak_gap_m": 0.0030000000000000027,
+            "global_rate_max_per_s": 152450.3699442731,
+            "forward_peak_gap_m": 0.0030000000000000027,
+            "forward_rate_max_per_s": 152450.3699442731,
+            "near_2mm_rate_max_per_s": 92394.5433078718
+          },
+          {
+            "global_peak_gap_m": 0.0030000000000000027,
+            "global_rate_max_per_s": 138163.70878416736,
+            "forward_peak_gap_m": 0.0030000000000000027,
+            "forward_rate_max_per_s": 138163.70878416736,
+            "near_2mm_rate_max_per_s": 71162.91189411834
+          },
+          {
+            "global_peak_gap_m": 0.0050000000000000044,
+            "global_rate_max_per_s": 103067.42113115905,
+            "forward_peak_gap_m": 0.0050000000000000044,
+            "forward_rate_max_per_s": 103067.42113115905,
+            "near_2mm_rate_max_per_s": 14179.580217970868
+          }
+        ]
+      },
+      {
+        "time_s": 1.9999999999999998e-05,
+        "rows": [
+          {
+            "global_peak_gap_m": 0.0025000000000000022,
+            "global_rate_max_per_s": 158605.17037284217,
+            "forward_peak_gap_m": 0.0025000000000000022,
+            "forward_rate_max_per_s": 158605.17037284217,
+            "near_2mm_rate_max_per_s": 135512.53879121068
+          },
+          {
+            "global_peak_gap_m": 0.003500000000000003,
+            "global_rate_max_per_s": 137955.7314307355,
+            "forward_peak_gap_m": 0.003500000000000003,
+            "forward_rate_max_per_s": 137955.7314307355,
+            "near_2mm_rate_max_per_s": 49864.73493671414
+          },
+          {
+            "global_peak_gap_m": 0.006500000000000006,
+            "global_rate_max_per_s": 107886.71635632246,
+            "forward_peak_gap_m": 0.006500000000000006,
+            "forward_rate_max_per_s": 107886.71635632246,
+            "near_2mm_rate_max_per_s": 30678.0361391319
+          }
+        ]
+      },
+      {
+        "time_s": 2.4e-05,
+        "rows": [
+          {
+            "global_peak_gap_m": 0.0024999999999999745,
+            "global_rate_max_per_s": 159099.6095753372,
+            "forward_peak_gap_m": 0.0024999999999999745,
+            "forward_rate_max_per_s": 159099.6095753372,
+            "near_2mm_rate_max_per_s": 124448.11818006448
+          },
+          {
+            "global_peak_gap_m": 0.003500000000000003,
+            "global_rate_max_per_s": 139312.46411653064,
+            "forward_peak_gap_m": 0.003500000000000003,
+            "forward_rate_max_per_s": 139312.46411653064,
+            "near_2mm_rate_max_per_s": 75453.8225178484
+          },
+          {
+            "global_peak_gap_m": 0.007500000000000007,
+            "global_rate_max_per_s": 107665.06526906544,
+            "forward_peak_gap_m": 0.007500000000000007,
+            "forward_rate_max_per_s": 107665.06526906544,
+            "near_2mm_rate_max_per_s": 49237.23909673934
+          }
+        ]
+      },
+      {
+        "time_s": 2.8e-05,
+        "rows": [
+          {
+            "global_peak_gap_m": 0.0030000000000000027,
+            "global_rate_max_per_s": 150075.5065146563,
+            "forward_peak_gap_m": 0.0030000000000000027,
+            "forward_rate_max_per_s": 150075.5065146563,
+            "near_2mm_rate_max_per_s": 102478.55779369113
+          },
+          {
+            "global_peak_gap_m": 0.003500000000000003,
+            "global_rate_max_per_s": 141750.13920100674,
+            "forward_peak_gap_m": 0.003500000000000003,
+            "forward_rate_max_per_s": 141750.13920100674,
+            "near_2mm_rate_max_per_s": 65893.14681719932
+          },
+          {
+            "global_peak_gap_m": 0.00849999999999998,
+            "global_rate_max_per_s": 106758.08581782145,
+            "forward_peak_gap_m": 0.00849999999999998,
+            "forward_rate_max_per_s": 106758.08581782145,
+            "near_2mm_rate_max_per_s": 63273.04564116136
+          }
+        ]
+      },
+      {
+        "time_s": 3.2e-05,
+        "rows": [
+          {
+            "global_peak_gap_m": 0.0030000000000000027,
+            "global_rate_max_per_s": 144294.25952867375,
+            "forward_peak_gap_m": 0.0030000000000000027,
+            "forward_rate_max_per_s": 144294.25952867375,
+            "near_2mm_rate_max_per_s": 75672.93082651765
+          },
+          {
+            "global_peak_gap_m": 0.0030000000000000027,
+            "global_rate_max_per_s": 139724.55302877992,
+            "forward_peak_gap_m": 0.0030000000000000027,
+            "forward_rate_max_per_s": 139724.55302877992,
+            "near_2mm_rate_max_per_s": 83386.46435653801
+          },
+          {
+            "global_peak_gap_m": 0.008000000000000035,
+            "global_rate_max_per_s": 108466.10031800835,
+            "forward_peak_gap_m": 0.008000000000000035,
+            "forward_rate_max_per_s": 108466.10031800835,
+            "near_2mm_rate_max_per_s": 93874.14435359252
+          }
+        ]
+      },
+      {
+        "time_s": 3.6e-05,
+        "rows": [
+          {
+            "global_peak_gap_m": 0.0030000000000000027,
+            "global_rate_max_per_s": 134757.52401231142,
+            "forward_peak_gap_m": 0.0030000000000000027,
+            "forward_rate_max_per_s": 134757.52401231142,
+            "near_2mm_rate_max_per_s": 56441.66837532313
+          },
+          {
+            "global_peak_gap_m": 0.003500000000000003,
+            "global_rate_max_per_s": 133921.40464036207,
+            "forward_peak_gap_m": 0.003500000000000003,
+            "forward_rate_max_per_s": 133921.40464036207,
+            "near_2mm_rate_max_per_s": 42118.94130246544
+          },
+          {
+            "global_peak_gap_m": 0.006999999999999951,
+            "global_rate_max_per_s": 116845.94806359468,
+            "forward_peak_gap_m": 0.006999999999999951,
+            "forward_rate_max_per_s": 116845.94806359468,
+            "near_2mm_rate_max_per_s": 109353.20054687235
+          }
+        ]
+      },
+      {
+        "time_s": 3.9999999999999996e-05,
+        "rows": [
+          {
+            "global_peak_gap_m": 0.0040000000000000036,
+            "global_rate_max_per_s": 127840.1993731134,
+            "forward_peak_gap_m": 0.0040000000000000036,
+            "forward_rate_max_per_s": 127840.1993731134,
+            "near_2mm_rate_max_per_s": 21974.87611593893
+          },
+          {
+            "global_peak_gap_m": 0.0040000000000000036,
+            "global_rate_max_per_s": 132022.82834744253,
+            "forward_peak_gap_m": 0.0040000000000000036,
+            "forward_rate_max_per_s": 132022.82834744253,
+            "near_2mm_rate_max_per_s": 19506.929999149714
+          },
+          {
+            "global_peak_gap_m": 0.009000000000000008,
+            "global_rate_max_per_s": 110392.05473764286,
+            "forward_peak_gap_m": 0.009000000000000008,
+            "forward_rate_max_per_s": 110392.05473764286,
+            "near_2mm_rate_max_per_s": 79019.32261981069
+          }
+        ]
+      },
+      {
+        "time_s": 4e-05,
+        "rows": [
+          {
+            "global_peak_gap_m": 0.0040000000000000036,
+            "global_rate_max_per_s": 127840.1993731133,
+            "forward_peak_gap_m": 0.0040000000000000036,
+            "forward_rate_max_per_s": 127840.1993731133,
+            "near_2mm_rate_max_per_s": 21974.876115939172
+          },
+          {
+            "global_peak_gap_m": 0.0040000000000000036,
+            "global_rate_max_per_s": 132022.8283474423,
+            "forward_peak_gap_m": 0.0040000000000000036,
+            "forward_rate_max_per_s": 132022.8283474423,
+            "near_2mm_rate_max_per_s": 19506.92999914995
+          },
+          {
+            "global_peak_gap_m": 0.009000000000000008,
+            "global_rate_max_per_s": 110392.05473764283,
+            "forward_peak_gap_m": 0.009000000000000008,
+            "forward_rate_max_per_s": 110392.05473764283,
+            "near_2mm_rate_max_per_s": 79019.32261981057
+          }
+        ]
+      }
+    ],
+    "speed_fit_24_40_us_mps": [
+      1587.4999999999923,
+      1649.9999999999957,
+      1962.499999999994
+    ],
+    "final_top_four_rows_max_absolute_difference_by_primitive": [
+      0.0,
+      1.8571562928079085e-209,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "initialization_comparison": {
+      "formed": [
+        0.007862051571497858,
+        19.427129433171167,
+        0.0,
+        69310.06257192805,
+        0.01697779832089659
+      ],
+      "blast": [
+        0.000568757575773654,
+        0.0,
+        0.0,
+        3756.9355496913777,
+        0.0023476184547501777
+      ],
+      "components": [
+        "mass",
+        "axial_momentum",
+        "transverse_momentum",
+        "total_energy",
+        "reacted_mass"
+      ],
+      "units": "per metre out-of-plane depth; different remote domain baselines subtracted"
+    },
+    "conversion_caveat": "Blast has a left-going as well as right-going disturbance; total domain conversion is not a matched forward-wave yield."
+  }
+}

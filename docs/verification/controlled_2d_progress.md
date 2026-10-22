@@ -301,3 +301,54 @@ these choices before the conditional full run.
   remote-domain margins. Compare shock/reaction fields, displacement relative to
   initial front, budgets and unequal initialization inventories. Do not rerun the
   engine or change chemistry from this result alone.
+
+## C4 — specified blast versus formed start at 15 mm: completed, long-term outcome unresolved
+
+- The 0.5 mm blast control completed 40 µs / 2771 steps in 1082.6 s under
+  concurrent test load. No invalid states; maximum native-budget residual
+  4.48e-16. Axial/transverse characteristic maxima 3122.33/3122.31 m/s remain
+  below 5000/3500 m/s. Final observation margins: 35.75 mm left/reaction,
+  82.25 mm right and 10 mm top. Top pressure/density/progress/normal velocity
+  remain unchanged; axial velocity differs by only 1.9e-209 m/s.
+- Strong reaction remains behind the advancing right-going front, but the blast
+  response is weaker than the formed controls: at 40 µs wall/middle pressure
+  maxima are 6.53/6.47 MPa; rate peaks are 1.28e5/1.32e5 s^-1, 4 mm behind
+  their pressure fronts. Rates within 2 mm are 2.20e4/1.95e4 s^-1. Late
+  wall/middle pressure-front fits are 1587.5/1650 m/s (upper row 1962.5 m/s).
+  Wall pressure and near-front reaction weaken late in the window. Do not label
+  this either a settled detonation or completed extinction from 40 µs alone.
+- The intended clean contrast, "formed persists but blast has no continuing
+  shock-associated reaction", was **not established**. The blast does produce
+  continuing nearby reaction in this thick layer. This does not verify the
+  original 3.8 mm engine startup or eliminate an initiation limitation there.
+  C3 independently shows thin-layer loss even from a formed start, so changing
+  only the igniter is not a demonstrated solution to the engine problem.
+- Initial excess total energy above each unignited medium is 69,310.06 J/m
+  depth for the formed case versus 3,756.94 J/m for the blast; axial momentum
+  is 19.427 versus zero in per-depth units. The long initial formed product
+  column matters; no equal-energy or critical-ignition-energy claim is made.
+  The blast also launches a left-going disturbance. Total conversion is not a
+  directly matched measure of forward-wave yield.
+- Added saved-data `plot.py --layer-comparison ... --out NEW`: front displacement,
+  reaction separation, front-relative pressure and a 2 mm near-front rate. The
+  reaction search retains the initial shock minus 30 mm as a fixed lower edge,
+  so it excludes the departing reverse wave without moving a narrow window past
+  detached reaction. Always cross-check full fields. Zero rates are omitted on
+  the logarithmic line plot, not assigned an artificial rate.
+- A synthetic stronger reverse-wave signal tests that this selection cannot
+  silently substitute the opposite wave. Rendering is tested with solver
+  stepping disabled and unchanged source fields; mismatched chemistry is rejected.
+  Twelve controlled tests passed in 40.947 s. One final rendering check passed
+  after improving the zero-rate display. [Logs](c4_plot_tests.log).
+  An initial test command ran from the repository root and could not import
+  `plot`; rerunning from the documented `rde_sim_starter/` directory resolved
+  that invocation error without changing import behavior.
+- [Metrics/provenance](c4_blast_metrics.json), [inspected fields](c4_blast.png),
+  [direct comparison](c4_comparison.png). Ignored native data and exact checkpoint
+  are in `runs/c4_blast_150_050/`. No production chemistry/engine input changed.
+- **Decision:** finish this bounded comparison without claiming long-term
+  initiation success/failure or adding a blind refinement/long-run campaign.
+  Review the model/source/resolution gate in C5 before selecting an engine
+  change. The existing paper audit and physical-reference discrepancies remain
+  applicable; neither 15 mm startup nor these artificial kinetics are validated
+  by Mundt's operating refill-height estimate.

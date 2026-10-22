@@ -199,6 +199,33 @@ class LayerControlTests(unittest.TestCase):
             with patch.object(Solver,'step',side_effect=AssertionError('render ran CFD')):
                 plot_controlled(out,Path(tmp)/'plots')
             self.assertGreater((Path(tmp)/'plots/layer_control.png').stat().st_size,1000)
+            from plot import plot_layer_comparison
+            import hashlib
+            before=hashlib.sha256((out/'fields.npz').read_bytes()).hexdigest()
+            reverse=Path(tmp)/'reverse';reverse.mkdir()
+            for name in ('inputs.json','summary.json'):(reverse/name).write_bytes((out/name).read_bytes())
+            with np.load(out/'fields.npz') as a:arrays={key:a[key].copy() for key in a.files}
+            # Synthetic stronger left-going burning must not replace the
+            # right-going wave's peak in the declared observation region.
+            left=int(np.argmin(abs(arrays['x']-.15)))
+            arrays['primitive'][:,0,left,:]=C['p1']/(C['R']*4000.)
+            arrays['primitive'][:,3,left,:]=C['p1']
+            arrays['primitive'][:,4,left,:]=.5
+            np.savez_compressed(reverse/'fields.npz',**arrays)
+            with patch.object(Solver,'step',side_effect=AssertionError('comparison ran CFD')):
+                cases=plot_layer_comparison([out,reverse],Path(tmp)/'comparison')
+            self.assertNotEqual(np.argmax(cases[0]['rate'][-1]),np.argmax(cases[1]['rate'][-1]))
+            np.testing.assert_allclose(cases[0]['gap'],cases[1]['gap'],equal_nan=True)
+            self.assertGreater((Path(tmp)/'comparison/layer_comparison.png').stat().st_size,1000)
+            self.assertEqual(before,hashlib.sha256((out/'fields.npz').read_bytes()).hexdigest())
+            with self.assertRaises(ValueError):plot_layer_comparison([out],Path(tmp)/'bad_plot')
+            # Saved input mismatch must be rejected before creating an output.
+            altered=Path(tmp)/'altered';altered.mkdir()
+            inputs=json.loads((out/'inputs.json').read_text());inputs['calibration']['k']*=2
+            (altered/'inputs.json').write_text(json.dumps(inputs))
+            (altered/'summary.json').write_bytes((out/'summary.json').read_bytes())
+            with self.assertRaises(ValueError):plot_layer_comparison([out,altered],Path(tmp)/'bad_compare')
+            self.assertFalse((Path(tmp)/'bad_compare').exists())
             with self.assertRaises(ValueError):run_layer(C,Path(tmp)/'bad',.015,start='unknown')
 
     def test_layer_continuation_checks_legacy_roundtrip_and_preserves_history(self):

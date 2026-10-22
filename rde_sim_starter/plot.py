@@ -580,6 +580,57 @@ def plot_layer(directory,destination):
     return report
 
 
+def plot_layer_comparison(directories,destination):
+    """Compare saved wall-row fields; unequal initial charge is deliberately explicit."""
+    import numpy as np
+    if len(directories)<2:raise ValueError('at least two saved layer runs required')
+    cases=[]
+    for directory in map(Path,directories):
+        report=json.loads((directory/'summary.json').read_text());inputs=json.loads((directory/'inputs.json').read_text())
+        if report['kind']!='layer':raise ValueError('comparison requires saved layer runs')
+        c=inputs['calibration']
+        if cases and c!=cases[0]['calibration']:raise ValueError('layer comparison requires identical chemistry')
+        with np.load(directory/'fields.npz',allow_pickle=False) as a:
+            x=a['x'].copy();times=a['times'].copy();w=a['primitive'][:,:,:,0].copy()
+        if len(report['history'])!=len(times):raise ValueError('layer fields/history length mismatch')
+        T=w[:,3]/(c['R']*w[:,0]);rate=c['k']*np.maximum(0,1-w[:,4])*np.exp(-c['Ea']/(c['R']*T))
+        front=np.array([h['rows'][0]['front_m'] if h['rows'][0]['front_m'] is not None else np.nan for h in report['history']])
+        # Follow the right-going observation region. A blast also launches a
+        # left-going wave, so an unrestricted global peak can select that wave.
+        # The fixed lower edge retains the full initial formed tail and does
+        # not move forward with a detached reaction peak.
+        gaps=[]
+        for v,f in zip(rate,front):
+            region=(x>=inputs['shock_initial_m']-.03)&(x<=f)
+            peak=int(np.argmax(np.where(region,v,-1))) if region.any() else None
+            gaps.append(f-x[peak] if peak is not None and v[peak]>0 else np.nan)
+        gap=np.asarray(gaps)
+        near=np.array([np.max(v[(x>=f-.002-1e-12)&(x<=f+1e-12)]) if np.isfinite(f) else np.nan for v,f in zip(rate,front)])
+        init=inputs['initialization'];label=f"{init.get('start','formed')}, h={init['layer_height_m']*1e3:g}, Δx={init['dx_m']*1e3:g} mm"
+        cases.append(dict(label=label,calibration=c,times=times,front=front,gap=gap,rate=rate,near=near,
+                          x=x,w=w,shock=inputs['shock_initial_m']))
+    destination=Path(destination);destination.mkdir(parents=True,exist_ok=False)
+    plt=_pyplot();fig,axes=plt.subplots(2,2,figsize=(12,8),layout='constrained')
+    try:
+        for case in cases:
+            label=case['label'];times=case['times']*1e6
+            axes[0,0].plot(times,(case['front']-case['shock'])*1e3,label=label)
+            axes[0,1].plot(times,case['gap']*1e3,label=label)
+            distance=(case['x']-case['front'][-1])*1e3
+            axes[1,0].plot(distance,case['w'][-1,3]/1e6,label=label)
+            axes[1,1].plot(times,np.where(case['near']>0,case['near'],np.nan),label=label)
+        axes[0,0].set(xlabel='Time [µs]',ylabel='Wall pressure-front displacement [mm]')
+        axes[0,1].set(xlabel='Time [µs]',ylabel='Wall front − forward-region rate peak [mm]')
+        axes[1,0].set(xlabel='Distance from final wall pressure front [mm]',ylabel='Final wall pressure [MPa]',xlim=(-35,5))
+        axes[1,1].set(xlabel='Time [µs]',ylabel='Peak rate within 2 mm behind wall front [1/s]',yscale='log')
+        axes[0,0].legend(fontsize=8)
+        for ax in axes.flat:ax.grid(alpha=.25)
+        fig.suptitle('Bounded layer controls: wall-row comparison\nDifferent initial energy/momentum; pressure track alone is not a detonation criterion')
+        fig.savefig(destination/'layer_comparison.png',dpi=140)
+    finally:plt.close(fig)
+    return cases
+
+
 def plot_controlled(directory, destination):
     """C1 strip fields and comparison histories from saved data only."""
     import numpy as np
@@ -615,6 +666,7 @@ def plot_controlled(directory, destination):
 def main(argv=None):
     parser=argparse.ArgumentParser(description=__doc__)
     source=parser.add_mutually_exclusive_group(required=True)
+    source.add_argument('--layer-comparison',type=Path,nargs='+',help='two or more saved layer controls, identical chemistry')
     source.add_argument('--controlled',type=Path,help='saved controlled 2D diagnostic')
     source.add_argument('--experiments',type=Path,help='saved contact or 1D refinement suite')
     source.add_argument('--reference',type=Path,help='saved physical/surrogate reference')
@@ -630,7 +682,9 @@ def main(argv=None):
         parser.error('output exists; choose a new destination')
     if args.compare_run and not args.coupling:
         parser.error('--compare-run requires --coupling')
-    if args.controlled:
+    if args.layer_comparison:
+        plot_layer_comparison(args.layer_comparison,args.out)
+    elif args.controlled:
         plot_controlled(args.controlled,args.out)
     elif args.experiments:
         plot_experiments(args.experiments,args.out)

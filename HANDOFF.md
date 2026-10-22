@@ -57,8 +57,12 @@ its audited continuation reached 40 µs, retaining wall/middle coupling and vali
 budgets. C3 closes only the bounded qualitative contrast, not a steady-state or
 critical-height claim. The full 71-test suite passed, including the reactive baseline.
 
-**Next planned increment:** C4 is running the 0.5 mm blast comparator at 15 mm,
-against the saved formed-wave controls. Freeze chemistry and quantify source/time/grid effects, initial
+**C4 completed:** the 15 mm blast retains nearby reaction at 40 µs, but is weaker
+and slows more than the formed controls. No long-term initiation success/failure
+or startup-only engine remedy is established. Fields, inventories and direct
+comparison are in the increment log.
+
+**Next planned increment:** C5 model/source/resolution review before an engine change. Freeze chemistry and quantify source/time/grid effects, initial
 inventory and boundary causality. Stop advancement on a critical inconsistency.
 Document each increment and push it to main after verification. The old automatic
 0.25 mm engine refinement is superseded by these causal controls.
@@ -69,7 +73,7 @@ The [layer-height / reaction-length review](docs/verification/layer_diagnostic_r
 identified the central hypothesis as credible and untested at that time: at the time of that review no multirow reactive strip, formed-profile layer-height
 bracket, or matched ignition control had been run. C1 now passes; the latter
 layer comparison now confirms the bounded contrast on refinement; the
-blast/profile initiation comparison is underway. Saved-profile postprocessing gives 5.72 µs to 95% surrogate heat
+blast/profile initiation comparison is now complete over its bounded window. Saved-profile postprocessing gives 5.72 µs to 95% surrogate heat
 release versus a 4.16–4.39 µs illustrative transverse relief scale. This supports
 a targeted test, not a proven extinction criterion. The submitted diagnosis
 incorrectly asserted delayed outflow and broadly excluded outlet/contact effects.
@@ -179,6 +183,7 @@ continuation (new output path; original remains immutable):
 NUMBA_NUM_THREADS=2 ../.venv/bin/python controlled.py layer --height-mm 15 --dx-mm 0.25 --resume runs/c3_layer_150_025 --transverse-bound 3200 --out runs/new_thick_continuation
 ```
 
-C4's `--start blast` comparator is implemented/tested and its first full study
-is underway after the C3 bounded-response gate. Inspect the saved result before
-selecting any C5 model change.
+C4's `--start blast` comparator completed at 15 mm / 0.5 mm. It is a weaker
+reacting transient, not a demonstrated long-term ignition failure or success.
+Compare saved cases with `plot.py --layer-comparison RUN1 RUN2 --out NEW`.
+C5 reviews model/source/resolution readiness before changing the engine.

@@ -108,7 +108,8 @@ The [layer-diagnostic review](layer_diagnostic_review.md) checks the subsequent
 external diagnosis against saved data. Thin-layer survival and ignition adequacy
 are the leading controlled-test questions. C1 row/direction equivalence and C2
 formed-profile verification now pass. C3 confirms the bounded thin/thick contrast
-on refinement; a blast/profile initiation control is underway. Outlet isolation and negligible
+on refinement. The blast/profile comparison at 15 mm remains reacting through
+40 µs but does not establish long-term initiation success/failure. Outlet isolation and negligible
 engine contact losses have not been established by the arguments in that diagnosis.
 
 These are hypotheses, not established explanations or instructions to tune for
@@ -172,8 +173,8 @@ surrogate-structure hypotheses without isolating the 2D failure's root cause:
   initialized with a formed wave. They do not reproduce the complete engine,
   isolate all numerical mixing effects, or exclude a separate initiation problem.
 
-**Next work:** assess C4's 15 mm blast/profile comparison, now underway after
-review of the combined C3 fields, reaction, budgets and causality evidence.
+**Next work:** C5 model/source/resolution review. C4's 15 mm blast remains
+reacting but weaker at 40 µs; a startup-only engine remedy is not established.
 Keep chemistry frozen across the comparison. Do not launch an engine rerun
 merely because the isolated thick layer supports a wave. The [reviewed plan](../plans/controlled_2d_tests.md)
 contains the remaining gates. This session commits only to main; independent

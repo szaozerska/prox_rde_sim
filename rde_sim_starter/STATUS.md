@@ -1,83 +1,50 @@
-# Starter status — paper/model audit, October 22, 2026
+# Starter status — controlled 2D investigation
 
-Source accuracy, 1D propagation and the bounded Run 937 workflow are implemented.
-See [the handoff](../HANDOFF.md) and [D1 results](../docs/verification/d1_propagation.md)
-and [D3 investigation](../docs/verification/d3_investigation.md) for observed outcomes; completion of the time cap does not establish detonation.
+**RDE-001 remains OPEN:** the original 3.8 and 7.6 mm Run 937 starts do not
+show sustained rotating detonation by 189.394 µs. Software checks and isolated
+controls are not experimental validation. This session publishes only on main;
+the separate 3D checkout/branch remains independent.
 
-**OPEN: [RDE-001](../docs/verification/run937_unresolved.md).** The 3.8 and 7.6 mm
-Run 937 starts do not demonstrate sustained detonation by 189.394 microseconds.
-D3 diagnostics and the initial physical reference are implemented; broader model/refinement work
-is incomplete and the sustained-wave milestone is not met. The issue record
-specifies candidate causes and checks needed to claim a fix.
+## Current evidence
 
-| Component | Current state |
+- C1: matched 1D/multirow/rotated controls agree exactly at saved times through
+  95 µs; no transverse drift or invalid states.
+- C2: conservative formed profile passes jump/inventory checks and propagates
+  through 40 µs on three meshes; half-source-step sensitivity is small.
+- C3: 3.8 mm loses leading shock/reaction coupling on both 0.5/0.25 mm grids
+  and with the aligned interface. The 15 mm formed layer retains strong
+  wall/middle coupling at 40 µs on both grids. This is a bounded contrast,
+  not a converged critical height or indefinite-survival claim.
+- C4: 15 mm blast completes 40 µs, still reacting behind the leading shock but
+  weaker/slower than the formed cases. Long-term initiation outcome is unresolved.
+  Different initial energy/momentum and a reverse-going disturbance are recorded.
+- C3/C4 states and native budgets are valid, with checked remote-boundary
+  margins. The refined-thick speed-bound stop was corrected by audited
+  continuation, preserving the original evidence and cumulative budgets.
+- Numerical interface burning, physical reaction/EOS mismatch, equivalent
+  injection, startup and engine outlet assumptions remain open contributors.
+
+The full 71-test suite passed after continuation support; the controlled tests
+also pass after C4 comparison plotting. Current logs and later checks are in the
+[increment report](../docs/verification/controlled_2d_progress.md).
+
+## Implemented tools
+
+| Module | Purpose |
 |---|---|
-| `physics.py` | One-step EOS/chemical energy/source; global source-slope cap; roundoff-aware validity; consistent sonic/pressure-matched injector plane and open/closed area pressure. |
-| `solver.py` | HLL/MUSCL/SSP-RK2, strict significant-state rejection, unchanged conserved state at tolerated progress roundoff, actual RK-weighted budgets. Flow and source step caps. |
-| `calibrate.py` | Pure surrogate calculation; inherited calibration and chemistry parameters preserved. |
-| `run.py` | Bounded three-interval run and five-total resume, frozen inputs, snapshots, native probe/station histories, means, failure recovery, version-2 checkpoints. |
-| `test_1d.py` | Saved 95 µs propagation experiment plus compatibility test entry point; common initializer used by opt-in test. |
-| `analyze.py` | Pure reductions, conservation, checked saved-run reader and hysteretic pressure arrivals. No detonation classifier. |
-| `coupling.py` | Saved full-height chemical-conversion diagnostics, periodic pressure-peak candidates, conservative track association and explicit case-input comparison. No detonation classifier. |
-| `experiments.py` | Frozen/reactive moving contacts and fixed-chemistry 1D spatial comparisons. |
-| `reference.py` | Optional Cantera/SDToolbox CJ/ZND and independent equilibrium heat-release reference; exact CEA remains pending. |
-| `plot.py` | Saved calibration, 1D fields/fronts, engine fields, multi-height candidate tracks, conversion-height histories and case comparison. No CFD calls. |
-| `tests/` | Foundation/D0 coverage plus independent source refinement, injector-plane consistency, normal Mach, roundoff handling, event detection and read-only saved-output checks. |
+| `physics.py`, `solver.py` | Constant-gamma reactive Euler, strict state checks, source/flow caps and native RK-weighted budgets. |
+| `calibrate.py` | Pure inherited-surrogate calibration; not a physical-chemistry validation. |
+| `run.py`, `analyze.py` | Bounded engine runs, checked checkpoints, stored diagnostics and pure reductions. |
+| `coupling.py` | Multi-height pressure/reaction candidates; no automatic detonation classifier. |
+| `experiments.py`, `reference.py` | Contact/1D numerical controls and optional pinned Cantera/SDToolbox physical references. |
+| `controlled.py` | Row/direction, formed-strip and finite-layer/blast controls, conservative initialization and checked continuation. |
+| `plot.py` | Saved-data fields, histories and comparisons; no CFD execution. |
 
-The 1D default/half-source-step speeds are 2490.157/2490.179 m/s, compared with the
-fitted 2471 m/s surrogate reference. Source accuracy is supported for the tested
-states, not for arbitrary chemistry. Run 937 completed 189.394 µs without invalid
-states; its weakening pressure fronts do not establish sustained detonation.
-D3 adds the physical CJ/ZND reference and three-grid numerical comparisons.
-Contact conversion falls from 726.44 to 289.78 J/m² across 0.5 to 0.125 mm;
-1D speed remains sensitive to both mesh and fit window. No completed spatial
-convergence, 2D sustained wave, whole-engine force/torque validation, wall-loss
-closure, CAD or 3D work is claimed. The full 59-test suite passed during D3;
-no new studies or test suite were run for the documentation-only
-[paper audit](../docs/verification/mundt_model_audit.md). Production code and inputs
-are unchanged. The reviewed controlled-test plan now specifies C1–C6. C1/C2 have passed and C3 refinement is
-next; the proposed unchanged-start 0.25 mm engine case is superseded.
-
-The authorized next implementation is [C1–C6 controlled 2D testing](../docs/plans/controlled_2d_tests.md), published on main in small verified increments. The prior automatic engine refinement is superseded.
-
-## C1 controlled strip update
-
-C1 passed at 0.5 mm through 95 µs: identical saved fields/fronts in 1D, multirow,
-rotated and original-open controls; no invalid states; residual <4e-15. Default
-suite at that increment: 60 passed/one opt-in skipped. C2 has since passed.
-See [increment log](../docs/verification/controlled_2d_progress.md).
-
-## C2 formed-wave update
-
-Conservative initializer, jump/inventory/table checks and four bounded formed-wave
-runs passed. Three meshes give 20–40 µs speeds 2478.15/2472.97/2472.07 m/s with
-continued near-front reaction and isolated remote boundaries. C3 now has coarse
-evidence with refinement in progress; Run 937 remains unresolved. See the increment log for qualifications.
-
-## C3 coarse layer update
-
-The 3.8 mm formed wave loses leading shock/reaction coupling by 40 µs; 15 mm
-retains strong coupling near the wall/middle. Both cases valid and conservative,
-with remote-boundary travel bounds satisfied. 0.25 mm checks are in progress;
-C3 is open and this is not an experimental critical-height result. Default suite:
-66 passed, one opt-in skipped. See the increment log and saved field figures.
-
-The 0.25 mm thin case completed and also loses shock/reaction coupling, with
-25.75 mm wall-to-main-reaction gap at 40 µs and no invalid states. Thick
-refinement and aligned thin-interface control are still running; C3 remains open.
-
-Aligned thin-layer control also loses coupling. Refined thick run stopped at
-23.56 µs because its declared 3000 m/s transverse bound was exceeded by
-0.0206 m/s; state and budgets remain valid. Checked continuation at 3200 m/s
-is underway. Twelve targeted continuation/control tests pass. C4 software is
-ready; its full diagnostic is still gated on C3.
-
-## C3 completed bounded comparison; C4 underway
-
-This entry supersedes the running/stopped statuses above. The audited thick
-continuation completed 40 µs with strong wall/middle coupling, zero invalid
-states, budget residual <1.3e-15 and positive remote-boundary margins. Both
-meshes and the aligned thin control support the qualitative thin/thick contrast;
-no steady/converged critical height is claimed. C4's 15 mm, 0.5 mm blast control
-is underway. The full suite passed 71/71, including the opt-in reactive baseline.
-See the increment log for fields, metrics, bound correction and limitations.
+**Next gate: C5 model/source/resolution review.** No arbitrary chemistry change,
+engine-fill increase or longer engine run follows from C3/C4. Production solver,
+physics, calibration, engine driver, config and calibrated inputs are unchanged.
+See the [reviewed plan](../docs/plans/controlled_2d_tests.md),
+[handoff](../HANDOFF.md), [paper audit](../docs/verification/mundt_model_audit.md)
+and [open issue](../docs/verification/run937_unresolved.md). Historical progress
+and test counts are retained in the dated increment report, rather than competing
+with this current status.

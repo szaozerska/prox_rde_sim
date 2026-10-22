@@ -185,3 +185,16 @@ and boundary types, but deliberately different initial energy/momentum and
 remote-domain sizes. Any failed blast conclusion is limited to this grid/window;
 if it changes the C5 decision, assess whether one refinement is necessary before
 using it. No parameter sweep or unsupported engine change follows automatically.
+
+## C4 closure: weaker reacting blast, no startup-only remedy established
+
+The 15 mm blast reaches 40 µs with valid budgets/causal bounds and continuing
+reaction behind the leading shock. It is weaker and slows more than the formed
+starts; its late pressure/reaction trends do not establish eventual survival or
+extinction. Thus the proposed "formed succeeds / blast fails" discrimination is
+not obtained over this window. No engine igniter change is selected from it.
+
+Proceed to C5's **decision and feasibility review**, keeping chemistry/engine
+inputs frozen. Review the physical reaction structure and cost of resolving it
+before adopting constants. C6 stays gated. No extra height or ignition-energy
+sweep is justified by the completed comparison.

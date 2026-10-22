@@ -1,6 +1,6 @@
 # RDE simulation plan — revision 9
 
-**Status: C1/C2 passed; C3 bounded thin/thick contrast verified; C4 initiation comparison underway.**
+**Status: C1–C4 controlled diagnostics completed; C5 model/source/resolution review next; sustained rotation unresolved.**
 The [controlled-test plan](docs/plans/controlled_2d_tests.md) records three review
 passes and the C1–C6 increments. First verify multirow/direction equivalence and
 formed-profile propagation, then distinguish thin-layer survival from initiation.
@@ -51,12 +51,13 @@ Small algebraic/source tests need no engine-length run. Use short localized 1D s
 | **D2. Reusable analysis and plots** | Unrolled fields, short space–time plot/front tracks, pressure station traces/profile, and mass/energy/momentum budgets. Compute instantaneous thrust/torque diagnostics with storage where the implemented model supports them. | Full spectra/spectrogram suite, wrapped-cylinder polish, multi-engine/mode maps. |
 | **D3. Focused investigation — completed** | Run 937 physical CJ/ZND and independent equilibrium heat release; six frozen/reactive contact tests at 0.5/0.25/0.125 mm; three fixed-chemistry 1D propagation grids; reference/contact/front graphs and regression checks. | Exact NASA CEA replication, full G0 curves, new 2D runs, chemistry replacement, broad convergence and engine sweeps. |
 
-**Next increment: C4 initiation comparison.** C1 passed its 95 µs matched
+**Next increment: C5 model/source/resolution review.** C1 passed its 95 µs matched
 propagation check. C2 passed conservative initialization and 40 µs filled-strip
 propagation at three meshes plus a source-step comparison; see the
 [increment log](docs/verification/controlled_2d_progress.md). C3 confirms a bounded
 3.8/15 mm contrast on two grids, plus an aligned thin-interface control. C4 now
-compares blast/profile starts in the 15 mm layer; stable rotation remains unproved.
+completed blast/profile comparison in the 15 mm layer: the blast is weaker but
+still reacting behind its leading shock at 40 µs. Stable rotation remains unproved.
 C5 selects a supported model change; C6 returns to a bounded engine case. See
 [controlled-test plan and three reviews](docs/plans/controlled_2d_tests.md) for
 unit tests, diagnostic requirements, causal-domain checks and stopping criteria.
