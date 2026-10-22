@@ -1,6 +1,6 @@
 # Controlled 2D investigation — execution plan
 
-October 22, 2026. Companion to master-plan revision 9.
+October 22, 2026. Companion to master-plan revision 10.
 **This session commits and pushes only `main`.** The separate session owns
 `3d-modelling` in its separate checkout. The final reference to that branch in
 the overnight instruction is interpreted in light of the explicit main-only
@@ -228,3 +228,66 @@ No immediate solver rewrite, broad mechanism/height sweep, new engine startup or
 3D switch is justified by this assessment. This stop honors the instruction not
 to advance past a critical model/numerical inconsistency. It is not a claim that
 the original implementation task or sustained-wave goal has been completed.
+
+
+## C5b–e: declared quarter-length surrogate
+
+Authorized October 22 after independent-report review. This is a model
+sensitivity, not physical-chemistry calibration or a prediction of Run 937.
+Select L50=0.25 mm before observing results; multiply inherited k by four and
+keep Ea, gamma, R, q, p1 and T1 fixed. L90/L95 become about 0.785/1.044 mm;
+physical L50 is still about 6.3 times shorter. Do not modify production defaults.
+
+1. Verify homogeneous cold, warm and shock-heated reactors against independent
+   DOP853 solutions at source fractions .05 and .025 (progress error <2e-4,
+   energy invariance and approximately second-order decrease where measurable).
+   Check profile jump residuals <1e-8 and lengths by independent quadrature.
+2. Filled formed wave: 0.125/0.0625 mm, 10 us, and half source step on the coarse
+   mesh. Require valid states, budgets <1e-10, positive causal margins, late
+   speed within 2% of model CJ and source-step speed change <1%. This verifies
+   the surrogate, not the experimentally fitted CJ value. Diagnose any failure.
+3. Moving contacts, frozen/reactive at both meshes, 5 us with original 300 m/s
+   advection and 1500 K products. Quantify numerical mixing/burning; do not use
+   a contact integral as a bound on engine losses. Require valid budgets and
+   boundaries matching their homogeneous reactor evolution, zero frozen heat release and pressure preservation.
+4. Only after these checks: one formed 3.8 mm layer at each spacing, 10 us.
+   Domain length 112.5 mm, initial shock 40 mm, hot-product buffer 32.5 mm,
+   observation width 7.5 mm, snapshots every 1 us. These are one-quarter of
+   C3's remote lengths; layer height is 3.8 mm, not exactly scaled 3.75 mm.
+   Bounds 4000/3200 m/s, checked against RK states, leave 0.5 mm top margin.
+   Evaluate pressure/reaction separation, local upstream state, late front
+   slopes, heat conversion, initial mixed cells, budgets and causal margins.
+   Failure is useful evidence; do not automatically change k or extend the run.
+
+Review 1 — isolation: changing chemistry and integrator together confounds the
+cause. Keep SSP-RK2 and the conservative source-slope cap unchanged. Its new cap
+is about 3.61 ns; the old 91-million-step estimate is irrelevant to this case.
+
+Review 2 — runtime/causality: the old 450 mm domain is unnecessarily expensive
+at this spacing. Scale only the remote domain and diagnostic window to the
+10 us bound, preserve local states, and record every dimension. Bound violation
+stops interpretation. This is about 2.4 original-layer acoustic relief times;
+it cannot establish asymptotic survival. Two cells per L50 on the coarse mesh
+are a starting point, not sufficient evidence of multidimensional convergence.
+
+Review 3 — inference: C3 and scale similarity motivate the selected length but
+do not establish a critical h/L50 of 15 or a universal margin. A successful
+10 us result warrants a separately justified longer layer check before C6;
+a failed or grid-sensitive result requires diagnosis first. Inspect native
+fields alongside summary tracks. Do not import the independent report's wrong
+outlet timing or its comparison of source slope with reaction rate.
+
+Use `short_reaction.py verify --out NEW` then
+`short_reaction.py layer --verification VERIFY_DIR --out NEW` from the starter.
+The second command requires successful saved verification with matching source
+fingerprints. Large runs remain opt-in, never default unit tests. Preserve all
+old baselines and independent report edits. Publish outcomes on main only.
+
+
+C5 verification correction: the first reactive-contact gate compared fresh far
+fields with their frozen initial pressure. Nonzero 300 K Arrhenius reaction
+produces a predicted ~1.43e-6 relative pressure rise by 5 us. Keep the stopped
+verification record; compare all five far-field primitives against an independent
+homogeneous ODE, with 1e-9 scaled tolerance. A synthetic boundary perturbation
+must fail that check. Reuse matching completed CFD cases; do not rerun them or
+relax the physical-state checks. Solver and chemistry are unchanged.

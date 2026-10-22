@@ -5,7 +5,7 @@ Snapshot: **October 22, 2026**. Repository:
 
 ## Current result and plan
 
-[Revision 9](first_sim_plan.md) records the completed D3 investigation and the
+[Revision 10](first_sim_plan.md) records the completed D3 investigation and the
 [paper/model audit](docs/verification/mundt_model_audit.md). The latest instruction authorizes controlled 2D tests, three plan reviews,
 small verified increments and publication on **main only**. The independent
 session handles 3D in another checkout/branch; do not push to its branch. D3 and
@@ -196,3 +196,26 @@ Compare saved cases with `plot.py --layer-comparison RUN1 RUN2 --out NEW`.
 C5a readiness review is complete; C5b–e remain gated before an engine change.
 `model_audit.py --evidence ../docs/verification/d3_metrics.json --out NEW.json`
 reproduces the saved-reference algebra without CFD or calibration changes.
+
+
+## October 22 update: authorized quarter-length experiment
+
+C5b–d now pass for the declared L50=0.25 mm sensitivity (k times four; unchanged
+Ea/EOS/source integrator). C5e's two-mesh 3.8 mm layer pair is running through
+10 us in compact, causally buffered domains. See [experiment and evidence](docs/verification/c5_short_reaction.md).
+The previous unspecified model-choice stop is superseded; C6 remains gated.
+A reactive-contact boundary check was corrected to account for homogeneous
+background chemistry; the stopped attempt and corrected evidence are retained.
+No 3D plan or code changes belong to this session. The user confirmed the other
+branch handles 3D, including GPU decisions.
+
+```sh
+# From rde_sim_starter; each new execution requires a fresh output path.
+NUMBA_NUM_THREADS=2 ../.venv/bin/python short_reaction.py verify --out runs/NEW_VERIFY
+NUMBA_NUM_THREADS=4 ../.venv/bin/python short_reaction.py layer --verification runs/NEW_VERIFY --out runs/NEW_LAYERS
+```
+
+Current native verification: `runs/c5_short_verify_corrected`; current layer pair:
+`runs/c5_short_layers`. Inspect their saved progress/results rather than rerunning.
+The independent report and pre-existing edits in `controlled_2d_progress.md` are
+preserved and are not included in this session's commits.

@@ -1,0 +1,10 @@
+test_changed_rate_reactor_matches_independent_ode (tests.test_short_reaction.ShortReactionTests.test_changed_rate_reactor_matches_independent_ode) ... ok
+test_compact_domain_and_continuation_are_explicit (tests.test_short_reaction.ShortReactionTests.test_compact_domain_and_continuation_are_explicit) ... ok
+test_contact_far_field_accounts_for_background_reaction (tests.test_short_reaction.ShortReactionTests.test_contact_far_field_accounts_for_background_reaction) ... ok
+test_layer_gate_rejects_stale_failed_or_mismatched_verification (tests.test_short_reaction.ShortReactionTests.test_layer_gate_rejects_stale_failed_or_mismatched_verification) ... ok
+test_scaled_profile_preserves_jump_and_thermodynamics (tests.test_short_reaction.ShortReactionTests.test_scaled_profile_preserves_jump_and_thermodynamics) ... ok
+
+----------------------------------------------------------------------
+Ran 5 tests in 1.256s
+
+OK

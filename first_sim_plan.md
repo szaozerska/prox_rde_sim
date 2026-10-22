@@ -1,4 +1,4 @@
-# RDE simulation plan — revision 9
+# RDE simulation plan — revision 10
 
 **Status: C1–C4 diagnostics and C5a feasibility audit completed; C5 model-readiness gate open; C6 not launched. Sustained rotation unresolved.**
 The [controlled-test plan](docs/plans/controlled_2d_tests.md) records three review
@@ -27,6 +27,15 @@ criterion is not met. The first working physical 2D iteration remains pending.
 Paper references mean Mundt (2023), *Geometric Scaling of Cylindrical Rotating Detonation Rocket Engine Combustors*. Use printed page numbers; PDF page = printed page + 16. Fig. 1.1 is an illustrative flow/design image, not a measured 3D validation dataset.
 
 ## 0. Short-test scope and current investigation
+
+**Authorized next experiment (October 22):** C5b–e now select a declared
+0.25 mm half-reaction-length surrogate (k multiplied by four, unchanged Ea/EOS).
+Keep the existing source integrator; verify reactors, planar propagation and
+contact behavior before the 3.8 mm layer at 0.125/0.0625 mm. See the
+[predeclared protocol](docs/plans/controlled_2d_tests.md#c5b–e-declared-quarter-length-surrogate)
+and [new evidence record](docs/verification/c5_short_reaction.md).
+This supersedes the prior unspecified model-choice stop, not the engine gate.
+
 
 D0–D3 and the source audits are complete as development increments. The user
 has authorized the controlled C1–C6 investigation, small verified implementation

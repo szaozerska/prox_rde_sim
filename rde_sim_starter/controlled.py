@@ -198,16 +198,19 @@ def formed_strip(c,profile,dx=.5e-3,rows=8,length=.45,shock=.16,source_cfl=.05):
     return s,x
 
 
-def run_formed(c,directory,dx=.5e-3,end=40e-6,source_cfl=.05,profile=None):
+def run_formed(c,directory,dx=.5e-3,end=40e-6,source_cfl=.05,profile=None,domain_scale=1.):
     """C2 fully filled propagation, with a predeclared 4000 m/s axial cone bound."""
     if not np.isfinite(end) or not 0<end<=40e-6:raise ValueError('0<end<=40 us required')
+    if not np.isfinite(domain_scale) or not 0<domain_scale<=1 or end>40e-6*domain_scale:
+        raise ValueError('domain scale in (0,1] and end<=40 us times scale required')
     profile=formed_profile(c) if profile is None else profile
     if max(profile['verification']['jump_max_relative_error'])>1e-8:raise ValueError('steady jump check failed')
-    length=.45;shock=.16;s,x=formed_strip(c,profile,dx=dx,source_cfl=source_cfl)
+    length=.45*domain_scale;shock=.16*domain_scale
+    s,x=formed_strip(c,profile,dx=dx,length=length,shock=shock,source_cfl=source_cfl)
     directory=Path(directory);directory.mkdir(parents=True,exist_ok=False)
-    bound=4000.;roi=.03
+    bound=4000.;roi=.03*domain_scale
     _write_json(directory/'inputs.json',dict(kind='formed',calibration=c,dx_m=s.dx,
-        rows=s.ny,length_m=length,shock_initial_m=shock,end_s=end,source_cfl=source_cfl,
+        rows=s.ny,length_m=length,shock_initial_m=shock,end_s=end,source_cfl=source_cfl,domain_scale=domain_scale,
         axial_characteristic_bound_mps=bound,reaction_roi_behind_front_m=roi,
         profile_verification=profile['verification'],implementation=_fingerprint(),
         driver_sha256=hashlib.sha256(Path(__file__).read_bytes()).hexdigest(),
@@ -241,7 +244,7 @@ def run_formed(c,directory,dx=.5e-3,end=40e-6,source_cfl=.05,profile=None):
     from solver import NG
     try:
         while s.t<end:
-            target=min(end,tick*2e-6);s.step(dt_max=target-s.t)
+            target=min(end,tick*2e-6*domain_scale);s.step(dt_max=target-s.t)
             # Include the retained intermediate RK state and final accepted state.
             for w in (s.W[:,NG:-NG,NG:-NG].copy(),s.prim()):
                 observed=max(observed,float(np.max(abs(w[1])+np.sqrt(c['gamma']*w[3]/w[0]))))
@@ -253,7 +256,7 @@ def run_formed(c,directory,dx=.5e-3,end=40e-6,source_cfl=.05,profile=None):
     except (InvalidStateError,RuntimeError) as caught:status='failed';error=str(caught)
     if times[-1]!=s.t:save()
     fits={}
-    for start in (10e-6,20e-6,30e-6):
+    for start in np.array((10e-6,20e-6,30e-6))*domain_scale:
         hh=[h for h in history if h['time_s']>=start and h['front_m'] is not None]
         fits[str(start)]=float(np.polyfit([h['time_s'] for h in hh],[h['front_m'] for h in hh],1)[0]) if len(hh)>=3 else None
     summary=dict(kind='formed',status=status,error=error,time_s=s.t,steps=s.steps,
@@ -397,9 +400,11 @@ def restore_layer(directory,c):
     return s,x,z,inp,report,list(times),list(fields),audit
 
 
-def run_layer(c,directory,layer_height,dx=.5e-3,end=40e-6,profile=None,align_interface=False,start='formed',resume=None,transverse_bound=None):
+def run_layer(c,directory,layer_height,dx=.5e-3,end=40e-6,profile=None,align_interface=False,start='formed',resume=None,transverse_bound=None,domain_scale=1.):
     """C3 finite-layer control; finite physical causal bounds and native budgets."""
     if not np.isfinite(end) or not 0<end<=40e-6:raise ValueError('0<end<=40 us required')
+    if not np.isfinite(domain_scale) or not 0<domain_scale<=1 or end>40e-6*domain_scale:
+        raise ValueError('domain scale in (0,1] and end<=40 us times scale required')
     if start not in ('formed','blast'):raise ValueError('layer start must be formed or blast')
     if resume is None:
         profile=formed_profile(c) if profile is None else profile
@@ -409,6 +414,7 @@ def run_layer(c,directory,layer_height,dx=.5e-3,end=40e-6,profile=None,align_int
     # margins rather than interpreting a violated travel bound as extinction.
     length,shock,buffer,bx,bz=((.45,.16,.13,4000.,3000.) if start=='formed'
                               else (.55,.20,.15,5000.,3500.))
+    length*=domain_scale;shock*=domain_scale;buffer*=domain_scale
     if resume is None:
         s,x,z,init=initialize(c,profile,layer_height,dx=dx,length=length,shock=shock,
                              buffer=buffer,align_interface=align_interface)
@@ -417,6 +423,7 @@ def run_layer(c,directory,layer_height,dx=.5e-3,end=40e-6,profile=None,align_int
         indexes=sorted(set([0,int(np.argmin(abs(z-layer_height/2))),max(0,int(layer_height/s.dy)-1)]))
     else:
         s,x,z,old,previous,times,fields,restart=restore_layer(resume,c);init=previous['initialization']
+        if domain_scale!=old.get('domain_scale',1.):raise ValueError('continuation must preserve domain scale')
         if (init.get('start','formed')!=start or init.get('interface_aligned',False)!=align_interface
                 or init['layer_height_m']!=layer_height or not np.isclose(s.dx,dx,rtol=1e-12,atol=0) or end<=s.t):
             raise ValueError('continuation must preserve the case and extend its physical time')
@@ -424,13 +431,13 @@ def run_layer(c,directory,layer_height,dx=.5e-3,end=40e-6,profile=None,align_int
         initial=np.asarray(previous['initial_conserved_per_m_depth']);history=previous['history']
         observed=np.asarray(previous['observed_characteristic_max_mps']);verification=old['profile_verification']
         indexes=old['diagnostic_row_indexes']
-    height=s.ny*s.dy;roi=.03
+    height=s.ny*s.dy;roi=.03*domain_scale
     if transverse_bound is not None:bz=float(transverse_bound)
     if not np.isfinite(bz) or bz<=0 or observed[0]>bx or observed[1]>bz or height-layer_height-bz*end<=0:
         raise ValueError('declared characteristic bounds must cover observed speeds and retain an endpoint top margin')
     for row in history:row['top_causal_margin_m']=height-layer_height-bz*row['time_s']
     directory=Path(directory);directory.mkdir(parents=True,exist_ok=False)
-    _write_json(directory/'inputs.json',dict(kind='layer',calibration=c,end_s=end,source_cfl=.05,
+    _write_json(directory/'inputs.json',dict(kind='layer',calibration=c,end_s=end,source_cfl=.05,domain_scale=domain_scale,
         length_m=length,shock_initial_m=shock,axial_characteristic_bound_mps=bx,
         transverse_characteristic_bound_mps=bz,reaction_roi_behind_front_m=roi,
         diagnostic_row_indexes=indexes,diagnostic_row_z_m=z[indexes].tolist(),
@@ -459,11 +466,11 @@ def run_layer(c,directory,layer_height,dx=.5e-3,end=40e-6,profile=None,align_int
         _write_json(directory/'progress.json',dict(time_s=s.t,steps=s.steps,wall_seconds=time.monotonic()-started,
             observed_characteristic_max_mps=observed.tolist(),latest=history[-1]))
     if not history:save()
-    tick=int(np.floor(s.t/4e-6))+1
+    tick=int(np.floor(s.t/(4e-6*domain_scale)))+1
     from solver import NG
     try:
         while s.t<end:
-            target=min(end,tick*4e-6);s.step(dt_max=target-s.t)
+            target=min(end,tick*4e-6*domain_scale);s.step(dt_max=target-s.t)
             from solver import max_speed
             observed=np.maximum(observed,max_speed(s.W,s.g))
             s.prim()
