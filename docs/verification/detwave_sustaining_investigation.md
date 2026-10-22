@@ -346,6 +346,50 @@ supported criticism is of the selected reaction/refill scales and their presumed
 equivalence to the experiment. No Modal resource or pricing investigation is
 included, following the user's explicit withdrawal of that request.
 
+## Higher-flow comparison and targeted startup control (20:14 UTC)
+
+The high-flux small engine shows almost the same strong-front loss near
+15–20 us as the geometry-only small engine. Its 30 us field contains a weak
+travelling pressure structure with most reaction along the thin layer interface.
+Higher absolute pressure alone is not evidence of better survival. The original
+40 us and short Run 937 jobs remain active; no completed-period claim is made.
+
+**Critical limitation of the high-flux control:** it froze the kinetic constants
+deliberately, and `reaction_rate = k(1-progress) exp(-Ea/(R T))` has no direct
+pressure dependence. With fixed gas properties and heat release, increasing
+initial pressure scales density and shock pressure but leaves the tabulated
+ZND lengths unchanged: L50=0.250 mm, L95=1.044 mm, full table tail=5.942 mm in
+both small cases. It therefore does not reproduce the pressure-dependent
+chemical length changes in Mundt's Cantera calculations. The nominal fill
+velocity `mass_flux/rho_initial` is actually 60.77 m/s at low flow and 58.50 m/s
+at high flow, because the fitted fresh density also increases. Raising mass
+flux was not an isolated increase in refill speed. Keep this a boundary/operating
+condition control, not a validation of methane kinetics across pressures.
+
+The space-time histories also identify a test-construction issue: the same
+25 mm formed charge takes 39.0% of the small circumference, leaving much less
+unburned arc before its trailing disturbance meets the forward wave. This
+differs substantially from the 11.2% charge fraction in Run 937. A single
+targeted startup control is therefore added, **without another chemistry change**:
+
+- `cases/detwave_25fi5_high_flux_compact_seed.yaml` preserves every active
+  high-flux input except charge length, set to 7.162921 mm by preserving the
+  original engine's charge/circumference ratio. This still contains the complete
+  5.942 mm tabulated ZND tail. It is a smaller, lower-energy start, not a stronger
+  ignition patch or a forced wave.
+- Preflight checks input equality apart from charge/provenance, profile jump
+  identities and conservative inventories. Save those in
+  `detwave_compact_seed_preflight.json` before propagation.
+- Run only after the present high-flux control is stopped following its field
+  assessment, with cap 80 us and the same one-thread execution. Look for the
+  time/location of counter-wave interaction and then pressure/reaction coupling
+  on return through refill. If failure is merely delayed, do not call it sustained.
+  This is one discriminating test, not an iterative ignition-size search.
+
+At this writing the compact case is prepared, **not yet running**. No production
+source or ongoing numerical fingerprint has changed. Complete the existing
+high-flux control assessment first; do not launch duplicate secondary jobs.
+
 ## Active-run handoff (replace with results when complete)
 
 Both simulations run in this branch's worktree, not the original checkout.

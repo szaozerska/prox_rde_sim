@@ -1,0 +1,78 @@
+schema_version: 1
+model:
+  geometry: constant_annulus
+  feed: premixed_plenum
+  walls: inviscid
+  chemistry: one_step
+  discharge_coefficient: 0.76
+geometry:
+  r_outer_mm: 12.7
+  r_inner_mm: 7.7
+  length_mm: 25.4
+  area_ratio: 0.11
+operating_point:
+  mass_flux: 319.2
+  mdot_target_gps: 102.29
+  phi: 1.176
+  p_plenum_kPa: 1799.9355755780703
+  T_plenum_K: 300.0
+  p_back_kPa: 97.0
+  D_CJ: 2471.0
+  q_MJkg: 5.5
+  f_paper_kHz: 21.0
+  N_paper: 1
+experimental_reference:
+  configuration: 25-FI-5
+  geometry_source: Mundt Table 2-1, printed p.28
+  injector_pairs: 48
+  fuel_diameter_mm: 0.51
+  oxygen_diameter_mm: 0.81
+  scope: Near Table 3-3 high-flux point, fixed Run 937 surrogate chemistry; not an
+    exact reproduction.
+  mass_flux_kg_s_m2: 319.2
+  mdot_g_s: 102.29
+  phi: 1.19
+  back_pressure_kPa: 97.0
+  observed_waves: 1
+  source: Mundt Table 3-3, printed p.69
+  frequency_note: 21 kHz approximate nominal-320 plot reading from Fig.3.21, not tabulated
+    for this row; duration budget only
+chemistry:
+  Ea_over_RT1: 20.0
+  L_half_mm: 0.25
+numerics:
+  dx_mm: 0.125
+  cfl: 0.4
+  source_cfl: 0.2
+  average_start_us: 0.0
+  snapshot_every_us: 1.0
+  checkpoint_every_us: 1.0
+  max_step_ns: null
+  probe_y_mm: 1.0
+initialization:
+  kind: formed
+  fill_height_mm: 3.8
+  product_temperature_K: 1500.0
+  charge_length_mm: 7.1629213483146055
+  shock_fraction: 0.1
+diagnostics:
+  pressure_stations_mm:
+  - 0
+  - 16.5
+  - 18.5
+  - 20.3
+  - 22.4
+study_provenance:
+  kind: high_flux_compact_seed_control
+  held_fixed: All gas, chemistry, mesh, geometry, supply, outlet, initial layer, upper-product
+    state and shock phase from high-flux control.
+  changed: 'Only finite formed-charge length relative to high-flux control: preserve
+    Run 937 charge/circumference fraction.'
+  plenum_origin: Derived model reservoir pressure, not a measured plenum. Predicted
+    transient delivery can fall below choked capacity.
+  mixture_approximation: Active phi=1.176 retains exactly the same gas/kinetics; Table
+    3-3 phi=1.19 differs by 1.18%. This is a near-condition surrogate cross-check.
+  initial_height_note: 3.8 mm is held fixed as a startup control, not inferred from
+    this experiment.
+  limitations: Startup sensitivity only; shorter charge has lower initial energy.
+    No radial curvature or resolved injectors. Not an exact experimental ignition.
