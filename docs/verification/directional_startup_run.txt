@@ -1,0 +1,76 @@
+t=1.951 us / 189.394 us; step=135
+t=3.301 us / 189.394 us; step=229
+t=4.188 us / 189.394 us; step=291
+t=5.099 us / 189.394 us; step=354
+t=6.347 us / 189.394 us; step=441
+t=7.359 us / 189.394 us; step=511
+t=8.318 us / 189.394 us; step=578
+t=9.373 us / 189.394 us; step=651
+t=10.304 us / 189.394 us; step=716
+t=11.243 us / 189.394 us; step=781
+t=12.145 us / 189.394 us; step=844
+t=13.026 us / 189.394 us; step=905
+t=13.865 us / 189.394 us; step=963
+t=14.694 us / 189.394 us; step=1021
+t=15.445 us / 189.394 us; step=1073
+t=16.000 us / 189.394 us; step=1112
+t=16.636 us / 189.394 us; step=1156
+t=17.388 us / 189.394 us; step=1208
+t=18.202 us / 189.394 us; step=1265
+t=18.809 us / 189.394 us; step=1307
+t=19.720 us / 189.394 us; step=1370
+t=20.650 us / 189.394 us; step=1435
+t=21.604 us / 189.394 us; step=1501
+t=22.578 us / 189.394 us; step=1569
+t=23.503 us / 189.394 us; step=1633
+t=24.029 us / 189.394 us; step=1670
+t=24.520 us / 189.394 us; step=1704
+t=25.070 us / 189.394 us; step=1742
+t=25.576 us / 189.394 us; step=1777
+t=26.231 us / 189.394 us; step=1823
+t=26.896 us / 189.394 us; step=1869
+t=27.388 us / 189.394 us; step=1903
+t=28.173 us / 189.394 us; step=1958
+t=28.896 us / 189.394 us; step=2008
+t=29.677 us / 189.394 us; step=2062
+t=30.434 us / 189.394 us; step=2115
+t=31.258 us / 189.394 us; step=2172
+t=32.043 us / 189.394 us; step=2227
+t=32.520 us / 189.394 us; step=2260
+t=32.896 us / 189.394 us; step=2286
+t=33.388 us / 189.394 us; step=2320
+t=33.995 us / 189.394 us; step=2362
+t=34.737 us / 189.394 us; step=2414
+t=35.576 us / 189.394 us; step=2472
+t=36.332 us / 189.394 us; step=2525
+t=37.113 us / 189.394 us; step=2579
+t=37.980 us / 189.394 us; step=2639
+t=38.896 us / 189.394 us; step=2703
+t=39.894 us / 189.394 us; step=2772
+Traceback (most recent call last):
+  File "/Users/sgfx/Desktop/Projects/prox_rde_sim/.venv/lib/python3.12/site-packages/numba/core/serialize.py", line 30, in _numba_unpickle
+    def _numba_unpickle(address, bytedata, hashed):
+    
+KeyboardInterrupt
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/sgfx/Desktop/Projects/prox_rde_sim/rde_sim_starter/run.py", line 605, in <module>
+    raise SystemExit(main())
+                     ^^^^^^
+  File "/Users/sgfx/Desktop/Projects/prox_rde_sim/rde_sim_starter/run.py", line 591, in main
+    result = start_run(yaml.safe_load(case_text), json.loads(calibration_text), args.out,
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/sgfx/Desktop/Projects/prox_rde_sim/rde_sim_starter/run.py", line 468, in start_run
+    return _drive(solver, r, state, directory, test_passages)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/sgfx/Desktop/Projects/prox_rde_sim/rde_sim_starter/run.py", line 377, in _drive
+    solver.step(dt_max=limit)
+  File "/Users/sgfx/Desktop/Projects/prox_rde_sim/rde_sim_starter/solver.py", line 306, in step
+    boundary1, source1 = self._L(self.U, self.k1, "step input")
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/sgfx/Desktop/Projects/prox_rde_sim/rde_sim_starter/solver.py", line 293, in _L
+    self.wall_sources, self.wall_rate_max = annular_rhs(
+                                            ^^^^^^^^^^^^
+SystemError: CPUDispatcher(<function annular_rhs at 0x10c433d80>) returned a result with an exception set

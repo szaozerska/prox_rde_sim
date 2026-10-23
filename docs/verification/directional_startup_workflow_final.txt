@@ -1,0 +1,15 @@
+test_corrupt_checkpoint_does_not_wait_forever (test_workflow.WatchTests.test_corrupt_checkpoint_does_not_wait_forever) ... Waiting for a coherent checkpoint: corrupt
+Waiting for a coherent checkpoint: corrupt
+ok
+test_refreshes_changed_checkpoints_and_stops_without_solver (test_workflow.WatchTests.test_refreshes_changed_checkpoints_and_stops_without_solver) ... Preview 1: committed step 1, 1 µs
+Preview 2: committed step 2, 2 µs
+ok
+test_comparison_records_confounds_and_refuses_nonoverlap (test_workflow.WorkflowTests.test_comparison_records_confounds_and_refuses_nonoverlap) ... ok
+test_end_to_end_preflight_run_resume_viewer_and_readonly_rejection (test_workflow.WorkflowTests.test_end_to_end_preflight_run_resume_viewer_and_readonly_rejection) ... ok
+test_failure_marks_incomplete_instead_of_success (test_workflow.WorkflowTests.test_failure_marks_incomplete_instead_of_success) ... ok
+test_radial_report_describes_enabled_physics (test_workflow.WorkflowTests.test_radial_report_describes_enabled_physics) ... ok
+
+----------------------------------------------------------------------
+Ran 6 tests in 37.419s
+
+OK

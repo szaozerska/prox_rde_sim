@@ -15,6 +15,7 @@ from importlib.metadata import version
 import json
 import math
 import os
+import signal
 from pathlib import Path
 import sys
 import tempfile
@@ -31,6 +32,29 @@ from solver import Solver, InvalidStateError, NG, PERIODIC, INJECTOR, OUTFLOW
 
 HERE = Path(__file__).resolve().parent
 FORMAT_VERSION = 2
+
+_STOP_REQUESTED = False
+
+
+@contextmanager
+def _defer_sigint():
+    """Finish native kernels/bookkeeping before raising a user interruption.
+
+    Raising directly inside a Numba dispatcher can become SystemError. Keep the
+    signal handler non-raising and stop at the next coherent step boundary.
+    """
+    global _STOP_REQUESTED
+    previous = signal.getsignal(signal.SIGINT)
+    _STOP_REQUESTED = False
+    def request_stop(signum, frame):
+        global _STOP_REQUESTED
+        _STOP_REQUESTED = True
+    signal.signal(signal.SIGINT, request_stop)
+    try:
+        yield
+    finally:
+        signal.signal(signal.SIGINT, previous)
+        _STOP_REQUESTED = False
 
 
 def _safe_json(value):
@@ -364,6 +388,8 @@ def _drive(solver, r, state, directory, target_passages):
         coherent = True
         try:
             while solver.t < target:
+                if _STOP_REQUESTED:
+                    raise KeyboardInterrupt("stop requested; accepted state preserved")
                 stops = [target, state['snapshot_tick'] * r['snapshot_interval'],
                          state['checkpoint_tick'] * r['checkpoint_interval'],
                          state['passage_tick'] / r['f_ref']]
@@ -572,25 +598,26 @@ def main(argv=None):
     if args.benchmark_us is not None and (args.test_passages is not None or args.resume):
         parser.error('--benchmark-us cannot be combined with --test-passages or --resume')
     try:
-        if args.resume:
-            if args.case or args.calibration or args.out:
-                parser.error('--resume cannot be combined with new-run inputs/output')
-            result = resume_run(args.resume, args.test_passages)
-        else:
-            if args.out is None and not args.preflight:
-                parser.error('a new run needs --out')
-            case = args.case or HERE / 'config.yaml'
-            calibration = args.calibration or HERE / 'calib.json'
-            case_text, calibration_text = case.read_text(), calibration.read_text()
-            if args.preflight:
-                config, calibrated = yaml.safe_load(case_text), json.loads(calibration_text)
-                resolved = resolve_case(config, calibrated)
-                build_solver(resolved, calibrated)  # check initialization as well as metadata
-                print(json.dumps(case_contract(config, resolved), indent=2, allow_nan=False))
-                return 0
-            result = start_run(yaml.safe_load(case_text), json.loads(calibration_text), args.out,
-                               args.test_passages or 3,
-                               dict(case_yaml=case_text, calibration_json=calibration_text), benchmark_us=args.benchmark_us)
+        with _defer_sigint():
+            if args.resume:
+                if args.case or args.calibration or args.out:
+                    parser.error('--resume cannot be combined with new-run inputs/output')
+                result = resume_run(args.resume, args.test_passages)
+            else:
+                if args.out is None and not args.preflight:
+                    parser.error('a new run needs --out')
+                case = args.case or HERE / 'config.yaml'
+                calibration = args.calibration or HERE / 'calib.json'
+                case_text, calibration_text = case.read_text(), calibration.read_text()
+                if args.preflight:
+                    config, calibrated = yaml.safe_load(case_text), json.loads(calibration_text)
+                    resolved = resolve_case(config, calibrated)
+                    build_solver(resolved, calibrated)  # check initialization as well as metadata
+                    print(json.dumps(case_contract(config, resolved), indent=2, allow_nan=False))
+                    return 0
+                result = start_run(yaml.safe_load(case_text), json.loads(calibration_text), args.out,
+                                   args.test_passages or 3,
+                                   dict(case_yaml=case_text, calibration_json=calibration_text), benchmark_us=args.benchmark_us)
     except KeyboardInterrupt:
         print('Interrupted; resume uses the last complete checkpoint.', file=sys.stderr)
         return 130

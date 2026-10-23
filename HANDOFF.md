@@ -304,3 +304,14 @@ is preserved as `cases/run937_hotpatch.yaml`. Compare the new
 See [protocol](docs/verification/directional_startup.md). Per user instruction,
 implementation is published before further tests; the first commit is explicitly
 unverified. Follow-up records verification and bounded comparison results.
+
+Directional comparison now complete through a validated 40 us prefix: stronger
+initial propagation, but near-injector leading-pulse reaction is weak by the end.
+RDE-001 stays open. The run retains a failed status from the deliberate SIGINT
+arriving inside Numba after that checkpoint. Deferred CLI interrupt handling now
+prevents that path; see the full result/error/test record in the protocol.
+
+Verification after follow-up: 144 distinct checks passed across suite and
+corrective reruns, one optional long baseline skipped; 34 affected checks passed
+after deferred interruption was added. Comparison GIF/frame hashes and PNGs
+checked. Physical sustained-wave acceptance remains open.

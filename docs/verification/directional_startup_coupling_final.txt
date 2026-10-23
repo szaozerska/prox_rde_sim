@@ -1,0 +1,17 @@
+test_ambiguous_collision_and_missing_frame_break_tracks (tests.test_coupling.CouplingTests.test_ambiguous_collision_and_missing_frame_break_tracks) ... ok
+test_cadence_and_speed_gates_prevent_unsupported_links (tests.test_coupling.CouplingTests.test_cadence_and_speed_gates_prevent_unsupported_links) ... ok
+test_invalid_signals_are_rejected (tests.test_coupling.CouplingTests.test_invalid_signals_are_rejected) ... ok
+test_periodic_peak_is_detected_once_at_the_seam (tests.test_coupling.CouplingTests.test_periodic_peak_is_detected_once_at_the_seam) ... ok
+test_saved_comparison_is_read_only_and_missing_rate_is_unavailable (tests.test_coupling.CouplingTests.test_saved_comparison_is_read_only_and_missing_rate_is_unavailable) ... /Users/sgfx/Desktop/Projects/prox_rde_sim/rde_sim_starter/plot.py:262: PendingDeprecationWarning: The set_bad function will be deprecated in a future version. Use cmap.with_extremes(bad=...) or Colormap(bad=...) instead.
+  heat_cmap.set_bad(heat_cmap(0.))
+/Users/sgfx/Desktop/Projects/prox_rde_sim/rde_sim_starter/plot.py:263: PendingDeprecationWarning: The set_under function will be deprecated in a future version. Use cmap.with_extremes(under=...) or Colormap(under=...) instead.
+  heat_cmap.set_under(heat_cmap(0.))
+ok
+test_startup_case_changes_only_the_declared_parameter (tests.test_coupling.CouplingTests.test_startup_case_changes_only_the_declared_parameter) ... ok
+test_thermal_conversion_and_height_quantiles_have_known_units (tests.test_coupling.CouplingTests.test_thermal_conversion_and_height_quantiles_have_known_units) ... ok
+test_tracks_preserve_direction_and_unwrap_a_known_speed (tests.test_coupling.CouplingTests.test_tracks_preserve_direction_and_unwrap_a_known_speed) ... ok
+
+----------------------------------------------------------------------
+Ran 8 tests in 33.450s
+
+OK

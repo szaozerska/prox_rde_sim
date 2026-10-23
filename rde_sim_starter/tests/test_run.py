@@ -42,6 +42,30 @@ class RunTests(unittest.TestCase):
     def start(self):
         return run.start_run(self.config, self.calibration, self.output)
 
+    def test_sigint_during_step_is_deferred_and_checkpoint_resumes(self):
+        import signal
+        previous=signal.getsignal(signal.SIGINT)
+        case=Path(self.tmp.name)/'case.yaml'
+        calibration=Path(self.tmp.name)/'calibration.json'
+        case.write_text(yaml.safe_dump(self.config))
+        calibration.write_text(json.dumps(self.calibration))
+        original=Solver.step
+        def interrupted_step(solver,*args,**kwargs):
+            signal.raise_signal(signal.SIGINT)
+            return original(solver,*args,**kwargs)
+        with patch.object(Solver,'step',interrupted_step):
+            code=run.main(['--case',str(case),'--calibration',str(calibration),'--out',str(self.output)])
+        self.assertEqual(code,130)
+        self.assertEqual(signal.getsignal(signal.SIGINT),previous)
+        self.assertFalse(run._STOP_REQUESTED)
+        summary=json.loads((self.output/'summary.json').read_text())
+        self.assertEqual(summary['status'],'interrupted')
+        self.assertEqual(summary['steps'],1)
+        self.assertEqual(summary['invalid_state_count'],0)
+        self.assertEqual(len(records(self.output)),2)
+        result=run.resume_run(self.output,3)
+        self.assertEqual(result['status'],'completed_limit')
+
     def test_three_interval_cap_early_output_and_explicit_empty_average(self):
         self.config['numerics']['average_start_us'] = 1.
         result = self.start()

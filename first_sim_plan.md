@@ -41,6 +41,13 @@ non-directional case through 40 us, keeping chemistry, mesh, feed and walls fixe
 Record unequal initial inventories and distinguish early propagation from sustained
 rotation. Do not add continuous inlet swirl. See [protocol](docs/verification/directional_startup.md).
 
+**Directional comparison completed:** implementation was pushed as `411a895`
+before tests. The matched 40 us saved-field comparison shows a stronger +theta
+pressure path but loss of strong near-front reaction in the lower ring; RDE-001
+remains open. Initial inventories differ, so this is not a momentum-only test.
+The deliberate stop exposed a Numba/SIGINT issue; deferred CLI interruption and
+its restart regression address it. See [results and qualifications](docs/verification/directional_startup.md).
+
 **Argonne/UW source review (revision 18):** distinguish a temporary pre-detonator
 input from steady propellant injection and from wave propagation. See
 [access limits, source findings and small next checks](docs/verification/argonne_startup_review.md).

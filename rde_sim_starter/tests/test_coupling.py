@@ -108,7 +108,7 @@ class CouplingTests(unittest.TestCase):
 
     def test_startup_case_changes_only_the_declared_parameter(self):
         root=Path(__file__).resolve().parents[1]
-        baseline=yaml.safe_load((root/'config.yaml').read_text())
+        baseline=yaml.safe_load((root/'cases/run937_hotpatch.yaml').read_text())
         variant=yaml.safe_load((root/'cases/run937_fill_7p6mm.yaml').read_text())
         self.assertEqual(config_differences(baseline,variant),
                          [dict(path='initialization.fill_height_mm',left=3.8,right=7.6)])
