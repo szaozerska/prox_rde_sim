@@ -1,4 +1,4 @@
-# 3D RDE development plan - revision 18, propagation gate and runtime evidence
+# 3D RDE development plan - revision 19, native injection and refill prerequisites
 
 This branch develops a native three-dimensional methane/oxygen pipeline.
 The October 22 GPU revision below controls execution order; the T0-T7 physics
@@ -70,8 +70,9 @@ rebuild and verify the native geometry. Do not transfer OpenFOAM verification st
 | G1c | One fixed refinement interface before dynamic AMR: cold shock/contact crosses it; compare uniform fine reference, composite conservation and regridding corrections. Reactive crossing follows G2b, before any reactive AMR engine run. Then small restart and MPI/GPU decomposition equivalence checks. | Reuse upstream EB-C7/C8/C3 and project reference states. Avoid building a general test framework. |
 | G2a | Thermo/units and closed-reactor checks for one methane/oxygen mechanism against Cantera, including compressed and hot-product/fresh mixtures. | Reduced candidates are screened against the detailed reference before use. FFCM1_Red changes ignition classification; keep full GRI for small numerical controls while mechanism suitability remains open. Do not fit rates to force survival. |
 | G2b | Native 1D formed detonation: two initial grid levels and a timestep halving; speed, induction/heat-release distance and continued shock/reaction coupling. Add a third level only if needed to resolve uncertainty. | Select the cheapest numerical setup that preserves the intended diagnostic. A fast wrong propagation solution fails. |
+| G2c | Native feed contract/cold refill, fresh-hot contact and finite-layer propagation at the usable refill conditions; see the [injection/startup audit](docs/plans/3d_injection_startup_audit.md). | G2b remains first. Two discriminating layer conditions and one refinement, not a parameter sweep; no annular reacting run before these checks. |
 | G3 | Short representative reacting workload on 1, 2, 4, then 8 GPUs when useful. Same cells, mechanism, precision, output and physical interval. Record startup, compute, chemistry, communication, I/O and peak memory. | Stop scaling when end-to-end time ceases improving. Choose one multi-GPU case or several independent checks from measured results. |
-| G4a | Smooth full-annulus/core-expansion, ideal-gas mixture, premixed feed, inviscid adiabatic slip walls, controlled initial charge; first checkpoint at one reference passage (63.131 us). | Requires G1/G2 gates, measured resource feasibility and native boundary budgets. Exploratory only; no injector mixing, heat loss, turbulence or experimental mean claims. |
+| G4a | Smooth full-annulus/core-expansion, ideal-gas mixture, premixed feed, inviscid adiabatic slip walls, controlled initial charge; first checkpoint at one reference passage (63.131 us). | Requires G1/G2 including G2c feed/refill gates, measured resource feasibility and native boundary budgets. Exploratory only; no injector mixing, heat loss, turbulence or experimental mean claims. |
 | G4b | Extend only a finite, budget-consistent case to three passages (189.394 us); at most five (315.657 us) with a recorded reason. Compare one spatial refinement and one dt/CFL reduction, preserving physical ignition inventory. | Coupling/mode stability must survive these changes before calling propagation provisionally credible. Short record cannot establish long-term sustained operation. |
 | G5 | Add the uncertainty that matters most: outlet/feed/startup sensitivity first; separate injectors and transport after a one-pair check; later walls, turbulence and longer statistics. | Preserve T6/T7 requirements for Run 937 validation. No large sweep by default. |
 
@@ -519,3 +520,26 @@ verification reference, not a promised <=2-hour production configuration.
 Measured 0.2-us control costs are 332/457/540 seconds, excluding queue/build; no
 64-core or eight-GPU engine timing is inferred from these. Preserve the physical
 model and accuracy gates when optimizing tolerances or screening reduced chemistry.
+
+
+## Revision 19: injection, startup and actual refill
+
+The [cross-branch audit](docs/plans/3d_injection_startup_audit.md) reviews main
+`73d4516`, fix branch `6875f02` and 3D movie commit `8307eac`. The current
+planar movie has no injector or ignition sequence; it does not run the cold
+annular geometry. G2b still fails and stays the next solver task.
+
+Do not treat the 2D failure as a proven single inlet-code fault: the early
+opening-plane inconsistency was corrected, while later controls demonstrate
+artificial contact burning and failure in the actual thin refill layer. The
+new G2c makes native supply/enthalpy/pressure-force checks and finite-layer
+qualification prerequisites for G4a. Do not copy the one-step q or constant-gamma
+inlet expressions into a species-based EOS. Cold refill estimates require a
+subsequent reacting check; paper-inferred 3.8 mm is not maintained by fiat.
+
+G4a keeps a finite formed start for a minimal propagation experiment, explicitly
+not a physical pre-detonator. Observe actual return into newly supplied material
+and require refill conditions inside the qualified envelope. The reference
+63.131 us checkpoint is not automatically a full circuit. Resolved impinging
+jets or validated mixing closure remain required for injector-design claims;
+a finite port-discharge startup is a separate, budgeted increment.

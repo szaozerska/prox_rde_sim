@@ -454,3 +454,23 @@ help. The guide distinguishes solver completion, numerical checks, physical
 checks and local replay, and gives the observed 5.5/7.6/9.0 minute short-control
 solver times without extrapolating them to a full engine. No paid cloud job was
 started for this visualization update. P3D-001 / G2b remains open.
+
+## Cross-branch injection/startup review
+
+Fetched main `73d4516` and `2d-modelling-detwave-sustaining-fix` `6875f02` into
+this clone; read source, configuration and committed failure studies without
+modifying either 2D checkout. The first fetch approval timed out; the permitted
+single retry succeeded. Compared the full `physics.py` hashes: both branches
+share the corrected injector law. Distinguished that historical opening-plane
+bug from later contact-burning and actual-refill-layer findings.
+
+Added `docs/plans/3d_injection_startup_audit.md` with a side-by-side implemented
+physics table, immutable evidence links and remaining limits. Re-read the cached
+Argonne manuscript and verified its recorded PDF hash; inspected geometry and
+methods page renders. The current 3D movie has no engine injector or physical
+ignition sequence. Revision 19 adds native feed/refill/contact and finite-layer
+qualification before an annular reacting preview; it preserves the unresolved
+G2b propagation gate and separates formed-wave initialization from a finite
+pre-detonator discharge. No solver, input constants or cloud job was changed.
+Documentation links and `git diff --check` verified; no CFD rerun or extra unit
+test is needed for this source/documentation review.

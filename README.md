@@ -10,7 +10,7 @@ an add-on; existing physics, thermochemical references, tests and figure roadmap
 are retained. Installation/mesh checks do not establish sustained detonation.
 Only commit and push to `3d-modelling` from this checkout.
 
-Current direction: [revision 18](first_sim_plan.md) evaluates PeleC for Modal GPU
+Current direction: [revision 19](first_sim_plan.md) evaluates PeleC for Modal GPU
 production, with small same-backend CPU checks and the installed detonationFoam
 fallback. No separate CPU/GPU model branches. See [solver choices and speed/accuracy
 tradeoffs](docs/plans/3d_literature_runtime_review.md). Modal CPU access passed;
