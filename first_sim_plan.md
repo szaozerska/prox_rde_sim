@@ -1,4 +1,4 @@
-# RDE simulation plan — revision 17
+# RDE simulation plan — revision 18
 
 **Status: reduced 2D software workflow F1–F4 complete. Full acceptance: 122 tests passed, no skips; 16 affected checks repeated after review, plus one new coupled-physics check (123 distinct passing tests). RDE-001 remains open. The radial-wall increment and matched 189.394 us comparison are also complete: 132 distinct verification tests passed, but sustained detonation was not restored in the original case. See [radial results](docs/verification/radial_closures.md). No CAD work.**
 
@@ -31,6 +31,16 @@ exclude later reinitiation. See [source review and measured timeline](docs/verif
 Retain the actual-refill-layer/chemistry/resolution gate; review the existing formed
 controls before another startup comparison. Do not assume arbitrary inlet swirl
 or a longer unchanged run is the fix. This review launches no new CFD campaign.
+
+**Argonne/UW source review (revision 18):** distinguish a temporary pre-detonator
+input from steady propellant injection and from wave propagation. See
+[access limits, source findings and small next checks](docs/verification/argonne_startup_review.md).
+Reconcile existing formed/thin-layer controls before a matched startup comparison.
+A finite directional pulse is a conditional follow-up, with mass/impulse/energy
+accounting and explicit shutoff; arbitrary permanent inlet swirl is not justified.
+Audit local refill and shock/reaction coupling, not only total feed. The UW
+soliton-like framework concerns co-rotating interactions and does not establish
+a counter-wave cancellation explanation. No new CFD or parameter change here.
 
 The [controlled-test plan](docs/plans/controlled_2d_tests.md) records three review
 passes and the C1–C6 increments. First verify multirow/direction equivalence and

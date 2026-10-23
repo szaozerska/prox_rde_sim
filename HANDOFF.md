@@ -11,7 +11,7 @@ remains unresolved. Native inputs and physics parameters are unchanged.
 
 ## Current result and plan
 
-[Revision 17](first_sim_plan.md) records the completed D3 investigation and the
+[Revision 18](first_sim_plan.md) records the completed D3 investigation and the
 [paper/model audit](docs/verification/mundt_model_audit.md). The latest instruction authorizes controlled 2D tests, three plan reviews,
 small verified increments and publication on **main only**. The independent
 session handles 3D in another checkout/branch; do not push to its branch. D3 and
@@ -285,3 +285,13 @@ hypothesis. Central far-side gas has essentially zero circumferential speed at
 Projection accounting, frame timing and source hashes pass; no new CFD or solver
 changes. The experimental photos and computed chemical-power view are different
 observables, not synchronized measurements.
+
+## Argonne startup source follow-up
+
+See [Argonne/UW review](docs/verification/argonne_startup_review.md). The source
+CFD startup establishes feed, admits a pre-detonator wave briefly, then closes
+that connection. Our displayed case uses a stationary hot patch. The existing
+formed initializer and thin-layer failures prevent treating direction alone as
+a known fix. Revision 18 records conditional matched-start and refill checks.
+Video frames were inaccessible; source descriptions/paper text were reviewed,
+not watched footage. This is documentation only, with no new tests or CFD.
