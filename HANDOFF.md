@@ -11,7 +11,7 @@ The [3D plan](first_sim_plan.md) supersedes implementation ordering in inherited
 2D documents. Self-review rounds are in [the review log](docs/plans/3d_plan_reviews.md).
 Keep the [implementation record](docs/verification/3d_progress.md) current.
 
-T0-T2 are complete for detonationFoam. Revision 15 prioritizes a bounded
+T0-T2 are complete for detonationFoam. Revision 17 prioritizes a bounded
 PeleC/Modal GPU trial (G0 and G1a native shock/reactor controls passed), retaining detonationFoam as fallback. Do not
 complete two full CPU/GPU engine stacks. About eight GPUs are authorized initially;
 Modal CPU and one-H100 access passed. Native PeleC CUDA smoke and independent
@@ -48,3 +48,9 @@ Bulk native outputs and downloaded/build dependencies will be Git-ignored.
 Native geometry/static checks and regular-grid MOL direction/refinement checks
 pass; see [G1b evidence](docs/verification/pelec_g1b/README.md). Full dynamic EB,
 AMR and reacting-engine gates remain open.
+
+Native formed-wave initialization and the first-order 2 ns field probe pass;
+higher-order composition defects were isolated with frozen, timestep and grid
+controls. See [G2b diagnostics](docs/verification/pelec_g2b/README.md). This does
+not pass full propagation or engine gates. The bounded 0.2 us diagnostic is the
+next check; no full-GRI engine runtime commitment is supported yet.

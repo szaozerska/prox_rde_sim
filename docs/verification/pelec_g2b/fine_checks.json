@@ -1,0 +1,71 @@
+{
+  "numerical_field_checks_passed": false,
+  "short_propagation_checks_passed": false,
+  "full_G2b_passed": false,
+  "checks": {
+    "completion": true,
+    "solver_log": true,
+    "final_time": true,
+    "initial_cell_averages": true,
+    "species_sum": true,
+    "species_nonnegative": false,
+    "elements": false,
+    "EOS_pressure": true,
+    "EOS_energy": true,
+    "transverse_motion": true,
+    "transverse_invariance": true,
+    "wave_inside_domain": true,
+    "boundary_cone_margin": true,
+    "propagation_window_complete": false
+  },
+  "max_errors": {
+    "species_sum": 7.205347429817266e-14,
+    "negative_species": 1.2176626335781052e-09,
+    "element_error": 0.008473870566478192,
+    "integrated_element_ratio_error": 5.218048215738236e-15,
+    "pressure_EOS": 1.3031211665293085e-09,
+    "energy_EOS": 1.4646295026439522e-08,
+    "transverse_mps": 0.0,
+    "transverse_nonuniformity": 0.0
+  },
+  "initial_cell_average_relative_L1_error": 3.1531411387289324e-17,
+  "boundary_cone_margin_m": 0.0003107649360607741,
+  "max_observed_characteristic_mps": 3149.3933985015783,
+  "history": [
+    {
+      "time_s": 0.0,
+      "shock_locations_m": [
+        0.0005130000353501297,
+        0.0005120000707002541,
+        0.0005110001060503784
+      ],
+      "half_heat_location_m": 0.00047250338969194217,
+      "half_heat_distance_m": 3.949668100831195e-05,
+      "temperature_minmax_K": [
+        300.0000000241998,
+        4000.7705028849373
+      ],
+      "mass_per_area_kg_m2": 0.010913235869818407,
+      "total_energy_per_area_J_m2": -714.3238109650607
+    },
+    {
+      "time_s": 2e-09,
+      "shock_locations_m": [
+        0.0005199558409422073,
+        0.0005175019285429358,
+        0.000514974272589225
+      ],
+      "half_heat_location_m": 0.0004773730775963374,
+      "half_heat_distance_m": 4.012885094659835e-05,
+      "temperature_minmax_K": [
+        299.97571066423205,
+        4000.743209196466
+      ],
+      "mass_per_area_kg_m2": 0.01093042520934644,
+      "total_energy_per_area_J_m2": -681.5833263626823
+    }
+  ],
+  "propagation": {},
+  "wall_seconds": 6.61621361,
+  "scope": "Short formed-wave diagnostic only; grid/timestep and longer-window checks still required; no engine sustainability claim"
+}

@@ -1,4 +1,4 @@
-# 3D RDE development plan - revision 13, native verification and methane preflight
+# 3D RDE development plan - revision 17, native propagation diagnostics
 
 This branch develops a native three-dimensional methane/oxygen pipeline.
 The October 22 GPU revision below controls execution order; the T0-T7 physics
@@ -35,15 +35,15 @@ sustained-wave pass. Check replenishment, shock/reaction coupling, disjoint wind
 mesh/dt and startup/feed/outlet sensitivity, and a documented negative control.
 
 The user authorized an early start; the 14:30 kickoff is paused to avoid duplicate
-work. Finish the three review rounds, then start G0 now in the isolated 3D clone.
+work. The review rounds and G0/G1a are complete. Continue the bounded native controls in the isolated 3D clone; no engine is yet validated.
 
 ## GPU revision: fastest useful result
 
 The user now provides access to about eight Modal GPUs and prioritizes turnaround
 above initial fidelity. This supersedes the earlier local-only/no-cloud restriction.
-Modal authentication and an eight-core CPU access probe passed. GPU model,
-simultaneous capacity, topology and solver performance remain unverified.
-GPU runtime estimates are not measured results.
+Modal authentication and an eight-core CPU access probe passed. One H100 80 GB and native CPU/GPU controls are verified. Simultaneous multi-GPU
+capacity/topology and reacting-engine performance remain unverified. Tiny control
+runtimes are measured; engine runtime estimates are not measured results.
 
 **Decision:** one 3D project and physical specification, CPU checks plus a GPU
 production candidate; no separate CPU/GPU branches or full duplicate implementations.
@@ -482,3 +482,21 @@ pass or uncertainty bound. Keep the existing full-GRI native baseline, declare
 the extrapolated polynomial law and 5000 K inverse interval, and block any
 engine/design conclusion pending the remaining dynamic, model and boundary
 gates. See the [G2 evidence](docs/verification/pelec_g2/README.md) for limitations.
+
+## Revision 17 — native transport diagnosis and engineering checkpoint
+
+Native GPU chemistry, static EB geometry and regular-grid MOL controls work
+without developing new CFD physics; retain PeleC as the GPU-first candidate and
+the installed detonationFoam fallback. Do not create separate engine branches.
+The [formed-wave evidence](docs/verification/pelec_g2b/README.md) isolates a
+higher-order composition/positivity defect for the steep methane profile. The
+actual native first-order probe passes, but its diffusion and wave-speed/grid
+accuracy are not yet accepted. G2b, dynamic EB, AMR and engine gates remain open.
+
+The four-active-hour engineering checkpoint does not justify a full engine launch:
+full-GRI small-case step cost already warns against treating it as an established
+two-hour production recipe. Retain it as a reference. Measure the bounded wave
+extension before choosing tolerances or chemistry reductions; preserve the same
+physical diagnostic and check sensitivity. A CPU solver switch or requesting
+eight GPUs does not by itself resolve reaction-length/CFL and model-cost limits.
+No tuning of heat release or continuing ignition may manufacture sustainment.

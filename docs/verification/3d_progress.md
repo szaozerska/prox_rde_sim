@@ -399,4 +399,16 @@ This supports a conditional formed-wave numerical check, not a physical-fit
 pass or uncertainty bound. Keep the existing full-GRI native baseline, declare
 the extrapolated polynomial law and 5000 K inverse interval, and block any
 engine/design conclusion pending the remaining dynamic, model and boundary
-gates. See the [G2 evidence](docs/verification/pelec_g2/README.md) for limitations.
+gates. See the G2 evidence in docs/verification/pelec_g2/README.md for limitations.
+
+## 2026-10-22 — formed-wave initialization and transport root cause
+
+Independent reference tolerance and exact conserved-profile integration resolved
+initial trace-species/quadrature issues; native imported averages match <3.3e-17.
+Short native reacting probes found a higher-order transport defect, reproduced
+without chemistry and not cured by dt/cell halving. Global elemental ratios still
+conserve; local deviations are spatial error. The source passes `plm_iorder` to
+MOL, so changing `mol_iorder` alone is ineffective. Explicit actual first-order
+reconstruction passes the original 2 ns field gates with no native clipping.
+Full G2b remains open. Detailed attempts, controls and limitations are recorded in
+docs/verification/pelec_g2b/README.md; a bounded longer diagnostic is in progress.

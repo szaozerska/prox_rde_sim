@@ -271,4 +271,16 @@ This supports a conditional formed-wave numerical check, not a physical-fit
 pass or uncertainty bound. Keep the existing full-GRI native baseline, declare
 the extrapolated polynomial law and 5000 K inverse interval, and block any
 engine/design conclusion pending the remaining dynamic, model and boundary
-gates. See the [G2 evidence](docs/verification/pelec_g2/README.md) for limitations.
+gates. See the G2 evidence in docs/verification/pelec_g2/README.md for limitations.
+
+## Review 17 — actual reconstruction path, local error versus global budgets
+
+The formed-wave probe exposed local species/element defects that cold Sod and
+homogeneous chemistry cannot detect. Halving dt and disabling reactions did not
+remove them; actual first-order transport did. `mol_iorder` was misleading for the
+pinned call path: `Diffusion.cpp` passes `plm_iorder`. Both are now explicit, with
+failed and successful probes preserved. Do not equate local elemental error with
+atom creation: integrated ratios conserve to roundoff. Do not accept the
+first-order option until reaction coupling and wave-speed/grid checks pass.
+The four-hour checkpoint retains the native GPU candidate but makes no engine
+runtime promise. See docs/verification/pelec_g2b/README.md.

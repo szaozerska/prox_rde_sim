@@ -1,0 +1,19 @@
+{
+  "command": [
+    "cmake",
+    "--build",
+    "/opt/PeleC/build-gpu",
+    "--target",
+    "PeleC-FormedWave",
+    "-j",
+    "12"
+  ],
+  "wall_seconds": 107.55524307,
+  "binary_sha256": "baa6ea9403558c11194de24f7315106920e5261db85bc5a3cdd456a8dd4885ad",
+  "overlay_sha256": {
+    "prob.cpp": "6d57f3626c1efb0bc6e7ce043e75249817344fa3707c7908681fb7446140cdda",
+    "prob.H": "2cb3f7448ce8e97e73ab4b60367c709e2dd9e80fea7c5ec39fc792ad9883e980",
+    "prob_parm.H": "3b7dec457da79e0842261f27e1459c2e6197cba0805b5acc6cff211fa2b3ce02"
+  },
+  "scope": "Initialization only; unchanged GRI polynomial-law native evolution and existing explicit inverse-bound overlay"
+}
