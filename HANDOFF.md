@@ -11,7 +11,7 @@ remains unresolved. Native inputs and physics parameters are unchanged.
 
 ## Current result and plan
 
-[Revision 18](first_sim_plan.md) records the completed D3 investigation and the
+[Revision 19](first_sim_plan.md) records the completed D3 investigation and the
 [paper/model audit](docs/verification/mundt_model_audit.md). The latest instruction authorizes controlled 2D tests, three plan reviews,
 small verified increments and publication on **main only**. The independent
 session handles 3D in another checkout/branch; do not push to its branch. D3 and
@@ -295,3 +295,12 @@ formed initializer and thin-layer failures prevent treating direction alone as
 a known fix. Revision 18 records conditional matched-start and refill checks.
 Video frames were inaccessible; source descriptions/paper text were reviewed,
 not watched footage. This is documentation only, with no new tests or CFD.
+
+## Directional startup priority
+
+Default startup is now a finite tangential formed wave; the old inviscid hot patch
+is preserved as `cases/run937_hotpatch.yaml`. Compare the new
+`cases/run937_radial_directional.yaml` with the unchanged `cases/run937_radial.yaml`.
+See [protocol](docs/verification/directional_startup.md). Per user instruction,
+implementation is published before further tests; the first commit is explicitly
+unverified. Follow-up records verification and bounded comparison results.

@@ -118,11 +118,19 @@ def initialize_engine(solver,resolved,c):
             or not 0<height<=length or not 0<=phase<1 or temperature<=0
             or init.get('u_theta',0)!=0 or init.get('u_z',0)!=0):
         raise ValueError('formed initialization needs valid height, phase, temperature and no velocity override')
+    direction=init.get('direction','+theta')
+    if direction not in ('+theta','-theta'):
+        raise ValueError('formed direction must be +theta or -theta')
+    sign=1 if direction=='+theta' else -1
     profile=formed_profile(c)
     if max(profile['verification']['jump_max_relative_error'])>1e-8:
         raise ValueError('formed profile jump invariants failed')
     edges=np.arange(solver.nx+1)*solver.dx
-    along=periodic_charge_average(profile,edges,phase*width,charge,width)
+    profile_phase=phase if sign==1 else (1-phase)%1
+    along=periodic_charge_average(profile,edges,profile_phase*width,charge,width)
+    if sign==-1:
+        along=along[:,::-1].copy()
+        along[1]*=-1
     fraction=np.clip((height-np.arange(solver.ny)*solver.dy)/solver.dy,0.,1.)
     hot=conserved_state(c['p1']/(c['R']*temperature),0.,c['p1'],1.,c)
     solver.U[:,NG:-NG,NG:-NG]=(along[:,:,None]*fraction[None,None,:]
@@ -131,6 +139,7 @@ def initialize_engine(solver,resolved,c):
     # Independent whole-domain integral of the tabulated profile, then constants.
     integral=(profile['cumulative'][:,-1]+profile['burned']*(charge-profile['distance'][-1])
               +profile['fresh']*(width-charge))
+    integral[1]*=sign
     expected=(height*integral+(length-height)*width*hot)*resolved['gap']
     baseline=(height*width*profile['fresh']+(length-height)*width*hot)*resolved['gap']
     actual=solver.conserved_totals()*resolved['gap']
@@ -141,8 +150,11 @@ def initialize_engine(solver,resolved,c):
     resolved['initialization_energy_change_J']=float(actual[3]-baseline[3])
     resolved['formed_initialization']=dict(profile=profile['verification'],
         shock_m=phase*width,charge_length_m=charge,layer_height_m=height,
-        trailing_jump_m=(phase*width-charge)%width,
-        lab_velocity='D_CJ minus shock-frame velocity; positive theta; zero axial velocity',
+        trailing_jump_m=(phase*width-sign*charge)%width,
+        direction=direction, imposed_wave_speed_mps=sign*c['D_CJ'],
+        lab_velocity='signed (D_CJ minus shock-frame velocity); zero axial velocity',
+        initialization_excess_totals=(actual-baseline).tolist(),
+        continuous_tangential_forcing=False,
         initial_totals=actual.tolist(),expected_totals=expected.tolist(),
         initial_unspent_chemical_energy_J=float(c['q']*(actual[0]-actual[4])),
         inventory_max_scaled_error=error,interface_mixed_rows=int(np.sum((fraction>0)&(fraction<1))),

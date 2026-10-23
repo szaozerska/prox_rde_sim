@@ -24,6 +24,17 @@ are implemented and tested (2 us, 556 steps, zero invalid states). The sustainin
 assigned to a separate chat; after finishing 2D functionality, this branch now
 adds the user-requested radial-wall closures and their controlled comparison.
 
+## Directional startup
+
+The default `config.yaml` now launches a finite +theta formed detonation profile,
+including its laboratory-frame tangential momentum. Set `initialization.direction`
+to `-theta` to reverse the launch. This is a surrogate for the wave after launch,
+not a simulated pre-detonator tube. Continuous injection remains axial.
+The previous default is preserved in `cases/run937_hotpatch.yaml`.
+`cases/run937_radial_directional.yaml` is matched to the original radial GIF case
+except for startup. Both use the existing `calib.json`; no chemistry retuning.
+See [comparison protocol and verification status](docs/verification/directional_startup.md).
+
 ## Complete 2D software workflow
 
 The functional workflow is implemented through F4. Start with the

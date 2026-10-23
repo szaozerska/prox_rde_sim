@@ -1,4 +1,4 @@
-# RDE simulation plan — revision 18
+# RDE simulation plan — revision 19
 
 **Status: reduced 2D software workflow F1–F4 complete. Full acceptance: 122 tests passed, no skips; 16 affected checks repeated after review, plus one new coupled-physics check (123 distinct passing tests). RDE-001 remains open. The radial-wall increment and matched 189.394 us comparison are also complete: 132 distinct verification tests passed, but sustained detonation was not restored in the original case. See [radial results](docs/verification/radial_closures.md). No CAD work.**
 
@@ -31,6 +31,15 @@ exclude later reinitiation. See [source review and measured timeline](docs/verif
 Retain the actual-refill-layer/chemistry/resolution gate; review the existing formed
 controls before another startup comparison. Do not assume arbitrary inlet swirl
 or a longer unchanged run is the fix. This review launches no new CFD campaign.
+
+**Current priority (revision 19): directional launch first.** At the user's request,
+implement and push before running any further tests. Default startup becomes a
+conservative tangential formed shock/reaction profile, with explicit direction
+and momentum/energy accounting. Preserve historical hot-patch cases. After that
+push, run targeted checks and compare the radial directional case with the saved
+non-directional case through 40 us, keeping chemistry, mesh, feed and walls fixed.
+Record unequal initial inventories and distinguish early propagation from sustained
+rotation. Do not add continuous inlet swirl. See [protocol](docs/verification/directional_startup.md).
 
 **Argonne/UW source review (revision 18):** distinguish a temporary pre-detonator
 input from steady propellant injection and from wave propagation. See

@@ -41,6 +41,37 @@ class FormedEngineTests(unittest.TestCase):
         expected=[rho,rho*u,0,pressure/(g-1)+.5*rho*u*u+rho*c['q'],0]
         np.testing.assert_allclose(self.profile['U'][:,0],expected,rtol=1e-10,atol=1e-10)  # allows the existing scalar root-solve tolerance
 
+    def test_direction_reversal_reflects_fields_and_reverses_only_theta_momentum(self):
+        positive,r=self.build()
+        cfg=copy.deepcopy(self.config)
+        cfg['initialization'].update(direction='-theta',
+            shock_fraction=1-self.config['initialization']['shock_fraction'])
+        negative,rr=self.build(cfg)
+        for _ in range(3):
+            expected=positive.U[:,NG:-NG,NG:-NG][:,::-1].copy()
+            expected[1]*=-1
+            np.testing.assert_allclose(negative.U[:,NG:-NG,NG:-NG],expected,rtol=2e-11,atol=1e-7)
+            positive.step(dt_max=1e-9);negative.step(dt_max=1e-9)
+        a=np.array(r['formed_initialization']['initial_totals'])
+        b=np.array(rr['formed_initialization']['initial_totals']);a[1]*=-1
+        np.testing.assert_allclose(a,b,rtol=1e-12,atol=1e-11)
+        self.assertLess(rr['formed_initialization']['imposed_wave_speed_mps'],0)
+
+    def test_default_and_radial_directional_cases_keep_original_chemistry_and_mesh(self):
+        import yaml
+        root=Path(run.__file__).parent
+        for filename,control in [('config.yaml','cases/run937_hotpatch.yaml'),
+                ('cases/run937_radial_directional.yaml','cases/run937_radial.yaml')]:
+            cfg=yaml.safe_load((root/filename).read_text())
+            old=yaml.safe_load((root/control).read_text())
+            self.assertEqual({k:v for k,v in cfg.items() if k!='initialization'},
+                             {k:v for k,v in old.items() if k!='initialization'})
+            c=calibrate(cfg);r=run.resolve_case(cfg,c);solver=run.build_solver(r,c)
+            self.assertGreater(solver.conserved_totals()[1],0)
+            self.assertEqual(solver.conserved_totals()[2],0)
+            self.assertLess(r['formed_initialization']['inventory_max_scaled_error'],1e-10)
+            self.assertFalse(r['formed_initialization']['continuous_tangential_forcing'])
+
     def test_periodic_cell_integrals_against_independent_piecewise_quadrature(self):
         from scipy.integrate import quad_vec
         p=self.profile;circ=.031;charge=.02;shock=.00031
@@ -90,7 +121,7 @@ class FormedEngineTests(unittest.TestCase):
     def test_bad_initialization_and_duration_rejected_before_output_creation(self):
         for key,value in [('fill_height_mm',0),('charge_length_mm',.001),
                           ('charge_length_mm',100),('shock_fraction',1),
-                          ('product_temperature_K',float('nan')),('u_theta',3)]:
+                          ('product_temperature_K',float('nan')),('u_theta',3),('direction','axial')]:
             cfg=copy.deepcopy(self.config);cfg['initialization'][key]=value
             with self.assertRaises(ValueError):self.build(cfg)
         with tempfile.TemporaryDirectory() as tmp:

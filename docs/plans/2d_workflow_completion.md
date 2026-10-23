@@ -27,9 +27,11 @@ sustaining-wave study and the 3D branch remain separate.
   this completion run does not execute those costly studies or assert convergence.
 - Full Chapter 3/4 operating maps, held-out measured-thrust experiments and
   predictive design rankings. Mundt Run 937 has no measured thrust target.
-- The independent report's full **2.5D** tier: radial momentum/velocity,
-  centrifugal pressure split, curvature loss, heat loss, injector-face shear and
-  separate inner/outer wall states. Current drag is one mean-radius closure.
+- The independent report's full **2.5D** tier remains incomplete: radial
+  momentum/velocity, explicit curvature-loss/detachment physics and injector-face
+  shear are absent. Reduced centrifugal pressure reconstruction, separate inner/outer
+  wall drag and heat exchange are now implemented; see [radial results](../verification/radial_closures.md).
+  These closures did not restore sustained detonation in the tested hot-patch case.
 - CAD import, nonuniform/coreless geometry, alternate CFD backend installation,
   detailed-chemistry CFD, GPU port and 3D. Unsupported geometry is rejected.
 
@@ -37,3 +39,11 @@ The first working iteration's **software** is complete when the final acceptance
 suite and CLI/visual checks pass. Its **physical model** remains a research
 prototype subject to the above gates. The plan's Stage 3 sustained-wave gate and
 Stage 4 predictive validation are not relabelled as passed.
+
+## Directional startup update (October 22)
+
+The default now uses the existing conservative formed-wave initializer, with an
+explicit +theta/-theta direction and saved launch inventories. A radial case
+matched to the old GIF case is provided. This supplies a traveling initial wave;
+a resolved pre-detonator and time-dependent inlet launch remain unimplemented.
+See [protocol and results status](../verification/directional_startup.md).
