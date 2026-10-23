@@ -192,3 +192,15 @@ From the repository root, with the saved run present and a new output directory:
 
 The script writes metrics and two ring-map figures. `profiles.png` is an additional
 inspection montage from the same saved fields, with times and axes printed on it.
+
+## Follow-up: gas convergence before the visible encounter
+
+The [end-on comparison and velocity audit](uw_visual_comparison.md) addresses
+indirect coupling explicitly. Timing alone does not exclude pre-collision flow
+interactions. However, at 40 us the saved far-side region x=110–160 mm has maximum
+circumferential speed below 5.23e-12 m/s across all heights; eight millimetres ahead
+of the lower pressure peaks, speeds are below 0.3 m/s. Thus early compression of
+the whole intervening gas column is not supported as the cause of the already
+weak near-injector reaction. Local injector, product-layer and later interactions
+remain possible. New GIFs separate end-on orientation from optical brightness;
+the university-source flipbook consists of five published stills, not a video.

@@ -1,0 +1,35 @@
+{
+  "source_pdf_sha256": "9b29881e98f4435c5a887b942ade010f13181a42a73e1bf78e50bf89f7b2195d",
+  "printed_page": 26,
+  "pdf_page": 42,
+  "figure": "2.3",
+  "description": "Five published photographs extracted from the user-provided thesis, not original continuous video.",
+  "image_name": "Image447.jp2",
+  "image_size": [
+    1419,
+    334
+  ],
+  "crop_boundaries_px": [
+    0,
+    284,
+    569,
+    853,
+    1136,
+    1419
+  ],
+  "physical_times_us": [
+    0,
+    46,
+    133,
+    225,
+    750000
+  ],
+  "display_durations_ms": [
+    1700,
+    1700,
+    1700,
+    1700,
+    3000
+  ],
+  "qualification": "Equal holds for readability; gap from225us to0.75s is explicit. No interpolated frames."
+}

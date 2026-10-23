@@ -274,3 +274,14 @@ reference revolutions, so later reinitiation is not excluded. Mundt Figure 2.3
 and Appendix B supply startup and counter-wave examples; verified external video
 links and access limits are recorded. Four relevant analytical checks passed;
 all 96 source hashes match the GIF manifest. No evolution-code change or CFD rerun.
+
+## End-on visual comparison and gas motion
+
+[UW comparison](docs/verification/uw_visual_comparison.md) provides a 96-frame
+end-on GIF of the same saved run, a labeled five-still flipbook from Mundt Fig.2.3,
+original UW video links, and a direct velocity check of the pre-collision squeeze
+hypothesis. Central far-side gas has essentially zero circumferential speed at
+40 us, before later convergence. This does not rule out every indirect interaction.
+Projection accounting, frame timing and source hashes pass; no new CFD or solver
+changes. The experimental photos and computed chemical-power view are different
+observables, not synchronized measurements.
