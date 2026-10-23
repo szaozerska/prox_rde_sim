@@ -2,6 +2,11 @@
 
 October 22, 2026. Documentation only; no new CFD or parameter changes. RDE-001 remains open.
 
+**Later access update:** the [tangential-discharge audit](tangential_discharge_review.md)
+obtained and visually inspected the DOE-hosted Argonne journal manuscript's
+Figure 2, plus DLR startup Figures 10–11. The video access limitations below
+remain. The original access statements are retained as the history of this review.
+
 ## Access and provenance
 
 Requested: Scott Manley's [4:50–5:10 segment](https://www.youtube.com/watch?v=rG_Eh0J_4_s&t=290s)

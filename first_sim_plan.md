@@ -1,4 +1,4 @@
-# RDE simulation plan — revision 19
+# RDE simulation plan — revision 20
 
 **Status: reduced 2D software workflow F1–F4 complete. Full acceptance: 122 tests passed, no skips; 16 affected checks repeated after review, plus one new coupled-physics check (123 distinct passing tests). RDE-001 remains open. The radial-wall increment and matched 189.394 us comparison are also complete: 132 distinct verification tests passed, but sustained detonation was not restored in the original case. See [radial results](docs/verification/radial_closures.md). No CAD work.**
 
@@ -32,7 +32,7 @@ Retain the actual-refill-layer/chemistry/resolution gate; review the existing fo
 controls before another startup comparison. Do not assume arbitrary inlet swirl
 or a longer unchanged run is the fix. This review launches no new CFD campaign.
 
-**Current priority (revision 19): directional launch first.** At the user's request,
+**Completed priority (revision 19): directional launch first.** At the user's request,
 implement and push before running any further tests. Default startup becomes a
 conservative tangential formed shock/reaction profile, with explicit direction
 and momentum/energy accounting. Preserve historical hot-patch cases. After that
@@ -47,6 +47,21 @@ pressure path but loss of strong near-front reaction in the lower ring; RDE-001
 remains open. Initial inventories differ, so this is not a momentum-only test.
 The deliberate stop exposed a Numba/SIGINT issue; deferred CLI interruption and
 its restart regression address it. See [results and qualifications](docs/verification/directional_startup.md).
+
+**Current priority (revision 20): distinguish directional state from finite discharge.**
+The [tangential-discharge audit](docs/verification/tangential_discharge_review.md)
+checks primary Argonne/DLR figures and saved fields. The current start has exactly
+zero axial velocity and up to 1994.59 m/s +theta gas velocity; its forward pressure
+peak is already 4.47 times the backward one at 20 us. It is a pre-positioned
+30 mm formed strip, not the finite port discharge seen in the external work.
+Do not increase momentum or reshape the patch solely to match movie appearance.
+L0 (source/field/visual audit) is complete. Next L1 specifies a conservative finite
+pulse and its footprint/history/integrated input; L2 implements it with short
+flux/shutoff/direction/seam/restart checks; L3 makes one bounded matched startup
+comparison after L1–L2 pass. The detailed gates and three review decisions are in
+the audit. Preserve chemistry/refill/resolution gates. The reduced radial closures
+cannot resolve port diffraction and cross-gap wall reflection. No new CFD or
+physical retuning accompanies this plan revision; RDE-001 remains open.
 
 **Argonne/UW source review (revision 18):** distinguish a temporary pre-detonator
 input from steady propellant injection and from wave propagation. See

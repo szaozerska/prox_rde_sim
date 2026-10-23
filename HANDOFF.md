@@ -11,7 +11,7 @@ remains unresolved. Native inputs and physics parameters are unchanged.
 
 ## Current result and plan
 
-[Revision 19](first_sim_plan.md) records the completed D3 investigation and the
+[Revision 20](first_sim_plan.md) records the completed D3 investigation and the
 [paper/model audit](docs/verification/mundt_model_audit.md). The latest instruction authorizes controlled 2D tests, three plan reviews,
 small verified increments and publication on **main only**. The independent
 session handles 3D in another checkout/branch; do not push to its branch. D3 and
@@ -315,3 +315,16 @@ Verification after follow-up: 144 distinct checks passed across suite and
 corrective reruns, one optional long baseline skipped; 34 affected checks passed
 after deferred interruption was added. Comparison GIF/frame hashes and PNGs
 checked. Physical sustained-wave acceptance remains open.
+
+## Tangential discharge audit — revision 20
+
+[Primary sources and saved-field audit](docs/verification/tangential_discharge_review.md)
+confirm a purely tangential initial formed state, with a substantially dominant
+forward pressure path, but no modeled finite pre-detonator discharge. New plots
+use equal spatial scales, actual velocity arrows and a shifted periodic seam.
+Argonne Figure 2 and DLR Figures 10–11 were actually rendered and inspected;
+the YouTube segment remains unavailable. DLR's 41-degree connection is not a
+strictly tangential validation case. Next: L1 pulse-input specification, L2 short
+conservative/shutoff checks, then L3 bounded comparison. Do not simply multiply
+velocity/energy or interpret the current radial closures as radial wave dynamics.
+No new CFD or solver physics in this audit; RDE-001 remains open.

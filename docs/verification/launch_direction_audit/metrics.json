@@ -1,0 +1,121 @@
+{
+  "provenance": {
+    "directory": "/Users/sgfx/Desktop/Projects/prox_rde_sim/rde_sim_starter/runs/directional_startup_40us",
+    "inputs_sha256": "5c7c9a79f84dd8578ec74e906c53f4d2ec0470cca9616338c0a78b28d53e06c7",
+    "summary_sha256": "b3d56548875541a4dfa2551e5d6b80dfac5392d23119f5fe3332fab00d797247",
+    "committed_history_sha256": "ee1e4c80d15b27e6a2198e9e6668f3415e0ebcb802918d2224782e95d41754c3",
+    "committed_history_bytes": 5773835,
+    "checkpoint_step": 2780,
+    "report_source_sha256": "cfb29d295be2be355843679f9fd1c6a329632ff11909ca1d5dc840b87161215c",
+    "analysis_source_sha256": "3ee0021a4406ae52c90c87ccbb7af782113738ab2a7d982c8bf1dc631a059b7a"
+  },
+  "native_status": "failed",
+  "script_sha256": "462c9aa98bc622c834b75d455acddb5d8d835c46a82bb5577c97cd322b9b3c01",
+  "comparison_sha256": "71b5421ba75a8d2f130e304084436fab6a551c14a93943356471e8dd921abcb5",
+  "initial": {
+    "max_u_theta_mps": 1994.594482421875,
+    "min_u_theta_mps": 0.0,
+    "max_abs_u_z_mps": 0.0,
+    "positive_theta_momentum_kg_mps": 0.005798540166072233,
+    "negative_theta_momentum_kg_mps": 0.0,
+    "kinetic_energy_J": 3.809837032454075,
+    "max_pressure_MPa": 19.694101333618164
+  },
+  "ring_z_mm": 0.7519736842105263,
+  "initial_p1_MPa": 0.37791697229176013,
+  "peak_comparisons": [
+    {
+      "time_us": 10.0,
+      "forward": {
+        "x_mm": 41.78388510989271,
+        "pressure_MPa": 6.780451774597168,
+        "nearby_rate_per_s": {
+          "2": 150628.625,
+          "4": 150628.625,
+          "8": 150628.625
+        }
+      },
+      "backward": {
+        "x_mm": 209.41983135916286,
+        "pressure_MPa": 1.1884936094284058,
+        "nearby_rate_per_s": {
+          "2": 26.07382583618164,
+          "4": 9668.5556640625,
+          "8": 28624.896484375
+        }
+      },
+      "pressure_ratio": 5.7050805497037205,
+      "excess_over_initial_p1_ratio": 7.898740858017204
+    },
+    {
+      "time_us": 20.0,
+      "forward": {
+        "x_mm": 55.29484197177418,
+        "pressure_MPa": 4.586793899536133,
+        "nearby_rate_per_s": {
+          "2": 2148.717041015625,
+          "4": 15640.7412109375,
+          "8": 74469.5859375
+        }
+      },
+      "backward": {
+        "x_mm": 203.9153674524704,
+        "pressure_MPa": 1.025668740272522,
+        "nearby_rate_per_s": {
+          "2": 0.15688534080982208,
+          "4": 0.15688534080982208,
+          "8": 0.49232321977615356
+        }
+      },
+      "pressure_ratio": 4.472003210624722,
+      "excess_over_initial_p1_ratio": 6.49766953221095
+    },
+    {
+      "time_us": 29.999999999999996,
+      "forward": {
+        "x_mm": 65.30295816576046,
+        "pressure_MPa": 3.4354238510131836,
+        "nearby_rate_per_s": {
+          "2": 67.7612533569336,
+          "4": 74.23340606689453,
+          "8": 74.45201873779297
+        }
+      },
+      "backward": {
+        "x_mm": 198.41090354577796,
+        "pressure_MPa": 0.9861292839050293,
+        "nearby_rate_per_s": {
+          "2": 0.12235145270824432,
+          "4": 0.12235145270824432,
+          "8": 0.12235145270824432
+        }
+      },
+      "pressure_ratio": 3.4837459013579375,
+      "excess_over_initial_p1_ratio": 5.027038782907003
+    },
+    {
+      "time_us": 40.0,
+      "forward": {
+        "x_mm": 74.31026274034812,
+        "pressure_MPa": 2.5628838539123535,
+        "nearby_rate_per_s": {
+          "2": 7.089228630065918,
+          "4": 7.089228630065918,
+          "8": 7.089228630065918
+        }
+      },
+      "backward": {
+        "x_mm": 192.4060338293862,
+        "pressure_MPa": 0.8848644495010376,
+        "nearby_rate_per_s": {
+          "2": 0.0687892958521843,
+          "4": 0.0687892958521843,
+          "8": 0.0687892958521843
+        }
+      },
+      "pressure_ratio": 2.8963575781098756,
+      "excess_over_initial_p1_ratio": 4.310045872303647
+    }
+  ],
+  "qualification": "Peak ratios are not energy ratios, local shock jumps or proof of detonation. The overpressure reference is initial p1, not measured upstream pressure. Saved fields are float32. No new CFD."
+}
