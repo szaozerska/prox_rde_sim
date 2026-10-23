@@ -328,3 +328,17 @@ strictly tangential validation case. Next: L1 pulse-input specification, L2 shor
 conservative/shutoff checks, then L3 bounded comparison. Do not simply multiply
 velocity/energy or interpret the current radial closures as radial wave dynamics.
 No new CFD or solver physics in this audit; RDE-001 remains open.
+
+## Directional case extended through 189.394 us
+
+The user requested a longer movie of the existing case. The
+[continuation report](docs/verification/directional_extension.md) records the
+unchanged 40–189.394 us continuation (8 minutes), original-source restart,
+96 saved fields and full-window GIFs. Native status is `completed_limit`, with
+zero invalid states and 7.01e-14 scaled budget residual. The original 40 us run
+is unchanged, including its historical interrupt failure. The continued run uses
+exact source commit `411a895`; current source still differs in interruption
+handling, so do not bypass the native restart fingerprint if extending again.
+No sustained near-injector detonation recovered; final lower-ring maximum rate
+is 0.0120/s although reaction persists higher up. RDE-001 remains open; L1/L2
+finite-discharge work has not been implemented by this time-only extension.

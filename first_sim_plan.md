@@ -63,6 +63,14 @@ the audit. Preserve chemistry/refill/resolution gates. The reduced radial closur
 cannot resolve port diffraction and cross-gap wall reflection. No new CFD or
 physical retuning accompanies this plan revision; RDE-001 remains open.
 
+**User-requested longer observation completed:** the existing directional case
+was continued unchanged from 40 to 189.394 us using its exact archived source and
+preserved checkpoint lineage. Zero invalid states; scaled native budget residual
+7.01e-14. The longer window shows decay without restored near-injector coupled
+rotation. [Results and full-window GIFs](docs/verification/directional_extension.md)
+record 96 fields and the limits of this conclusion. This observation does not
+implement L1/L2 or resolve RDE-001; the revision-20 discharge plan remains next.
+
 **Argonne/UW source review (revision 18):** distinguish a temporary pre-detonator
 input from steady propellant injection and from wave propagation. See
 [access limits, source findings and small next checks](docs/verification/argonne_startup_review.md).
