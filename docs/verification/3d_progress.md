@@ -412,3 +412,17 @@ MOL, so changing `mol_iorder` alone is ineffective. Explicit actual first-order
 reconstruction passes the original 2 ns field gates with no native clipping.
 Full G2b remains open. Detailed attempts, controls and limitations are recorded in
 docs/verification/pelec_g2b/README.md; a bounded longer diagnostic is in progress.
+
+
+## 2026-10-22 — P3D-001 propagation gate remains failed
+
+Three 0.2-us native controls complete but fail speed/reaction-distance accuracy;
+dt halving does not fix the error and cell halving does not converge. Independent
+boundary balances exclude a large unexplained mass/energy change. Every-step
+state checks catch transient negatives and supersede the earlier snapshot-only
+first-order probe pass. The finer case also fails the conservative buffer margin.
+No engine was launched; no sustainment or two-hour engine claim is made. Keep the
+full GRI reference, fix the control buffer and compare one native transport option
+before more implementation. See docs/verification/pelec_g2b/README.md for recorded
+causes, hypotheses, literature, timings and all failed controls. Nineteen fast tests
+pass, including the new fail-closed intermediate-state regressions.

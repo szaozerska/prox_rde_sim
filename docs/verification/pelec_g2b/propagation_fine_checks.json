@@ -1,0 +1,435 @@
+{
+  "numerical_field_checks_passed": false,
+  "short_propagation_checks_passed": false,
+  "full_G2b_passed": false,
+  "checks": {
+    "every_step_extrema": true,
+    "completion": true,
+    "solver_log": true,
+    "final_time": true,
+    "initial_cell_averages": true,
+    "species_sum": true,
+    "species_nonnegative": true,
+    "elements": true,
+    "EOS_pressure": true,
+    "EOS_energy": true,
+    "transverse_motion": true,
+    "transverse_invariance": true,
+    "wave_inside_domain": true,
+    "boundary_cone_margin": false,
+    "reacting_enabled": true,
+    "short_wave_speed": false,
+    "shock_reaction_coupling": true,
+    "reaction_distance_accuracy": false
+  },
+  "max_errors": {
+    "species_sum": 7.205347429817266e-14,
+    "negative_species": 2.8692260399047798e-27,
+    "element_error": 1.3011813848606835e-13,
+    "integrated_element_ratio_error": 5.218048215738236e-15,
+    "pressure_EOS": 7.283063041541027e-14,
+    "energy_EOS": 2.8555629730293853e-10,
+    "transverse_mps": 0.0,
+    "transverse_nonuniformity": 0.0
+  },
+  "initial_cell_average_relative_L1_error": 3.1531411387289324e-17,
+  "boundary_cone_margin_m": -1.965776152635282e-05,
+  "right_boundary_cone_margin_m": 0.00015959766691819012,
+  "max_observed_characteristic_mps": 4190.150236520407,
+  "history": [
+    {
+      "time_s": 0.0,
+      "shock_locations_m": [
+        0.0005130000353501297,
+        0.0005120000707002541,
+        0.0005110001060503784
+      ],
+      "half_heat_location_m": 0.00047250338969194217,
+      "half_heat_distance_m": 3.949668100831195e-05,
+      "temperature_minmax_K": [
+        300.0000000241998,
+        4000.7705028849373
+      ],
+      "mass_per_area_kg_m2": 0.010913235869818407,
+      "total_energy_per_area_J_m2": -714.3238109650607
+    },
+    {
+      "time_s": 9.999999999999985e-09,
+      "shock_locations_m": [
+        0.000545410189323735,
+        0.0005399355342993313,
+        0.0005314041263382965
+      ],
+      "half_heat_location_m": 0.0004977445815177648,
+      "half_heat_distance_m": 4.2190952781566535e-05,
+      "temperature_minmax_K": [
+        299.9999999999161,
+        4101.267956448388
+      ],
+      "mass_per_area_kg_m2": 0.01099918256745895,
+      "total_energy_per_area_J_m2": -550.6213879102706
+    },
+    {
+      "time_s": 1.9999999999999994e-08,
+      "shock_locations_m": [
+        0.0005725904054565627,
+        0.0005669213299793471,
+        0.0005586971035690535
+      ],
+      "half_heat_location_m": 0.0005341645558053154,
+      "half_heat_distance_m": 3.2756774174031735e-05,
+      "temperature_minmax_K": [
+        299.9999999996583,
+        4337.785831062952
+      ],
+      "mass_per_area_kg_m2": 0.011085129265099988,
+      "total_energy_per_area_J_m2": -386.9189648190174
+    },
+    {
+      "time_s": 3.0000000000000083e-08,
+      "shock_locations_m": [
+        0.0005991978479901629,
+        0.0005941360619108728,
+        0.00058955844654846
+      ],
+      "half_heat_location_m": 0.0005788367366315759,
+      "half_heat_distance_m": 1.5299325279296856e-05,
+      "temperature_minmax_K": [
+        299.99999999944913,
+        4515.146281778393
+      ],
+      "mass_per_area_kg_m2": 0.011171075962741372,
+      "total_energy_per_area_J_m2": -223.21654172309874
+    },
+    {
+      "time_s": 4.000000000000017e-08,
+      "shock_locations_m": [
+        0.000633551907198377,
+        0.0006310197022822629,
+        0.0006291020467642076
+      ],
+      "half_heat_location_m": 0.0006274585176716795,
+      "half_heat_distance_m": 3.5611846105833463e-06,
+      "temperature_minmax_K": [
+        299.9999999993506,
+        4560.308544504124
+      ],
+      "mass_per_area_kg_m2": 0.011257022660383007,
+      "total_energy_per_area_J_m2": -59.51411862626457
+    },
+    {
+      "time_s": 5.000000000000026e-08,
+      "shock_locations_m": [
+        0.0006720084927193234,
+        0.0006691197226376744,
+        0.0006670705457917653
+      ],
+      "half_heat_location_m": 0.0006671369276833162,
+      "half_heat_distance_m": 1.9827949543582907e-06,
+      "temperature_minmax_K": [
+        299.99999999927667,
+        4522.687088410956
+      ],
+      "mass_per_area_kg_m2": 0.011342969358024837,
+      "total_energy_per_area_J_m2": 104.18830447087096
+    },
+    {
+      "time_s": 6.000000000000033e-08,
+      "shock_locations_m": [
+        0.0007075120537189111,
+        0.0007045744073278612,
+        0.0007022799795500862
+      ],
+      "half_heat_location_m": 0.0007026900030421769,
+      "half_heat_distance_m": 1.884404285684314e-06,
+      "temperature_minmax_K": [
+        299.999999999254,
+        4531.215438284519
+      ],
+      "mass_per_area_kg_m2": 0.01142891605566683,
+      "total_energy_per_area_J_m2": 267.89072756815716
+    },
+    {
+      "time_s": 7.009999999999975e-08,
+      "shock_locations_m": [
+        0.0007417550846598003,
+        0.0007389429808481737,
+        0.0007364990227381517
+      ],
+      "half_heat_location_m": 0.0007370379763287369,
+      "half_heat_distance_m": 1.905004519436762e-06,
+      "temperature_minmax_K": [
+        299.999999999938,
+        4520.265781631988
+      ],
+      "mass_per_area_kg_m2": 0.011515722220285369,
+      "total_energy_per_area_J_m2": 433.2301748965339
+    },
+    {
+      "time_s": 8.009999999999918e-08,
+      "shock_locations_m": [
+        0.0007751572775322224,
+        0.0007720807346454567,
+        0.0007694746032530469
+      ],
+      "half_heat_location_m": 0.0007703544416167698,
+      "half_heat_distance_m": 1.72629302868689e-06,
+      "temperature_minmax_K": [
+        299.9999999999405,
+        4501.142463669944
+      ],
+      "mass_per_area_kg_m2": 0.011601668917927596,
+      "total_energy_per_area_J_m2": 596.9325979940376
+    },
+    {
+      "time_s": 9.00999999999986e-08,
+      "shock_locations_m": [
+        0.000807679262897308,
+        0.0008044509091978099,
+        0.000801821551316473
+      ],
+      "half_heat_location_m": 0.0008027759336808493,
+      "half_heat_distance_m": 1.674975516960625e-06,
+      "temperature_minmax_K": [
+        299.9999999999346,
+        4479.6617233222705
+      ],
+      "mass_per_area_kg_m2": 0.01168761561556992,
+      "total_energy_per_area_J_m2": 760.6350210915937
+    },
+    {
+      "time_s": 1.0009999999999803e-07,
+      "shock_locations_m": [
+        0.0008395490603308101,
+        0.0008362616758568025,
+        0.0008335055045213509
+      ],
+      "half_heat_location_m": 0.0008346286729762607,
+      "half_heat_distance_m": 1.63300288054185e-06,
+      "temperature_minmax_K": [
+        299.99999999993446,
+        4456.144020510958
+      ],
+      "mass_per_area_kg_m2": 0.011773562313212312,
+      "total_energy_per_area_J_m2": 924.3374441892184
+    },
+    {
+      "time_s": 1.1009999999999746e-07,
+      "shock_locations_m": [
+        0.0008708416481255001,
+        0.000867577117908822,
+        0.00086472801977238
+      ],
+      "half_heat_location_m": 0.0008659556931671032,
+      "half_heat_distance_m": 1.6214247417188372e-06,
+      "temperature_minmax_K": [
+        299.9999999999316,
+        4433.833516361782
+      ],
+      "mass_per_area_kg_m2": 0.011859509010854762,
+      "total_energy_per_area_J_m2": 1088.0398672868853
+    },
+    {
+      "time_s": 1.20099999999997e-07,
+      "shock_locations_m": [
+        0.0009016718893517258,
+        0.0008983706869454994,
+        0.0008956195718307329
+      ],
+      "half_heat_location_m": 0.000896767798189338,
+      "half_heat_distance_m": 1.602888756161401e-06,
+      "temperature_minmax_K": [
+        299.9999999999295,
+        4411.792923750905
+      ],
+      "mass_per_area_kg_m2": 0.011945455708497267,
+      "total_energy_per_area_J_m2": 1251.7422903845948
+    },
+    {
+      "time_s": 1.3009999999999776e-07,
+      "shock_locations_m": [
+        0.0009324168436060712,
+        0.0009289034084896975,
+        0.0009260678265872251
+      ],
+      "half_heat_location_m": 0.0009273473893570129,
+      "half_heat_distance_m": 1.5560191326845826e-06,
+      "temperature_minmax_K": [
+        299.9999999999297,
+        4391.7577807443195
+      ],
+      "mass_per_area_kg_m2": 0.012031402406139808,
+      "total_energy_per_area_J_m2": 1415.4447134823379
+    },
+    {
+      "time_s": 1.400999999999985e-07,
+      "shock_locations_m": [
+        0.0009625184425842734,
+        0.000959107160983115,
+        0.0009561111780915913
+      ],
+      "half_heat_location_m": 0.0009574871985456948,
+      "half_heat_distance_m": 1.6199624374202458e-06,
+      "temperature_minmax_K": [
+        299.9999999999297,
+        4373.104863945217
+      ],
+      "mass_per_area_kg_m2": 0.012117349103782385,
+      "total_energy_per_area_J_m2": 1579.1471365801076
+    },
+    {
+      "time_s": 1.5009999999999926e-07,
+      "shock_locations_m": [
+        0.0009925561286987321,
+        0.0009889455318492523,
+        0.0009859878343492815
+      ],
+      "half_heat_location_m": 0.000987408362136904,
+      "half_heat_distance_m": 1.537169712348364e-06,
+      "temperature_minmax_K": [
+        299.9999999999293,
+        4356.102036322059
+      ],
+      "mass_per_area_kg_m2": 0.012203295801424992,
+      "total_energy_per_area_J_m2": 1742.849559677903
+    },
+    {
+      "time_s": 1.6e-07,
+      "shock_locations_m": [
+        0.0010217469158068353,
+        0.0010182241328181713,
+        0.0010152395484715744
+      ],
+      "half_heat_location_m": 0.0010166724355276419,
+      "half_heat_distance_m": 1.5516972905293795e-06,
+      "temperature_minmax_K": [
+        299.99999999992843,
+        4341.231470450496
+      ],
+      "mass_per_area_kg_m2": 0.012288383032091196,
+      "total_energy_per_area_J_m2": 1904.9149585447387
+    },
+    {
+      "time_s": 1.7000000000000075e-07,
+      "shock_locations_m": [
+        0.0010513421823526105,
+        0.0010476759491066477,
+        0.0010444585287285953
+      ],
+      "half_heat_location_m": 0.0010460987654569039,
+      "half_heat_distance_m": 1.5771836497438518e-06,
+      "temperature_minmax_K": [
+        299.99999999992843,
+        4327.349431001039
+      ],
+      "mass_per_area_kg_m2": 0.012374329729733844,
+      "total_energy_per_area_J_m2": 2068.6173816425785
+    },
+    {
+      "time_s": 1.800000000000015e-07,
+      "shock_locations_m": [
+        0.0010805324523521045,
+        0.0010767931292059744,
+        0.0010735851607097712
+      ],
+      "half_heat_location_m": 0.0010752561445175784,
+      "half_heat_distance_m": 1.5369846883960415e-06,
+      "temperature_minmax_K": [
+        299.9999999999261,
+        4315.23822354733
+      ],
+      "mass_per_area_kg_m2": 0.012460276427376517,
+      "total_energy_per_area_J_m2": 2232.31980474043
+    },
+    {
+      "time_s": 1.9000000000000226e-07,
+      "shock_locations_m": [
+        0.0011094200091694058,
+        0.0011056979699388637,
+        0.001102578657480013
+      ],
+      "half_heat_location_m": 0.0011041672233136133,
+      "half_heat_distance_m": 1.5307466252503614e-06,
+      "temperature_minmax_K": [
+        299.999999999804,
+        4303.851046512354
+      ],
+      "mass_per_area_kg_m2": 0.0125462231250192,
+      "total_energy_per_area_J_m2": 2396.0222278383035
+    },
+    {
+      "time_s": 2e-07,
+      "shock_locations_m": [
+        0.001138173445193508,
+        0.0011345091259141891,
+        0.0011312728381286416
+      ],
+      "half_heat_location_m": 0.001132911365628932,
+      "half_heat_distance_m": 1.59776028525716e-06,
+      "temperature_minmax_K": [
+        299.9999999997337,
+        4293.8312330390845
+      ],
+      "mass_per_area_kg_m2": 0.012632169822661875,
+      "total_energy_per_area_J_m2": 2559.724650936137
+    }
+  ],
+  "propagation": {
+    "speed_mps_by_threshold": [
+      2986.895954564259,
+      2981.937948402655,
+      2976.8365765710328
+    ],
+    "reference_speed_mps": 2531.861428888643,
+    "half_heat_distances_m": [
+      1.63300288054185e-06,
+      1.6214247417188372e-06,
+      1.602888756161401e-06,
+      1.5560191326845826e-06,
+      1.6199624374202458e-06,
+      1.537169712348364e-06,
+      1.5516972905293795e-06,
+      1.5771836497438518e-06,
+      1.5369846883960415e-06,
+      1.5307466252503614e-06,
+      1.59776028525716e-06
+    ],
+    "reference_half_heat_m": 3.95212898233895e-05,
+    "induction_times_elapsed": 1.4881224518870664
+  },
+  "every_step_history": {
+    "passed": true,
+    "checks": {
+      "positive_density_pressure": true,
+      "temperature_interval": true,
+      "species_nonnegative": true,
+      "species_sum": true
+    },
+    "extrema": {
+      "density": [
+        0.0039529275,
+        0.036658608
+      ],
+      "Temp": [
+        300.0,
+        4579.6655
+      ],
+      "pressure": [
+        3779169.7,
+        578041100.0
+      ],
+      "massfrac": [
+        -1.6468847e-25,
+        0.77231495
+      ],
+      "sumYminus1": [
+        -7.2164497e-14,
+        4.8183679e-14
+      ]
+    },
+    "expected_count": 2001,
+    "scope": "Every native logged step, including initial state; native text precision retained. Complements full-precision saved field checks."
+  },
+  "wall_seconds": 539.7576935110001,
+  "scope": "Short formed-wave diagnostic only; grid/timestep and longer-window checks still required; no engine sustainability claim"
+}

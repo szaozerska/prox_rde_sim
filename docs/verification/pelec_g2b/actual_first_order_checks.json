@@ -1,5 +1,5 @@
 {
-  "numerical_field_checks_passed": true,
+  "numerical_field_checks_passed": false,
   "short_propagation_checks_passed": false,
   "full_G2b_passed": false,
   "checks": {
@@ -16,7 +16,8 @@
     "transverse_invariance": true,
     "wave_inside_domain": true,
     "boundary_cone_margin": true,
-    "propagation_window_complete": false
+    "propagation_window_complete": false,
+    "every_step_extrema": false
   },
   "max_errors": {
     "species_sum": 3.808064974464287e-14,
@@ -67,5 +68,38 @@
   ],
   "propagation": {},
   "wall_seconds": 4.848984558,
-  "scope": "Short formed-wave diagnostic only; grid/timestep and longer-window checks still required; no engine sustainability claim"
+  "scope": "Short formed-wave diagnostic only; grid/timestep and longer-window checks still required; no engine sustainability claim",
+  "every_step_history": {
+    "passed": false,
+    "checks": {
+      "positive_density_pressure": true,
+      "temperature_interval": true,
+      "species_nonnegative": false,
+      "species_sum": true
+    },
+    "extrema": {
+      "density": [
+        0.0039529275,
+        0.036658459
+      ],
+      "Temp": [
+        300.0,
+        4001.2147
+      ],
+      "pressure": [
+        3779169.7,
+        229850620.0
+      ],
+      "massfrac": [
+        -4.0894182e-11,
+        0.77231495
+      ],
+      "sumYminus1": [
+        -3.808065e-14,
+        2.2426505e-14
+      ]
+    },
+    "expected_count": 11,
+    "scope": "Every native logged step, including initial state; native text precision retained. Complements full-precision saved field checks."
+  }
 }

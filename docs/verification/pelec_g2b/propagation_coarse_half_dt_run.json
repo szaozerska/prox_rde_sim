@@ -1,0 +1,17 @@
+{
+  "returncode": 0,
+  "completion_passed": true,
+  "log_errors": [],
+  "command": [
+    "/opt/PeleC/build-gpu/Exec/RegTests/FormedWave/PeleC-FormedWave",
+    "inputs"
+  ],
+  "target_time": 2e-07,
+  "final_time": 2e-07,
+  "dt": 1e-10,
+  "reacting": true,
+  "reconstruction_order": 1,
+  "wall_seconds": 457.135196155,
+  "subprocess_limit_s": 900,
+  "scope": "Completion only; independent field/propagation checks required; not an engine result"
+}

@@ -284,3 +284,17 @@ atom creation: integrated ratios conserve to roundoff. Do not accept the
 first-order option until reaction coupling and wave-speed/grid checks pass.
 The four-hour checkpoint retains the native GPU candidate but makes no engine
 runtime promise. See docs/verification/pelec_g2b/README.md.
+
+
+## Review 18 — endpoint checks and moving fronts are insufficient
+
+Three 0.2-us native controls complete but fail speed/reaction-distance accuracy;
+dt halving does not fix the error and cell halving does not converge. Independent
+boundary balances exclude a large unexplained mass/energy change. Every-step
+state checks catch transient negatives and supersede the earlier snapshot-only
+first-order probe pass. The finer case also fails the conservative buffer margin.
+No engine was launched; no sustainment or two-hour engine claim is made. Keep the
+full GRI reference, fix the control buffer and compare one native transport option
+before more implementation. See docs/verification/pelec_g2b/README.md for recorded
+causes, hypotheses, literature, timings and all failed controls. Nineteen fast tests
+pass, including the new fail-closed intermediate-state regressions.

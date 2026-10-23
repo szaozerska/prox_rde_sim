@@ -5,6 +5,7 @@ import numpy as np
 import cantera as ct
 from analyze_sod import load_fields
 from validation import native_log_errors
+from wave_history import audit_history
 
 def crossing(x,values,threshold):
     hits=np.flatnonzero((values[:-1]>=threshold)&(values[1:]<threshold))
@@ -57,7 +58,8 @@ def analyze(run,reference):
             initial_error=float(np.max(np.mean(abs(actual-initial),axis=0)/scale))
     if len(rows)<2:raise ValueError('Need native initial and final fields')
     final_time=rows[-1]['time_s']
-    checks.update(completion=result['completion_passed'],solver_log=not native_log_errors((run/'solver.log').read_text()),
+    history_audit=audit_history((run/'solver.log').read_text(),result['target_time'],result['dt'])
+    checks.update(every_step_extrema=history_audit['passed'],completion=result['completion_passed'],solver_log=not native_log_errors((run/'solver.log').read_text()),
         final_time=abs(final_time-result['target_time'])<1e-15,initial_cell_averages=initial_error is not None and initial_error<1e-10,
         species_sum=maxima['species_sum']<1e-10,species_nonnegative=maxima['negative_species']<1e-12,
         elements=maxima['element_error']<1e-8,EOS_pressure=maxima['pressure_EOS']<1e-7,EOS_energy=maxima['energy_EOS']<1e-6,
@@ -66,7 +68,9 @@ def analyze(run,reference):
     # Conservative initial/final characteristic bound; no incoming boundary should
     # reach the moving wave/reaction window over this short interval.
     margin=case['shock_initial_m']-(maxchar-cj['CJ_speed_mps'])*final_time-2e-4
-    checks['boundary_cone_margin']=margin>0
+    right_margin=case['length_m']-case['shock_initial_m']-(maxchar+cj['CJ_speed_mps'])*final_time-8*case['dx_m']
+    checks['boundary_cone_margin']=min(margin,right_margin)>0
+    field_check_names=tuple(checks)
     propagation={};long_enough=final_time>=1.99e-7
     if long_enough and checks['wave_inside_domain']:
         late=[r for r in rows if r['time_s']>=.5*final_time]
@@ -79,13 +83,14 @@ def analyze(run,reference):
             induction_times_elapsed=final_time/ref['ZND']['induction_time_max_dTdt_s'])
         checks['short_wave_speed']=all(v is not None and abs(v/cj['CJ_speed_mps']-1)<.05 for v in speeds)
         checks['shock_reaction_coupling']=all(v is not None and 0<v<2*expected for v in distances)
+        checks['reaction_distance_accuracy']=all(v is not None and abs(v/expected-1)<.2 for v in distances)
     else:checks['propagation_window_complete']=False
     checks={key:bool(value) for key,value in checks.items()}
-    diagnostic_pass=all(v for k,v in checks.items() if k!='propagation_window_complete')
+    diagnostic_pass=all(checks[k] for k in field_check_names)
     report=dict(numerical_field_checks_passed=diagnostic_pass,short_propagation_checks_passed=all(checks.values()),
         full_G2b_passed=False,checks=checks,max_errors=maxima,initial_cell_average_relative_L1_error=initial_error,
-        boundary_cone_margin_m=margin,max_observed_characteristic_mps=maxchar,history=rows,propagation=propagation,
-        wall_seconds=result['wall_seconds'],scope='Short formed-wave diagnostic only; grid/timestep and longer-window checks still required; no engine sustainability claim')
+        boundary_cone_margin_m=margin,right_boundary_cone_margin_m=right_margin,max_observed_characteristic_mps=maxchar,history=rows,propagation=propagation,
+        every_step_history=history_audit,wall_seconds=result['wall_seconds'],scope='Short formed-wave diagnostic only; grid/timestep and longer-window checks still required; no engine sustainability claim')
     (run/'wave_checks.json').write_text(json.dumps(report,indent=2,allow_nan=False)+'\n')
     np.savez_compressed(run/'wave_profiles.npz',time_s=[r['time_s'] for r in rows],**{k:np.array([d[k] for d in profiles]) for k in profiles[0]})
     print(json.dumps({k:v for k,v in report.items() if k!='history'},indent=2))

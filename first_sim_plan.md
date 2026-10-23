@@ -1,4 +1,4 @@
-# 3D RDE development plan - revision 17, native propagation diagnostics
+# 3D RDE development plan - revision 18, propagation gate and runtime evidence
 
 This branch develops a native three-dimensional methane/oxygen pipeline.
 The October 22 GPU revision below controls execution order; the T0-T7 physics
@@ -490,8 +490,8 @@ without developing new CFD physics; retain PeleC as the GPU-first candidate and
 the installed detonationFoam fallback. Do not create separate engine branches.
 The [formed-wave evidence](docs/verification/pelec_g2b/README.md) isolates a
 higher-order composition/positivity defect for the steep methane profile. The
-actual native first-order probe passes, but its diffusion and wave-speed/grid
-accuracy are not yet accepted. G2b, dynamic EB, AMR and engine gates remain open.
+first-order saved fields appeared to pass, but revision 18 withdraws a full
+probe pass after the every-step audit. Wave-speed/grid accuracy is not accepted. G2b, dynamic EB, AMR and engine gates remain open.
 
 The four-active-hour engineering checkpoint does not justify a full engine launch:
 full-GRI small-case step cost already warns against treating it as an established
@@ -500,3 +500,22 @@ extension before choosing tolerances or chemistry reductions; preserve the same
 physical diagnostic and check sensitivity. A CPU solver switch or requesting
 eight GPUs does not by itself resolve reaction-length/CFL and model-cost limits.
 No tuning of heat release or continuing ignition may manufacture sustainment.
+
+## Revision 18 — failed propagation is a stop gate, not a design result
+
+P3D-001 remains open: at 0.2 us, first-order MOL produces 15–18% excessive speed
+and collapses the reaction distance. Halved dt leaves the result almost unchanged;
+the 4 um grid does not converge to the reference. Every-step checks additionally
+catch transient negatives missed by snapshots, and the finer case exceeds the
+conservative buffer estimate. See the [complete evidence](docs/verification/pelec_g2b/README.md).
+No engine progression or sustained-wave claim is permitted.
+
+Next: increase the planar-control buffer at fixed physical spacing, then one
+bounded native higher-order transport comparison. Godunov on a regular grid is
+only a diagnostic; its pass cannot be transferred to MOL/embedded walls. Avoid
+custom flux development. Use the installed CPU fallback for an equivalent bounded
+control if native GPU support requires substantial repair. Keep full GRI as a
+verification reference, not a promised <=2-hour production configuration.
+Measured 0.2-us control costs are 332/457/540 seconds, excluding queue/build; no
+64-core or eight-GPU engine timing is inferred from these. Preserve the physical
+model and accuracy gates when optimizing tolerances or screening reduced chemistry.

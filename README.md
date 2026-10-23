@@ -10,7 +10,7 @@ an add-on; existing physics, thermochemical references, tests and figure roadmap
 are retained. Installation/mesh checks do not establish sustained detonation.
 Only commit and push to `3d-modelling` from this checkout.
 
-Current direction: [revision 17](first_sim_plan.md) evaluates PeleC for Modal GPU
+Current direction: [revision 18](first_sim_plan.md) evaluates PeleC for Modal GPU
 production, with small same-backend CPU checks and the installed detonationFoam
 fallback. No separate CPU/GPU model branches. See [solver choices and speed/accuracy
 tradeoffs](docs/plans/3d_literature_runtime_review.md). Modal CPU access passed;
@@ -31,11 +31,12 @@ propagation and experimental validation remain separate gates; no sustained 3D
 engine result is claimed.
 
 
-Native formed-wave initialization and the first-order 2 ns field probe pass;
-higher-order composition defects were isolated with frozen, timestep and grid
-controls. See [G2b diagnostics](docs/verification/pelec_g2b/README.md). This does
-not pass full propagation or engine gates. The bounded 0.2 us diagnostic is the
-next check; no full-GRI engine runtime commitment is supported yet.
+Native formed-wave initialization is verified, but **P3D-001 / G2b fails**:
+0.2 us controls run about 15–18% too fast and do not resolve the reaction distance.
+An every-step audit withdraws the earlier snapshot-only first-order probe pass.
+See [G2b diagnostics](docs/verification/pelec_g2b/README.md). Do not advance to an
+engine run. Repair the control buffer and compare one native transport option
+before considering substantial solver work; no two-hour engine runtime is established.
 
 The documentation below describes the inherited 2D backend at the frozen baseline.
 Its unresolved Run 937 result remains open.

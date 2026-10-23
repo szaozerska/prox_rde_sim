@@ -1,0 +1,19 @@
+{
+  "native_integral_change": {
+    "mass_per_area_kg_m2": 0.0017189339655405422,
+    "total_energy_per_area_J_m2": 3274.0485064241675
+  },
+  "snapshot_boundary_integral": {
+    "mass_per_area_kg_m2": 0.0017189339655402352,
+    "total_energy_per_area_J_m2": 3274.048506410003
+  },
+  "relative_residual": {
+    "mass_per_area_kg_m2": 2.813519829595756e-14,
+    "total_energy_per_area_J_m2": 1.9829201082178143e-11
+  },
+  "temporal_quadrature_difference": {
+    "mass_per_area_kg_m2": 2.4896471373470918e-14,
+    "total_energy_per_area_J_m2": 5.74810011593691e-11
+  },
+  "scope": "Independent boundary-cell flux/snapshot quadrature diagnostic for this first-order planar case. Not an exact native flux ledger, EB repair budget, or gate waiver."
+}

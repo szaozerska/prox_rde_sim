@@ -1,0 +1,32 @@
+[
+  {
+    "name": "coarse",
+    "dx_m": 8e-06,
+    "dt_s": 2e-10,
+    "wall_seconds": 332.120342489,
+    "speed_mps": 2902.8661300120757,
+    "speed_relative_error": 0.14653436277762033,
+    "median_half_heat_distance_m": -5.8823769183554905e-08,
+    "passed": false
+  },
+  {
+    "name": "coarse_half_dt",
+    "dx_m": 8e-06,
+    "dt_s": 1e-10,
+    "wall_seconds": 457.135196155,
+    "speed_mps": 2902.916940443694,
+    "speed_relative_error": 0.1465544311869884,
+    "median_half_heat_distance_m": -2.721988964543738e-08,
+    "passed": false
+  },
+  {
+    "name": "fine",
+    "dx_m": 4e-06,
+    "dt_s": 1e-10,
+    "wall_seconds": 539.7576935110001,
+    "speed_mps": 2981.937948402655,
+    "speed_relative_error": 0.17776506817419802,
+    "median_half_heat_distance_m": 1.5771836497438518e-06,
+    "passed": false
+  }
+]

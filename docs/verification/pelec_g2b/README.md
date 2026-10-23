@@ -1,7 +1,9 @@
 # Native formed-wave initialization and transport diagnosis
 
-**G2b is not passed.** The initial cell-average import and a 2 ns first-order
-reacting probe pass their numerical field checks. This is not evidence of a
+**G2b is not passed. The propagation controls fail.** The initial cell-average
+import passes. A snapshot-only first-order probe appeared to pass, but the later
+every-step audit detects a transient negative species value; its status is corrected
+below and the original report is preserved. This is not evidence of a
 sustained planar detonation, much less a rotating engine wave. Longer-window,
 mesh/timestep, wave-speed/reaction-distance and open-boundary budget checks remain.
 
@@ -36,7 +38,7 @@ All rows below cover the same physical 2 ns interval. The elemental quantity is
 the largest **local mass-fraction deviation** from the uniform premixed elemental
 composition; it is distinct from a global conservation defect.
 
-| Native control | Smallest species Y (magnitude if negative) | Maximum local elemental deviation |
+| Native control, saved 2 ns field | Smallest species Y | Maximum local elemental deviation |
 |---|---:|---:|
 | Second-order, 8 um | -6.13e-10 | 0.002350 |
 | Same grid, timestep halved | -7.77e-10 | 0.002342 |
@@ -60,8 +62,9 @@ upstream solver repair was written. First-order is only the simplest native
 candidate for a subsequent accuracy check; its additional diffusion can itself
 cause false decay or alter reaction coupling.
 
-The corrected first-order probe also passes species sum, EOS pressure/energy,
-transverse invariance and boundary-cone checks. Energy consistency is 1.69e-10;
+The first-order probe's saved fields pass species sum, EOS pressure/energy,
+transverse invariance and boundary-cone checks. These snapshots alone do not
+pass the subsequently added every-step positivity check. Energy consistency is 1.69e-10;
 transverse velocity is zero. It takes 4.85 s on one H100, including native startup
 but excluding cloud queue/build. The native initializer build took 107.56 s.
 These numbers do not predict full-engine runtime or establish CPU/GPU scaling.
@@ -83,8 +86,83 @@ and the task's temporary logs. Compact commands, reports and source/binary hashe
 are committed here. Reproduce a fresh reference with `prepare_wave.py NEW_DIR`,
 then run `modal_wave.py` with its case/profile paths, collect through the existing
 checksum verifier, and call `analyze_wave.py RUN_DIR REFERENCE_DIR`. The default
-`--reconstruction-order 1` selects the verified short-probe candidate; use 2 only
+`--reconstruction-order 1` selects the documented diagnostic candidate; use 2 only
 for the explicitly failed higher-order diagnostic. Keep all
 longer runs bounded and never interpret mere final-time completion as a pass.
 
 ![Native transport diagnosis](transport_diagnosis.png)
+
+## P3D-001 — failed propagation despite plausible moving pressure fronts
+
+Three native controls reached 0.2 us. They cover only 1.49 reference induction
+times, so even passing them would not prove sustained operation. None passes.
+The reference CJ speed is 2531.861 m/s and half-heat distance is 39.521 um.
+
+| dx | dt | Native seconds | Fitted speed, central pressure threshold | Speed error | Median apparent half-heat distance |
+|---|---|---:|---:|---:|---:|
+| 8 um | 0.2 ns | 332.12 | 2902.866 m/s | +14.65% | approximately zero, unresolved |
+| 8 um | 0.1 ns | 457.14 | 2902.917 m/s | +14.65% | approximately zero, unresolved |
+| 4 um | 0.1 ns | 539.76 | 2981.938 m/s | +17.78% | 1.58 um, below one cell |
+
+Halving the timestep changes the central fitted speed by only 0.051 m/s; halving
+the cells does not recover the reference. Three pressure thresholds give the
+same qualitative finding. The pressure/reaction structure is not resolved: the
+heat-release rise lies inside the spread pressure front. A positive bounded
+shock/reaction distance alone is insufficient; the analyzer now also explicitly
+requires reaction-distance accuracy (20%). The existing speed check is 5%. No
+failed result was changed into a pass by adding this stricter structural check.
+
+Mass/energy changes match an independent boundary-cell flux integral with
+normalized residuals <3e-14 / <2e-11. Halving the snapshot quadrature density
+changes energy balance by <6e-11. This is a separately qualified snapshot
+diagnostic, not an exact native flux ledger or an EB-repair accounting pass. It
+does not support unexplained energy creation as the cause of the excessive speed.
+
+The full-precision saved fields preserve elemental composition to about 3e-13.
+However, checking **every logged timestep** finds a -4.09e-11 species value at
+0.4 ns in both the original first-order probe and the longer coarse run; the
+halved-step case reaches -6.05e-11. These exceed the existing 1e-12 trace threshold.
+The snapshot-only pass is therefore withdrawn. The 4 um run passes every-step
+state extrema, but fails speed/structure accuracy and the conservative left
+buffer check: the observed maximum characteristic speed exceeds the planning
+estimate, giving a -19.7 um margin for the prescribed 200 um inspection window.
+That does not prove boundary contamination; it means exclusion has not passed.
+A longer left buffer is required before accepting this comparison.
+
+The diagnostic failure is independent of engine geometry, injectors, wall losses
+or sustained forcing, since those are absent here. Timestep reduction does not
+explain it, and initialization/EOS/chemical-source and global balance controls do
+not reveal a discrepancy large enough to explain the speed. Spatial smearing
+coupled to stiff reactions is a strong candidate, **not a fully isolated final
+cause**. Short-window physical instability and the fine-case buffer limitation
+still need to be distinguished. Do not label this numerical state a sustained
+wave or infer anything about a modified engine's stability.
+
+[LeVeque and Yee's NASA report](https://ntrs.nasa.gov/api/citations/19880008959/downloads/19880008959.pdf)
+shows how a smeared advective state can activate a stiff source and move a front
+at the wrong speed, even when the source treatment is stable.
+[Yee et al., ICCFD7 (2012), sections 1, 4 and 5](https://www.iccfd.org/iccfd7/assets/pdf/papers/ICCFD7-1804_paper.pdf)
+show that ordinary convective CFL bounds and nominal high order do not guarantee
+correct reactive propagation; grid/timestep behavior can be nonmonotonic. These
+are general mechanism warnings, not proof about this PeleC/GRI configuration. No
+randomized chemistry, reaction suppression, or custom flux method was added.
+
+### Decision and next bounded work
+
+Keep the full GRI setup as a verification reference; measured small-case cost
+does not support it as a two-hour full-engine recipe. Do not promote first-order
+MOL to production because its endpoint fields looked clean. First repair the
+control-domain buffer, then compare one existing native higher-order transport
+option on the same planar reference, with every-step checks and the same physics.
+A regular-grid Godunov comparison can isolate a MOL limitation but cannot certify
+embedded-boundary geometry. If an acceptable path requires substantial solver
+repair, use the installed detonationFoam fallback for a bounded equivalent
+control, not a second complete engine stack. An engine launch remains blocked
+by G2b plus the independent dynamic EB/AMR and model gates.
+
+Nineteen fast tests pass, including regression cases for a transient failure
+between good endpoints, incomplete logs and nonfinite histories. Raw failures
+remain available. All three paid runs completed within their caps; no engine
+run was launched.
+
+![Native propagation and refinement comparison](propagation_refinement.png)
