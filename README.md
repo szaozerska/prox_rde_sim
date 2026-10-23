@@ -38,6 +38,10 @@ See [G2b diagnostics](docs/verification/pelec_g2b/README.md). Do not advance to 
 engine run. Repair the control buffer and compare one native transport option
 before considering substantial solver work; no two-hour engine runtime is established.
 
+Watch the saved native wave GIFs or launch a bounded H100 control using the
+[3D quickstart](tools/pelec/QUICKSTART.md). Modal is configured on this machine;
+local replay needs no cloud job. The movies preserve the failed propagation status.
+
 The documentation below describes the inherited 2D backend at the frozen baseline.
 Its unresolved Run 937 result remains open.
 

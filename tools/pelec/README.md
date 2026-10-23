@@ -1,5 +1,8 @@
 # Pinned PeleC trial
 
+For viewing the saved wave GIFs and exact launch/replay commands on this machine,
+start with the [quickstart](QUICKSTART.md).
+
 One native GPU candidate, same-source CPU verification controls, installed
 OpenFOAM/detonationFoam fallback. Use upstream numerical kernels; the experimental GRI inverse-bound overlay is explicitly recorded and is limited to numerical controls. `source_lock.json`
 pins the upstream source, recursive submodules and amd64 CUDA image digest.

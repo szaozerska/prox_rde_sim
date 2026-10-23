@@ -16,6 +16,17 @@ transverse cells. Ends use native first-order extrapolation. The short reaction
 window is initially outside the boundary characteristic cones; this is checked,
 not permission to extend indefinitely with the same domain.
 
+## Watch the saved propagation
+
+[Wave motion](animations/wave_propagation.gif) and
+[reaction-zone close-up](animations/reaction_structure.gif) replay the fine-grid
+control below. Each has 21 native snapshots, fixed scales and printed physical
+time, without temporal interpolation. The motion view displays transverse-mean
+strips, not annular geometry. The reference front/profile are independent; both
+movies retain the failed propagation status.
+[Launch and replay instructions](../../../tools/pelec/QUICKSTART.md) and
+[source manifest](animations/manifest.json) accompany the movies.
+
 ## Initialization issues found and fixed
 
 - The first tightened ZND profile still contained a -2.54e-12 trace-species

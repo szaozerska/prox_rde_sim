@@ -426,3 +426,31 @@ full GRI reference, fix the control buffer and compare one native transport opti
 before more implementation. See docs/verification/pelec_g2b/README.md for recorded
 causes, hypotheses, literature, timings and all failed controls. Nineteen fast tests
 pass, including the new fail-closed intermediate-state regressions.
+
+## Saved-wave movies and launch guide
+
+Added `tools/pelec/animate_wave.py` and `tools/pelec/QUICKSTART.md` in response to
+the request to watch and launch the current workflow. The committed movies use
+the existing 4 um / 0.1 ns fine-grid native run, not a new cloud simulation.
+There are two views: full-domain pressure/temperature propagation against the CJ
+front, and a frame following the measured pressure front against independent
+ZND pressure/temperature/heat fraction. The planar transverse means are labelled;
+no annular rotation or new simulation values are synthesized. All 21 recorded
+frames retain their actual physical timestamps. Fixed axes, nearest-neighbour
+strip rendering, step profiles and no temporal interpolation avoid smoothing
+away errors. The existing failed propagation status is printed in both movies.
+
+Verification: both GIFs decode to 21 frames, loop, and have the prescribed 6.75 s
+playback (longer initial/final holds). Initial/middle/final decoded frames were
+visually inspected for labels, scales and clipping. All six source file hashes
+match the recorded manifest. Trying an existing output directory raises
+FileExistsError without changing any artifact. All 19 existing fast add-on tests
+passed in 0.069 s; `git diff --check` passed. No solver or physics code changed.
+
+Modal CLI 1.6.2 confirms the active `prox` profile/workspace when network access
+is permitted; the sandbox-restricted lookup could not resolve the workspace.
+The documented native launch flags were checked against the local entrypoint's
+help. The guide distinguishes solver completion, numerical checks, physical
+checks and local replay, and gives the observed 5.5/7.6/9.0 minute short-control
+solver times without extrapolating them to a full engine. No paid cloud job was
+started for this visualization update. P3D-001 / G2b remains open.
