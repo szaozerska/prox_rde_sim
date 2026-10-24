@@ -1,0 +1,15 @@
+{
+  "name": "synthetic_two_head_arithmetic_fixture",
+  "description": "Synthetic arithmetic demo; not a validated engine or hardware recommendation.",
+  "lambda_mm": 1.0,
+  "rho_kg_m3": 1.0,
+  "U_d_m_s": 1500.0,
+  "m_dot_g_s": 129.6,
+  "d_c_mm": 53.47606087887684,
+  "annulus_mm": 3.0,
+  "chamber_length_mm": 100.0,
+  "usable_flow_fraction": 1.0,
+  "sources": {
+    "all": "synthetic known-answer fixture"
+  }
+}

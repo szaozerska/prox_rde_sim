@@ -1,0 +1,7 @@
+{
+  "source_repository": "RDEPathwaySpaceXBackyard",
+  "source_commit": "211b44a5def869d568d986d05fc7c714aaa278c7",
+  "source_path": "Simulation/Models/chamber_sizing.py",
+  "sha256": "098e7ce80e0311cd9da6769ca907a1db57f61931958f83a29abc5fb1d7d0d2fa",
+  "purpose": "Unmodified historical source, retained for provenance and parity checks; not the supported CLI."
+}

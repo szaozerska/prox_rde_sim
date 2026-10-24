@@ -1,0 +1,16 @@
+{
+  "source": "Law2021 Table 1, PDF page 4; visually checked",
+  "pressure_bar": 1,
+  "reported_wave_range": [
+    0.18,
+    0.75
+  ],
+  "calculated_joint_extremes": [
+    0.1278525309044268,
+    0.7540690088036603
+  ],
+  "rho_kg_m3": 1.2516615807484435,
+  "lower_endpoint_status": "UNRESOLVED_DISCREPANCY",
+  "upper_endpoint_status": "AGREES_WITH_ROUNDED_TABLE",
+  "experimental_validation": false
+}

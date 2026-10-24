@@ -1,0 +1,118 @@
+{
+  "schema_version": 1,
+  "model": "Law2021-algebraic-screen-v1",
+  "inputs": {
+    "name": "Law2021_1bar_design_point",
+    "description": "Paper design assumptions, not reconstruction of an observed operating mode. Density from ideal gas at 1 bar, 298 K with stoichiometric C2H4/O2 R=268.1 J/kg/K; gap selected 0.7 mm within reported hardware range.",
+    "lambda_mm": {
+      "value": 0.465,
+      "class": "LITERATURE",
+      "hook": "Law2021 section III.A.2, reference cell size at 1 bar"
+    },
+    "rho_kg_m3": {
+      "value": 1.2516615807484435,
+      "class": "DERIVED",
+      "hook": "p/(R*T), unreacted mixture, not CJ products"
+    },
+    "U_d_m_s": 2500.0,
+    "m_dot_g_s": 5.0,
+    "d_c_mm": 75.0,
+    "annulus_mm": 0.7,
+    "chamber_length_mm": 35.0,
+    "sources": {
+      "paper": "https://doi.org/10.2514/6.2021-3658",
+      "R": "Ideal gas mixture molar mass approx 31.013 g/mol, rounded R=268.1",
+      "length_gap": "selected values within reported modular hardware range"
+    }
+  },
+  "coefficients": {
+    "gap": [
+      1.4,
+      2.4,
+      3.4
+    ],
+    "critical_depth": [
+      7.0,
+      12.0,
+      17.0
+    ],
+    "spacing_K": [
+      5.0,
+      7.0,
+      9.0
+    ]
+  },
+  "status": "no_candidate_in_model",
+  "expected_wave_count": null,
+  "nominal_candidate_wave_counts": [],
+  "possible_candidate_wave_counts": [],
+  "continuous_refill_capacity": 0.4090824372759857,
+  "nominal_refill_capacity_floor": 0,
+  "critical_fresh_depth_m": 0.00558,
+  "critical_fresh_depth_range_m": [
+    0.003255,
+    0.007905
+  ],
+  "minimum_gap_m": 0.001116,
+  "minimum_chamber_length_m": 0.01116,
+  "recommended_chamber_length_m": 0.02232,
+  "annulus_volume_m3": 5.7187981869621695e-06,
+  "checks": {
+    "gap_nominal": false,
+    "chamber_minimum_nominal": true,
+    "chamber_recommended_nominal": true,
+    "one_wave_refill_nominal": false,
+    "integer_mode_nominal": false
+  },
+  "candidate_details": [
+    {
+      "waves": 1,
+      "K_nominal": 42.22570770954023,
+      "return_time_s": 9.42477796076938e-05,
+      "passage_frequency_Hz": 10610.32953945969,
+      "fresh_depth_m": 0.00228268,
+      "nominal_rules_satisfied": false,
+      "possible_with_coefficient_ranges": false,
+      "compatible_critical_depth_m": null
+    }
+  ],
+  "trace": [
+    {
+      "quantity": "critical_fresh_depth_m",
+      "equation": "12 * lambda_m",
+      "value": 0.00558
+    },
+    {
+      "quantity": "usable_mass_flow_kg_s",
+      "equation": "eta * mdot_kg_s",
+      "value": 0.005
+    },
+    {
+      "quantity": "one_head_fresh_depth_m",
+      "equation": "eta*mdot/(rho*Ud*gap)",
+      "value": 0.00228268
+    },
+    {
+      "quantity": "continuous_refill_capacity",
+      "equation": "one_head_fresh_depth/Lcrit",
+      "value": 0.4090824372759857
+    },
+    {
+      "quantity": "outer_circumference_m",
+      "equation": "pi*d_outer",
+      "value": 0.23561944901923448
+    }
+  ],
+  "limitations": [
+    "Unvalidated stability screen; candidates are not observed or guaranteed stable waves.",
+    "Coefficient ranges are sensitivity bounds, not confidence intervals or probabilities.",
+    "Cell size, density and wave speed must describe the same unreacted mixture/operating state.",
+    "No resolved injection, mixing, ignition, chemistry, wall losses or wave competition.",
+    "usable_flow_fraction is an explicit assumed correction, not a calibrated loss model."
+  ],
+  "provenance": {
+    "input_sha256": "1c0c53d87794e33d3ad1b684d20c43efeff6a4248a4748ca5993d57128d9a9d9",
+    "model_sha256": "1e694151dd47e73f989eae501c5bf899e911d39606631150a0c059cf1e8fa098",
+    "python_version": "3.12.0"
+  }
+}

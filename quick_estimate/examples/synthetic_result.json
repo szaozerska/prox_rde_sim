@@ -1,0 +1,154 @@
+{
+  "schema_version": 1,
+  "model": "Law2021-algebraic-screen-v1",
+  "inputs": {
+    "name": "synthetic_two_head_arithmetic_fixture",
+    "description": "Synthetic arithmetic demo; not a validated engine or hardware recommendation.",
+    "lambda_mm": 1.0,
+    "rho_kg_m3": 1.0,
+    "U_d_m_s": 1500.0,
+    "m_dot_g_s": 129.6,
+    "d_c_mm": 53.47606087887684,
+    "annulus_mm": 3.0,
+    "chamber_length_mm": 100.0,
+    "usable_flow_fraction": 1.0,
+    "sources": {
+      "all": "synthetic known-answer fixture"
+    }
+  },
+  "coefficients": {
+    "gap": [
+      1.4,
+      2.4,
+      3.4
+    ],
+    "critical_depth": [
+      7.0,
+      12.0,
+      17.0
+    ],
+    "spacing_K": [
+      5.0,
+      7.0,
+      9.0
+    ]
+  },
+  "status": "conditional_candidates",
+  "expected_wave_count": 2,
+  "nominal_candidate_wave_counts": [
+    2
+  ],
+  "possible_candidate_wave_counts": [
+    2,
+    3,
+    4
+  ],
+  "continuous_refill_capacity": 2.4,
+  "nominal_refill_capacity_floor": 2,
+  "critical_fresh_depth_m": 0.012,
+  "critical_fresh_depth_range_m": [
+    0.007,
+    0.017
+  ],
+  "minimum_gap_m": 0.0024,
+  "minimum_chamber_length_m": 0.024,
+  "recommended_chamber_length_m": 0.048,
+  "annulus_volume_m3": 4.7572566611769166e-05,
+  "checks": {
+    "gap_nominal": true,
+    "chamber_minimum_nominal": true,
+    "chamber_recommended_nominal": true,
+    "one_wave_refill_nominal": true,
+    "integer_mode_nominal": true
+  },
+  "candidate_details": [
+    {
+      "waves": 1,
+      "K_nominal": 14.0,
+      "return_time_s": 0.00011200000000000001,
+      "passage_frequency_Hz": 8928.571428571428,
+      "fresh_depth_m": 0.0288,
+      "nominal_rules_satisfied": false,
+      "possible_with_coefficient_ranges": false,
+      "compatible_critical_depth_m": null
+    },
+    {
+      "waves": 2,
+      "K_nominal": 7.0,
+      "return_time_s": 5.6000000000000006e-05,
+      "passage_frequency_Hz": 17857.142857142855,
+      "fresh_depth_m": 0.0144,
+      "nominal_rules_satisfied": true,
+      "possible_with_coefficient_ranges": true,
+      "compatible_critical_depth_m": [
+        0.009333333333333334,
+        0.0144
+      ]
+    },
+    {
+      "waves": 3,
+      "K_nominal": 4.666666666666666,
+      "return_time_s": 3.733333333333334e-05,
+      "passage_frequency_Hz": 26785.714285714283,
+      "fresh_depth_m": 0.0096,
+      "nominal_rules_satisfied": false,
+      "possible_with_coefficient_ranges": true,
+      "compatible_critical_depth_m": [
+        0.007,
+        0.0096
+      ]
+    },
+    {
+      "waves": 4,
+      "K_nominal": 3.5,
+      "return_time_s": 2.8000000000000003e-05,
+      "passage_frequency_Hz": 35714.28571428571,
+      "fresh_depth_m": 0.0072,
+      "nominal_rules_satisfied": false,
+      "possible_with_coefficient_ranges": true,
+      "compatible_critical_depth_m": [
+        0.007,
+        0.0072
+      ]
+    }
+  ],
+  "trace": [
+    {
+      "quantity": "critical_fresh_depth_m",
+      "equation": "12 * lambda_m",
+      "value": 0.012
+    },
+    {
+      "quantity": "usable_mass_flow_kg_s",
+      "equation": "eta * mdot_kg_s",
+      "value": 0.1296
+    },
+    {
+      "quantity": "one_head_fresh_depth_m",
+      "equation": "eta*mdot/(rho*Ud*gap)",
+      "value": 0.0288
+    },
+    {
+      "quantity": "continuous_refill_capacity",
+      "equation": "one_head_fresh_depth/Lcrit",
+      "value": 2.4
+    },
+    {
+      "quantity": "outer_circumference_m",
+      "equation": "pi*d_outer",
+      "value": 0.168
+    }
+  ],
+  "limitations": [
+    "Unvalidated stability screen; candidates are not observed or guaranteed stable waves.",
+    "Coefficient ranges are sensitivity bounds, not confidence intervals or probabilities.",
+    "Cell size, density and wave speed must describe the same unreacted mixture/operating state.",
+    "No resolved injection, mixing, ignition, chemistry, wall losses or wave competition.",
+    "usable_flow_fraction is an explicit assumed correction, not a calibrated loss model."
+  ],
+  "provenance": {
+    "input_sha256": "ea446621a122b74c5a39167c1e43396cf091e421645d06d08e3074529e02ab56",
+    "model_sha256": "1e694151dd47e73f989eae501c5bf899e911d39606631150a0c059cf1e8fa098",
+    "python_version": "3.12.0"
+  }
+}

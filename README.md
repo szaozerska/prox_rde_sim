@@ -382,3 +382,7 @@ The standalone exporter is `flow_structure.py --run runs/radial_active --out ../
 from `rde_sim_starter` with the project Python. The paper's new/old-product slip
 line is distinct from the fresh/product boundary; candidate features are labeled
 without claiming a steady detonation that this saved case does not demonstrate.
+
+## Quick algebraic wave-count estimate
+
+An offline, dependency-free sizing screen is available in [quick_estimate](quick_estimate/README.md). It returns conditional integer wave-count candidates, refill/geometry checks and calculation traces without running CFD or chemistry integration. See its [theoretical framework](quick_estimate/THEORY.md); this is not a validated sustain/fail classifier.

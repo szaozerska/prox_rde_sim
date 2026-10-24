@@ -1,0 +1,24 @@
+{
+  "name": "Law2021_1bar_design_point",
+  "description": "Paper design assumptions, not reconstruction of an observed operating mode. Density from ideal gas at 1 bar, 298 K with stoichiometric C2H4/O2 R=268.1 J/kg/K; gap selected 0.7 mm within reported hardware range.",
+  "lambda_mm": {
+    "value": 0.465,
+    "class": "LITERATURE",
+    "hook": "Law2021 section III.A.2, reference cell size at 1 bar"
+  },
+  "rho_kg_m3": {
+    "value": 1.2516615807484435,
+    "class": "DERIVED",
+    "hook": "p/(R*T), unreacted mixture, not CJ products"
+  },
+  "U_d_m_s": 2500.0,
+  "m_dot_g_s": 5.0,
+  "d_c_mm": 75.0,
+  "annulus_mm": 0.7,
+  "chamber_length_mm": 35.0,
+  "sources": {
+    "paper": "https://doi.org/10.2514/6.2021-3658",
+    "R": "Ideal gas mixture molar mass approx 31.013 g/mol, rounded R=268.1",
+    "length_gap": "selected values within reported modular hardware range"
+  }
+}
