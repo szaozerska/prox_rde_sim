@@ -1,0 +1,46 @@
+{
+  "checked_on": "2026-10-24",
+  "scope": "Read-only access and rates; no cloud allocation or simulation launched",
+  "reviewed_branch_head": "82a8298692f7e2f1f91de703ca49d5ec0d810889",
+  "local_host": {
+    "model": "MacBookAir9,1",
+    "physical_cpu_cores": 4,
+    "logical_cpu_threads": 8,
+    "ram_bytes": 17179869184,
+    "gpu": "Intel Iris Plus; no CUDA device"
+  },
+  "modal": {
+    "profile": "prox",
+    "environment": "main",
+    "authentication": "live billing and settings queries succeeded",
+    "verified_prior_allocation_date": "2026-10-22",
+    "verified_prior_cpu_cores": 8,
+    "verified_prior_gpu": "1 NVIDIA H100 80GB HBM3",
+    "native_pelec_execution": "Recorded in committed G1/G2/G2b evidence; propagation G2b fails",
+    "simultaneous_eight_gpu_allocation_verified": false,
+    "sixty_four_cpu_allocation_verified": false,
+    "account_maximum_quota": null,
+    "quota_access": "CLI workspace settings exposed default environment and builder version only; IAB dashboard redirected to sign-in",
+    "usd_rates": {
+      "H100_per_gpu_hour": 3.95,
+      "A100_80GB_per_gpu_hour": 2.5,
+      "physical_cpu_core_hour": 0.0473,
+      "host_ram_GiB_hour": 0.008,
+      "volume_GiB_month": 0.09,
+      "egress_GiB": 0.04
+    },
+    "rate_source": "modal billing rates --profile prox --json"
+  },
+  "other_access": {
+    "azure": "Enabled subscription; no resource groups; usage queries in westus2 and eastus returned empty arrays. No capacity inferred.",
+    "aws": "No AWS CLI or ~/.aws/config found; absence is not proof of no account.",
+    "hopper": "Configured SSH alias failed DNS resolution; no allocation inferred."
+  },
+  "cost_method": "GPU_count*GPU_rate + requested_physical_CPU*0.0473 + requested_host_GiB*0.008; multiply by billable hours; excludes build/storage/egress/tax/retries and excess CPU/RAM usage",
+  "sources": {
+    "pricing": "https://modal.com/pricing",
+    "gpus": "https://modal.com/docs/guide/gpu",
+    "resources": "https://modal.com/docs/guide/resources",
+    "published_64_cpu_containers": "https://modal.com/blog/serverless-http"
+  }
+}
