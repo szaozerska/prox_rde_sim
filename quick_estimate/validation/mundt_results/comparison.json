@@ -1,0 +1,1336 @@
+{
+  "provenance": {
+    "source_pdf_sha256": "9b29881e98f4435c5a887b942ade010f13181a42a73e1bf78e50bf89f7b2195d",
+    "model_sha256": "1e694151dd47e73f989eae501c5bf899e911d39606631150a0c059cf1e8fa098",
+    "comparison_sha256": "db4955d244eb8ebbcef4d8b2896385c048f87f84bd964a0e4e3e3a7b8d80800f",
+    "manifest_sha256": "e62b2e6b34f410ccc3628a3f87536fdcadc9c23dcc1cd356432cc2c6563d3124"
+  },
+  "summary": {
+    "supported_positive_cases": 5,
+    "positive_cases_admitting_observed_count": 0,
+    "supported_negative_cases": 1,
+    "negative_cases_with_no_candidate": 1,
+    "unsupported_cases": 1,
+    "accuracy_claim": "Small selected figure-based comparison, not a population accuracy estimate."
+  },
+  "cases": [
+    {
+      "case": {
+        "id": "76-FI-5_run937",
+        "configuration": "76-FI-5",
+        "diameter_mm": 76.2,
+        "gap_mm": 5,
+        "length_mm": 76.2,
+        "phi": 1.176,
+        "mass_flux": 240.21,
+        "mass_flow_g_s": 268.65,
+        "speed_reference_m_s": 2471,
+        "primary_waves": 2,
+        "counter_waves": 0,
+        "observed_mode": "two co-rotating waves",
+        "source": "Table 3-2, printed p.52 / PDF p.68",
+        "reference_speed_source": "Tabulated calculated CJ reference; no measured frequency or wave count used as estimator input"
+      },
+      "inputs": {
+        "name": "76-FI-5_run937",
+        "lambda_mm": 0.8067793691898071,
+        "rho_kg_m3": 3.95292752148496,
+        "U_d_m_s": 2471,
+        "m_dot_g_s": 268.65,
+        "d_c_mm": 76.2,
+        "annulus_mm": 5,
+        "chamber_length_mm": 76.2,
+        "usable_flow_fraction": 1,
+        "sources": {
+          "operating_point": "Table 3-2, printed p.52 / PDF p.68",
+          "geometry": "Mundt Table 2-1",
+          "density": "Eq.4.1 pressure + ideal CH4/O2 at 300 K",
+          "cell_size": "Figure4.2 approximate bilinear interpolation",
+          "speed": "Tabulated calculated CJ reference; no measured frequency or wave count used as estimator input"
+        }
+      },
+      "diagnostics": {
+        "pressure_kPa": 377.91697229176015,
+        "fresh_R_J_kg_K": 318.68108740311663,
+        "exact_exit_area_m2": 0.0011184069846779656,
+        "strip_to_exact_area_ratio": 1.0702247191011243,
+        "one_wave_refill_depth_m": 0.00550079225733894,
+        "minimum_K_compatible_with_refill": 43.51906943661768,
+        "minimum_K_using_exact_area_refill": 40.66348745258762,
+        "raw_refill_capacity": 0.5681842797227004,
+        "interpretation": "K must be <=9 in inherited model; refill requires K >= C/H1 independently of cell size. Coreless raw formulas are extrapolations only."
+      },
+      "status": "evaluated",
+      "result": {
+        "schema_version": 1,
+        "model": "Law2021-algebraic-screen-v1",
+        "inputs": {
+          "name": "76-FI-5_run937",
+          "lambda_mm": 0.8067793691898071,
+          "rho_kg_m3": 3.95292752148496,
+          "U_d_m_s": 2471,
+          "m_dot_g_s": 268.65,
+          "d_c_mm": 76.2,
+          "annulus_mm": 5,
+          "chamber_length_mm": 76.2,
+          "usable_flow_fraction": 1,
+          "sources": {
+            "operating_point": "Table 3-2, printed p.52 / PDF p.68",
+            "geometry": "Mundt Table 2-1",
+            "density": "Eq.4.1 pressure + ideal CH4/O2 at 300 K",
+            "cell_size": "Figure4.2 approximate bilinear interpolation",
+            "speed": "Tabulated calculated CJ reference; no measured frequency or wave count used as estimator input"
+          }
+        },
+        "coefficients": {
+          "gap": [
+            1.4,
+            2.4,
+            3.4
+          ],
+          "critical_depth": [
+            7.0,
+            12.0,
+            17.0
+          ],
+          "spacing_K": [
+            5.0,
+            7.0,
+            9.0
+          ]
+        },
+        "status": "no_candidate_in_model",
+        "expected_wave_count": null,
+        "nominal_candidate_wave_counts": [],
+        "possible_candidate_wave_counts": [],
+        "continuous_refill_capacity": 0.5681842797227002,
+        "nominal_refill_capacity_floor": 0,
+        "critical_fresh_depth_m": 0.009681352430277686,
+        "critical_fresh_depth_range_m": [
+          0.00564745558432865,
+          0.01371524927622672
+        ],
+        "minimum_gap_m": 0.0019362704860555369,
+        "minimum_chamber_length_m": 0.01936270486055537,
+        "recommended_chamber_length_m": 0.03872540972111074,
+        "annulus_volume_m3": 8.522261223246098e-05,
+        "checks": {
+          "gap_nominal": true,
+          "chamber_minimum_nominal": true,
+          "chamber_recommended_nominal": true,
+          "one_wave_refill_nominal": false,
+          "integer_mode_nominal": false
+        },
+        "candidate_details": [
+          {
+            "waves": 1,
+            "K_nominal": 24.726851122046792,
+            "return_time_s": 9.687954682458204e-05,
+            "passage_frequency_Hz": 10322.096177954681,
+            "fresh_depth_m": 0.00550079225733894,
+            "nominal_rules_satisfied": false,
+            "possible_with_coefficient_ranges": false,
+            "compatible_critical_depth_m": null
+          }
+        ],
+        "trace": [
+          {
+            "quantity": "critical_fresh_depth_m",
+            "equation": "12 * lambda_m",
+            "value": 0.009681352430277686
+          },
+          {
+            "quantity": "usable_mass_flow_kg_s",
+            "equation": "eta * mdot_kg_s",
+            "value": 0.26865
+          },
+          {
+            "quantity": "one_head_fresh_depth_m",
+            "equation": "eta*mdot/(rho*Ud*gap)",
+            "value": 0.00550079225733894
+          },
+          {
+            "quantity": "continuous_refill_capacity",
+            "equation": "one_head_fresh_depth/Lcrit",
+            "value": 0.5681842797227002
+          },
+          {
+            "quantity": "outer_circumference_m",
+            "equation": "pi*d_outer",
+            "value": 0.23938936020354223
+          }
+        ],
+        "limitations": [
+          "Unvalidated stability screen; candidates are not observed or guaranteed stable waves.",
+          "Coefficient ranges are sensitivity bounds, not confidence intervals or probabilities.",
+          "Cell size, density and wave speed must describe the same unreacted mixture/operating state.",
+          "No resolved injection, mixing, ignition, chemistry, wall losses or wave competition.",
+          "usable_flow_fraction is an explicit assumed correction, not a calibrated loss model."
+        ]
+      },
+      "comparison": "missed_observed_count",
+      "sensitivity": [
+        {
+          "speed_factor": 0.5,
+          "cell_size_factor": 0.8,
+          "nominal": [],
+          "possible": []
+        },
+        {
+          "speed_factor": 0.5,
+          "cell_size_factor": 1.0,
+          "nominal": [],
+          "possible": []
+        },
+        {
+          "speed_factor": 0.5,
+          "cell_size_factor": 1.2,
+          "nominal": [],
+          "possible": []
+        },
+        {
+          "speed_factor": 0.75,
+          "cell_size_factor": 0.8,
+          "nominal": [],
+          "possible": []
+        },
+        {
+          "speed_factor": 0.75,
+          "cell_size_factor": 1.0,
+          "nominal": [],
+          "possible": []
+        },
+        {
+          "speed_factor": 0.75,
+          "cell_size_factor": 1.2,
+          "nominal": [],
+          "possible": []
+        },
+        {
+          "speed_factor": 1.0,
+          "cell_size_factor": 0.8,
+          "nominal": [],
+          "possible": []
+        },
+        {
+          "speed_factor": 1.0,
+          "cell_size_factor": 1.0,
+          "nominal": [],
+          "possible": []
+        },
+        {
+          "speed_factor": 1.0,
+          "cell_size_factor": 1.2,
+          "nominal": [],
+          "possible": []
+        }
+      ]
+    },
+    {
+      "case": {
+        "id": "51-FI-5_phi1p42",
+        "configuration": "51-FI-5",
+        "diameter_mm": 50.8,
+        "gap_mm": 5,
+        "length_mm": 50.8,
+        "phi": 1.42,
+        "mass_flux": 243,
+        "speed_reference_m_s": 2600,
+        "primary_waves": 2,
+        "counter_waves": 0,
+        "observed_mode": "two co-rotating waves, red circle near phi 1.42",
+        "source": "Figure 3.13, printed p.55 / PDF p.71",
+        "reference_speed_source": "Figure 4.3 approximate calculated CJ value"
+      },
+      "inputs": {
+        "name": "51-FI-5_phi1p42",
+        "lambda_mm": 0.7108562768213332,
+        "rho_kg_m3": 3.9930988759172825,
+        "U_d_m_s": 2600,
+        "m_dot_g_s": 174.82020639431127,
+        "d_c_mm": 50.8,
+        "annulus_mm": 5,
+        "chamber_length_mm": 50.8,
+        "usable_flow_fraction": 1,
+        "sources": {
+          "operating_point": "Figure 3.13, printed p.55 / PDF p.71",
+          "geometry": "Mundt Table 2-1",
+          "density": "Eq.4.1 pressure + ideal CH4/O2 at 300 K",
+          "cell_size": "Figure4.2 approximate bilinear interpolation",
+          "speed": "Figure 4.3 approximate calculated CJ value"
+        }
+      },
+      "diagnostics": {
+        "pressure_kPa": 392.54249440000007,
+        "fresh_R_J_kg_K": 327.68409247886575,
+        "exact_exit_area_m2": 0.0007194247176720629,
+        "strip_to_exact_area_ratio": 1.1091703056768556,
+        "one_wave_refill_depth_m": 0.0033677373393586766,
+        "minimum_K_compatible_with_refill": 47.38876305381732,
+        "minimum_K_using_exact_area_refill": 42.724514721748704,
+        "raw_refill_capacity": 0.39479819962316665,
+        "interpretation": "K must be <=9 in inherited model; refill requires K >= C/H1 independently of cell size. Coreless raw formulas are extrapolations only."
+      },
+      "status": "evaluated",
+      "result": {
+        "schema_version": 1,
+        "model": "Law2021-algebraic-screen-v1",
+        "inputs": {
+          "name": "51-FI-5_phi1p42",
+          "lambda_mm": 0.7108562768213332,
+          "rho_kg_m3": 3.9930988759172825,
+          "U_d_m_s": 2600,
+          "m_dot_g_s": 174.82020639431127,
+          "d_c_mm": 50.8,
+          "annulus_mm": 5,
+          "chamber_length_mm": 50.8,
+          "usable_flow_fraction": 1,
+          "sources": {
+            "operating_point": "Figure 3.13, printed p.55 / PDF p.71",
+            "geometry": "Mundt Table 2-1",
+            "density": "Eq.4.1 pressure + ideal CH4/O2 at 300 K",
+            "cell_size": "Figure4.2 approximate bilinear interpolation",
+            "speed": "Figure 4.3 approximate calculated CJ value"
+          }
+        },
+        "coefficients": {
+          "gap": [
+            1.4,
+            2.4,
+            3.4
+          ],
+          "critical_depth": [
+            7.0,
+            12.0,
+            17.0
+          ],
+          "spacing_K": [
+            5.0,
+            7.0,
+            9.0
+          ]
+        },
+        "status": "no_candidate_in_model",
+        "expected_wave_count": null,
+        "nominal_candidate_wave_counts": [],
+        "possible_candidate_wave_counts": [],
+        "continuous_refill_capacity": 0.39479819962316665,
+        "nominal_refill_capacity_floor": 0,
+        "critical_fresh_depth_m": 0.008530275321855999,
+        "critical_fresh_depth_range_m": [
+          0.004975993937749333,
+          0.012084556705962665
+        ],
+        "minimum_gap_m": 0.0017060550643711997,
+        "minimum_chamber_length_m": 0.017060550643711998,
+        "recommended_chamber_length_m": 0.034121101287423995,
+        "annulus_volume_m3": 3.6546775657740794e-05,
+        "checks": {
+          "gap_nominal": true,
+          "chamber_minimum_nominal": true,
+          "chamber_recommended_nominal": true,
+          "one_wave_refill_nominal": false,
+          "integer_mode_nominal": false
+        },
+        "candidate_details": [
+          {
+            "waves": 1,
+            "K_nominal": 18.708998336015913,
+            "return_time_s": 6.138188723167749e-05,
+            "passage_frequency_Hz": 16291.450867674326,
+            "fresh_depth_m": 0.0033677373393586766,
+            "nominal_rules_satisfied": false,
+            "possible_with_coefficient_ranges": false,
+            "compatible_critical_depth_m": null
+          }
+        ],
+        "trace": [
+          {
+            "quantity": "critical_fresh_depth_m",
+            "equation": "12 * lambda_m",
+            "value": 0.008530275321855999
+          },
+          {
+            "quantity": "usable_mass_flow_kg_s",
+            "equation": "eta * mdot_kg_s",
+            "value": 0.17482020639431128
+          },
+          {
+            "quantity": "one_head_fresh_depth_m",
+            "equation": "eta*mdot/(rho*Ud*gap)",
+            "value": 0.0033677373393586766
+          },
+          {
+            "quantity": "continuous_refill_capacity",
+            "equation": "one_head_fresh_depth/Lcrit",
+            "value": 0.39479819962316665
+          },
+          {
+            "quantity": "outer_circumference_m",
+            "equation": "pi*d_outer",
+            "value": 0.1595929068023615
+          }
+        ],
+        "limitations": [
+          "Unvalidated stability screen; candidates are not observed or guaranteed stable waves.",
+          "Coefficient ranges are sensitivity bounds, not confidence intervals or probabilities.",
+          "Cell size, density and wave speed must describe the same unreacted mixture/operating state.",
+          "No resolved injection, mixing, ignition, chemistry, wall losses or wave competition.",
+          "usable_flow_fraction is an explicit assumed correction, not a calibrated loss model."
+        ]
+      },
+      "comparison": "missed_observed_count",
+      "sensitivity": [
+        {
+          "speed_factor": 0.5,
+          "cell_size_factor": 0.8,
+          "nominal": [],
+          "possible": []
+        },
+        {
+          "speed_factor": 0.5,
+          "cell_size_factor": 1.0,
+          "nominal": [],
+          "possible": []
+        },
+        {
+          "speed_factor": 0.5,
+          "cell_size_factor": 1.2,
+          "nominal": [],
+          "possible": []
+        },
+        {
+          "speed_factor": 0.75,
+          "cell_size_factor": 0.8,
+          "nominal": [],
+          "possible": []
+        },
+        {
+          "speed_factor": 0.75,
+          "cell_size_factor": 1.0,
+          "nominal": [],
+          "possible": []
+        },
+        {
+          "speed_factor": 0.75,
+          "cell_size_factor": 1.2,
+          "nominal": [],
+          "possible": []
+        },
+        {
+          "speed_factor": 1.0,
+          "cell_size_factor": 0.8,
+          "nominal": [],
+          "possible": []
+        },
+        {
+          "speed_factor": 1.0,
+          "cell_size_factor": 1.0,
+          "nominal": [],
+          "possible": []
+        },
+        {
+          "speed_factor": 1.0,
+          "cell_size_factor": 1.2,
+          "nominal": [],
+          "possible": []
+        }
+      ]
+    },
+    {
+      "case": {
+        "id": "25-FI-5_phi1p45",
+        "configuration": "25-FI-5",
+        "diameter_mm": 25.4,
+        "gap_mm": 5,
+        "length_mm": 25.4,
+        "phi": 1.45,
+        "mass_flux": 243,
+        "speed_reference_m_s": 2610,
+        "primary_waves": 1,
+        "counter_waves": 0,
+        "observed_mode": "one wave, blue circle near phi 1.45",
+        "source": "Figure 3.16, printed p.57 / PDF p.73",
+        "reference_speed_source": "Figure 4.3 approximate calculated CJ value"
+      },
+      "inputs": {
+        "name": "25-FI-5_phi1p45",
+        "lambda_mm": 0.6949622295733332,
+        "rho_kg_m3": 3.9879205137717215,
+        "U_d_m_s": 2610,
+        "m_dot_g_s": 77.86751551187662,
+        "d_c_mm": 25.4,
+        "annulus_mm": 5,
+        "chamber_length_mm": 25.4,
+        "usable_flow_fraction": 1,
+        "sources": {
+          "operating_point": "Figure 3.16, printed p.57 / PDF p.73",
+          "geometry": "Mundt Table 2-1",
+          "density": "Eq.4.1 pressure + ideal CH4/O2 at 300 K",
+          "cell_size": "Figure4.2 approximate bilinear interpolation",
+          "speed": "Figure 4.3 approximate calculated CJ value"
+        }
+      },
+      "diagnostics": {
+        "pressure_kPa": 393.2910214000001,
+        "fresh_R_J_kg_K": 328.7352560829844,
+        "exact_exit_area_m2": 0.00032044245066615895,
+        "strip_to_exact_area_ratio": 1.245098039215686,
+        "one_wave_refill_depth_m": 0.0014962332889012543,
+        "minimum_K_compatible_with_refill": 53.33155865004084,
+        "minimum_K_using_exact_area_refill": 42.833220333103675,
+        "raw_refill_capacity": 0.17941422152537403,
+        "interpretation": "K must be <=9 in inherited model; refill requires K >= C/H1 independently of cell size. Coreless raw formulas are extrapolations only."
+      },
+      "status": "evaluated",
+      "result": {
+        "schema_version": 1,
+        "model": "Law2021-algebraic-screen-v1",
+        "inputs": {
+          "name": "25-FI-5_phi1p45",
+          "lambda_mm": 0.6949622295733332,
+          "rho_kg_m3": 3.9879205137717215,
+          "U_d_m_s": 2610,
+          "m_dot_g_s": 77.86751551187662,
+          "d_c_mm": 25.4,
+          "annulus_mm": 5,
+          "chamber_length_mm": 25.4,
+          "usable_flow_fraction": 1,
+          "sources": {
+            "operating_point": "Figure 3.16, printed p.57 / PDF p.73",
+            "geometry": "Mundt Table 2-1",
+            "density": "Eq.4.1 pressure + ideal CH4/O2 at 300 K",
+            "cell_size": "Figure4.2 approximate bilinear interpolation",
+            "speed": "Figure 4.3 approximate calculated CJ value"
+          }
+        },
+        "coefficients": {
+          "gap": [
+            1.4,
+            2.4,
+            3.4
+          ],
+          "critical_depth": [
+            7.0,
+            12.0,
+            17.0
+          ],
+          "spacing_K": [
+            5.0,
+            7.0,
+            9.0
+          ]
+        },
+        "status": "no_candidate_in_model",
+        "expected_wave_count": null,
+        "nominal_candidate_wave_counts": [],
+        "possible_candidate_wave_counts": [],
+        "continuous_refill_capacity": 0.17941422152537403,
+        "nominal_refill_capacity_floor": 0,
+        "critical_fresh_depth_m": 0.008339546754879999,
+        "critical_fresh_depth_range_m": [
+          0.004864735607013333,
+          0.011814357902746665
+        ],
+        "minimum_gap_m": 0.0016679093509759998,
+        "minimum_chamber_length_m": 0.016679093509759997,
+        "recommended_chamber_length_m": 0.033358187019519994,
+        "annulus_volume_m3": 8.139238246920437e-06,
+        "checks": {
+          "gap_nominal": true,
+          "chamber_minimum_nominal": true,
+          "chamber_recommended_nominal": false,
+          "one_wave_refill_nominal": false,
+          "integer_mode_nominal": false
+        },
+        "candidate_details": [
+          {
+            "waves": 1,
+            "K_nominal": 9.568440077931905,
+            "return_time_s": 3.057335379355584e-05,
+            "passage_frequency_Hz": 32708.22058817692,
+            "fresh_depth_m": 0.0014962332889012543,
+            "nominal_rules_satisfied": false,
+            "possible_with_coefficient_ranges": false,
+            "compatible_critical_depth_m": null
+          }
+        ],
+        "trace": [
+          {
+            "quantity": "critical_fresh_depth_m",
+            "equation": "12 * lambda_m",
+            "value": 0.008339546754879999
+          },
+          {
+            "quantity": "usable_mass_flow_kg_s",
+            "equation": "eta * mdot_kg_s",
+            "value": 0.07786751551187662
+          },
+          {
+            "quantity": "one_head_fresh_depth_m",
+            "equation": "eta*mdot/(rho*Ud*gap)",
+            "value": 0.0014962332889012543
+          },
+          {
+            "quantity": "continuous_refill_capacity",
+            "equation": "one_head_fresh_depth/Lcrit",
+            "value": 0.17941422152537403
+          },
+          {
+            "quantity": "outer_circumference_m",
+            "equation": "pi*d_outer",
+            "value": 0.07979645340118074
+          }
+        ],
+        "limitations": [
+          "Unvalidated stability screen; candidates are not observed or guaranteed stable waves.",
+          "Coefficient ranges are sensitivity bounds, not confidence intervals or probabilities.",
+          "Cell size, density and wave speed must describe the same unreacted mixture/operating state.",
+          "No resolved injection, mixing, ignition, chemistry, wall losses or wave competition.",
+          "usable_flow_fraction is an explicit assumed correction, not a calibrated loss model."
+        ]
+      },
+      "comparison": "missed_observed_count",
+      "sensitivity": [
+        {
+          "speed_factor": 0.5,
+          "cell_size_factor": 0.8,
+          "nominal": [],
+          "possible": []
+        },
+        {
+          "speed_factor": 0.5,
+          "cell_size_factor": 1.0,
+          "nominal": [],
+          "possible": []
+        },
+        {
+          "speed_factor": 0.5,
+          "cell_size_factor": 1.2,
+          "nominal": [],
+          "possible": []
+        },
+        {
+          "speed_factor": 0.75,
+          "cell_size_factor": 0.8,
+          "nominal": [],
+          "possible": []
+        },
+        {
+          "speed_factor": 0.75,
+          "cell_size_factor": 1.0,
+          "nominal": [],
+          "possible": []
+        },
+        {
+          "speed_factor": 0.75,
+          "cell_size_factor": 1.2,
+          "nominal": [],
+          "possible": []
+        },
+        {
+          "speed_factor": 1.0,
+          "cell_size_factor": 0.8,
+          "nominal": [],
+          "possible": []
+        },
+        {
+          "speed_factor": 1.0,
+          "cell_size_factor": 1.0,
+          "nominal": [],
+          "possible": []
+        },
+        {
+          "speed_factor": 1.0,
+          "cell_size_factor": 1.2,
+          "nominal": [],
+          "possible": []
+        }
+      ]
+    },
+    {
+      "case": {
+        "id": "25-FI-3_phi1p42",
+        "configuration": "25-FI-3",
+        "diameter_mm": 25.4,
+        "gap_mm": 3,
+        "length_mm": 25.4,
+        "phi": 1.42,
+        "mass_flux": 243,
+        "speed_reference_m_s": 2600,
+        "primary_waves": 1,
+        "counter_waves": 0,
+        "observed_mode": "one wave, blue circle near phi 1.42",
+        "source": "Figure 3.17, printed p.58 / PDF p.74",
+        "reference_speed_source": "Figure 4.3 approximate calculated CJ value"
+      },
+      "inputs": {
+        "name": "25-FI-3_phi1p42",
+        "lambda_mm": 0.7108562768213332,
+        "rho_kg_m3": 3.9930988759172825,
+        "U_d_m_s": 2600,
+        "m_dot_g_s": 51.30095139605988,
+        "d_c_mm": 25.4,
+        "annulus_mm": 3,
+        "chamber_length_mm": 25.4,
+        "usable_flow_fraction": 1,
+        "sources": {
+          "operating_point": "Figure 3.17, printed p.58 / PDF p.74",
+          "geometry": "Mundt Table 2-1",
+          "density": "Eq.4.1 pressure + ideal CH4/O2 at 300 K",
+          "cell_size": "Figure4.2 approximate bilinear interpolation",
+          "speed": "Figure 4.3 approximate calculated CJ value"
+        }
+      },
+      "diagnostics": {
+        "pressure_kPa": 392.54249440000007,
+        "fresh_R_J_kg_K": 327.68409247886575,
+        "exact_exit_area_m2": 0.00021111502632123407,
+        "strip_to_exact_area_ratio": 1.1339285714285716,
+        "one_wave_refill_depth_m": 0.001647102978201623,
+        "minimum_K_compatible_with_refill": 48.446547943411474,
+        "minimum_K_using_exact_area_refill": 42.72451472174869,
+        "raw_refill_capacity": 0.1930890757982299,
+        "interpretation": "K must be <=9 in inherited model; refill requires K >= C/H1 independently of cell size. Coreless raw formulas are extrapolations only."
+      },
+      "status": "evaluated",
+      "result": {
+        "schema_version": 1,
+        "model": "Law2021-algebraic-screen-v1",
+        "inputs": {
+          "name": "25-FI-3_phi1p42",
+          "lambda_mm": 0.7108562768213332,
+          "rho_kg_m3": 3.9930988759172825,
+          "U_d_m_s": 2600,
+          "m_dot_g_s": 51.30095139605988,
+          "d_c_mm": 25.4,
+          "annulus_mm": 3,
+          "chamber_length_mm": 25.4,
+          "usable_flow_fraction": 1,
+          "sources": {
+            "operating_point": "Figure 3.17, printed p.58 / PDF p.74",
+            "geometry": "Mundt Table 2-1",
+            "density": "Eq.4.1 pressure + ideal CH4/O2 at 300 K",
+            "cell_size": "Figure4.2 approximate bilinear interpolation",
+            "speed": "Figure 4.3 approximate calculated CJ value"
+          }
+        },
+        "coefficients": {
+          "gap": [
+            1.4,
+            2.4,
+            3.4
+          ],
+          "critical_depth": [
+            7.0,
+            12.0,
+            17.0
+          ],
+          "spacing_K": [
+            5.0,
+            7.0,
+            9.0
+          ]
+        },
+        "status": "no_candidate_in_model",
+        "expected_wave_count": null,
+        "nominal_candidate_wave_counts": [],
+        "possible_candidate_wave_counts": [],
+        "continuous_refill_capacity": 0.19308907579822987,
+        "nominal_refill_capacity_floor": 0,
+        "critical_fresh_depth_m": 0.008530275321855999,
+        "critical_fresh_depth_range_m": [
+          0.004975993937749333,
+          0.012084556705962665
+        ],
+        "minimum_gap_m": 0.0017060550643711997,
+        "minimum_chamber_length_m": 0.017060550643711998,
+        "recommended_chamber_length_m": 0.034121101287423995,
+        "annulus_volume_m3": 5.362321668559345e-06,
+        "checks": {
+          "gap_nominal": true,
+          "chamber_minimum_nominal": true,
+          "chamber_recommended_nominal": false,
+          "one_wave_refill_nominal": false,
+          "integer_mode_nominal": false
+        },
+        "candidate_details": [
+          {
+            "waves": 1,
+            "K_nominal": 9.354499168007957,
+            "return_time_s": 3.0690943615838745e-05,
+            "passage_frequency_Hz": 32582.901735348652,
+            "fresh_depth_m": 0.0016471029782016227,
+            "nominal_rules_satisfied": false,
+            "possible_with_coefficient_ranges": false,
+            "compatible_critical_depth_m": null
+          }
+        ],
+        "trace": [
+          {
+            "quantity": "critical_fresh_depth_m",
+            "equation": "12 * lambda_m",
+            "value": 0.008530275321855999
+          },
+          {
+            "quantity": "usable_mass_flow_kg_s",
+            "equation": "eta * mdot_kg_s",
+            "value": 0.05130095139605988
+          },
+          {
+            "quantity": "one_head_fresh_depth_m",
+            "equation": "eta*mdot/(rho*Ud*gap)",
+            "value": 0.0016471029782016227
+          },
+          {
+            "quantity": "continuous_refill_capacity",
+            "equation": "one_head_fresh_depth/Lcrit",
+            "value": 0.19308907579822987
+          },
+          {
+            "quantity": "outer_circumference_m",
+            "equation": "pi*d_outer",
+            "value": 0.07979645340118074
+          }
+        ],
+        "limitations": [
+          "Unvalidated stability screen; candidates are not observed or guaranteed stable waves.",
+          "Coefficient ranges are sensitivity bounds, not confidence intervals or probabilities.",
+          "Cell size, density and wave speed must describe the same unreacted mixture/operating state.",
+          "No resolved injection, mixing, ignition, chemistry, wall losses or wave competition.",
+          "usable_flow_fraction is an explicit assumed correction, not a calibrated loss model."
+        ]
+      },
+      "comparison": "missed_observed_count",
+      "sensitivity": [
+        {
+          "speed_factor": 0.5,
+          "cell_size_factor": 0.8,
+          "nominal": [],
+          "possible": []
+        },
+        {
+          "speed_factor": 0.5,
+          "cell_size_factor": 1.0,
+          "nominal": [],
+          "possible": []
+        },
+        {
+          "speed_factor": 0.5,
+          "cell_size_factor": 1.2,
+          "nominal": [],
+          "possible": []
+        },
+        {
+          "speed_factor": 0.75,
+          "cell_size_factor": 0.8,
+          "nominal": [],
+          "possible": []
+        },
+        {
+          "speed_factor": 0.75,
+          "cell_size_factor": 1.0,
+          "nominal": [],
+          "possible": []
+        },
+        {
+          "speed_factor": 0.75,
+          "cell_size_factor": 1.2,
+          "nominal": [],
+          "possible": []
+        },
+        {
+          "speed_factor": 1.0,
+          "cell_size_factor": 0.8,
+          "nominal": [],
+          "possible": []
+        },
+        {
+          "speed_factor": 1.0,
+          "cell_size_factor": 1.0,
+          "nominal": [],
+          "possible": []
+        },
+        {
+          "speed_factor": 1.0,
+          "cell_size_factor": 1.2,
+          "nominal": [],
+          "possible": []
+        }
+      ]
+    },
+    {
+      "case": {
+        "id": "25-FI-7_phi1p20",
+        "configuration": "25-FI-7",
+        "diameter_mm": 25.4,
+        "gap_mm": 7,
+        "length_mm": 25.4,
+        "phi": 1.2,
+        "mass_flux": 239,
+        "speed_reference_m_s": 2540,
+        "primary_waves": 1,
+        "counter_waves": 0,
+        "observed_mode": "one wave, rightmost blue circle near phi 1.20",
+        "source": "Figure 3.14, printed p.56 / PDF p.72; limited partial sweep",
+        "reference_speed_source": "Figure 4.3 approximate calculated CJ value"
+      },
+      "inputs": {
+        "name": "25-FI-7_phi1p20",
+        "lambda_mm": 0.7956208688,
+        "rho_kg_m3": 3.9339240754474654,
+        "U_d_m_s": 2540,
+        "m_dot_g_s": 96.70827497398531,
+        "d_c_mm": 25.4,
+        "annulus_mm": 7,
+        "chamber_length_mm": 25.4,
+        "usable_flow_fraction": 1,
+        "sources": {
+          "operating_point": "Figure 3.14, printed p.56 / PDF p.72; limited partial sweep",
+          "geometry": "Mundt Table 2-1",
+          "density": "Eq.4.1 pressure + ideal CH4/O2 at 300 K",
+          "cell_size": "Figure4.2 approximate bilinear interpolation",
+          "speed": "Figure 4.3 approximate calculated CJ value"
+        }
+      },
+      "diagnostics": {
+        "pressure_kPa": 377.1895656,
+        "fresh_R_J_kg_K": 319.60417331058636,
+        "exact_exit_area_m2": 0.0004046371337823653,
+        "strip_to_exact_area_ratio": 1.380434782608696,
+        "one_wave_refill_depth_m": 0.0013826297782822531,
+        "minimum_K_compatible_with_refill": 57.713535940414936,
+        "minimum_K_using_exact_area_refill": 41.808230759985605,
+        "raw_refill_capacity": 0.14481664912079006,
+        "interpretation": "K must be <=9 in inherited model; refill requires K >= C/H1 independently of cell size. Coreless raw formulas are extrapolations only."
+      },
+      "status": "evaluated",
+      "result": {
+        "schema_version": 1,
+        "model": "Law2021-algebraic-screen-v1",
+        "inputs": {
+          "name": "25-FI-7_phi1p20",
+          "lambda_mm": 0.7956208688,
+          "rho_kg_m3": 3.9339240754474654,
+          "U_d_m_s": 2540,
+          "m_dot_g_s": 96.70827497398531,
+          "d_c_mm": 25.4,
+          "annulus_mm": 7,
+          "chamber_length_mm": 25.4,
+          "usable_flow_fraction": 1,
+          "sources": {
+            "operating_point": "Figure 3.14, printed p.56 / PDF p.72; limited partial sweep",
+            "geometry": "Mundt Table 2-1",
+            "density": "Eq.4.1 pressure + ideal CH4/O2 at 300 K",
+            "cell_size": "Figure4.2 approximate bilinear interpolation",
+            "speed": "Figure 4.3 approximate calculated CJ value"
+          }
+        },
+        "coefficients": {
+          "gap": [
+            1.4,
+            2.4,
+            3.4
+          ],
+          "critical_depth": [
+            7.0,
+            12.0,
+            17.0
+          ],
+          "spacing_K": [
+            5.0,
+            7.0,
+            9.0
+          ]
+        },
+        "status": "no_candidate_in_model",
+        "expected_wave_count": null,
+        "nominal_candidate_wave_counts": [],
+        "possible_candidate_wave_counts": [],
+        "continuous_refill_capacity": 0.14481664912079006,
+        "nominal_refill_capacity_floor": 0,
+        "critical_fresh_depth_m": 0.0095474504256,
+        "critical_fresh_depth_range_m": [
+          0.0055693460816,
+          0.0135255547696
+        ],
+        "minimum_gap_m": 0.00190949008512,
+        "minimum_chamber_length_m": 0.0190949008512,
+        "recommended_chamber_length_m": 0.0381898017024,
+        "annulus_volume_m3": 1.0277783198072079e-05,
+        "checks": {
+          "gap_nominal": true,
+          "chamber_minimum_nominal": true,
+          "chamber_recommended_nominal": false,
+          "one_wave_refill_nominal": false,
+          "integer_mode_nominal": false
+        },
+        "candidate_details": [
+          {
+            "waves": 1,
+            "K_nominal": 8.357880883803176,
+            "return_time_s": 3.141592653589793e-05,
+            "passage_frequency_Hz": 31830.98861837907,
+            "fresh_depth_m": 0.001382629778282253,
+            "nominal_rules_satisfied": false,
+            "possible_with_coefficient_ranges": false,
+            "compatible_critical_depth_m": null
+          }
+        ],
+        "trace": [
+          {
+            "quantity": "critical_fresh_depth_m",
+            "equation": "12 * lambda_m",
+            "value": 0.0095474504256
+          },
+          {
+            "quantity": "usable_mass_flow_kg_s",
+            "equation": "eta * mdot_kg_s",
+            "value": 0.0967082749739853
+          },
+          {
+            "quantity": "one_head_fresh_depth_m",
+            "equation": "eta*mdot/(rho*Ud*gap)",
+            "value": 0.001382629778282253
+          },
+          {
+            "quantity": "continuous_refill_capacity",
+            "equation": "one_head_fresh_depth/Lcrit",
+            "value": 0.14481664912079006
+          },
+          {
+            "quantity": "outer_circumference_m",
+            "equation": "pi*d_outer",
+            "value": 0.07979645340118074
+          }
+        ],
+        "limitations": [
+          "Unvalidated stability screen; candidates are not observed or guaranteed stable waves.",
+          "Coefficient ranges are sensitivity bounds, not confidence intervals or probabilities.",
+          "Cell size, density and wave speed must describe the same unreacted mixture/operating state.",
+          "No resolved injection, mixing, ignition, chemistry, wall losses or wave competition.",
+          "usable_flow_fraction is an explicit assumed correction, not a calibrated loss model."
+        ]
+      },
+      "comparison": "missed_observed_count",
+      "sensitivity": [
+        {
+          "speed_factor": 0.5,
+          "cell_size_factor": 0.8,
+          "nominal": [],
+          "possible": []
+        },
+        {
+          "speed_factor": 0.5,
+          "cell_size_factor": 1.0,
+          "nominal": [],
+          "possible": []
+        },
+        {
+          "speed_factor": 0.5,
+          "cell_size_factor": 1.2,
+          "nominal": [],
+          "possible": []
+        },
+        {
+          "speed_factor": 0.75,
+          "cell_size_factor": 0.8,
+          "nominal": [],
+          "possible": []
+        },
+        {
+          "speed_factor": 0.75,
+          "cell_size_factor": 1.0,
+          "nominal": [],
+          "possible": []
+        },
+        {
+          "speed_factor": 0.75,
+          "cell_size_factor": 1.2,
+          "nominal": [],
+          "possible": []
+        },
+        {
+          "speed_factor": 1.0,
+          "cell_size_factor": 0.8,
+          "nominal": [],
+          "possible": []
+        },
+        {
+          "speed_factor": 1.0,
+          "cell_size_factor": 1.0,
+          "nominal": [],
+          "possible": []
+        },
+        {
+          "speed_factor": 1.0,
+          "cell_size_factor": 1.2,
+          "nominal": [],
+          "possible": []
+        }
+      ]
+    },
+    {
+      "case": {
+        "id": "25-FI-12p7_phi1p40",
+        "configuration": "25-FI-12.7",
+        "diameter_mm": 25.4,
+        "gap_mm": 12.7,
+        "length_mm": 25.4,
+        "phi": 1.4,
+        "mass_flux": 243,
+        "speed_reference_m_s": 2600,
+        "primary_waves": 1,
+        "counter_waves": 0,
+        "observed_mode": "one wave, blue circle near phi 1.4",
+        "source": "Figure 3.18, printed p.58 / PDF p.74",
+        "reference_speed_source": "Figure 4.3 approximate calculated CJ value"
+      },
+      "inputs": {
+        "name": "25-FI-12p7_phi1p40",
+        "lambda_mm": 0.72162100672,
+        "rho_kg_m3": 3.9960911454475183,
+        "U_d_m_s": 2600,
+        "m_dot_g_s": 123.12991742069194,
+        "d_c_mm": 25.4,
+        "annulus_mm": 12.7,
+        "chamber_length_mm": 25.4,
+        "usable_flow_fraction": 1,
+        "sources": {
+          "operating_point": "Figure 3.18, printed p.58 / PDF p.74",
+          "geometry": "Mundt Table 2-1",
+          "density": "Eq.4.1 pressure + ideal CH4/O2 at 300 K",
+          "cell_size": "Figure4.2 approximate bilinear interpolation",
+          "speed": "Figure 4.3 approximate calculated CJ value"
+        }
+      },
+      "diagnostics": {
+        "pressure_kPa": 391.9887464000001,
+        "fresh_R_J_kg_K": 326.97681486950637,
+        "exact_exit_area_m2": 0.0005067074790974977,
+        "strip_to_exact_area_ratio": 2.0,
+        "one_wave_refill_depth_m": 0.0009331492985520495,
+        "minimum_K_compatible_with_refill": 85.51306154867117,
+        "minimum_K_using_exact_area_refill": 42.75653077433559,
+        "raw_refill_capacity": 0.10776077861072737,
+        "interpretation": "K must be <=9 in inherited model; refill requires K >= C/H1 independently of cell size. Coreless raw formulas are extrapolations only."
+      },
+      "status": "unsupported_coreless",
+      "error": "annulus_mm must be less than half d_c_mm",
+      "result": null,
+      "comparison": "excluded, not predicted zero",
+      "sensitivity": []
+    },
+    {
+      "case": {
+        "id": "25-FI-5_deflagration_phi1p42",
+        "configuration": "25-FI-5",
+        "diameter_mm": 25.4,
+        "gap_mm": 5,
+        "length_mm": 25.4,
+        "phi": 1.42,
+        "mass_flux": 162,
+        "speed_reference_m_s": 2580,
+        "primary_waves": 0,
+        "counter_waves": 0,
+        "observed_mode": "deflagration, yellow square near phi 1.42 and flux 162; burning without sustained detonation",
+        "source": "Figure 3.16, printed p.57 / PDF p.73; NOT assigned the unidentified Appendix B.10 run",
+        "reference_speed_source": "Figure 4.3 hypothetical CJ reference for this mixture; not a measured speed of a nonexistent detonation"
+      },
+      "inputs": {
+        "name": "25-FI-5_deflagration_phi1p42",
+        "lambda_mm": 1.0663246174591998,
+        "rho_kg_m3": 2.8975987639515095,
+        "U_d_m_s": 2580,
+        "m_dot_g_s": 51.91167700791775,
+        "d_c_mm": 25.4,
+        "annulus_mm": 5,
+        "chamber_length_mm": 25.4,
+        "usable_flow_fraction": 1,
+        "sources": {
+          "operating_point": "Figure 3.16, printed p.57 / PDF p.73; NOT assigned the unidentified Appendix B.10 run",
+          "geometry": "Mundt Table 2-1",
+          "density": "Eq.4.1 pressure + ideal CH4/O2 at 300 K",
+          "cell_size": "Figure4.2 approximate bilinear interpolation",
+          "speed": "Figure 4.3 hypothetical CJ reference for this mixture; not a measured speed of a nonexistent detonation"
+        }
+      },
+      "diagnostics": {
+        "pressure_kPa": 284.84910640000004,
+        "fresh_R_J_kg_K": 327.68409247886575,
+        "exact_exit_area_m2": 0.00032044245066615895,
+        "strip_to_exact_area_ratio": 1.245098039215686,
+        "one_wave_refill_depth_m": 0.0013887916637836681,
+        "minimum_K_compatible_with_refill": 57.457468590919355,
+        "minimum_K_using_exact_area_refill": 46.14694327774625,
+        "raw_refill_capacity": 0.10853415250264277,
+        "interpretation": "K must be <=9 in inherited model; refill requires K >= C/H1 independently of cell size. Coreless raw formulas are extrapolations only."
+      },
+      "status": "evaluated",
+      "result": {
+        "schema_version": 1,
+        "model": "Law2021-algebraic-screen-v1",
+        "inputs": {
+          "name": "25-FI-5_deflagration_phi1p42",
+          "lambda_mm": 1.0663246174591998,
+          "rho_kg_m3": 2.8975987639515095,
+          "U_d_m_s": 2580,
+          "m_dot_g_s": 51.91167700791775,
+          "d_c_mm": 25.4,
+          "annulus_mm": 5,
+          "chamber_length_mm": 25.4,
+          "usable_flow_fraction": 1,
+          "sources": {
+            "operating_point": "Figure 3.16, printed p.57 / PDF p.73; NOT assigned the unidentified Appendix B.10 run",
+            "geometry": "Mundt Table 2-1",
+            "density": "Eq.4.1 pressure + ideal CH4/O2 at 300 K",
+            "cell_size": "Figure4.2 approximate bilinear interpolation",
+            "speed": "Figure 4.3 hypothetical CJ reference for this mixture; not a measured speed of a nonexistent detonation"
+          }
+        },
+        "coefficients": {
+          "gap": [
+            1.4,
+            2.4,
+            3.4
+          ],
+          "critical_depth": [
+            7.0,
+            12.0,
+            17.0
+          ],
+          "spacing_K": [
+            5.0,
+            7.0,
+            9.0
+          ]
+        },
+        "status": "no_candidate_in_model",
+        "expected_wave_count": null,
+        "nominal_candidate_wave_counts": [],
+        "possible_candidate_wave_counts": [],
+        "continuous_refill_capacity": 0.10853415250264276,
+        "nominal_refill_capacity_floor": 0,
+        "critical_fresh_depth_m": 0.0127958954095104,
+        "critical_fresh_depth_range_m": [
+          0.007464272322214399,
+          0.018127518496806397
+        ],
+        "minimum_gap_m": 0.0025591790819020797,
+        "minimum_chamber_length_m": 0.0255917908190208,
+        "recommended_chamber_length_m": 0.0511835816380416,
+        "annulus_volume_m3": 8.139238246920437e-06,
+        "checks": {
+          "gap_nominal": true,
+          "chamber_minimum_nominal": false,
+          "chamber_recommended_nominal": false,
+          "one_wave_refill_nominal": false,
+          "integer_mode_nominal": false
+        },
+        "candidate_details": [
+          {
+            "waves": 1,
+            "K_nominal": 6.236097658462648,
+            "return_time_s": 3.0928857907434396e-05,
+            "passage_frequency_Hz": 32332.264029692124,
+            "fresh_depth_m": 0.0013887916637836681,
+            "nominal_rules_satisfied": false,
+            "possible_with_coefficient_ranges": false,
+            "compatible_critical_depth_m": null
+          }
+        ],
+        "trace": [
+          {
+            "quantity": "critical_fresh_depth_m",
+            "equation": "12 * lambda_m",
+            "value": 0.0127958954095104
+          },
+          {
+            "quantity": "usable_mass_flow_kg_s",
+            "equation": "eta * mdot_kg_s",
+            "value": 0.05191167700791775
+          },
+          {
+            "quantity": "one_head_fresh_depth_m",
+            "equation": "eta*mdot/(rho*Ud*gap)",
+            "value": 0.0013887916637836681
+          },
+          {
+            "quantity": "continuous_refill_capacity",
+            "equation": "one_head_fresh_depth/Lcrit",
+            "value": 0.10853415250264276
+          },
+          {
+            "quantity": "outer_circumference_m",
+            "equation": "pi*d_outer",
+            "value": 0.07979645340118074
+          }
+        ],
+        "limitations": [
+          "Unvalidated stability screen; candidates are not observed or guaranteed stable waves.",
+          "Coefficient ranges are sensitivity bounds, not confidence intervals or probabilities.",
+          "Cell size, density and wave speed must describe the same unreacted mixture/operating state.",
+          "No resolved injection, mixing, ignition, chemistry, wall losses or wave competition.",
+          "usable_flow_fraction is an explicit assumed correction, not a calibrated loss model."
+        ]
+      },
+      "comparison": "correct_no_candidate",
+      "sensitivity": [
+        {
+          "speed_factor": 0.5,
+          "cell_size_factor": 0.8,
+          "nominal": [],
+          "possible": []
+        },
+        {
+          "speed_factor": 0.5,
+          "cell_size_factor": 1.0,
+          "nominal": [],
+          "possible": []
+        },
+        {
+          "speed_factor": 0.5,
+          "cell_size_factor": 1.2,
+          "nominal": [],
+          "possible": []
+        },
+        {
+          "speed_factor": 0.75,
+          "cell_size_factor": 0.8,
+          "nominal": [],
+          "possible": []
+        },
+        {
+          "speed_factor": 0.75,
+          "cell_size_factor": 1.0,
+          "nominal": [],
+          "possible": []
+        },
+        {
+          "speed_factor": 0.75,
+          "cell_size_factor": 1.2,
+          "nominal": [],
+          "possible": []
+        },
+        {
+          "speed_factor": 1.0,
+          "cell_size_factor": 0.8,
+          "nominal": [],
+          "possible": []
+        },
+        {
+          "speed_factor": 1.0,
+          "cell_size_factor": 1.0,
+          "nominal": [],
+          "possible": []
+        },
+        {
+          "speed_factor": 1.0,
+          "cell_size_factor": 1.2,
+          "nominal": [],
+          "possible": []
+        }
+      ]
+    }
+  ]
+}

@@ -140,3 +140,12 @@ The cause is unresolved (coefficient pairing, an unstated assumption, or a table
 error are possibilities). No coefficient was fitted to conceal this discrepancy.
 The test preserves it explicitly; this is NOT a fully reproduced paper table or
 experimental validation. The example's fixed 0.7 mm gap gives nominal w = 0.409.
+
+## Subsequent experimental comparison (2026-10-24)
+
+The [Mundt comparison](validation/README.md) found no admitted modes for five
+selected sustained annular cases, or the real deflagration control. Coreless
+25-FI-12.7 is unsupported. This is a failed transfer of the current combined
+rules, not validation. The conflict persists without relying on cell-size
+precision and at half-CJ reference speed. Do not interpret no-candidate as a
+reliable prediction of failed operation for these engines.

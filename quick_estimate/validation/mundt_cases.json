@@ -1,0 +1,151 @@
+{
+  "source_pdf": "Mundt2023.pdf",
+  "source_sha256": "9b29881e98f4435c5a887b942ade010f13181a42a73e1bf78e50bf89f7b2195d",
+  "selection": "One representative point per configuration, selected visually before estimator evaluation; not the full 400+ run dataset.",
+  "state_method": "Mundt Eq. 4.1 pressure fit, ideal premixed CH4/O2 at 300 K; total flow from exact annular exit area and mass flux, except directly tabulated Run 937.",
+  "cell_size_method": "Approximate visual readings of Figure 4.2, bilinear interpolation in phi and pressure; no kinetic integration or wave-count fitting.",
+  "reference_grid": {
+    "phi": [
+      1.15,
+      1.2,
+      1.4,
+      1.45
+    ],
+    "pressure_kPa": [
+      225,
+      350,
+      500
+    ],
+    "lambda_mm": [
+      [
+        1.44,
+        1.4,
+        1.33,
+        1.31
+      ],
+      [
+        0.88,
+        0.85,
+        0.8,
+        0.77
+      ],
+      [
+        0.56,
+        0.55,
+        0.52,
+        0.51
+      ]
+    ],
+    "source": "Figure 4.2, printed p.75 / PDF p.91",
+    "reading_precision": "Approximate readings, roughly 0.05--0.10 mm; tested with additional +/-20% scale variation, not statistical uncertainty."
+  },
+  "operating_point_precision": "Figure-derived phi approximately +/-0.03 and flux approximately +/-5 kg/(s m2); Run 937 directly tabulated. These are reading estimates, not experimental confidence intervals.",
+  "cases": [
+    {
+      "id": "76-FI-5_run937",
+      "configuration": "76-FI-5",
+      "diameter_mm": 76.2,
+      "gap_mm": 5,
+      "length_mm": 76.2,
+      "phi": 1.176,
+      "mass_flux": 240.21,
+      "mass_flow_g_s": 268.65,
+      "speed_reference_m_s": 2471,
+      "primary_waves": 2,
+      "counter_waves": 0,
+      "observed_mode": "two co-rotating waves",
+      "source": "Table 3-2, printed p.52 / PDF p.68",
+      "reference_speed_source": "Tabulated calculated CJ reference; no measured frequency or wave count used as estimator input"
+    },
+    {
+      "id": "51-FI-5_phi1p42",
+      "configuration": "51-FI-5",
+      "diameter_mm": 50.8,
+      "gap_mm": 5,
+      "length_mm": 50.8,
+      "phi": 1.42,
+      "mass_flux": 243,
+      "speed_reference_m_s": 2600,
+      "primary_waves": 2,
+      "counter_waves": 0,
+      "observed_mode": "two co-rotating waves, red circle near phi 1.42",
+      "source": "Figure 3.13, printed p.55 / PDF p.71",
+      "reference_speed_source": "Figure 4.3 approximate calculated CJ value"
+    },
+    {
+      "id": "25-FI-5_phi1p45",
+      "configuration": "25-FI-5",
+      "diameter_mm": 25.4,
+      "gap_mm": 5,
+      "length_mm": 25.4,
+      "phi": 1.45,
+      "mass_flux": 243,
+      "speed_reference_m_s": 2610,
+      "primary_waves": 1,
+      "counter_waves": 0,
+      "observed_mode": "one wave, blue circle near phi 1.45",
+      "source": "Figure 3.16, printed p.57 / PDF p.73",
+      "reference_speed_source": "Figure 4.3 approximate calculated CJ value"
+    },
+    {
+      "id": "25-FI-3_phi1p42",
+      "configuration": "25-FI-3",
+      "diameter_mm": 25.4,
+      "gap_mm": 3,
+      "length_mm": 25.4,
+      "phi": 1.42,
+      "mass_flux": 243,
+      "speed_reference_m_s": 2600,
+      "primary_waves": 1,
+      "counter_waves": 0,
+      "observed_mode": "one wave, blue circle near phi 1.42",
+      "source": "Figure 3.17, printed p.58 / PDF p.74",
+      "reference_speed_source": "Figure 4.3 approximate calculated CJ value"
+    },
+    {
+      "id": "25-FI-7_phi1p20",
+      "configuration": "25-FI-7",
+      "diameter_mm": 25.4,
+      "gap_mm": 7,
+      "length_mm": 25.4,
+      "phi": 1.2,
+      "mass_flux": 239,
+      "speed_reference_m_s": 2540,
+      "primary_waves": 1,
+      "counter_waves": 0,
+      "observed_mode": "one wave, rightmost blue circle near phi 1.20",
+      "source": "Figure 3.14, printed p.56 / PDF p.72; limited partial sweep",
+      "reference_speed_source": "Figure 4.3 approximate calculated CJ value"
+    },
+    {
+      "id": "25-FI-12p7_phi1p40",
+      "configuration": "25-FI-12.7",
+      "diameter_mm": 25.4,
+      "gap_mm": 12.7,
+      "length_mm": 25.4,
+      "phi": 1.4,
+      "mass_flux": 243,
+      "speed_reference_m_s": 2600,
+      "primary_waves": 1,
+      "counter_waves": 0,
+      "observed_mode": "one wave, blue circle near phi 1.4",
+      "source": "Figure 3.18, printed p.58 / PDF p.74",
+      "reference_speed_source": "Figure 4.3 approximate calculated CJ value"
+    },
+    {
+      "id": "25-FI-5_deflagration_phi1p42",
+      "configuration": "25-FI-5",
+      "diameter_mm": 25.4,
+      "gap_mm": 5,
+      "length_mm": 25.4,
+      "phi": 1.42,
+      "mass_flux": 162,
+      "speed_reference_m_s": 2580,
+      "primary_waves": 0,
+      "counter_waves": 0,
+      "observed_mode": "deflagration, yellow square near phi 1.42 and flux 162; burning without sustained detonation",
+      "source": "Figure 3.16, printed p.57 / PDF p.73; NOT assigned the unidentified Appendix B.10 run",
+      "reference_speed_source": "Figure 4.3 hypothetical CJ reference for this mixture; not a measured speed of a nonexistent detonation"
+    }
+  ]
+}

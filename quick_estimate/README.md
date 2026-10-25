@@ -1,5 +1,10 @@
 # 2D Quick Estimate
 
+**Experimental comparison warning:** this version misses all five tested annular
+sustained-wave points from Mundt and also rejects a real deflagration point. The
+coreless sixth geometry is unsupported. Do not use it as a validated wave-count
+or sustain/fail predictor. See [the comparison](validation/README.md).
+
 Offline algebraic wave-count screening, adapted from Fable's sizing code.
 Python 3.9+ standard library only. No installation, chemistry integration or CFD.
 Run from the repository root:
