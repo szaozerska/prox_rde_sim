@@ -1,0 +1,16 @@
+[
+  {
+    "file": "pelec_visual/pelec_annulus.gif",
+    "frames": 21,
+    "physical_time_s": 1e-05,
+    "sha256": "7ba654c09f3e4fd37d3465437a7cecd82eb0abc269cfc7d723fa245ea1b771be",
+    "final_png_visually_inspected": true
+  },
+  {
+    "file": "foam_visual/detonationfoam_annulus.gif",
+    "frames": 21,
+    "physical_time_s": 1e-06,
+    "sha256": "cf9f4600c46fa0e5806b53b2cb291b5967096b2104dc1f516d323dee44f76e9d",
+    "final_png_visually_inspected": true
+  }
+]

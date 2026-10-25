@@ -1,3 +1,7 @@
+Current 3D work: [native PeleC/detonationFoam prototype and GIFs](docs/verification/3d_prototype_20261024/README.md).
+Both frameworks run; species/propagation checks fail, so these are diagnostic
+startup animations. [Launch/replay commands](tools/CFD_PROTOTYPE.md).
+
 # 3D modelling branch
 
 Work in `/Users/sgfx/Desktop/Projects/prox_rde_sim_3d`, branch **3d-modelling**.

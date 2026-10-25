@@ -1,0 +1,22 @@
+{
+  "repository": "https://github.com/open-hydra/ATLAS",
+  "commit": "49237b9c27ed128638d37ace939197d7451570f3",
+  "path": "database/chemistry/FFCMy_12.yaml",
+  "sha256": "321cf0958fdeaf70f42e8989739e318be4b81a31168ab891bb5f668bdf082c90",
+  "species": 13,
+  "reacting_species": 12,
+  "reactions": 38,
+  "reference_doi": "10.1016/j.combustflame.2024.113380",
+  "scope": "Public ATLAS transcription. Not yet proven byte-identical to the private 2018 mechanism used by Argonne/NETL. No rate modifications.",
+  "generation": {
+    "generator": "PelePhysics CEPTR",
+    "pelephysics_commit": "6e8026fc6ed121c07e32c9d3fe1d1c919bafc64b",
+    "cantera": "3.1.0",
+    "numpy": "1.26.4",
+    "command": "python -m ceptr -f mechanism.yaml",
+    "generated_sha256": {
+      "mechanism.H": "11feab0520020459835c3dfb3ba6fb1eb857ff2d12809093ff428573287fa3c5",
+      "mechanism.cpp": "b46439af80d5029ec8955ad684010eee0bdf7eef16208adc39b40ff02d8dc61f"
+    }
+  }
+}

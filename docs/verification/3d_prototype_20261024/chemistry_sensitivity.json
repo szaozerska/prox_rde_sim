@@ -1,0 +1,150 @@
+{
+  "cases": [
+    {
+      "mechanism": "FFCMy12",
+      "pressure_Pa": 377916.97229176015,
+      "T0_K": 1000.0,
+      "ignition_delta400K_s": null,
+      "observation_limit_s": 0.002,
+      "wall_seconds": 0.04545696000059252
+    },
+    {
+      "mechanism": "FFCMy12",
+      "pressure_Pa": 377916.97229176015,
+      "T0_K": 1500.0,
+      "ignition_delta400K_s": 0.0001830058240523277,
+      "observation_limit_s": 0.002,
+      "wall_seconds": 0.07550899500165542
+    },
+    {
+      "mechanism": "FFCMy12",
+      "pressure_Pa": 377916.97229176015,
+      "T0_K": 1968.0,
+      "ignition_delta400K_s": 1.101561414969706e-05,
+      "observation_limit_s": 0.002,
+      "wall_seconds": 0.05735143899983086
+    },
+    {
+      "mechanism": "FFCMy12",
+      "pressure_Pa": 1350000.0,
+      "T0_K": 1000.0,
+      "ignition_delta400K_s": null,
+      "observation_limit_s": 0.002,
+      "wall_seconds": 0.045540519000496715
+    },
+    {
+      "mechanism": "FFCMy12",
+      "pressure_Pa": 1350000.0,
+      "T0_K": 1500.0,
+      "ignition_delta400K_s": 5.050868503647828e-05,
+      "observation_limit_s": 0.002,
+      "wall_seconds": 0.06393476399898645
+    },
+    {
+      "mechanism": "FFCMy12",
+      "pressure_Pa": 1350000.0,
+      "T0_K": 1968.0,
+      "ignition_delta400K_s": 3.0779892101241145e-06,
+      "observation_limit_s": 0.002,
+      "wall_seconds": 0.14353153299998667
+    },
+    {
+      "mechanism": "FFCMy12",
+      "pressure_Pa": 22984000.0,
+      "T0_K": 1000.0,
+      "ignition_delta400K_s": null,
+      "observation_limit_s": 0.002,
+      "wall_seconds": 0.06171760899997025
+    },
+    {
+      "mechanism": "FFCMy12",
+      "pressure_Pa": 22984000.0,
+      "T0_K": 1500.0,
+      "ignition_delta400K_s": 2.3253968866878553e-06,
+      "observation_limit_s": 0.002,
+      "wall_seconds": 0.05759785200098122
+    },
+    {
+      "mechanism": "FFCMy12",
+      "pressure_Pa": 22984000.0,
+      "T0_K": 1968.0,
+      "ignition_delta400K_s": 1.5621168240080247e-07,
+      "observation_limit_s": 0.002,
+      "wall_seconds": 0.047541166000883095
+    },
+    {
+      "mechanism": "GRI30",
+      "pressure_Pa": 377916.97229176015,
+      "T0_K": 1000.0,
+      "ignition_delta400K_s": null,
+      "observation_limit_s": 0.002,
+      "wall_seconds": 0.15654186000028858
+    },
+    {
+      "mechanism": "GRI30",
+      "pressure_Pa": 377916.97229176015,
+      "T0_K": 1500.0,
+      "ignition_delta400K_s": 9.556254159756811e-05,
+      "observation_limit_s": 0.002,
+      "wall_seconds": 0.18459534400062694
+    },
+    {
+      "mechanism": "GRI30",
+      "pressure_Pa": 377916.97229176015,
+      "T0_K": 1968.0,
+      "ignition_delta400K_s": 3.901481744239638e-06,
+      "observation_limit_s": 0.002,
+      "wall_seconds": 0.1398216110010253
+    },
+    {
+      "mechanism": "GRI30",
+      "pressure_Pa": 1350000.0,
+      "T0_K": 1000.0,
+      "ignition_delta400K_s": null,
+      "observation_limit_s": 0.002,
+      "wall_seconds": 0.16673979699953634
+    },
+    {
+      "mechanism": "GRI30",
+      "pressure_Pa": 1350000.0,
+      "T0_K": 1500.0,
+      "ignition_delta400K_s": 3.073011872556011e-05,
+      "observation_limit_s": 0.002,
+      "wall_seconds": 0.16948012499960896
+    },
+    {
+      "mechanism": "GRI30",
+      "pressure_Pa": 1350000.0,
+      "T0_K": 1968.0,
+      "ignition_delta400K_s": 1.2558303215085172e-06,
+      "observation_limit_s": 0.002,
+      "wall_seconds": 0.13917186700018647
+    },
+    {
+      "mechanism": "GRI30",
+      "pressure_Pa": 22984000.0,
+      "T0_K": 1000.0,
+      "ignition_delta400K_s": 0.0013213825985954805,
+      "observation_limit_s": 0.002,
+      "wall_seconds": 0.4097839930000191
+    },
+    {
+      "mechanism": "GRI30",
+      "pressure_Pa": 22984000.0,
+      "T0_K": 1500.0,
+      "ignition_delta400K_s": 2.0216977930632924e-06,
+      "observation_limit_s": 0.002,
+      "wall_seconds": 0.16757046400016407
+    },
+    {
+      "mechanism": "GRI30",
+      "pressure_Pa": 22984000.0,
+      "T0_K": 1968.0,
+      "ignition_delta400K_s": 1.0898138783159011e-07,
+      "observation_limit_s": 0.002,
+      "wall_seconds": 0.14143703799891227
+    }
+  ],
+  "chemkin_roundtrip_forward_rate_max_relative": 4.554839188498384e-16,
+  "note": "Homogeneous constant-volume ignition to T0+400 K. No ignition before 2 ms is a censored observation, not infinite delay. This is mechanism sensitivity, not validation against measurements."
+}

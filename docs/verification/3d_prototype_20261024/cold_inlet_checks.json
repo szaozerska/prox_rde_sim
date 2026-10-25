@@ -1,0 +1,135 @@
+{
+  "checks": {
+    "completion": true,
+    "finite": true,
+    "positive_pressure": true,
+    "species_nonnegative": true,
+    "species_sum": true,
+    "thermo_range": true,
+    "every_step_extrema": true
+  },
+  "rows": [
+    {
+      "time_s": 0.0,
+      "mass_kg": 0.0003368771604185456,
+      "total_energy_J": -388.11094449566485,
+      "methane_kg": 7.670189336496784e-05,
+      "oxygen_kg": 0.00026017526705357784,
+      "pressure_Pa": [
+        377916.9722917599,
+        377916.9722917603
+      ],
+      "temperature_K": [
+        299.9999999999999,
+        300.0000000000001
+      ],
+      "min_species": 0.0,
+      "species_sum_error": 2.220446049250313e-16,
+      "finite": true,
+      "fluid_volume_m3": 8.522219509149865e-05,
+      "pressure_peak_theta_rad": 0.6872233929727672,
+      "near_injector_ring_peak_Pa": 377916.9722917602
+    },
+    {
+      "time_s": 2e-07,
+      "mass_kg": 0.0003369516847552993,
+      "total_energy_J": -388.18671774861497,
+      "methane_kg": 7.671824616576551e-05,
+      "oxygen_kg": 0.0002602334385895339,
+      "pressure_Pa": [
+        377916.9722917597,
+        493304.92556179955
+      ],
+      "temperature_K": [
+        299.9999999999998,
+        316.2774323601699
+      ],
+      "min_species": 0.0,
+      "species_sum_error": 2.4424906541753444e-15,
+      "finite": true,
+      "fluid_volume_m3": 8.522219509149865e-05,
+      "pressure_peak_theta_rad": 0.09817477042468103,
+      "near_injector_ring_peak_Pa": 378492.1826475283
+    }
+  ],
+  "execution": {
+    "wall_seconds": 7.892113626,
+    "returncode": 0,
+    "actual_time": 2e-07,
+    "requested_time": 2e-07,
+    "errors": [],
+    "completed": true,
+    "scope": "Native CFD execution; physical validation separate."
+  },
+  "every_step_history": {
+    "passed": true,
+    "checks": {
+      "positive_density_pressure": true,
+      "temperature_interval": true,
+      "species_nonnegative": true,
+      "species_sum": true
+    },
+    "extrema": {
+      "density": [
+        0.0039529275,
+        0.004805558
+      ],
+      "Temp": [
+        300.0,
+        316.27743
+      ],
+      "pressure": [
+        3779169.7,
+        4933049.3
+      ],
+      "massfrac": [
+        0.0,
+        0.81570376
+      ],
+      "sumYminus1": [
+        -1.7763568e-15,
+        2.4424907e-15
+      ]
+    },
+    "expected_count": 21,
+    "scope": "Every native logged step, including initial state; native text precision retained. Complements full-precision saved field checks."
+  },
+  "physical_validation_passed": false,
+  "scope": "Exploratory native 3D diagnostic. A moving pressure peak is not proof of sustained detonation.",
+  "initial_inventory": {
+    "time_s": 0.0,
+    "mass_kg": 0.0003368771604185456,
+    "total_energy_J": -388.11094449566485,
+    "methane_kg": 7.670189336496784e-05,
+    "oxygen_kg": 0.00026017526705357784,
+    "pressure_Pa": [
+      377916.9722917599,
+      377916.9722917603
+    ],
+    "temperature_K": [
+      299.9999999999999,
+      300.0000000000001
+    ],
+    "min_species": 0.0,
+    "species_sum_error": 2.220446049250313e-16,
+    "finite": true,
+    "fluid_volume_m3": 8.522219509149865e-05,
+    "pressure_peak_theta_rad": 0.6872233929727672,
+    "near_injector_ring_peak_Pa": 377916.9722917602
+  },
+  "apertures": {
+    "fuel": {
+      "sampled_area_m2": 4.1110048828125006e-05,
+      "nominal_area_m2": 4.04427995433498e-05,
+      "relative_area_error": 0.01649859288450095,
+      "faces": 116
+    },
+    "oxygen": {
+      "sampled_area_m2": 0.00010490150390625001,
+      "nominal_area_m2": 0.00010121163694369716,
+      "relative_area_error": 0.03645694382559461,
+      "faces": 296
+    }
+  },
+  "net_accumulated_massflow_kg_s": 0.37262168376837795
+}

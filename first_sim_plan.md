@@ -1,3 +1,8 @@
+> October 24–25 prototype update: the user authorized bounded diagnostic runs in
+> both native solvers. [Implementation and measured failures](docs/verification/3d_prototype_20261024/README.md)
+> supersede the older execution-order restrictions below. Physical validation is
+> still open; do not promote the diagnostic GIFs to sustained-engine predictions.
+
 # 3D RDE development plan - revision 19, native injection and refill prerequisites
 
 This branch develops a native three-dimensional methane/oxygen pipeline.

@@ -14,8 +14,9 @@ def make_reference(mechanism: Path):
     nominal=ct.Solution(str(mechanism))
     lidryer=nominal.species_names == ['H2','O2','H2O','H','O','OH','HO2','H2O2','N2']
     gri_digest='24658b932725ec6855a2aca2fbc035919127ee83eff0074ad62e3f821c0a40b9'
-    if not lidryer and hashlib.sha256(mechanism.read_bytes()).hexdigest()!=gri_digest:
-        raise ValueError('Diagnostic is restricted to LiDryer and the pinned GRI YAML')
+    compact_digest='321cf0958fdeaf70f42e8989739e318be4b81a31168ab891bb5f668bdf082c90'
+    if not lidryer and hashlib.sha256(mechanism.read_bytes()).hexdigest() not in (gri_digest,compact_digest):
+        raise ValueError('Diagnostic is restricted to LiDryer and the pinned GRI / FFCMy12 YAMLs')
     header=mechanism.with_suffix('.H').read_text()
     rc_native=float(re.search(r'ruc\s*=\s*([0-9.eE+-]+)',header)[1])
     r_ref_native=float(re.search(r'refC\s*=\s*101325\s*/\s*([0-9.eE+-]+)',header)[1])

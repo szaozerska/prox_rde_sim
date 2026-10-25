@@ -1,3 +1,27 @@
+# Current 3D prototype handoff — October 24–25, 2026
+
+Active checkout: `/Users/sgfx/.codex/worktrees/3d-cfd-review/prox_rde_sim`, branch
+`3d-modelling`. The original 2D checkout remains untouched. The latest user
+explicitly authorized both native backends and bounded diagnostic engine runs.
+This supersedes the older implementation-order restrictions below; physical
+acceptance gates remain failed, and no production design calculation is approved
+by the test evidence.
+
+Implemented PeleC/H100 and detonationFoam/16-CPU workflows with attributed
+FFCMy-12 chemistry, angled radial injection, finite tangential startup, actual
+3D-field GIFs and incremental native controls. GPU reaches 10 µs; CPU reaches
+1 µs. **Neither is validated:** GPU negative species, CPU clipping/closure error,
+and both short planar propagation controls fail. No 1–5 ms sustained engine result.
+
+Start with the [concise result](docs/verification/3d_prototype_20261024/README.md)
+and [reproduction commands](tools/CFD_PROTOTYPE.md). Do not repeat long engine
+runs before isolating the transport/chemistry failures. Saved GIFs are explicitly
+marked diagnostics. Local raw artifacts remain in ignored `runs3d/`.
+
+The following is historical handoff context, not the current completion status.
+
+---
+
 # 3D handoff - only commit and push to 3d-modelling
 
 Checkout: `/Users/sgfx/Desktop/Projects/prox_rde_sim_3d`.

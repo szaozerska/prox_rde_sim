@@ -1,0 +1,204 @@
+{
+  "checks": {
+    "completion": true,
+    "nonnegative": true,
+    "species_sum": true,
+    "temperature": true,
+    "species": true,
+    "measured_noninert_clipping": true
+  },
+  "history": [
+    {
+      "time_s": 0.0,
+      "T_K": 1968.0,
+      "p_Pa": 22984000.0,
+      "temperature_relative_error": 0.0,
+      "species_max_error": 0.0,
+      "min_species": 0.0,
+      "species_sum_error": 0.0
+    },
+    {
+      "time_s": 2.5e-08,
+      "T_K": 1958.7092327826313,
+      "p_Pa": 22923503.74708605,
+      "temperature_relative_error": 1.2365347720200148e-05,
+      "species_max_error": 4.470732839045866e-06,
+      "min_species": 0.0,
+      "species_sum_error": 8.881784197001252e-16
+    },
+    {
+      "time_s": 5e-08,
+      "T_K": 1958.0010557079866,
+      "p_Pa": 22996845.204417367,
+      "temperature_relative_error": 2.250800279246512e-05,
+      "species_max_error": 6.660295096105884e-06,
+      "min_species": 0.0,
+      "species_sum_error": 3.064215547965432e-14
+    },
+    {
+      "time_s": 7.5e-08,
+      "T_K": 1967.4714742857773,
+      "p_Pa": 23212527.212908946,
+      "temperature_relative_error": 2.7947317878807e-05,
+      "species_max_error": 8.521108874282035e-06,
+      "min_species": 0.0,
+      "species_sum_error": 3.907985046680551e-14
+    },
+    {
+      "time_s": 1e-07,
+      "T_K": 1998.1749235940385,
+      "p_Pa": 23730549.082484785,
+      "temperature_relative_error": 3.233182716000371e-05,
+      "species_max_error": 9.036376235060928e-06,
+      "min_species": 0.0,
+      "species_sum_error": 4.263256414560601e-14
+    },
+    {
+      "time_s": 1.25e-07,
+      "T_K": 2071.670906889787,
+      "p_Pa": 24881843.04975968,
+      "temperature_relative_error": 2.5983953172659113e-05,
+      "species_max_error": 9.174654772819979e-06,
+      "min_species": 0.0,
+      "species_sum_error": 5.3290705182007514e-14
+    },
+    {
+      "time_s": 1.5e-07,
+      "T_K": 2262.336819644125,
+      "p_Pa": 27904085.960111514,
+      "temperature_relative_error": 0.00014597856018538913,
+      "species_max_error": 0.00014300920600573974,
+      "min_species": 0.0,
+      "species_sum_error": 1.5765166949677223e-14
+    },
+    {
+      "time_s": 1.75e-07,
+      "T_K": 4642.234608896641,
+      "p_Pa": 71838758.40075941,
+      "temperature_relative_error": 0.0007088797781062972,
+      "species_max_error": 0.00020401670702507868,
+      "min_species": 0.0,
+      "species_sum_error": 2.220446049250313e-15
+    },
+    {
+      "time_s": 2e-07,
+      "T_K": 4642.241742722874,
+      "p_Pa": 71838827.37575108,
+      "temperature_relative_error": 0.0007100564690443179,
+      "species_max_error": 0.00020424337514229896,
+      "min_species": 0.0,
+      "species_sum_error": 3.774758283725532e-15
+    },
+    {
+      "time_s": 2.25e-07,
+      "T_K": 4642.241742722875,
+      "p_Pa": 71838827.37575097,
+      "temperature_relative_error": 0.0007100564690212252,
+      "species_max_error": 0.00020424337514513002,
+      "min_species": 0.0,
+      "species_sum_error": 5.773159728050814e-15
+    },
+    {
+      "time_s": 2.5e-07,
+      "T_K": 4642.241742722874,
+      "p_Pa": 71838827.37575087,
+      "temperature_relative_error": 0.0007100564690210032,
+      "species_max_error": 0.00020424337514529656,
+      "min_species": 0.0,
+      "species_sum_error": 8.659739592076221e-15
+    },
+    {
+      "time_s": 2.75e-07,
+      "T_K": 4642.241742722877,
+      "p_Pa": 71838827.37575084,
+      "temperature_relative_error": 0.0007100564690214473,
+      "species_max_error": 0.0002042433751459627,
+      "min_species": 0.0,
+      "species_sum_error": 1.2434497875801753e-14
+    },
+    {
+      "time_s": 3e-07,
+      "T_K": 4642.2417427228775,
+      "p_Pa": 71838827.37575075,
+      "temperature_relative_error": 0.0007100564690214473,
+      "species_max_error": 0.00020424337514612922,
+      "min_species": 0.0,
+      "species_sum_error": 1.4876988529977098e-14
+    },
+    {
+      "time_s": 3.25e-07,
+      "T_K": 4642.2417427228775,
+      "p_Pa": 71838827.37575066,
+      "temperature_relative_error": 0.0007100564690214473,
+      "species_max_error": 0.00020424337514640678,
+      "min_species": 0.0,
+      "species_sum_error": 1.687538997430238e-14
+    },
+    {
+      "time_s": 3.5e-07,
+      "T_K": 4642.2417427228775,
+      "p_Pa": 71838827.37575057,
+      "temperature_relative_error": 0.0007100564690214473,
+      "species_max_error": 0.000204243375147517,
+      "min_species": 0.0,
+      "species_sum_error": 1.687538997430238e-14
+    },
+    {
+      "time_s": 3.75e-07,
+      "T_K": 4642.241742722881,
+      "p_Pa": 71838827.37575051,
+      "temperature_relative_error": 0.0007100564690225575,
+      "species_max_error": 0.0002042433751480166,
+      "min_species": 0.0,
+      "species_sum_error": 1.865174681370263e-14
+    },
+    {
+      "time_s": 4e-07,
+      "T_K": 4642.241742722879,
+      "p_Pa": 71838827.3757504,
+      "temperature_relative_error": 0.0007100564690221134,
+      "species_max_error": 0.00020424337514873825,
+      "min_species": 0.0,
+      "species_sum_error": 2.1316282072803006e-14
+    },
+    {
+      "time_s": 4.25e-07,
+      "T_K": 4642.241742722881,
+      "p_Pa": 71838827.3757503,
+      "temperature_relative_error": 0.0007100564690225575,
+      "species_max_error": 0.00020424337514918234,
+      "min_species": 0.0,
+      "species_sum_error": 2.2648549702353193e-14
+    },
+    {
+      "time_s": 4.5e-07,
+      "T_K": 4642.241742722882,
+      "p_Pa": 71838827.37575024,
+      "temperature_relative_error": 0.0007100564690230016,
+      "species_max_error": 0.00020424337514990398,
+      "min_species": 0.0,
+      "species_sum_error": 2.4424906541753444e-14
+    },
+    {
+      "time_s": 4.75e-07,
+      "T_K": 4642.241742722883,
+      "p_Pa": 71838827.37575014,
+      "temperature_relative_error": 0.0007100564690230016,
+      "species_max_error": 0.00020424337515029256,
+      "min_species": 0.0,
+      "species_sum_error": 2.4868995751603507e-14
+    },
+    {
+      "time_s": 5e-07,
+      "T_K": 4642.241742722883,
+      "p_Pa": 71838827.37575004,
+      "temperature_relative_error": 0.0007100564690230016,
+      "species_max_error": 0.00020424337515090318,
+      "min_species": 0.0,
+      "species_sum_error": 2.864375403532904e-14
+    }
+  ],
+  "noninert_clipped_mass_kg": 0.0,
+  "minimum_preclip_inert": -6.217248937900877e-14,
+  "scope": "Short constant-volume methane control; 0.5% transient comparison tolerance. Does not validate detonation or mesh accuracy."
+}

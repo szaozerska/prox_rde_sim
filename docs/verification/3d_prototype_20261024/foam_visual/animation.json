@@ -1,0 +1,7 @@
+{
+  "source": "/Users/sgfx/.codex/worktrees/3d-cfd-review/prox_rde_sim/docs/verification/3d_prototype_20261024/foam_annulus_1us",
+  "frames": 21,
+  "physical_time_s": 1e-06,
+  "render": "Actual 3D native-field cylindrical slice; no prescribed wave movement",
+  "physical_validation_passed": false
+}

@@ -1,0 +1,12 @@
+{
+  "run": {
+    "wall_seconds": 4.873835819,
+    "returncode": 0,
+    "actual_time": 5e-07,
+    "requested_time": 5e-07,
+    "errors": [],
+    "completed": true,
+    "scope": "Native CFD execution; physical validation separate."
+  },
+  "artifact_sha256": "f7fb02af05d8c1e2eb125f772aadee46418372a299cb5c771ad78d8aa38ef7a1"
+}

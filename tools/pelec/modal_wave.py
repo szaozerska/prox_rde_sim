@@ -12,10 +12,11 @@ app=modal.App('prox-rde-3d-formed-wave',include_source=False)
 
 @app.function(image=image,serialized=True,gpu='H100!',cpu=(8.,8.),memory=(16384,16384),
     timeout=1100,startup_timeout=180,retries=0,max_containers=1)
-def run_wave(case:dict,profile:str,stop_time:float=2e-9,dt:float=2e-10,reacting:bool=True,reconstruction_order:int=1):
+def run_wave(case:dict,profile:str,stop_time:float=2e-9,dt:float=2e-10,reacting:bool=True,reconstruction_order:int=1, hydro:str="mol"):
     import base64,hashlib,io,subprocess,tarfile,time
     from pathlib import Path
     from validation import native_log_errors
+    if hydro not in ('mol','godunov','weno'):raise ValueError('Unknown native transport')
     if reconstruction_order not in (1,2):raise ValueError('Expected native first/second-order reconstruction')
     if case['nx'] not in (256,512) or not case['independent_reference_checked']:
         raise ValueError('Only prepared short planar controls permitted')
@@ -50,7 +51,7 @@ pelec.lo_bc = FOExtrap Interior Interior
 pelec.hi_bc = FOExtrap Interior Interior
 pelec.do_react = {int(reacting)}
 pelec.do_hydro = 1
-pelec.do_mol = 1
+pelec.do_mol = {int(hydro == "mol")}
 pelec.mol_iters = 1
 pelec.mol_iorder = {reconstruction_order}
 pelec.plm_iorder = {reconstruction_order}
@@ -75,6 +76,8 @@ prob.profile = profile.dat
 amrex.abort_on_unused_inputs = 1
 amrex.signal_handling = 0
 '''
+    if hydro != 'mol':
+        inputs += 'pelec.ppm_type = 1\npelec.use_hybrid_weno = '+str(int(hydro == 'weno'))+'\n'
     if not reacting:inputs='\n'.join(line for line in inputs.splitlines() if not line.startswith(('cvode.','ode.')))+'\n'
     (root/'inputs').write_text(inputs)
     command=[str(source/'build-gpu/Exec/RegTests/FormedWave/PeleC-FormedWave'),'inputs']
@@ -88,7 +91,7 @@ amrex.signal_handling = 0
         header=(plots[-1]/'Header').read_text().splitlines();actual=float(header[3+int(header[1])])
     completed=code==0 and not errors and actual is not None and abs(actual-stop_time)<1e-15
     record=dict(returncode=code,completion_passed=completed,log_errors=errors,command=command,
-        target_time=stop_time,final_time=actual,dt=dt,reacting=reacting,reconstruction_order=reconstruction_order,wall_seconds=elapsed,subprocess_limit_s=limit,
+        target_time=stop_time,final_time=actual,dt=dt,reacting=reacting,reconstruction_order=reconstruction_order,hydro=hydro,wall_seconds=elapsed,subprocess_limit_s=limit,
         scope='Completion only; independent field/propagation checks required; not an engine result')
     (root/'result.json').write_text(json.dumps(record,indent=2)+'\n')
     payload=io.BytesIO()
@@ -99,10 +102,10 @@ amrex.signal_handling = 0
         artifact_sha256=hashlib.sha256(raw).hexdigest(),artifact_tar_gz_base64=base64.b64encode(raw).decode()))
 
 @app.local_entrypoint()
-def main(case_file:str,profile_file:str,output:str,stop_time:float=2e-9,dt:float=2e-10,reacting:bool=True,reconstruction_order:int=1):
+def main(case_file:str,profile_file:str,output:str,stop_time:float=2e-9,dt:float=2e-10,reacting:bool=True,reconstruction_order:int=1, hydro:str="mol"):
     target=Path(output)
     if target.exists():raise FileExistsError('Refusing to overwrite wave evidence')
-    call=run_wave.spawn(json.loads(Path(case_file).read_text()),Path(profile_file).read_text(),stop_time,dt,reacting,reconstruction_order)
+    call=run_wave.spawn(json.loads(Path(case_file).read_text()),Path(profile_file).read_text(),stop_time,dt,reacting,reconstruction_order,hydro)
     target.with_suffix(target.suffix+'.call.json').write_text(json.dumps(dict(function_call_id=call.object_id,output=str(target),scope='Recovery identifier only; no completion or validation claim'))+'\n')
     try:result=call.get(timeout=600 if stop_time<=2e-9 else 1400)
     except modal.exception.TimeoutError:

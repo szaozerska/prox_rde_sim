@@ -1,0 +1,66 @@
+{
+  "manifest": {
+    "commands": [
+      {
+        "command": [
+          "chemkinToFoam",
+          "mechanism.inp",
+          "thermo.dat",
+          "transport.foam",
+          "constant/foam/reactions.foam",
+          "constant/foam/thermo.foam"
+        ],
+        "returncode": 0,
+        "wall_seconds": 0.9847613949999996
+      },
+      {
+        "command": [
+          "blockMesh"
+        ],
+        "returncode": 0,
+        "wall_seconds": 0.4200423519999994
+      },
+      {
+        "command": [
+          "checkMesh",
+          "-allTopology",
+          "-allGeometry"
+        ],
+        "returncode": 0,
+        "wall_seconds": 0.4174922270000003
+      },
+      {
+        "command": [
+          "decomposePar",
+          "-force"
+        ],
+        "returncode": 0,
+        "wall_seconds": 0.5717958789999997
+      },
+      {
+        "command": [
+          "mpirun",
+          "--allow-run-as-root",
+          "-np",
+          "16",
+          "detonationFoam_V2.0",
+          "-parallel"
+        ],
+        "returncode": 0,
+        "wall_seconds": 23.279902222
+      },
+      {
+        "command": [
+          "reconstructPar"
+        ],
+        "returncode": 0,
+        "wall_seconds": 2.4450139789999987
+      }
+    ],
+    "wall_seconds": 28.119039534,
+    "input_sha256": "c6d2be067e781eae9a1fe5320e105dbebdb3b330074efa25ca40d779d9920d00",
+    "ranks": 16,
+    "scope": "Execution evidence only. Completion, clipping, chemistry and wave checks required."
+  },
+  "artifact_sha256": "4402fb06bf820bab5b041614227ea5eeba01f2f615edeb772136997afe630ab3"
+}

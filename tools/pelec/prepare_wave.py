@@ -9,10 +9,10 @@ from reference import _libraries,_cj,_znd
 def save(path,value):path.write_text(json.dumps(value,indent=2,allow_nan=False)+'\n')
 
 def main():
-    p=argparse.ArgumentParser(description=__doc__);p.add_argument('output',type=Path);p.add_argument('--reference',type=Path);a=p.parse_args()
+    p=argparse.ArgumentParser(description=__doc__);p.add_argument('output',type=Path);p.add_argument('--reference',type=Path);p.add_argument('--mechanism',type=Path,default=ROOT/'.tooling/PeleC/Submodules/PelePhysics/Mechanisms/grimech30/mechanism.yaml');p.add_argument('--length',type=float,default=.002048);p.add_argument('--shock',type=float,default=.000512);a=p.parse_args()
     a.output.mkdir(parents=True,exist_ok=False)
     ct,post,znd,thermo,manifest=_libraries()
-    mechanism=ROOT/'.tooling/PeleC/Submodules/PelePhysics/Mechanisms/grimech30/mechanism.yaml'
+    mechanism=a.mechanism
     native=a.output/'native_constants.yaml'
     if a.reference:
         reference=json.loads((a.reference/'reference.json').read_text())
@@ -33,7 +33,7 @@ def main():
         if max(differences.values())>5e-3:raise ValueError('Reference refinement failed')
         np.savez_compressed(a.output/'znd.npz',**profile)
         save(a.output/'reference.json',dict(CJ=ref,ZND=strict,coarse_ZND=coarse,refinement=differences,conventions=conventions,sdtoolbox=manifest))
-    distance=profile['distance_m'];speed=ref['CJ_speed_mps'];length=.002048;shock=.000512
+    distance=profile['distance_m'];speed=ref['CJ_speed_mps'];length=a.length;shock=a.shock
     if distance[-1]<shock:raise ValueError('No extrapolation of truncated ZND permitted')
     if profile['species_Y'].min() < -1e-12:raise ValueError('Reference has significant negative species')
     rawY=profile['species_Y'];Y=np.maximum(rawY,0);Y/=Y.sum(axis=0)
@@ -90,6 +90,6 @@ def main():
             averaging='Exact integral of the independently computed piecewise-linear conserved profile',integral_relative_error=integral_error,
             reference_species_cleanup_max=correction,species=gas.species_names,
             profile_sha256=hashlib.sha256(path.read_bytes()).hexdigest(),independent_reference_checked=True,
-            scope='Short planar numerical propagation of an initialized GRI ZND wave; no continuing ignition, engine, or sustained rotating-wave claim'))
+            scope='Short planar numerical propagation of an initialized selected-mechanism ZND wave; no continuing ignition, engine, or sustained rotating-wave claim'))
     print('Prepared native-constant reference and conservative cell averages',flush=True)
 if __name__=='__main__':main()

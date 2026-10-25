@@ -1,0 +1,316 @@
+{
+  "checks": {
+    "completion": true,
+    "positive_pressure": true,
+    "thermo_range": true,
+    "species_nonnegative": true,
+    "species_sum": false,
+    "no_significant_preclip_negative": false
+  },
+  "rows": [
+    {
+      "time_s": 0.0,
+      "pressure_Pa": [
+        377916.97229176015,
+        10000000.0
+      ],
+      "temperature_K": [
+        300.0,
+        4000.0
+      ],
+      "min_species": 0.0,
+      "species_sum_error": 2.220446049250313e-16,
+      "max_speed_m_s": 1900.0000000000005
+    },
+    {
+      "time_s": 4e-08,
+      "pressure_Pa": [
+        377916.972282,
+        10044908.6599
+      ],
+      "temperature_K": [
+        300.0,
+        4003.76051222
+      ],
+      "min_species": 0.0,
+      "species_sum_error": 0.0016462968617627638,
+      "max_speed_m_s": 1901.3518864504717
+    },
+    {
+      "time_s": 1e-07,
+      "pressure_Pa": [
+        377916.972269,
+        10145953.7978
+      ],
+      "temperature_K": [
+        300.0,
+        4005.54811879
+      ],
+      "min_species": 0.0,
+      "species_sum_error": 0.0014928558625120214,
+      "max_speed_m_s": 1901.5241455079733
+    },
+    {
+      "time_s": 1.4e-07,
+      "pressure_Pa": [
+        377916.97226,
+        12141450.1009
+      ],
+      "temperature_K": [
+        300.0,
+        4074.78011405
+      ],
+      "min_species": 0.0,
+      "species_sum_error": 0.0014122571667141148,
+      "max_speed_m_s": 1901.2875800814995
+    },
+    {
+      "time_s": 2e-07,
+      "pressure_Pa": [
+        377916.972246,
+        12886202.5351
+      ],
+      "temperature_K": [
+        300.000000041,
+        4114.3526916
+      ],
+      "min_species": 0.0,
+      "species_sum_error": 0.004147872932000141,
+      "max_speed_m_s": 1900.7285059908122
+    },
+    {
+      "time_s": 2.4e-07,
+      "pressure_Pa": [
+        377916.972238,
+        13097521.1713
+      ],
+      "temperature_K": [
+        300.000000136,
+        4222.82672628
+      ],
+      "min_species": 0.0,
+      "species_sum_error": 0.01219469322900002,
+      "max_speed_m_s": 1900.6663758097288
+    },
+    {
+      "time_s": 3e-07,
+      "pressure_Pa": [
+        377916.972225,
+        13308157.1115
+      ],
+      "temperature_K": [
+        300.000000617,
+        4122.2206451
+      ],
+      "min_species": 0.0,
+      "species_sum_error": 0.023698665381000072,
+      "max_speed_m_s": 1900.798731492668
+    },
+    {
+      "time_s": 3.4e-07,
+      "pressure_Pa": [
+        377916.972216,
+        13632006.9217
+      ],
+      "temperature_K": [
+        300.000001488,
+        4122.89432329
+      ],
+      "min_species": 0.0,
+      "species_sum_error": 0.03102770516300013,
+      "max_speed_m_s": 1901.2135820440665
+    },
+    {
+      "time_s": 4e-07,
+      "pressure_Pa": [
+        377916.972203,
+        14107397.7704
+      ],
+      "temperature_K": [
+        300.000004786,
+        4208.66509588
+      ],
+      "min_species": 0.0,
+      "species_sum_error": 0.041562255087000066,
+      "max_speed_m_s": 1901.9435228725865
+    },
+    {
+      "time_s": 4.4e-07,
+      "pressure_Pa": [
+        377916.972194,
+        14298184.6944
+      ],
+      "temperature_K": [
+        300.000009583,
+        4132.35999286
+      ],
+      "min_species": 0.0,
+      "species_sum_error": 0.04830466127199995,
+      "max_speed_m_s": 1902.3696653333432
+    },
+    {
+      "time_s": 5e-07,
+      "pressure_Pa": [
+        377916.972181,
+        14541658.9468
+      ],
+      "temperature_K": [
+        300.000024416,
+        4139.29875694
+      ],
+      "min_species": 0.0,
+      "species_sum_error": 0.05803482317999986,
+      "max_speed_m_s": 1903.39685747789
+    },
+    {
+      "time_s": 5.4e-07,
+      "pressure_Pa": [
+        377916.972172,
+        14689227.879
+      ],
+      "temperature_K": [
+        300.000042861,
+        4202.03326129
+      ],
+      "min_species": 0.0,
+      "species_sum_error": 0.06428488125099996,
+      "max_speed_m_s": 1909.418652058923
+    },
+    {
+      "time_s": 6e-07,
+      "pressure_Pa": [
+        377916.972159,
+        14848897.7948
+      ],
+      "temperature_K": [
+        300.000092278,
+        4149.86496115
+      ],
+      "min_species": 0.0,
+      "species_sum_error": 0.07333326544899998,
+      "max_speed_m_s": 1919.0572953718743
+    },
+    {
+      "time_s": 6.4e-07,
+      "pressure_Pa": [
+        377916.97215,
+        14928662.7181
+      ],
+      "temperature_K": [
+        300.00014711,
+        4152.92118718
+      ],
+      "min_species": 0.0,
+      "species_sum_error": 0.07916232761700104,
+      "max_speed_m_s": 1932.6945561825946
+    },
+    {
+      "time_s": 7e-07,
+      "pressure_Pa": [
+        377916.972137,
+        15024014.3285
+      ],
+      "temperature_K": [
+        300.000279607,
+        4193.12064641
+      ],
+      "min_species": 0.0,
+      "species_sum_error": 0.08762278929065714,
+      "max_speed_m_s": 1985.715258905579
+    },
+    {
+      "time_s": 7.4e-07,
+      "pressure_Pa": [
+        377916.972129,
+        15078060.7983
+      ],
+      "temperature_K": [
+        300.000414893,
+        4183.87982622
+      ],
+      "min_species": 0.0,
+      "species_sum_error": 0.09308199229189085,
+      "max_speed_m_s": 2018.354789350585
+    },
+    {
+      "time_s": 8e-07,
+      "pressure_Pa": [
+        377916.972115,
+        15151989.0622
+      ],
+      "temperature_K": [
+        300.000717936,
+        4179.74032217
+      ],
+      "min_species": 0.0,
+      "species_sum_error": 0.10102771328799998,
+      "max_speed_m_s": 2063.802933908396
+    },
+    {
+      "time_s": 8.4e-07,
+      "pressure_Pa": [
+        377916.972107,
+        15199417.0136
+      ],
+      "temperature_K": [
+        300.001008202,
+        4217.66177482
+      ],
+      "min_species": 0.0,
+      "species_sum_error": 0.10616910115599998,
+      "max_speed_m_s": 2091.760792435886
+    },
+    {
+      "time_s": 9e-07,
+      "pressure_Pa": [
+        377916.972094,
+        15306054.5262
+      ],
+      "temperature_K": [
+        300.001621951,
+        4209.99012353
+      ],
+      "min_species": 0.0,
+      "species_sum_error": 0.11363509665089344,
+      "max_speed_m_s": 2129.153448411705
+    },
+    {
+      "time_s": 9.4e-07,
+      "pressure_Pa": [
+        377916.972085,
+        15371014.5562
+      ],
+      "temperature_K": [
+        299.943685637,
+        4171.01316277
+      ],
+      "min_species": 0.0,
+      "species_sum_error": 0.1184854723353661,
+      "max_speed_m_s": 2151.1691976724856
+    },
+    {
+      "time_s": 1e-06,
+      "pressure_Pa": [
+        377916.972072,
+        15463259.0266
+      ],
+      "temperature_K": [
+        299.703569433,
+        4229.68433002
+      ],
+      "min_species": 0.0,
+      "species_sum_error": 0.12543628582300004,
+      "max_speed_m_s": 2179.573607440796
+    }
+  ],
+  "clipping": {
+    "samples": 50,
+    "worst_preclip_Y": -0.00275336428721,
+    "sum_clipped_mass_kg": 3.604455578041956e-07,
+    "max_step_clipped_mass_kg": 1.3638539527e-08,
+    "worst_inert_Y": -0.125436285823
+  },
+  "physical_validation_passed": false,
+  "scope": "Exploratory reactive Euler native 3D fields. No sustained-detonation or experimental validation claim.",
+  "sampling_max_distance_m": 0.0003671218507967599
+}

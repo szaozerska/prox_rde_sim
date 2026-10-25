@@ -1,0 +1,94 @@
+{
+  "manifest": {
+    "commands": [
+      {
+        "command": [
+          "chemkinToFoam",
+          "mechanism.inp",
+          "thermo.dat",
+          "transport.foam",
+          "constant/foam/reactions.foam",
+          "constant/foam/thermo.foam"
+        ],
+        "returncode": 0,
+        "wall_seconds": 0.6721795850000003
+      },
+      {
+        "command": [
+          "blockMesh"
+        ],
+        "returncode": 0,
+        "wall_seconds": 1.333644273
+      },
+      {
+        "command": [
+          "checkMesh",
+          "-allTopology",
+          "-allGeometry"
+        ],
+        "returncode": 0,
+        "wall_seconds": 2.3995102170000004
+      },
+      {
+        "command": [
+          "postProcess",
+          "-func",
+          "writeCellCentres",
+          "-time",
+          "0"
+        ],
+        "returncode": 0,
+        "wall_seconds": 1.1805277629999997
+      },
+      {
+        "command": [
+          "python",
+          "/opt/cfd-tools/initialize_annulus.py"
+        ],
+        "returncode": 0,
+        "wall_seconds": 1.5877976270000005
+      },
+      {
+        "command": [
+          "decomposePar",
+          "-force"
+        ],
+        "returncode": 0,
+        "wall_seconds": 23.421720678000003
+      },
+      {
+        "command": [
+          "mpirun",
+          "--allow-run-as-root",
+          "-np",
+          "16",
+          "detonationFoam_V2.0",
+          "-parallel"
+        ],
+        "returncode": 0,
+        "wall_seconds": 84.732156275
+      },
+      {
+        "command": [
+          "reconstructPar"
+        ],
+        "returncode": 0,
+        "wall_seconds": 30.138793988000003
+      },
+      {
+        "command": [
+          "python",
+          "/opt/cfd-tools/tools/openfoam/analyze_annulus.py",
+          "/tmp/case"
+        ],
+        "returncode": 0,
+        "wall_seconds": 75.53758896299999
+      }
+    ],
+    "wall_seconds": 221.004024368,
+    "input_sha256": "c04a1976fd3bf19af091cbfd971338a273583c0d632a43eba6d6e4b821cacdcf",
+    "ranks": 16,
+    "scope": "Execution evidence only. Completion, clipping, chemistry and wave checks required."
+  },
+  "artifact_sha256": "6ce3730c612d67d679c85486901c9c555a9ee612ef3d18eec271a6c1e4057456"
+}

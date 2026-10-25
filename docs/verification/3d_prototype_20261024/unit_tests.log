@@ -1,0 +1,24 @@
+test_connected_faces_orientation_and_cell_counts (test_geometry.GeometryTests.test_connected_faces_orientation_and_cell_counts) ... ok
+test_immutable_case_reuses_2d_inputs (test_geometry.GeometryTests.test_immutable_case_reuses_2d_inputs) ... ok
+test_invalid_geometry_and_resolution (test_geometry.GeometryTests.test_invalid_geometry_and_resolution) ... ok
+test_paper_areas_volume_and_expansion (test_geometry.GeometryTests.test_paper_areas_volume_and_expansion) ... ok
+test_unit_cube_areas_closure_and_punctuated_log (test_mesh_metrics.NativeMeshMetricsTests.test_unit_cube_areas_closure_and_punctuated_log) ... ok
+test_early_success_missing_fields_and_invalid_states_cannot_pass (test_native.CompletionTests.test_early_success_missing_fields_and_invalid_states_cannot_pass) ... ok
+test_nonuniform_fields_reject_truncation_nonfinite_and_wrong_count (test_native.CompletionTests.test_nonuniform_fields_reject_truncation_nonfinite_and_wrong_count) ... ok
+test_checksum_failure_creates_no_evidence_directory (test_pelec_artifacts.PeleCArtifactTests.test_checksum_failure_creates_no_evidence_directory) ... ok
+test_path_escape_is_rejected (test_pelec_artifacts.PeleCArtifactTests.test_path_escape_is_rejected) ... ok
+test_preserves_failed_run_and_refuses_overwrite (test_pelec_artifacts.PeleCArtifactTests.test_preserves_failed_run_and_refuses_overwrite) ... ok
+test_clean_cvode_run_is_not_rejected (test_pelec_solver_status.ChemistryFailureTests.test_clean_cvode_run_is_not_rejected) ... ok
+test_completed_time_does_not_hide_cvode_failure (test_pelec_solver_status.ChemistryFailureTests.test_completed_time_does_not_hide_cvode_failure) ... ok
+test_timeout_and_abort_are_failures (test_pelec_solver_status.ChemistryFailureTests.test_timeout_and_abort_are_failures) ... ok
+test_incomplete_or_nonfinite_operator_output_is_rejected (test_pelec_thermo_audit.ThermoAuditTests.test_incomplete_or_nonfinite_operator_output_is_rejected) ... ok
+test_numerical_fix_does_not_pass_physical_fit_gate (test_pelec_thermo_audit.ThermoAuditTests.test_numerical_fix_does_not_pass_physical_fit_gate) ... ok
+test_original_hot_inverse_failure_is_detected (test_pelec_thermo_audit.ThermoAuditTests.test_original_hot_inverse_failure_is_detected) ... ok
+test_complete_valid_history_passes (test_wave_history.WaveHistoryTests.test_complete_valid_history_passes) ... ok
+test_intermediate_failure_cannot_hide_behind_valid_endpoints (test_wave_history.WaveHistoryTests.test_intermediate_failure_cannot_hide_behind_valid_endpoints) ... ok
+test_missing_duplicate_and_nonfinite_history_fail (test_wave_history.WaveHistoryTests.test_missing_duplicate_and_nonfinite_history_fail) ... ok
+
+----------------------------------------------------------------------
+Ran 19 tests in 0.711s
+
+OK

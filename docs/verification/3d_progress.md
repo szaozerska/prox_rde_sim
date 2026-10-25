@@ -474,3 +474,22 @@ G2b propagation gate and separates formed-wave initialization from a finite
 pre-detonator discharge. No solver, input constants or cloud job was changed.
 Documentation links and `git diff --check` verified; no CFD rerun or extra unit
 test is needed for this source/documentation review.
+
+
+## October 24–25: native compact-chemistry 3D prototype
+
+Latest user authorization explicitly requested both native solvers, modest Modal
+resources and diagnostic GIFs. Implemented separate PeleC and detonationFoam
+workflows, actual 3D field rendering, attributed 13-species/38-reaction FFCMy-12
+conversion, homogeneous/planar controls, radial impinging inlet mouths and finite
+tangential startup. GPU reached 10 microseconds in 431.9 solver seconds; CPU
+reached 1 microsecond in 84.7 solver seconds. The requested millisecond sustained
+circulation has not been achieved. Negative species, CPU clipping/closure and
+planar speed/structure failures are retained as failures. A disconnected local
+client interrupted one job; a detached retry completed. No other checkout changed.
+
+The [concise report and evidence](3d_prototype_20261024/README.md) state assumptions,
+measured runtimes, limitations and the next isolating controls. Reproduction is in
+`tools/CFD_PROTOTYPE.md`. Native physical failures are not superseded by the 19
+passing unit tests. Both full native engines exist as exploratory workflows; neither
+is a validated engine model or a demonstrated 1–2-hour screening tool.

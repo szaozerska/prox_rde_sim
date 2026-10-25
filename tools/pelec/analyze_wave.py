@@ -13,7 +13,9 @@ def crossing(x,values,threshold):
     i=int(hits[-1]);return float(x[i]+(threshold-values[i])/(values[i+1]-values[i])*(x[i+1]-x[i]))
 
 def analyze(run,reference):
-    case=json.loads((run/'case.json').read_text());result=json.loads((run/'result.json').read_text())
+    outer=json.loads((run/'case.json').read_text());case=outer.get('wave_case',outer);result=json.loads((run/'result.json').read_text())
+    if 'wave_case' in outer:
+        result=dict(result,completion_passed=result['completed'],target_time=outer['stop'],dt=outer['dt'],reacting=outer['reacting'])
     ref=json.loads((reference/'reference.json').read_text());cj=ref['CJ'];znd=np.load(reference/'znd.npz')
     gas=ct.Solution(str(reference/'native_constants.yaml'));gas.TPY=300.,cj['pressure_Pa'],cj['initial']['Y']
     elements0=np.array([gas.elemental_mass_fraction(e) for e in gas.element_names])

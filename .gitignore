@@ -15,3 +15,6 @@ rde_sim_starter/runs/
 # Isolated 3D backend build and native run output.
 .tooling/
 runs3d/
+
+# Read-only link to the existing native toolchain.
+/.tooling

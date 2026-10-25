@@ -1,0 +1,46 @@
+{
+  "manifest": {
+    "commands": [
+      {
+        "command": [
+          "chemkinToFoam",
+          "mechanism.inp",
+          "thermo.dat",
+          "transport.foam",
+          "constant/foam/reactions.foam",
+          "constant/foam/thermo.foam"
+        ],
+        "returncode": 0,
+        "wall_seconds": 1.2920194260000004
+      },
+      {
+        "command": [
+          "blockMesh"
+        ],
+        "returncode": 0,
+        "wall_seconds": 0.7228428349999998
+      },
+      {
+        "command": [
+          "checkMesh",
+          "-allTopology",
+          "-allGeometry"
+        ],
+        "returncode": 0,
+        "wall_seconds": 0.7759846980000003
+      },
+      {
+        "command": [
+          "detonationFoam_V2.0"
+        ],
+        "returncode": 0,
+        "wall_seconds": 16.589668765
+      }
+    ],
+    "wall_seconds": 19.380545885,
+    "input_sha256": "b59a174a627267911cddcc44e79ee1363cff9952627239c393bd89d89883ce26",
+    "ranks": 1,
+    "scope": "Execution evidence only. Completion, clipping, chemistry and wave checks required."
+  },
+  "artifact_sha256": "60000c0af462f5e27ab86321a280d32a5dfea3539b6f4baeb2b519fac69c945b"
+}
