@@ -1,0 +1,14 @@
+test_dimension_and_native_time (test_pelec_adapter.ContractTests.test_dimension_and_native_time) ... ok
+test_invalid_case_is_not_silently_accepted (test_pelec_adapter.ContractTests.test_invalid_case_is_not_silently_accepted) ... ok
+test_printed_cvode_failure_fails_even_with_exit_zero (test_pelec_adapter.ContractTests.test_printed_cvode_failure_fails_even_with_exit_zero) ... ok
+test_units_and_reaction_switch (test_pelec_adapter.ContractTests.test_units_and_reaction_switch) ... ok
+test_bad_archive_or_path_cannot_be_collected (test_pelec_adapter.FalsePassTests.test_bad_archive_or_path_cannot_be_collected) ... ok
+test_corrupt_physics_and_early_end_fail (test_pelec_adapter.FalsePassTests.test_corrupt_physics_and_early_end_fail) ... ok
+test_failure_log_veto (test_pelec_adapter.FalsePassTests.test_failure_log_veto) ... ok
+test_frozen_cannot_pass_with_reaction (test_pelec_adapter.FalsePassTests.test_frozen_cannot_pass_with_reaction) ... ok
+test_noop_chemistry_cannot_pass (test_pelec_adapter.FalsePassTests.test_noop_chemistry_cannot_pass) ... ok
+
+----------------------------------------------------------------------
+Ran 9 tests in 0.023s
+
+OK

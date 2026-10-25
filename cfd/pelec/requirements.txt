@@ -1,0 +1,6 @@
+modal==1.6.2
+cantera==3.2.0
+yt==4.4.3
+matplotlib==3.10.8
+
+cbor2==5.6.5

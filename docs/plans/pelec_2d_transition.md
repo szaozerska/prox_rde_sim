@@ -31,7 +31,7 @@ variant is a separate sensitivity experiment. RDE-001 is unresolved.
 
 Sources checked 2026-10-25:
 - https://github.com/Pele-Suite/PeleC (build dimensions, chemistry and CPU/GPU options)
-- https://www.nrel.gov/docs/fy22osti/82891.pdf (PeleC RDE application)
+- https://docs.nlr.gov/docs/fy22osti/82891.pdf (PeleC RDE application)
 - https://doi.org/10.1177/10943420221121151 (PeleC solver paper)
 - https://github.com/myguixx/detonationFoam (OF8 source, applications, build)
 - https://doi.org/10.1016/j.cpc.2023.108859 (detonationFoam)
@@ -39,6 +39,11 @@ Sources checked 2026-10-25:
 - https://netl.doe.gov/projects/files/ValidationofaComputationalFluidDynamicsModelofaMethaneOxygenRotatingDetonationEngine_010522.pdf
 - https://doi.org/10.1115/1.4050590 (Argonne-associated CONVERGE study)
 - https://github.com/synthetik-technologies/blastfoam
+
+The 2022 NREL presentation explicitly uses simplified periodic 2D RDE geometry,
+AMR and DRM19/LiDryer chemistry for hydrogen/methane-air blends. It reports both
+stable and unsustained configurations. This is direct 2D application precedent,
+not validation of pure methane/oxygen Run 937 or our pinned mechanism choice.
 
 ## Implementation boundary
 
@@ -93,4 +98,10 @@ mechanism needs its own provenance and comparisons before selection.
    prove unit/species conversions here. Bound initial cloud jobs to one CPU
    container; only request GPUs when a verified GPU executable is ready.
 
-Implementation evidence will be recorded in `docs/verification/pelec_2d/`.
+## Current status
+
+P0 complete and pushed as `1868f8b`. P1 implemented and verified on 2026-10-25:
+three native CPU controls and independent field analysis pass; nine adapter tests
+and five original physics tests pass. [Evidence and encountered failures](../verification/pelec_2d/README.md).
+P2 is next. P3–P4 remain pending; no engine/GPU runtime or sustainment claim.
+The old solver and its environment are unchanged.

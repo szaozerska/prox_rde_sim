@@ -5,6 +5,9 @@ with species thermodynamics and CVODE chemistry. Preserve the custom solver at
 baseline `73d4516`. This supersedes the finite-discharge L1–L3 priority below;
 those items remain deferred. Follow [P0–P4 and three reviews](docs/plans/pelec_2d_transition.md).
 RDE-001 remains open; no CAD or independent 3D-branch changes.
+**P0–P1 complete:** selection published and pinned native PeleC 2D chemistry
+controls verified against Cantera. [Evidence](docs/verification/pelec_2d/README.md).
+Next is P2; the new backend has not yet run a propagating wave or engine.
 
 
 **Status: reduced 2D software workflow F1–F4 complete. Full acceptance: 122 tests passed, no skips; 16 affected checks repeated after review, plus one new coupled-physics check (123 distinct passing tests). RDE-001 remains open. The radial-wall increment and matched 189.394 us comparison are also complete: 132 distinct verification tests passed, but sustained detonation was not restored in the original case. See [radial results](docs/verification/radial_closures.md). No CAD work.**
@@ -55,7 +58,7 @@ remains open. Initial inventories differ, so this is not a momentum-only test.
 The deliberate stop exposed a Numba/SIGINT issue; deferred CLI interruption and
 its restart regression address it. See [results and qualifications](docs/verification/directional_startup.md).
 
-**Current priority (revision 20): distinguish directional state from finite discharge.**
+**Previous priority (revision 20), deferred by revision 21: distinguish directional state from finite discharge.**
 The [tangential-discharge audit](docs/verification/tangential_discharge_review.md)
 checks primary Argonne/DLR figures and saved fields. The current start has exactly
 zero axial velocity and up to 1994.59 m/s +theta gas velocity; its forward pressure

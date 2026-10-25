@@ -4,6 +4,9 @@
 The existing custom one-step solver is preserved unchanged and remains runnable.
 This is an integration transition, not a resolved sustainment result. See the
 [selection, rollback and verification plan](docs/plans/pelec_2d_transition.md).
+**P1 implemented and verified:** three native 2D chemistry controls pass against
+Cantera. [Results and limits](docs/verification/pelec_2d/README.md);
+[run the new backend](cfd/pelec/README.md). P2 hot-state/propagation gate is next.
 
 
 Reduced RDE simulation project. Foundation, bounded-run persistence, reactive-source
@@ -307,7 +310,7 @@ metrics are retained with [the D2 report](docs/verification/d2_coupling.md).
 - [D1 propagation verification](docs/verification/d1_propagation.md).
 - [Run-plumbing verification](docs/verification/d0_run_plumbing.md).
 - [Foundation verification](docs/verification/foundation_session.md): historical first-increment baseline.
-- [Current simulation plan — revision 10](first_sim_plan.md).
+- [Current simulation plan — revision 21](first_sim_plan.md).
 - [Paper/model audit](docs/verification/mundt_model_audit.md): checked assumptions and requirements before new studies.
 - [Figure validation roadmap](docs/plans/figure_validation_roadmap.md): later Chapter 3–4 campaigns.
 - Local `sim_plan_review.md`: historical revision-3 review, retained locally and excluded from Git.

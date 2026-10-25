@@ -1,0 +1,10 @@
+test_calibration_matches_inherited_reference_without_mutating_config (test_physics.PhysicsTests.test_calibration_matches_inherited_reference_without_mutating_config) ... ok
+test_chemical_energy_round_trip (test_physics.PhysicsTests.test_chemical_energy_round_trip) ... ok
+test_closed_reactor_timing_and_energy (test_physics.PhysicsTests.test_closed_reactor_timing_and_energy) ... ok
+test_injector_blocked_choked_and_unchoked (test_physics.PhysicsTests.test_injector_blocked_choked_and_unchoked) ... ok
+test_one_step_source_limits (test_physics.PhysicsTests.test_one_step_source_limits) ... ok
+
+----------------------------------------------------------------------
+Ran 5 tests in 0.898s
+
+OK

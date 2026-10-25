@@ -1,0 +1,10 @@
+#ifndef PROB_PARM_H
+#define PROB_PARM_H
+#include <AMReX_REAL.H>
+#include <AMReX_GpuMemory.H>
+struct ProbParmDevice {
+  amrex::Real p_init = 0., T_init = 0., rho_init = 0., e_init = 0.;
+  amrex::GpuArray<amrex::Real, NUM_SPECIES> massfrac = {0.};
+};
+struct ProbParmHost {};
+#endif

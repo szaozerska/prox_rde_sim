@@ -1,0 +1,33 @@
+{
+  "backend": "pelec",
+  "dimension": 2,
+  "runs": [
+    {
+      "name": "reacting",
+      "returncode": 0,
+      "log_errors": [],
+      "final_time_s": 2e-07,
+      "completion_passed": true,
+      "wall_seconds": 3.235150045
+    },
+    {
+      "name": "half_step",
+      "returncode": 0,
+      "log_errors": [],
+      "final_time_s": 2e-07,
+      "completion_passed": true,
+      "wall_seconds": 4.8657598779999995
+    },
+    {
+      "name": "frozen",
+      "returncode": 0,
+      "log_errors": [],
+      "final_time_s": 2e-07,
+      "completion_passed": true,
+      "wall_seconds": 0.1715549369999998
+    }
+  ],
+  "status": "native_controls_completed",
+  "interpretation": "Execution only; independent analysis must pass. Not an RDE.",
+  "artifact_sha256": "a5072874415d1bb729401e89383eb04fcc4185a024f3f291ebbd01f4b652562e"
+}

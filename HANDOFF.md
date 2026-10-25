@@ -4,12 +4,15 @@
 The existing custom one-step solver is preserved unchanged and remains runnable.
 This is an integration transition, not a resolved sustainment result. See the
 [selection, rollback and verification plan](docs/plans/pelec_2d_transition.md).
+**P1 implemented and verified:** three native 2D chemistry controls pass against
+Cantera. [Results and limits](docs/verification/pelec_2d/README.md);
+[run the new backend](cfd/pelec/README.md). P2 hot-state/propagation gate is next.
 
 
-Snapshot: **October 22, 2026**. Repository:
+Snapshot: **October 25, 2026**. Repository:
 `/Users/sgfx/Desktop/Projects/prox_rde_sim`.
 
-Latest addition: final reports include both timed propagation GIFs; see
+Preserved custom-backend reporting: final reports include both timed propagation GIFs; see
 [GIFs and fuel accounting](docs/verification/propagation_gifs.md). Radial-active
 fresh-mixture inventory increases from 15.35 to 49.64 mg while injection continues.
 Global exhaustion is excluded for this case; sustained shock/reaction coupling
@@ -17,7 +20,7 @@ remains unresolved. Native inputs and physics parameters are unchanged.
 
 ## Current result and plan
 
-[Revision 20](first_sim_plan.md) records the completed D3 investigation and the
+[Revision 21](first_sim_plan.md) records the completed D3 investigation and the
 [paper/model audit](docs/verification/mundt_model_audit.md). The latest instruction authorizes controlled 2D tests, three plan reviews,
 small verified increments and publication on **main only**. The independent
 session handles 3D in another checkout/branch; do not push to its branch. D3 and

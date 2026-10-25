@@ -11,3 +11,7 @@ __pycache__/
 .pytest_cache/
 .DS_Store
 rde_sim_starter/runs/
+
+# Optional CFD backend tools and native output
+.tooling/
+runs_cfd/
