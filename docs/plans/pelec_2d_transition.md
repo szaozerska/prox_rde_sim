@@ -103,5 +103,72 @@ mechanism needs its own provenance and comparisons before selection.
 P0 complete and pushed as `1868f8b`. P1 implemented and verified on 2026-10-25:
 three native CPU controls and independent field analysis pass; nine adapter tests
 and five original physics tests pass. [Evidence and encountered failures](../verification/pelec_2d/README.md).
-P2 is next. P3–P4 remain pending; no engine/GPU runtime or sustainment claim.
+P2 is implemented as a diagnostic harness but has NOT passed propagation acceptance.
+P3–P4 remain pending. GPU controls have run; no long engine or sustainment claim.
 The old solver and its environment are unchanged.
+
+## Long-run visualization request (2026-10-25)
+
+Target Run 937 plus 51-FI-5 and 25-FI-5 controlled geometry variants, each to
+2 ms with unwrapped and cylinder-wrapped pressure/flow-structure GIFs and
+sustainment diagnostics. Additional geometries are not mislabeled as measured
+operating points. See `cfd/pelec/engine/cases.json` and the P2 README.
+
+P2 now screens the unmodified upstream FFCM1_Red thermodynamic/kinetic package
+because the P1 GRI inversion interval does not cover detonation products. This
+is a conditional mechanism change, with the prior implementation preserved.
+Compare native regular-grid Godunov and MOL here; neither the separate 3D
+controls nor a successful executable exit can authorize engine runs.
+Require numerical propagation evidence before the requested long campaign;
+record failed checks and do not conflate a long animation with validation.
+
+## P2 results and revised next steps — 2026-10-25
+
+[Full evidence, failed checks and diagnostic movie](../verification/pelec_2d_propagation/README.md).
+Eight planar GPU controls and one hot uniform GPU control completed. The hot
+chemistry agrees with independent Cantera. First-order reconstruction and a
+smaller time step remove observed negative final species in a lab-frame control.
+They do not establish correct wave propagation. The 2/1 µm MOL lab-frame controls
+preserve elements and EOS but show substantial transient overdrive and reaction
+zone contraction. Exact Galilean repeats exceed 5000 K and fail local element
+composition and energy/EOS checks. These are unresolved numerical/model-range
+issues, not evidence that a physical Run 937 engine fails to sustain detonation.
+
+**Requested deliverables remain pending:** Run 937 and the 51-FI-5 / 25-FI-5
+geometry variants, 2 ms histories, unwrapped/wrapped GIFs, and sustainment plots.
+The case catalog and SI animation renderer are scaffolding. No new engine
+boundary adapter has been compiled or accepted. The unfinished native adapter
+is retained only in ignored `runs_cfd/engine_adapter_draft`, not published as a
+working engine. No radial momentum dynamics were added by this increment.
+
+Review 1: output snapshots alone missed an intermediate negative mass fraction.
+Fix: require complete every-step histories in addition to field checks.
+Review 2: conserved total mass/energy and sum(Y)=1 did not detect changes in
+local elemental composition. Fix: add local C/H/O/N conservation checks for this
+uniform-element planar problem; their applicability must change for separate
+fuel/oxygen streams.
+Review 3: a steady CJ tolerance over 0.2 µs can reject physical methane/oxygen
+pulsations. Keep the original failure recorded; do not equate it with a proven
+solver defect or silently relax it. Also test exact coordinate boosts. Those
+repeats revealed independent state/range failures, so P3 remains blocked even
+if the steady-CJ screening criterion is eventually revised.
+
+Small next increments, in order:
+1. Isolate transport from reaction using the same saved initial profile, frozen
+   chemistry, and the same lab/moving-frame settings. Instrument where element
+   composition first changes. Distinguish numerical species flux/coupling from
+   initialization or measurement error. Stop on unexplained source/budget changes.
+2. Once state, element and thermo-range checks pass, extend the buffered planar
+   window and refine space/time independently. Assess time-dependent shock and
+   heat-release separation and time-averaged speed over multiple induction times.
+   Define unsteady acceptance before interpreting new results. Do not impose a
+   steady wave by continuously resetting it or extend thermodynamic fit ranges
+   without a justified mechanism/reference change.
+3. Compile and verify the engine inlet, outlet, periodic seam and finite launch
+   separately; export actual SI native fields. Then execute the requested 2 ms
+   cases and produce both GIFs and fuel/inflow/wave histories. The two smaller
+   cases remain controlled geometry variants, not invented experimental runs.
+
+Do not launch a large engine sweep merely because its animation pipeline exists.
+Do not attribute these planar discrepancies to annular gap, radial dynamics,
+Mundt injector angles, exhausted fuel or collision of counter-rotating waves.

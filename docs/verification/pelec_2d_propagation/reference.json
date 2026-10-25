@@ -1,0 +1,310 @@
+{
+  "CJ": {
+    "pressure_Pa": 377916.972,
+    "temperature_K": 300.0,
+    "phi": 1.176,
+    "CJ_speed_mps": 2530.8130725897217,
+    "CJ": {
+      "T": 3988.4216623983484,
+      "p": 12007269.966457881,
+      "rho": 7.311046934689329,
+      "h": 1209827.1247734644,
+      "gamma_frozen": 1.2118312544192087,
+      "MW": 20.19159135125525,
+      "Y": [
+        0.0,
+        0.010260321809599716,
+        0.002296425618171506,
+        0.020395218623254333,
+        0.05874868689457204,
+        0.09160222677308424,
+        0.35046617033522737,
+        0.000484376137770297,
+        0.2780164342252729,
+        0.18765852575396796,
+        2.555139464053555e-09,
+        2.6369428913424373e-09,
+        4.206164542147251e-10,
+        3.123471745771699e-09,
+        6.66664132054276e-10,
+        7.001475481388648e-05,
+        1.5863044682410995e-06,
+        2.7716774622215043e-09,
+        4.336322361709959e-10,
+        1.616534221322679e-10,
+        0.0
+      ]
+    },
+    "VN": {
+      "T": 1965.810328969138,
+      "p": 22966485.328138,
+      "rho": 36.660352376779855,
+      "h": 2108793.700307958,
+      "gamma_frozen": 1.1572272113859616,
+      "MW": 26.090229219143573,
+      "Y": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.7723149492542882,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.22768505074571185,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "u_shock_frame": 272.886647019435
+    },
+    "q_equilibrium_Jkg": 5405320.635108557,
+    "initial": {
+      "T": 300.0,
+      "p": 377916.97200000007,
+      "rho": 3.9529275184332144,
+      "h": -1056480.1428284508,
+      "gamma_frozen": 1.3548148564251428,
+      "MW": 26.090229219143573,
+      "Y": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.7723149492542882,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.22768505074571185,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    "density_ratio": 1.849527192332478,
+    "jump_relative_residuals": {
+      "mass": 0.0,
+      "momentum": 6.52015200261724e-11,
+      "energy": 2.2937425953293082e-10
+    },
+    "frozen_jump_relative_residuals": {
+      "mass": 1.8182401724728114e-16,
+      "momentum": 5.977895714666388e-11,
+      "energy": 2.5758534371691293e-13
+    },
+    "CJ_equilibrium_sonic_ratio": 0.9999896576955395,
+    "element_mass_fraction_error": 3.3171243529750427e-12,
+    "minimum_evaluations": 13,
+    "tolerance": 1e-08,
+    "minimum_tolerance": 1e-07
+  },
+  "ZND": {
+    "method": "BDF on unmodified SDToolbox ZNDSys",
+    "rtol": 2e-08,
+    "atol": 1e-14,
+    "max_step_s": 5e-10,
+    "numerical_warnings": [
+      "RuntimeWarning: overflow encountered in multiply"
+    ],
+    "requested_end_s": 2e-06,
+    "actual_end_s": 2e-06,
+    "termination": "The solver successfully reached the end of the integration interval.",
+    "stopped_at_sonic_event": false,
+    "samples": 5673,
+    "raw_species_min": -4.1478035243580966e-30,
+    "raw_species_sum_max_error": 1.3877787807814457e-14,
+    "invariant_relative_residuals": {
+      "energy": 6.759036664851615e-05,
+      "momentum": 6.588673109982065e-09
+    },
+    "induction_time_max_dTdt_s": 1.4941204335132996e-07,
+    "induction_length_vn_velocity_m": 4.0772551534466896e-05,
+    "distance_at_max_dTdt_m": 4.7679989998372426e-05,
+    "cell_size_factor29_proxy_m": 0.0011824039944995399,
+    "peak_thermicity_time_s": 1.4943808953511166e-07,
+    "heat_fraction_lengths_m": {
+      "0.5": 4.576888391187535e-05,
+      "0.9": 5.346697238162987e-05,
+      "0.95": 5.832948456021364e-05
+    },
+    "final_heat_fraction": 0.9992996430031166
+  },
+  "coarse_ZND": {
+    "method": "BDF on unmodified SDToolbox ZNDSys",
+    "rtol": 1e-07,
+    "atol": 1e-12,
+    "max_step_s": 1e-09,
+    "numerical_warnings": [
+      "RuntimeWarning: overflow encountered in multiply"
+    ],
+    "requested_end_s": 2e-06,
+    "actual_end_s": 2e-06,
+    "termination": "The solver successfully reached the end of the integration interval.",
+    "stopped_at_sonic_event": false,
+    "samples": 2907,
+    "raw_species_min": -5.184390517677741e-32,
+    "raw_species_sum_max_error": 6.850076061937216e-14,
+    "invariant_relative_residuals": {
+      "energy": 6.76403188068325e-05,
+      "momentum": 3.507005443780773e-08
+    },
+    "induction_time_max_dTdt_s": 1.4941203711368256e-07,
+    "induction_length_vn_velocity_m": 4.077254983229621e-05,
+    "distance_at_max_dTdt_m": 4.7679987146776494e-05,
+    "cell_size_factor29_proxy_m": 0.0011824039451365901,
+    "peak_thermicity_time_s": 1.4942375848422528e-07,
+    "heat_fraction_lengths_m": {
+      "0.5": 4.5768886659198516e-05,
+      "0.9": 5.346698713203006e-05,
+      "0.95": 5.832996674797729e-05
+    },
+    "final_heat_fraction": 0.9993002979868236
+  },
+  "half_heat_refinement": 6.002599950427623e-08,
+  "mechanism_sha256": "ddbba8c97d929530cfb213da45485cca4f979dccf97c1063721bd855d7b3f259",
+  "species": [
+    "N2",
+    "H2",
+    "H",
+    "O",
+    "O2",
+    "OH",
+    "H2O",
+    "HO2",
+    "CO",
+    "CO2",
+    "CH",
+    "CH2",
+    "CH2(S)",
+    "CH3",
+    "CH4",
+    "HCO",
+    "CH2O",
+    "CH2OH",
+    "CH3O",
+    "CH3OH",
+    "HE"
+  ],
+  "thermo_ranges": {
+    "N2": [
+      200.0,
+      6000.0
+    ],
+    "H2": [
+      200.0,
+      6000.0
+    ],
+    "H": [
+      200.0,
+      6000.0
+    ],
+    "O": [
+      200.0,
+      6000.0
+    ],
+    "O2": [
+      200.0,
+      6000.0
+    ],
+    "OH": [
+      200.0,
+      6000.0
+    ],
+    "H2O": [
+      200.0,
+      6000.0
+    ],
+    "HO2": [
+      200.0,
+      5000.0
+    ],
+    "CO": [
+      200.0,
+      6000.0
+    ],
+    "CO2": [
+      200.0,
+      6000.0
+    ],
+    "CH": [
+      200.0,
+      6000.0
+    ],
+    "CH2": [
+      200.0,
+      6000.0
+    ],
+    "CH2(S)": [
+      200.0,
+      6000.0
+    ],
+    "CH3": [
+      200.0,
+      6000.0
+    ],
+    "CH4": [
+      200.0,
+      6000.0
+    ],
+    "HCO": [
+      200.0,
+      6000.0
+    ],
+    "CH2O": [
+      200.0,
+      6000.0
+    ],
+    "CH2OH": [
+      200.0,
+      6000.0
+    ],
+    "CH3O": [
+      200.0,
+      6000.0
+    ],
+    "CH3OH": [
+      200.0,
+      6000.0
+    ],
+    "HE": [
+      200.0,
+      6000.0
+    ]
+  },
+  "sdtoolbox": {
+    "source_url": "https://shepherd.caltech.edu/EDL/PublicResources/sdt/SDToolbox.zip",
+    "archive_sha256": "c3de67d95e1586a1abea952d2d3767738e5e6c0a217183d5b9303b8f89adb4b0",
+    "upstream_note": "Archive retrieved for this investigation; Python headers state Updated April 2026. Website download label is older. Files unmodified.",
+    "files": {
+      "config.py": "51c583ae33d4986c911796a99025de60991d09a08b079b681fa8a82b433c68e4",
+      "znd.py": "517357d72707a6268e5a8c514ab4d8ae1c46e0d79f5fdacc77cf52260052cac8",
+      "postshock.py": "45d68dbf1565bf10d7c61e57152be379831c8df0874f3d0fdd18f8d4995d7508",
+      "reflections.py": "9c9f1556c7d30e005b03989b8a7969c8191797ebc46f83666e8486302e878fa4",
+      "__init__.py": "be432cb061ddaee9369a3d75026dce0032039b17378c1c758c1e6ee807593fe3",
+      "cp.py": "23ec0a53b4b3d37c7f13bb73969926b3834bfbb5f2960393d375801c0540ca70",
+      "stagnation.py": "f5c79e4c541f998ce59a31abac00fe797025558cc0c50ed07c14c5015a24aa60",
+      "thermo.py": "23e757ad9386a98148e4ba7e569f300295aed6c83732ddc88621b30bc0514797",
+      "cv.py": "a37d89c75bdcc5fe31ab209da5c1a77c36deeeb6177f7740137216933691a080",
+      "utilities.py": "97728fc9f66a923ccd8479ffe80a40d92a3996ea881117890bdd958219d37ffd",
+      "LICENSE.txt": "9e161337eee43d727d26202f8a07807f19fb7108c88c3f266fc5cfab6b39642b"
+    }
+  }
+}

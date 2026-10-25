@@ -1,0 +1,7 @@
+{
+  "returncode": 0,
+  "wall_seconds": 140.575091023,
+  "dt": 1e-10,
+  "interpretation": "Execution only; requires independent gate",
+  "artifact_sha256": "8544f9353ba9b15b4bbeeaba7858fba9ab1735c3c295a8dd4fb10718a3955c7a"
+}

@@ -1,0 +1,19 @@
+test_dimension_and_native_time (test_pelec_adapter.ContractTests.test_dimension_and_native_time) ... ok
+test_invalid_case_is_not_silently_accepted (test_pelec_adapter.ContractTests.test_invalid_case_is_not_silently_accepted) ... ok
+test_printed_cvode_failure_fails_even_with_exit_zero (test_pelec_adapter.ContractTests.test_printed_cvode_failure_fails_even_with_exit_zero) ... ok
+test_units_and_reaction_switch (test_pelec_adapter.ContractTests.test_units_and_reaction_switch) ... ok
+test_bad_archive_or_path_cannot_be_collected (test_pelec_adapter.FalsePassTests.test_bad_archive_or_path_cannot_be_collected) ... ok
+test_corrupt_physics_and_early_end_fail (test_pelec_adapter.FalsePassTests.test_corrupt_physics_and_early_end_fail) ... ok
+test_failure_log_veto (test_pelec_adapter.FalsePassTests.test_failure_log_veto) ... ok
+test_frozen_cannot_pass_with_reaction (test_pelec_adapter.FalsePassTests.test_frozen_cannot_pass_with_reaction) ... ok
+test_noop_chemistry_cannot_pass (test_pelec_adapter.FalsePassTests.test_noop_chemistry_cannot_pass) ... ok
+test_animation_rejects_invented_or_invalid_time_and_fields (test_propagation_gate.AnimationInputTests.test_animation_rejects_invented_or_invalid_time_and_fields) ... ok
+test_galilean_round_trip_preserves_internal_energy_and_species (test_propagation_gate.FrameTests.test_galilean_round_trip_preserves_internal_energy_and_species) ... ok
+test_empty_history_fails (test_propagation_gate.GateTests.test_empty_history_fails) ... ok
+test_front_crossing_does_not_wrap_or_invent_a_front (test_propagation_gate.GateTests.test_front_crossing_does_not_wrap_or_invent_a_front) ... ok
+test_missing_intermediate_step_fails_with_correct_endpoints (test_propagation_gate.GateTests.test_missing_intermediate_step_fails_with_correct_endpoints) ... ok
+
+----------------------------------------------------------------------
+Ran 14 tests in 0.102s
+
+OK

@@ -351,3 +351,15 @@ handling, so do not bypass the native restart fingerprint if extending again.
 No sustained near-injector detonation recovered; final lower-ring maximum rate
 is 0.0120/s although reaction persists higher up. RDE-001 remains open; L1/L2
 finite-discharge work has not been implemented by this time-only extension.
+
+
+## Native GPU propagation checks — 2026-10-25
+
+PeleC long-engine GIF request is pending P2 acceptance. See
+[measured failures and next checks](docs/verification/pelec_2d_propagation/README.md)
+and [current transition plan](docs/plans/pelec_2d_transition.md).
+Eight H100 wave controls completed; one hot-reactor control passes. Fine MOL
+lab-frame states pass conservation/EOS but wave acceptance is unresolved;
+Galilean repeats exceed the 5000 K mechanism interval and change local element
+fractions. Do not claim these are engine simulations or resolved RDE-001.
+The original solver/P1 remain intact. Main only; no independent 3D changes.

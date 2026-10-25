@@ -1,0 +1,13 @@
+{
+  "nx": 1024,
+  "ny": 8,
+  "dx_m": 4e-06,
+  "length_m": 0.004096,
+  "shock_initial_m": 0.002048,
+  "final_time_s": 2e-07,
+  "plot_interval_s": 1e-08,
+  "CJ_speed_mps": 2530.8130725897217,
+  "profile_sha256": "865be5c53037b60fbb9424aeb6bc9805d00d746b89fb0baa6ef0a8f3986eabfc",
+  "mechanism": "FFCM1_Red",
+  "scope": "Planar gate, no continuing ignition or engine"
+}

@@ -1,0 +1,23 @@
+{
+  "scope": "Synthetic zero-heat visualization smoke only; not native CFD",
+  "checks": [
+    {
+      "name": "unwrapped",
+      "frames": 3,
+      "size": [
+        1200,
+        700
+      ],
+      "passed": true
+    },
+    {
+      "name": "wrapped",
+      "frames": 3,
+      "size": [
+        1100,
+        600
+      ],
+      "passed": true
+    }
+  ]
+}

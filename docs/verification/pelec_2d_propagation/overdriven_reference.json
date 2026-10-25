@@ -1,0 +1,69 @@
+{
+  "measured_late_speed_mps": 3015.448826261804,
+  "steady_CJ_speed_mps": 2530.8130725897217,
+  "overdriven_VN": {
+    "T": 2517.819550913682,
+    "p": 32851292.313828386,
+    "rho": 40.9422368849013,
+    "h": 3447604.932691568,
+    "gamma_frozen": 1.1463405170814527,
+    "MW": 26.090229219143573,
+    "Y": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.7723149492542882,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.22768505074571188,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "u_shock_frame": 291.13823651763465
+  },
+  "ZND": {
+    "method": "BDF on unmodified SDToolbox ZNDSys",
+    "rtol": 2e-08,
+    "atol": 1e-14,
+    "max_step_s": 1e-10,
+    "numerical_warnings": [
+      "RuntimeWarning: overflow encountered in multiply"
+    ],
+    "requested_end_s": 2e-07,
+    "actual_end_s": 2e-07,
+    "termination": "The solver successfully reached the end of the integration interval.",
+    "stopped_at_sonic_event": false,
+    "samples": 2979,
+    "raw_species_min": -1.3908944132602202e-28,
+    "raw_species_sum_max_error": 1.9984014443252818e-14,
+    "invariant_relative_residuals": {
+      "energy": 1.709577202417941e-05,
+      "momentum": 1.1487865473361032e-09
+    },
+    "induction_time_max_dTdt_s": 1.63742799827214e-08,
+    "induction_length_vn_velocity_m": 4.767178998415514e-06,
+    "distance_at_max_dTdt_m": 5.696805897392884e-06,
+    "cell_size_factor29_proxy_m": 0.00013824819095404988,
+    "peak_thermicity_time_s": 1.628421178766554e-08,
+    "heat_fraction_lengths_m": {
+      "0.5": 5.514192531795654e-06,
+      "0.9": null,
+      "0.95": null
+    },
+    "final_heat_fraction": 0.8146834853862956
+  },
+  "measured_final_half_heat_m": 2.1013165355061522e-06,
+  "interpretation": "Diagnostic at measured transient speed, with the same heat-fraction normalization. No change to original acceptance status. Does not prove a physical instability or engine sustainment."
+}

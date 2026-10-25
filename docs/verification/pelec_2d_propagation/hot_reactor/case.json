@@ -1,0 +1,12 @@
+{
+  "nx": 512,
+  "ny": 8,
+  "dx_m": 0.001,
+  "length_m": 0.512,
+  "final_time_s": 2e-07,
+  "plot_interval_s": 2e-08,
+  "profile_sha256": "d39af353545c6249427d8063ac4568aae26a0a57cbff3e071cf81bd22c675219",
+  "reconstruction_order": 1,
+  "hydro_method": "mol",
+  "scope": "Uniform hot reactor, not wave/engine"
+}

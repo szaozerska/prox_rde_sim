@@ -1,0 +1,546 @@
+{
+  "status": "failed",
+  "checks": {
+    "native_completion": true,
+    "no_native_errors": true,
+    "every_step_history": true,
+    "element_composition": true,
+    "eos": true,
+    "speed": false,
+    "structure": false,
+    "boundary_buffer": true,
+    "conservation": true
+  },
+  "case": {
+    "nx": 2048,
+    "ny": 8,
+    "dx_m": 2e-06,
+    "length_m": 0.004096,
+    "shock_initial_m": 0.002048,
+    "final_time_s": 2e-07,
+    "plot_interval_s": 1e-08,
+    "CJ_speed_mps": 2530.8130725897217,
+    "profile_sha256": "a5dc0ad5c3377baba2e83082eed82e0535d2191ef1e9a8f30e7752c69d05fa55",
+    "mechanism": "FFCM1_Red",
+    "scope": "Planar gate, no continuing ignition or engine",
+    "hydro_method": "mol",
+    "reconstruction_order": 1
+  },
+  "rows": [
+    {
+      "time_s": 0.0,
+      "fronts_m": [
+        0.002048600031879678,
+        0.002048000079699191,
+        0.0020474001275187044
+      ],
+      "half_heat_distance_m": 4.5680028913543634e-05,
+      "Tmin_K": 300.00000002422416,
+      "Tmax_K": 3995.05932348453,
+      "minimum_Y": 0.0,
+      "minimum_species": "N2",
+      "element_composition_error": 4.2743586448068527e-13,
+      "species_sum_error": 5.384581669432009e-13,
+      "eos_pressure_relative": 5.380140777333509e-13,
+      "eos_energy_relative": 1.2329513431775525e-10,
+      "mass_kg_m2": 0.024316600003495312,
+      "energy_J_m2": 310.0392600530643,
+      "boundary_mass_flux": 8588.119182974197,
+      "boundary_energy_flux": 16331927857.833075,
+      "transverse_nonuniformity": 0.0
+    },
+    {
+      "time_s": 9.999999999999985e-09,
+      "fronts_m": [
+        0.0020789176487431625,
+        0.002075555193125588,
+        0.0020698954012831226
+      ],
+      "half_heat_distance_m": 4.733223267088969e-05,
+      "Tmin_K": 300.0000000242076,
+      "Tmax_K": 4015.4924827637997,
+      "minimum_Y": -2.5619458007423922e-89,
+      "minimum_species": "CH2",
+      "element_composition_error": 1.1102230246251565e-14,
+      "species_sum_error": 4.440892098500626e-16,
+      "eos_pressure_relative": 7.771561172376096e-16,
+      "eos_energy_relative": 3.673704861615988e-10,
+      "mass_kg_m2": 0.02440248119532461,
+      "energy_J_m2": 473.3585377700567,
+      "boundary_mass_flux": 8588.119182974064,
+      "boundary_energy_flux": 16331927724.627254,
+      "transverse_nonuniformity": 0.0
+    },
+    {
+      "time_s": 1.9999999999999994e-08,
+      "fronts_m": [
+        0.0021050387994003585,
+        0.002101538585337749,
+        0.002096474245977447
+      ],
+      "half_heat_distance_m": 4.276210356503416e-05,
+      "Tmin_K": 300.00000002419506,
+      "Tmax_K": 4188.298063799065,
+      "minimum_Y": -1.4970506457163845e-84,
+      "minimum_species": "CH2",
+      "element_composition_error": 1.1185496973098452e-14,
+      "species_sum_error": 6.661338147750939e-16,
+      "eos_pressure_relative": 1.1102230246251565e-15,
+      "eos_energy_relative": 4.107473005046656e-10,
+      "mass_kg_m2": 0.02448836238715436,
+      "energy_J_m2": 636.6778149953208,
+      "boundary_mass_flux": 8588.119182974064,
+      "boundary_energy_flux": 16331927713.08061,
+      "transverse_nonuniformity": 0.0
+    },
+    {
+      "time_s": 3.0000000000000083e-08,
+      "fronts_m": [
+        0.0021306510281046184,
+        0.0021270793225012003,
+        0.002121916522409445
+      ],
+      "half_heat_distance_m": 3.303014996371319e-05,
+      "Tmin_K": 300.00000002419546,
+      "Tmax_K": 4338.483655797231,
+      "minimum_Y": -4.387320598264365e-81,
+      "minimum_species": "CH2",
+      "element_composition_error": 1.1435297153639112e-14,
+      "species_sum_error": 5.551115123125783e-16,
+      "eos_pressure_relative": 8.881784197001252e-16,
+      "eos_energy_relative": 3.3007948692044645e-10,
+      "mass_kg_m2": 0.02457424357898411,
+      "energy_J_m2": 799.9970921711969,
+      "boundary_mass_flux": 8588.119182974066,
+      "boundary_energy_flux": 16331927711.947739,
+      "transverse_nonuniformity": 0.0
+    },
+    {
+      "time_s": 4.000000000000017e-08,
+      "fronts_m": [
+        0.0021561396669424267,
+        0.002152582516852745,
+        0.0021482943937835967
+      ],
+      "half_heat_distance_m": 1.77920259805623e-05,
+      "Tmin_K": 300.00000002418886,
+      "Tmax_K": 4559.18498448813,
+      "minimum_Y": -1.2813752926096464e-77,
+      "minimum_species": "CH2",
+      "element_composition_error": 1.149080830487037e-14,
+      "species_sum_error": 6.661338147750939e-16,
+      "eos_pressure_relative": 8.881784197001252e-16,
+      "eos_energy_relative": 1.7288679394253065e-10,
+      "mass_kg_m2": 0.02466012477081386,
+      "energy_J_m2": 963.3163693421702,
+      "boundary_mass_flux": 8588.119182974066,
+      "boundary_energy_flux": 16331927711.829361,
+      "transverse_nonuniformity": 0.0
+    },
+    {
+      "time_s": 5.000000000000026e-08,
+      "fronts_m": [
+        0.0021872268440499393,
+        0.0021855834547604906,
+        0.002184424638912919
+      ],
+      "half_heat_distance_m": 3.4047617668091744e-06,
+      "Tmin_K": 300.0000000241857,
+      "Tmax_K": 4651.771256710076,
+      "minimum_Y": -3.742409747186285e-74,
+      "minimum_species": "CH2",
+      "element_composition_error": 1.1268763699945339e-14,
+      "species_sum_error": 4.440892098500626e-16,
+      "eos_pressure_relative": 1.1102230246251565e-15,
+      "eos_energy_relative": 2.897344230695438e-10,
+      "mass_kg_m2": 0.024746005962643612,
+      "energy_J_m2": 1126.6356465126576,
+      "boundary_mass_flux": 8588.119182974064,
+      "boundary_energy_flux": 16331927711.816545,
+      "transverse_nonuniformity": 0.0
+    },
+    {
+      "time_s": 6.000000000000033e-08,
+      "fronts_m": [
+        0.0022283087435802165,
+        0.002226560033652418,
+        0.0022253866494884402
+      ],
+      "half_heat_distance_m": 2.0750159657224876e-06,
+      "Tmin_K": 300.0000000241803,
+      "Tmax_K": 4688.124427746302,
+      "minimum_Y": -1.0930155076205716e-70,
+      "minimum_species": "CH2",
+      "element_composition_error": 1.1435297153639112e-14,
+      "species_sum_error": 5.551115123125783e-16,
+      "eos_pressure_relative": 1.1102230246251565e-15,
+      "eos_energy_relative": 2.541412226488056e-10,
+      "mass_kg_m2": 0.02483188715447336,
+      "energy_J_m2": 1289.9549236830787,
+      "boundary_mass_flux": 8588.119182974066,
+      "boundary_energy_flux": 16331927711.815157,
+      "transverse_nonuniformity": 0.0
+    },
+    {
+      "time_s": 7.009999999999975e-08,
+      "fronts_m": [
+        0.002266368771119866,
+        0.00226454344816656,
+        0.002263271730736213
+      ],
+      "half_heat_distance_m": 2.0185102912587995e-06,
+      "Tmin_K": 300.00000002417863,
+      "Tmax_K": 4689.378055279103,
+      "minimum_Y": -3.4574512218568435e-67,
+      "minimum_species": "CH2",
+      "element_composition_error": 1.2878587085651816e-14,
+      "species_sum_error": 4.440892098500626e-16,
+      "eos_pressure_relative": 8.881784197001252e-16,
+      "eos_energy_relative": 2.218328941544667e-10,
+      "mass_kg_m2": 0.024918627158221393,
+      "energy_J_m2": 1454.9073936252094,
+      "boundary_mass_flux": 8588.119182974066,
+      "boundary_energy_flux": 16331927711.815054,
+      "transverse_nonuniformity": 0.0
+    },
+    {
+      "time_s": 8.009999999999918e-08,
+      "fronts_m": [
+        0.0023024465268283107,
+        0.0023005606124399587,
+        0.002299212328618932
+      ],
+      "half_heat_distance_m": 1.9312016256950275e-06,
+      "Tmin_K": 300.00000002417573,
+      "Tmax_K": 4660.168429966181,
+      "minimum_Y": -1.0097899635821532e-63,
+      "minimum_species": "CH2",
+      "element_composition_error": 1.4016565685892601e-14,
+      "species_sum_error": 6.661338147750939e-16,
+      "eos_pressure_relative": 8.881784197001252e-16,
+      "eos_energy_relative": 2.281845733673871e-10,
+      "mass_kg_m2": 0.025004508350051132,
+      "energy_J_m2": 1618.226670795635,
+      "boundary_mass_flux": 8588.119182974066,
+      "boundary_energy_flux": 16331927711.81503,
+      "transverse_nonuniformity": 0.0
+    },
+    {
+      "time_s": 9.00999999999986e-08,
+      "fronts_m": [
+        0.00233736231576288,
+        0.0023354665830605456,
+        0.0023340434359597193
+      ],
+      "half_heat_distance_m": 1.8707665786796106e-06,
+      "Tmin_K": 300.00000002417033,
+      "Tmax_K": 4622.397227148922,
+      "minimum_Y": -2.94921231022889e-60,
+      "minimum_species": "CH2",
+      "element_composition_error": 1.3711254354120683e-14,
+      "species_sum_error": 6.661338147750939e-16,
+      "eos_pressure_relative": 1.1102230246251565e-15,
+      "eos_energy_relative": 2.793365948843021e-10,
+      "mass_kg_m2": 0.025090389541880875,
+      "energy_J_m2": 1781.5459479660587,
+      "boundary_mass_flux": 8588.119182974064,
+      "boundary_energy_flux": 16331927711.815067,
+      "transverse_nonuniformity": 0.0
+    },
+    {
+      "time_s": 1.0009999999999803e-07,
+      "fronts_m": [
+        0.0023714389998676314,
+        0.0023694646254504574,
+        0.002367975624224901
+      ],
+      "half_heat_distance_m": 1.858766576596886e-06,
+      "Tmin_K": 300.0000000241648,
+      "Tmax_K": 4582.7369207810225,
+      "minimum_Y": -8.613527133853458e-57,
+      "minimum_species": "CH2",
+      "element_composition_error": 1.3322676295501878e-14,
+      "species_sum_error": 6.661338147750939e-16,
+      "eos_pressure_relative": 1.1102230246251565e-15,
+      "eos_energy_relative": 2.820154906755614e-10,
+      "mass_kg_m2": 0.025176270733710614,
+      "energy_J_m2": 1944.8652251364801,
+      "boundary_mass_flux": 8588.119182974064,
+      "boundary_energy_flux": 16331927711.815113,
+      "transverse_nonuniformity": 0.0
+    },
+    {
+      "time_s": 1.1009999999999746e-07,
+      "fronts_m": [
+        0.002404716647901305,
+        0.0024026979186859646,
+        0.0024011649195637683
+      ],
+      "half_heat_distance_m": 1.8446893148304534e-06,
+      "Tmin_K": 300.00000002415754,
+      "Tmax_K": 4544.8406405403175,
+      "minimum_Y": -2.515683575180423e-53,
+      "minimum_species": "CH2",
+      "element_composition_error": 1.326716514427062e-14,
+      "species_sum_error": 7.771561172376096e-16,
+      "eos_pressure_relative": 8.881784197001252e-16,
+      "eos_energy_relative": 2.8074871880551746e-10,
+      "mass_kg_m2": 0.025262151925540353,
+      "energy_J_m2": 2108.184502306903,
+      "boundary_mass_flux": 8588.119182974064,
+      "boundary_energy_flux": 16331927711.815134,
+      "transverse_nonuniformity": 0.0
+    },
+    {
+      "time_s": 1.20099999999997e-07,
+      "fronts_m": [
+        0.0024374417961725786,
+        0.0024353495264339414,
+        0.0024337484027611963
+      ],
+      "half_heat_distance_m": 1.8638112042491245e-06,
+      "Tmin_K": 300.000000024152,
+      "Tmax_K": 4510.309911031465,
+      "minimum_Y": -7.347354634270397e-50,
+      "minimum_species": "CH2",
+      "element_composition_error": 1.354472090042691e-14,
+      "species_sum_error": 6.661338147750939e-16,
+      "eos_pressure_relative": 9.992007221626409e-16,
+      "eos_energy_relative": 3.31073962346216e-10,
+      "mass_kg_m2": 0.025348033117370092,
+      "energy_J_m2": 2271.5037794773307,
+      "boundary_mass_flux": 8588.119182974066,
+      "boundary_energy_flux": 16331927711.815142,
+      "transverse_nonuniformity": 0.0
+    },
+    {
+      "time_s": 1.3009999999999776e-07,
+      "fronts_m": [
+        0.002469611499920026,
+        0.0024674529775076314,
+        0.002465784049737679
+      ],
+      "half_heat_distance_m": 1.8982355620769664e-06,
+      "Tmin_K": 300.0000000241447,
+      "Tmax_K": 4479.515627180452,
+      "minimum_Y": -2.145882759435156e-46,
+      "minimum_species": "CH2",
+      "element_composition_error": 1.3739009929736312e-14,
+      "species_sum_error": 6.661338147750939e-16,
+      "eos_pressure_relative": 8.881784197001252e-16,
+      "eos_energy_relative": 3.379855565443678e-10,
+      "mass_kg_m2": 0.025433914309199834,
+      "energy_J_m2": 2434.8230566477546,
+      "boundary_mass_flux": 8588.119182974064,
+      "boundary_energy_flux": 16331927711.815172,
+      "transverse_nonuniformity": 0.0
+    },
+    {
+      "time_s": 1.400999999999985e-07,
+      "fronts_m": [
+        0.002501204817989085,
+        0.0024990391155982946,
+        0.0024973545072646767
+      ],
+      "half_heat_distance_m": 1.8883821199210116e-06,
+      "Tmin_K": 300.000000024138,
+      "Tmax_K": 4452.499600079666,
+      "minimum_Y": -6.2673071417615024e-43,
+      "minimum_species": "CH2",
+      "element_composition_error": 1.3877787807814457e-14,
+      "species_sum_error": 6.661338147750939e-16,
+      "eos_pressure_relative": 9.992007221626409e-16,
+      "eos_energy_relative": 4.1465851493440406e-10,
+      "mass_kg_m2": 0.02551979550102957,
+      "energy_J_m2": 2598.142333818178,
+      "boundary_mass_flux": 8588.119182974066,
+      "boundary_energy_flux": 16331927711.815178,
+      "transverse_nonuniformity": 0.0
+    },
+    {
+      "time_s": 1.5009999999999926e-07,
+      "fronts_m": [
+        0.002532507225734973,
+        0.002530287727533653,
+        0.0025284906658763315
+      ],
+      "half_heat_distance_m": 1.986262835726102e-06,
+      "Tmin_K": 300.00000002413327,
+      "Tmax_K": 4428.937430155548,
+      "minimum_Y": -1.8304419771526005e-39,
+      "minimum_species": "CH2",
+      "element_composition_error": 1.3988810110276972e-14,
+      "species_sum_error": 6.661338147750939e-16,
+      "eos_pressure_relative": 1.1102230246251565e-15,
+      "eos_energy_relative": 4.011606515404254e-10,
+      "mass_kg_m2": 0.0256056766928593,
+      "energy_J_m2": 2761.461610988604,
+      "boundary_mass_flux": 8588.119182974066,
+      "boundary_energy_flux": 16331927711.81518,
+      "transverse_nonuniformity": 0.0
+    },
+    {
+      "time_s": 1.6e-07,
+      "fronts_m": [
+        0.0025629830598590674,
+        0.0025607963369000224,
+        0.002558988186398632
+      ],
+      "half_heat_distance_m": 1.996463981786354e-06,
+      "Tmin_K": 300.00000002412264,
+      "Tmax_K": 4408.458910596806,
+      "minimum_Y": -8.2834345110229e-36,
+      "minimum_species": "CH3",
+      "element_composition_error": 1.4072076837123859e-14,
+      "species_sum_error": 6.661338147750939e-16,
+      "eos_pressure_relative": 9.992007221626409e-16,
+      "eos_energy_relative": 3.9483997585710733e-10,
+      "mass_kg_m2": 0.02569069907277074,
+      "energy_J_m2": 2923.147695387318,
+      "boundary_mass_flux": 8588.119182974066,
+      "boundary_energy_flux": 16331927711.815195,
+      "transverse_nonuniformity": 0.0
+    },
+    {
+      "time_s": 1.7000000000000075e-07,
+      "fronts_m": [
+        0.0025936630806746627,
+        0.0025913310457316503,
+        0.0025894602603284372
+      ],
+      "half_heat_distance_m": 2.032586220841303e-06,
+      "Tmin_K": 300.00000002411986,
+      "Tmax_K": 4389.851980272473,
+      "minimum_Y": -2.4253102746165462e-32,
+      "minimum_species": "CH3",
+      "element_composition_error": 1.4099832412739488e-14,
+      "species_sum_error": 5.551115123125783e-16,
+      "eos_pressure_relative": 8.881784197001252e-16,
+      "eos_energy_relative": 3.5345571301264096e-10,
+      "mass_kg_m2": 0.025776580264600477,
+      "energy_J_m2": 3086.4669725577414,
+      "boundary_mass_flux": 8588.119182974064,
+      "boundary_energy_flux": 16331927711.815191,
+      "transverse_nonuniformity": 0.0
+    },
+    {
+      "time_s": 1.800000000000015e-07,
+      "fronts_m": [
+        0.0026239276402357714,
+        0.002621557778763544,
+        0.0026196267713770255
+      ],
+      "half_heat_distance_m": 2.0815886173906374e-06,
+      "Tmin_K": 300.00000002411434,
+      "Tmax_K": 4373.11330279835,
+      "minimum_Y": -7.083415017089908e-29,
+      "minimum_species": "CH3",
+      "element_composition_error": 1.4238610290817633e-14,
+      "species_sum_error": 5.551115123125783e-16,
+      "eos_pressure_relative": 8.881784197001252e-16,
+      "eos_energy_relative": 3.974586434337777e-10,
+      "mass_kg_m2": 0.02586246145643021,
+      "energy_J_m2": 3249.7862497281626,
+      "boundary_mass_flux": 8588.119182974064,
+      "boundary_energy_flux": 16331927711.815174,
+      "transverse_nonuniformity": 0.0
+    },
+    {
+      "time_s": 1.9000000000000226e-07,
+      "fronts_m": [
+        0.002653907105861299,
+        0.0026515031045193428,
+        0.0026495285511837787
+      ],
+      "half_heat_distance_m": 2.1229935563741274e-06,
+      "Tmin_K": 300.0000000241085,
+      "Tmax_K": 4358.12065214813,
+      "minimum_Y": -2.068796039489948e-25,
+      "minimum_species": "CH3",
+      "element_composition_error": 1.426636586643326e-14,
+      "species_sum_error": 5.551115123125783e-16,
+      "eos_pressure_relative": 8.881784197001252e-16,
+      "eos_energy_relative": 3.1472648080141574e-10,
+      "mass_kg_m2": 0.02594834264825995,
+      "energy_J_m2": 3413.1055268985806,
+      "boundary_mass_flux": 8588.119182974066,
+      "boundary_energy_flux": 16331927711.815222,
+      "transverse_nonuniformity": 0.0
+    },
+    {
+      "time_s": 2e-07,
+      "fronts_m": [
+        0.002683624440635036,
+        0.002681189926034309,
+        0.002679188227164841
+      ],
+      "half_heat_distance_m": 2.167217850315012e-06,
+      "Tmin_K": 300.00000002410246,
+      "Tmax_K": 4344.337182010252,
+      "minimum_Y": -6.222372961842296e-25,
+      "minimum_species": "CH3",
+      "element_composition_error": 1.426636586643326e-14,
+      "species_sum_error": 6.661338147750939e-16,
+      "eos_pressure_relative": 8.881784197001252e-16,
+      "eos_energy_relative": 3.263993901311735e-10,
+      "mass_kg_m2": 0.02603422384008966,
+      "energy_J_m2": 3576.424804068945,
+      "boundary_mass_flux": 8588.119182974066,
+      "boundary_energy_flux": 16331927711.815248,
+      "transverse_nonuniformity": 0.0
+    }
+  ],
+  "expected_speed_mps": 2530.8130725897217,
+  "speeds_mps": [
+    3271.8751128536514,
+    3266.8490871444446,
+    3260.9976940388283
+  ],
+  "expected_half_heat_m": 4.576888391187535e-05,
+  "history": {
+    "density": {
+      "minimum": 0.0039529275,
+      "maximum": 0.042988974,
+      "passed": true,
+      "samples": 2001
+    },
+    "Temp": {
+      "minimum": 300.0,
+      "maximum": 4695.5617,
+      "passed": true,
+      "samples": 2001
+    },
+    "pressure": {
+      "minimum": 3779169.7,
+      "maximum": 792631170.0,
+      "passed": true,
+      "samples": 2001
+    },
+    "massfrac": {
+      "minimum": -8.4196933e-25,
+      "maximum": 0.77231495,
+      "passed": true,
+      "samples": 2001
+    },
+    "sumYminus1": {
+      "minimum": -5.3845817e-13,
+      "maximum": 4.156675e-13,
+      "passed": true,
+      "samples": 2001
+    }
+  },
+  "budgets": {
+    "mass": {
+      "change": 0.0017176238365943473,
+      "boundary_integral": 0.0017176238365948133,
+      "normalized_residual": 1.9163455979342816e-14
+    },
+    "energy": {
+      "change": 3266.3855440158804,
+      "boundary_integral": 3266.3855432353766,
+      "normalized_residual": 2.517435361479682e-09
+    }
+  },
+  "max_characteristic_mps": 4593.374502533426,
+  "interpretation": "Planar prerequisite only. No engine sustainment inference. Short-window CJ/structure checks are conservative screening criteria, not proof that physical pulsations cannot occur. Cantera normalizes invalid negative species, so EOS residuals in failed states are not independent evidence of an EOS defect."
+}

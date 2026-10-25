@@ -1,0 +1,114 @@
+{
+  "passed": true,
+  "checks": {
+    "completed": true,
+    "temperature": true,
+    "pressure": true,
+    "species": true,
+    "positive_species": true,
+    "density": true,
+    "energy": true
+  },
+  "rows": [
+    {
+      "t": 0.0,
+      "T_relative": 5.881362064030782e-11,
+      "p_relative": 5.881384268491274e-11,
+      "Y_absolute": 1.3877787807814457e-17,
+      "minimum_Y": 0.0,
+      "rho_relative": 0.0,
+      "energy_relative": 0.0
+    },
+    {
+      "t": 2e-08,
+      "T_relative": 6.523085627208047e-09,
+      "p_relative": 4.432350708682975e-09,
+      "Y_absolute": 1.089296253198313e-08,
+      "minimum_Y": 0.0,
+      "rho_relative": 2.7430280269413743e-12,
+      "energy_relative": 2.9099387746114e-11
+    },
+    {
+      "t": 3.9999999999999994e-08,
+      "T_relative": 1.5950004761400294e-08,
+      "p_relative": 1.0536576611208659e-08,
+      "Y_absolute": 3.853920405028077e-09,
+      "minimum_Y": 0.0,
+      "rho_relative": 3.728017894388813e-12,
+      "energy_relative": 3.9533763625120466e-11
+    },
+    {
+      "t": 6e-08,
+      "T_relative": 1.5575056910854812e-08,
+      "p_relative": 1.0290241547750156e-08,
+      "Y_absolute": 3.864239317419305e-09,
+      "minimum_Y": 0.0,
+      "rho_relative": 3.391065206415078e-12,
+      "energy_relative": 3.5911215355066585e-11
+    },
+    {
+      "t": 8.000000000000001e-08,
+      "T_relative": 1.569444707527623e-08,
+      "p_relative": 1.037060559649916e-08,
+      "Y_absolute": 3.863326991648819e-09,
+      "minimum_Y": 0.0,
+      "rho_relative": 3.1739055827983975e-12,
+      "energy_relative": 3.360947415830466e-11
+    },
+    {
+      "t": 1.0000000000000004e-07,
+      "T_relative": 1.570127694527912e-08,
+      "p_relative": 1.0375001524565164e-08,
+      "Y_absolute": 3.863307285190132e-09,
+      "minimum_Y": 0.0,
+      "rho_relative": 2.972511126131394e-12,
+      "energy_relative": 3.1477208904001394e-11
+    },
+    {
+      "t": 1.2000000000000004e-07,
+      "T_relative": 1.5701284383773384e-08,
+      "p_relative": 1.037478947196746e-08,
+      "Y_absolute": 3.863306341500561e-09,
+      "minimum_Y": 0.0,
+      "rho_relative": 2.7700064464397656e-12,
+      "energy_relative": 2.933057503718533e-11
+    },
+    {
+      "t": 1.4000000000000006e-07,
+      "T_relative": 1.5701273281543138e-08,
+      "p_relative": 1.0374571091098517e-08,
+      "Y_absolute": 3.863305453322141e-09,
+      "minimum_Y": 0.0,
+      "rho_relative": 2.5723867480564877e-12,
+      "energy_relative": 2.7238099786763662e-11
+    },
+    {
+      "t": 1.6000000000000008e-07,
+      "T_relative": 1.5701264066692033e-08,
+      "p_relative": 1.037436025974614e-08,
+      "Y_absolute": 3.8633422572154075e-09,
+      "minimum_Y": 0.0,
+      "rho_relative": 2.3800961201914106e-12,
+      "energy_relative": 2.519904630081266e-11
+    },
+    {
+      "t": 1.800000000000001e-07,
+      "T_relative": 1.570127428074386e-08,
+      "p_relative": 1.037416996751972e-08,
+      "Y_absolute": 3.86335724522624e-09,
+      "minimum_Y": 0.0,
+      "rho_relative": 2.192246384424834e-12,
+      "energy_relative": 2.3211204023561125e-11
+    },
+    {
+      "t": 2e-07,
+      "T_relative": 1.5701368427656348e-08,
+      "p_relative": 1.0374048065031616e-08,
+      "Y_absolute": 3.863440845019994e-09,
+      "minimum_Y": 0.0,
+      "rho_relative": 2.2396529075763283e-12,
+      "energy_relative": 2.372257925863204e-11
+    }
+  ],
+  "scope": "Hot homogeneous chemistry integration; not engine validation"
+}

@@ -1,0 +1,31 @@
+{
+  "status": "planned; execution requires P2 numerical gate",
+  "common_assumptions": {
+    "mechanism_candidate": "FFCM1_Red; unmodified upstream, conditional on P2",
+    "geometry": "mean-radius unwrapped periodic annulus; no resolved radial momentum",
+    "feed": "premixed equivalent plenum, not separate impinging jets",
+    "phi": 1.176,
+    "equivalent_plenum_Pa": 1350000.0,
+    "equivalent_plenum_K": 300.0,
+    "back_pressure_Pa": 100200.0,
+    "discharge_coefficient": 0.76,
+    "initial_fresh_layer_m": 0.0038,
+    "initial_fresh_pressure_Pa": 377916.972,
+    "initial_fresh_temperature_K": 300.0,
+    "target_duration_s": 0.002,
+    "snapshot_interval_s": 0.000005,
+    "start": "finite formed +theta wave; no continuing artificial ignition",
+    "limitation": "screening simulations; mesh convergence and experimental validation are separate"
+  },
+  "cases": [
+    {"id":"run937_76fi5", "outer_diameter_m":0.0762,"gap_m":0.005,"length_m":0.0762,"opening_area_ratio":0.110,
+     "experimental_reference":"Mundt Table 2-1 and Table 3-2, Run 937; target mass flow 0.26865 kg/s, two co-rotating waves",
+     "operating_point_basis":"same equivalent-feed approximation as preserved custom backend"},
+    {"id":"geometry_51fi5", "outer_diameter_m":0.0508,"gap_m":0.005,"length_m":0.0508,"opening_area_ratio":0.110,
+     "experimental_reference":"Mundt Table 2-1 geometry only",
+     "operating_point_basis":"controlled geometry variant at Run 937 equivalent feed; NOT an identified experimental run"},
+    {"id":"geometry_25fi5", "outer_diameter_m":0.0254,"gap_m":0.005,"length_m":0.0254,"opening_area_ratio":0.110,
+     "experimental_reference":"Mundt Table 2-1 geometry only",
+     "operating_point_basis":"controlled geometry variant at Run 937 equivalent feed; NOT an identified experimental run"}
+  ]
+}
