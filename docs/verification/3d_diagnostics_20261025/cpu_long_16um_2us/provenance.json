@@ -1,0 +1,10 @@
+{
+  "artifact_sha256": "6a0549f778849e9251500f71c3190f78d6ddc0d92a579795f3224427b85ffebf",
+  "raw_result": "/Users/sgfx/.codex/worktrees/3d-cfd-review/prox_rde_sim/runs3d/failure_matrix_20261025/cpu_planar_results/long_16um_2us.json",
+  "input": {
+    "name": "long_16um_2us",
+    "case": "/Users/sgfx/.codex/worktrees/3d-cfd-review/prox_rde_sim/runs3d/failure_matrix_20261025/foam_long_16um_2us",
+    "limit": 1500,
+    "ranks": 16
+  }
+}

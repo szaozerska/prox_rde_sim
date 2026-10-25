@@ -1,0 +1,30 @@
+[
+  {
+    "name": "frozen_closed",
+    "id": "fc-01M5TE6DBP3Z0SKPPR6VRDPK46"
+  },
+  {
+    "name": "frozen_open",
+    "id": "fc-01M5TE6DS8SJT023NB19HQW07S"
+  },
+  {
+    "name": "react_closed",
+    "id": "fc-01M5TE6E72MVZ1FHMEGXFFZRSW"
+  },
+  {
+    "name": "react_closed_dt5ns",
+    "id": "fc-01M5TE6EMSG73XANZHBH7VS1AA"
+  },
+  {
+    "name": "react_closed_upwind",
+    "id": "fc-01M5TE6F644CV0CQQMW5YVSMR7"
+  },
+  {
+    "name": "react_unseeded",
+    "id": "fc-01M5TE6FKFYX03M7T45FXV14N3"
+  },
+  {
+    "name": "cold_open",
+    "id": "fc-01M5TE6G0ZB74WPPQDZ1MF6D9B"
+  }
+]

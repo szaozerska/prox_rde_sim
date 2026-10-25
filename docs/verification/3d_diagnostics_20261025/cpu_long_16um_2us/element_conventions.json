@@ -1,0 +1,48 @@
+{
+  "native_atomic_weights": {
+    "C": 12.011149999999997,
+    "H": 1.0079700000000031,
+    "O": 15.999400000000001,
+    "N": 14.0067
+  },
+  "native_molecular_weights": [
+    2.01594,
+    1.00797,
+    31.9988,
+    15.9994,
+    17.00737,
+    33.00677,
+    18.01534,
+    15.03506,
+    16.04303,
+    28.01055,
+    44.00995,
+    30.02649,
+    28.0134
+  ],
+  "cantera_molecular_weights": [
+    2.016,
+    1.008,
+    31.998,
+    15.999,
+    17.007,
+    33.006,
+    18.015,
+    15.035,
+    16.043,
+    28.009999999999998,
+    44.009,
+    30.026,
+    28.014
+  ],
+  "maximum_relative_molecular_weight_difference": 2.9761904761893554e-05,
+  "native_weight_consistency_residual": 1.0658141036401503e-14,
+  "initial_native_element_span": [
+    3.128210338682047e-06,
+    3.7746605736216354e-07,
+    3.505676476667219e-06,
+    0.0
+  ],
+  "max_excursion_outside_initial_native_element_ranges": 3.8308787253527044e-08,
+  "scope": "Diagnostic only. Original common-reference element check is retained. Differing molecular-weight conventions create a small elemental-composition gradient in the initialized cross-package ZND profile; no conservation pass inferred from this audit."
+}

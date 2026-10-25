@@ -3,9 +3,9 @@
 Work on `3d-modelling`, October 24–25, 2026. Both upstream solvers now execute
 methane/oxygen chemistry and true three-dimensional annular cases on Modal.
 **These are diagnostic startup animations, not validated sustained detonations.**
-The requested 1–5 ms circulating-engine result has not been achieved. The latest
-user authorization allowed a bounded prototype despite the earlier gate failures;
-none of those failures is reclassified as a pass.
+The requested 1–5 ms circulating-engine result has not been achieved. These short engine runs test the implementation and visualization workflow.
+They do not establish physical accuracy; the unresolved validation failures
+remain blockers for trustworthy engine predictions.
 
 [GPU animation](pelec_visual/pelec_annulus.gif) ·
 [CPU animation](foam_visual/detonationfoam_annulus.gif) ·

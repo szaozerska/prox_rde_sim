@@ -1,0 +1,10 @@
+{
+  "artifact_sha256": "4201a2e29df947303fa3a0a9b8ba9e2e4da53385e47447f55c73535d1780b78c",
+  "raw_result": "/Users/sgfx/.codex/worktrees/3d-cfd-review/prox_rde_sim/runs3d/failure_matrix_20261025/cpu_results/react_closed_dt5ns.json",
+  "input": {
+    "name": "react_closed_dt5ns",
+    "case": "/Users/sgfx/.codex/worktrees/3d-cfd-review/prox_rde_sim/runs3d/failure_matrix_20261025/foam_react_closed_dt5ns",
+    "limit": 900,
+    "ranks": 16
+  }
+}

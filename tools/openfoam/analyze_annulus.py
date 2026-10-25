@@ -22,6 +22,8 @@ def analyze(root):
         U=np.asarray(read_field(d/'U',n));Y=np.stack([np.asarray(read_field(d/s,n))[:,0] for s in c['species']],axis=-1)
         times.append(t);pressures.append(p[index]);temperatures.append(T[index]);methane.append(Y[:,c['species'].index('CH4')][index])
         row=dict(time_s=t,pressure_Pa=[float(p.min()),float(p.max())],temperature_K=[float(T.min()),float(T.max())],min_species=float(Y.min()),species_sum_error=float(abs(Y.sum(axis=1)-1).max()),max_speed_m_s=float(np.linalg.norm(U,axis=1).max()))
+        worst=np.unravel_index(np.argmax(abs(Y.sum(axis=1)-1)),(n,))[0]
+        row['worst_sum_position_m']=xyz[worst].tolist();row['worst_sum_species']={s:float(v) for s,v in zip(c['species'],Y[worst])}
         rows.append(row);print(row,flush=True)
     logs='\n'.join(p.read_text() for p in root.glob('log.*') if p.name.endswith('mpirun') or 'detonationFoam' in p.name)
     pat=r'SPECIES_AUDIT time=(\S+) preClipMin=(\S+) clippedMass=(\S+) inertMin=(\S+)'

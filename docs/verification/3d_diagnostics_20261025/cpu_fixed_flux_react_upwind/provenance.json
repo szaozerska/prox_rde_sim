@@ -1,0 +1,10 @@
+{
+  "artifact_sha256": "4828841d7fed8d7f16c1b5157979eeaaca218da0d2e96fed89dd4dec59262710",
+  "raw_result": "/Users/sgfx/.codex/worktrees/3d-cfd-review/prox_rde_sim/runs3d/failure_matrix_20261025/cpu_flux_results/fixed_flux_react_upwind.json",
+  "input": {
+    "name": "fixed_flux_react_upwind",
+    "case": "/Users/sgfx/.codex/worktrees/3d-cfd-review/prox_rde_sim/runs3d/failure_matrix_20261025/foam_react_closed_upwind",
+    "limit": 900,
+    "ranks": 16
+  }
+}

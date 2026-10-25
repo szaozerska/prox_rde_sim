@@ -7,6 +7,9 @@ def unpack(source,out,endpoints=False):
     out=Path(out)
     if out.exists():raise FileExistsError(out)
     out.mkdir(parents=True)
+    if not endpoints:
+        with tarfile.open(fileobj=io.BytesIO(raw),mode='r|gz') as t:t.extractall(out,filter='data')
+        print(json.dumps(v.get('run',v.get('manifest',{})),indent=2));return
     with tarfile.open(fileobj=io.BytesIO(raw)) as t:
         members=t.getmembers()
         plots=sorted({m.name.split('/')[1] for m in members if len(m.name.split('/'))>1 and m.name.split('/')[1].startswith('plt')})

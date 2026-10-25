@@ -1,0 +1,819 @@
+[
+  {
+    "name": "gpu_frozen_closed",
+    "backend": "gpu",
+    "status": "completed_execution",
+    "limit_s": 600,
+    "raw_result": "/Users/sgfx/.codex/worktrees/3d-cfd-review/prox_rde_sim/runs3d/failure_matrix_20261025/gpu_results/frozen_closed.json",
+    "wall_seconds": 15.21049517,
+    "time_scope": "solver only",
+    "actual_time_s": 1e-06,
+    "failed_checks": [],
+    "final_min_species": -6.285214369735147e-61,
+    "max_saved_species_sum_error": 5.662137425588298e-15,
+    "worst_logged_species": -1.0376776e-55,
+    "mass_relative_change": 4.1185810317756477e-10
+  },
+  {
+    "name": "gpu_frozen_open",
+    "backend": "gpu",
+    "status": "completed_execution",
+    "limit_s": 600,
+    "raw_result": "/Users/sgfx/.codex/worktrees/3d-cfd-review/prox_rde_sim/runs3d/failure_matrix_20261025/gpu_results/frozen_open.json",
+    "wall_seconds": 14.878092796000004,
+    "time_scope": "solver only",
+    "actual_time_s": 1e-06,
+    "failed_checks": [],
+    "final_min_species": 0.0,
+    "max_saved_species_sum_error": 4.9960036108132044e-15,
+    "worst_logged_species": 0.0,
+    "mass_relative_change": 0.004285634098699642
+  },
+  {
+    "name": "gpu_react_closed",
+    "backend": "gpu",
+    "status": "completed_execution",
+    "limit_s": 600,
+    "raw_result": "/Users/sgfx/.codex/worktrees/3d-cfd-review/prox_rde_sim/runs3d/failure_matrix_20261025/gpu_results/react_closed.json",
+    "wall_seconds": 39.214493833000006,
+    "time_scope": "solver only",
+    "actual_time_s": 1e-06,
+    "failed_checks": [
+      "species_nonnegative",
+      "every_step_extrema"
+    ],
+    "final_min_species": -0.00012066193324457828,
+    "max_saved_species_sum_error": 5.551115123125783e-16,
+    "worst_logged_species": -0.00061816336,
+    "mass_relative_change": 0.0003438677226286213
+  },
+  {
+    "name": "gpu_react_closed_dt5ns",
+    "backend": "gpu",
+    "status": "completed_execution",
+    "limit_s": 600,
+    "raw_result": "/Users/sgfx/.codex/worktrees/3d-cfd-review/prox_rde_sim/runs3d/failure_matrix_20261025/gpu_results/react_closed_dt5ns.json",
+    "wall_seconds": 98.67044119899998,
+    "time_scope": "solver only",
+    "actual_time_s": 1e-06,
+    "failed_checks": [
+      "every_step_extrema"
+    ],
+    "final_min_species": -1.5517633881069955e-18,
+    "max_saved_species_sum_error": 5.551115123125783e-16,
+    "worst_logged_species": -4.8722548e-10,
+    "mass_relative_change": 5.1577411635639336e-05
+  },
+  {
+    "name": "gpu_chemistry_only",
+    "backend": "gpu",
+    "status": "completed_execution",
+    "limit_s": 600,
+    "raw_result": "/Users/sgfx/.codex/worktrees/3d-cfd-review/prox_rde_sim/runs3d/failure_matrix_20261025/gpu_results/chemistry_only.json",
+    "wall_seconds": 9.094419776999985,
+    "time_scope": "solver only",
+    "actual_time_s": 1e-06,
+    "failed_checks": [],
+    "final_min_species": -1.579390518997067e-18,
+    "max_saved_species_sum_error": 4.440892098500626e-16,
+    "worst_logged_species": -1.5793905e-18,
+    "mass_relative_change": 1.9984014443252818e-15
+  },
+  {
+    "name": "gpu_react_unseeded",
+    "backend": "gpu",
+    "status": "completed_execution",
+    "limit_s": 600,
+    "raw_result": "/Users/sgfx/.codex/worktrees/3d-cfd-review/prox_rde_sim/runs3d/failure_matrix_20261025/gpu_results/react_unseeded.json",
+    "wall_seconds": 18.184532461000003,
+    "time_scope": "solver only",
+    "actual_time_s": 1e-06,
+    "failed_checks": [],
+    "final_min_species": -5.197518967458503e-18,
+    "max_saved_species_sum_error": 4.440892098500626e-16,
+    "worst_logged_species": -5.208999e-18,
+    "mass_relative_change": 1.7763568394002505e-15
+  },
+  {
+    "name": "gpu_cold_open",
+    "backend": "gpu",
+    "status": "completed_execution",
+    "limit_s": 600,
+    "raw_result": "/Users/sgfx/.codex/worktrees/3d-cfd-review/prox_rde_sim/runs3d/failure_matrix_20261025/gpu_results/cold_open.json",
+    "wall_seconds": 14.824166692000006,
+    "time_scope": "solver only",
+    "actual_time_s": 1e-06,
+    "failed_checks": [],
+    "final_min_species": 0.0,
+    "max_saved_species_sum_error": 1.0880185641326534e-14,
+    "worst_logged_species": 0.0,
+    "mass_relative_change": 0.00110500499802213
+  },
+  {
+    "name": "gpu_react_no_cleanup",
+    "backend": "gpu",
+    "status": "completed_execution",
+    "limit_s": 600,
+    "raw_result": "/Users/sgfx/.codex/worktrees/3d-cfd-review/prox_rde_sim/runs3d/failure_matrix_20261025/gpu_planar_results/react_no_cleanup.json",
+    "wall_seconds": 37.205615742999996,
+    "time_scope": "solver only",
+    "actual_time_s": 1e-06,
+    "failed_checks": [
+      "species_nonnegative",
+      "every_step_extrema"
+    ],
+    "final_min_species": -9.466771395865386e-05,
+    "max_saved_species_sum_error": 4.440892098500626e-16,
+    "worst_logged_species": -0.0022346391,
+    "mass_relative_change": 4.440892098500626e-16
+  },
+  {
+    "name": "gpu_react_closed_dt1ns",
+    "backend": "gpu",
+    "status": "completed_execution",
+    "limit_s": 900,
+    "raw_result": "/Users/sgfx/.codex/worktrees/3d-cfd-review/prox_rde_sim/runs3d/failure_matrix_20261025/gpu_planar_results/react_closed_dt1ns.json",
+    "wall_seconds": 383.096784491,
+    "time_scope": "solver only",
+    "actual_time_s": 1e-06,
+    "failed_checks": [],
+    "final_min_species": 0.0,
+    "max_saved_species_sum_error": 6.661338147750939e-16,
+    "worst_logged_species": 0.0,
+    "mass_relative_change": 8.34549862549494e-07
+  },
+  {
+    "name": "gpu_react_seed_u0",
+    "backend": "gpu",
+    "status": "completed_execution",
+    "limit_s": 600,
+    "raw_result": "/Users/sgfx/.codex/worktrees/3d-cfd-review/prox_rde_sim/runs3d/failure_matrix_20261025/gpu_planar_results/react_seed_u0.json",
+    "wall_seconds": 36.56545647299998,
+    "time_scope": "solver only",
+    "actual_time_s": 1e-06,
+    "failed_checks": [
+      "species_nonnegative",
+      "every_step_extrema"
+    ],
+    "final_min_species": -2.91659895736109e-05,
+    "max_saved_species_sum_error": 6.661338147750939e-16,
+    "worst_logged_species": -0.00097155579,
+    "mass_relative_change": 0.00013642552131232222
+  },
+  {
+    "name": "gpu_moving_contact",
+    "backend": "gpu",
+    "status": "completed_execution",
+    "limit_s": 300,
+    "raw_result": "/Users/sgfx/.codex/worktrees/3d-cfd-review/prox_rde_sim/runs3d/failure_matrix_20261025/gpu_planar_results/moving_contact.json",
+    "wall_seconds": 6.759710930999972,
+    "time_scope": "solver only",
+    "actual_time_s": 1e-06,
+    "max_pressure_relative_error": 0.08062889186318034,
+    "max_velocity_error_mps": 17.810739685417047
+  },
+  {
+    "name": "gpu_short_8um_dt01ns",
+    "backend": "gpu",
+    "status": "completed_execution",
+    "limit_s": 600,
+    "raw_result": "/Users/sgfx/.codex/worktrees/3d-cfd-review/prox_rde_sim/runs3d/failure_matrix_20261025/gpu_planar_results/short_8um_dt01ns.json",
+    "wall_seconds": 124.12986288399998,
+    "time_scope": "solver only",
+    "failed_checks": [
+      "short_wave_speed",
+      "reaction_distance_accuracy"
+    ],
+    "actual_time_s": 2e-07,
+    "window_fits": [
+      {
+        "start_s": 0,
+        "end_s": 1e-07,
+        "samples": 10,
+        "speed_mps": [
+          3093.3493386277673,
+          3119.9944836039226,
+          3214.019951357598
+        ]
+      },
+      {
+        "start_s": 1e-07,
+        "end_s": 2e-07,
+        "samples": 11,
+        "speed_mps": [
+          3155.4948853235355,
+          3141.9087740976593,
+          3135.4345199697636
+        ]
+      }
+    ]
+  },
+  {
+    "name": "gpu_short_4um_dt01ns",
+    "backend": "gpu",
+    "status": "completed_execution",
+    "limit_s": 900,
+    "raw_result": "/Users/sgfx/.codex/worktrees/3d-cfd-review/prox_rde_sim/runs3d/failure_matrix_20261025/gpu_planar_results/short_4um_dt01ns.json",
+    "wall_seconds": 192.79282701699992,
+    "time_scope": "solver only",
+    "failed_checks": [
+      "short_wave_speed",
+      "reaction_distance_accuracy"
+    ],
+    "actual_time_s": 2e-07,
+    "window_fits": [
+      {
+        "start_s": 0,
+        "end_s": 1e-07,
+        "samples": 10,
+        "speed_mps": [
+          2977.5326098716855,
+          2990.588264977727,
+          3038.1603042909346
+        ]
+      },
+      {
+        "start_s": 1e-07,
+        "end_s": 2e-07,
+        "samples": 11,
+        "speed_mps": [
+          3271.612813764503,
+          3264.427168875084,
+          3258.2496183755256
+        ]
+      }
+    ]
+  },
+  {
+    "name": "gpu_long_16um_2us",
+    "backend": "gpu",
+    "status": "completed_execution",
+    "limit_s": 1500,
+    "raw_result": "/Users/sgfx/.codex/worktrees/3d-cfd-review/prox_rde_sim/runs3d/failure_matrix_20261025/gpu_planar_results/long_16um_2us.json",
+    "wall_seconds": 487.86801387699995,
+    "time_scope": "solver only",
+    "failed_checks": [
+      "elements",
+      "shock_reaction_coupling",
+      "reaction_distance_accuracy"
+    ],
+    "actual_time_s": 2e-06,
+    "window_fits": [
+      {
+        "start_s": 0,
+        "end_s": 2e-07,
+        "samples": 3,
+        "speed_mps": [
+          3190.8421193394984,
+          3143.100378952166,
+          3112.61406645273
+        ]
+      },
+      {
+        "start_s": 2e-07,
+        "end_s": 5e-07,
+        "samples": 4,
+        "speed_mps": [
+          2761.1415224623943,
+          2755.2143546015163,
+          2732.3236287817226
+        ]
+      },
+      {
+        "start_s": 5e-07,
+        "end_s": 1e-06,
+        "samples": 5,
+        "speed_mps": [
+          2624.401703045853,
+          2621.7245080100674,
+          2628.0572320354004
+        ]
+      },
+      {
+        "start_s": 1e-06,
+        "end_s": 2e-06,
+        "samples": 11,
+        "speed_mps": [
+          2558.7048765328386,
+          2557.997580671259,
+          2560.8814820744165
+        ]
+      }
+    ]
+  },
+  {
+    "name": "cpu_frozen_closed",
+    "backend": "cpu",
+    "status": "completed_execution",
+    "limit_s": 900,
+    "raw_result": "/Users/sgfx/.codex/worktrees/3d-cfd-review/prox_rde_sim/runs3d/failure_matrix_20261025/cpu_results/frozen_closed.json",
+    "wall_seconds": 42.119498876,
+    "time_scope": "mesh, solver, reconstruction, analysis",
+    "actual_time_s": 1e-06,
+    "failed_checks": [
+      "species_sum",
+      "no_significant_preclip_negative"
+    ],
+    "final_min_species": 0.0,
+    "max_saved_species_sum_error": 0.12156941879399996,
+    "clipping": {
+      "samples": 50,
+      "worst_preclip_Y": -0.00181134082306,
+      "sum_clipped_mass_kg": 2.4009238462828224e-07,
+      "max_step_clipped_mass_kg": 1.231902885e-08,
+      "worst_inert_Y": -0.121569418793
+    }
+  },
+  {
+    "name": "cpu_frozen_open",
+    "backend": "cpu",
+    "status": "completed_execution",
+    "limit_s": 900,
+    "raw_result": "/Users/sgfx/.codex/worktrees/3d-cfd-review/prox_rde_sim/runs3d/failure_matrix_20261025/cpu_results/frozen_open.json",
+    "wall_seconds": 66.55523203000001,
+    "time_scope": "mesh, solver, reconstruction, analysis",
+    "actual_time_s": 1e-06,
+    "failed_checks": [
+      "species_sum",
+      "no_significant_preclip_negative"
+    ],
+    "final_min_species": 0.0,
+    "max_saved_species_sum_error": 0.12543126892599998,
+    "clipping": {
+      "samples": 50,
+      "worst_preclip_Y": -0.00181233964367,
+      "sum_clipped_mass_kg": 2.60199757642647e-07,
+      "max_step_clipped_mass_kg": 1.28544109548e-08,
+      "worst_inert_Y": -0.125431268927
+    }
+  },
+  {
+    "name": "cpu_react_closed",
+    "backend": "cpu",
+    "status": "completed_execution",
+    "limit_s": 900,
+    "raw_result": "/Users/sgfx/.codex/worktrees/3d-cfd-review/prox_rde_sim/runs3d/failure_matrix_20261025/cpu_results/react_closed.json",
+    "wall_seconds": 154.509266671,
+    "time_scope": "mesh, solver, reconstruction, analysis",
+    "actual_time_s": 1e-06,
+    "failed_checks": [
+      "species_sum",
+      "no_significant_preclip_negative"
+    ],
+    "final_min_species": 0.0,
+    "max_saved_species_sum_error": 0.125379283005,
+    "clipping": {
+      "samples": 50,
+      "worst_preclip_Y": -0.00275340665292,
+      "sum_clipped_mass_kg": 3.6043989339623783e-07,
+      "max_step_clipped_mass_kg": 1.3638527126e-08,
+      "worst_inert_Y": -0.125379283005
+    }
+  },
+  {
+    "name": "cpu_react_closed_dt5ns",
+    "backend": "cpu",
+    "status": "completed_execution",
+    "limit_s": 900,
+    "raw_result": "/Users/sgfx/.codex/worktrees/3d-cfd-review/prox_rde_sim/runs3d/failure_matrix_20261025/cpu_results/react_closed_dt5ns.json",
+    "wall_seconds": 222.17829921300006,
+    "time_scope": "mesh, solver, reconstruction, analysis",
+    "actual_time_s": 1e-06,
+    "failed_checks": [
+      "species_sum",
+      "no_significant_preclip_negative"
+    ],
+    "final_min_species": 0.0,
+    "max_saved_species_sum_error": 0.12925239597899996,
+    "clipping": {
+      "samples": 200,
+      "worst_preclip_Y": -0.00067641871096,
+      "sum_clipped_mass_kg": 3.717032920555421e-07,
+      "max_step_clipped_mass_kg": 3.52294089915e-09,
+      "worst_inert_Y": -0.129252395979
+    }
+  },
+  {
+    "name": "cpu_react_closed_upwind",
+    "backend": "cpu",
+    "status": "completed_execution",
+    "limit_s": 900,
+    "raw_result": "/Users/sgfx/.codex/worktrees/3d-cfd-review/prox_rde_sim/runs3d/failure_matrix_20261025/cpu_results/react_closed_upwind.json",
+    "wall_seconds": 146.73767096199992,
+    "time_scope": "mesh, solver, reconstruction, analysis",
+    "actual_time_s": 1e-06,
+    "failed_checks": [
+      "species_sum",
+      "no_significant_preclip_negative"
+    ],
+    "final_min_species": 0.0,
+    "max_saved_species_sum_error": 0.12537637278400005,
+    "clipping": {
+      "samples": 50,
+      "worst_preclip_Y": -0.00275331388384,
+      "sum_clipped_mass_kg": 3.604323796399484e-07,
+      "max_step_clipped_mass_kg": 1.36385448506e-08,
+      "worst_inert_Y": -0.125376372785
+    }
+  },
+  {
+    "name": "cpu_react_unseeded",
+    "backend": "cpu",
+    "status": "completed_execution",
+    "limit_s": 900,
+    "raw_result": "/Users/sgfx/.codex/worktrees/3d-cfd-review/prox_rde_sim/runs3d/failure_matrix_20261025/cpu_results/react_unseeded.json",
+    "wall_seconds": 69.71837838900001,
+    "time_scope": "mesh, solver, reconstruction, analysis",
+    "actual_time_s": 1e-06,
+    "failed_checks": [
+      "species_sum",
+      "no_significant_preclip_negative"
+    ],
+    "final_min_species": 0.0,
+    "max_saved_species_sum_error": 0.125700334152,
+    "clipping": {
+      "samples": 50,
+      "worst_preclip_Y": -0.00181299593733,
+      "sum_clipped_mass_kg": 4.247200911370041e-07,
+      "max_step_clipped_mass_kg": 1.60378335543e-08,
+      "worst_inert_Y": -0.125700334152
+    }
+  },
+  {
+    "name": "cpu_cold_open",
+    "backend": "cpu",
+    "status": "completed_execution",
+    "limit_s": 900,
+    "raw_result": "/Users/sgfx/.codex/worktrees/3d-cfd-review/prox_rde_sim/runs3d/failure_matrix_20261025/cpu_results/cold_open.json",
+    "wall_seconds": 59.94704969500003,
+    "time_scope": "mesh, solver, reconstruction, analysis",
+    "actual_time_s": 1e-06,
+    "failed_checks": [],
+    "final_min_species": 0.0,
+    "max_saved_species_sum_error": 1.000088900582341e-12,
+    "clipping": {
+      "samples": 50,
+      "worst_preclip_Y": 0.0,
+      "sum_clipped_mass_kg": 0.0,
+      "max_step_clipped_mass_kg": 0.0,
+      "worst_inert_Y": -8.65973959208e-15
+    }
+  },
+  {
+    "name": "cpu_short_8um_dt01ns",
+    "backend": "cpu",
+    "status": "completed_execution",
+    "limit_s": 600,
+    "raw_result": "/Users/sgfx/.codex/worktrees/3d-cfd-review/prox_rde_sim/runs3d/failure_matrix_20261025/cpu_planar_results/short_8um_dt01ns.json",
+    "wall_seconds": 45.432084588,
+    "time_scope": "mesh, solver, reconstruction, analysis",
+    "failed_checks": [
+      "elements",
+      "short_wave_speed",
+      "reaction_distance_accuracy"
+    ],
+    "actual_time_s": 2e-07,
+    "window_fits": [
+      {
+        "start_s": 0,
+        "end_s": 1e-07,
+        "samples": 11,
+        "speed_mps": [
+          3302.9710437876133,
+          3320.187195225592,
+          3359.486040168813
+        ]
+      },
+      {
+        "start_s": 1e-07,
+        "end_s": 2e-07,
+        "samples": 11,
+        "speed_mps": [
+          3335.8182187952316,
+          3328.1523254969334,
+          3312.7565368993655
+        ]
+      }
+    ]
+  },
+  {
+    "name": "cpu_short_4um_dt01ns",
+    "backend": "cpu",
+    "status": "completed_execution",
+    "limit_s": 900,
+    "raw_result": "/Users/sgfx/.codex/worktrees/3d-cfd-review/prox_rde_sim/runs3d/failure_matrix_20261025/cpu_planar_results/short_4um_dt01ns.json",
+    "wall_seconds": 62.264242661000004,
+    "time_scope": "mesh, solver, reconstruction, analysis",
+    "failed_checks": [
+      "elements",
+      "short_wave_speed",
+      "reaction_distance_accuracy"
+    ],
+    "actual_time_s": 2e-07,
+    "window_fits": [
+      {
+        "start_s": 0,
+        "end_s": 1e-07,
+        "samples": 11,
+        "speed_mps": [
+          3277.7179847761595,
+          3283.007476021654,
+          3301.842432644095
+        ]
+      },
+      {
+        "start_s": 1e-07,
+        "end_s": 2e-07,
+        "samples": 11,
+        "speed_mps": [
+          3391.529010097721,
+          3387.0698860102234,
+          3381.4332343395827
+        ]
+      }
+    ]
+  },
+  {
+    "name": "cpu_short_2um_dt01ns",
+    "backend": "cpu",
+    "status": "completed_execution",
+    "limit_s": 900,
+    "raw_result": "/Users/sgfx/.codex/worktrees/3d-cfd-review/prox_rde_sim/runs3d/failure_matrix_20261025/cpu_planar_results/short_2um_dt01ns.json",
+    "wall_seconds": 91.03194394699999,
+    "time_scope": "mesh, solver, reconstruction, analysis",
+    "failed_checks": [
+      "elements",
+      "short_wave_speed",
+      "reaction_distance_accuracy"
+    ],
+    "actual_time_s": 2e-07,
+    "window_fits": [
+      {
+        "start_s": 0,
+        "end_s": 1e-07,
+        "samples": 11,
+        "speed_mps": [
+          3077.324573267278,
+          3082.838788460694,
+          3089.7544845250477
+        ]
+      },
+      {
+        "start_s": 1e-07,
+        "end_s": 2e-07,
+        "samples": 11,
+        "speed_mps": [
+          3476.84601449117,
+          3474.22428580968,
+          3471.5179831471964
+        ]
+      }
+    ]
+  },
+  {
+    "name": "cpu_long_16um_2us",
+    "backend": "cpu",
+    "status": "completed_execution",
+    "limit_s": 1500,
+    "raw_result": "/Users/sgfx/.codex/worktrees/3d-cfd-review/prox_rde_sim/runs3d/failure_matrix_20261025/cpu_planar_results/long_16um_2us.json",
+    "wall_seconds": 151.96717961100003,
+    "time_scope": "mesh, solver, reconstruction, analysis",
+    "failed_checks": [
+      "elements",
+      "shock_reaction_coupling",
+      "reaction_distance_accuracy"
+    ],
+    "actual_time_s": 2e-06,
+    "window_fits": [
+      {
+        "start_s": 0,
+        "end_s": 2e-07,
+        "samples": 3,
+        "speed_mps": [
+          3278.3408470018476,
+          3265.8609993353243,
+          3250.3195359532237
+        ]
+      },
+      {
+        "start_s": 2e-07,
+        "end_s": 5e-07,
+        "samples": 4,
+        "speed_mps": [
+          2903.525433738103,
+          2895.0780804712444,
+          2891.85029337372
+        ]
+      },
+      {
+        "start_s": 5e-07,
+        "end_s": 1e-06,
+        "samples": 6,
+        "speed_mps": [
+          2668.020500971502,
+          2668.2575998225307,
+          2660.6309985187636
+        ]
+      },
+      {
+        "start_s": 1e-06,
+        "end_s": 2e-06,
+        "samples": 11,
+        "speed_mps": [
+          2578.5779818998863,
+          2579.2390858078215,
+          2575.0050787314954
+        ]
+      }
+    ]
+  },
+  {
+    "name": "cpu_long_8um_2us",
+    "backend": "cpu",
+    "status": "completed_execution",
+    "limit_s": 1800,
+    "raw_result": "/Users/sgfx/.codex/worktrees/3d-cfd-review/prox_rde_sim/runs3d/failure_matrix_20261025/cpu_planar_results/long_8um_2us.json",
+    "wall_seconds": 269.49790382599997,
+    "time_scope": "mesh, solver, reconstruction, analysis",
+    "failed_checks": [
+      "elements",
+      "shock_reaction_coupling",
+      "reaction_distance_accuracy"
+    ],
+    "actual_time_s": 2e-06,
+    "window_fits": [
+      {
+        "start_s": 0,
+        "end_s": 2e-07,
+        "samples": 3,
+        "speed_mps": [
+          3342.2345047554613,
+          3331.9412442816706,
+          3328.2535525229787
+        ]
+      },
+      {
+        "start_s": 2e-07,
+        "end_s": 5e-07,
+        "samples": 4,
+        "speed_mps": [
+          2894.8744197026836,
+          2895.742563055077,
+          2892.4282830462935
+        ]
+      },
+      {
+        "start_s": 5e-07,
+        "end_s": 1e-06,
+        "samples": 6,
+        "speed_mps": [
+          2669.850308741898,
+          2669.3062572847143,
+          2667.984420264211
+        ]
+      },
+      {
+        "start_s": 1e-06,
+        "end_s": 2e-06,
+        "samples": 11,
+        "speed_mps": [
+          2582.8171984731207,
+          2582.970547488979,
+          2582.4683787270706
+        ]
+      }
+    ]
+  },
+  {
+    "name": "cpu_fixed_flux_unseeded",
+    "backend": "cpu",
+    "status": "completed_execution",
+    "limit_s": 600,
+    "raw_result": "/Users/sgfx/.codex/worktrees/3d-cfd-review/prox_rde_sim/runs3d/failure_matrix_20261025/cpu_flux_results/fixed_flux_unseeded.json",
+    "wall_seconds": 71.748171149,
+    "time_scope": "mesh, solver, reconstruction, analysis",
+    "actual_time_s": 1e-06,
+    "failed_checks": [],
+    "final_min_species": 0.0,
+    "max_saved_species_sum_error": 1.7470469515501463e-12,
+    "clipping": {
+      "samples": 50,
+      "worst_preclip_Y": -3.72733278303e-17,
+      "sum_clipped_mass_kg": 2.8533905139927e-22,
+      "max_step_clipped_mass_kg": 3.95287700719e-23,
+      "worst_inert_Y": -9.7699626167e-15
+    }
+  },
+  {
+    "name": "cpu_fixed_flux_frozen_upwind",
+    "backend": "cpu",
+    "status": "completed_execution",
+    "limit_s": 600,
+    "raw_result": "/Users/sgfx/.codex/worktrees/3d-cfd-review/prox_rde_sim/runs3d/failure_matrix_20261025/cpu_flux_results/fixed_flux_frozen_upwind.json",
+    "wall_seconds": 42.877735630000004,
+    "time_scope": "mesh, solver, reconstruction, analysis",
+    "actual_time_s": 1e-06,
+    "failed_checks": [],
+    "final_min_species": 0.0,
+    "max_saved_species_sum_error": 2.530861076266433e-09,
+    "clipping": {
+      "samples": 50,
+      "worst_preclip_Y": 0.0,
+      "sum_clipped_mass_kg": 0.0,
+      "max_step_clipped_mass_kg": 0.0,
+      "worst_inert_Y": -8.67956062578e-09
+    }
+  },
+  {
+    "name": "cpu_fixed_flux_react_upwind",
+    "backend": "cpu",
+    "status": "completed_execution",
+    "limit_s": 900,
+    "raw_result": "/Users/sgfx/.codex/worktrees/3d-cfd-review/prox_rde_sim/runs3d/failure_matrix_20261025/cpu_flux_results/fixed_flux_react_upwind.json",
+    "wall_seconds": 148.55068640599998,
+    "time_scope": "mesh, solver, reconstruction, analysis",
+    "actual_time_s": 1e-06,
+    "failed_checks": [
+      "species_sum"
+    ],
+    "final_min_species": 0.0,
+    "max_saved_species_sum_error": 6.109157713041213e-08,
+    "clipping": {
+      "samples": 50,
+      "worst_preclip_Y": -6.51158447392e-63,
+      "sum_clipped_mass_kg": 1.8698980450383599e-69,
+      "max_step_clipped_mass_kg": 1.28355815445e-69,
+      "worst_inert_Y": -6.10913482024e-08
+    }
+  },
+  {
+    "name": "cpu_fixed_flux_react_limited",
+    "backend": "cpu",
+    "status": "completed_execution",
+    "limit_s": 900,
+    "raw_result": "/Users/sgfx/.codex/worktrees/3d-cfd-review/prox_rde_sim/runs3d/failure_matrix_20261025/cpu_flux_results/fixed_flux_react_limited.json",
+    "wall_seconds": 150.32510133200003,
+    "time_scope": "mesh, solver, reconstruction, analysis",
+    "actual_time_s": 1e-06,
+    "failed_checks": [
+      "species_sum",
+      "no_significant_preclip_negative"
+    ],
+    "final_min_species": 0.0,
+    "max_saved_species_sum_error": 0.00010941106935025147,
+    "clipping": {
+      "samples": 50,
+      "worst_preclip_Y": -9.51647628566e-06,
+      "sum_clipped_mass_kg": 2.629953465132452e-13,
+      "max_step_clipped_mass_kg": 2.19176023582e-14,
+      "worst_inert_Y": -0.000111879256083
+    }
+  },
+  {
+    "name": "cpu_fixed_flux_short8um",
+    "backend": "cpu",
+    "status": "completed_execution",
+    "limit_s": 600,
+    "raw_result": "/Users/sgfx/.codex/worktrees/3d-cfd-review/prox_rde_sim/runs3d/failure_matrix_20261025/cpu_flux_results/fixed_flux_short8um.json",
+    "wall_seconds": 41.15756516199997,
+    "time_scope": "mesh, solver, reconstruction, analysis",
+    "failed_checks": [
+      "elements",
+      "short_wave_speed",
+      "reaction_distance_accuracy"
+    ],
+    "actual_time_s": 2e-07,
+    "window_fits": [
+      {
+        "start_s": 0,
+        "end_s": 1e-07,
+        "samples": 11,
+        "speed_mps": [
+          3302.9710437876133,
+          3320.187195225592,
+          3359.486040168813
+        ]
+      },
+      {
+        "start_s": 1e-07,
+        "end_s": 2e-07,
+        "samples": 11,
+        "speed_mps": [
+          3335.8182187952316,
+          3328.1523254969334,
+          3312.7565368993655
+        ]
+      }
+    ]
+  },
+  {
+    "name": "cpu_fixed_flux_tight_chemistry",
+    "backend": "cpu",
+    "status": "incomplete_execution",
+    "limit_s": 900,
+    "raw_result": "/Users/sgfx/.codex/worktrees/3d-cfd-review/prox_rde_sim/runs3d/failure_matrix_20261025/cpu_flux_tight_results/fixed_flux_tight_chemistry.json",
+    "wall_seconds": 245.492370551,
+    "time_scope": "mesh, solver, reconstruction, analysis",
+    "analysis": "No final field analysis: native execution stopped before reconstruction; see retained solver log."
+  }
+]

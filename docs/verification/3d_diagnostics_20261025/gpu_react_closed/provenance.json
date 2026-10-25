@@ -1,0 +1,9 @@
+{
+  "artifact_sha256": "835ba6a50510a357de6d6cf667171c74d515a860fe3a602083c2b6a778e6dc6e",
+  "raw_result": "/Users/sgfx/.codex/worktrees/3d-cfd-review/prox_rde_sim/runs3d/failure_matrix_20261025/gpu_results/react_closed.json",
+  "input": {
+    "name": "react_closed",
+    "case": "/Users/sgfx/.codex/worktrees/3d-cfd-review/prox_rde_sim/runs3d/failure_matrix_20261025/react_closed.json",
+    "limit": 600
+  }
+}

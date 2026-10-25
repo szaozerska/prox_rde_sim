@@ -9,7 +9,8 @@ from reference import _libraries,_cj,_znd
 def save(path,value):path.write_text(json.dumps(value,indent=2,allow_nan=False)+'\n')
 
 def main():
-    p=argparse.ArgumentParser(description=__doc__);p.add_argument('output',type=Path);p.add_argument('--reference',type=Path);p.add_argument('--mechanism',type=Path,default=ROOT/'.tooling/PeleC/Submodules/PelePhysics/Mechanisms/grimech30/mechanism.yaml');p.add_argument('--length',type=float,default=.002048);p.add_argument('--shock',type=float,default=.000512);a=p.parse_args()
+    p=argparse.ArgumentParser(description=__doc__);p.add_argument('output',type=Path);p.add_argument('--reference',type=Path);p.add_argument('--mechanism',type=Path,default=ROOT/'.tooling/PeleC/Submodules/PelePhysics/Mechanisms/grimech30/mechanism.yaml');p.add_argument('--length',type=float,default=.002048);p.add_argument('--shock',type=float,default=.000512);p.add_argument('--nx',type=int,nargs='+',default=[256,512]);a=p.parse_args()
+    if any(n<8 or n>4096 or n%8 for n in a.nx):raise ValueError('nx must be a multiple of 8 in [8,4096]')
     a.output.mkdir(parents=True,exist_ok=False)
     ct,post,znd,thermo,manifest=_libraries()
     mechanism=a.mechanism
@@ -59,7 +60,7 @@ def main():
         delta=points-distance[indices]
         return prefix[indices]+conserved[indices]*delta[:,None]+.5*slopes[indices]*delta[:,None]**2
     total_target=primitive(np.array([shock]))[0]+(length-shock)*fresh
-    for nx in (256,512):
+    for nx in a.nx:
         dx=length/nx;centers=(np.arange(nx)+.5)*dx
         tables=[]
         for order in (4,8):

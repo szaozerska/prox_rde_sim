@@ -1,0 +1,60 @@
+{
+  "mode": 2,
+  "case_type": "annulus",
+  "stop": 1e-06,
+  "dt": 2e-08,
+  "n": 128,
+  "feed": 0,
+  "seed": true,
+  "reacting": true,
+  "species_cleanup": true,
+  "species": [
+    "H2",
+    "H",
+    "O2",
+    "O",
+    "OH",
+    "HO2",
+    "H2O",
+    "CH3",
+    "CH4",
+    "CO",
+    "CO2",
+    "CH2O",
+    "N2"
+  ],
+  "mesh_m": [
+    0.0005953125,
+    0.0005953125,
+    0.0005953125
+  ],
+  "height_m": 0.0038,
+  "limitations": [
+    "Exploratory coarse reactive Euler; no turbulence, molecular diffusion or heat transfer.",
+    "No injector plenums/tube or downstream core expansion. Fixed upstream reservoirs; reverse flow blocked.",
+    "Finite initialized +theta charge, not simulated spark-to-detonation transition.",
+    "Opposed radial-plane jets at 30 degrees meet at 2.16 mm; finite startup momentum is tangential.",
+    "Mouths are cell-centre sampled; report numerical aperture areas and flow before quantitative use."
+  ],
+  "inputs": "stop_time = 1e-06\nmax_step = 1000000\ngeometry.is_periodic = 0 0 0\ngeometry.coord_sys = 0\ngeometry.prob_lo = -3.81 -3.81 0.0\ngeometry.prob_hi = 3.81 3.81 7.62\namr.n_cell = 128 128 128\namr.max_level = 0\namr.blocking_factor = 8\namr.max_grid_size = 32\namr.checkpoint_files_output = 0\namr.plot_files_output = 1\namr.plot_file = plt\namr.plot_int = 1000000\namr.plot_per = 5e-07\namr.plot_vars = density rho_E Temp\namr.derive_plot_vars = pressure x_velocity y_velocity z_velocity\npelec.plot_massfrac = 1\npelec.plot_rhoy = 0\namr.data_log = datlog\npelec.lo_bc = SlipWall SlipWall UserBC\npelec.hi_bc = SlipWall SlipWall SlipWall\npelec.do_react = 1\npelec.do_hydro = 0\npelec.do_mol = 1\npelec.mol_iters = 1\npelec.mol_iorder = 1\npelec.plm_iorder = 1\npelec.diffuse_temp = 0\npelec.diffuse_enth = 0\npelec.diffuse_spec = 0\npelec.diffuse_vel = 0\npelec.chem_integrator = ReactorCvode\npelec.fixed_dt = 2e-08\npelec.init_shrink = 1\npelec.cfl = 0.3\npelec.dt_cutoff = 1e-20\npelec.eb_clean_massfrac = 1\npelec.eb_isothermal = 0\npelec.eb_noslip = 0\npelec.redistribution_type = StateRedist\npelec.eb_srd_max_order = 0\npelec.sum_interval = 1\npelec.v = 1\namr.v = 1\nprob.mode = 2\nprob.feed = 0\nprob.seed = 1\nprob.p0 = 3779169.7229176015\nprob.T0 = 300.0\nprob.Tprod = 1500.0\nprob.height = 0.38\nprob.Y = 0 0 0.77231494925428823 0 0 0 0 0 0.22768505074571185 0 0 0 0\nprob.Yprod = 0.0083534214467384862 1.220325169844099e-07 4.4737245055283787e-11 8.1957372404194661e-12 4.0519614543997538e-07 4.0949543600874511e-14 0.4366964290651954 3.9125721648810408e-12 6.9629120015002774e-09 0.1219102027677107 0.43303939037721084 2.2094683714915824e-08 0\nprob.Yseed = 0.01079400049255734 0.0026528213459930238 0.063321175920866724 0.023901630833274238 0.097815100867309143 0.00048561461532919519 0.33924341367366179 2.7953431618755204e-09 5.4550970420686463e-10 0.28501342133239171 0.17677141238095412 1.4051968098425723e-06 0\nprob.seed_p = 100000000\nprob.seed_T = 4000\nprob.seed_u = 190000\namrex.abort_on_unused_inputs = 1\namrex.signal_handling = 0\ncvode.solve_type = GMRES\ncvode.max_order = 5\node.rtol = 1e-10\node.atol = 1e-18\neb2.geom_type = parser\neb2.parser_function = max(sqrt(x*x+y*y)-3.81,3.31-sqrt(x*x+y*y))\n",
+  "apertures": {
+    "fuel": {
+      "sampled_area_m2": 4.1110048828125006e-05,
+      "nominal_area_m2": 4.04427995433498e-05,
+      "relative_area_error": 0.01649859288450095,
+      "faces": 116
+    },
+    "oxygen": {
+      "sampled_area_m2": 0.00010490150390625001,
+      "nominal_area_m2": 0.00010121163694369716,
+      "relative_area_error": 0.03645694382559461,
+      "faces": 296
+    }
+  },
+  "diagnostic": {
+    "name": "chemistry_only",
+    "closed_outlet": true,
+    "hydro": false,
+    "scope": "Isolating numerical failure, not an engine performance case."
+  }
+}

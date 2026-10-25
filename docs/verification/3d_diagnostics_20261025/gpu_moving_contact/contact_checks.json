@@ -1,0 +1,290 @@
+{
+  "rows": [
+    {
+      "time_s": 0.0,
+      "pressure_relative_error": 8.074541035796301e-11,
+      "velocity_error_mps": 1.1368683772161603e-13,
+      "min_species": 0.0,
+      "species_sum_error": 1.1102230246251565e-16,
+      "temperature_minmax_K": [
+        300.00000002422365,
+        1500.0
+      ],
+      "finite": true
+    },
+    {
+      "time_s": 4.999999999999999e-08,
+      "pressure_relative_error": 0.08062889186318034,
+      "velocity_error_mps": 14.915968396438302,
+      "min_species": 0.0,
+      "species_sum_error": 1.2212453270876722e-15,
+      "temperature_minmax_K": [
+        300.00000002422365,
+        1500.0046161406929
+      ],
+      "finite": true
+    },
+    {
+      "time_s": 1.0000000000000007e-07,
+      "pressure_relative_error": 0.06633285909396802,
+      "velocity_error_mps": 17.42750391226366,
+      "min_species": 0.0,
+      "species_sum_error": 1.9984014443252818e-15,
+      "temperature_minmax_K": [
+        300.00000002422365,
+        1500.115704716503
+      ],
+      "finite": true
+    },
+    {
+      "time_s": 1.5e-07,
+      "pressure_relative_error": 0.056297387038420243,
+      "velocity_error_mps": 17.810739685417047,
+      "min_species": 0.0,
+      "species_sum_error": 2.4424906541753444e-15,
+      "temperature_minmax_K": [
+        300.00000002422365,
+        1500.4620533365432
+      ],
+      "finite": true
+    },
+    {
+      "time_s": 1.9999999999999978e-07,
+      "pressure_relative_error": 0.048553169296565946,
+      "velocity_error_mps": 17.497810236497344,
+      "min_species": 0.0,
+      "species_sum_error": 3.552713678800501e-15,
+      "temperature_minmax_K": [
+        300.00000002422365,
+        1500.9813478240203
+      ],
+      "finite": true
+    },
+    {
+      "time_s": 2.4999999999999957e-07,
+      "pressure_relative_error": 0.04329029924676009,
+      "velocity_error_mps": 16.91779267520576,
+      "min_species": 0.0,
+      "species_sum_error": 3.552713678800501e-15,
+      "temperature_minmax_K": [
+        300.00000002422365,
+        1501.618700021519
+      ],
+      "finite": true
+    },
+    {
+      "time_s": 2.9999999999999935e-07,
+      "pressure_relative_error": 0.03941176209540376,
+      "velocity_error_mps": 16.235008143187883,
+      "min_species": 0.0,
+      "species_sum_error": 4.440892098500626e-15,
+      "temperature_minmax_K": [
+        300.00000002422365,
+        1502.2431081768784
+      ],
+      "finite": true
+    },
+    {
+      "time_s": 3.5199999999999913e-07,
+      "pressure_relative_error": 0.03654395844478531,
+      "velocity_error_mps": 15.498374452194867,
+      "min_species": 0.0,
+      "species_sum_error": 4.440892098500626e-15,
+      "temperature_minmax_K": [
+        300.00000002422365,
+        1502.8760914629913
+      ],
+      "finite": true
+    },
+    {
+      "time_s": 4.019999999999989e-07,
+      "pressure_relative_error": 0.03446632270687111,
+      "velocity_error_mps": 14.96403820187436,
+      "min_species": 0.0,
+      "species_sum_error": 5.773159728050814e-15,
+      "temperature_minmax_K": [
+        300.00000002422365,
+        1503.3737261635254
+      ],
+      "finite": true
+    },
+    {
+      "time_s": 4.519999999999987e-07,
+      "pressure_relative_error": 0.03284438716913085,
+      "velocity_error_mps": 14.622982428437808,
+      "min_species": 0.0,
+      "species_sum_error": 5.995204332975845e-15,
+      "temperature_minmax_K": [
+        300.00000002422365,
+        1503.8440286510772
+      ],
+      "finite": true
+    },
+    {
+      "time_s": 4.999999999999991e-07,
+      "pressure_relative_error": 0.03159447089617995,
+      "velocity_error_mps": 14.360432644078855,
+      "min_species": 0.0,
+      "species_sum_error": 7.327471962526033e-15,
+      "temperature_minmax_K": [
+        299.99999980678774,
+        1504.19174643799
+      ],
+      "finite": true
+    },
+    {
+      "time_s": 5.500000000000002e-07,
+      "pressure_relative_error": 0.030452880297096696,
+      "velocity_error_mps": 14.11471209513229,
+      "min_species": 0.0,
+      "species_sum_error": 7.327471962526033e-15,
+      "temperature_minmax_K": [
+        299.99999980678774,
+        1504.4811739797722
+      ],
+      "finite": true
+    },
+    {
+      "time_s": 6.000000000000013e-07,
+      "pressure_relative_error": 0.029465696399683994,
+      "velocity_error_mps": 13.90395883601434,
+      "min_species": 0.0,
+      "species_sum_error": 7.993605777301127e-15,
+      "temperature_minmax_K": [
+        299.99999990750416,
+        1504.707303396287
+      ],
+      "finite": true
+    },
+    {
+      "time_s": 6.500000000000025e-07,
+      "pressure_relative_error": 0.028613762934354137,
+      "velocity_error_mps": 13.708623889015712,
+      "min_species": 0.0,
+      "species_sum_error": 7.993605777301127e-15,
+      "temperature_minmax_K": [
+        299.99999994065405,
+        1504.8723048868872
+      ],
+      "finite": true
+    },
+    {
+      "time_s": 7.000000000000036e-07,
+      "pressure_relative_error": 0.027872344474041855,
+      "velocity_error_mps": 13.520065258367595,
+      "min_species": 0.0,
+      "species_sum_error": 8.659739592076221e-15,
+      "temperature_minmax_K": [
+        299.9999996809439,
+        1504.9817270118438
+      ],
+      "finite": true
+    },
+    {
+      "time_s": 7.500000000000047e-07,
+      "pressure_relative_error": 0.027204085581010506,
+      "velocity_error_mps": 13.356485715465396,
+      "min_species": 0.0,
+      "species_sum_error": 9.769962616701378e-15,
+      "temperature_minmax_K": [
+        299.99999980784,
+        1505.059691382351
+      ],
+      "finite": true
+    },
+    {
+      "time_s": 8.000000000000058e-07,
+      "pressure_relative_error": 0.02659603642833397,
+      "velocity_error_mps": 13.197746940332195,
+      "min_species": 0.0,
+      "species_sum_error": 9.769962616701378e-15,
+      "temperature_minmax_K": [
+        299.9999998199678,
+        1505.0951275407783
+      ],
+      "finite": true
+    },
+    {
+      "time_s": 8.500000000000069e-07,
+      "pressure_relative_error": 0.026038612324679633,
+      "velocity_error_mps": 13.046605956759322,
+      "min_species": 0.0,
+      "species_sum_error": 9.992007221626409e-15,
+      "temperature_minmax_K": [
+        299.99999958189244,
+        1505.1039238424985
+      ],
+      "finite": true
+    },
+    {
+      "time_s": 9.00000000000008e-07,
+      "pressure_relative_error": 0.025524488829145264,
+      "velocity_error_mps": 12.910848875599527,
+      "min_species": 0.0,
+      "species_sum_error": 1.1324274851176597e-14,
+      "temperature_minmax_K": [
+        299.99999958189244,
+        1505.0988108392257
+      ],
+      "finite": true
+    },
+    {
+      "time_s": 9.500000000000091e-07,
+      "pressure_relative_error": 0.025047900077762808,
+      "velocity_error_mps": 12.774682667007141,
+      "min_species": 0.0,
+      "species_sum_error": 1.176836406102666e-14,
+      "temperature_minmax_K": [
+        299.9999994617889,
+        1505.0771788730858
+      ],
+      "finite": true
+    },
+    {
+      "time_s": 1e-06,
+      "pressure_relative_error": 0.024604214792250056,
+      "velocity_error_mps": 12.653471508989583,
+      "min_species": 0.0,
+      "species_sum_error": 1.2434497875801753e-14,
+      "temperature_minmax_K": [
+        299.9999994526951,
+        1505.0451173944302
+      ],
+      "finite": true
+    }
+  ],
+  "every_step_history": {
+    "passed": true,
+    "checks": {
+      "positive_density_pressure": true,
+      "temperature_interval": true,
+      "species_nonnegative": true,
+      "species_sum": true
+    },
+    "extrema": {
+      "density": [
+        0.00071170504,
+        0.0040148027
+      ],
+      "Temp": [
+        300.0,
+        1505.109
+      ],
+      "pressure": [
+        3779169.7,
+        4138092.7
+      ],
+      "massfrac": [
+        0.0,
+        0.77231495
+      ],
+      "sumYminus1": [
+        -4.9960036e-15,
+        1.2434498e-14
+      ]
+    },
+    "expected_count": 501,
+    "scope": "Every native logged step, including initial state; native text precision retained. Complements full-precision saved field checks."
+  },
+  "scope": "Nonreacting translating contact. Pressure/velocity errors measure mixture-interface artifacts; no engine validation."
+}

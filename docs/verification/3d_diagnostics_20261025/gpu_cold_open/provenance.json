@@ -1,0 +1,9 @@
+{
+  "artifact_sha256": "ed538ed14b69b15820c479faf56294a5516c620462d172ebfeffa49f4321e119",
+  "raw_result": "/Users/sgfx/.codex/worktrees/3d-cfd-review/prox_rde_sim/runs3d/failure_matrix_20261025/gpu_results/cold_open.json",
+  "input": {
+    "name": "cold_open",
+    "case": "/Users/sgfx/.codex/worktrees/3d-cfd-review/prox_rde_sim/runs3d/failure_matrix_20261025/cold_open.json",
+    "limit": 600
+  }
+}

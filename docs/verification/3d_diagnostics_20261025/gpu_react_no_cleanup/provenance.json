@@ -1,0 +1,9 @@
+{
+  "artifact_sha256": "abfb2ef3fa42b515c8a92512ee8888e6e2e6524eee129346836393eac5a492ce",
+  "raw_result": "/Users/sgfx/.codex/worktrees/3d-cfd-review/prox_rde_sim/runs3d/failure_matrix_20261025/gpu_planar_results/react_no_cleanup.json",
+  "input": {
+    "name": "react_no_cleanup",
+    "case": "/Users/sgfx/.codex/worktrees/3d-cfd-review/prox_rde_sim/runs3d/failure_matrix_20261025/react_no_cleanup.json",
+    "limit": 600
+  }
+}

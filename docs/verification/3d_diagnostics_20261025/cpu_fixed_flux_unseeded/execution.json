@@ -1,0 +1,91 @@
+{
+  "commands": [
+    {
+      "command": [
+        "chemkinToFoam",
+        "mechanism.inp",
+        "thermo.dat",
+        "transport.foam",
+        "constant/foam/reactions.foam",
+        "constant/foam/thermo.foam"
+      ],
+      "returncode": 0,
+      "wall_seconds": 4.556850646000001
+    },
+    {
+      "command": [
+        "blockMesh"
+      ],
+      "returncode": 0,
+      "wall_seconds": 1.3314340710000003
+    },
+    {
+      "command": [
+        "checkMesh",
+        "-allTopology",
+        "-allGeometry"
+      ],
+      "returncode": 0,
+      "wall_seconds": 3.1116608340000003
+    },
+    {
+      "command": [
+        "postProcess",
+        "-func",
+        "writeCellCentres",
+        "-time",
+        "0"
+      ],
+      "returncode": 0,
+      "wall_seconds": 1.4356152929999997
+    },
+    {
+      "command": [
+        "python",
+        "/opt/cfd-tools/initialize_annulus.py"
+      ],
+      "returncode": 0,
+      "wall_seconds": 2.0449612749999986
+    },
+    {
+      "command": [
+        "decomposePar",
+        "-force"
+      ],
+      "returncode": 0,
+      "wall_seconds": 4.077968717000001
+    },
+    {
+      "command": [
+        "mpirun",
+        "--allow-run-as-root",
+        "-np",
+        "16",
+        "detonationFoam_V2.0",
+        "-parallel"
+      ],
+      "returncode": 0,
+      "wall_seconds": 32.027286962000005
+    },
+    {
+      "command": [
+        "reconstructPar"
+      ],
+      "returncode": 0,
+      "wall_seconds": 5.706396591000001
+    },
+    {
+      "command": [
+        "python",
+        "/opt/cfd-tools/tools/openfoam/analyze_annulus.py",
+        "/tmp/foam-case-aiokp7v6"
+      ],
+      "returncode": 0,
+      "wall_seconds": 17.455940251
+    }
+  ],
+  "wall_seconds": 71.748171149,
+  "input_sha256": "290fcf526e7d089eb18e56295f75f94e53004731451cfb1ca044da562334adf2",
+  "ranks": 16,
+  "scope": "Execution evidence only. Completion, clipping, chemistry and wave checks required."
+}

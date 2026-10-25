@@ -1,0 +1,11 @@
+{
+  "wall_seconds": 14.824166692000006,
+  "returncode": 0,
+  "actual_time": 1e-06,
+  "requested_time": 1e-06,
+  "errors": [],
+  "completed": true,
+  "scope": "Native CFD execution; physical validation separate.",
+  "analysis_returncode": 0,
+  "retained_output": "All sampled slices and diagnostics; full 3D initial/final fields. Intermediate full plotfiles omitted from download."
+}

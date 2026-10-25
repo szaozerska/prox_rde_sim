@@ -16,12 +16,12 @@ image=(base_image.add_local_dir(ROOT/'rde3d/native/pelec/RDEPrototype','/opt/pro
 app=modal.App('prox-rde-3d-compact-prototype',include_source=False)
 @app.function(image=image,serialized=True,gpu='H100!',cpu=(8.,8.),memory=(32768,32768),timeout=7500,startup_timeout=180,retries=0,max_containers=1)
 def run_case(config:dict,profile:str='',limit:int=1200):
-    import subprocess,time,io,tarfile,base64,hashlib,json
+    import subprocess,time,io,tarfile,base64,hashlib,json,tempfile
     from pathlib import Path
     from validation import native_log_errors
     if not 10<=limit<=7200 or config['mode'] not in (0,1,2):raise ValueError('Invalid bounded job')
     if not 0<config['stop']<=.005 or not 0<config['dt']<=1e-7:raise ValueError('Invalid time envelope')
-    root=Path('/tmp/prototype');root.mkdir();(root/'case.json').write_text(json.dumps(config,indent=2))
+    root=Path(tempfile.mkdtemp(prefix='prototype-')); (root/'case.json').write_text(json.dumps(config,indent=2))
     if profile:(root/'profile.dat').write_text(profile)
     (root/'inputs').write_text(config['inputs'])
     exe='/opt/PeleC/build-gpu/Exec/RegTests/RDEPrototype/PeleC-RDEPrototype'

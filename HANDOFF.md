@@ -1,22 +1,30 @@
-# Current 3D prototype handoff — October 24–25, 2026
+# Current 3D diagnostics handoff — October 25, 2026
 
 Active checkout: `/Users/sgfx/.codex/worktrees/3d-cfd-review/prox_rde_sim`, branch
-`3d-modelling`. The original 2D checkout remains untouched. The latest user
-explicitly authorized both native backends and bounded diagnostic engine runs.
-This supersedes the older implementation-order restrictions below; physical
-acceptance gates remain failed, and no production design calculation is approved
-by the test evidence.
+`3d-modelling`. The original 2D checkout remains untouched.
 
-Implemented PeleC/H100 and detonationFoam/16-CPU workflows with attributed
-FFCMy-12 chemistry, angled radial injection, finite tangential startup, actual
-3D-field GIFs and incremental native controls. GPU reaches 10 µs; CPU reaches
-1 µs. **Neither is validated:** GPU negative species, CPU clipping/closure error,
-and both short planar propagation controls fail. No 1–5 ms sustained engine result.
+The 32-case native diagnostic campaign is finished: 31 runs reached their target
+times; one tighter CPU chemistry control exhausted its internal ODE-step limit.
+Read [the concise findings](docs/verification/3d_diagnostics_20261025/README.md),
+[the full result index](docs/verification/3d_diagnostics_20261025/index.json), and
+[reproduction commands](docs/verification/3d_diagnostics_20261025/REPRODUCE.md).
 
-Start with the [concise result](docs/verification/3d_prototype_20261024/README.md)
-and [reproduction commands](tools/CFD_PROTOTYPE.md). Do not repeat long engine
-runs before isolating the transport/chemistry failures. Saved GIFs are explicitly
-marked diagnostics. Local raw artifacts remain in ignored `runs3d/`.
+Confirmed: PeleC's embedded-boundary species cleanup adds mass in the disturbed
+reacting annulus; disabling it preserves mass but worsens negative species.
+A 1 ns step passes species bounds for 1 µs, with small residual mass drift.
+detonationFoam constructs species convection with volume flux while transporting
+with mass flux. The isolated `modal_flux_diagnostics.py` executable corrects this;
+upwind transport removes major clipping but retains a 6.1e-8 closure residual.
+Tighter chemistry fails at the attempted 0.10 µs step (last completed 0.08 µs).
+The original limited-linear scheme still clips after the flux correction.
+
+Both solvers' 2 µs planar controls relax toward CJ speed (late GPU 2558 m/s;
+CPU 2579/2583 m/s at 16/8 µm; reference 2531 m/s). Their reaction-zone structures
+remain wrong. Plausible speed is not physical validation. Do not treat the
+existing diagnostic GIFs as a sustained detonation or an engine design result.
+Next: bounded/conservative transport and resolved shock–chemistry coupling,
+then injector refill and startup sensitivity, followed by multi-revolution runs.
+22 software tests pass; this is separate from CFD physical acceptance.
 
 The following is historical handoff context, not the current completion status.
 

@@ -1,0 +1,10 @@
+{
+  "artifact_sha256": "0c9d0f6d1a6311a2d7595fa313a50ecf301c8453af804711e5fd1ae2de4eb55d",
+  "raw_result": "/Users/sgfx/.codex/worktrees/3d-cfd-review/prox_rde_sim/runs3d/failure_matrix_20261025/gpu_planar_results/long_16um_2us.json",
+  "input": {
+    "name": "long_16um_2us",
+    "case": "/Users/sgfx/.codex/worktrees/3d-cfd-review/prox_rde_sim/runs3d/failure_matrix_20261025/long_16um_2us.json",
+    "profile": "/Users/sgfx/.codex/worktrees/3d-cfd-review/prox_rde_sim/runs3d/failure_matrix_20261025/long_profiles/profile_n2048.dat",
+    "limit": 1500
+  }
+}

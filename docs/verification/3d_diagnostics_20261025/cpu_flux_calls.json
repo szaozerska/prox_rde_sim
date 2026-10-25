@@ -1,0 +1,22 @@
+[
+  {
+    "name": "fixed_flux_unseeded",
+    "id": "fc-01M5TFTYJMR0CTHNQV94ZCRCE3"
+  },
+  {
+    "name": "fixed_flux_frozen_upwind",
+    "id": "fc-01M5TFTZ01K15P9XRQKJZ34ADM"
+  },
+  {
+    "name": "fixed_flux_react_upwind",
+    "id": "fc-01M5TFTZJHVJXNYYG8JASNRHK2"
+  },
+  {
+    "name": "fixed_flux_react_limited",
+    "id": "fc-01M5TFTZZY3GPTXA58VZKHT142"
+  },
+  {
+    "name": "fixed_flux_short8um",
+    "id": "fc-01M5TFV0DD0ESJW8769M9311N4"
+  }
+]

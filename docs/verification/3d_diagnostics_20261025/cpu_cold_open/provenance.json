@@ -1,0 +1,10 @@
+{
+  "artifact_sha256": "761aea948682002f10736619503d9df94ee27e34484f9dde85b78566a1cd9a97",
+  "raw_result": "/Users/sgfx/.codex/worktrees/3d-cfd-review/prox_rde_sim/runs3d/failure_matrix_20261025/cpu_results/cold_open.json",
+  "input": {
+    "name": "cold_open",
+    "case": "/Users/sgfx/.codex/worktrees/3d-cfd-review/prox_rde_sim/runs3d/failure_matrix_20261025/foam_cold_open",
+    "limit": 900,
+    "ranks": 16
+  }
+}

@@ -493,3 +493,10 @@ measured runtimes, limitations and the next isolating controls. Reproduction is 
 `tools/CFD_PROTOTYPE.md`. Native physical failures are not superseded by the 19
 passing unit tests. Both full native engines exist as exploratory workflows; neither
 is a validated engine model or a demonstrated 1–2-hour screening tool.
+
+
+## October 25, 2026 — native failure isolation
+
+Completed a 32-case campaign (31 target-time completions and one native ODE-step-limit failure), on at most one H100 and one separate 16-core CPU worker. Preserved native logs, checksums, input configurations, field-derived wave profiles, and comparison plots in [the diagnostic record](3d_diagnostics_20261025/README.md).
+
+Identified PeleC cleanup-induced mass drift and timestep-sensitive negativity. Identified and tested detonationFoam's volume-/mass-flux inconsistency using an isolated patched executable; first-order upwind removes major clipping, but stricter closure and chemistry robustness remain unresolved. Longer planar runs approach CJ speed while failing reaction-zone structure checks. No engine validation or sustained-wave claim was added. The latest software suite passes 22 tests, and preparation reproduces the tested GPU inputs byte-for-byte.

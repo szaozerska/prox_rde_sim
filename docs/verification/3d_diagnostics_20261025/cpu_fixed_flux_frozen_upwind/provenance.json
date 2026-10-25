@@ -1,0 +1,10 @@
+{
+  "artifact_sha256": "b35db3ebaf0bc418ccd0c1a787246df41478fd5cedc96ca2d87c7334a5ae0eb5",
+  "raw_result": "/Users/sgfx/.codex/worktrees/3d-cfd-review/prox_rde_sim/runs3d/failure_matrix_20261025/cpu_flux_results/fixed_flux_frozen_upwind.json",
+  "input": {
+    "name": "fixed_flux_frozen_upwind",
+    "case": "/Users/sgfx/.codex/worktrees/3d-cfd-review/prox_rde_sim/runs3d/failure_matrix_20261025/foam_frozen_closed_upwind",
+    "limit": 600,
+    "ranks": 16
+  }
+}

@@ -1,0 +1,41 @@
+{
+  "mode": 1,
+  "case_type": "contact",
+  "stop": 1e-06,
+  "dt": 2e-09,
+  "n": 512,
+  "feed": 0,
+  "seed": false,
+  "reacting": false,
+  "species": [
+    "H2",
+    "H",
+    "O2",
+    "O",
+    "OH",
+    "HO2",
+    "H2O",
+    "CH3",
+    "CH4",
+    "CO",
+    "CO2",
+    "CH2O",
+    "N2"
+  ],
+  "mesh_m": [
+    1.6e-05,
+    1.6e-05,
+    1.6e-05
+  ],
+  "height_m": 0.0038,
+  "limitations": [
+    "Nonreacting constant-pressure moving material contact."
+  ],
+  "inputs": "stop_time = 1e-06\nmax_step = 1000000\ngeometry.is_periodic = 0 1 1\ngeometry.coord_sys = 0\ngeometry.prob_lo = 0 0 0\ngeometry.prob_hi = 0.8191999999999999 0.012799999999999999 0.012799999999999999\namr.n_cell = 512 8 8\namr.max_level = 0\namr.blocking_factor = 8\namr.max_grid_size = 32\namr.checkpoint_files_output = 0\namr.plot_files_output = 1\namr.plot_file = plt\namr.plot_int = 1000000\namr.plot_per = 5e-08\namr.plot_vars = density rho_E Temp\namr.derive_plot_vars = pressure x_velocity y_velocity z_velocity\npelec.plot_massfrac = 1\npelec.plot_rhoy = 0\namr.data_log = datlog\npelec.lo_bc = FOExtrap Interior Interior\npelec.hi_bc = FOExtrap Interior Interior\npelec.do_react = 0\npelec.do_hydro = 1\npelec.do_mol = 1\npelec.mol_iters = 1\npelec.mol_iorder = 1\npelec.plm_iorder = 1\npelec.diffuse_temp = 0\npelec.diffuse_enth = 0\npelec.diffuse_spec = 0\npelec.diffuse_vel = 0\npelec.chem_integrator = ReactorCvode\npelec.fixed_dt = 2e-09\npelec.init_shrink = 1\npelec.cfl = 0.3\npelec.dt_cutoff = 1e-20\npelec.eb_clean_massfrac = 0\npelec.eb_isothermal = 0\npelec.eb_noslip = 0\npelec.redistribution_type = StateRedist\npelec.eb_srd_max_order = 0\npelec.sum_interval = 1\npelec.v = 1\namr.v = 1\nprob.mode = 1\nprob.feed = 0\nprob.seed = 0\nprob.p0 = 229840000.0\nprob.T0 = 1968.0\nprob.Tprod = 1500.0\nprob.height = 0.38\nprob.Y = 0 0 0.77231494925428823 0 0 0 0 0 0.22768505074571185 0 0 0 0\nprob.Yprod = 0.0097768093069128727 0.0023641044798844257 0.057717614623921956 0.017642936402903577 0.069958617447422697 7.7018142008996495e-05 0.36577911944762104 1.3236125066940554e-11 2.0228624520585835e-12 0.25893291031390647 0.2177508264608114 4.3359347695999217e-08 0\nprob.seed_p = 100000000\nprob.seed_T = 4000\nprob.seed_u = 190000\namrex.abort_on_unused_inputs = 1\namrex.signal_handling = 0\nprob.profile = profile.dat\n",
+  "diagnostic": {
+    "name": "moving_contact",
+    "pressure_Pa": 377916.97229176015,
+    "velocity_mps": 1000,
+    "interface_m": 0.004096
+  }
+}

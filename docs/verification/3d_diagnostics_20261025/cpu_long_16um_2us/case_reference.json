@@ -1,0 +1,194 @@
+{
+  "CJ": {
+    "pressure_Pa": 377916.97229176015,
+    "temperature_K": 300.0,
+    "phi": 1.176,
+    "CJ_speed_mps": 2530.8952634102757,
+    "CJ": {
+      "T": 3988.513593589312,
+      "p": 12007601.80703448,
+      "rho": 7.3108207646962695,
+      "h": 1209916.3972865557,
+      "gamma_frozen": 1.2118424188430812,
+      "MW": 20.1908741009019,
+      "Y": [
+        0.010262404767468937,
+        0.0022970377283772795,
+        0.05874379820373517,
+        0.020398101905831897,
+        0.09160975203087356,
+        0.00048438669452868723,
+        0.3504598402333662,
+        3.125848558951846e-09,
+        6.671501691805476e-10,
+        0.2780831011579599,
+        0.18765998648305904,
+        1.587001800691086e-06,
+        0.0
+      ]
+    },
+    "VN": {
+      "T": 1965.8986636766308,
+      "p": 22968011.253450226,
+      "rho": 36.66114075432616,
+      "h": 2109000.896254781,
+      "gamma_frozen": 1.1572249789954603,
+      "MW": 26.090229219143573,
+      "Y": [
+        0.0,
+        0.0,
+        0.7723149492542882,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.22768505074571185,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "u_shock_frame": 272.8896410445123
+    },
+    "q_equilibrium_Jkg": 5405420.26808282,
+    "initial": {
+      "T": 300.0,
+      "p": 377916.97229176015,
+      "rho": 3.9529275214849604,
+      "h": -1056480.1428284508,
+      "gamma_frozen": 1.3548148564251428,
+      "MW": 26.090229219143573,
+      "Y": [
+        0.0,
+        0.0,
+        0.7723149492542882,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.22768505074571185,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    "density_ratio": 1.849469975082794,
+    "jump_relative_residuals": {
+      "mass": 0.0,
+      "momentum": 6.511631286952667e-11,
+      "energy": 2.2868247189091422e-10
+    },
+    "frozen_jump_relative_residuals": {
+      "mass": 0.0,
+      "momentum": 5.981441673427448e-11,
+      "energy": 2.574959159340799e-13
+    },
+    "CJ_equilibrium_sonic_ratio": 0.9999895623143616,
+    "element_mass_fraction_error": 3.2962521601120898e-12,
+    "minimum_evaluations": 12,
+    "tolerance": 1e-08,
+    "minimum_tolerance": 1e-07
+  },
+  "ZND": {
+    "method": "BDF on unmodified SDToolbox ZNDSys",
+    "rtol": 2e-08,
+    "atol": 1e-14,
+    "max_step_s": 2e-09,
+    "numerical_warnings": [
+      "RuntimeWarning: overflow encountered in multiply"
+    ],
+    "requested_end_s": 8e-06,
+    "actual_end_s": 8e-06,
+    "termination": "The solver successfully reached the end of the integration interval.",
+    "stopped_at_sonic_event": false,
+    "samples": 6364,
+    "raw_species_min": 0.0,
+    "raw_species_sum_max_error": 4.107825191113079e-15,
+    "invariant_relative_residuals": {
+      "energy": 6.7656890245464e-05,
+      "momentum": 9.005216369365741e-09
+    },
+    "induction_time_max_dTdt_s": 2.0577074594156653e-07,
+    "induction_length_vn_velocity_m": 5.615270499745563e-05,
+    "distance_at_max_dTdt_m": 6.437124303789283e-05,
+    "cell_size_factor29_proxy_m": 0.0016284284449262132,
+    "peak_thermicity_time_s": 2.0598769223974172e-07,
+    "heat_fraction_lengths_m": {
+      "0.5": 6.228241442439892e-05,
+      "0.9": 6.865061277427475e-05,
+      "0.95": 7.290906237427728e-05
+    },
+    "final_heat_fraction": 0.9993190904321091
+  },
+  "coarse_ZND": {
+    "method": "BDF on unmodified SDToolbox ZNDSys",
+    "rtol": 1e-07,
+    "atol": 1e-11,
+    "max_step_s": 4e-09,
+    "numerical_warnings": [
+      "RuntimeWarning: overflow encountered in multiply"
+    ],
+    "requested_end_s": 8e-06,
+    "actual_end_s": 8e-06,
+    "termination": "The solver successfully reached the end of the integration interval.",
+    "stopped_at_sonic_event": false,
+    "samples": 3283,
+    "raw_species_min": 0.0,
+    "raw_species_sum_max_error": 2.4313884239290928e-14,
+    "invariant_relative_residuals": {
+      "energy": 6.775838214368582e-05,
+      "momentum": 6.787947706053008e-08
+    },
+    "induction_time_max_dTdt_s": 2.0577072833880245e-07,
+    "induction_length_vn_velocity_m": 5.6152700193843655e-05,
+    "distance_at_max_dTdt_m": 6.43712368510543e-05,
+    "cell_size_factor29_proxy_m": 0.001628428305621466,
+    "peak_thermicity_time_s": 2.0598352267590414e-07,
+    "heat_fraction_lengths_m": {
+      "0.5": 6.228228766957194e-05,
+      "0.9": 6.865093499411193e-05,
+      "0.95": 7.290908436372076e-05
+    },
+    "final_heat_fraction": 0.9993204857772768
+  },
+  "refinement": {
+    "induction_time_max_dTdt_s": 8.554552066719623e-08,
+    "distance_at_max_dTdt_m": 9.611184803581807e-08,
+    "half_heat_length_relative": 2.0351665250828432e-06
+  },
+  "conventions": {
+    "kind": "native_generated_constants",
+    "mechanism_species_count": 13,
+    "mechanism_reaction_count": 38,
+    "mechanism_sha256": "321cf0958fdeaf70f42e8989739e318be4b81a31168ab891bb5f668bdf082c90",
+    "generated_header_sha256": "11feab0520020459835c3dfb3ba6fb1eb857ff2d12809093ff428573287fa3c5",
+    "native_Rcal": 1.9872155831739962,
+    "cantera_Rcal": 1.9872042586408318,
+    "native_reference_R_SI": 8.31446,
+    "activation_energy_factor": 0.9999943013061793,
+    "species_reference_pressure_factor": 1.000000314891555,
+    "scope": "Source-derived constant conventions, not fitted to reactor data. Direct hot-state rates verified separately; nominal YAML comparisons remain separate. Low-temperature coefficient-rounding residual remains."
+  },
+  "sdtoolbox": {
+    "source_url": "https://shepherd.caltech.edu/EDL/PublicResources/sdt/SDToolbox.zip",
+    "archive_sha256": "c3de67d95e1586a1abea952d2d3767738e5e6c0a217183d5b9303b8f89adb4b0",
+    "upstream_note": "Archive retrieved for this investigation; Python headers state Updated April 2026. Website download label is older. Files unmodified.",
+    "files": {
+      "config.py": "51c583ae33d4986c911796a99025de60991d09a08b079b681fa8a82b433c68e4",
+      "znd.py": "517357d72707a6268e5a8c514ab4d8ae1c46e0d79f5fdacc77cf52260052cac8",
+      "postshock.py": "45d68dbf1565bf10d7c61e57152be379831c8df0874f3d0fdd18f8d4995d7508",
+      "reflections.py": "9c9f1556c7d30e005b03989b8a7969c8191797ebc46f83666e8486302e878fa4",
+      "__init__.py": "be432cb061ddaee9369a3d75026dce0032039b17378c1c758c1e6ee807593fe3",
+      "cp.py": "23ec0a53b4b3d37c7f13bb73969926b3834bfbb5f2960393d375801c0540ca70",
+      "stagnation.py": "f5c79e4c541f998ce59a31abac00fe797025558cc0c50ed07c14c5015a24aa60",
+      "thermo.py": "23e757ad9386a98148e4ba7e569f300295aed6c83732ddc88621b30bc0514797",
+      "cv.py": "a37d89c75bdcc5fe31ab209da5c1a77c36deeeb6177f7740137216933691a080",
+      "utilities.py": "97728fc9f66a923ccd8479ffe80a40d92a3996ea881117890bdd958219d37ffd",
+      "LICENSE.txt": "9e161337eee43d727d26202f8a07807f19fb7108c88c3f266fc5cfab6b39642b"
+    }
+  },
+  "extension_note": "Independent ZND integration extended in time; no constant-tail extrapolation."
+}

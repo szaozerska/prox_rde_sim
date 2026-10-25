@@ -1,0 +1,10 @@
+{
+  "artifact_sha256": "7e61fbf9263515273ece64456e198e947ef55228cf4bc07cbe437ce6fdb6f05a",
+  "raw_result": "/Users/sgfx/.codex/worktrees/3d-cfd-review/prox_rde_sim/runs3d/failure_matrix_20261025/gpu_planar_results/short_8um_dt01ns.json",
+  "input": {
+    "name": "short_8um_dt01ns",
+    "case": "/Users/sgfx/.codex/worktrees/3d-cfd-review/prox_rde_sim/runs3d/failure_matrix_20261025/short_8um_dt01ns.json",
+    "profile": "/Users/sgfx/.codex/worktrees/3d-cfd-review/prox_rde_sim/runs3d/failure_matrix_20261025/short_profiles/profile_n512.dat",
+    "limit": 600
+  }
+}

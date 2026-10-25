@@ -1,0 +1,10 @@
+{
+  "artifact_sha256": "b2d055662afaac82cfe3e081263f5e6c2951903d5b100b9c89842d268e5ebf45",
+  "raw_result": "/Users/sgfx/.codex/worktrees/3d-cfd-review/prox_rde_sim/runs3d/failure_matrix_20261025/cpu_planar_results/short_8um_dt01ns.json",
+  "input": {
+    "name": "short_8um_dt01ns",
+    "case": "/Users/sgfx/.codex/worktrees/3d-cfd-review/prox_rde_sim/runs3d/failure_matrix_20261025/foam_short_8um_dt01ns",
+    "limit": 600,
+    "ranks": 16
+  }
+}

@@ -1,0 +1,124 @@
+{
+  "checks": {
+    "completion": true,
+    "positive_pressure": true,
+    "thermo_range": true,
+    "species_nonnegative": true,
+    "species_sum": true,
+    "no_significant_preclip_negative": true
+  },
+  "rows": [
+    {
+      "time_s": 0.0,
+      "pressure_Pa": [
+        377916.97229176015,
+        377916.97229176015
+      ],
+      "temperature_K": [
+        300.0,
+        300.0
+      ],
+      "min_species": 0.0,
+      "species_sum_error": 0.0,
+      "max_speed_m_s": 0.0,
+      "worst_sum_position_m": [
+        0.0236265428011,
+        0.0236265428011,
+        0.000243325546159
+      ],
+      "worst_sum_species": {
+        "H2": 0.0,
+        "H": 0.0,
+        "O2": 0.7723149492542882,
+        "O": 0.0,
+        "OH": 0.0,
+        "HO2": 0.0,
+        "H2O": 0.0,
+        "CH3": 0.0,
+        "CH4": 0.22768505074571185,
+        "CO": 0.0,
+        "CO2": 0.0,
+        "CH2O": 0.0,
+        "N2": 0.0
+      }
+    },
+    {
+      "time_s": 5e-07,
+      "pressure_Pa": [
+        377916.972292,
+        666851.831801
+      ],
+      "temperature_K": [
+        300.0,
+        326.819346128
+      ],
+      "min_species": 0.0,
+      "species_sum_error": 1.000088900582341e-12,
+      "max_speed_m_s": 156.5049112774744,
+      "worst_sum_position_m": [
+        -0.00685208949604,
+        0.036525666263,
+        0.000243325546159
+      ],
+      "worst_sum_species": {
+        "H2": 0.0,
+        "H": 0.0,
+        "O2": 0.86647776301,
+        "O": 0.0,
+        "OH": 0.0,
+        "HO2": 0.0,
+        "H2O": 0.0,
+        "CH3": 0.0,
+        "CH4": 0.133522236991,
+        "CO": 0.0,
+        "CO2": 0.0,
+        "CH2O": 0.0,
+        "N2": 0.0
+      }
+    },
+    {
+      "time_s": 1e-06,
+      "pressure_Pa": [
+        377916.972292,
+        802836.394538
+      ],
+      "temperature_K": [
+        299.700454027,
+        328.744625681
+      ],
+      "min_species": 0.0,
+      "species_sum_error": 1.000088900582341e-12,
+      "max_speed_m_s": 208.97444102090395,
+      "worst_sum_position_m": [
+        0.0234179317084,
+        0.0255561879508,
+        0.000243325546159
+      ],
+      "worst_sum_species": {
+        "H2": 0.0,
+        "H": 0.0,
+        "O2": 0.772314949119,
+        "O": 0.0,
+        "OH": 0.0,
+        "HO2": 0.0,
+        "H2O": 0.0,
+        "CH3": 0.0,
+        "CH4": 0.227685050882,
+        "CO": 0.0,
+        "CO2": 0.0,
+        "CH2O": 0.0,
+        "N2": 0.0
+      }
+    }
+  ],
+  "clipping": {
+    "samples": 50,
+    "worst_preclip_Y": 0.0,
+    "sum_clipped_mass_kg": 0.0,
+    "max_step_clipped_mass_kg": 0.0,
+    "worst_inert_Y": -8.65973959208e-15
+  },
+  "physical_validation_passed": false,
+  "scope": "Exploratory reactive Euler native 3D fields. No sustained-detonation or experimental validation claim.",
+  "sampling_max_distance_m": 0.0003671218507967599
+}

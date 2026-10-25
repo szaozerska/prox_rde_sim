@@ -24,6 +24,12 @@ def analyze(run):
             pressure_Pa=[float(P[fluid].min()),float(P[fluid].max())],temperature_K=[float(T[fluid].min()),float(T[fluid].max())],
             min_species=float(Y[fluid].min()),species_sum_error=float(np.max(abs(Y[fluid].sum(axis=-1)-1))),
             finite=bool(all(np.isfinite(v[fluid]).all() for v in f.values())),fluid_volume_m3=float(vf.sum()*volume))
+        masked=np.where(fluid[...,None],Y,np.inf)
+        worst=np.unravel_index(np.argmin(masked),Y.shape);ijk=np.array(worst[:3]);vf_worst=float(vf[tuple(ijk)])
+        negative=Y.min(axis=-1)<-1e-10
+        row['worst_species']=dict(name=g.species_names[worst[3]],position_m=((lo+(ijk+.5)*dx)*.01).tolist(),vfrac=vf_worst)
+        row['negative_inventory_kg']=float(np.sum(rho[...,None]*np.maximum(-Y,0)*vf[...,None])*volume)
+        row['negative_cells']=dict(regular=int(np.count_nonzero(negative & (vf>=1-1e-12))),cut=int(np.count_nonzero(negative & (vf>0) & (vf<1-1e-12))))
         if c['mode']==0:
             row.update(mean_T=float(T.mean()),mean_p=float(P.mean()),mean_Y=Y.mean(axis=(0,1,2)).tolist())
         else:

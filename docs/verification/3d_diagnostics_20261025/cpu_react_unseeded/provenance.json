@@ -1,0 +1,10 @@
+{
+  "artifact_sha256": "c588f335912daecd55d4bb8b709c8835b244a96e6c9368770abecb3998d23095",
+  "raw_result": "/Users/sgfx/.codex/worktrees/3d-cfd-review/prox_rde_sim/runs3d/failure_matrix_20261025/cpu_results/react_unseeded.json",
+  "input": {
+    "name": "react_unseeded",
+    "case": "/Users/sgfx/.codex/worktrees/3d-cfd-review/prox_rde_sim/runs3d/failure_matrix_20261025/foam_react_unseeded",
+    "limit": 900,
+    "ranks": 16
+  }
+}

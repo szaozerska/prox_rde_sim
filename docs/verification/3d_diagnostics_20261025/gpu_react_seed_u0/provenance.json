@@ -1,0 +1,9 @@
+{
+  "artifact_sha256": "01a3e1bf2c11235987f7fcd1c374c01c678e81c7be52d0e534d7026f75555536",
+  "raw_result": "/Users/sgfx/.codex/worktrees/3d-cfd-review/prox_rde_sim/runs3d/failure_matrix_20261025/gpu_planar_results/react_seed_u0.json",
+  "input": {
+    "name": "react_seed_u0",
+    "case": "/Users/sgfx/.codex/worktrees/3d-cfd-review/prox_rde_sim/runs3d/failure_matrix_20261025/react_seed_u0.json",
+    "limit": 600
+  }
+}

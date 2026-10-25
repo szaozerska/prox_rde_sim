@@ -1,0 +1,10 @@
+{
+  "artifact_sha256": "c116a01da2ae47485a9659f1263ef63163552558c68e680332687dbeb5291c4f",
+  "raw_result": "/Users/sgfx/.codex/worktrees/3d-cfd-review/prox_rde_sim/runs3d/failure_matrix_20261025/cpu_flux_tight_results/fixed_flux_tight_chemistry.json",
+  "input": {
+    "name": "fixed_flux_tight_chemistry",
+    "case": "/Users/sgfx/.codex/worktrees/3d-cfd-review/prox_rde_sim/runs3d/failure_matrix_20261025/foam_fixed_flux_tight_chemistry",
+    "limit": 900,
+    "ranks": 16
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "artifact_sha256": "af2f8fbcfc413c081a6733d29f70a159477fa55210440d7c06d995d63a240945",
+  "raw_result": "/Users/sgfx/.codex/worktrees/3d-cfd-review/prox_rde_sim/runs3d/failure_matrix_20261025/gpu_planar_results/moving_contact.json",
+  "input": {
+    "name": "moving_contact",
+    "case": "/Users/sgfx/.codex/worktrees/3d-cfd-review/prox_rde_sim/runs3d/failure_matrix_20261025/moving_contact.json",
+    "profile": "/Users/sgfx/.codex/worktrees/3d-cfd-review/prox_rde_sim/runs3d/failure_matrix_20261025/contact.dat",
+    "limit": 300
+  }
+}

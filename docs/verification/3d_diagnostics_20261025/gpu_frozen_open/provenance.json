@@ -1,0 +1,9 @@
+{
+  "artifact_sha256": "a77dbaa225872d48b147e18050c9158475cccad74e28cb964fab61e9b98c7190",
+  "raw_result": "/Users/sgfx/.codex/worktrees/3d-cfd-review/prox_rde_sim/runs3d/failure_matrix_20261025/gpu_results/frozen_open.json",
+  "input": {
+    "name": "frozen_open",
+    "case": "/Users/sgfx/.codex/worktrees/3d-cfd-review/prox_rde_sim/runs3d/failure_matrix_20261025/frozen_open.json",
+    "limit": 600
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "tight_chemistry": {
+    "last_completed_step_s": 8e-08,
+    "failed_attempt_time_s": 1e-07,
+    "target_time_s": 1e-06,
+    "reason": "seulex exhausted maximum 10000 internal ODE steps",
+    "classification": "Native solver failure, not timeout; no final reconstructed fields"
+  },
+  "initial_flux_image_build": {
+    "reason": "Missing build-helper module in container image",
+    "classification": "Infrastructure failure before CFD launch; helper added and rebuilt successfully"
+  }
+}

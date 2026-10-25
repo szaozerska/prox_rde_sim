@@ -1,0 +1,9 @@
+{
+  "artifact_sha256": "88f2c775b949ff9293c6060a36c29f5c6d5f0f220a26f86160d4e81ef19ddaa5",
+  "raw_result": "/Users/sgfx/.codex/worktrees/3d-cfd-review/prox_rde_sim/runs3d/failure_matrix_20261025/gpu_results/chemistry_only.json",
+  "input": {
+    "name": "chemistry_only",
+    "case": "/Users/sgfx/.codex/worktrees/3d-cfd-review/prox_rde_sim/runs3d/failure_matrix_20261025/chemistry_only.json",
+    "limit": 600
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "wall_seconds": 141.730878645,
+  "command": [
+    "cmake",
+    "--build",
+    "/opt/PeleC/build-gpu",
+    "--target",
+    "PeleC-RDEPrototype",
+    "-j",
+    "12"
+  ],
+  "mechanism_sha256": "321cf0958fdeaf70f42e8989739e318be4b81a31168ab891bb5f668bdf082c90",
+  "binary_sha256": "6375d8eb9f502c6250e7fb58f1027c939671a96429303b17898c5aeefc57f3d9",
+  "note": "Native PeleC equations. Initial/boundary states and CEPTR-generated chemistry only; no thermo inversion overlay."
+}

@@ -1,0 +1,22 @@
+[
+  {
+    "name": "short_8um_dt01ns",
+    "id": "fc-01M5TF34KD9T3143F0P2R7G2E7"
+  },
+  {
+    "name": "short_4um_dt01ns",
+    "id": "fc-01M5TF3513PTNQPAYZEF5ENZK9"
+  },
+  {
+    "name": "short_2um_dt01ns",
+    "id": "fc-01M5TF35NGG719HFEHNG3CMNDX"
+  },
+  {
+    "name": "long_16um_2us",
+    "id": "fc-01M5TF3639KTYFTAFTXWSAM510"
+  },
+  {
+    "name": "long_8um_2us",
+    "id": "fc-01M5TF36HKE3SVSTWQTEDWP3T8"
+  }
+]

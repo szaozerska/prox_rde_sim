@@ -1,0 +1,10 @@
+{
+  "artifact_sha256": "e5f10a2d02bc9f182590c32a98442c1038f0ff8062c691f9e16b1883eaa9c073",
+  "raw_result": "/Users/sgfx/.codex/worktrees/3d-cfd-review/prox_rde_sim/runs3d/failure_matrix_20261025/cpu_flux_results/fixed_flux_unseeded.json",
+  "input": {
+    "name": "fixed_flux_unseeded",
+    "case": "/Users/sgfx/.codex/worktrees/3d-cfd-review/prox_rde_sim/runs3d/failure_matrix_20261025/foam_react_unseeded",
+    "limit": 600,
+    "ranks": 16
+  }
+}

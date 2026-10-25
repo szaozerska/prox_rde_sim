@@ -1,0 +1,9 @@
+{
+  "wall_seconds": 487.86801387699995,
+  "returncode": 0,
+  "actual_time": 2e-06,
+  "requested_time": 2e-06,
+  "errors": [],
+  "completed": true,
+  "scope": "Native CFD execution; physical validation separate."
+}

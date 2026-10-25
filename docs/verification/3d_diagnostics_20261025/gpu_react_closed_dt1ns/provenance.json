@@ -1,0 +1,9 @@
+{
+  "artifact_sha256": "ea7a28452a44616a178543b3452e94b963797b78ef60b398077c3562aa312e92",
+  "raw_result": "/Users/sgfx/.codex/worktrees/3d-cfd-review/prox_rde_sim/runs3d/failure_matrix_20261025/gpu_planar_results/react_closed_dt1ns.json",
+  "input": {
+    "name": "react_closed_dt1ns",
+    "case": "/Users/sgfx/.codex/worktrees/3d-cfd-review/prox_rde_sim/runs3d/failure_matrix_20261025/react_closed_dt1ns.json",
+    "limit": 900
+  }
+}

@@ -1,0 +1,30 @@
+[
+  {
+    "name": "frozen_closed",
+    "id": "fc-01M5TE7TBKS4W27586M13ZZJEV"
+  },
+  {
+    "name": "frozen_open",
+    "id": "fc-01M5TE7TG44W12GCFPGCTMG6RS"
+  },
+  {
+    "name": "react_closed",
+    "id": "fc-01M5TE7TMPS42GCTZG3XZNYF0N"
+  },
+  {
+    "name": "react_closed_dt5ns",
+    "id": "fc-01M5TE7TS8N1F5SMHTXXY2PMHV"
+  },
+  {
+    "name": "chemistry_only",
+    "id": "fc-01M5TE7TY2RBDX5VQRRQMHZQ8E"
+  },
+  {
+    "name": "react_unseeded",
+    "id": "fc-01M5TE7V2DV9VDDJQT234T3GYH"
+  },
+  {
+    "name": "cold_open",
+    "id": "fc-01M5TE7V751EJMRGDZF16TQQMX"
+  }
+]
