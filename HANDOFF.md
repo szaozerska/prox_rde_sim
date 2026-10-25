@@ -1,5 +1,11 @@
 # Handoff: functional 2D implementation on main
 
+**2026-10-25: new 2D backend work uses PeleC/PelePhysics/CVODE.**
+The existing custom one-step solver is preserved unchanged and remains runnable.
+This is an integration transition, not a resolved sustainment result. See the
+[selection, rollback and verification plan](docs/plans/pelec_2d_transition.md).
+
+
 Snapshot: **October 22, 2026**. Repository:
 `/Users/sgfx/Desktop/Projects/prox_rde_sim`.
 

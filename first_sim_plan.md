@@ -1,4 +1,11 @@
-# RDE simulation plan — revision 20
+# RDE simulation plan — revision 21
+
+**Current priority, 2026-10-25:** integrate a separate native 2D PeleC backend
+with species thermodynamics and CVODE chemistry. Preserve the custom solver at
+baseline `73d4516`. This supersedes the finite-discharge L1–L3 priority below;
+those items remain deferred. Follow [P0–P4 and three reviews](docs/plans/pelec_2d_transition.md).
+RDE-001 remains open; no CAD or independent 3D-branch changes.
+
 
 **Status: reduced 2D software workflow F1–F4 complete. Full acceptance: 122 tests passed, no skips; 16 affected checks repeated after review, plus one new coupled-physics check (123 distinct passing tests). RDE-001 remains open. The radial-wall increment and matched 189.394 us comparison are also complete: 132 distinct verification tests passed, but sustained detonation was not restored in the original case. See [radial results](docs/verification/radial_closures.md). No CAD work.**
 

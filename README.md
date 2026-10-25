@@ -1,5 +1,11 @@
 # prox_rde_sim
 
+**2026-10-25: new 2D backend work uses PeleC/PelePhysics/CVODE.**
+The existing custom one-step solver is preserved unchanged and remains runnable.
+This is an integration transition, not a resolved sustainment result. See the
+[selection, rollback and verification plan](docs/plans/pelec_2d_transition.md).
+
+
 Reduced RDE simulation project. Foundation, bounded-run persistence, reactive-source
 checks and saved-run plots are implemented. D2 adds full-height reaction diagnostics,
 periodic pressure-peak tracks and an explicit startup comparison. D3 adds physical
