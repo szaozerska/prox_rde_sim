@@ -1,5 +1,5 @@
 {
-  "updated": "2026-10-27T06:06:10.614440-07:00",
+  "updated": "2026-10-27T06:09:18.642595-07:00",
   "branch": "3d-modelling",
   "worktree": "/Users/sgfx/.codex/worktrees/3d-cfd-review/prox_rde_sim",
   "volume": "prox-rde-netl-startup",
@@ -44,9 +44,9 @@
   "long_run_id": "long200_detached_segment3",
   "long_run_status": "checkpoint-stopped after between-frame species-closure anomaly",
   "long_run_final_checkpoint": "long200_detached_segment3/chk03370",
-  "diagnostic_phase": "refined_walls_candidate",
+  "diagnostic_phase": "refined_walls_candidate_queued",
   "diagnostic_plan": [
-    "Inspect/fetch the active refined-wall candidate before any new allocation. Fixed-grid control completed normally and its final evidence is saved; do not rerun it.",
+    "Existing refined-wall candidate is queued for four H100 GPUs. Inspect its saved call/app before allocating anything; never duplicate the queued run. Fetch final evidence after it starts/completes. Fixed-grid control is complete and must not be repeated.",
     "Current bounded candidate refines every embedded wall at level 1 while retaining adaptive front refinement. Await final result. It starts from the pre-failure 55.8-us checkpoint and targets only 56.2 us; guard unchanged. No long-run correction is established.",
     "Compare region closure, finite states, species, pressure, temperature, native heat release and inventories; inspect whether cut-cell coarse/fine interfaces were removed. If pass, extend bounded validation across multiple regrids before considering a long restart from a pre-failure checkpoint.",
     "Do not resume the stopped 67.2-us trajectory, change tolerances, hide active errors, or renormalize species. Root cause within mesh adaptation/EB synchronization remains unproven."
@@ -65,5 +65,6 @@
     "min_species": -6.8376534e-10,
     "emergency_stop_required": false
   },
-  "diagnostic_frozen_status": "Completed normally; final saved active-fluid closure roundoff; finite native pressure, temperature and chemical heat release; small species undershoots remain diagnostic failures."
+  "diagnostic_frozen_status": "Completed normally; final saved active-fluid closure roundoff; finite native pressure, temperature and chemical heat release; small species undershoots remain diagnostic failures.",
+  "active_run_status": "queued: Modal reports waiting for GPU_H100 worker capacity; no campaign container allocated"
 }
