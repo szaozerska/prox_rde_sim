@@ -1,0 +1,21 @@
+{
+  "returncode": 6,
+  "wall_seconds": 10303.063380504,
+  "actual_saved_time_s": 6.720000000000571e-05,
+  "analysis_returncode": 0,
+  "requested_time_s": 0.0002,
+  "completed": false,
+  "checkpoints": [
+    "chk01011",
+    "chk01511",
+    "chk02010",
+    "chk02510",
+    "chk03010",
+    "chk03370"
+  ],
+  "operator_stop": {
+    "action": "checkpoint_stop",
+    "reason": "Emergency audit: between-frame species-sum errors reach -0.03484/+0.06166, exceeding 1e-6 stop criterion; diagnose before continuing."
+  },
+  "scope": "Execution status only; physical conclusions require native-field analysis."
+}

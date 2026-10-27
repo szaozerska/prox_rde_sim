@@ -1,0 +1,127 @@
+{
+  "latest_time_s": 6.72e-05,
+  "fields": {
+    "density": {
+      "samples": 2630,
+      "minimum": 0.0014381049,
+      "maximum": 0.10136649,
+      "nonfinite_samples": 0
+    },
+    "x_velocity": {
+      "samples": 2630,
+      "minimum": -140704.36,
+      "maximum": 140510.34,
+      "nonfinite_samples": 0
+    },
+    "y_velocity": {
+      "samples": 2630,
+      "minimum": -158958.67,
+      "maximum": 89206.078,
+      "nonfinite_samples": 0
+    },
+    "z_velocity": {
+      "samples": 2630,
+      "minimum": -37780.445,
+      "maximum": 182766.36,
+      "nonfinite_samples": 0
+    },
+    "eint_e": {
+      "samples": 2630,
+      "minimum": -48204585000.0,
+      "maximum": 21284510000.0,
+      "nonfinite_samples": 0
+    },
+    "Temp": {
+      "samples": 2630,
+      "minimum": 275.16377,
+      "maximum": 4773.8641,
+      "nonfinite_samples": 0
+    },
+    "pressure": {
+      "samples": 2630,
+      "minimum": 1338093.1,
+      "maximum": 1112404600.0,
+      "nonfinite_samples": 0
+    },
+    "massfrac": {
+      "samples": 2630,
+      "minimum": -0.0010239157,
+      "maximum": 0.99998388,
+      "nonfinite_samples": 0
+    },
+    "sumYminus1": {
+      "samples": 2630,
+      "minimum": -0.034841601,
+      "maximum": 0.061661052,
+      "nonfinite_samples": 0
+    }
+  },
+  "emergency_stop_required": true,
+  "violation_count": 8,
+  "first_violations": [
+    {
+      "field": "sumYminus1",
+      "time_s": 5.598e-05,
+      "reason": "species closure exceeds emergency bound 1e-6",
+      "min": -0.034841601,
+      "max": 0.036065022
+    },
+    {
+      "field": "sumYminus1",
+      "time_s": 5.6e-05,
+      "reason": "species closure exceeds emergency bound 1e-6",
+      "min": -0.029569423,
+      "max": 0.060804698
+    },
+    {
+      "field": "sumYminus1",
+      "time_s": 5.602e-05,
+      "reason": "species closure exceeds emergency bound 1e-6",
+      "min": -6.6613381e-16,
+      "max": 0.061421534
+    },
+    {
+      "field": "sumYminus1",
+      "time_s": 5.604e-05,
+      "reason": "species closure exceeds emergency bound 1e-6",
+      "min": -6.6613381e-16,
+      "max": 0.061470864
+    },
+    {
+      "field": "sumYminus1",
+      "time_s": 5.606e-05,
+      "reason": "species closure exceeds emergency bound 1e-6",
+      "min": -6.6613381e-16,
+      "max": 0.061661052
+    },
+    {
+      "field": "sumYminus1",
+      "time_s": 5.608e-05,
+      "reason": "species closure exceeds emergency bound 1e-6",
+      "min": -0.020101435,
+      "max": 0.032232765
+    },
+    {
+      "field": "sumYminus1",
+      "time_s": 5.61e-05,
+      "reason": "species closure exceeds emergency bound 1e-6",
+      "min": -6.6613381e-16,
+      "max": 0.060144561
+    },
+    {
+      "field": "sumYminus1",
+      "time_s": 5.612e-05,
+      "reason": "species closure exceeds emergency bound 1e-6",
+      "min": -0.024511092,
+      "max": 0.060944874
+    }
+  ],
+  "every_step_species_sum": {
+    "samples": 2630,
+    "worst_time_s": 5.606e-05,
+    "maximum_absolute_error": 0.061661052,
+    "worst_minimum_sum_minus_one": -6.6613381e-16,
+    "worst_maximum_sum_minus_one": 0.061661052,
+    "note": "Native log includes all AMR levels; localize discrepancies before classifying active-fluid error."
+  }
+}

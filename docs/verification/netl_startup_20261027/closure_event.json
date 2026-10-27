@@ -1,0 +1,51 @@
+{
+  "rows_time_s_min_max_sumYminus1": [
+    [
+      5.598e-05,
+      -0.034841601,
+      0.036065022
+    ],
+    [
+      5.6e-05,
+      -0.029569423,
+      0.060804698
+    ],
+    [
+      5.602e-05,
+      -6.6613381e-16,
+      0.061421534
+    ],
+    [
+      5.604e-05,
+      -6.6613381e-16,
+      0.061470864
+    ],
+    [
+      5.606e-05,
+      -6.6613381e-16,
+      0.061661052
+    ],
+    [
+      5.608e-05,
+      -0.020101435,
+      0.032232765
+    ],
+    [
+      5.61e-05,
+      -6.6613381e-16,
+      0.060144561
+    ],
+    [
+      5.612e-05,
+      -0.024511092,
+      0.060944874
+    ]
+  ],
+  "emergency_bound": 1e-06,
+  "saved_frames_missed_event": true,
+  "classification": "Unresolved; locate in active leaf cells versus coarse cells covered by refinement before interpreting.",
+  "native_source_revision": "949e2bb67386bf4b16324b06555e303ff411e179",
+  "extrema_source": "Source/SumIQ.cpp: PeleC::monitor_extrema",
+  "extrema_source_sha256": "87e7986afcf8ca21b950e91ce07009334425d6cd90b7023b63331dac5ee6de29",
+  "source_observation": "sumY uses an ordinary MultiFab and reductions over all cells; no active-fluid/fine-coverage mask in this reduction."
+}

@@ -1,0 +1,4 @@
+{
+  "action": "checkpoint_stop",
+  "reason": "Emergency audit: between-frame species-sum errors reach -0.03484/+0.06166, exceeding 1e-6 stop criterion; diagnose before continuing."
+}

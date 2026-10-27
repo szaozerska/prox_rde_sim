@@ -25,12 +25,15 @@ if os.environ.get('RDE_CVODE_DIRECT_BUILD')=='1':
     from build_cvode_direct import build_cvode_direct
     image=(image.add_local_file(Path(__file__).with_name('build_cvode_direct.py'),'/root/build_cvode_direct.py',copy=True)
         .run_function(build_cvode_direct,cpu=32,memory=98304,timeout=3600,include_source=False))
+image=image.add_local_file(Path(__file__).with_name('audit_native_log.py'),'/opt/audit_native_log.py',copy=True)
 app=modal.App('prox-rde-netl-startup',include_source=False)
 volume=modal.Volume.from_name('prox-rde-netl-startup',create_if_missing=True)
 @app.function(image=image,serialized=True,gpu='H100:4',cpu=(16.,16.),memory=(98304,98304),
               timeout=18000,startup_timeout=600,retries=0,max_containers=1,volumes={'/results':volume})
 def run(config:dict,run_id:str,ranks:int=4,limit:int=7200,restart:str=''):
-    import subprocess,time,json,re,os,shutil
+    import subprocess,time,json,re,os,shutil,sys
+    sys.path.insert(0,'/opt')
+    from audit_native_log import audit_native_log
     from pathlib import Path
     if not re.fullmatch(r'[a-zA-Z0-9_-]+',run_id) or ranks not in (1,2,4) or not 10<=limit<=14400:
         raise ValueError('Invalid bounded allocation')
@@ -46,7 +49,7 @@ def run(config:dict,run_id:str,ranks:int=4,limit:int=7200,restart:str=''):
         raise ValueError('Cached binary does not match requested native source')
     mpirun='/opt/cuda-mpi/bin/mpirun' if Path('/opt/cuda-mpi/bin/mpirun').exists() else 'mpirun'
     command=[mpirun,'--allow-run-as-root','--bind-to','none','-np',str(ranks),
-        'python','/opt/mpi_gpu_rank.py',executable,'inputs']
+        'python','/opt/mpi_gpu_rank.py',executable,'inputs','amr.message_int=1']
     if Path('/opt/cuda-mpi-build/manifest.json').exists():shutil.copy('/opt/cuda-mpi-build/manifest.json',root/'build/cuda_mpi.json')
     if restart:
         path=Path('/results')/restart
@@ -65,6 +68,12 @@ def run(config:dict,run_id:str,ranks:int=4,limit:int=7200,restart:str=''):
         process=subprocess.Popen(command,cwd=root,stdout=log,stderr=subprocess.STDOUT,env=env,start_new_session=True)
         while process.poll() is None and time.monotonic()-start<limit:
             time.sleep(15)
+            audit=audit_native_log((root/'solver.log').read_text())
+            if audit['emergency_stop_required'] and not (root/'emergency_stop.json').exists():
+                (root/'emergency_stop.json').write_text(json.dumps(audit,indent=2,allow_nan=False))
+                if not (root/'operator_stop.json').exists():
+                    (root/'operator_stop.json').write_text(json.dumps({'action':'checkpoint_stop','reason':'Native extrema exceeded emergency bounds; see emergency_stop.json'}))
+                (root/'dump_and_stop').touch()
             # Read the control through the API: mounted-volume snapshots do not auto-reload.
             try:
                 control=json.loads(b''.join(volume.read_file('controls/'+run_id+'.json')))
@@ -96,6 +105,7 @@ def run(config:dict,run_id:str,ranks:int=4,limit:int=7200,restart:str=''):
     result={'returncode':code,'wall_seconds':time.monotonic()-start,'actual_saved_time_s':actual,
         'analysis_returncode':analysis.returncode,'requested_time_s':config['stop'],'completed':code==0 and actual is not None and abs(actual-config['stop'])<1e-12,
         'checkpoints':[p.name for p in sorted(root.glob('chk[0-9]*'))],
+        'emergency_stop':(root/'emergency_stop.json').exists(),
         'operator_stop':json.loads((root/'operator_stop.json').read_text()) if (root/'operator_stop.json').exists() else None,
         'scope':'Execution status only; physical conclusions require native-field analysis.'}
     (root/'result.json').write_text(json.dumps(result,indent=2));volume.commit();print(result,flush=True)

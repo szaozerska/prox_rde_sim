@@ -1,0 +1,583 @@
+{
+  "rows": [
+    {
+      "time_s": 0.0,
+      "mass_kg": 0.0005662336346874438,
+      "total_energy_J": -102.82111903656636,
+      "methane_kg": 1.1855744803655795e-05,
+      "oxygen_kg": 0.00016544357013524786,
+      "min_species": 0.0,
+      "species_sum_error": 2.220446049250313e-16,
+      "negative_inventory_kg": 0.0,
+      "finite": true,
+      "pressure_Pa": [
+        102508.33918539318,
+        4000000.0000000023
+      ],
+      "temperature_K": [
+        299.9999999999999,
+        3000.0000000000005
+      ],
+      "fluid_volume_m3": 8.522261861934351e-05,
+      "max_speed_mps": 0.0,
+      "finest_level": 1,
+      "leaf_fluid_cells": 2946080,
+      "blocks": 63,
+      "heat_release_available": true
+    },
+    {
+      "time_s": 5e-08,
+      "mass_kg": 0.0005662420940916727,
+      "total_energy_J": -102.83017935711062,
+      "methane_kg": 1.1832218665029939e-05,
+      "oxygen_kg": 0.00016538508231984418,
+      "min_species": -1.750512067887291e-37,
+      "species_sum_error": 7.771561172376096e-16,
+      "negative_inventory_kg": 4.624499926245877e-44,
+      "finite": true,
+      "pressure_Pa": [
+        102618.1875313595,
+        8182735.491129221
+      ],
+      "temperature_K": [
+        299.9934194769501,
+        4377.45305394515
+      ],
+      "fluid_volume_m3": 8.522261861934351e-05,
+      "max_speed_mps": 109.11089969634178,
+      "finest_level": 1,
+      "leaf_fluid_cells": 2946080,
+      "blocks": 63,
+      "heat_release_available": true
+    },
+    {
+      "time_s": 9.999999999999998e-08,
+      "mass_kg": 0.0005662527027852835,
+      "total_energy_J": -102.83015871535551,
+      "methane_kg": 1.1833443624459555e-05,
+      "oxygen_kg": 0.0001653688093181077,
+      "min_species": -5.401592035999411e-16,
+      "species_sum_error": 6.661338147750939e-16,
+      "negative_inventory_kg": 1.3810734000123196e-22,
+      "finite": true,
+      "pressure_Pa": [
+        102728.07688904519,
+        10488082.104468025
+      ],
+      "temperature_K": [
+        299.98662300868415,
+        4401.0195421646895
+      ],
+      "fluid_volume_m3": 8.522261861934351e-05,
+      "max_speed_mps": 297.6859057294844,
+      "finest_level": 1,
+      "leaf_fluid_cells": 2946080,
+      "blocks": 63,
+      "heat_release_available": true
+    },
+    {
+      "time_s": 1.5000000000000002e-07,
+      "mass_kg": 0.0005662604300563412,
+      "total_energy_J": -102.83879439988739,
+      "methane_kg": 1.1834300948682157e-05,
+      "oxygen_kg": 0.00016537346206539112,
+      "min_species": -1.103478188411004e-15,
+      "species_sum_error": 6.661338147750939e-16,
+      "negative_inventory_kg": 9.528636025254653e-24,
+      "finite": true,
+      "pressure_Pa": [
+        102838.0015118975,
+        10191914.664343344
+      ],
+      "temperature_K": [
+        299.97962860090485,
+        4387.85686361628
+      ],
+      "fluid_volume_m3": 8.522261861934351e-05,
+      "max_speed_mps": 386.39170323423525,
+      "finest_level": 1,
+      "leaf_fluid_cells": 2946080,
+      "blocks": 63,
+      "heat_release_available": true
+    },
+    {
+      "time_s": 2e-07,
+      "mass_kg": 0.0005662678409474551,
+      "total_energy_J": -102.84719095754838,
+      "methane_kg": 1.1834760379010558e-05,
+      "oxygen_kg": 0.0001653778727249299,
+      "min_species": -3.135525961595495e-14,
+      "species_sum_error": 6.661338147750939e-16,
+      "negative_inventory_kg": 9.628342351594112e-23,
+      "finite": true,
+      "pressure_Pa": [
+        102947.95631506783,
+        9733271.006839504
+      ],
+      "temperature_K": [
+        299.97245274982066,
+        4367.424179643546
+      ],
+      "fluid_volume_m3": 8.522261861934351e-05,
+      "max_speed_mps": 440.00672233628393,
+      "finest_level": 1,
+      "leaf_fluid_cells": 2946080,
+      "blocks": 63,
+      "heat_release_available": true
+    },
+    {
+      "time_s": 5.019999999999972e-06,
+      "mass_kg": 0.0005671573843438054,
+      "total_energy_J": -103.97293613115782,
+      "methane_kg": 1.0966126597572038e-05,
+      "oxygen_kg": 0.00016204802070052507,
+      "min_species": -0.00019517920778936907,
+      "species_sum_error": 6.661338147750939e-16,
+      "negative_inventory_kg": 2.0208423786166084e-12,
+      "finite": true,
+      "pressure_Pa": [
+        113523.51986100311,
+        44500161.67760643
+      ],
+      "temperature_K": [
+        286.99317965203306,
+        4390.730214423183
+      ],
+      "fluid_volume_m3": 8.522261861934351e-05,
+      "max_speed_mps": 1319.284799114588,
+      "finest_level": 1,
+      "leaf_fluid_cells": 2946080,
+      "blocks": 63,
+      "heat_release_available": true
+    },
+    {
+      "time_s": 6.999999999999953e-06,
+      "mass_kg": 0.0005675549504876038,
+      "total_energy_J": -104.50540737366276,
+      "methane_kg": 1.0524110607287346e-05,
+      "oxygen_kg": 0.00016033010911962016,
+      "min_species": -0.0007470568784466191,
+      "species_sum_error": 6.661338147750939e-16,
+      "negative_inventory_kg": 1.986653817474486e-12,
+      "finite": true,
+      "pressure_Pa": [
+        117815.33310100215,
+        40825178.45288801
+      ],
+      "temperature_K": [
+        286.1105854367921,
+        4301.088496268292
+      ],
+      "fluid_volume_m3": 8.522261861934357e-05,
+      "max_speed_mps": 1518.0333924831377,
+      "finest_level": 1,
+      "leaf_fluid_cells": 3153664,
+      "blocks": 63,
+      "heat_release_available": true
+    },
+    {
+      "time_s": 1.0019999999999924e-05,
+      "mass_kg": 0.0005680705915223666,
+      "total_energy_J": -105.26380736959008,
+      "methane_kg": 9.82626288004103e-06,
+      "oxygen_kg": 0.00015762506867297727,
+      "min_species": -0.0007618061538525106,
+      "species_sum_error": 6.661338147750939e-16,
+      "negative_inventory_kg": 2.164689108990508e-12,
+      "finite": true,
+      "pressure_Pa": [
+        124263.50059204063,
+        54821358.880680434
+      ],
+      "temperature_K": [
+        286.23821918545525,
+        4216.70350040359
+      ],
+      "fluid_volume_m3": 8.522261861934357e-05,
+      "max_speed_mps": 1351.9973271789356,
+      "finest_level": 1,
+      "leaf_fluid_cells": 3568832,
+      "blocks": 99,
+      "heat_release_available": true
+    },
+    {
+      "time_s": 1.4399999999999882e-05,
+      "mass_kg": 0.0005686119112043237,
+      "total_energy_J": -106.24473000090497,
+      "methane_kg": 8.767700725123518e-06,
+      "oxygen_kg": 0.00015353364695280803,
+      "min_species": -0.00016307622667301454,
+      "species_sum_error": 6.661338147750939e-16,
+      "negative_inventory_kg": 2.1893437925324802e-12,
+      "finite": true,
+      "pressure_Pa": [
+        133360.96803571325,
+        61521765.8489387
+      ],
+      "temperature_K": [
+        285.5625842285301,
+        4223.036274361655
+      ],
+      "fluid_volume_m3": 8.522261861934355e-05,
+      "max_speed_mps": 1570.9697426662115,
+      "finest_level": 1,
+      "leaf_fluid_cells": 3309388,
+      "blocks": 99,
+      "heat_release_available": true
+    },
+    {
+      "time_s": 1.46e-05,
+      "mass_kg": 0.0005686312726870696,
+      "total_energy_J": -106.28684084614531,
+      "methane_kg": 8.716496121948962e-06,
+      "oxygen_kg": 0.00015333718402422855,
+      "min_species": -0.000609705197842497,
+      "species_sum_error": 6.661338147750939e-16,
+      "negative_inventory_kg": 3.062905691578581e-12,
+      "finite": true,
+      "pressure_Pa": [
+        133768.58382341996,
+        72462074.83863519
+      ],
+      "temperature_K": [
+        285.5176881099557,
+        4289.204892696293
+      ],
+      "fluid_volume_m3": 8.522261861934357e-05,
+      "max_speed_mps": 1544.5749995403335,
+      "finest_level": 1,
+      "leaf_fluid_cells": 3392448,
+      "blocks": 101,
+      "heat_release_available": true
+    },
+    {
+      "time_s": 1.4999999999999997e-05,
+      "mass_kg": 0.0005686699969523237,
+      "total_energy_J": -106.37040985556597,
+      "methane_kg": 8.613965587651096e-06,
+      "oxygen_kg": 0.000152944804216686,
+      "min_species": -0.00025793980230648584,
+      "species_sum_error": 6.661338147750939e-16,
+      "negative_inventory_kg": 2.249488095200019e-12,
+      "finite": true,
+      "pressure_Pa": [
+        134581.7166282049,
+        65536177.048191994
+      ],
+      "temperature_K": [
+        285.4328946182807,
+        4307.8205867615725
+      ],
+      "fluid_volume_m3": 8.522261861934361e-05,
+      "max_speed_mps": 1544.282222835058,
+      "finest_level": 1,
+      "leaf_fluid_cells": 3604884,
+      "blocks": 130,
+      "heat_release_available": true
+    },
+    {
+      "time_s": 2.001999999999995e-05,
+      "mass_kg": 0.0005689947573275492,
+      "total_energy_J": -107.33601834974267,
+      "methane_kg": 7.302109477566576e-06,
+      "oxygen_kg": 0.0001479542851980946,
+      "min_species": -0.000220953312368992,
+      "species_sum_error": 6.661338147750939e-16,
+      "negative_inventory_kg": 2.260083002962208e-12,
+      "finite": true,
+      "pressure_Pa": [
+        144546.56811200816,
+        51969458.8432654
+      ],
+      "temperature_K": [
+        284.5976408935083,
+        4288.97595552354
+      ],
+      "fluid_volume_m3": 8.522261861934355e-05,
+      "max_speed_mps": 1503.1083195316583,
+      "finest_level": 1,
+      "leaf_fluid_cells": 3468348,
+      "blocks": 103,
+      "heat_release_available": true
+    },
+    {
+      "time_s": 2.5019999999999903e-05,
+      "mass_kg": 0.0005689924660584554,
+      "total_energy_J": -108.14650995752869,
+      "methane_kg": 5.943622629045944e-06,
+      "oxygen_kg": 0.00014288663829306958,
+      "min_species": -0.00034238664126454144,
+      "species_sum_error": 6.661338147750939e-16,
+      "negative_inventory_kg": 2.0138633047400235e-12,
+      "finite": true,
+      "pressure_Pa": [
+        154035.1202096616,
+        48998740.1724401
+      ],
+      "temperature_K": [
+        283.3719903552922,
+        4257.648593605411
+      ],
+      "fluid_volume_m3": 8.52226186193435e-05,
+      "max_speed_mps": 1474.1468488060063,
+      "finest_level": 1,
+      "leaf_fluid_cells": 3741120,
+      "blocks": 167,
+      "heat_release_available": true
+    },
+    {
+      "time_s": 3.0019999999999855e-05,
+      "mass_kg": 0.0005686620244309918,
+      "total_energy_J": -108.79223165401095,
+      "methane_kg": 4.518170706689767e-06,
+      "oxygen_kg": 0.0001375835497364561,
+      "min_species": -0.0004571563126580556,
+      "species_sum_error": 7.771561172376096e-16,
+      "negative_inventory_kg": 1.85902267011837e-12,
+      "finite": true,
+      "pressure_Pa": [
+        163110.97599162423,
+        74199068.34075826
+      ],
+      "temperature_K": [
+        281.9474885541293,
+        4254.888687233105
+      ],
+      "fluid_volume_m3": 8.522261861934357e-05,
+      "max_speed_mps": 1502.1363554292568,
+      "finest_level": 1,
+      "leaf_fluid_cells": 3786168,
+      "blocks": 172,
+      "heat_release_available": true
+    },
+    {
+      "time_s": 3.5000000000000566e-05,
+      "mass_kg": 0.0005679755521334855,
+      "total_energy_J": -109.26997274815221,
+      "methane_kg": 3.0617447545349405e-06,
+      "oxygen_kg": 0.00013207392167952133,
+      "min_species": -0.0002886948682204606,
+      "species_sum_error": 6.661338147750939e-16,
+      "negative_inventory_kg": 1.9493040260939683e-12,
+      "finite": true,
+      "pressure_Pa": [
+        171772.10843275333,
+        57979882.63751826
+      ],
+      "temperature_K": [
+        281.26283278251884,
+        4274.605333734664
+      ],
+      "fluid_volume_m3": 8.522261861934365e-05,
+      "max_speed_mps": 1474.2369161844051,
+      "finest_level": 1,
+      "leaf_fluid_cells": 3963040,
+      "blocks": 173,
+      "heat_release_available": true
+    },
+    {
+      "time_s": 4.0000000000001365e-05,
+      "mass_kg": 0.0005669562407118363,
+      "total_energy_J": -109.60028603577949,
+      "methane_kg": 1.5083123609413704e-06,
+      "oxygen_kg": 0.0001262031701757605,
+      "min_species": -0.0003146212538213646,
+      "species_sum_error": 6.661338147750939e-16,
+      "negative_inventory_kg": 1.7274112944904017e-12,
+      "finite": true,
+      "pressure_Pa": [
+        180121.58060676407,
+        58618493.859558195
+      ],
+      "temperature_K": [
+        279.9817286258193,
+        4292.115421964817
+      ],
+      "fluid_volume_m3": 8.522261861934347e-05,
+      "max_speed_mps": 1438.8069050783056,
+      "finest_level": 1,
+      "leaf_fluid_cells": 4072860,
+      "blocks": 200,
+      "heat_release_available": true
+    },
+    {
+      "time_s": 4.5000000000002164e-05,
+      "mass_kg": 0.0005655454309516752,
+      "total_energy_J": -109.75421320249325,
+      "methane_kg": 3.293478801595284e-08,
+      "oxygen_kg": 0.00012067893176675496,
+      "min_species": -2.9673732456177235e-10,
+      "species_sum_error": 6.661338147750939e-16,
+      "negative_inventory_kg": 2.750069401676751e-19,
+      "finite": true,
+      "pressure_Pa": [
+        188155.74913738391,
+        105129577.73511472
+      ],
+      "temperature_K": [
+        282.4310250547404,
+        4624.65795381408
+      ],
+      "fluid_volume_m3": 8.522261861934355e-05,
+      "max_speed_mps": 1334.298395729349,
+      "finest_level": 1,
+      "leaf_fluid_cells": 4226684,
+      "blocks": 231,
+      "heat_release_available": true
+    }
+  ],
+  "checks": {
+    "finite": true,
+    "species_sum": true,
+    "thermo_range": true,
+    "positive_pressure": true,
+    "every_step_species_nonnegative": false,
+    "species_nonnegative": false
+  },
+  "every_step_species": {
+    "samples": 1916,
+    "worst_time_s": 3.49e-05,
+    "minimum_mass_fraction": -0.0010239157,
+    "note": "Includes coarse-step extrema between saved snapshots; no inference of integrated mass error."
+  },
+  "segment_species_histories": [
+    {
+      "samples": 340,
+      "worst_time_s": 6.58e-06,
+      "minimum_mass_fraction": -0.0009090749,
+      "note": "Includes coarse-step extrema between saved snapshots; no inference of integrated mass error."
+    },
+    {
+      "samples": 370,
+      "worst_time_s": 1.32e-05,
+      "minimum_mass_fraction": -0.0010088734,
+      "note": "Includes coarse-step extrema between saved snapshots; no inference of integrated mass error."
+    },
+    {
+      "samples": 10,
+      "worst_time_s": 1.46e-05,
+      "minimum_mass_fraction": -0.0006097052,
+      "note": "Includes coarse-step extrema between saved snapshots; no inference of integrated mass error."
+    },
+    {
+      "samples": 1916,
+      "worst_time_s": 3.49e-05,
+      "minimum_mass_fraction": -0.0010239157,
+      "note": "Includes coarse-step extrema between saved snapshots; no inference of integrated mass error."
+    }
+  ],
+  "physical_validation_passed": false,
+  "sampling": "Native checkpoint trajectory snapshots; no temporal interpolation. GIF frames may have unequal physical spacing.",
+  "scope": "Allocation records establish consecutive checkpoint lineage; input and field checks reject incompatible snapshots.",
+  "sources": [
+    {
+      "directory": "/Users/sgfx/.codex/worktrees/3d-cfd-review/prox_rde_sim/runs3d/netl_startup_20261027/local_amr_v2_evidence",
+      "preview_sha256": "e3c252e5b16aeeb9699463046a010619168b5604b2bfefae5eb2c2c10e1f4dc7",
+      "allocation": {
+        "devices": "index, name, memory.total [MiB]\n0, NVIDIA H100 80GB HBM3, 81559 MiB\n1, NVIDIA H100 80GB HBM3, 81559 MiB\n2, NVIDIA H100 80GB HBM3, 81559 MiB\n3, NVIDIA H100 80GB HBM3, 81559 MiB\n",
+        "topology": "\t\u001b[4mGPU0\tGPU1\tGPU2\tGPU3\tCPU Affinity\tNUMA Affinity\tGPU NUMA ID\u001b[0m\nFailed to run topology matrix\n\n",
+        "ranks": 4,
+        "command": [
+          "mpirun",
+          "--allow-run-as-root",
+          "--bind-to",
+          "none",
+          "-np",
+          "4",
+          "python",
+          "/opt/mpi_gpu_rank.py",
+          "/opt/PeleC/build-mpi/Exec/RegTests/RDEStartup/PeleC-RDEStartup",
+          "inputs"
+        ]
+      }
+    },
+    {
+      "directory": "/Users/sgfx/.codex/worktrees/3d-cfd-review/prox_rde_sim/runs3d/netl_startup_20261027/long_segment1_evidence",
+      "preview_sha256": "c481749966894aa0ac53e5012ede048603d4c90e96d291d913c7cc2d9224f5c5",
+      "allocation": {
+        "devices": "index, name, memory.total [MiB]\n0, NVIDIA H100 80GB HBM3, 81559 MiB\n1, NVIDIA H100 80GB HBM3, 81559 MiB\n2, NVIDIA H100 80GB HBM3, 81559 MiB\n3, NVIDIA H100 80GB HBM3, 81559 MiB\n",
+        "topology": "\t\u001b[4mGPU0\tGPU1\tGPU2\tGPU3\tCPU Affinity\tNUMA Affinity\tGPU NUMA ID\u001b[0m\nFailed to run topology matrix\n\n",
+        "ranks": 4,
+        "command": [
+          "mpirun",
+          "--allow-run-as-root",
+          "--bind-to",
+          "none",
+          "-np",
+          "4",
+          "python",
+          "/opt/mpi_gpu_rank.py",
+          "/opt/PeleC/build-mpi/Exec/RegTests/RDEStartup/PeleC-RDEStartup",
+          "inputs",
+          "amr.restart=/results/pilot200_local_amr_v2_mpi4/chk00020"
+        ]
+      }
+    },
+    {
+      "directory": "/Users/sgfx/.codex/worktrees/3d-cfd-review/prox_rde_sim/runs3d/netl_startup_20261027/long_cuda_evidence",
+      "preview_sha256": "2a96b833130f899b762b055ea846f090a8540243b63144afddbc32e938b7e89a",
+      "allocation": {
+        "devices": "index, name, memory.total [MiB]\n0, NVIDIA H100 80GB HBM3, 81559 MiB\n1, NVIDIA H100 80GB HBM3, 81559 MiB\n2, NVIDIA H100 80GB HBM3, 81559 MiB\n3, NVIDIA H100 80GB HBM3, 81559 MiB\n",
+        "topology": "\t\u001b[4mGPU0\tGPU1\tGPU2\tGPU3\tCPU Affinity\tNUMA Affinity\tGPU NUMA ID\u001b[0m\nFailed to run topology matrix\n\n",
+        "ranks": 4,
+        "command": [
+          "/opt/cuda-mpi/bin/mpirun",
+          "--allow-run-as-root",
+          "--bind-to",
+          "none",
+          "-np",
+          "4",
+          "python",
+          "/opt/mpi_gpu_rank.py",
+          "/opt/PeleC/build-mpi/Exec/RegTests/RDEStartup/PeleC-RDEStartup",
+          "inputs",
+          "amr.restart=/results/long200_segment1_retry/chk00360"
+        ]
+      }
+    },
+    {
+      "directory": "/Users/sgfx/.codex/worktrees/3d-cfd-review/prox_rde_sim/runs3d/netl_startup_20261027/burning_gmres_evidence",
+      "preview_sha256": "04c756542c2f9ed6f59617fb3a9fab2d4373ec3bdfe47d7f205aab814a547f12",
+      "allocation": {
+        "devices": "index, name, memory.total [MiB]\n0, NVIDIA H100 80GB HBM3, 81559 MiB\n1, NVIDIA H100 80GB HBM3, 81559 MiB\n2, NVIDIA H100 80GB HBM3, 81559 MiB\n3, NVIDIA H100 80GB HBM3, 81559 MiB\n",
+        "topology": "\t\u001b[4mGPU0\tGPU1\tGPU2\tGPU3\tCPU Affinity\tNUMA Affinity\tGPU NUMA ID\u001b[0m\nFailed to run topology matrix\n\n",
+        "ranks": 4,
+        "command": [
+          "/opt/cuda-mpi/bin/mpirun",
+          "--allow-run-as-root",
+          "--bind-to",
+          "none",
+          "-np",
+          "4",
+          "python",
+          "/opt/mpi_gpu_rank.py",
+          "/opt/PeleC/build-mpi/Exec/RegTests/RDEStartup/PeleC-RDEStartup",
+          "inputs",
+          "amr.restart=/results/long200_cuda_segment2/chk00730"
+        ]
+      }
+    },
+    {
+      "directory": "/Users/sgfx/.codex/worktrees/3d-cfd-review/prox_rde_sim/runs3d/netl_startup_20261027/long_detached_evidence",
+      "preview_sha256": "229ea395ab89f95c9a017844f4bfa04b20ebc0081086ba5451da59dd0660271e",
+      "allocation": {
+        "devices": "index, name, memory.total [MiB]\n0, NVIDIA H100 80GB HBM3, 81559 MiB\n1, NVIDIA H100 80GB HBM3, 81559 MiB\n2, NVIDIA H100 80GB HBM3, 81559 MiB\n3, NVIDIA H100 80GB HBM3, 81559 MiB\n",
+        "topology": "\t\u001b[4mGPU0\tGPU1\tGPU2\tGPU3\tCPU Affinity\tNUMA Affinity\tGPU NUMA ID\u001b[0m\nFailed to run topology matrix\n\n",
+        "ranks": 4,
+        "command": [
+          "/opt/cuda-mpi/bin/mpirun",
+          "--allow-run-as-root",
+          "--bind-to",
+          "none",
+          "-np",
+          "4",
+          "python",
+          "/opt/mpi_gpu_rank.py",
+          "/opt/PeleC/build-mpi/Exec/RegTests/RDEStartup/PeleC-RDEStartup",
+          "inputs",
+          "amr.restart=/results/burning_gmres_control/chk00740"
+        ]
+      }
+    }
+  ]
+}

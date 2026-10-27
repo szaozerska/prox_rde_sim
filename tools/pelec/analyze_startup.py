@@ -2,6 +2,7 @@
 import argparse,json,re
 from pathlib import Path
 import numpy as np
+from audit_native_log import audit_native_log
 
 
 def analyze_plot(plot,case,output):
@@ -18,12 +19,26 @@ def analyze_plot(plot,case,output):
          'pressure_Pa':[float('inf'),-float('inf')],'temperature_K':[float('inf'),-float('inf')],
          'fluid_volume_m3':0.,'max_speed_mps':0.,'finest_level':int(ds.index.max_level),
          'leaf_fluid_cells':0,'blocks':len(ds.index.grids)}
+    row['closure_by_region']={name:{'maximum_absolute_error':0.,'cells_above_1e_8':0,'nonfinite_cells':0,'worst_cell':None} for name in ('fluid_leaf','fluid_covered_by_finer','solid')}
     has_heat=('boxlib','heatRelease') in ds.field_list
     for grid in sorted(ds.index.grids,key=lambda g:g.Level):
         vf=np.asarray(grid['boxlib','vfrac']);leaf=grid.child_mask.astype(bool);valid=(vf>0)&leaf
         dx=np.asarray(grid.dds);lo=np.asarray(grid.LeftEdge);hi=np.asarray(grid.RightEdge)
         needed=set(sample)-({'heatRelease'} if not has_heat else set())
         fields={k:np.asarray(grid['boxlib',k]) for k in needed}
+        closure_field=np.zeros_like(vf)
+        for species in case['species']:closure_field+=np.asarray(grid['boxlib','Y('+species+')'])
+        closure_field-=1
+        for name,mask in [('fluid_leaf',valid),('fluid_covered_by_finer',(vf>0)&(~leaf)),('solid',vf<=0)]:
+            record=row['closure_by_region'][name];finite=mask&np.isfinite(closure_field)
+            record['nonfinite_cells']+=int(np.count_nonzero(mask&(~np.isfinite(closure_field))))
+            record['cells_above_1e_8']+=int(np.count_nonzero(finite&(np.abs(closure_field)>1e-8)))
+            if finite.any():
+                pos=np.unravel_index(np.argmax(np.where(finite,np.abs(closure_field),-1)),vf.shape)
+                error=float(abs(closure_field[pos]))
+                if error>record['maximum_absolute_error']:
+                    record['maximum_absolute_error']=error
+                    record['worst_cell']={'level':int(grid.Level),'grid_id':int(grid.id),'position_m':((lo+(np.array(pos)+.5)*dx)*.01).tolist(),'volume_fraction':float(vf[pos]),'signed_sum_minus_one':float(closure_field[pos])}
         if valid.any():
             rho=np.asarray(grid['boxlib','density'])*1000;vol=np.prod(dx)*1e-6;w=vf*leaf*vol
             row['finite'] &= bool(np.isfinite(rho[valid]).all() and np.isfinite(np.asarray(grid['boxlib','rho_E'])[valid]).all())
@@ -86,13 +101,17 @@ def collect(root,final=False):
         'positive_pressure':all(r['pressure_Pa'][0]>0 for r in records),
         'thermo_range':all(200<=r['temperature_K'][0] and r['temperature_K'][1]<=5000 for r in records)}
     log=(root/'solver.log').read_text()
+    log_audit=audit_native_log(log)
+    closure=log_audit['every_step_species_sum']
+    checks['every_step_species_sum']=bool(closure['samples'] and closure['maximum_absolute_error']<1e-8)
+    checks['every_step_finite']=bool(log_audit['fields']) and all(v['nonfinite_samples']==0 for v in log_audit['fields'].values())
     extrema=[(float(t),float(v)) for t,v in re.findall(r'TIME = (\S+)\s+massfrac\s+MIN = (\S+)',log)]
     worst=min(extrema,key=lambda pair:pair[1]) if extrema else None
     checks['every_step_species_nonnegative']=bool(worst and worst[1]>=-1e-10)
     history={'samples':len(extrema),'worst_time_s':worst[0] if worst else None,
              'minimum_mass_fraction':worst[1] if worst else None,
              'note':'Includes coarse-step extrema between saved snapshots; no inference of integrated mass error.'}
-    (root/'checks.json').write_text(json.dumps({'rows':records,'checks':checks,'every_step_species':history,'physical_validation_passed':False,
+    (root/'checks.json').write_text(json.dumps({'rows':records,'checks':checks,'every_step_species':history,'every_step_species_sum':closure,'native_log_audit':log_audit,'physical_validation_passed':False,
         'sampling':'Native cell nearest-neighbour at each cylindrical sample; finest available AMR block. No temporal interpolation.',
         'scope':'AMR leaf-cell inventories and extrema; open-system inventory change alone is not a conservation defect.'},indent=2)+'\n')
 

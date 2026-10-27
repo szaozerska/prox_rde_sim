@@ -14,6 +14,11 @@ def render(run,output):
     data=np.load(run/'preview.npz');c=json.loads((run/'case.json').read_text());checks=json.loads((run/'checks.json').read_text())
     times=data['time_s'];theta=data['theta_rad'];z=data['z_m']*1000;P=data['pressure_Pa']/1e6;T=data['temperature_K']
     th,zz=np.meshgrid(np.r_[theta,2*np.pi],z,indexing='ij');xx=35.6*np.cos(th);yy=35.6*np.sin(th)
+    # Preselect the existing display strides: quadrilateral patches avoid carrying
+    # redundant edge vertices through every 3D projection. Native 2D panels stay full resolution.
+    surface_rows=np.r_[np.arange(0,len(theta),3),len(theta)]
+    surface_cols=np.r_[np.arange(0,len(z)-1,max(1,len(z)//48)),len(z)-1]
+    surface_indices=np.ix_(surface_rows,surface_cols)
     norm=LogNorm(vmin=.1,vmax=max(10,float(np.nanmax(P))));cmap=plt.get_cmap('inferno')
     fig=plt.figure(figsize=(12,6.8),facecolor='#10141c');gs=fig.add_gridspec(2,2,width_ratios=[1.25,1],height_ratios=[1,1],left=.02,right=.90,bottom=.15,top=.85,wspace=.18,hspace=.28)
     ax=fig.add_subplot(gs[:,0],projection='3d',facecolor='#10141c');flat=fig.add_subplot(gs[0,1],facecolor='#10141c');temp=fig.add_subplot(gs[1,1],facecolor='#10141c')
@@ -23,9 +28,8 @@ def render(run,output):
     solver=c.get('solver','PeleC');stem=solver.lower()+'_annulus'
     grid=c.get('grid_label',str(c.get('n','?'))+'³ Cartesian grid')
     title=fig.text(.04,.95,'Native '+solver+' · 3D annular prototype',color='white',fontsize=17,weight='bold');stamp=fig.text(.04,.90,'',color='#d8e1ef',fontsize=12)
-    species_ok=all(checks['checks'].get(k,True) for k in ('species_nonnegative','species_sum','no_significant_preclip_negative','every_step_species_nonnegative'))
-    status=('PASS including logged coarse steps' if 'every_step_species_nonnegative' in checks['checks'] else 'PASS at saved frames') if species_ok else 'FAIL (see quantified audit)'
-    fig.text(.04,.055,f'DIAGNOSTIC — species checks {status}. Initialized startup; sustained detonation is not validated.',color='#ffca86',fontsize=10)
+    minimum_y=min([r.get('min_species',0.) for r in checks.get('rows',[])] + [checks.get('every_step_species',{}).get('minimum_mass_fraction') or 0.])
+    fig.text(.04,.055,f'DIAGNOSTIC — minimum species mass fraction: {minimum_y:.2e}. Sustained rotating detonation is not validated.',color='#ffca86',fontsize=10)
     fig.text(.04,.025,'Cylinder shows a slice at r = 35.6 mm from the computed 3D field. Unequal time intervals between saved frames; read the timestamp.',color='#a7b4c8',fontsize=9)
     pc=fig.add_axes([.92,.52,.012,.29]);tc=fig.add_axes([.92,.16,.012,.29])
     for cb in (fig.colorbar(ScalarMappable(norm=norm,cmap=cmap),cax=pc),fig.colorbar(ScalarMappable(norm=Normalize(300,max(4500,float(T.max()))),cmap='magma'),cax=tc)):
@@ -33,7 +37,7 @@ def render(run,output):
     def draw(i):
         ax.clear();ax.set_facecolor('#10141c');ax.tick_params(colors='#c8ced8',labelsize=7)
         values=np.vstack([P[i],P[i,:1]])
-        ax.plot_surface(xx,yy,zz,facecolors=cmap(norm(values)),rstride=3,cstride=max(1,len(z)//48),shade=False,linewidth=0,antialiased=False)
+        ax.plot_surface(xx[surface_indices],yy[surface_indices],zz[surface_indices],facecolors=cmap(norm(values[surface_indices])),rstride=1,cstride=1,shade=False,linewidth=0,antialiased=False)
         for axis in (ax.xaxis,ax.yaxis,ax.zaxis):
             axis.set_pane_color((.06,.08,.11,1));axis.label.set_color('#c8ced8')
         ax.set(xlim=(-40,40),ylim=(-40,40),zlim=(0,76.2),xlabel='x [mm]',ylabel='y [mm]',zlabel='z [mm]');ax.set_box_aspect((1,1,1));ax.view_init(elev=23,azim=60)

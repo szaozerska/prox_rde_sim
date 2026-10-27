@@ -1,0 +1,22 @@
+{
+  "native_saved_interval_s": [
+    4.0000000000001365e-05,
+    4.5000000000002164e-05
+  ],
+  "observation": "Two oppositely moving startup fronts meet near the opposite azimuth around 270 degrees; no full revolution or sustained co-rotating mode established.",
+  "initial_methane_kg": 1.1855744803655795e-05,
+  "methane_at_45us_kg": 3.293478801595284e-08,
+  "remaining_methane_inventory_fraction": 0.0027779602683247018,
+  "inventory_caveat": "Open-system inventory ratio, not a closed-system reacted-fuel fraction.",
+  "historical_minimum_species_mass_fraction": -0.0010239157,
+  "physical_validation_passed": false,
+  "pressure_largest_logged_maximum": [
+    4.516e-05,
+    1112404600.0
+  ],
+  "Temp_largest_logged_maximum": [
+    4.548e-05,
+    4773.8641
+  ],
+  "pressure_log_units": "barye; multiply by 0.1 for Pa"
+}

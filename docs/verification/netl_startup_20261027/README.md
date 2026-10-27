@@ -1,6 +1,6 @@
 # NETL startup and multi-GPU engine continuation
 
-October 27, 2026. Work is in progress on `3d-modelling`. The requested long result is **200 microseconds**, starting from the same initial charge and continuing through native checkpoints. A requested duration is not evidence that a detonation completed a revolution.
+October 27, 2026. Work is in progress on `3d-modelling`. **The long trajectory is checkpoint-stopped at 67.2 microseconds pending diagnosis of a transient species-closure anomaly.** The requested long result is **200 microseconds**, starting from the same initial charge and continuing through native checkpoints. A requested duration is not evidence that a detonation completed a revolution.
 
 ## Initialization
 
@@ -20,7 +20,7 @@ A separate, checksum-verified Open MPI 4.1.8 build enables CUDA-aware buffers. T
 
 ## Checks so far
 
-- 29 software tests pass, including startup units/composition, refinement levels and rank-to-GPU assignment and rejection of incompatible animation histories.
+- 33 software tests pass, including startup units/composition, refinement levels and rank-to-GPU assignment and rejection of incompatible animation histories.
 - The streaming AMR analyzer reproduces independently checked uniform-grid inventories to roundoff. It integrates leaf cells with volume fractions and samples actual native fields; it never rotates or synthesizes a wave.
 - Both refined startup pilots reached 0.2 microseconds. The corrected 200-micrometre pilot passes saved-field checks, but logged coarse steps include a brief mass-fraction undershoot of about −1.1e-5. Its 100-micrometre counterpart has only roundoff-sized logged negatives (about −1.7e-14).
 - Those short runs establish neither settled wave speed nor engine mesh convergence. At 0.2 microseconds the peak pressures still differ materially between meshes.
@@ -42,3 +42,13 @@ An explicit spark/pre-detonator model becomes useful when the question is whethe
 A follow-up in this chat checks the bounded campaign every 30 minutes, with no duplicate jobs and at most four GPUs. It will continue native checkpoints toward 200 microseconds, inspect whether reacting fronts actually circulate, and render the completed available history. If needed to observe two revolutions, the physical-time ceiling is 300 microseconds. The operational cutoff is October 27 at 8 p.m. Pacific; this is not a promised completion time. Nonfinite states, a crash, closure error above 1e-6, or local species values below −0.01 trigger investigation rather than automatic continuation. These emergency stop bounds are not acceptance criteria: even smaller negative concentrations remain physically invalid.
 
 [Current native-field animation, 0–14.4 microseconds](progress_14p4us/pelec_annulus.gif) and [pressure/heat-release/reactant history](progress_14p4us/azimuth_time.png) are diagnostic progress artifacts, **not the requested 200–300 microsecond result**. They show two outward-propagating reacting fronts from the initial sector, not a demonstrated sustained rotating mode. Unequal snapshot time intervals are labeled explicitly.
+
+### Observed startup collision
+
+[Native animation through 45 microseconds](progress_45us/pelec_annulus.gif) and [matching chemical/pressure history](progress_45us/azimuth_time.png) show two oppositely moving startup fronts meeting near 270 degrees, on the opposite side of the annulus, between the 40 and 45 microsecond snapshots. At 45 microseconds the chamber methane inventory is 3.29e-8 kg, 0.278% of its initial 1.19e-5 kg. This is an open-system inventory ratio, not a closed-system fuel-conversion measurement. No full revolution or sustained co-rotating mode has been established. The banner reports the historical minimum species fraction (−1.02e-3), not the minimum in the final frame. The run continued after this event but was subsequently checkpoint-stopped for the closure diagnosis below.
+
+### Species-closure stop and diagnostic replay
+
+Eight logged steps between 55.98 and 56.12 microseconds report species sums between 0.96516 and 1.06166. Saved snapshots on either side have roundoff closure, so saved-frame checks alone missed the event. The long run was checkpoint-stopped when the between-frame error was found. This remains unresolved; it is not reclassified as a pass.
+
+The event coincides with one AMR regrid interval. In the pinned PeleC source, `monitor_extrema()` constructs an ordinary `sumY` MultiFab and reduces all cells without an active-fluid/fine-coverage mask. A replay will therefore distinguish active leaf fluid, coarse fluid covered by finer grids, and solid cells before interpreting the error. The analyzer now records these regions separately. A native-log guard requests checkpoint-stop for nonfinite extrema, species closure error above 1e-6, or species fractions below −0.01; these remain emergency bounds, not physical acceptance criteria. Four new tests include the actual transient pattern and prove a later good step cannot erase it.
