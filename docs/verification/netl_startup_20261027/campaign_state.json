@@ -1,5 +1,5 @@
 {
-  "updated": "2026-10-27T13:43:19.110134-07:00",
+  "updated": "2026-10-27T14:14:18.189675-07:00",
   "branch": "3d-modelling",
   "worktree": "/Users/sgfx/.codex/worktrees/3d-cfd-review/prox_rde_sim",
   "volume": "prox-rde-netl-startup",
@@ -36,10 +36,10 @@
   "heartbeat_id": "continue-netl-3d-cfd-trajectory",
   "operational_cutoff": "2026-10-27T20:00:00-07:00",
   "software_tests_passed": 36,
-  "achieved_time_s": 9.318e-05,
+  "achieved_time_s": 0.00010074,
   "detached": true,
   "cpu_build_status": "Completed. sparse_direct backend rejected after matched comparison: 6.49 times slower; field agreement passes recorded criteria.",
-  "last_verified_remote_time_s": 9.318e-05,
+  "last_verified_remote_time_s": 0.00010074,
   "latest_rendered_time_s": 9e-05,
   "latest_visualization": "docs/verification/netl_startup_20261027/progress_60_to_90us/pelec_annulus.gif",
   "latest_physical_observation": "Native 60\u201390 us fields show downstream-moving startup disturbances and declining peak pressure (13.06 to 4.29 MPa). Sustained circulation is not established.",
@@ -94,7 +94,7 @@
     "worst_maximum_sum_minus_one": 8.8817842e-16,
     "note": "Native log includes all AMR levels; localize discrepancies before classifying active-fluid error."
   },
-  "corrected_achieved_time_s": 9.318e-05,
+  "corrected_achieved_time_s": 0.00010074,
   "corrected_checkpoint": "long200_refined_walls_from60us/chk04510",
   "validation_review": {
     "closure_max": 8.8817842e-16,
@@ -110,8 +110,8 @@
   "original_invalid_achieved_time_s": 6.72e-05,
   "original_stop_reason": "Logged species-sum deviations from one: -0.03484 to +0.06166 at 55.98\u201356.12 microseconds. Stop requested; do not continue long trajectory until diagnosed.",
   "latest_monitor": {
-    "coarse_steps": 159,
-    "species_sum_error": 7.7715612e-16,
+    "coarse_steps": 537,
+    "species_sum_error": 8.8817842e-16,
     "minimum_species": -3.9621183e-09,
     "all_logged_extrema_finite": true,
     "pressure_Pa": [
@@ -122,10 +122,21 @@
       279.85346,
       3672.4065
     ],
-    "native_heat_release_last_audited_time_s": 9e-05,
-    "note": "No new compact native preview before the next 5-us plot. Saved native heat-release and field checks remain audited through 90 us. Small local undershoots remain failures."
+    "native_heat_release_last_audited_time_s": 9.500000000000559e-05,
+    "native_sample_fields_finite": {
+      "pressure_Pa": true,
+      "temperature_K": true,
+      "methane_Y": true,
+      "oxygen_Y": true,
+      "heat_release_W_m3": true
+    },
+    "sampled_native_heat_release_range_W_m3": [
+      -110810025189.6016,
+      140105509488.7811
+    ],
+    "note": "Saved native fields audited through 95 us; live extrema reach the separately recorded current time. Historical and between-frame negative species remain failures; no revolution inferred from elapsed time."
   },
-  "latest_saved_field_time_s": 9e-05,
+  "latest_saved_field_time_s": 9.500000000000559e-05,
   "interrupted_segment": {
     "run_id": "long200_refined_walls_from60us",
     "call_id": "fc-01M5YWEGYV3BYFHKRXGZ5KEAEP",
