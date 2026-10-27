@@ -1,0 +1,17 @@
+{
+  "returncode": 6,
+  "wall_seconds": 124.07814724,
+  "actual_saved_time_s": 5.612000000000005e-05,
+  "analysis_returncode": 0,
+  "requested_time_s": 5.62e-05,
+  "completed": false,
+  "checkpoints": [
+    "chk02816"
+  ],
+  "emergency_stop": true,
+  "operator_stop": {
+    "action": "checkpoint_stop",
+    "reason": "Native extrema exceeded emergency bounds; see emergency_stop.json"
+  },
+  "scope": "Execution status only; physical conclusions require native-field analysis."
+}

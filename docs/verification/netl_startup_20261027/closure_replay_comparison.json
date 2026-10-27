@@ -1,0 +1,62 @@
+{
+  "scope": "Native cylindrical sample extrema; region closure is in evidence checks.json. Neither replay establishes engine validation.",
+  "native_sample_fields": {
+    "closure_capture": {
+      "pressure_Pa": {
+        "finite": true,
+        "minimum": 204565.88876444497,
+        "maximum": 15318020.154456638
+      },
+      "temperature_K": {
+        "finite": true,
+        "minimum": 278.6546357781152,
+        "maximum": 3764.230696189682
+      },
+      "methane_Y": {
+        "finite": true,
+        "minimum": -1.1671060735719146e-13,
+        "maximum": 0.00010220752977578245
+      },
+      "oxygen_Y": {
+        "finite": true,
+        "minimum": 0.005331095181709889,
+        "maximum": 0.3262781365257942
+      },
+      "heat_release_W_m3": {
+        "finite": true,
+        "minimum": -568586000792.6497,
+        "maximum": 1499962715801.1687
+      }
+    },
+    "closure_frozen": {
+      "pressure_Pa": {
+        "finite": true,
+        "minimum": 204565.88876444497,
+        "maximum": 15318020.154456638
+      },
+      "temperature_K": {
+        "finite": true,
+        "minimum": 278.62951715426726,
+        "maximum": 3764.230696189682
+      },
+      "methane_Y": {
+        "finite": true,
+        "minimum": -5.2710765611901195e-14,
+        "maximum": 0.00010220752977578245
+      },
+      "oxygen_Y": {
+        "finite": true,
+        "minimum": 0.005321835124012746,
+        "maximum": 0.3262781365257943
+      },
+      "heat_release_W_m3": {
+        "finite": true,
+        "minimum": -568586000792.6497,
+        "maximum": 1628389678857.627
+      }
+    }
+  },
+  "adaptive_max_active_closure": 0.09154689771113578,
+  "frozen_max_active_closure": 6.661338147750939e-16,
+  "interpretation": "Freezing mesh removes observed closure anomaly over matched window. Mesh adaptation/EB synchronization implicated; exact faulty operation unresolved."
+}

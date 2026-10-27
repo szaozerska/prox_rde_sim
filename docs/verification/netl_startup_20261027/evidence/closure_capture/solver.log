@@ -1,0 +1,781 @@
+GPU_BINDING local_rank=0 visible_device=0
+GPU_BINDING local_rank=1 visible_device=1
+GPU_BINDING local_rank=2 visible_device=2
+GPU_BINDING local_rank=3 visible_device=3
+Initializing AMReX (26.07)...
+MPI initialized with 4 MPI processes
+MPI initialized with thread support level 0
+Initializing CUDA...
+CUDA initialized with 4 devices.
+AMReX (26.07) initialized
+Initializing SUNDIALS with 1 threads...
+SUNDIALS initialized.
+
+Starting run at 12:51:59 UTC on 2026-10-27.
+Successfully read inputs file ... 
+
+PeleC git hash: 949e2bb-dirty
+AMReX git hash: 1546c1c
+PelePhysics git hash: 6e8026f
+SUNDIALS git hash: 0eff396
+
+0 Advected Variables: 
+
+13 Species: 
+H2  H  O2  O  OH  HO2  H2O  CH3  CH4  CO  CO2  CH2O  N2  
+0 Auxiliary Variables: 
+
+Initializing EB2
+--------------------------------------------------------------------------
+The call to cuMemHostRegister(0x2ad512450008, 134217728, 0) failed.
+  Host:  modal
+  cuMemHostRegister return value:  1
+  Registration cache:  smcuda
+--------------------------------------------------------------------------
+restarting calculation from file: /results/closure_replay_prepare_55p8us/chk02800
+Starting to call amrex_probinit ... 
+Successfully run amrex_probinit
+Successfully read inputs file ... 
+Initializing EB2 structs
+Using quadratic stencil for the EB gradient
+read CPU time: 46731.73006
+[modal:00026] 3 more processes have sent help message help-mpi-common-cuda.txt / cuMemHostRegister during init failed
+[modal:00026] Set MCA parameter "orte_base_help_aggregate" to 0 to see all help / error messages
+Initializing EB2 structs
+Using quadratic stencil for the EB gradient
+Creating ReactorBase instance: ReactorCvode
+Initializing CVODE:
+Creating ReactorBase instance: ReactorCvode
+Initializing CVODE:
+Restart time = 7.314866792 seconds.
+Now regridding at level lbase = 0
+grid_places() time: 0.00811326 new finest: 1
+Load balance on level 0 at t = 5.58e-05
+Initializing EB2 structs
+Using quadratic stencil for the EB gradient
+Creating ReactorBase instance: ReactorCvode
+Initializing CVODE:
+Load balance on level 1 at t = 5.58e-05
+Initializing EB2 structs
+Using quadratic stencil for the EB gradient
+Creating ReactorBase instance: ReactorCvode
+Initializing CVODE:
+STEP = 2800 TIME = 5.58e-05 : REGRID  with lbase = 0
+  Level 0   27 grids  7077888 cells  100 % of domain
+            smallest grid: 64 x 64 x 64  biggest grid: 64 x 64 x 64
+  Level 1   187 grids  10892288 cells  19.2364728 % of domain
+            smallest grid: 8 x 8 x 8  biggest grid: 64 x 64 x 56
+
+PLOTFILE: file = plt02800
+Write plotfile time = 2.242380125  seconds
+
+[Level 0 step 2801] ADVANCE at time 5.58e-05 with dt = 2e-08
+... Computing MOL source term at t^{n} 
+... Computing MOL source term at t^{n+1} 
+... Computing reactions for dt = 2e-08
+[Level 0 step 2801] Advanced 7077888 cells
+[Level 1 step 5601] ADVANCE at time 5.58e-05 with dt = 1e-08
+... Computing MOL source term at t^{n} 
+... Computing MOL source term at t^{n+1} 
+... Computing reactions for dt = 1e-08
+[Level 1 step 5601] Advanced 10892288 cells
+[Level 1 step 5602] ADVANCE at time 5.581e-05 with dt = 1e-08
+... Computing MOL source term at t^{n} 
+... Computing MOL source term at t^{n+1} 
+... Computing reactions for dt = 1e-08
+[Level 1 step 5602] Advanced 10892288 cells
+PeleC::reflux() at level 0 : time = 0.181682052
+
+TIME = 5.582e-05 MASS        = 0.5611540428
+TIME = 5.582e-05 XMOM        = -35.3737612
+TIME = 5.582e-05 YMOM        = -1944.73062
+TIME = 5.582e-05 ZMOM        = 23913.8013
+TIME = 5.582e-05 RHO*e       = -1838428471
+TIME = 5.582e-05 RHO*K       = 739695035.5
+TIME = 5.582e-05 RHO*E       = -1098733440
+TIME = 5.582e-05 FUEL PROD   = 0
+
+TIME = 5.582e-05 density     MIN = 0.0015941838     MAX = 0.054695965    
+TIME = 5.582e-05 x_velocity  MIN = -77419.117       MAX = 78965.052      
+TIME = 5.582e-05 y_velocity  MIN = -24185.845       MAX = 68700.23       
+TIME = 5.582e-05 z_velocity  MIN = -8682.3708       MAX = 173358.92      
+TIME = 5.582e-05 eint_e      MIN = -4.2638759e+10   MAX = 7.0194933e+09  
+TIME = 5.582e-05 Temp        MIN = 278.74936        MAX = 3816.4074      
+TIME = 5.582e-05 pressure    MIN = 2045951.9        MAX = 1.5334794e+08  
+TIME = 5.582e-05 massfrac    MIN = -6.8226587e-10   MAX = 0.76700028     
+TIME = 5.582e-05 sumYminus1  MIN = -6.6613381e-16   MAX = 6.6613381e-16  
+
+[STEP 2801] Coarse TimeStep time: 5.874695457
+[STEP 2801] FAB kilobyte spread across MPI nodes: [11774233 ... 12202246]
+
+STEP = 2801 TIME = 5.582e-05 DT = 2e-08
+
+[Level 0 step 2802] ADVANCE at time 5.582e-05 with dt = 2e-08
+... Computing MOL source term at t^{n} 
+... Computing MOL source term at t^{n+1} 
+... Computing reactions for dt = 2e-08
+[Level 0 step 2802] Advanced 7077888 cells
+[Level 1 step 5603] ADVANCE at time 5.582e-05 with dt = 1e-08
+... Computing MOL source term at t^{n} 
+... Computing MOL source term at t^{n+1} 
+... Computing reactions for dt = 1e-08
+[Level 1 step 5603] Advanced 10892288 cells
+[Level 1 step 5604] ADVANCE at time 5.583e-05 with dt = 1e-08
+... Computing MOL source term at t^{n} 
+... Computing MOL source term at t^{n+1} 
+... Computing reactions for dt = 1e-08
+[Level 1 step 5604] Advanced 10892288 cells
+PeleC::reflux() at level 0 : time = 0.112838859
+
+TIME = 5.584e-05 MASS        = 0.561144995
+TIME = 5.584e-05 XMOM        = -35.36249018
+TIME = 5.584e-05 YMOM        = -1944.185354
+TIME = 5.584e-05 ZMOM        = 23920.31657
+TIME = 5.584e-05 RHO*e       = -1838686427
+TIME = 5.584e-05 RHO*K       = 739950615.9
+TIME = 5.584e-05 RHO*E       = -1098735815
+TIME = 5.584e-05 FUEL PROD   = 0
+
+TIME = 5.584e-05 density     MIN = 0.0015937322     MAX = 0.05468329     
+TIME = 5.584e-05 x_velocity  MIN = -77355.84        MAX = 78902.711      
+TIME = 5.584e-05 y_velocity  MIN = -24178.647       MAX = 68717.395      
+TIME = 5.584e-05 z_velocity  MIN = -8744.1414       MAX = 173344.9       
+TIME = 5.584e-05 eint_e      MIN = -4.2642112e+10   MAX = 7.0700414e+09  
+TIME = 5.584e-05 Temp        MIN = 278.74302        MAX = 3816.3053      
+TIME = 5.584e-05 pressure    MIN = 2046244.9        MAX = 1.5321614e+08  
+TIME = 5.584e-05 massfrac    MIN = -6.6743101e-10   MAX = 0.76700028     
+TIME = 5.584e-05 sumYminus1  MIN = -6.6613381e-16   MAX = 8.8817842e-16  
+
+[STEP 2802] Coarse TimeStep time: 2.881958467
+[STEP 2802] FAB kilobyte spread across MPI nodes: [11774233 ... 12202246]
+
+STEP = 2802 TIME = 5.584e-05 DT = 2e-08
+
+[Level 0 step 2803] ADVANCE at time 5.584e-05 with dt = 2e-08
+... Computing MOL source term at t^{n} 
+... Computing MOL source term at t^{n+1} 
+... Computing reactions for dt = 2e-08
+[Level 0 step 2803] Advanced 7077888 cells
+[Level 1 step 5605] ADVANCE at time 5.584e-05 with dt = 1e-08
+... Computing MOL source term at t^{n} 
+... Computing MOL source term at t^{n+1} 
+... Computing reactions for dt = 1e-08
+[Level 1 step 5605] Advanced 10892288 cells
+[Level 1 step 5606] ADVANCE at time 5.585e-05 with dt = 1e-08
+... Computing MOL source term at t^{n} 
+... Computing MOL source term at t^{n+1} 
+... Computing reactions for dt = 1e-08
+[Level 1 step 5606] Advanced 10892288 cells
+PeleC::reflux() at level 0 : time = 0.18089955
+
+TIME = 5.586e-05 MASS        = 0.5611359437
+TIME = 5.586e-05 XMOM        = -35.35124032
+TIME = 5.586e-05 YMOM        = -1943.643244
+TIME = 5.586e-05 ZMOM        = 23926.82853
+TIME = 5.586e-05 RHO*e       = -1838944343
+TIME = 5.586e-05 RHO*K       = 740206156
+TIME = 5.586e-05 RHO*E       = -1098738191
+TIME = 5.586e-05 FUEL PROD   = 0
+
+TIME = 5.586e-05 density     MIN = 0.001593283      MAX = 0.05465943     
+TIME = 5.586e-05 x_velocity  MIN = -77311.582       MAX = 78869.074      
+TIME = 5.586e-05 y_velocity  MIN = -24171.267       MAX = 68734.507      
+TIME = 5.586e-05 z_velocity  MIN = -8803.369        MAX = 173476.1       
+TIME = 5.586e-05 eint_e      MIN = -4.2645469e+10   MAX = 7.1032701e+09  
+TIME = 5.586e-05 Temp        MIN = 278.73668        MAX = 3816.2031      
+TIME = 5.586e-05 pressure    MIN = 2046537.9        MAX = 1.5305719e+08  
+TIME = 5.586e-05 massfrac    MIN = -6.5332864e-10   MAX = 0.76700028     
+TIME = 5.586e-05 sumYminus1  MIN = -6.6613381e-16   MAX = 6.6613381e-16  
+
+[STEP 2803] Coarse TimeStep time: 2.838740245
+[STEP 2803] FAB kilobyte spread across MPI nodes: [11774233 ... 12202246]
+
+STEP = 2803 TIME = 5.586e-05 DT = 2e-08
+
+[Level 0 step 2804] ADVANCE at time 5.586e-05 with dt = 2e-08
+... Computing MOL source term at t^{n} 
+... Computing MOL source term at t^{n+1} 
+... Computing reactions for dt = 2e-08
+[Level 0 step 2804] Advanced 7077888 cells
+[Level 1 step 5607] ADVANCE at time 5.586e-05 with dt = 1e-08
+... Computing MOL source term at t^{n} 
+... Computing MOL source term at t^{n+1} 
+... Computing reactions for dt = 1e-08
+[Level 1 step 5607] Advanced 10892288 cells
+[Level 1 step 5608] ADVANCE at time 5.587e-05 with dt = 1e-08
+... Computing MOL source term at t^{n} 
+... Computing MOL source term at t^{n+1} 
+... Computing reactions for dt = 1e-08
+[Level 1 step 5608] Advanced 10892288 cells
+PeleC::reflux() at level 0 : time = 0.193177838
+
+TIME = 5.588e-05 MASS        = 0.561126889
+TIME = 5.588e-05 XMOM        = -35.33999893
+TIME = 5.588e-05 YMOM        = -1943.104242
+TIME = 5.588e-05 ZMOM        = 23933.3372
+TIME = 5.588e-05 RHO*e       = -1839202216
+TIME = 5.588e-05 RHO*K       = 740461652.7
+TIME = 5.588e-05 RHO*E       = -1098740568
+TIME = 5.588e-05 FUEL PROD   = 0
+
+TIME = 5.588e-05 density     MIN = 0.0015928363     MAX = 0.054624829    
+TIME = 5.588e-05 x_velocity  MIN = -77260.008       MAX = 78825.453      
+TIME = 5.588e-05 y_velocity  MIN = -24166.147       MAX = 68751.563      
+TIME = 5.588e-05 z_velocity  MIN = -8860.0812       MAX = 173677.08      
+TIME = 5.588e-05 eint_e      MIN = -4.2648832e+10   MAX = 7.1100427e+09  
+TIME = 5.588e-05 Temp        MIN = 278.73035        MAX = 3816.1009      
+TIME = 5.588e-05 pressure    MIN = 2046830.9        MAX = 1.5297221e+08  
+TIME = 5.588e-05 massfrac    MIN = -6.3966909e-10   MAX = 0.76700028     
+TIME = 5.588e-05 sumYminus1  MIN = -6.6613381e-16   MAX = 6.6613381e-16  
+
+[STEP 2804] Coarse TimeStep time: 2.891294694
+[STEP 2804] FAB kilobyte spread across MPI nodes: [11774233 ... 12202246]
+
+STEP = 2804 TIME = 5.588e-05 DT = 2e-08
+
+[Level 0 step 2805] ADVANCE at time 5.588e-05 with dt = 2e-08
+... Computing MOL source term at t^{n} 
+... Computing MOL source term at t^{n+1} 
+... Computing reactions for dt = 2e-08
+[Level 0 step 2805] Advanced 7077888 cells
+[Level 1 step 5609] ADVANCE at time 5.588e-05 with dt = 1e-08
+... Computing MOL source term at t^{n} 
+... Computing MOL source term at t^{n+1} 
+... Computing reactions for dt = 1e-08
+[Level 1 step 5609] Advanced 10892288 cells
+[Level 1 step 5610] ADVANCE at time 5.589e-05 with dt = 1e-08
+... Computing MOL source term at t^{n} 
+... Computing MOL source term at t^{n+1} 
+... Computing reactions for dt = 1e-08
+[Level 1 step 5610] Advanced 10892288 cells
+PeleC::reflux() at level 0 : time = 0.15687553
+
+TIME = 5.59e-05 MASS        = 0.5611178308
+TIME = 5.59e-05 XMOM        = -35.32875853
+TIME = 5.59e-05 YMOM        = -1942.568295
+TIME = 5.59e-05 ZMOM        = 23939.84259
+TIME = 5.59e-05 RHO*e       = -1839460044
+TIME = 5.59e-05 RHO*K       = 740717103.5
+TIME = 5.59e-05 RHO*E       = -1098742946
+TIME = 5.59e-05 FUEL PROD   = 0
+
+TIME = 5.59e-05 density     MIN = 0.0015923923     MAX = 0.054605372    
+TIME = 5.59e-05 x_velocity  MIN = -77212.62        MAX = 78806.235      
+TIME = 5.59e-05 y_velocity  MIN = -24159.848       MAX = 68768.557      
+TIME = 5.59e-05 z_velocity  MIN = -8914.3056       MAX = 173811.94      
+TIME = 5.59e-05 eint_e      MIN = -4.2652199e+10   MAX = 7.0958902e+09  
+TIME = 5.59e-05 Temp        MIN = 278.72402        MAX = 3815.9987      
+TIME = 5.59e-05 pressure    MIN = 2047123.8        MAX = 1.5290955e+08  
+TIME = 5.59e-05 massfrac    MIN = -6.2630899e-10   MAX = 0.76700028     
+TIME = 5.59e-05 sumYminus1  MIN = -6.6613381e-16   MAX = 6.6613381e-16  
+
+[STEP 2805] Coarse TimeStep time: 2.850011734
+[STEP 2805] FAB kilobyte spread across MPI nodes: [11774233 ... 12202246]
+
+STEP = 2805 TIME = 5.59e-05 DT = 2e-08
+
+PLOTFILE: file = plt02805
+Write plotfile time = 1.145870436  seconds
+
+[Level 0 step 2806] ADVANCE at time 5.59e-05 with dt = 2e-08
+... Computing MOL source term at t^{n} 
+... Computing MOL source term at t^{n+1} 
+... Computing reactions for dt = 2e-08
+[Level 0 step 2806] Advanced 7077888 cells
+[Level 1 step 5611] ADVANCE at time 5.59e-05 with dt = 1e-08
+... Computing MOL source term at t^{n} 
+... Computing MOL source term at t^{n+1} 
+... Computing reactions for dt = 1e-08
+[Level 1 step 5611] Advanced 10892288 cells
+[Level 1 step 5612] ADVANCE at time 5.591e-05 with dt = 1e-08
+... Computing MOL source term at t^{n} 
+... Computing MOL source term at t^{n+1} 
+... Computing reactions for dt = 1e-08
+[Level 1 step 5612] Advanced 10892288 cells
+PeleC::reflux() at level 0 : time = 0.195535961
+
+TIME = 5.592e-05 MASS        = 0.5611087692
+TIME = 5.592e-05 XMOM        = -35.31751443
+TIME = 5.592e-05 YMOM        = -1942.035347
+TIME = 5.592e-05 ZMOM        = 23946.3447
+TIME = 5.592e-05 RHO*e       = -1839717825
+TIME = 5.592e-05 RHO*K       = 740972506.3
+TIME = 5.592e-05 RHO*E       = -1098745323
+TIME = 5.592e-05 FUEL PROD   = 0
+
+TIME = 5.592e-05 density     MIN = 0.0015919511     MAX = 0.054619117    
+TIME = 5.592e-05 x_velocity  MIN = -77179.159       MAX = 78783.873      
+TIME = 5.592e-05 y_velocity  MIN = -24152.434       MAX = 68785.487      
+TIME = 5.592e-05 z_velocity  MIN = -8966.07         MAX = 173889.1       
+TIME = 5.592e-05 eint_e      MIN = -4.2655571e+10   MAX = 7.065805e+09   
+TIME = 5.592e-05 Temp        MIN = 278.71769        MAX = 3815.8965      
+TIME = 5.592e-05 pressure    MIN = 2047416.6        MAX = 1.528271e+08   
+TIME = 5.592e-05 massfrac    MIN = -6.131782e-10    MAX = 0.76700028     
+TIME = 5.592e-05 sumYminus1  MIN = -6.6613381e-16   MAX = 6.6613381e-16  
+
+[STEP 2806] Coarse TimeStep time: 2.880451649
+[STEP 2806] FAB kilobyte spread across MPI nodes: [11774233 ... 12202246]
+
+STEP = 2806 TIME = 5.592e-05 DT = 2e-08
+
+[Level 0 step 2807] ADVANCE at time 5.592e-05 with dt = 2e-08
+... Computing MOL source term at t^{n} 
+... Computing MOL source term at t^{n+1} 
+... Computing reactions for dt = 2e-08
+[Level 0 step 2807] Advanced 7077888 cells
+[Level 1 step 5613] ADVANCE at time 5.592e-05 with dt = 1e-08
+... Computing MOL source term at t^{n} 
+... Computing MOL source term at t^{n+1} 
+... Computing reactions for dt = 1e-08
+[Level 1 step 5613] Advanced 10892288 cells
+[Level 1 step 5614] ADVANCE at time 5.593e-05 with dt = 1e-08
+... Computing MOL source term at t^{n} 
+... Computing MOL source term at t^{n+1} 
+... Computing reactions for dt = 1e-08
+[Level 1 step 5614] Advanced 10892288 cells
+PeleC::reflux() at level 0 : time = 0.159969856
+
+TIME = 5.594e-05 MASS        = 0.5610997042
+TIME = 5.594e-05 XMOM        = -35.30626356
+TIME = 5.594e-05 YMOM        = -1941.505338
+TIME = 5.594e-05 ZMOM        = 23952.84354
+TIME = 5.594e-05 RHO*e       = -1839975555
+TIME = 5.594e-05 RHO*K       = 741227857.9
+TIME = 5.594e-05 RHO*E       = -1098747702
+TIME = 5.594e-05 FUEL PROD   = 0
+
+TIME = 5.594e-05 density     MIN = 0.0015915128     MAX = 0.054620827    
+TIME = 5.594e-05 x_velocity  MIN = -77137.479       MAX = 78752.816      
+TIME = 5.594e-05 y_velocity  MIN = -24143.964       MAX = 68802.349      
+TIME = 5.594e-05 z_velocity  MIN = -9015.4022       MAX = 173915.76      
+TIME = 5.594e-05 eint_e      MIN = -4.2658947e+10   MAX = 7.024147e+09   
+TIME = 5.594e-05 Temp        MIN = 278.71137        MAX = 3815.7942      
+TIME = 5.594e-05 pressure    MIN = 2047709.4        MAX = 1.5271748e+08  
+TIME = 5.594e-05 massfrac    MIN = -6.0024328e-10   MAX = 0.76700028     
+TIME = 5.594e-05 sumYminus1  MIN = -6.6613381e-16   MAX = 6.6613381e-16  
+
+[STEP 2807] Coarse TimeStep time: 2.828243352
+[STEP 2807] FAB kilobyte spread across MPI nodes: [11774233 ... 12202246]
+
+STEP = 2807 TIME = 5.594e-05 DT = 2e-08
+
+[Level 0 step 2808] ADVANCE at time 5.594e-05 with dt = 2e-08
+... Computing MOL source term at t^{n} 
+... Computing MOL source term at t^{n+1} 
+... Computing reactions for dt = 2e-08
+[Level 0 step 2808] Advanced 7077888 cells
+[Level 1 step 5615] ADVANCE at time 5.594e-05 with dt = 1e-08
+... Computing MOL source term at t^{n} 
+... Computing MOL source term at t^{n+1} 
+... Computing reactions for dt = 1e-08
+[Level 1 step 5615] Advanced 10892288 cells
+[Level 1 step 5616] ADVANCE at time 5.595e-05 with dt = 1e-08
+... Computing MOL source term at t^{n} 
+... Computing MOL source term at t^{n+1} 
+... Computing reactions for dt = 1e-08
+[Level 1 step 5616] Advanced 10892288 cells
+PeleC::reflux() at level 0 : time = 0.172621053
+
+TIME = 5.596e-05 MASS        = 0.5610906357
+TIME = 5.596e-05 XMOM        = -35.29500377
+TIME = 5.596e-05 YMOM        = -1940.978207
+TIME = 5.596e-05 ZMOM        = 23959.33912
+TIME = 5.596e-05 RHO*e       = -1840233231
+TIME = 5.596e-05 RHO*K       = 741483155.4
+TIME = 5.596e-05 RHO*E       = -1098750081
+TIME = 5.596e-05 FUEL PROD   = 0
+
+TIME = 5.596e-05 density     MIN = 0.0015910777     MAX = 0.054622432    
+TIME = 5.596e-05 x_velocity  MIN = -77087.741       MAX = 78713.217      
+TIME = 5.596e-05 y_velocity  MIN = -24134.494       MAX = 68819.14       
+TIME = 5.596e-05 z_velocity  MIN = -9062.3302       MAX = 173898         
+TIME = 5.596e-05 eint_e      MIN = -4.2662328e+10   MAX = 7.0722612e+09  
+TIME = 5.596e-05 Temp        MIN = 278.70505        MAX = 3815.692       
+TIME = 5.596e-05 pressure    MIN = 2048002.2        MAX = 1.5258013e+08  
+TIME = 5.596e-05 massfrac    MIN = -5.8748903e-10   MAX = 0.76700028     
+TIME = 5.596e-05 sumYminus1  MIN = -6.6613381e-16   MAX = 6.6613381e-16  
+
+[STEP 2808] Coarse TimeStep time: 2.854687043
+[STEP 2808] FAB kilobyte spread across MPI nodes: [11774233 ... 12202246]
+
+STEP = 2808 TIME = 5.596e-05 DT = 2e-08
+
+Now regridding at level lbase = 0
+grid_places() time: 0.005356618 new finest: 1
+Load balance on level 0 at t = 5.596e-05
+Initializing EB2 structs
+Using quadratic stencil for the EB gradient
+Creating ReactorBase instance: ReactorCvode
+Initializing CVODE:
+Load balance on level 1 at t = 5.596e-05
+Initializing EB2 structs
+Using quadratic stencil for the EB gradient
+Creating ReactorBase instance: ReactorCvode
+Initializing CVODE:
+STEP = 2808 TIME = 5.596e-05 : REGRID  with lbase = 0
+  Level 0   27 grids  7077888 cells  100 % of domain
+            smallest grid: 64 x 64 x 64  biggest grid: 64 x 64 x 64
+  Level 1   200 grids  10909184 cells  19.26631221 % of domain
+            smallest grid: 8 x 8 x 8  biggest grid: 64 x 64 x 56
+
+[Level 0 step 2809] ADVANCE at time 5.596e-05 with dt = 2e-08
+... Computing MOL source term at t^{n} 
+... Computing MOL source term at t^{n+1} 
+... Computing reactions for dt = 2e-08
+[Level 0 step 2809] Advanced 7077888 cells
+[Level 1 step 5617] ADVANCE at time 5.596e-05 with dt = 1e-08
+... Computing MOL source term at t^{n} 
+... Computing MOL source term at t^{n+1} 
+... Computing reactions for dt = 1e-08
+[Level 1 step 5617] Advanced 10909184 cells
+[Level 1 step 5618] ADVANCE at time 5.597e-05 with dt = 1e-08
+... Computing MOL source term at t^{n} 
+... Computing MOL source term at t^{n+1} 
+... Computing reactions for dt = 1e-08
+[Level 1 step 5618] Advanced 10909184 cells
+PeleC::reflux() at level 0 : time = 0.107749463
+
+TIME = 5.598e-05 MASS        = 0.5610813075
+TIME = 5.598e-05 XMOM        = -35.28076395
+TIME = 5.598e-05 YMOM        = -1940.452974
+TIME = 5.598e-05 ZMOM        = 23965.82282
+TIME = 5.598e-05 RHO*e       = -1840491010
+TIME = 5.598e-05 RHO*K       = 741738145.8
+TIME = 5.598e-05 RHO*E       = -1098752871
+TIME = 5.598e-05 FUEL PROD   = 0
+
+TIME = 5.598e-05 density     MIN = 0.0015906459     MAX = 0.054614229    
+TIME = 5.598e-05 x_velocity  MIN = -77030.111       MAX = 78669.81       
+TIME = 5.598e-05 y_velocity  MIN = -24126.049       MAX = 68835.855      
+TIME = 5.598e-05 z_velocity  MIN = -9106.8819       MAX = 174021.77      
+TIME = 5.598e-05 eint_e      MIN = -4.2665713e+10   MAX = 7.1085477e+09  
+TIME = 5.598e-05 Temp        MIN = 278.69874        MAX = 3815.5897      
+TIME = 5.598e-05 pressure    MIN = 2048295          MAX = 1.5242094e+08  
+TIME = 5.598e-05 massfrac    MIN = -5.7490974e-10   MAX = 0.8093035      
+TIME = 5.598e-05 sumYminus1  MIN = -6.6613381e-16   MAX = 0.060023375    
+
+[STEP 2809] Coarse TimeStep time: 2.873581898
+[STEP 2809] FAB kilobyte spread across MPI nodes: [11774233 ... 13456363]
+
+STEP = 2809 TIME = 5.598e-05 DT = 2e-08
+
+[Level 0 step 2810] ADVANCE at time 5.598e-05 with dt = 2e-08
+... Computing MOL source term at t^{n} 
+... Computing MOL source term at t^{n+1} 
+... Computing reactions for dt = 2e-08
+[Level 0 step 2810] Advanced 7077888 cells
+[Level 1 step 5619] ADVANCE at time 5.598e-05 with dt = 1e-08
+... Computing MOL source term at t^{n} 
+... Computing MOL source term at t^{n+1} 
+... Computing reactions for dt = 1e-08
+[Level 1 step 5619] Advanced 10909184 cells
+[Level 1 step 5620] ADVANCE at time 5.599e-05 with dt = 1e-08
+... Computing MOL source term at t^{n} 
+... Computing MOL source term at t^{n+1} 
+... Computing reactions for dt = 1e-08
+[Level 1 step 5620] Advanced 10909184 cells
+PeleC::reflux() at level 0 : time = 0.113228918
+
+TIME = 5.6e-05 MASS        = 0.5610722108
+TIME = 5.6e-05 XMOM        = -35.26825626
+TIME = 5.6e-05 YMOM        = -1939.930437
+TIME = 5.6e-05 ZMOM        = 23972.30299
+TIME = 5.6e-05 RHO*e       = -1840748632
+TIME = 5.6e-05 RHO*K       = 741992755.4
+TIME = 5.6e-05 RHO*E       = -1098755879
+TIME = 5.6e-05 FUEL PROD   = 0
+
+TIME = 5.6e-05 density     MIN = 0.0015902175     MAX = 0.054594812    
+TIME = 5.6e-05 x_velocity  MIN = -76974.096       MAX = 78652.001      
+TIME = 5.6e-05 y_velocity  MIN = -24118.48        MAX = 68852.492      
+TIME = 5.6e-05 z_velocity  MIN = -9149.0852       MAX = 174224.89      
+TIME = 5.6e-05 eint_e      MIN = -4.2669103e+10   MAX = 7.1168453e+09  
+TIME = 5.6e-05 Temp        MIN = 278.69242        MAX = 3815.4874      
+TIME = 5.6e-05 pressure    MIN = 2048587.7        MAX = 1.5224971e+08  
+TIME = 5.6e-05 massfrac    MIN = -5.6250427e-10   MAX = 0.8332965      
+TIME = 5.6e-05 sumYminus1  MIN = -0.0051193112    MAX = 0.091546898    
+
+[STEP 2810] Coarse TimeStep time: 2.483077302
+[STEP 2810] FAB kilobyte spread across MPI nodes: [11774233 ... 13456363]
+
+STEP = 2810 TIME = 5.6e-05 DT = 2e-08
+
+PLOTFILE: file = plt02810
+Write plotfile time = 1.334135077  seconds
+
+[Level 0 step 2811] ADVANCE at time 5.6e-05 with dt = 2e-08
+... Computing MOL source term at t^{n} 
+... Computing MOL source term at t^{n+1} 
+... Computing reactions for dt = 2e-08
+[Level 0 step 2811] Advanced 7077888 cells
+[Level 1 step 5621] ADVANCE at time 5.6e-05 with dt = 1e-08
+... Computing MOL source term at t^{n} 
+... Computing MOL source term at t^{n+1} 
+... Computing reactions for dt = 1e-08
+[Level 1 step 5621] Advanced 10909184 cells
+[Level 1 step 5622] ADVANCE at time 5.601e-05 with dt = 1e-08
+... Computing MOL source term at t^{n} 
+... Computing MOL source term at t^{n+1} 
+... Computing reactions for dt = 1e-08
+[Level 1 step 5622] Advanced 10909184 cells
+PeleC::reflux() at level 0 : time = 0.118368086
+
+TIME = 5.602e-05 MASS        = 0.5610631622
+TIME = 5.602e-05 XMOM        = -35.2551867
+TIME = 5.602e-05 YMOM        = -1939.410116
+TIME = 5.602e-05 ZMOM        = 23978.78673
+TIME = 5.602e-05 RHO*e       = -1841006385
+TIME = 5.602e-05 RHO*K       = 742247594.7
+TIME = 5.602e-05 RHO*E       = -1098758795
+TIME = 5.602e-05 FUEL PROD   = 0
+
+TIME = 5.602e-05 density     MIN = 0.0015897927     MAX = 0.054564626    
+TIME = 5.602e-05 x_velocity  MIN = -76932.346       MAX = 78624.689      
+TIME = 5.602e-05 y_velocity  MIN = -24111.454       MAX = 68869.045      
+TIME = 5.602e-05 z_velocity  MIN = -9188.9679       MAX = 174359.97      
+TIME = 5.602e-05 eint_e      MIN = -4.2672496e+10   MAX = 7.1029341e+09  
+TIME = 5.602e-05 Temp        MIN = 278.68612        MAX = 3815.3851      
+TIME = 5.602e-05 pressure    MIN = 2048880.4        MAX = 1.5219463e+08  
+TIME = 5.602e-05 massfrac    MIN = -5.5027321e-10   MAX = 0.81046718     
+TIME = 5.602e-05 sumYminus1  MIN = -0.058214668     MAX = 0.062022777    
+
+[STEP 2811] Coarse TimeStep time: 2.470361018
+[STEP 2811] FAB kilobyte spread across MPI nodes: [11774233 ... 13456363]
+
+STEP = 2811 TIME = 5.602e-05 DT = 2e-08
+
+[Level 0 step 2812] ADVANCE at time 5.602e-05 with dt = 2e-08
+... Computing MOL source term at t^{n} 
+... Computing MOL source term at t^{n+1} 
+... Computing reactions for dt = 2e-08
+[Level 0 step 2812] Advanced 7077888 cells
+[Level 1 step 5623] ADVANCE at time 5.602e-05 with dt = 1e-08
+... Computing MOL source term at t^{n} 
+... Computing MOL source term at t^{n+1} 
+... Computing reactions for dt = 1e-08
+[Level 1 step 5623] Advanced 10909184 cells
+[Level 1 step 5624] ADVANCE at time 5.603e-05 with dt = 1e-08
+... Computing MOL source term at t^{n} 
+... Computing MOL source term at t^{n+1} 
+... Computing reactions for dt = 1e-08
+[Level 1 step 5624] Advanced 10909184 cells
+PeleC::reflux() at level 0 : time = 0.113677413
+
+TIME = 5.604e-05 MASS        = 0.5610538592
+TIME = 5.604e-05 XMOM        = -35.24318071
+TIME = 5.604e-05 YMOM        = -1938.892576
+TIME = 5.604e-05 ZMOM        = 23985.26523
+TIME = 5.604e-05 RHO*e       = -1841264287
+TIME = 5.604e-05 RHO*K       = 742502776.1
+TIME = 5.604e-05 RHO*E       = -1098761518
+TIME = 5.604e-05 FUEL PROD   = 0
+
+TIME = 5.604e-05 density     MIN = 0.0015893716     MAX = 0.054524102    
+TIME = 5.604e-05 x_velocity  MIN = -76881.816       MAX = 78588.043      
+TIME = 5.604e-05 y_velocity  MIN = -24104.304       MAX = 68885.512      
+TIME = 5.604e-05 z_velocity  MIN = -9226.5577       MAX = 174435.93      
+TIME = 5.604e-05 eint_e      MIN = -4.2675894e+10   MAX = 7.0720594e+09  
+TIME = 5.604e-05 Temp        MIN = 278.67981        MAX = 3815.2828      
+TIME = 5.604e-05 pressure    MIN = 2049173          MAX = 1.521096e+08   
+TIME = 5.604e-05 massfrac    MIN = -5.3821794e-10   MAX = 0.80951997     
+TIME = 5.604e-05 sumYminus1  MIN = -0.02600218      MAX = 0.061436519    
+
+[STEP 2812] Coarse TimeStep time: 2.456030506
+[STEP 2812] FAB kilobyte spread across MPI nodes: [11774233 ... 13456363]
+
+STEP = 2812 TIME = 5.604e-05 DT = 2e-08
+
+[Level 0 step 2813] ADVANCE at time 5.604e-05 with dt = 2e-08
+... Computing MOL source term at t^{n} 
+... Computing MOL source term at t^{n+1} 
+... Computing reactions for dt = 2e-08
+[Level 0 step 2813] Advanced 7077888 cells
+[Level 1 step 5625] ADVANCE at time 5.604e-05 with dt = 1e-08
+... Computing MOL source term at t^{n} 
+... Computing MOL source term at t^{n+1} 
+... Computing reactions for dt = 1e-08
+[Level 1 step 5625] Advanced 10909184 cells
+[Level 1 step 5626] ADVANCE at time 5.605e-05 with dt = 1e-08
+... Computing MOL source term at t^{n} 
+... Computing MOL source term at t^{n+1} 
+... Computing reactions for dt = 1e-08
+[Level 1 step 5626] Advanced 10909184 cells
+PeleC::reflux() at level 0 : time = 0.159676376
+
+TIME = 5.606e-05 MASS        = 0.5610446108
+TIME = 5.606e-05 XMOM        = -35.23005095
+TIME = 5.606e-05 YMOM        = -1938.377587
+TIME = 5.606e-05 ZMOM        = 23991.73683
+TIME = 5.606e-05 RHO*e       = -1841521963
+TIME = 5.606e-05 RHO*K       = 742757537.8
+TIME = 5.606e-05 RHO*E       = -1098764431
+TIME = 5.606e-05 FUEL PROD   = 0
+
+TIME = 5.606e-05 density     MIN = 0.0015889544     MAX = 0.054537713    
+TIME = 5.606e-05 x_velocity  MIN = -76840.382       MAX = 78542.246      
+TIME = 5.606e-05 y_velocity  MIN = -24099.322       MAX = 68901.889      
+TIME = 5.606e-05 z_velocity  MIN = -9261.8823       MAX = 174460.3       
+TIME = 5.606e-05 eint_e      MIN = -4.2679295e+10   MAX = 7.0288273e+09  
+TIME = 5.606e-05 Temp        MIN = 278.67351        MAX = 3815.1804      
+TIME = 5.606e-05 pressure    MIN = 2049465.6        MAX = 1.5200461e+08  
+TIME = 5.606e-05 massfrac    MIN = -5.2634017e-10   MAX = 0.80918719     
+TIME = 5.606e-05 sumYminus1  MIN = -6.6613381e-16   MAX = 0.061455889    
+
+[STEP 2813] Coarse TimeStep time: 2.516079507
+[STEP 2813] FAB kilobyte spread across MPI nodes: [11774233 ... 13456363]
+
+STEP = 2813 TIME = 5.606e-05 DT = 2e-08
+
+[Level 0 step 2814] ADVANCE at time 5.606e-05 with dt = 2e-08
+... Computing MOL source term at t^{n} 
+... Computing MOL source term at t^{n+1} 
+... Computing reactions for dt = 2e-08
+[Level 0 step 2814] Advanced 7077888 cells
+[Level 1 step 5627] ADVANCE at time 5.606e-05 with dt = 1e-08
+... Computing MOL source term at t^{n} 
+... Computing MOL source term at t^{n+1} 
+... Computing reactions for dt = 1e-08
+[Level 1 step 5627] Advanced 10909184 cells
+[Level 1 step 5628] ADVANCE at time 5.607e-05 with dt = 1e-08
+... Computing MOL source term at t^{n} 
+... Computing MOL source term at t^{n+1} 
+... Computing reactions for dt = 1e-08
+[Level 1 step 5628] Advanced 10909184 cells
+PeleC::reflux() at level 0 : time = 0.143447815
+
+TIME = 5.608e-05 MASS        = 0.5610354758
+TIME = 5.608e-05 XMOM        = -35.2168714
+TIME = 5.608e-05 YMOM        = -1937.865791
+TIME = 5.608e-05 ZMOM        = 23998.20718
+TIME = 5.608e-05 RHO*e       = -1841779531
+TIME = 5.608e-05 RHO*K       = 743012137.3
+TIME = 5.608e-05 RHO*E       = -1098767400
+TIME = 5.608e-05 FUEL PROD   = 0
+
+TIME = 5.608e-05 density     MIN = 0.0015885413     MAX = 0.054543969    
+TIME = 5.608e-05 x_velocity  MIN = -76812.867       MAX = 78487.493      
+TIME = 5.608e-05 y_velocity  MIN = -24093.175       MAX = 68918.173      
+TIME = 5.608e-05 z_velocity  MIN = -9294.9688       MAX = 174439.51      
+TIME = 5.608e-05 eint_e      MIN = -4.2682724e+10   MAX = 7.0719504e+09  
+TIME = 5.608e-05 Temp        MIN = 278.66722        MAX = 3815.0781      
+TIME = 5.608e-05 pressure    MIN = 2049758.2        MAX = 1.5187186e+08  
+TIME = 5.608e-05 massfrac    MIN = -5.1452916e-10   MAX = 0.78541549     
+TIME = 5.608e-05 sumYminus1  MIN = -6.6613381e-16   MAX = 0.03060432     
+
+[STEP 2814] Coarse TimeStep time: 2.51096861
+[STEP 2814] FAB kilobyte spread across MPI nodes: [11774233 ... 13456363]
+
+STEP = 2814 TIME = 5.608e-05 DT = 2e-08
+
+[Level 0 step 2815] ADVANCE at time 5.608e-05 with dt = 2e-08
+... Computing MOL source term at t^{n} 
+... Computing MOL source term at t^{n+1} 
+... Computing reactions for dt = 2e-08
+[Level 0 step 2815] Advanced 7077888 cells
+[Level 1 step 5629] ADVANCE at time 5.608e-05 with dt = 1e-08
+... Computing MOL source term at t^{n} 
+... Computing MOL source term at t^{n+1} 
+... Computing reactions for dt = 1e-08
+[Level 1 step 5629] Advanced 10909184 cells
+[Level 1 step 5630] ADVANCE at time 5.609e-05 with dt = 1e-08
+... Computing MOL source term at t^{n} 
+... Computing MOL source term at t^{n+1} 
+... Computing reactions for dt = 1e-08
+[Level 1 step 5630] Advanced 10909184 cells
+PeleC::reflux() at level 0 : time = 0.122352075
+
+TIME = 5.61e-05 MASS        = 0.5610262832
+TIME = 5.61e-05 XMOM        = -35.20363083
+TIME = 5.61e-05 YMOM        = -1937.355522
+TIME = 5.61e-05 ZMOM        = 24004.67845
+TIME = 5.61e-05 RHO*e       = -1842037140
+TIME = 5.61e-05 RHO*K       = 743267018.7
+TIME = 5.61e-05 RHO*E       = -1098770128
+TIME = 5.61e-05 FUEL PROD   = 0
+
+TIME = 5.61e-05 density     MIN = 0.0015881325     MAX = 0.054538645    
+TIME = 5.61e-05 x_velocity  MIN = -76777.633       MAX = 78451.317      
+TIME = 5.61e-05 y_velocity  MIN = -24085.923       MAX = 68934.358      
+TIME = 5.61e-05 z_velocity  MIN = -9325.8447       MAX = 174548.32      
+TIME = 5.61e-05 eint_e      MIN = -4.2686411e+10   MAX = 7.1118776e+09  
+TIME = 5.61e-05 Temp        MIN = 278.66092        MAX = 3814.9757      
+TIME = 5.61e-05 pressure    MIN = 2050050.7        MAX = 1.5171558e+08  
+TIME = 5.61e-05 massfrac    MIN = -5.0252953e-10   MAX = 0.8078221      
+TIME = 5.61e-05 sumYminus1  MIN = -0.0065200241    MAX = 0.060705606    
+
+[STEP 2815] Coarse TimeStep time: 2.446107762
+[STEP 2815] FAB kilobyte spread across MPI nodes: [11774233 ... 13456363]
+
+STEP = 2815 TIME = 5.61e-05 DT = 2e-08
+
+PLOTFILE: file = plt02815
+Write plotfile time = 1.346712026  seconds
+
+[Level 0 step 2816] ADVANCE at time 5.61e-05 with dt = 2e-08
+... Computing MOL source term at t^{n} 
+... Computing MOL source term at t^{n+1} 
+... Computing reactions for dt = 2e-08
+[Level 0 step 2816] Advanced 7077888 cells
+[Level 1 step 5631] ADVANCE at time 5.61e-05 with dt = 1e-08
+... Computing MOL source term at t^{n} 
+... Computing MOL source term at t^{n+1} 
+... Computing reactions for dt = 1e-08
+[Level 1 step 5631] Advanced 10909184 cells
+[Level 1 step 5632] ADVANCE at time 5.611e-05 with dt = 1e-08
+... Computing MOL source term at t^{n} 
+... Computing MOL source term at t^{n+1} 
+... Computing reactions for dt = 1e-08
+[Level 1 step 5632] Advanced 10909184 cells
+PeleC::reflux() at level 0 : time = 0.123047297
+
+TIME = 5.612e-05 MASS        = 0.5610170962
+TIME = 5.612e-05 XMOM        = -35.19025046
+TIME = 5.612e-05 YMOM        = -1936.848084
+TIME = 5.612e-05 ZMOM        = 24011.14245
+TIME = 5.612e-05 RHO*e       = -1842294532
+TIME = 5.612e-05 RHO*K       = 743521565.5
+TIME = 5.612e-05 RHO*E       = -1098772972
+TIME = 5.612e-05 FUEL PROD   = 0
+
+TIME = 5.612e-05 density     MIN = 0.001587728      MAX = 0.054522219    
+TIME = 5.612e-05 x_velocity  MIN = -76735.917       MAX = 78420.425      
+TIME = 5.612e-05 y_velocity  MIN = -24077.627       MAX = 68950.443      
+TIME = 5.612e-05 z_velocity  MIN = -9354.5367       MAX = 174755.12      
+TIME = 5.612e-05 eint_e      MIN = -4.2690113e+10   MAX = 7.122201e+09   
+TIME = 5.612e-05 Temp        MIN = 278.65464        MAX = 3814.8733      
+TIME = 5.612e-05 pressure    MIN = 2050343.2        MAX = 1.5153785e+08  
+TIME = 5.612e-05 massfrac    MIN = -4.9032272e-10   MAX = 0.80782514     
+TIME = 5.612e-05 sumYminus1  MIN = -0.0071495673    MAX = 0.068435084    
+
+[STEP 2816] Coarse TimeStep time: 2.447885388
+[STEP 2816] FAB kilobyte spread across MPI nodes: [11774233 ... 13456363]
+
+STEP = 2816 TIME = 5.612e-05 DT = 2e-08
+
+CHECKPOINT: file = chk02816
+checkPoint() time = 2.048348342 secs.
+PLOTFILE: file = plt02816
+Write plotfile time = 1.356978297  seconds
+
+Stopped by user w/ checkpoint
+
+Ending run at 12:53:00 UTC on 2026-10-27.
+Run time = 60.97646572
+Run time w/o init = 53.36262529
+CPU(0): Heap Space (bytes) used by Coalescing FAB Arena: 63757025280
+amrex::Abort::3::Simulation stopped early !!!
+amrex::Abort::0::Simulation stopped early !!!
+amrex::Abort::1::Simulation stopped early !!!
+amrex::Abort::2::Simulation stopped early !!!
+--------------------------------------------------------------------------
+MPI_ABORT was invoked on rank 2 in communicator MPI_COMM_WORLD
+with errorcode 6.
+
+NOTE: invoking MPI_ABORT causes Open MPI to kill all MPI processes.
+You may or may not see output from other processes, depending on
+exactly when Open MPI kills them.
+--------------------------------------------------------------------------
+[modal:00026] PMIX ERROR: UNREACHABLE in file server/pmix_server.c at line 2198
+[modal:00026] PMIX ERROR: UNREACHABLE in file server/pmix_server.c at line 2198
+[modal:00026] PMIX ERROR: UNREACHABLE in file server/pmix_server.c at line 2198
+[modal:00026] 3 more processes have sent help message help-mpi-api.txt / mpi-abort

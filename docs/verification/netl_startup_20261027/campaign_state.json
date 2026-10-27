@@ -1,14 +1,14 @@
 {
-  "updated": "2026-10-27T05:40:30.975592-07:00",
+  "updated": "2026-10-27T06:06:10.614440-07:00",
   "branch": "3d-modelling",
   "worktree": "/Users/sgfx/.codex/worktrees/3d-cfd-review/prox_rde_sim",
   "volume": "prox-rde-netl-startup",
   "target_time_s": 0.0002,
   "aggregate_gpu_limit": 4,
-  "active_run": "closure_replay_prepare_55p8us",
-  "app_id": "ap-qCvFq0GEvFYOuFNEK37bPp",
-  "call_id": "fc-01M5YNQC1SRZ53616REHAMWF1V",
-  "case_file": "runs3d/netl_startup_20261027/closure_prepare.json",
+  "active_run": "closure_refined_walls_55p8_to_56p2us",
+  "app_id": "ap-3fOedTzObZtVTOVDPkDaF5",
+  "call_id": "fc-01M5YQDQS6R1JBE1TPQZE454YA",
+  "case_file": "runs3d/netl_startup_20261027/closure_refined_walls.json",
   "known_image": "im-dQvjTZUDmgVOTBXmBplQzq",
   "checkpoint_lineage": [
     "pilot200_local_amr_v2_mpi4/chk00020",
@@ -44,12 +44,26 @@
   "long_run_id": "long200_detached_segment3",
   "long_run_status": "checkpoint-stopped after between-frame species-closure anomaly",
   "long_run_final_checkpoint": "long200_detached_segment3/chk03370",
-  "diagnostic_phase": "prepare_checkpoint_at_55p8us",
+  "diagnostic_phase": "refined_walls_candidate",
   "diagnostic_plan": [
-    "Wait for active bounded replay from long200_detached_segment3/chk02510 (50 us) to 55.8 us; never duplicate an active allocation.",
-    "Once complete, use its final checkpoint for a bounded replay to 56.2 us, with amr.plot_per=1e-7 and amr.message_int=1. Retain new automatic native-log emergency guard; an early checkpoint-stop is an expected diagnostic outcome if closure fails.",
-    "Inspect closure_by_region in every saved row: fluid_leaf, fluid_covered_by_finer, solid, including worst-cell coordinates and volume fraction. The original anomaly spans 55.98\u201356.12 us between two regrids.",
-    "Do not resume the long trajectory while continuation_allowed is false. Locate and explain the discrepancy first; if solely inactive solid cells, document that evidence and retain separate raw extrema while making the physical monitor distinguish active fluid. If active cells fail, investigate and validate a correction before longer runs.",
-    "Keep all native fields/checkpoints. Any later long restart must preserve the same ignition history."
-  ]
+    "Inspect/fetch the active refined-wall candidate before any new allocation. Fixed-grid control completed normally and its final evidence is saved; do not rerun it.",
+    "Current bounded candidate refines every embedded wall at level 1 while retaining adaptive front refinement. Await final result. It starts from the pre-failure 55.8-us checkpoint and targets only 56.2 us; guard unchanged. No long-run correction is established.",
+    "Compare region closure, finite states, species, pressure, temperature, native heat release and inventories; inspect whether cut-cell coarse/fine interfaces were removed. If pass, extend bounded validation across multiple regrids before considering a long restart from a pre-failure checkpoint.",
+    "Do not resume the stopped 67.2-us trajectory, change tolerances, hide active errors, or renormalize species. Root cause within mesh adaptation/EB synchronization remains unproven."
+  ],
+  "diagnostic_prepare_checkpoint": "closure_replay_prepare_55p8us/chk02800",
+  "closure_classification": "Confirmed active leaf-fluid failure: 168 cells above 1e-8 at 56 us; maximum error 0.0915468977 at level 0, volume fraction 0.97222. Not solely solid or fine-covered cells.",
+  "diagnostic_capture_result": {
+    "run_id": "closure_capture_55p8_to_56p2us",
+    "time_s": 5.612e-05,
+    "checkpoint": "chk02816",
+    "emergency_stop": true
+  },
+  "diagnostic_frozen_log": {
+    "time_s": 5.62e-05,
+    "max_closure_error": 6.6613381e-16,
+    "min_species": -6.8376534e-10,
+    "emergency_stop_required": false
+  },
+  "diagnostic_frozen_status": "Completed normally; final saved active-fluid closure roundoff; finite native pressure, temperature and chemical heat release; small species undershoots remain diagnostic failures."
 }
