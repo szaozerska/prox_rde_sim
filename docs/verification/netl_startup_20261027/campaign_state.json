@@ -1,5 +1,5 @@
 {
-  "updated": "2026-10-27T07:34:57.680108-07:00",
+  "updated": "2026-10-27T07:39:47.262798-07:00",
   "branch": "3d-modelling",
   "worktree": "/Users/sgfx/.codex/worktrees/3d-cfd-review/prox_rde_sim",
   "volume": "prox-rde-netl-startup",
@@ -35,10 +35,10 @@
   "heartbeat_id": "continue-netl-3d-cfd-trajectory",
   "operational_cutoff": "2026-10-27T20:00:00-07:00",
   "software_tests_passed": 33,
-  "achieved_time_s": 6e-05,
+  "achieved_time_s": 6.146e-05,
   "detached": true,
   "cpu_build_status": "Completed. sparse_direct backend rejected after matched comparison: 6.49 times slower; field agreement passes recorded criteria.",
-  "last_verified_remote_time_s": 6e-05,
+  "last_verified_remote_time_s": 6.146e-05,
   "latest_rendered_time_s": 4.5e-05,
   "latest_visualization": "docs/verification/netl_startup_20261027/progress_45us/pelec_annulus.gif",
   "latest_physical_observation": "Two opposed startup fronts meet around 45 microseconds; remaining methane inventory is 0.278% of initial. Sustained circulation not established.",
@@ -70,7 +70,7 @@
     "emergency_stop_required": false
   },
   "diagnostic_frozen_status": "Completed normally; final saved active-fluid closure roundoff; finite native pressure, temperature and chemical heat release; small species undershoots remain diagnostic failures.",
-  "active_run_status": "detached guarded continuation launched from corrected 60-us checkpoint",
+  "active_run_status": "running; no new emergency violation in compact native log",
   "diagnostic_walls_result": {
     "time_s": 5.62e-05,
     "max_logged_closure_error": 7.7715612e-16,
@@ -92,7 +92,7 @@
     "worst_maximum_sum_minus_one": 8.8817842e-16,
     "note": "Native log includes all AMR levels; localize discrepancies before classifying active-fluid error."
   },
-  "corrected_achieved_time_s": 6e-05,
+  "corrected_achieved_time_s": 6.146e-05,
   "corrected_checkpoint": "closure_walls_validation_56p2_to_60us/chk03010",
   "validation_review": {
     "closure_max": 8.8817842e-16,
@@ -106,5 +106,21 @@
   "original_invalid_run_id": "long200_detached_segment3",
   "original_invalid_checkpoint": "long200_detached_segment3/chk03370",
   "original_invalid_achieved_time_s": 6.72e-05,
-  "original_stop_reason": "Logged species-sum deviations from one: -0.03484 to +0.06166 at 55.98\u201356.12 microseconds. Stop requested; do not continue long trajectory until diagnosed."
+  "original_stop_reason": "Logged species-sum deviations from one: -0.03484 to +0.06166 at 55.98\u201356.12 microseconds. Stop requested; do not continue long trajectory until diagnosed.",
+  "latest_monitor": {
+    "coarse_steps": 73,
+    "species_sum_error": 7.7715612e-16,
+    "minimum_species": -1.277638e-10,
+    "all_logged_extrema_finite": true,
+    "pressure_Pa": [
+      210391.13,
+      13049491.0
+    ],
+    "temperature_K": [
+      276.91077,
+      3794.6098
+    ],
+    "native_heat_release_last_audited_time_s": 6e-05,
+    "note": "Current segment has not published a new compact field preview yet. Native heat-release and saved-field checks remain verified through 60 us; new log extrema reach the last_verified_remote_time_s. Small undershoots remain diagnostic failures."
+  }
 }
