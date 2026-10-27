@@ -1,5 +1,5 @@
 {
-  "updated": "2026-10-27T16:51:25.714024-07:00",
+  "updated": "2026-10-27T16:58:27.472026-07:00",
   "branch": "3d-modelling",
   "worktree": "/Users/sgfx/.codex/worktrees/3d-cfd-review/prox_rde_sim",
   "volume": "prox-rde-netl-startup",
@@ -36,10 +36,10 @@
   "heartbeat_id": "continue-netl-3d-cfd-trajectory",
   "operational_cutoff": "2026-10-27T20:00:00-07:00",
   "software_tests_passed": 39,
-  "achieved_time_s": 0.00013514,
+  "achieved_time_s": 0.00014276,
   "detached": true,
   "cpu_build_status": "Completed. sparse_direct backend rejected after matched comparison: 6.49 times slower; field agreement passes recorded criteria.",
-  "last_verified_remote_time_s": 0.00013514,
+  "last_verified_remote_time_s": 0.00014276,
   "latest_rendered_time_s": 0.00013,
   "latest_visualization": "docs/verification/netl_startup_20261027/progress_zero_to_130us/pelec_annulus.gif",
   "latest_physical_observation": "Full native 0\u2013130-us history shows opposed startup waves meeting near 40\u201345 us, then weakening downstream disturbances. Methane inventory rebuilds after ~100 us; sustained rotating detonation not established.",
@@ -94,7 +94,7 @@
     "worst_maximum_sum_minus_one": 8.8817842e-16,
     "note": "Native log includes all AMR levels; localize discrepancies before classifying active-fluid error."
   },
-  "corrected_achieved_time_s": 0.00013514,
+  "corrected_achieved_time_s": 0.00014276,
   "corrected_checkpoint": "long200_refined_walls_from60us/chk04510",
   "validation_review": {
     "closure_max": 8.8817842e-16,
@@ -110,8 +110,8 @@
   "original_invalid_achieved_time_s": 6.72e-05,
   "original_stop_reason": "Logged species-sum deviations from one: -0.03484 to +0.06166 at 55.98\u201356.12 microseconds. Stop requested; do not continue long trajectory until diagnosed.",
   "latest_monitor": {
-    "coarse_steps": 2257,
-    "species_sum_error": 9.9920072e-16,
+    "coarse_steps": 2638,
+    "species_sum_error": 1.110223e-15,
     "minimum_species": -3.9621183e-09,
     "all_logged_extrema_finite": true,
     "pressure_Pa": [
@@ -119,10 +119,10 @@
       4289776.2
     ],
     "temperature_K": [
-      261.4261,
+      255.20946,
       3724.52
     ],
-    "native_heat_release_last_audited_time_s": 0.0001250000000000084,
+    "native_heat_release_last_audited_time_s": 0.00013500000000000323,
     "native_sample_fields_finite": {
       "pressure_Pa": true,
       "temperature_K": true,
@@ -131,17 +131,17 @@
       "heat_release_W_m3": true
     },
     "sampled_native_heat_release_range_W_m3": [
-      -194551156959.65546,
-      5263976451892.445
+      -143651771820.0661,
+      8067910699908.266
     ],
-    "latest_saved_methane_kg": 7.098944344982001e-07,
+    "latest_saved_methane_kg": 1.0819480556298733e-06,
     "latest_saved_pressure_Pa": [
-      745761.3769180882,
-      2088314.1981664484
+      645649.0517067286,
+      1640739.1293364821
     ],
     "note": "Methane inventory is rebuilding, but inventory change alone is not evidence of sustained detonation or a revolution. Saved-field audits lag current log time; small logged undershoots remain failures."
   },
-  "latest_saved_field_time_s": 0.0001250000000000084,
+  "latest_saved_field_time_s": 0.00013500000000000323,
   "interrupted_segment": {
     "run_id": "long200_refined_walls_from60us",
     "call_id": "fc-01M5YWEGYV3BYFHKRXGZ5KEAEP",
