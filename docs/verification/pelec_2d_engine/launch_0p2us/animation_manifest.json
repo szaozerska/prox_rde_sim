@@ -1,0 +1,23 @@
+{
+  "source": "/Users/sgfx/Desktop/Projects/prox_rde_sim/runs_cfd/oct27_run937_godunov_guard/native/export/fields_si.npz",
+  "source_sha256": "ae80bf387bb4c0e6fbc15c336747746c4d71880c9bcfe02a60f8203b8067b372",
+  "selected_frame_indices": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5
+  ],
+  "time_s": [
+    0.0,
+    4.001000000000017e-08,
+    8.000999999999918e-08,
+    1.20009999999997e-07,
+    1.6001000000000001e-07,
+    2e-07
+  ],
+  "frames": 6,
+  "fps": 15,
+  "interpretation": "Actual saved native fields; no synthetic evolution. Cylinder is a 2D mapping. Vorticity does not uniquely identify a slip line."
+}

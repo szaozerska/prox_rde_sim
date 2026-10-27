@@ -2,12 +2,13 @@
 
 from pathlib import Path
 import json
+import os
 import modal
 from build_propagation import build_propagation
 
 ROOT = Path(__file__).resolve().parent
 LOCK = json.loads((ROOT / "source_lock.json").read_text())
-image = (
+image = modal.Image.from_id(os.environ["RDE_PELEC_IMAGE_ID"]) if os.environ.get("RDE_PELEC_IMAGE_ID") else (
     modal.Image.from_registry(LOCK["cuda_image"], add_python="3.12")
     .apt_install("git", "build-essential", "cmake", "ninja-build")
     .add_local_dir(ROOT / "native", "/opt/adapter/native", copy=True)
@@ -59,6 +60,14 @@ def run(case: dict, profile: str, dt: float):
         or not 0 < case["final_time_s"] <= 2e-7
     ):
         raise ValueError("Invalid bounded case")
+    if type(case.get("reacting", True)) is not bool or type(case.get("use_laxf_flux", False)) is not bool:
+        raise ValueError("Physics switches must be explicit booleans")
+    if case.get("use_laxf_flux", False) and case.get("hydro_method") != "mol":
+        raise ValueError("This flux comparison requires MOL")
+    expected = json.loads(Path("/opt/pelec-propagation-build/manifest.json").read_text())
+    exe = Path("/opt/PeleC/build-2d/Exec/RegTests/Propagation2D/PeleC-Propagation2D")
+    if hashlib.sha256(exe.read_bytes()).hexdigest() != expected["executable_sha256"]:
+        raise ValueError("Cached executable mismatch")
     root = Path("/tmp/gate")
     root.mkdir()
     (root / "profile.dat").write_text(profile)
@@ -87,7 +96,8 @@ amr.data_log = datlog
 pelec.lo_bc = FOExtrap Interior
 pelec.hi_bc = FOExtrap Interior
 pelec.do_hydro = 1
-pelec.do_react = 1
+pelec.do_react = {int(case.get("reacting", True))}
+pelec.use_laxf_flux = {int(case.get("use_laxf_flux", False))}
 pelec.do_mol = {int(case.get("hydro_method", "godunov") == "mol")}
 pelec.mol_iters = 1
 pelec.mol_iorder = {case.get("reconstruction_order", 2)}
@@ -114,6 +124,8 @@ prob.profile = profile.dat
 amrex.abort_on_unused_inputs = 1
 amrex.signal_handling = 0
 """
+    if not case.get("reacting", True):
+        text = "\n".join(line for line in text.splitlines() if not line.startswith(("cvode.", "ode."))) + "\n"
     (root / "inputs").write_text(text)
     start = time.monotonic()
     with (root / "solver.log").open("w") as log:

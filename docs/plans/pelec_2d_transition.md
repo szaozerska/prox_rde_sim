@@ -172,3 +172,45 @@ Small next increments, in order:
 Do not launch a large engine sweep merely because its animation pipeline exists.
 Do not attribute these planar discrepancies to annular gap, radial dynamics,
 Mundt injector angles, exhausted fuel or collision of counter-rotating waves.
+
+## October 27 continuation: requested 1 ms movies
+
+The user now requests approximately 1 ms of propagation, with Modal authorized.
+First compare the pinned solver's existing MOL Lax–Friedrichs flux with the
+previous flux at unchanged mechanism, initial state, mesh and time step. Include
+a frozen-chemistry moving-frame control to isolate transport. These runs resolve
+the current inconsistency before admitting an engine interpretation; no source
+patch or thermodynamic extrapolation is introduced. Prepare the native engine
+adapter and movie exporter independently while the controls run. A completed
+preview must retain its exploratory label and cannot establish experimental
+sustainment without numerical and physical validation.
+
+### Measured continuation status and review
+
+[October 27 engine attempt and evidence](../verification/pelec_2d_engine/README.md).
+The LF planar repeats pass the saved-state, element and EOS checks in both frames;
+P2 wave-speed/structure acceptance remains open. The engine adapter now builds,
+and uniform and cold-feed native controls pass independent snapshot checks.
+The first reacting engine attempt fails around 0.042 µs. Smaller timesteps do not
+remove it; saved negative species and element errors prohibit a sustainment claim.
+
+Review found that upstream release GPU builds suppress device `assert()` even
+inside AMReX's always-assert wrapper. Replace problem-level guards with an
+unconditional CUDA trap and demonstrate an actual rejection. Do not claim earlier
+engine runs had working every-step guards. A compiler-flag-only attempt is not
+sufficient while NDEBUG still disables the underlying CUDA assertion.
+
+The next bounded comparison uses the existing MOL correction and Godunov/SDC
+options with unchanged physical inputs. Only state-valid output can enter the
+requested 1 ms movie campaign. Preview permission is not physical acceptance;
+P2 stays open, and no large geometry sweep starts while the reacting launch is
+invalid. This sequence supersedes the previous unqualified P3-pending statement:
+P3 implementation exists, but reacting-engine execution is not accepted yet.
+
+
+The final bounded engine diagnostics produced a valid 0.2 µs Godunov launch
+and both GIF formats, but not the requested 1 ms histories. The separately
+declared trace-budget experiment failed; default strict criteria are unchanged.
+See the engine report for exact failure magnitudes and the functioning CUDA
+negative-control guard. Resume with a localized transport/reaction coupling
+reproducer and a longer strict control before more geometries or long movies.

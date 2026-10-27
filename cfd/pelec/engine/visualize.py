@@ -6,6 +6,7 @@ heat_release_W_m3, u_mps, v_mps. No interpolated or fabricated simulation frames
 """
 
 import argparse
+import hashlib
 import json
 from pathlib import Path
 import numpy as np
@@ -43,7 +44,7 @@ def render(path, output, title, max_frames=240):
     matplotlib.use("Agg")
     import matplotlib.pyplot as plt
     from matplotlib.animation import FuncAnimation, PillowWriter
-    from matplotlib.colors import Normalize, SymLogNorm
+    from matplotlib.colors import Normalize, SymLogNorm, LogNorm
 
     if max_frames < 2:
         raise ValueError("At least two animation frames required")
@@ -73,7 +74,11 @@ def render(path, output, title, max_frames=240):
     fields = [pressure, heat, sch, vort]
     limits = [float(np.max(abs(a))) for a in fields]
     norms = [
-        Normalize(0, limits[0]),
+        (
+            LogNorm(max(float(pressure.min()), 1e-12), limits[0])
+            if limits[0] > float(pressure.min()) * 1.01
+            else Normalize(0, limits[0])
+        ),
         SymLogNorm(
             max(limits[1] * 1e-4, 1.0),
             vmin=-max(limits[1], 1.0),
@@ -86,7 +91,7 @@ def render(path, output, title, max_frames=240):
     ]
     cmaps = ["inferno", "coolwarm", "gray_r", "RdBu_r"]
     labels = [
-        "Pressure (MPa)",
+        "Pressure (MPa; fixed logarithmic scale)",
         "Native heat release (W/m³)",
         "Numerical schlieren |∇ρ|/ρ (1/m)",
         "Vorticity (1/s); shear/contact candidates",
@@ -104,7 +109,7 @@ def render(path, output, title, max_frames=240):
             field[0].T,
             origin="lower",
             extent=extent,
-            aspect="auto",
+            aspect="equal",
             norm=norm,
             cmap=cmap,
         )
@@ -113,14 +118,32 @@ def render(path, output, title, max_frames=240):
         ax.set(
             xlabel="Circumferential distance (mm) → +θ", ylabel="Axial distance (mm)"
         )
+    qx = np.arange(0, len(x), max(1, len(x) // 24))
+    qy = np.arange(0, len(y), max(1, len(y) // 10))
+    qxx, qyy = np.meshgrid(x[qx] * 1000, y[qy] * 1000, indexing="ij")
+    vector_scale = max(float(np.hypot(u, v).max()), 1.0) / (
+        0.025 * (extent[1] - extent[0])
+    )
+    arrows = axes.flat[0].quiver(
+        qxx,
+        qyy,
+        u[0][np.ix_(qx, qy)],
+        v[0][np.ix_(qx, qy)],
+        angles="xy",
+        scale_units="xy",
+        scale=vector_scale,
+        color="#6de7ff",
+        width=0.002,
+    )
     heading = fig.suptitle("")
 
     def update(k):
         i = ids[k]
         for im, a in zip(images, fields):
             im.set_data(a[i].T)
+        arrows.set_UVC(u[i][np.ix_(qx, qy)], v[i][np.ix_(qx, qy)])
         heading.set_text(
-            f"{title} | t = {t[i] * 1e3:.4f} ms\nNative 2D fields; feed at bottom, outlet at top; fixed color scales"
+            f"{title} | t = {t[i] * 1e3:.6f} ms\nExploratory 2D CFD; feed below, outlet above; arrows: gas velocity"
         )
         return images + [heading]
 
@@ -129,13 +152,16 @@ def render(path, output, title, max_frames=240):
     FuncAnimation(fig, update, frames=len(ids), interval=65, blit=False).save(
         output / "unwrapped.gif", writer=PillowWriter(fps=15)
     )
+    update(len(ids) - 1)
+    fig.savefig(output / "unwrapped_last.png", dpi=130)
     plt.close(fig)
     # Show pressure and schlieren on the same cylindrical mapping with a fixed seam.
     ix = np.unique(np.rint(np.linspace(0, len(x) - 1, min(96, len(x)))).astype(int))
     iy = np.unique(np.rint(np.linspace(0, len(y) - 1, min(48, len(y)))).astype(int))
     length = len(x) * dx
     radius = length / (2 * np.pi)
-    theta = 2 * np.pi * x[ix] / length
+    theta = np.r_[2 * np.pi * x[ix] / length, 2 * np.pi * x[ix[0]] / length + 2 * np.pi]
+    ix = np.r_[ix, ix[0]]
     X = np.cos(theta)[:, None] * radius * 1000 * np.ones((1, len(iy)))
     Y = np.sin(theta)[:, None] * radius * 1000 * np.ones((1, len(iy)))
     Z = np.ones((len(ix), 1)) * y[iy][None, :] * 1000
@@ -156,6 +182,8 @@ def render(path, output, title, max_frames=240):
         )
         ax.set_box_aspect((2 * radius, 2 * radius, len(y) * dy))
         ax.view_init(elev=18, azim=-55)
+    for ax, norm, cmap, label in zip(axes, [norms[0], norms[2]], ["inferno", "gray_r"], ["Pressure (MPa)", "|∇ρ|/ρ (1/m)"]):
+        fig.colorbar(plt.cm.ScalarMappable(norm=norm, cmap=cmap), ax=ax, shrink=.6, pad=.04, label=label)
     surfaces = []
     heading = fig.suptitle("")
 
@@ -182,7 +210,7 @@ def render(path, output, title, max_frames=240):
                 )
             )
         heading.set_text(
-            f"{title} | t = {t[i] * 1e3:.4f} ms\nCylindrical mapping of the 2D solution — not a 3D simulation"
+            f"{title} | t = {t[i] * 1e3:.6f} ms\nCylindrical mapping of the 2D solution — not a 3D simulation"
         )
         return surfaces + [heading]
 
@@ -191,11 +219,16 @@ def render(path, output, title, max_frames=240):
     FuncAnimation(fig, wrap, frames=len(ids), interval=65, blit=False).save(
         output / "wrapped.gif", writer=PillowWriter(fps=15)
     )
+    wrap(len(ids) - 1)
+    fig.savefig(output / "wrapped_last.png", dpi=130)
     plt.close(fig)
+    with path.open("rb") as source_file:
+        source_sha256 = hashlib.file_digest(source_file, "sha256").hexdigest()
     (output / "animation_manifest.json").write_text(
         json.dumps(
             dict(
                 source=str(path.resolve()),
+                source_sha256=source_sha256,
                 selected_frame_indices=ids.tolist(),
                 time_s=t[ids].tolist(),
                 frames=len(ids),
