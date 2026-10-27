@@ -1,0 +1,30 @@
+{
+  "scope": "Native cylindrical samples; full active-fluid extrema are in checks.json. Not a physical-validation claim.",
+  "fields": {
+    "pressure_Pa": {
+      "finite": true,
+      "min": 204871.0402884512,
+      "max": 15071824.761073856
+    },
+    "temperature_K": {
+      "finite": true,
+      "min": 277.3600153177406,
+      "max": 3762.3717387344445
+    },
+    "methane_Y": {
+      "finite": true,
+      "min": -7.849960475631588e-13,
+      "max": 0.03443351519776272
+    },
+    "oxygen_Y": {
+      "finite": true,
+      "min": 9.11001865757771e-06,
+      "max": 0.3248131044724971
+    },
+    "heat_release_W_m3": {
+      "finite": true,
+      "min": -539786161926.4275,
+      "max": 2198329416946.3704
+    }
+  }
+}

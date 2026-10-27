@@ -1,6 +1,6 @@
 # NETL startup and multi-GPU engine continuation
 
-October 27, 2026. Work is in progress on `3d-modelling`. **The long trajectory is checkpoint-stopped at 67.2 microseconds pending diagnosis of a transient species-closure anomaly.** The requested long result is **200 microseconds**, starting from the same initial charge and continuing through native checkpoints. A requested duration is not evidence that a detonation completed a revolution.
+October 27, 2026. Work is in progress on `3d-modelling`. **The original trajectory stopped at 67.2 microseconds after a species-closure failure. A corrected checkpoint branch, with all embedded walls refined, has passed bounded closure/finite-state checks through 60 microseconds and is continuing under the unchanged emergency guard. Small negative species remain failures; this is not a validated engine.** The requested long result is **200 microseconds**, starting from the same initial charge and continuing through native checkpoints. A requested duration is not evidence that a detonation completed a revolution.
 
 ## Initialization
 
@@ -68,3 +68,9 @@ The fixed-hierarchy control finished normally, and saved native fields confirm r
 Refining every embedded wall while retaining adaptive flow refinement kept species closure at roundoff through 56.2 microseconds, including the previously failing interval. Saved-field maximum closure error was 7.77e-16; the minimum saved species fraction was still −1.16e-9, so positivity remains a diagnostic failure. Pressure, temperature and sampled native chemical heat release were finite. The native [mesh audit](evidence/closure_refined_walls/mesh_audit.json) confirms zero active cut cells below the finest level in all five snapshots. This is evidence for the configuration change, not proof of the exact faulty operation in the earlier solver setup.
 
 The median coarse-step cost rose from 2.90 seconds for the frozen-hierarchy control to 4.69 seconds for the refined-wall candidate. Allocated level-1 cells are about 26.2 million. A bounded continuation from the candidate's 56.2-microsecond checkpoint now targets 60 microseconds, retaining the same ignition history and emergency guard. The invalid 67.2-microsecond checkpoint remains stopped. No sustained rotating mode or 200-microsecond result is claimed.
+
+### Review at 60 microseconds
+
+The wall-refined continuation completed normally at 60 microseconds. All 190 logged coarse steps and 24 mesh-adaptation events retained roundoff closure (maximum 8.88e-16); nine native mesh audits found no active wall-cut cells below the finest level. Saved pressure, temperature, density/energy/species checks and sampled native chemical heat release remained finite. The minimum saved species fraction was −2.25e-10, so the run still fails positivity acceptance. These results justify guarded diagnostic continuation, not a claim that every numerical or physical issue is fixed.
+
+The new long segment restarts `closure_walls_validation_56p2_to_60us/chk03010` at 60 microseconds and targets 200 microseconds. It retains the same ignition history and chemistry. The policy change at 55.8 microseconds must remain explicit in any later animation; the invalid suffix of the original trajectory must not be merged into the corrected history. Raw fields and checkpoints remain on the volume.

@@ -1,0 +1,167 @@
+{
+  "rows": [
+    {
+      "plot": "plt02820",
+      "time_s": 5.62e-05,
+      "finest_level": 1,
+      "levels": {
+        "0": {
+          "leaf_fluid_cells": 24576,
+          "leaf_cut_cells": 0,
+          "cut_cells_covered_by_finer": 274944
+        },
+        "1": {
+          "leaf_fluid_cells": 11260416,
+          "leaf_cut_cells": 1099776,
+          "cut_cells_covered_by_finer": 0
+        }
+      },
+      "leaf_cut_cells_below_finest": 0
+    },
+    {
+      "plot": "plt02835",
+      "time_s": 5.6500000000000045e-05,
+      "finest_level": 1,
+      "levels": {
+        "0": {
+          "leaf_fluid_cells": 20736,
+          "leaf_cut_cells": 0,
+          "cut_cells_covered_by_finer": 274944
+        },
+        "1": {
+          "leaf_fluid_cells": 11291136,
+          "leaf_cut_cells": 1099776,
+          "cut_cells_covered_by_finer": 0
+        }
+      },
+      "leaf_cut_cells_below_finest": 0
+    },
+    {
+      "plot": "plt02860",
+      "time_s": 5.7000000000000125e-05,
+      "finest_level": 1,
+      "levels": {
+        "0": {
+          "leaf_fluid_cells": 25344,
+          "leaf_cut_cells": 0,
+          "cut_cells_covered_by_finer": 274944
+        },
+        "1": {
+          "leaf_fluid_cells": 11254272,
+          "leaf_cut_cells": 1099776,
+          "cut_cells_covered_by_finer": 0
+        }
+      },
+      "leaf_cut_cells_below_finest": 0
+    },
+    {
+      "plot": "plt02885",
+      "time_s": 5.7500000000000205e-05,
+      "finest_level": 1,
+      "levels": {
+        "0": {
+          "leaf_fluid_cells": 21568,
+          "leaf_cut_cells": 0,
+          "cut_cells_covered_by_finer": 274944
+        },
+        "1": {
+          "leaf_fluid_cells": 11284480,
+          "leaf_cut_cells": 1099776,
+          "cut_cells_covered_by_finer": 0
+        }
+      },
+      "leaf_cut_cells_below_finest": 0
+    },
+    {
+      "plot": "plt02910",
+      "time_s": 5.8000000000000285e-05,
+      "finest_level": 1,
+      "levels": {
+        "0": {
+          "leaf_fluid_cells": 14592,
+          "leaf_cut_cells": 0,
+          "cut_cells_covered_by_finer": 274944
+        },
+        "1": {
+          "leaf_fluid_cells": 11340288,
+          "leaf_cut_cells": 1099776,
+          "cut_cells_covered_by_finer": 0
+        }
+      },
+      "leaf_cut_cells_below_finest": 0
+    },
+    {
+      "plot": "plt02935",
+      "time_s": 5.8500000000000365e-05,
+      "finest_level": 1,
+      "levels": {
+        "0": {
+          "leaf_fluid_cells": 26368,
+          "leaf_cut_cells": 0,
+          "cut_cells_covered_by_finer": 274944
+        },
+        "1": {
+          "leaf_fluid_cells": 11246080,
+          "leaf_cut_cells": 1099776,
+          "cut_cells_covered_by_finer": 0
+        }
+      },
+      "leaf_cut_cells_below_finest": 0
+    },
+    {
+      "plot": "plt02960",
+      "time_s": 5.9000000000000445e-05,
+      "finest_level": 1,
+      "levels": {
+        "0": {
+          "leaf_fluid_cells": 15616,
+          "leaf_cut_cells": 0,
+          "cut_cells_covered_by_finer": 274944
+        },
+        "1": {
+          "leaf_fluid_cells": 11332096,
+          "leaf_cut_cells": 1099776,
+          "cut_cells_covered_by_finer": 0
+        }
+      },
+      "leaf_cut_cells_below_finest": 0
+    },
+    {
+      "plot": "plt02985",
+      "time_s": 5.9500000000000525e-05,
+      "finest_level": 1,
+      "levels": {
+        "0": {
+          "leaf_fluid_cells": 24640,
+          "leaf_cut_cells": 0,
+          "cut_cells_covered_by_finer": 274944
+        },
+        "1": {
+          "leaf_fluid_cells": 11259904,
+          "leaf_cut_cells": 1099776,
+          "cut_cells_covered_by_finer": 0
+        }
+      },
+      "leaf_cut_cells_below_finest": 0
+    },
+    {
+      "plot": "plt03010",
+      "time_s": 6e-05,
+      "finest_level": 1,
+      "levels": {
+        "0": {
+          "leaf_fluid_cells": 24576,
+          "leaf_cut_cells": 0,
+          "cut_cells_covered_by_finer": 274944
+        },
+        "1": {
+          "leaf_fluid_cells": 11260416,
+          "leaf_cut_cells": 1099776,
+          "cut_cells_covered_by_finer": 0
+        }
+      },
+      "leaf_cut_cells_below_finest": 0
+    }
+  ],
+  "scope": "Geometric EB coverage only; this does not establish flow or chemistry correctness."
+}
