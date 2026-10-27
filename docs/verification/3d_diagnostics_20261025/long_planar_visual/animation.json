@@ -1,0 +1,63 @@
+{
+  "scope": "Replay of saved native PeleC planar control; no new solver run or annular result",
+  "sources": {
+    "docs/verification/3d_diagnostics_20261025/gpu_long_16um_2us/case_case.json": "fc35b5295fe21c77d33dab54ccf91aa6aec48ae649be80475ebb8fa9e4e36a6c",
+    "docs/verification/3d_diagnostics_20261025/gpu_long_16um_2us/wave_profiles.npz": "a3c1c6c3aeea71ede1865330750699bb3c3f43b98617cd3775a3c940fbab4082"
+  },
+  "physical_times_s": [
+    0.0,
+    1.0079999999999972e-07,
+    2.000000000000003e-07,
+    3.000000000000012e-07,
+    4.000000000000021e-07,
+    5.000000000000015e-07,
+    6.007999999999957e-07,
+    7.0079999999999e-07,
+    8.007999999999842e-07,
+    9.007999999999785e-07,
+    1.000799999999979e-06,
+    1.1007999999999866e-06,
+    1.200799999999994e-06,
+    1.3000000000000015e-06,
+    1.400000000000009e-06,
+    1.5000000000000166e-06,
+    1.600000000000024e-06,
+    1.7000000000000316e-06,
+    1.800000000000039e-06,
+    1.9000000000000466e-06,
+    2e-06
+  ],
+  "playback_frame_duration_ms": [
+    1000,
+    250,
+    250,
+    250,
+    250,
+    250,
+    250,
+    250,
+    250,
+    250,
+    250,
+    250,
+    250,
+    250,
+    250,
+    250,
+    250,
+    250,
+    250,
+    250,
+    1000
+  ],
+  "temporal_interpolation": false,
+  "spatial_crop_mm": [
+    6.192,
+    16.253790526820552
+  ],
+  "CJ_reference_speed_mps": 2530.8952634102757,
+  "limitations": [
+    "Transverse-mean fields; strip height is display-only",
+    "Not a demonstration of sustained annular detonation"
+  ]
+}

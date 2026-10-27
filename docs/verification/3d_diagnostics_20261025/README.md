@@ -39,3 +39,24 @@ The 595 µm GPU annular mesh is exploratory. [Argonne's CONVERGE study](https://
 Opposed radial jets are one injector design, not a universal RDE arrangement. **72 pairs is fixed from Mundt's 76-FI-5 / Run 937 benchmark**, not queried from live CAD. The separate CAD audit also found 72 pairs but did not certify the latest CAD revision. Mundt's hardware ignites through a separate spark-ignited pre-detonator (printed pp. 26–28 of [the thesis](../../../Mundt2023.pdf)); Argonne explicitly simulated a pre-detonator startup. Our finite hot moving charge is a propagation/startup surrogate. Its 1900 m/s gas velocity does not prescribe detonation speed, and successful motion would not validate ignition or natural direction selection.
 
 Next physical milestones: consistent/conservative mixture transport; planar-wave convergence over longer windows; cold injector mass flow and mixing; pressure-pulse feed interruption/refill; startup-energy/direction sensitivity; then several annular revolutions with coupled shock/heat-release tracking. At this radius, one revolution takes roughly 0.09–0.12 ms at representative wave speeds. Millisecond engine runs become useful after these controls are credible.
+
+
+## October 26 clarification: paper startup and practical next step
+
+The original detonationFoam local species-sum excess of about **12.5%** is substantial. The corrected-flux/upwind residual of **6.11e-8** is only **0.00000611%**. Its failure of the deliberately strict 1e-8 check is not comparable in physical significance; that residual alone should not block an engineering prototype. Longer-run growth and conservation still need monitoring.
+
+The two existing reference studies use different numerical ignition procedures:
+
+| Setup | Numerical startup |
+|---|---|
+| [NETL / Fluent, section III](https://netl.doe.gov/projects/files/ValidationofaComputationalFluidDynamicsModelofaMethaneOxygenRotatingDetonationEngine_010522.pdf) | First 5 mm: stoichiometric mixture at 1 MPa; air beyond, with pressure tapering to 0.1 MPa at exit. Initialize a 2-degree sector at 4 MPa and 3000 K. No tangential velocity kick is specified. |
+| [Argonne / CONVERGE, section II](https://doi.org/10.2514/6.2021-3642) | Establish nonreacting feed with the pre-detonator disconnected; spark the premixed tube, model transition to detonation, briefly connect it to the annulus, then close the interface. |
+| Our existing prototype | Large finite hot charge at 10 MPa and 4000 K with imposed 1900 m/s tangential gas velocity. This is our surrogate, not a reproduction of either paper's ignition. |
+
+The next proposed engine configuration should follow NETL's stated initialization, remove our imposed tangential kick, and reduce annular cell size toward approximately 200 micrometres, with a finer comparison near 100 micrometres. These are proposed changes, not implemented results. Matching initialization alone will not reproduce the paper: injector/plenum geometry, transport, turbulence, boundary conditions and chemistry also differ. Any values the paper does not specify must remain explicit assumptions.
+
+Refinement means actually decreasing cell size and comparing the resulting propagation and structure. The previous 4/2 micrometre planar tests were too short to establish settled mesh convergence. They do not demonstrate that refinement cannot work. Engineering annular wave-count/speed convergence and detailed planar reaction-layer resolution are separate questions; the latter should not become an indefinite prerequisite for an exploratory engine run.
+
+Two GPUs are now authorized. The current archived PeleC build has MPI disabled: sharing one engine across both GPUs requires an MPI-enabled build, domain decomposition and a scaling check. Independent one-GPU cases can already run concurrently. No new solver calculation was launched for this review.
+
+[New animation of the existing 0–2 microsecond planar control](long_planar_visual/long_planar_propagation.gif) uses all 21 saved native snapshots without temporal interpolation. The [existing 0–10 microsecond annular animation](../3d_prototype_20261024/pelec_visual/pelec_annulus.gif) remains the longest available annular result; it does not establish sustained rotation. The planar replay is longer than the original 0.2 microsecond planar test, not longer than the annular run.
