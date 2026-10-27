@@ -1,5 +1,5 @@
 {
-  "updated": "2026-10-27T13:41:22.855530-07:00",
+  "updated": "2026-10-27T13:43:19.110134-07:00",
   "branch": "3d-modelling",
   "worktree": "/Users/sgfx/.codex/worktrees/3d-cfd-review/prox_rde_sim",
   "volume": "prox-rde-netl-startup",
@@ -36,10 +36,10 @@
   "heartbeat_id": "continue-netl-3d-cfd-trajectory",
   "operational_cutoff": "2026-10-27T20:00:00-07:00",
   "software_tests_passed": 36,
-  "achieved_time_s": 9.024e-05,
+  "achieved_time_s": 9.318e-05,
   "detached": true,
   "cpu_build_status": "Completed. sparse_direct backend rejected after matched comparison: 6.49 times slower; field agreement passes recorded criteria.",
-  "last_verified_remote_time_s": 9.024e-05,
+  "last_verified_remote_time_s": 9.318e-05,
   "latest_rendered_time_s": 9e-05,
   "latest_visualization": "docs/verification/netl_startup_20261027/progress_60_to_90us/pelec_annulus.gif",
   "latest_physical_observation": "Native 60\u201390 us fields show downstream-moving startup disturbances and declining peak pressure (13.06 to 4.29 MPa). Sustained circulation is not established.",
@@ -72,7 +72,7 @@
     "emergency_stop_required": false
   },
   "diagnostic_frozen_status": "Completed normally; final saved active-fluid closure roundoff; finite native pressure, temperature and chemical heat release; small species undershoots remain diagnostic failures.",
-  "active_run_status": "checkpoint recovery confirmed advancing; no emergency violation through latest logged step",
+  "active_run_status": "recovery advancing; no new emergency violation",
   "diagnostic_walls_result": {
     "time_s": 5.62e-05,
     "max_logged_closure_error": 7.7715612e-16,
@@ -94,7 +94,7 @@
     "worst_maximum_sum_minus_one": 8.8817842e-16,
     "note": "Native log includes all AMR levels; localize discrepancies before classifying active-fluid error."
   },
-  "corrected_achieved_time_s": 9.024e-05,
+  "corrected_achieved_time_s": 9.318e-05,
   "corrected_checkpoint": "long200_refined_walls_from60us/chk04510",
   "validation_review": {
     "closure_max": 8.8817842e-16,
@@ -110,12 +110,20 @@
   "original_invalid_achieved_time_s": 6.72e-05,
   "original_stop_reason": "Logged species-sum deviations from one: -0.03484 to +0.06166 at 55.98\u201356.12 microseconds. Stop requested; do not continue long trajectory until diagnosed.",
   "latest_monitor": {
-    "coarse_steps": 12,
+    "coarse_steps": 159,
     "species_sum_error": 7.7715612e-16,
-    "minimum_species": -2.5010215e-13,
+    "minimum_species": -3.9621183e-09,
     "all_logged_extrema_finite": true,
+    "pressure_Pa": [
+      249925.39,
+      4289776.2
+    ],
+    "temperature_K": [
+      279.85346,
+      3672.4065
+    ],
     "native_heat_release_last_audited_time_s": 9e-05,
-    "note": "New recovery log is healthy so far; inherited historical positivity failures remain. Saved native fields audited through recovery checkpoint at 90 us."
+    "note": "No new compact native preview before the next 5-us plot. Saved native heat-release and field checks remain audited through 90 us. Small local undershoots remain failures."
   },
   "latest_saved_field_time_s": 9e-05,
   "interrupted_segment": {
