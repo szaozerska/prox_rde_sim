@@ -1,5 +1,5 @@
 {
-  "updated": "2026-10-27T16:28:47.834292-07:00",
+  "updated": "2026-10-27T16:51:25.714024-07:00",
   "branch": "3d-modelling",
   "worktree": "/Users/sgfx/.codex/worktrees/3d-cfd-review/prox_rde_sim",
   "volume": "prox-rde-netl-startup",
@@ -35,14 +35,14 @@
   ],
   "heartbeat_id": "continue-netl-3d-cfd-trajectory",
   "operational_cutoff": "2026-10-27T20:00:00-07:00",
-  "software_tests_passed": 36,
+  "software_tests_passed": 39,
   "achieved_time_s": 0.00013514,
   "detached": true,
   "cpu_build_status": "Completed. sparse_direct backend rejected after matched comparison: 6.49 times slower; field agreement passes recorded criteria.",
   "last_verified_remote_time_s": 0.00013514,
-  "latest_rendered_time_s": 9e-05,
-  "latest_visualization": "docs/verification/netl_startup_20261027/progress_60_to_90us/pelec_annulus.gif",
-  "latest_physical_observation": "Native 60\u201390 us fields show downstream-moving startup disturbances and declining peak pressure (13.06 to 4.29 MPa). Sustained circulation is not established.",
+  "latest_rendered_time_s": 0.00013,
+  "latest_visualization": "docs/verification/netl_startup_20261027/progress_zero_to_130us/pelec_annulus.gif",
+  "latest_physical_observation": "Full native 0\u2013130-us history shows opposed startup waves meeting near 40\u201345 us, then weakening downstream disturbances. Methane inventory rebuilds after ~100 us; sustained rotating detonation not established.",
   "campaign_status": "continuing_corrected_diagnostic_trajectory",
   "continuation_allowed": true,
   "stop_reason": null,
@@ -155,5 +155,7 @@
     "result_json_present": false,
     "root_cause": "Interrupted remote execution followed by an attempt that hit the existing-directory guard; original interruption cause not established. Modal logs query exceeded service resource limit.",
     "solver_log_sha256": "1c59d86193f1211a1cd382f5b650858de9a65500356f9c2ccb839ef3ce9702ac"
-  }
+  },
+  "latest_full_history_visualization": "docs/verification/netl_startup_20261027/progress_zero_to_130us/pelec_annulus.gif",
+  "full_history_manifest": "docs/verification/netl_startup_20261027/progress_zero_to_130us/trajectory_manifest.json"
 }

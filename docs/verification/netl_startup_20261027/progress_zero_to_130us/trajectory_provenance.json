@@ -1,0 +1,1103 @@
+{
+  "volume": "prox-rde-netl-startup",
+  "segments": [
+    {
+      "directory": "/Users/sgfx/.codex/worktrees/3d-cfd-review/prox_rde_sim/runs3d/netl_startup_20261027/local_amr_v2_evidence",
+      "run_id": "pilot200_local_amr_v2_mpi4",
+      "retained_interval_s": [
+        0.0,
+        2e-07
+      ],
+      "retained_native_times_s": [
+        0.0,
+        5e-08,
+        9.999999999999998e-08,
+        1.5000000000000002e-07,
+        2e-07
+      ],
+      "source_checks_sha256": "6cded22be0a42985bcca486c6b355158e1a3f47456639e35c2e7bdda2274fc79",
+      "source_preview_sha256": "e3c252e5b16aeeb9699463046a010619168b5604b2bfefae5eb2c2c10e1f4dc7",
+      "original_full_run_checks": {
+        "finite": true,
+        "species_nonnegative": true,
+        "species_sum": true,
+        "positive_pressure": true,
+        "thermo_range": true
+      },
+      "retained_prefix_checks": {
+        "finite": true,
+        "species_nonnegative": true,
+        "species_sum": true,
+        "positive_pressure": true,
+        "thermo_range": true,
+        "every_step_finite": true,
+        "every_step_species_sum": true,
+        "every_step_species_nonnegative": false
+      },
+      "retained_log_audit": {
+        "latest_time_s": 2e-07,
+        "fields": {
+          "density": {
+            "samples": 21,
+            "minimum": 0.0011856711,
+            "maximum": 0.013337404,
+            "nonfinite_samples": 0
+          },
+          "x_velocity": {
+            "samples": 21,
+            "minimum": -36036.456,
+            "maximum": 35626.614,
+            "nonfinite_samples": 0
+          },
+          "y_velocity": {
+            "samples": 21,
+            "minimum": -17099.069,
+            "maximum": 10579.284,
+            "nonfinite_samples": 0
+          },
+          "z_velocity": {
+            "samples": 21,
+            "minimum": -4.0162625e-07,
+            "maximum": 32545.046,
+            "nonfinite_samples": 0
+          },
+          "eint_e": {
+            "samples": 21,
+            "minimum": -13260728000.0,
+            "maximum": 36222667000.0,
+            "nonfinite_samples": 0
+          },
+          "Temp": {
+            "samples": 21,
+            "minimum": 299.97245,
+            "maximum": 4406.2273,
+            "nonfinite_samples": 0
+          },
+          "pressure": {
+            "samples": 21,
+            "minimum": 1025083.4,
+            "maximum": 105227510.0,
+            "nonfinite_samples": 0
+          },
+          "massfrac": {
+            "samples": 21,
+            "minimum": -1.098615e-05,
+            "maximum": 0.81967069,
+            "nonfinite_samples": 0
+          },
+          "sumYminus1": {
+            "samples": 21,
+            "minimum": -7.7715612e-16,
+            "maximum": 6.6613381e-16,
+            "nonfinite_samples": 0
+          }
+        },
+        "emergency_stop_required": false,
+        "violation_count": 0,
+        "first_violations": [],
+        "every_step_species_sum": {
+          "samples": 21,
+          "worst_time_s": 5e-08,
+          "maximum_absolute_error": 7.7715612e-16,
+          "worst_minimum_sum_minus_one": -7.7715612e-16,
+          "worst_maximum_sum_minus_one": 6.6613381e-16,
+          "note": "Native log includes all AMR levels; localize discrepancies before classifying active-fluid error."
+        }
+      },
+      "policy_change": null
+    },
+    {
+      "directory": "/Users/sgfx/.codex/worktrees/3d-cfd-review/prox_rde_sim/runs3d/netl_startup_20261027/long_segment1_evidence",
+      "run_id": "long200_segment1_retry",
+      "restart_checkpoint": "pilot200_local_amr_v2_mpi4/chk00020",
+      "restart_time_s": 2e-07,
+      "checkpoint_header_sha256": "6682f3afa0ceea14e24b90193dd2337751c48e460b0ff6c718d9630b7c874fed",
+      "retained_interval_s": [
+        2e-07,
+        6.999999999999953e-06
+      ],
+      "retained_native_times_s": [
+        5.019999999999972e-06,
+        6.999999999999953e-06
+      ],
+      "source_checks_sha256": "ac9a0973dfa5246dcb46c8373120a9cbe8467676250b3cbe3b931f7899a1d45f",
+      "source_preview_sha256": "c481749966894aa0ac53e5012ede048603d4c90e96d291d913c7cc2d9224f5c5",
+      "original_full_run_checks": {
+        "finite": true,
+        "species_nonnegative": false,
+        "species_sum": true,
+        "positive_pressure": true,
+        "thermo_range": true,
+        "every_step_species_nonnegative": false
+      },
+      "retained_prefix_checks": {
+        "finite": true,
+        "species_nonnegative": false,
+        "species_sum": true,
+        "positive_pressure": true,
+        "thermo_range": true,
+        "every_step_finite": true,
+        "every_step_species_sum": true,
+        "every_step_species_nonnegative": false
+      },
+      "retained_log_audit": {
+        "latest_time_s": 7e-06,
+        "fields": {
+          "density": {
+            "samples": 340,
+            "minimum": 0.0011897013,
+            "maximum": 0.050808083,
+            "nonfinite_samples": 0
+          },
+          "x_velocity": {
+            "samples": 340,
+            "minimum": -148642.11,
+            "maximum": 148837.77,
+            "nonfinite_samples": 0
+          },
+          "y_velocity": {
+            "samples": 340,
+            "minimum": -69218.986,
+            "maximum": 37610.195,
+            "nonfinite_samples": 0
+          },
+          "z_velocity": {
+            "samples": 340,
+            "minimum": -25430.755,
+            "maximum": 97589.962,
+            "nonfinite_samples": 0
+          },
+          "eint_e": {
+            "samples": 340,
+            "minimum": -48037246000.0,
+            "maximum": 39748749000.0,
+            "nonfinite_samples": 0
+          },
+          "Temp": {
+            "samples": 340,
+            "minimum": 286.11059,
+            "maximum": 4459.097,
+            "nonfinite_samples": 0
+          },
+          "pressure": {
+            "samples": 340,
+            "minimum": 1029919.5,
+            "maximum": 825270520.0,
+            "nonfinite_samples": 0
+          },
+          "massfrac": {
+            "samples": 340,
+            "minimum": -0.0009090749,
+            "maximum": 0.99606804,
+            "nonfinite_samples": 0
+          },
+          "sumYminus1": {
+            "samples": 340,
+            "minimum": -7.7715612e-16,
+            "maximum": 8.8817842e-16,
+            "nonfinite_samples": 0
+          }
+        },
+        "emergency_stop_required": false,
+        "violation_count": 0,
+        "first_violations": [],
+        "every_step_species_sum": {
+          "samples": 340,
+          "worst_time_s": 1.3e-06,
+          "maximum_absolute_error": 8.8817842e-16,
+          "worst_minimum_sum_minus_one": -6.6613381e-16,
+          "worst_maximum_sum_minus_one": 8.8817842e-16,
+          "note": "Native log includes all AMR levels; localize discrepancies before classifying active-fluid error."
+        }
+      },
+      "policy_change": null
+    },
+    {
+      "directory": "/Users/sgfx/.codex/worktrees/3d-cfd-review/prox_rde_sim/runs3d/netl_startup_20261027/long_cuda_evidence",
+      "run_id": "long200_cuda_segment2",
+      "restart_checkpoint": "long200_segment1_retry/chk00360",
+      "restart_time_s": 6.999999999999953e-06,
+      "checkpoint_header_sha256": "a63691037224b71efdb3fb9a8b7addb361ee9d5966df5cbcb34bcabd31d5a526",
+      "retained_interval_s": [
+        6.999999999999953e-06,
+        1.4399999999999882e-05
+      ],
+      "retained_native_times_s": [
+        1.0019999999999924e-05,
+        1.4399999999999882e-05
+      ],
+      "source_checks_sha256": "a9d51a60a34639bde40646a0ac3c068e02c99904cfa7868053872337d5d4a1a7",
+      "source_preview_sha256": "2a96b833130f899b762b055ea846f090a8540243b63144afddbc32e938b7e89a",
+      "original_full_run_checks": {
+        "finite": true,
+        "species_nonnegative": false,
+        "species_sum": true,
+        "positive_pressure": true,
+        "thermo_range": true,
+        "every_step_species_nonnegative": false
+      },
+      "retained_prefix_checks": {
+        "finite": true,
+        "species_nonnegative": false,
+        "species_sum": true,
+        "positive_pressure": true,
+        "thermo_range": true,
+        "every_step_finite": true,
+        "every_step_species_sum": true,
+        "every_step_species_nonnegative": false
+      },
+      "retained_log_audit": {
+        "latest_time_s": 1.44e-05,
+        "fields": {
+          "density": {
+            "samples": 370,
+            "minimum": 0.0013169693,
+            "maximum": 0.051758688,
+            "nonfinite_samples": 0
+          },
+          "x_velocity": {
+            "samples": 370,
+            "minimum": -149088.84,
+            "maximum": 148667.75,
+            "nonfinite_samples": 0
+          },
+          "y_velocity": {
+            "samples": 370,
+            "minimum": -116541.03,
+            "maximum": 23879.567,
+            "nonfinite_samples": 0
+          },
+          "z_velocity": {
+            "samples": 370,
+            "minimum": -33600.611,
+            "maximum": 93066.986,
+            "nonfinite_samples": 0
+          },
+          "eint_e": {
+            "samples": 370,
+            "minimum": -48147451000.0,
+            "maximum": 32065905000.0,
+            "nonfinite_samples": 0
+          },
+          "Temp": {
+            "samples": 370,
+            "minimum": 285.56258,
+            "maximum": 4308.194,
+            "nonfinite_samples": 0
+          },
+          "pressure": {
+            "samples": 370,
+            "minimum": 1178584.5,
+            "maximum": 848993430.0,
+            "nonfinite_samples": 0
+          },
+          "massfrac": {
+            "samples": 370,
+            "minimum": -0.0010088734,
+            "maximum": 0.99983831,
+            "nonfinite_samples": 0
+          },
+          "sumYminus1": {
+            "samples": 370,
+            "minimum": -8.8817842e-16,
+            "maximum": 8.8817842e-16,
+            "nonfinite_samples": 0
+          }
+        },
+        "emergency_stop_required": false,
+        "violation_count": 0,
+        "first_violations": [],
+        "every_step_species_sum": {
+          "samples": 370,
+          "worst_time_s": 1.044e-05,
+          "maximum_absolute_error": 8.8817842e-16,
+          "worst_minimum_sum_minus_one": -6.6613381e-16,
+          "worst_maximum_sum_minus_one": 8.8817842e-16,
+          "note": "Native log includes all AMR levels; localize discrepancies before classifying active-fluid error."
+        }
+      },
+      "policy_change": null
+    },
+    {
+      "directory": "/Users/sgfx/.codex/worktrees/3d-cfd-review/prox_rde_sim/runs3d/netl_startup_20261027/burning_gmres_evidence",
+      "run_id": "burning_gmres_control",
+      "restart_checkpoint": "long200_cuda_segment2/chk00730",
+      "restart_time_s": 1.4399999999999882e-05,
+      "checkpoint_header_sha256": "c3f1ddb2075a11cb6d6bc9dddd361d6ce83994cd7a42341628a4e91e8a5994b9",
+      "retained_interval_s": [
+        1.4399999999999882e-05,
+        1.46e-05
+      ],
+      "retained_native_times_s": [
+        1.46e-05
+      ],
+      "source_checks_sha256": "835e59842416581de5febb46ada6c97580a110965dbc5b8f762a73c800e6e2b8",
+      "source_preview_sha256": "04c756542c2f9ed6f59617fb3a9fab2d4373ec3bdfe47d7f205aab814a547f12",
+      "original_full_run_checks": {
+        "finite": true,
+        "species_nonnegative": false,
+        "species_sum": true,
+        "positive_pressure": true,
+        "thermo_range": true,
+        "every_step_species_nonnegative": false
+      },
+      "retained_prefix_checks": {
+        "finite": true,
+        "species_nonnegative": false,
+        "species_sum": true,
+        "positive_pressure": true,
+        "thermo_range": true,
+        "every_step_finite": true,
+        "every_step_species_sum": true,
+        "every_step_species_nonnegative": false
+      },
+      "retained_log_audit": {
+        "latest_time_s": 1.46e-05,
+        "fields": {
+          "density": {
+            "samples": 10,
+            "minimum": 0.0014600088,
+            "maximum": 0.048082222,
+            "nonfinite_samples": 0
+          },
+          "x_velocity": {
+            "samples": 10,
+            "minimum": -130342.91,
+            "maximum": 106762.53,
+            "nonfinite_samples": 0
+          },
+          "y_velocity": {
+            "samples": 10,
+            "minimum": -116411.75,
+            "maximum": 23265.142,
+            "nonfinite_samples": 0
+          },
+          "z_velocity": {
+            "samples": 10,
+            "minimum": -32387.894,
+            "maximum": 86433.525,
+            "nonfinite_samples": 0
+          },
+          "eint_e": {
+            "samples": 10,
+            "minimum": -48110834000.0,
+            "maximum": 21145019000.0,
+            "nonfinite_samples": 0
+          },
+          "Temp": {
+            "samples": 10,
+            "minimum": 285.51769,
+            "maximum": 4297.2106,
+            "nonfinite_samples": 0
+          },
+          "pressure": {
+            "samples": 10,
+            "minimum": 1334017.6,
+            "maximum": 724620750.0,
+            "nonfinite_samples": 0
+          },
+          "massfrac": {
+            "samples": 10,
+            "minimum": -0.0006097052,
+            "maximum": 0.99985288,
+            "nonfinite_samples": 0
+          },
+          "sumYminus1": {
+            "samples": 10,
+            "minimum": -7.7715612e-16,
+            "maximum": 1.5543122e-15,
+            "nonfinite_samples": 0
+          }
+        },
+        "emergency_stop_required": false,
+        "violation_count": 0,
+        "first_violations": [],
+        "every_step_species_sum": {
+          "samples": 10,
+          "worst_time_s": 1.454e-05,
+          "maximum_absolute_error": 1.5543122e-15,
+          "worst_minimum_sum_minus_one": -7.7715612e-16,
+          "worst_maximum_sum_minus_one": 1.5543122e-15,
+          "note": "Native log includes all AMR levels; localize discrepancies before classifying active-fluid error."
+        }
+      },
+      "policy_change": null
+    },
+    {
+      "directory": "/Users/sgfx/.codex/worktrees/3d-cfd-review/prox_rde_sim/runs3d/netl_startup_20261027/long_detached_evidence",
+      "run_id": "long200_detached_segment3",
+      "restart_checkpoint": "burning_gmres_control/chk00740",
+      "restart_time_s": 1.46e-05,
+      "checkpoint_header_sha256": "35875f11870290db7af02e1cdee9ffbf517a40a2142c58bf05e202e9f9f88301",
+      "retained_interval_s": [
+        1.46e-05,
+        5.0000000000002964e-05
+      ],
+      "retained_native_times_s": [
+        1.4999999999999997e-05,
+        2.001999999999995e-05,
+        2.5019999999999903e-05,
+        3.0019999999999855e-05,
+        3.5000000000000566e-05,
+        4.0000000000001365e-05,
+        4.5000000000002164e-05,
+        5.0000000000002964e-05
+      ],
+      "source_checks_sha256": "dcc1ab459d522a938d529ec417cb6dcb4074f2e799d9a49e2e5d0192bf5a8978",
+      "source_preview_sha256": "19da699f27e2c4028d1d970b934081f1ba270d7476fea38635deaf51150d4f5a",
+      "original_full_run_checks": {
+        "finite": true,
+        "species_nonnegative": false,
+        "species_sum": true,
+        "positive_pressure": true,
+        "thermo_range": true,
+        "every_step_species_nonnegative": false
+      },
+      "retained_prefix_checks": {
+        "finite": true,
+        "species_nonnegative": false,
+        "species_sum": true,
+        "positive_pressure": true,
+        "thermo_range": true,
+        "every_step_finite": true,
+        "every_step_species_sum": true,
+        "every_step_species_nonnegative": false
+      },
+      "retained_log_audit": {
+        "latest_time_s": 5e-05,
+        "fields": {
+          "density": {
+            "samples": 1770,
+            "minimum": 0.0014639316,
+            "maximum": 0.10136649,
+            "nonfinite_samples": 0
+          },
+          "x_velocity": {
+            "samples": 1770,
+            "minimum": -140704.36,
+            "maximum": 140510.34,
+            "nonfinite_samples": 0
+          },
+          "y_velocity": {
+            "samples": 1770,
+            "minimum": -158958.67,
+            "maximum": 65181.458,
+            "nonfinite_samples": 0
+          },
+          "z_velocity": {
+            "samples": 1770,
+            "minimum": -37780.445,
+            "maximum": 142769.57,
+            "nonfinite_samples": 0
+          },
+          "eint_e": {
+            "samples": 1770,
+            "minimum": -48204585000.0,
+            "maximum": 21284510000.0,
+            "nonfinite_samples": 0
+          },
+          "Temp": {
+            "samples": 1770,
+            "minimum": 279.36292,
+            "maximum": 4773.8641,
+            "nonfinite_samples": 0
+          },
+          "pressure": {
+            "samples": 1770,
+            "minimum": 1338093.1,
+            "maximum": 1112404600.0,
+            "nonfinite_samples": 0
+          },
+          "massfrac": {
+            "samples": 1770,
+            "minimum": -0.0010239157,
+            "maximum": 0.99998388,
+            "nonfinite_samples": 0
+          },
+          "sumYminus1": {
+            "samples": 1770,
+            "minimum": -1.2212453e-15,
+            "maximum": 1.110223e-15,
+            "nonfinite_samples": 0
+          }
+        },
+        "emergency_stop_required": false,
+        "violation_count": 0,
+        "first_violations": [],
+        "every_step_species_sum": {
+          "samples": 1770,
+          "worst_time_s": 1.462e-05,
+          "maximum_absolute_error": 1.2212453e-15,
+          "worst_minimum_sum_minus_one": -1.2212453e-15,
+          "worst_maximum_sum_minus_one": 6.6613381e-16,
+          "note": "Native log includes all AMR levels; localize discrepancies before classifying active-fluid error."
+        }
+      },
+      "policy_change": null
+    },
+    {
+      "directory": "/Users/sgfx/.codex/worktrees/3d-cfd-review/prox_rde_sim/runs3d/netl_startup_20261027/closure_prepare_evidence",
+      "run_id": "closure_replay_prepare_55p8us",
+      "restart_checkpoint": "long200_detached_segment3/chk02510",
+      "restart_time_s": 5.0000000000002964e-05,
+      "checkpoint_header_sha256": "3314828b47e9b4a8978562c04e8aff52aee378a7cfda7478d17809b09a03697b",
+      "retained_interval_s": [
+        5.0000000000002964e-05,
+        5.58e-05
+      ],
+      "retained_native_times_s": [
+        5.500000000000376e-05,
+        5.58e-05
+      ],
+      "source_checks_sha256": "10bf62b4b54745d84030669b5a60491d1357355c5a4e801c1709288eaa7d85d4",
+      "source_preview_sha256": "c81633e5880408f9a0184fcb0ca52711d4608526cf17cc8187890a07605b2cd0",
+      "original_full_run_checks": {
+        "finite": true,
+        "species_nonnegative": false,
+        "species_sum": true,
+        "positive_pressure": true,
+        "thermo_range": true,
+        "every_step_species_nonnegative": false
+      },
+      "retained_prefix_checks": {
+        "finite": true,
+        "species_nonnegative": false,
+        "species_sum": true,
+        "positive_pressure": true,
+        "thermo_range": true,
+        "every_step_finite": true,
+        "every_step_species_sum": true,
+        "every_step_species_nonnegative": false
+      },
+      "retained_log_audit": {
+        "latest_time_s": 5.58e-05,
+        "fields": {
+          "density": {
+            "samples": 290,
+            "minimum": 0.0015946375,
+            "maximum": 0.064455287,
+            "nonfinite_samples": 0
+          },
+          "x_velocity": {
+            "samples": 290,
+            "minimum": -105303.27,
+            "maximum": 109646.82,
+            "nonfinite_samples": 0
+          },
+          "y_velocity": {
+            "samples": 290,
+            "minimum": -26482.412,
+            "maximum": 68683.014,
+            "nonfinite_samples": 0
+          },
+          "z_velocity": {
+            "samples": 290,
+            "minimum": -8618.0302,
+            "maximum": 173329.19,
+            "nonfinite_samples": 0
+          },
+          "eint_e": {
+            "samples": 290,
+            "minimum": -42635411000.0,
+            "maximum": 7871233000.0,
+            "nonfinite_samples": 0
+          },
+          "Temp": {
+            "samples": 290,
+            "minimum": 278.7557,
+            "maximum": 3900.7305,
+            "nonfinite_samples": 0
+          },
+          "pressure": {
+            "samples": 290,
+            "minimum": 1959339.8,
+            "maximum": 239529640.0,
+            "nonfinite_samples": 0
+          },
+          "massfrac": {
+            "samples": 290,
+            "minimum": -2.3400934e-08,
+            "maximum": 0.76700028,
+            "nonfinite_samples": 0
+          },
+          "sumYminus1": {
+            "samples": 290,
+            "minimum": -7.7715612e-16,
+            "maximum": 6.6613381e-16,
+            "nonfinite_samples": 0
+          }
+        },
+        "emergency_stop_required": false,
+        "violation_count": 0,
+        "first_violations": [],
+        "every_step_species_sum": {
+          "samples": 290,
+          "worst_time_s": 5.002e-05,
+          "maximum_absolute_error": 7.7715612e-16,
+          "worst_minimum_sum_minus_one": -7.7715612e-16,
+          "worst_maximum_sum_minus_one": 6.6613381e-16,
+          "note": "Native log includes all AMR levels; localize discrepancies before classifying active-fluid error."
+        }
+      },
+      "policy_change": null
+    },
+    {
+      "directory": "/Users/sgfx/.codex/worktrees/3d-cfd-review/prox_rde_sim/runs3d/netl_startup_20261027/closure_walls_evidence",
+      "run_id": "closure_refined_walls_55p8_to_56p2us",
+      "restart_checkpoint": "closure_replay_prepare_55p8us/chk02800",
+      "restart_time_s": 5.58e-05,
+      "checkpoint_header_sha256": "b8165a99ed0c19361b2ab2c084413b79b0c943c1db0c4412f5371f509dae789f",
+      "retained_interval_s": [
+        5.58e-05,
+        5.62e-05
+      ],
+      "retained_native_times_s": [
+        5.590000000000002e-05,
+        5.600000000000003e-05,
+        5.610000000000005e-05,
+        5.62e-05
+      ],
+      "source_checks_sha256": "7fe7d587b8866e7c8801240fd1bdd5d1de6114cb168b682b3fe1fed8da390ca6",
+      "source_preview_sha256": "c5475accafbc8a6bda5bc96526c3d31e90cfd5651699b5292aa47f6b23d36418",
+      "original_full_run_checks": {
+        "finite": true,
+        "species_nonnegative": false,
+        "species_sum": true,
+        "positive_pressure": true,
+        "thermo_range": true,
+        "every_step_species_sum": true,
+        "every_step_finite": true,
+        "every_step_species_nonnegative": false
+      },
+      "retained_prefix_checks": {
+        "finite": true,
+        "species_nonnegative": false,
+        "species_sum": true,
+        "positive_pressure": true,
+        "thermo_range": true,
+        "every_step_finite": true,
+        "every_step_species_sum": true,
+        "every_step_species_nonnegative": false
+      },
+      "retained_log_audit": {
+        "latest_time_s": 5.62e-05,
+        "fields": {
+          "density": {
+            "samples": 20,
+            "minimum": 0.0015861569,
+            "maximum": 0.054695965,
+            "nonfinite_samples": 0
+          },
+          "x_velocity": {
+            "samples": 20,
+            "minimum": -77419.117,
+            "maximum": 78965.052,
+            "nonfinite_samples": 0
+          },
+          "y_velocity": {
+            "samples": 20,
+            "minimum": -24185.845,
+            "maximum": 69013.694,
+            "nonfinite_samples": 0
+          },
+          "z_velocity": {
+            "samples": 20,
+            "minimum": -9447.9964,
+            "maximum": 174990.68,
+            "nonfinite_samples": 0
+          },
+          "eint_e": {
+            "samples": 20,
+            "minimum": -42705069000.0,
+            "maximum": 7122201000.0,
+            "nonfinite_samples": 0
+          },
+          "Temp": {
+            "samples": 20,
+            "minimum": 278.54314,
+            "maximum": 3816.4074,
+            "nonfinite_samples": 0
+          },
+          "pressure": {
+            "samples": 20,
+            "minimum": 2045670.4,
+            "maximum": 153347940.0,
+            "nonfinite_samples": 0
+          },
+          "massfrac": {
+            "samples": 20,
+            "minimum": -1.0438946e-09,
+            "maximum": 0.76700028,
+            "nonfinite_samples": 0
+          },
+          "sumYminus1": {
+            "samples": 20,
+            "minimum": -7.7715612e-16,
+            "maximum": 6.6613381e-16,
+            "nonfinite_samples": 0
+          }
+        },
+        "emergency_stop_required": false,
+        "violation_count": 0,
+        "first_violations": [],
+        "every_step_species_sum": {
+          "samples": 20,
+          "worst_time_s": 5.608e-05,
+          "maximum_absolute_error": 7.7715612e-16,
+          "worst_minimum_sum_minus_one": -7.7715612e-16,
+          "worst_maximum_sum_minus_one": 6.6613381e-16,
+          "note": "Native log includes all AMR levels; localize discrepancies before classifying active-fluid error."
+        }
+      },
+      "policy_change": {
+        "run_id": "closure_refined_walls_55p8_to_56p2us",
+        "time_s": 5.58e-05,
+        "description": "All embedded walls refined; same ignition history. At the restart timestamp retain the parent pre-regrid frame; first child frame follows it."
+      }
+    },
+    {
+      "directory": "/Users/sgfx/.codex/worktrees/3d-cfd-review/prox_rde_sim/runs3d/netl_startup_20261027/walls_validation60_evidence",
+      "run_id": "closure_walls_validation_56p2_to_60us",
+      "restart_checkpoint": "closure_refined_walls_55p8_to_56p2us/chk02820",
+      "restart_time_s": 5.62e-05,
+      "checkpoint_header_sha256": "8aa3b1ff642b2ae33b6ec218abf51cabce418af19745501a95a2da4dd5361db3",
+      "retained_interval_s": [
+        5.62e-05,
+        6e-05
+      ],
+      "retained_native_times_s": [
+        5.62e-05,
+        5.6500000000000045e-05,
+        5.7000000000000125e-05,
+        5.7500000000000205e-05,
+        5.8000000000000285e-05,
+        5.8500000000000365e-05,
+        5.9000000000000445e-05,
+        5.9500000000000525e-05,
+        6e-05
+      ],
+      "source_checks_sha256": "4b427660f4be2f953c1467db54cd3b13f5913fb1a944056f7915e4a5074e6142",
+      "source_preview_sha256": "426edd009b3f76ee4d9a47011454b1bdde104aa49f2de8b466294c70d4b29982",
+      "original_full_run_checks": {
+        "finite": true,
+        "species_nonnegative": false,
+        "species_sum": true,
+        "positive_pressure": true,
+        "thermo_range": true,
+        "every_step_species_sum": true,
+        "every_step_finite": true,
+        "every_step_species_nonnegative": false
+      },
+      "retained_prefix_checks": {
+        "finite": true,
+        "species_nonnegative": false,
+        "species_sum": true,
+        "positive_pressure": true,
+        "thermo_range": true,
+        "every_step_finite": true,
+        "every_step_species_sum": true,
+        "every_step_species_nonnegative": false
+      },
+      "retained_log_audit": {
+        "latest_time_s": 6e-05,
+        "fields": {
+          "density": {
+            "samples": 190,
+            "minimum": 0.0014928134,
+            "maximum": 0.05439871,
+            "nonfinite_samples": 0
+          },
+          "x_velocity": {
+            "samples": 190,
+            "minimum": -76559.351,
+            "maximum": 78320.05,
+            "nonfinite_samples": 0
+          },
+          "y_velocity": {
+            "samples": 190,
+            "minimum": -26142.082,
+            "maximum": 72040.842,
+            "nonfinite_samples": 0
+          },
+          "z_velocity": {
+            "samples": 190,
+            "minimum": -13635.667,
+            "maximum": 182753.86,
+            "nonfinite_samples": 0
+          },
+          "eint_e": {
+            "samples": 190,
+            "minimum": -43552777000.0,
+            "maximum": 7130830900.0,
+            "nonfinite_samples": 0
+          },
+          "Temp": {
+            "samples": 190,
+            "minimum": 277.35899,
+            "maximum": 3814.3612,
+            "nonfinite_samples": 0
+          },
+          "pressure": {
+            "samples": 190,
+            "minimum": 2048958.8,
+            "maximum": 150942670.0,
+            "nonfinite_samples": 0
+          },
+          "massfrac": {
+            "samples": 190,
+            "minimum": -2.0885805e-10,
+            "maximum": 0.76700028,
+            "nonfinite_samples": 0
+          },
+          "sumYminus1": {
+            "samples": 190,
+            "minimum": -7.7715612e-16,
+            "maximum": 8.8817842e-16,
+            "nonfinite_samples": 0
+          }
+        },
+        "emergency_stop_required": false,
+        "violation_count": 0,
+        "first_violations": [],
+        "every_step_species_sum": {
+          "samples": 190,
+          "worst_time_s": 5.66e-05,
+          "maximum_absolute_error": 8.8817842e-16,
+          "worst_minimum_sum_minus_one": -7.7715612e-16,
+          "worst_maximum_sum_minus_one": 8.8817842e-16,
+          "note": "Native log includes all AMR levels; localize discrepancies before classifying active-fluid error."
+        }
+      },
+      "policy_change": null
+    },
+    {
+      "directory": "/Users/sgfx/.codex/worktrees/3d-cfd-review/prox_rde_sim/runs3d/netl_startup_20261027/long_refined_evidence",
+      "run_id": "long200_refined_walls_from60us",
+      "restart_checkpoint": "closure_walls_validation_56p2_to_60us/chk03010",
+      "restart_time_s": 6e-05,
+      "checkpoint_header_sha256": "4183f01a44b82519e6a31eb7c8b77ef9dfc5c82d29d27ab241679965ff1e0743",
+      "retained_interval_s": [
+        6e-05,
+        9.000000000000479e-05
+      ],
+      "retained_native_times_s": [
+        6e-05,
+        6.50000000000008e-05,
+        7.000000000000159e-05,
+        7.500000000000239e-05,
+        8.000000000000319e-05,
+        8.500000000000399e-05,
+        9.000000000000479e-05
+      ],
+      "source_checks_sha256": "54d23da7e62b78f1f88a76083e4f9642232f1313fd8d518fda0364391c154cec",
+      "source_preview_sha256": "04b8e19f295af344794061c58eb85daf3092a21cd0abf6c5ddc29668cbad980c",
+      "original_full_run_checks": {
+        "finite": true,
+        "species_nonnegative": true,
+        "species_sum": true,
+        "positive_pressure": true,
+        "thermo_range": true,
+        "every_step_species_sum": true,
+        "every_step_finite": true,
+        "every_step_species_nonnegative": false
+      },
+      "retained_prefix_checks": {
+        "finite": true,
+        "species_nonnegative": true,
+        "species_sum": true,
+        "positive_pressure": true,
+        "thermo_range": true,
+        "every_step_finite": true,
+        "every_step_species_sum": true,
+        "every_step_species_nonnegative": false
+      },
+      "retained_log_audit": {
+        "latest_time_s": 9e-05,
+        "fields": {
+          "density": {
+            "samples": 1500,
+            "minimum": 0.0011465299,
+            "maximum": 0.05030617,
+            "nonfinite_samples": 0
+          },
+          "x_velocity": {
+            "samples": 1500,
+            "minimum": -71919.221,
+            "maximum": 73850.547,
+            "nonfinite_samples": 0
+          },
+          "y_velocity": {
+            "samples": 1500,
+            "minimum": -56086.054,
+            "maximum": 117759.6,
+            "nonfinite_samples": 0
+          },
+          "z_velocity": {
+            "samples": 1500,
+            "minimum": -7445.3494,
+            "maximum": 182748.96,
+            "nonfinite_samples": 0
+          },
+          "eint_e": {
+            "samples": 1500,
+            "minimum": -46343651000.0,
+            "maximum": 6775846100.0,
+            "nonfinite_samples": 0
+          },
+          "Temp": {
+            "samples": 1500,
+            "minimum": 270.79458,
+            "maximum": 3794.6098,
+            "nonfinite_samples": 0
+          },
+          "pressure": {
+            "samples": 1500,
+            "minimum": 2103911.3,
+            "maximum": 130494910.0,
+            "nonfinite_samples": 0
+          },
+          "massfrac": {
+            "samples": 1500,
+            "minimum": -1.8624641e-10,
+            "maximum": 0.76700028,
+            "nonfinite_samples": 0
+          },
+          "sumYminus1": {
+            "samples": 1500,
+            "minimum": -8.8817842e-16,
+            "maximum": 8.8817842e-16,
+            "nonfinite_samples": 0
+          }
+        },
+        "emergency_stop_required": false,
+        "violation_count": 0,
+        "first_violations": [],
+        "every_step_species_sum": {
+          "samples": 1500,
+          "worst_time_s": 6.686e-05,
+          "maximum_absolute_error": 8.8817842e-16,
+          "worst_minimum_sum_minus_one": -6.6613381e-16,
+          "worst_maximum_sum_minus_one": 8.8817842e-16,
+          "note": "Native log includes all AMR levels; localize discrepancies before classifying active-fluid error."
+        }
+      },
+      "policy_change": null
+    },
+    {
+      "directory": "/Users/sgfx/.codex/worktrees/3d-cfd-review/prox_rde_sim/runs3d/netl_startup_20261027/recovery90_evidence",
+      "run_id": "long200_recovery_from90us",
+      "restart_checkpoint": "long200_refined_walls_from60us/chk04510",
+      "restart_time_s": 9.000000000000479e-05,
+      "checkpoint_header_sha256": "e128ceb96a240ab20c33fa68ecdd0dc0819098f97854006dc953dbbd1785b0fb",
+      "retained_interval_s": [
+        9.000000000000479e-05,
+        0.00013000000000000582
+      ],
+      "retained_native_times_s": [
+        9.000000000000479e-05,
+        9.500000000000559e-05,
+        0.00010000000000000639,
+        0.00010500000000000719,
+        0.00011000000000000799,
+        0.00011500000000000879,
+        0.00012000000000000958,
+        0.0001250000000000084,
+        0.00013000000000000582
+      ],
+      "source_checks_sha256": "cde4255a45849c3d93d817246309ddc3d64a0f4468e44973d8b7ebf8b8da60e4",
+      "source_preview_sha256": "0fc4d620f11f5db7027081ede32262f6ba79093132ec7f684c00130e3913ef9d",
+      "original_full_run_checks": {
+        "finite": true,
+        "species_nonnegative": true,
+        "species_sum": true,
+        "positive_pressure": true,
+        "thermo_range": true,
+        "every_step_species_sum": true,
+        "every_step_finite": true,
+        "every_step_species_nonnegative": false
+      },
+      "retained_prefix_checks": {
+        "finite": true,
+        "species_nonnegative": true,
+        "species_sum": true,
+        "positive_pressure": true,
+        "thermo_range": true,
+        "every_step_finite": true,
+        "every_step_species_sum": true,
+        "every_step_species_nonnegative": false
+      },
+      "retained_log_audit": {
+        "latest_time_s": 0.00013,
+        "fields": {
+          "density": {
+            "samples": 2000,
+            "minimum": 0.00058571497,
+            "maximum": 0.021175056,
+            "nonfinite_samples": 0
+          },
+          "x_velocity": {
+            "samples": 2000,
+            "minimum": -37133.492,
+            "maximum": 38362.001,
+            "nonfinite_samples": 0
+          },
+          "y_velocity": {
+            "samples": 2000,
+            "minimum": -18862.71,
+            "maximum": 79128.517,
+            "nonfinite_samples": 0
+          },
+          "z_velocity": {
+            "samples": 2000,
+            "minimum": -9679.384,
+            "maximum": 177793.44,
+            "nonfinite_samples": 0
+          },
+          "eint_e": {
+            "samples": 2000,
+            "minimum": -52137110000.0,
+            "maximum": 3904286400.0,
+            "nonfinite_samples": 0
+          },
+          "Temp": {
+            "samples": 2000,
+            "minimum": 265.33828,
+            "maximum": 3724.52,
+            "nonfinite_samples": 0
+          },
+          "pressure": {
+            "samples": 2000,
+            "minimum": 2499253.9,
+            "maximum": 42897762.0,
+            "nonfinite_samples": 0
+          },
+          "massfrac": {
+            "samples": 2000,
+            "minimum": -3.9621183e-09,
+            "maximum": 0.99999215,
+            "nonfinite_samples": 0
+          },
+          "sumYminus1": {
+            "samples": 2000,
+            "minimum": -9.9920072e-16,
+            "maximum": 8.8817842e-16,
+            "nonfinite_samples": 0
+          }
+        },
+        "emergency_stop_required": false,
+        "violation_count": 0,
+        "first_violations": [],
+        "every_step_species_sum": {
+          "samples": 2000,
+          "worst_time_s": 0.0001253,
+          "maximum_absolute_error": 9.9920072e-16,
+          "worst_minimum_sum_minus_one": -9.9920072e-16,
+          "worst_maximum_sum_minus_one": 6.6613381e-16,
+          "note": "Native log includes all AMR levels; localize discrepancies before classifying active-fluid error."
+        }
+      },
+      "policy_change": null
+    }
+  ],
+  "scope": "Actual checkpoint prefixes only. Abandoned suffixes remain preserved separately; no temporal interpolation."
+}

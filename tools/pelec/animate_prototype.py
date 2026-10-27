@@ -9,7 +9,7 @@ from matplotlib.colors import LogNorm,Normalize
 from matplotlib.cm import ScalarMappable
 from matplotlib.animation import FuncAnimation,PillowWriter
 
-def render(run,output):
+def render(run,output,fps=7):
     run=Path(run);out=Path(output);out.mkdir(parents=True,exist_ok=True)
     data=np.load(run/'preview.npz');c=json.loads((run/'case.json').read_text());checks=json.loads((run/'checks.json').read_text())
     times=data['time_s'];theta=data['theta_rad'];z=data['z_m']*1000;P=data['pressure_Pa']/1e6;T=data['temperature_K']
@@ -29,8 +29,11 @@ def render(run,output):
     grid=c.get('grid_label',str(c.get('n','?'))+'³ Cartesian grid')
     title=fig.text(.04,.95,'Native '+solver+' · 3D annular prototype',color='white',fontsize=17,weight='bold');stamp=fig.text(.04,.90,'',color='#d8e1ef',fontsize=12)
     minimum_y=min([r.get('min_species',0.) for r in checks.get('rows',[])] + [checks.get('every_step_species',{}).get('minimum_mass_fraction') or 0.])
-    fig.text(.04,.055,f'DIAGNOSTIC — minimum species mass fraction: {minimum_y:.2e}. Sustained rotating detonation is not validated.',color='#ffca86',fontsize=10)
+    fig.text(.04,.055,f'DIAGNOSTIC — historical minimum species fraction: {minimum_y:.2e}. Sustained rotating detonation is not validated.',color='#ffca86',fontsize=10)
     fig.text(.04,.025,'Cylinder shows a slice at r = 35.6 mm from the computed 3D field. Unequal time intervals between saved frames; read the timestamp.',color='#a7b4c8',fontsize=9)
+    if c.get('trajectory_policy_changes'):
+        change_time=c['trajectory_policy_changes'][0]['time_s']*1e6
+        fig.text(.04,.085,f'Mesh policy: all embedded walls refined from {change_time:g} μs; same ignition history.',color='#a7b4c8',fontsize=9)
     pc=fig.add_axes([.92,.52,.012,.29]);tc=fig.add_axes([.92,.16,.012,.29])
     for cb in (fig.colorbar(ScalarMappable(norm=norm,cmap=cmap),cax=pc),fig.colorbar(ScalarMappable(norm=Normalize(300,max(4500,float(T.max()))),cmap='magma'),cax=tc)):
         cb.ax.tick_params(colors='#c8ced8',labelsize=7)
@@ -49,9 +52,9 @@ def render(run,output):
         stamp.set_text(f't = {times[i]*1e6:8.3f} μs   |   {grid}   |   13 species / 38 reactions')
         return []
     anim=FuncAnimation(fig,draw,frames=len(times),interval=150,blit=False)
-    path=out/(stem+'.gif');anim.save(path,writer=PillowWriter(fps=7),dpi=100)
+    path=out/(stem+'.gif');anim.save(path,writer=PillowWriter(fps=fps),dpi=100)
     draw(len(times)-1);fig.savefig(out/(stem+'_final.png'),dpi=130,facecolor=fig.get_facecolor());plt.close(fig)
     (out/'animation.json').write_text(json.dumps(dict(source=str(run.resolve()),frames=len(times),physical_time_s=float(times[-1]),render='Actual 3D native-field cylindrical slice; no prescribed wave movement',physical_validation_passed=False),indent=2))
     print(path)
 if __name__=='__main__':
-    p=argparse.ArgumentParser();p.add_argument('run');p.add_argument('output');a=p.parse_args();render(a.run,a.output)
+    p=argparse.ArgumentParser();p.add_argument('run');p.add_argument('output');p.add_argument('--fps',type=float,default=7);a=p.parse_args();render(a.run,a.output,a.fps)

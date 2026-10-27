@@ -1,0 +1,7 @@
+{
+  "source": "/Users/sgfx/.codex/worktrees/3d-cfd-review/prox_rde_sim/runs3d/netl_startup_20261027/progress_zero_current",
+  "frames": 46,
+  "physical_time_s": 0.00013000000000000582,
+  "render": "Actual 3D native-field cylindrical slice; no prescribed wave movement",
+  "physical_validation_passed": false
+}
