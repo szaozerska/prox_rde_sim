@@ -1,0 +1,40 @@
+# NETL startup and multi-GPU engine continuation
+
+October 27, 2026. Work is in progress on `3d-modelling`. The requested long result is **200 microseconds**, starting from the same initial charge and continuing through native checkpoints. A requested duration is not evidence that a detonation completed a revolution.
+
+## Initialization
+
+The new `RDEStartup` native case follows the initial-state prescription in [Strakey and Ferguson's NETL/Fluent study, section III](https://netl.doe.gov/projects/files/ValidationofaComputationalFluidDynamicsModelofaMethaneOxygenRotatingDetonationEngine_010522.pdf): a stoichiometric methane/oxygen layer in the first 5 mm at 1 MPa; air beyond it with pressure tapering to 0.1 MPa at the exit; a 2-degree sector at 4 MPa and 3000 K. No tangential velocity or continuing ignition source is imposed.
+
+Explicit assumptions: the unheated gas is 300 K; dry air is O2:N2 = 1:3.76; the hot sector retains the fresh local composition; its angular position ends at 90 degrees. The paper does not fully specify these initialization details. Native initial fields confirm zero velocity and the intended narrow hot sector.
+
+This is **NETL-style initialization in the existing prototype**, not a reproduction of Fluent LES. The current equations remain reactive Euler. Resolved plenums/channels, molecular diffusion, LES, wall heat transfer, downstream core expansion, and NETL's mass-flow/pressure boundary conditions are not yet reproduced. Existing reservoir-fed injector mouths and extrapolating outlet remain. The public compact mechanism has not been established identical to NETL's mechanism. These limitations matter when interpreting longer engine behavior.
+
+## Resolution and parallel execution
+
+The base grid is 192³ (396.875 micrometres), with 198.4375 or 99.21875 micrometre cells around the first 10 mm and tagged pressure/temperature fronts. These are **finest local spacings**, not uniform meshes. Native embedded-boundary-aware gradient tagging avoids reacting to solid-cell values. The default volume-fraction rule initially refined all walls; disabling that blanket rule reduced first-level cells from 26.2 million to 8.3 million.
+
+One MPI rank is explicitly bound to each GPU. The implementation supports one, two or four active ranks, native chemistry/flow work estimates for load balancing, AMR time subcycling, and CPU analysis while integration runs. A one-rank comparison inside the same four-GPU allocation used only one GPU for the solver. On the short 200-micrometre control, median coarse-step times were 2.99 seconds with one active GPU and 1.59 seconds with four. Pressure samples differed by at most 0.00022 Pa. This is a startup measurement, not a scaling promise for the developed engine.
+
+A separate, checksum-verified Open MPI 4.1.8 build enables CUDA-aware buffers. The matched four-GPU control reduced the median step from 1.59 to 1.31 seconds (about 18%) while sampled pressures agreed within 0.00017 Pa. It is enabled in the longer continuation. The existing pinned solver binary is retained; cached images must match the native case source hashes.
+
+## Checks so far
+
+- 29 software tests pass, including startup units/composition, refinement levels and rank-to-GPU assignment and rejection of incompatible animation histories.
+- The streaming AMR analyzer reproduces independently checked uniform-grid inventories to roundoff. It integrates leaf cells with volume fractions and samples actual native fields; it never rotates or synthesizes a wave.
+- Both refined startup pilots reached 0.2 microseconds. The corrected 200-micrometre pilot passes saved-field checks, but logged coarse steps include a brief mass-fraction undershoot of about −1.1e-5. Its 100-micrometre counterpart has only roundoff-sized logged negatives (about −1.7e-14).
+- Those short runs establish neither settled wave speed nor engine mesh convergence. At 0.2 microseconds the peak pressures still differ materially between meshes.
+
+The first continuation reached 7 microseconds and was deliberately checkpointed to switch MPI transport. This was an operator stop, not a numerical crash. Its worst logged species mass fraction was −9.09e-4; the final negative-species inventory was about 2.0e-12 kg against 5.68e-4 kg total mass. The small integrated amount does not make the local undershoot physically valid. The current continuation targets 200 microseconds. Burning-phase steps take roughly 4 seconds per 20 ns, implying about 11 hours for 200 microseconds if that rate persists. The short-pilot scaling numbers therefore cannot be used as the engine runtime.
+
+All raw fields and checkpoints are retained in Modal volume `prox-rde-netl-startup`. Compact previews contain pressure, temperature, methane, oxygen and native chemical heat release. Between-frame extrema are reported separately so snapshot selection cannot hide a transient failure.
+
+## Which ignition method to use later
+
+Keep this NETL initial-state prescription as the reproducible baseline for studying propagation and sustained operation. Once a persistent wave exists, vary kernel width, energy, composition assumption and position to determine how strongly the eventual wave pattern depends on startup. Separate fixed-energy comparisons from fixed-pressure/temperature comparisons; changing sector width otherwise changes the ignition energy too.
+
+An explicit spark/pre-detonator model becomes useful when the question is whether the intended hardware can ignite the engine, how reliably, and with what delay. [Argonne's CONVERGE study](https://doi.org/10.2514/6.2021-3642) includes that tube and its temporary connection to the annulus. It is a different physical question, not an automatic upgrade for every geometry. The baseline should not claim realistic ignition reliability or prescribe clockwise rotation.
+
+## Continuation status
+
+A follow-up in this chat checks the bounded campaign every 30 minutes, with no duplicate jobs and at most four GPUs. It will continue native checkpoints toward 200 microseconds, inspect whether reacting fronts actually circulate, and render the completed available history. If needed to observe two revolutions, the physical-time ceiling is 300 microseconds. The operational cutoff is October 27 at 8 p.m. Pacific; this is not a promised completion time. Nonfinite states, a crash, closure error above 1e-6, or local species values below −0.01 trigger investigation rather than automatic continuation. These emergency stop bounds are not acceptance criteria: even smaller negative concentrations remain physically invalid.

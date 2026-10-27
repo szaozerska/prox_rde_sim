@@ -1,0 +1,15 @@
+{
+  "volume": "prox-rde-netl-startup",
+  "run_id": "pilot200_cudaaware",
+  "sha256": {
+    "case.json": "460efb0e77f16af06befcd9cec5f3315874b913a4c2d879522d6fad0bc5ffa12",
+    "result.json": "a7ee9c2cb350f3a206e65436e2d765ff22e0329aff890e5feaa675310b78ceed",
+    "checks.json": "e135917abf30fdff7b26c4e796992bdf8842c486f356a8dba1461a1ffdfc90dd",
+    "allocation.json": "31357e5d21c679fad0d78b857a3709246cbd010c59955ea6b4924ab8f3a293ae",
+    "solver.log": "a53ddb3aed385294b318ce6579878a9ee12c33e6f070a0074259e393c7fa3ca3",
+    "analysis.log": "2994807d92a05711be2e2b1e1561f54c72ec3795b40041e753bfd86af6a3868f",
+    "gridlog": "9083c5556ec8ae8b6646d631b2bc1609a9d4fad6ec0da620d2731ede750dc1e0",
+    "preview.npz": "ee3efe7377f32a2d52dd3eab75abb6cc07cab31ac3467c4d54bd55d3749d2152",
+    "build/manifest.json": "4dc9e79c50e0a2511536328a64974435c60cf876cf3f42e5d72515c7b64090d0"
+  }
+}

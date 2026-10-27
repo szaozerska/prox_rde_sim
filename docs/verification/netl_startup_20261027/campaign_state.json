@@ -1,0 +1,31 @@
+{
+  "updated": "2026-10-27T02:16:01.228723-07:00",
+  "branch": "3d-modelling",
+  "worktree": "/Users/sgfx/.codex/worktrees/3d-cfd-review/prox_rde_sim",
+  "volume": "prox-rde-netl-startup",
+  "target_time_s": 0.0002,
+  "aggregate_gpu_limit": 4,
+  "active_run": "long200_cuda_segment2",
+  "app_id": "ap-UCDMLE9LXdKmUzl3QkPKgy",
+  "call_id": "fc-01M5Y99GF8FWHAAW2W48BB645A",
+  "case_file": "runs3d/netl_startup_20261027/long200_cuda.json",
+  "known_image": "im-dQvjTZUDmgVOTBXmBplQzq",
+  "checkpoint_lineage": [
+    "pilot200_local_amr_v2_mpi4/chk00020",
+    "long200_segment1_retry/chk00360"
+  ],
+  "cpu_build_app": "ap-gGQXK8awKei3eHDioz3z3Z",
+  "cpu_build_log": "/private/tmp/rde-cvode-direct-build.log",
+  "notes": [
+    "No second GPU job while four GPUs are active. Preserve every raw output and checkpoint.",
+    "Current run limit 14400 wall seconds; checkpoint every 10 physical microseconds. Resume latest completed checkpoint with a unique run ID; never reapply ignition.",
+    "Optional CVODE direct backend is not validated or adopted. Do not use sparse_direct on the old binary.",
+    "The 200-micrometre run has known local negative species; report them. Do not label this a validated engine.",
+    "Use --detach for subsequent Modal launches so remote calculation survives client disconnection.",
+    "Stop on nonfinite states, solver crash, significant species closure failure or mass-fraction undershoot worse than -0.01; preserve evidence and diagnose.",
+    "Render actual snapshots and pressure/chemical-heat-release/reactant history. Do not synthesize rotation or infer revolutions from target time."
+  ],
+  "heartbeat_id": "continue-netl-3d-cfd-trajectory",
+  "operational_cutoff": "2026-10-27T20:00:00-07:00",
+  "software_tests_passed": 29
+}

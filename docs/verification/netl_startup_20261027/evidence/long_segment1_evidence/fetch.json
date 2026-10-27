@@ -1,0 +1,15 @@
+{
+  "volume": "prox-rde-netl-startup",
+  "run_id": "long200_segment1_retry",
+  "sha256": {
+    "case.json": "db709f9f964047eb844cae9500165a6ff66d54bc058ad2d95d3e2f380705ba9b",
+    "result.json": "0e9e2e8778c64bc9270b83e7481dafbc7da1a243ca3366a3d81c6afb0764951e",
+    "checks.json": "ac9a0973dfa5246dcb46c8373120a9cbe8467676250b3cbe3b931f7899a1d45f",
+    "allocation.json": "0638be6756b7bf931e4f825784e694efb13145f7d343d9aa70ad9130a3687edb",
+    "solver.log": "dbe3b3808812f84133d592bbe9d4cb8ad5aedd2ffd28d596c3713322bf1ad635",
+    "analysis.log": "8528cf2f63077fb3d7cc089f998ff11554007013faa50ceda4532864d41d9d83",
+    "gridlog": "9d8c59fc3cfff6ba4c0a228163bd367a161e8248ff46921e4cebad8c64e2d8e5",
+    "preview.npz": "c481749966894aa0ac53e5012ede048603d4c90e96d291d913c7cc2d9224f5c5",
+    "build/manifest.json": "4dc9e79c50e0a2511536328a64974435c60cf876cf3f42e5d72515c7b64090d0"
+  }
+}

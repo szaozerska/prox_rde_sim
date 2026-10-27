@@ -1,0 +1,139 @@
+{
+  "rows": [
+    {
+      "time_s": 0.0,
+      "mass_kg": 0.0005662328327415079,
+      "total_energy_J": -102.81824507233114,
+      "methane_kg": 1.1855602107143775e-05,
+      "oxygen_kg": 0.00016544297993796285,
+      "min_species": 0.0,
+      "species_sum_error": 2.220446049250313e-16,
+      "negative_inventory_kg": 0.0,
+      "finite": true,
+      "pressure_Pa": [
+        102508.33918539318,
+        4000000.0000000023
+      ],
+      "temperature_K": [
+        299.9999999999999,
+        3000.0000000000005
+      ],
+      "fluid_volume_m3": 8.522260348875812e-05,
+      "max_speed_mps": 0.0,
+      "finest_level": 2,
+      "leaf_fluid_cells": 13505616,
+      "blocks": 351,
+      "heat_release_available": true
+    },
+    {
+      "time_s": 5e-08,
+      "mass_kg": 0.0005662409234685221,
+      "total_energy_J": -102.82661406527181,
+      "methane_kg": 1.1831905866734644e-05,
+      "oxygen_kg": 0.0001653835695627518,
+      "min_species": -4.315128373611433e-25,
+      "species_sum_error": 7.771561172376096e-16,
+      "negative_inventory_kg": 1.8150541270359404e-32,
+      "finite": true,
+      "pressure_Pa": [
+        102618.18753135948,
+        8188714.1977144815
+      ],
+      "temperature_K": [
+        299.9915711955965,
+        4377.589561633447
+      ],
+      "fluid_volume_m3": 8.522260348875812e-05,
+      "max_speed_mps": 175.7926213978856,
+      "finest_level": 2,
+      "leaf_fluid_cells": 13505616,
+      "blocks": 351,
+      "heat_release_available": true
+    },
+    {
+      "time_s": 9.999999999999998e-08,
+      "mass_kg": 0.0005662486977707896,
+      "total_energy_J": -102.83311950075915,
+      "methane_kg": 1.1832547413498428e-05,
+      "oxygen_kg": 0.00016536780229262698,
+      "min_species": -2.2864007448404337e-15,
+      "species_sum_error": 6.661338147750939e-16,
+      "negative_inventory_kg": 6.173981471257013e-23,
+      "finite": true,
+      "pressure_Pa": [
+        102728.07688904513,
+        9156913.273448234
+      ],
+      "temperature_K": [
+        299.9830276902006,
+        4372.447598656923
+      ],
+      "fluid_volume_m3": 8.522260348875812e-05,
+      "max_speed_mps": 416.91599323844713,
+      "finest_level": 2,
+      "leaf_fluid_cells": 13505616,
+      "blocks": 351,
+      "heat_release_available": true
+    },
+    {
+      "time_s": 1.5000000000000002e-07,
+      "mass_kg": 0.0005662554425712343,
+      "total_energy_J": -102.84048844174616,
+      "methane_kg": 1.1832949514975338e-05,
+      "oxygen_kg": 0.00016537209887178674,
+      "min_species": -9.584918959544975e-15,
+      "species_sum_error": 6.661338147750939e-16,
+      "negative_inventory_kg": 8.52285579718778e-23,
+      "finite": true,
+      "pressure_Pa": [
+        102838.00151189747,
+        8888584.953253677
+      ],
+      "temperature_K": [
+        299.9743876143792,
+        4360.1047440652
+      ],
+      "fluid_volume_m3": 8.522260348875812e-05,
+      "max_speed_mps": 483.9638082838014,
+      "finest_level": 2,
+      "leaf_fluid_cells": 13505616,
+      "blocks": 351,
+      "heat_release_available": true
+    },
+    {
+      "time_s": 2e-07,
+      "mass_kg": 0.0005662616727586117,
+      "total_energy_J": -102.84742672050393,
+      "methane_kg": 1.1833300092487723e-05,
+      "oxygen_kg": 0.00016537540340274965,
+      "min_species": -1.7432284357011442e-14,
+      "species_sum_error": 6.661338147750939e-16,
+      "negative_inventory_kg": 1.1012008802800103e-22,
+      "finite": true,
+      "pressure_Pa": [
+        102947.95631506779,
+        8611024.341611708
+      ],
+      "temperature_K": [
+        299.96566638541384,
+        4357.340549152146
+      ],
+      "fluid_volume_m3": 8.522260348875812e-05,
+      "max_speed_mps": 510.7027252477843,
+      "finest_level": 2,
+      "leaf_fluid_cells": 13505616,
+      "blocks": 351,
+      "heat_release_available": true
+    }
+  ],
+  "checks": {
+    "finite": true,
+    "species_nonnegative": true,
+    "species_sum": true,
+    "positive_pressure": true,
+    "thermo_range": true
+  },
+  "physical_validation_passed": false,
+  "sampling": "Native cell nearest-neighbour at each cylindrical sample; finest available AMR block. No temporal interpolation.",
+  "scope": "AMR leaf-cell inventories and extrema; open-system inventory change alone is not a conservation defect."
+}

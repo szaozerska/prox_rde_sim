@@ -15,7 +15,7 @@ def render(run,output):
     times=data['time_s'];theta=data['theta_rad'];z=data['z_m']*1000;P=data['pressure_Pa']/1e6;T=data['temperature_K']
     th,zz=np.meshgrid(np.r_[theta,2*np.pi],z,indexing='ij');xx=35.6*np.cos(th);yy=35.6*np.sin(th)
     norm=LogNorm(vmin=.1,vmax=max(10,float(np.nanmax(P))));cmap=plt.get_cmap('inferno')
-    fig=plt.figure(figsize=(12,6.8),facecolor='#10141c');gs=fig.add_gridspec(2,2,width_ratios=[1.25,1],height_ratios=[1,1],left=.02,right=.90,bottom=.12,top=.85,wspace=.18,hspace=.28)
+    fig=plt.figure(figsize=(12,6.8),facecolor='#10141c');gs=fig.add_gridspec(2,2,width_ratios=[1.25,1],height_ratios=[1,1],left=.02,right=.90,bottom=.15,top=.85,wspace=.18,hspace=.28)
     ax=fig.add_subplot(gs[:,0],projection='3d',facecolor='#10141c');flat=fig.add_subplot(gs[0,1],facecolor='#10141c');temp=fig.add_subplot(gs[1,1],facecolor='#10141c')
     for a in (ax,flat,temp):
         a.tick_params(colors='#c8ced8',labelsize=8)
@@ -23,10 +23,10 @@ def render(run,output):
     solver=c.get('solver','PeleC');stem=solver.lower()+'_annulus'
     grid=c.get('grid_label',str(c.get('n','?'))+'³ Cartesian grid')
     title=fig.text(.04,.95,'Native '+solver+' · 3D annular prototype',color='white',fontsize=17,weight='bold');stamp=fig.text(.04,.90,'',color='#d8e1ef',fontsize=12)
-    species_ok=all(checks['checks'].get(k,True) for k in ('species_nonnegative','species_sum','no_significant_preclip_negative'))
-    status='PASS at saved frames' if species_ok else 'FAIL'
+    species_ok=all(checks['checks'].get(k,True) for k in ('species_nonnegative','species_sum','no_significant_preclip_negative','every_step_species_nonnegative'))
+    status=('PASS including logged coarse steps' if 'every_step_species_nonnegative' in checks['checks'] else 'PASS at saved frames') if species_ok else 'FAIL (see quantified audit)'
     fig.text(.04,.055,f'DIAGNOSTIC — species checks {status}. Initialized startup; sustained detonation is not validated.',color='#ffca86',fontsize=10)
-    fig.text(.04,.025,'Cylinder shows a slice at r = 35.6 mm from the computed 3D field. Colours do not represent flame luminosity.',color='#a7b4c8',fontsize=9)
+    fig.text(.04,.025,'Cylinder shows a slice at r = 35.6 mm from the computed 3D field. Unequal time intervals between saved frames; read the timestamp.',color='#a7b4c8',fontsize=9)
     pc=fig.add_axes([.92,.52,.012,.29]);tc=fig.add_axes([.92,.16,.012,.29])
     for cb in (fig.colorbar(ScalarMappable(norm=norm,cmap=cmap),cax=pc),fig.colorbar(ScalarMappable(norm=Normalize(300,max(4500,float(T.max()))),cmap='magma'),cax=tc)):
         cb.ax.tick_params(colors='#c8ced8',labelsize=7)
