@@ -1,0 +1,66 @@
+{
+  "pressure_Pa": {
+    "max_absolute_difference": 991.3908607142512,
+    "relative_l2_difference": 1.1728248832300705e-05
+  },
+  "temperature_K": {
+    "max_absolute_difference": 0.04328274288218381,
+    "relative_l2_difference": 1.1590407448031488e-06
+  },
+  "methane_Y": {
+    "max_absolute_difference": 1.2934316118151656e-10,
+    "relative_l2_difference": 1.8480305064502124e-11
+  },
+  "oxygen_Y": {
+    "max_absolute_difference": 4.022418897964286e-09,
+    "relative_l2_difference": 3.551745066952206e-11
+  },
+  "heat_release_W_m3": {
+    "max_absolute_difference": 9741420.0,
+    "relative_l2_difference": 2.555921633569558e-09
+  },
+  "inventory_relative_differences": {
+    "mass_kg": 8.503826506823966e-14,
+    "methane_kg": 7.142425207581089e-13,
+    "oxygen_kg": 9.191918015192251e-15,
+    "total_energy_J": 1.0455563735659754e-13
+  },
+  "timing": {
+    "reference": {
+      "steps": 10,
+      "median_seconds": 5.682028721,
+      "total_seconds": 50.99717952
+    },
+    "candidate": {
+      "steps": 10,
+      "median_seconds": 36.889667915000004,
+      "total_seconds": 339.7779073
+    },
+    "median_ratio": 6.49234098002019
+  },
+  "every_step_species": [
+    {
+      "samples": 10,
+      "worst_time_s": 1.46e-05,
+      "minimum_mass_fraction": -0.0006097052,
+      "note": "Includes coarse-step extrema between saved snapshots; no inference of integrated mass error."
+    },
+    {
+      "samples": 10,
+      "worst_time_s": 1.46e-05,
+      "minimum_mass_fraction": -0.00060970516,
+      "note": "Includes coarse-step extrema between saved snapshots; no inference of integrated mass error."
+    }
+  ],
+  "checks": {
+    "pressure": true,
+    "temperature": true,
+    "major_species": true,
+    "inventories": true,
+    "finite_and_closure": true,
+    "speedup": false
+  },
+  "meets_recorded_criteria": false,
+  "physical_validation_passed": false,
+  "scope": "Short matched backend comparison; review undershoots and heat release separately. Not engine validation."
+}

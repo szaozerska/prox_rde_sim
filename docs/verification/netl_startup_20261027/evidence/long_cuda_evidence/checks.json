@@ -1,0 +1,71 @@
+{
+  "rows": [
+    {
+      "time_s": 1.0019999999999924e-05,
+      "mass_kg": 0.0005680705915223666,
+      "total_energy_J": -105.26380736959008,
+      "methane_kg": 9.82626288004103e-06,
+      "oxygen_kg": 0.00015762506867297727,
+      "min_species": -0.0007618061538525106,
+      "species_sum_error": 6.661338147750939e-16,
+      "negative_inventory_kg": 2.164689108990508e-12,
+      "finite": true,
+      "pressure_Pa": [
+        124263.50059204063,
+        54821358.880680434
+      ],
+      "temperature_K": [
+        286.23821918545525,
+        4216.70350040359
+      ],
+      "fluid_volume_m3": 8.522261861934357e-05,
+      "max_speed_mps": 1351.9973271789356,
+      "finest_level": 1,
+      "leaf_fluid_cells": 3568832,
+      "blocks": 99,
+      "heat_release_available": true
+    },
+    {
+      "time_s": 1.4399999999999882e-05,
+      "mass_kg": 0.0005686119112043237,
+      "total_energy_J": -106.24473000090497,
+      "methane_kg": 8.767700725123518e-06,
+      "oxygen_kg": 0.00015353364695280803,
+      "min_species": -0.00016307622667301454,
+      "species_sum_error": 6.661338147750939e-16,
+      "negative_inventory_kg": 2.1893437925324802e-12,
+      "finite": true,
+      "pressure_Pa": [
+        133360.96803571325,
+        61521765.8489387
+      ],
+      "temperature_K": [
+        285.5625842285301,
+        4223.036274361655
+      ],
+      "fluid_volume_m3": 8.522261861934355e-05,
+      "max_speed_mps": 1570.9697426662115,
+      "finest_level": 1,
+      "leaf_fluid_cells": 3309388,
+      "blocks": 99,
+      "heat_release_available": true
+    }
+  ],
+  "checks": {
+    "finite": true,
+    "species_nonnegative": false,
+    "species_sum": true,
+    "positive_pressure": true,
+    "thermo_range": true,
+    "every_step_species_nonnegative": false
+  },
+  "every_step_species": {
+    "samples": 370,
+    "worst_time_s": 1.32e-05,
+    "minimum_mass_fraction": -0.0010088734,
+    "note": "Includes coarse-step extrema between saved snapshots; no inference of integrated mass error."
+  },
+  "physical_validation_passed": false,
+  "sampling": "Native cell nearest-neighbour at each cylindrical sample; finest available AMR block. No temporal interpolation.",
+  "scope": "AMR leaf-cell inventories and extrema; open-system inventory change alone is not a conservation defect."
+}

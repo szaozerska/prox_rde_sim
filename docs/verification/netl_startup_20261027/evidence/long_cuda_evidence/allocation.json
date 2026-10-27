@@ -1,0 +1,18 @@
+{
+  "devices": "index, name, memory.total [MiB]\n0, NVIDIA H100 80GB HBM3, 81559 MiB\n1, NVIDIA H100 80GB HBM3, 81559 MiB\n2, NVIDIA H100 80GB HBM3, 81559 MiB\n3, NVIDIA H100 80GB HBM3, 81559 MiB\n",
+  "topology": "\t\u001b[4mGPU0\tGPU1\tGPU2\tGPU3\tCPU Affinity\tNUMA Affinity\tGPU NUMA ID\u001b[0m\nFailed to run topology matrix\n\n",
+  "ranks": 4,
+  "command": [
+    "/opt/cuda-mpi/bin/mpirun",
+    "--allow-run-as-root",
+    "--bind-to",
+    "none",
+    "-np",
+    "4",
+    "python",
+    "/opt/mpi_gpu_rank.py",
+    "/opt/PeleC/build-mpi/Exec/RegTests/RDEStartup/PeleC-RDEStartup",
+    "inputs",
+    "amr.restart=/results/long200_segment1_retry/chk00360"
+  ]
+}

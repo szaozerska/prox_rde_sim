@@ -1,0 +1,13 @@
+{
+  "returncode": 0,
+  "wall_seconds": 133.117258601,
+  "actual_saved_time_s": 1.46e-05,
+  "analysis_returncode": 0,
+  "requested_time_s": 1.46e-05,
+  "completed": true,
+  "checkpoints": [
+    "chk00740"
+  ],
+  "operator_stop": null,
+  "scope": "Execution status only; physical conclusions require native-field analysis."
+}

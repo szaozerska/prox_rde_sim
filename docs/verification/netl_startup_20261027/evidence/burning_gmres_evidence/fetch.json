@@ -1,0 +1,16 @@
+{
+  "volume": "prox-rde-netl-startup",
+  "run_id": "burning_gmres_control",
+  "sha256": {
+    "case.json": "ea84517e253ae22c6ac5d4b3e2de8f59192cfb2fb1ed1fc6e2188fd193597b2b",
+    "result.json": "101f12d9c0051f0c8205a5b384a67e9727f5d75c90ee6fbf91ae1ff66195108d",
+    "checks.json": "835e59842416581de5febb46ada6c97580a110965dbc5b8f762a73c800e6e2b8",
+    "allocation.json": "e6ea4fb2b6ecda618a25bf18d10aa32ee68b815eaf8a4db98d31d6d52c77df58",
+    "solver.log": "13f0d5aa91def7acf9bd630c9e526fe7640492d9cfc8751692535dd30a0ca6bc",
+    "analysis.log": "311e877eb43ec4344a761a204d65f9b7674153e31a5508e5cee3693db8415a70",
+    "gridlog": "9c094afaa8dc962f9c9d06d3b349c81d9f179dfbe0802a9547a7f3b78db0b727",
+    "preview.npz": "04c756542c2f9ed6f59617fb3a9fab2d4373ec3bdfe47d7f205aab814a547f12",
+    "build/manifest.json": "4dc9e79c50e0a2511536328a64974435c60cf876cf3f42e5d72515c7b64090d0",
+    "build/cuda_mpi.json": "cc44e93094130177661c4c6a8114684d7c4ed964ac8aaea9b9b0c3d9235f24a4"
+  }
+}

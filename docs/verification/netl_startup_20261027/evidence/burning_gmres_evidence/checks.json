@@ -1,0 +1,46 @@
+{
+  "rows": [
+    {
+      "time_s": 1.46e-05,
+      "mass_kg": 0.0005686312726870696,
+      "total_energy_J": -106.28684084614531,
+      "methane_kg": 8.716496121948962e-06,
+      "oxygen_kg": 0.00015333718402422855,
+      "min_species": -0.000609705197842497,
+      "species_sum_error": 6.661338147750939e-16,
+      "negative_inventory_kg": 3.062905691578581e-12,
+      "finite": true,
+      "pressure_Pa": [
+        133768.58382341996,
+        72462074.83863519
+      ],
+      "temperature_K": [
+        285.5176881099557,
+        4289.204892696293
+      ],
+      "fluid_volume_m3": 8.522261861934357e-05,
+      "max_speed_mps": 1544.5749995403335,
+      "finest_level": 1,
+      "leaf_fluid_cells": 3392448,
+      "blocks": 101,
+      "heat_release_available": true
+    }
+  ],
+  "checks": {
+    "finite": true,
+    "species_nonnegative": false,
+    "species_sum": true,
+    "positive_pressure": true,
+    "thermo_range": true,
+    "every_step_species_nonnegative": false
+  },
+  "every_step_species": {
+    "samples": 10,
+    "worst_time_s": 1.46e-05,
+    "minimum_mass_fraction": -0.0006097052,
+    "note": "Includes coarse-step extrema between saved snapshots; no inference of integrated mass error."
+  },
+  "physical_validation_passed": false,
+  "sampling": "Native cell nearest-neighbour at each cylindrical sample; finest available AMR block. No temporal interpolation.",
+  "scope": "AMR leaf-cell inventories and extrema; open-system inventory change alone is not a conservation defect."
+}

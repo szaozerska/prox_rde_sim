@@ -110,7 +110,7 @@ def probe_build():
     if direct.exists():report['direct_backend']=json.loads(direct.read_text())
     return report
 @app.local_entrypoint()
-def main(case_file:str='',run_id:str='',ranks:int=4,limit:int=7200,restart:str='',build_only:bool=False):
+def main(case_file:str='',run_id:str='',ranks:int=4,limit:int=7200,restart:str='',build_only:bool=False,launch_only:bool=False):
     import json
     if build_only:
         print(probe_build.remote(),flush=True);return
@@ -120,4 +120,4 @@ def main(case_file:str='',run_id:str='',ranks:int=4,limit:int=7200,restart:str='
     call=run.spawn(config,run_id,ranks,limit,restart)
     Path(case_file).with_suffix('.call.json').write_text(json.dumps({'id':call.object_id,'run_id':run_id}))
     print('CALL',call.object_id,flush=True)
-    print(call.get(),flush=True)
+    if not launch_only:print(call.get(),flush=True)

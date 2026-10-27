@@ -1,0 +1,9 @@
+{
+  "comparison": "14.4 to 14.6 microseconds from identical checkpoint; same hydro timestep, tolerances and chemistry",
+  "max_pressure_relative_l2": 0.0001,
+  "max_temperature_absolute_difference_K": 0.1,
+  "max_major_species_absolute_difference": 1e-05,
+  "max_inventory_relative_difference": 1e-06,
+  "max_step_time_ratio_for_adoption": 0.9,
+  "note": "Backend equivalence and speed check, not engine validation. Both runs must complete and retain acceptable finite/closure checks; known local negatives remain failures."
+}

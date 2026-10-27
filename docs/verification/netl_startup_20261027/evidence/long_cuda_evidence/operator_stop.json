@@ -1,0 +1,4 @@
+{
+  "action": "checkpoint_stop",
+  "reason": "Continue the same native trajectory in a detached job for reliable unattended execution"
+}

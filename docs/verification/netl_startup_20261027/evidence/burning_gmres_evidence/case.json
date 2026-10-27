@@ -1,0 +1,82 @@
+{
+  "mode": 2,
+  "case_type": "netl_startup",
+  "stop": 1.46e-05,
+  "dt": 2e-08,
+  "n": 192,
+  "feed": 2,
+  "seed": true,
+  "reacting": true,
+  "species_cleanup": true,
+  "species": [
+    "H2",
+    "H",
+    "O2",
+    "O",
+    "OH",
+    "HO2",
+    "H2O",
+    "CH3",
+    "CH4",
+    "CO",
+    "CO2",
+    "CH2O",
+    "N2"
+  ],
+  "mesh_m": [
+    0.00039687500000000004,
+    0.00039687500000000004,
+    0.00039687500000000004
+  ],
+  "height_m": 0.005,
+  "limitations": [
+    "NETL initial-state prescription in our existing annular geometry, not a full reproduction of Fluent LES.",
+    "Reactive Euler; no molecular diffusion, LES, heat loss, resolved plenums/channels or downstream core expansion.",
+    "Existing reservoir port approximation and extrapolating outlet retained; not NETL mass-flow/pressure boundary conditions.",
+    "FFCMy12 chemistry not established identical to NETL skeletal mechanism.",
+    "Native species cleanup enabled: report its conservation effects; no forced propagation or direction."
+  ],
+  "inputs": "stop_time = 0.0000146\nmax_step = 1000000\ngeometry.is_periodic = 0 0 0\ngeometry.coord_sys = 0\ngeometry.prob_lo = -3.81 -3.81 0.0\ngeometry.prob_hi = 3.81 3.81 7.62\namr.n_cell = 192 192 192\namr.max_level = 1\namr.blocking_factor = 8\namr.max_grid_size = 64\namr.checkpoint_files_output = 1\namr.plot_files_output = 1\namr.plot_file = plt\namr.plot_int = -1\namr.plot_per = 5e-06\namr.plot_vars = density rho_E Temp heatRelease\namr.derive_plot_vars = pressure x_velocity y_velocity z_velocity\npelec.plot_massfrac = 1\npelec.plot_rhoy = 0\namr.data_log = datlog\npelec.lo_bc = SlipWall SlipWall UserBC\npelec.hi_bc = SlipWall SlipWall FOExtrap\npelec.do_react = 1\npelec.do_hydro = 1\npelec.do_mol = 1\npelec.mol_iters = 1\npelec.mol_iorder = 1\npelec.plm_iorder = 1\npelec.diffuse_temp = 0\npelec.diffuse_enth = 0\npelec.diffuse_spec = 0\npelec.diffuse_vel = 0\npelec.chem_integrator = ReactorCvode\npelec.fixed_dt = 2e-08\npelec.init_shrink = 1\npelec.cfl = 0.3\npelec.dt_cutoff = 1e-20\npelec.eb_clean_massfrac = 1\npelec.eb_isothermal = 0\npelec.eb_noslip = 0\npelec.redistribution_type = StateRedist\npelec.eb_srd_max_order = 0\npelec.sum_interval = 1\npelec.v = 1\namr.v = 1\nprob.mode = 2\nprob.feed = 2\nprob.seed = 1\nprob.p0 = 10000000.0\nprob.T0 = 300.0\nprob.Tprod = 300\nprob.height = 0.5\nprob.Y = 0 0 0.79956021439548219 0 0 0 0 0 0.20043978560451778 0 0 0 0\nprob.Yprod = 0 0 0.23299971514004453 0 0 0 0 0 0 0 0 0 0.76700028485995553\nprob.Yseed = 0 0 0.79956021439548219 0 0 0 0 0 0.20043978560451778 0 0 0 0\nprob.seed_p = 40000000.0\nprob.seed_T = 3000\nprob.seed_u = 0\namrex.abort_on_unused_inputs = 1\namrex.signal_handling = 0\ncvode.solve_type = GMRES\ncvode.max_order = 5\node.rtol = 1e-08\node.atol = 1e-16\neb2.geom_type = parser\neb2.parser_function = max(sqrt(x*x+y*y)-3.81,3.31-sqrt(x*x+y*y))\nprob.netl_startup = 1\nprob.exit_p = 1000000\nprob.seed_angle = 0.03490658503988659\nprob.seed_theta = 1.5707963267948966\nprob.plenum_fuel = 13100000\nprob.plenum_oxygen = 12000000\namrex.use_gpu_aware_mpi = 1\namr.check_file = chk\namr.check_int = -1\namr.check_per = 1e-05\namr.grid_log = gridlog\namr.loadbalance_with_workestimates = 1\namr.n_error_buf = 2 2\ntagging.eb_refine_type = adaptive\ntagging.min_eb_refine_lev = 0\ntagging.max_eb_refine_lev = 1\ntagging.max_vfracerr_lev = 0\namr.regrid_int = 8\namr.ref_ratio = 2\ntagging.refinement_indicators = inlet\ntagging.inlet.in_box_lo = -3.81 -3.81 0\ntagging.inlet.in_box_hi = 3.81 3.81 1.0\ntagging.inlet.max_level = 1\ntagging.pressgrad = 1000000\ntagging.max_pressgrad_lev = 1\ntagging.tempgrad = 300\ntagging.max_tempgrad_lev = 1\n",
+  "apertures": {
+    "fuel": {
+      "sampled_area_m2": 4.1740087890625e-05,
+      "nominal_area_m2": 4.04427995433498e-05,
+      "relative_area_error": 0.032077115380814814,
+      "faces": 1060
+    },
+    "oxygen": {
+      "sampled_area_m2": 0.000105689052734375,
+      "nominal_area_m2": 0.00010121163694369716,
+      "relative_area_error": 0.044238152112573426,
+      "faces": 2684
+    }
+  },
+  "solver": "PeleC",
+  "max_level": 1,
+  "finest_dx_m": 0.00019843750000000002,
+  "requested_mesh_um": 200,
+  "grid_label": "192\u00b3 base + 1 AMR levels; finest 198.4 \u00b5m",
+  "startup": {
+    "source": "https://netl.doe.gov/projects/files/ValidationofaComputationalFluidDynamicsModelofaMethaneOxygenRotatingDetonationEngine_010522.pdf",
+    "fresh_height_m": 0.005,
+    "fresh_pressure_Pa": 1000000.0,
+    "exit_pressure_Pa": 100000.0,
+    "kernel_angle_deg": 2,
+    "kernel_pressure_Pa": 4000000.0,
+    "kernel_temperature_K": 3000,
+    "imposed_tangential_velocity_mps": 0,
+    "assumptions": [
+      "300 K initial gas outside kernel",
+      "Dry air O2:N2=1:3.76 beyond fresh layer",
+      "Kernel retains fresh stoichiometric composition; paper does not specify a composition replacement",
+      "Instantaneous initialization, no subsequent ignition source"
+    ]
+  },
+  "aperture_audit_mesh_m": 0.00019843750000000002,
+  "mpi_transport": "CUDA-aware Open MPI 4.1.8",
+  "native_source_sha256": {
+    "prob_parm.H": "1fb8ff297c4bf87102be887795096fdd22d074c4fab8de9d00420eda0d6efd67",
+    "prob.cpp": "36ade8d4879083fe5195f271c5115795e1c190af30531a1a4d28e48a789cbffd",
+    "prob.H": "92b829152242ecab19dca1b9ca444ece5096ed6c99296011869371bf9c3e69b8"
+  }
+}

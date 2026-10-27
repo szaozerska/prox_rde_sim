@@ -1,0 +1,14 @@
+{
+  "physical_time_range_s": [
+    0.0,
+    1.4399999999999882e-05
+  ],
+  "native_frames": 9,
+  "axial_band_m": [
+    0.001,
+    0.01
+  ],
+  "maximum_mean_pressure_Pa": 12992149.540803647,
+  "maximum_mean_positive_heat_release_W_m3": 707042685151937.4,
+  "scope": "Native sampled fields; no prescribed rotation, temporal interpolation, or automatic detonation certification."
+}
