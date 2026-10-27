@@ -1,0 +1,15 @@
+{
+  "volume": "prox-rde-netl-startup",
+  "run_id": "long200_refined_walls_from60us",
+  "sha256": {
+    "case.json": "9e7c74667d94250feeff3f9f2f0d2a4bdfb1f0fb4c08d0f4bfe0796c75bd0706",
+    "checks.json": "54d23da7e62b78f1f88a76083e4f9642232f1313fd8d518fda0364391c154cec",
+    "allocation.json": "b2512f79f5c6051ae5041a3fd923a32a0ba85d7de09be092e6618e7b1149e6a7",
+    "solver.log": "1c59d86193f1211a1cd382f5b650858de9a65500356f9c2ccb839ef3ce9702ac",
+    "analysis.log": "af984d5c2485828f12f05bc6f64e732f3aff50e9ab5a1a5c1fa24d8f0dd3cf64",
+    "gridlog": "2b4c4ef9653dc8578b8ff266d28d883cc7d5b5a1e12f2c4885a06c23f7e53d1c",
+    "preview.npz": "04b8e19f295af344794061c58eb85daf3092a21cd0abf6c5ddc29668cbad980c",
+    "build/manifest.json": "4dc9e79c50e0a2511536328a64974435c60cf876cf3f42e5d72515c7b64090d0",
+    "build/cuda_mpi.json": "cc44e93094130177661c4c6a8114684d7c4ed964ac8aaea9b9b0c3d9235f24a4"
+  }
+}

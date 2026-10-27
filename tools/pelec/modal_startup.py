@@ -26,6 +26,7 @@ if os.environ.get('RDE_CVODE_DIRECT_BUILD')=='1':
     image=(image.add_local_file(Path(__file__).with_name('build_cvode_direct.py'),'/root/build_cvode_direct.py',copy=True)
         .run_function(build_cvode_direct,cpu=32,memory=98304,timeout=3600,include_source=False))
 image=image.add_local_file(Path(__file__).with_name('audit_native_log.py'),'/opt/audit_native_log.py',copy=True)
+image=image.add_local_file(Path(__file__).with_name('runtime_bounds.py'),'/opt/runtime_bounds.py',copy=True)
 app=modal.App('prox-rde-netl-startup',include_source=False)
 volume=modal.Volume.from_name('prox-rde-netl-startup',create_if_missing=True)
 @app.function(image=image,serialized=True,gpu='H100:4',cpu=(16.,16.),memory=(98304,98304),
@@ -34,6 +35,7 @@ def run(config:dict,run_id:str,ranks:int=4,limit:int=7200,restart:str=''):
     import subprocess,time,json,re,os,shutil,sys
     sys.path.insert(0,'/opt')
     from audit_native_log import audit_native_log
+    from runtime_bounds import bounded_runtime_seconds
     from pathlib import Path
     if not re.fullmatch(r'[a-zA-Z0-9_-]+',run_id) or ranks not in (1,2,4) or not 10<=limit<=14400:
         raise ValueError('Invalid bounded allocation')
@@ -58,6 +60,7 @@ def run(config:dict,run_id:str,ranks:int=4,limit:int=7200,restart:str=''):
     device=subprocess.run(['nvidia-smi','--query-gpu=index,name,memory.total','--format=csv'],capture_output=True,text=True).stdout
     topology=subprocess.run(['nvidia-smi','topo','-m'],capture_output=True,text=True).stdout
     (root/'allocation.json').write_text(json.dumps({'devices':device,'topology':topology,'ranks':ranks,'command':command},indent=2))
+    limit=bounded_runtime_seconds(limit,config.get('operational_cutoff'))
     start=time.monotonic();env=dict(os.environ,OMP_NUM_THREADS='1');last_analysis=start
     if mpirun.startswith('/opt/cuda-mpi'):
         env['LD_LIBRARY_PATH']='/opt/cuda-mpi/lib:'+env.get('LD_LIBRARY_PATH','')
@@ -84,7 +87,7 @@ def run(config:dict,run_id:str,ranks:int=4,limit:int=7200,restart:str=''):
             if (analyzer is None or analyzer.poll() is not None) and time.monotonic()-last_analysis>120:
                 analyzer=subprocess.Popen(['python','/opt/analyze_startup.py',str(root)],stdout=analysis_log,stderr=subprocess.STDOUT)
                 last_analysis=time.monotonic()
-            if limit>=600 and time.monotonic()-start>=limit-120:
+            if (limit>=600 or config.get('operational_cutoff')) and time.monotonic()-start>=limit-120:
                 (root/'dump_and_stop').touch()
                 if not (root/'operator_stop.json').exists():
                     (root/'operator_stop.json').write_text(json.dumps({'action':'checkpoint_stop','reason':'Approaching bounded wall-time limit'}))
@@ -102,7 +105,7 @@ def run(config:dict,run_id:str,ranks:int=4,limit:int=7200,restart:str=''):
     plots=sorted(root.glob('plt[0-9]*'));actual=None
     if plots:
         h=(plots[-1]/'Header').read_text().splitlines();actual=float(h[3+int(h[1])])
-    result={'returncode':code,'wall_seconds':time.monotonic()-start,'actual_saved_time_s':actual,
+    result={'returncode':code,'effective_wall_limit_seconds':limit,'wall_seconds':time.monotonic()-start,'actual_saved_time_s':actual,
         'analysis_returncode':analysis.returncode,'requested_time_s':config['stop'],'completed':code==0 and actual is not None and abs(actual-config['stop'])<1e-12,
         'checkpoints':[p.name for p in sorted(root.glob('chk[0-9]*'))],
         'emergency_stop':(root/'emergency_stop.json').exists(),
@@ -126,6 +129,8 @@ def main(case_file:str='',run_id:str='',ranks:int=4,limit:int=7200,restart:str='
         print(probe_build.remote(),flush=True);return
     import hashlib
     config=json.loads(Path(case_file).read_text())
+    from runtime_bounds import bounded_runtime_seconds
+    bounded_runtime_seconds(limit,config.get('operational_cutoff'))
     config['native_source_sha256']={p.name:hashlib.sha256(p.read_bytes()).hexdigest() for p in (ROOT/'rde3d/native/pelec/RDEStartup').glob('prob*')}
     call=run.spawn(config,run_id,ranks,limit,restart)
     Path(case_file).with_suffix('.call.json').write_text(json.dumps({'id':call.object_id,'run_id':run_id}))

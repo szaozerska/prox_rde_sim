@@ -1,14 +1,14 @@
 {
-  "updated": "2026-10-27T07:39:47.262798-07:00",
+  "updated": "2026-10-27T13:41:22.855530-07:00",
   "branch": "3d-modelling",
   "worktree": "/Users/sgfx/.codex/worktrees/3d-cfd-review/prox_rde_sim",
   "volume": "prox-rde-netl-startup",
   "target_time_s": 0.0002,
   "aggregate_gpu_limit": 4,
-  "active_run": "long200_refined_walls_from60us",
-  "app_id": "ap-zjwfwjUiQrBOzmPvrshJHo",
-  "call_id": "fc-01M5YWEGYV3BYFHKRXGZ5KEAEP",
-  "case_file": "runs3d/netl_startup_20261027/long200_refined_walls.json",
+  "active_run": "long200_recovery_from90us",
+  "app_id": "ap-jEszbQx3hwS7JRMMOfsVJ5",
+  "call_id": "fc-01M5ZGX85Z1PD4WK4KBRYZJVV3",
+  "case_file": "runs3d/netl_startup_20261027/long200_recovery90.json",
   "known_image": "im-dQvjTZUDmgVOTBXmBplQzq",
   "checkpoint_lineage": [
     "pilot200_local_amr_v2_mpi4/chk00020",
@@ -18,7 +18,8 @@
     "long200_detached_segment3/chk02510",
     "closure_replay_prepare_55p8us/chk02800",
     "closure_refined_walls_55p8_to_56p2us/chk02820",
-    "closure_walls_validation_56p2_to_60us/chk03010"
+    "closure_walls_validation_56p2_to_60us/chk03010",
+    "long200_refined_walls_from60us/chk04510"
   ],
   "cpu_build_app": "ap-gGQXK8awKei3eHDioz3z3Z",
   "cpu_build_log": "/private/tmp/rde-cvode-direct-build.log",
@@ -34,26 +35,27 @@
   ],
   "heartbeat_id": "continue-netl-3d-cfd-trajectory",
   "operational_cutoff": "2026-10-27T20:00:00-07:00",
-  "software_tests_passed": 33,
-  "achieved_time_s": 6.146e-05,
+  "software_tests_passed": 36,
+  "achieved_time_s": 9.024e-05,
   "detached": true,
   "cpu_build_status": "Completed. sparse_direct backend rejected after matched comparison: 6.49 times slower; field agreement passes recorded criteria.",
-  "last_verified_remote_time_s": 6.146e-05,
-  "latest_rendered_time_s": 4.5e-05,
-  "latest_visualization": "docs/verification/netl_startup_20261027/progress_45us/pelec_annulus.gif",
-  "latest_physical_observation": "Two opposed startup fronts meet around 45 microseconds; remaining methane inventory is 0.278% of initial. Sustained circulation not established.",
+  "last_verified_remote_time_s": 9.024e-05,
+  "latest_rendered_time_s": 9e-05,
+  "latest_visualization": "docs/verification/netl_startup_20261027/progress_60_to_90us/pelec_annulus.gif",
+  "latest_physical_observation": "Native 60\u201390 us fields show downstream-moving startup disturbances and declining peak pressure (13.06 to 4.29 MPa). Sustained circulation is not established.",
   "campaign_status": "continuing_corrected_diagnostic_trajectory",
   "continuation_allowed": true,
   "stop_reason": null,
-  "long_run_id": "long200_refined_walls_from60us",
-  "long_run_status": "guarded continuation after bounded validation",
+  "long_run_id": "long200_recovery_from90us",
+  "long_run_status": "recovering interrupted corrected trajectory",
   "long_run_final_checkpoint": null,
   "diagnostic_phase": "guarded_corrected_continuation",
   "diagnostic_plan": [
-    "Inspect active corrected continuation long200_refined_walls_from60us before any new allocation. It targets 200 us from the corrected 60-us checkpoint, limit 14400 wall seconds, plot interval 5 us and checkpoint interval 10 us.",
+    "Inspect existing recovery long200_recovery_from90us before any allocation; it restarts the completed 90-us checkpoint, targets 200 us, saves checkpoints every 5 us, and enforces operational_cutoff in the worker after queue delay.",
     "Never resume original long200_detached_segment3/chk03370. Preserve original failed branch evidence separately.",
     "Use native-log guard and compact field audits. Known undershoots remain failures; halt on existing emergency bounds.",
-    "Continue completed bounded segments only from this corrected checkpoint lineage. Do not merge old failed suffix into animations; explicitly record wall-refinement change at 55.8 us."
+    "Continue completed bounded segments only from this corrected checkpoint lineage. Do not merge old failed suffix into animations; explicitly record wall-refinement change at 55.8 us.",
+    "If a Modal attempt fails with existing-directory guard after remote interruption, do not overwrite or reinitialize. Verify no container is active and recover the latest completed checkpoint under a unique run ID; preserve original suffix separately. The 20:00 PDT cutoff takes precedence over physical target."
   ],
   "diagnostic_prepare_checkpoint": "closure_replay_prepare_55p8us/chk02800",
   "closure_classification": "Confirmed active leaf-fluid failure: 168 cells above 1e-8 at 56 us; maximum error 0.0915468977 at level 0, volume fraction 0.97222. Not solely solid or fine-covered cells.",
@@ -70,7 +72,7 @@
     "emergency_stop_required": false
   },
   "diagnostic_frozen_status": "Completed normally; final saved active-fluid closure roundoff; finite native pressure, temperature and chemical heat release; small species undershoots remain diagnostic failures.",
-  "active_run_status": "running; no new emergency violation in compact native log",
+  "active_run_status": "checkpoint recovery confirmed advancing; no emergency violation through latest logged step",
   "diagnostic_walls_result": {
     "time_s": 5.62e-05,
     "max_logged_closure_error": 7.7715612e-16,
@@ -92,8 +94,8 @@
     "worst_maximum_sum_minus_one": 8.8817842e-16,
     "note": "Native log includes all AMR levels; localize discrepancies before classifying active-fluid error."
   },
-  "corrected_achieved_time_s": 6.146e-05,
-  "corrected_checkpoint": "closure_walls_validation_56p2_to_60us/chk03010",
+  "corrected_achieved_time_s": 9.024e-05,
+  "corrected_checkpoint": "long200_refined_walls_from60us/chk04510",
   "validation_review": {
     "closure_max": 8.8817842e-16,
     "coarse_steps": 190,
@@ -108,19 +110,26 @@
   "original_invalid_achieved_time_s": 6.72e-05,
   "original_stop_reason": "Logged species-sum deviations from one: -0.03484 to +0.06166 at 55.98\u201356.12 microseconds. Stop requested; do not continue long trajectory until diagnosed.",
   "latest_monitor": {
-    "coarse_steps": 73,
+    "coarse_steps": 12,
     "species_sum_error": 7.7715612e-16,
-    "minimum_species": -1.277638e-10,
+    "minimum_species": -2.5010215e-13,
     "all_logged_extrema_finite": true,
-    "pressure_Pa": [
-      210391.13,
-      13049491.0
-    ],
-    "temperature_K": [
-      276.91077,
-      3794.6098
-    ],
-    "native_heat_release_last_audited_time_s": 6e-05,
-    "note": "Current segment has not published a new compact field preview yet. Native heat-release and saved-field checks remain verified through 60 us; new log extrema reach the last_verified_remote_time_s. Small undershoots remain diagnostic failures."
+    "native_heat_release_last_audited_time_s": 9e-05,
+    "note": "New recovery log is healthy so far; inherited historical positivity failures remain. Saved native fields audited through recovery checkpoint at 90 us."
+  },
+  "latest_saved_field_time_s": 9e-05,
+  "interrupted_segment": {
+    "run_id": "long200_refined_walls_from60us",
+    "call_id": "fc-01M5YWEGYV3BYFHKRXGZ5KEAEP",
+    "call_error": "FileExistsError: /results/long200_refined_walls_from60us",
+    "latest_complete_logged_time_s": 9.762e-05,
+    "saved_compact_time_s": 9e-05,
+    "recovery_checkpoint": "long200_refined_walls_from60us/chk04510",
+    "checkpoint_header_time_s": 9.000000000000479e-05,
+    "checkpoint_write_completed_in_log": true,
+    "modal_containers_at_review": [],
+    "result_json_present": false,
+    "root_cause": "Interrupted remote execution followed by an attempt that hit the existing-directory guard; original interruption cause not established. Modal logs query exceeded service resource limit.",
+    "solver_log_sha256": "1c59d86193f1211a1cd382f5b650858de9a65500356f9c2ccb839ef3ce9702ac"
   }
 }

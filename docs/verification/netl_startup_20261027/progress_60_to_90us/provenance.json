@@ -1,0 +1,10 @@
+{
+  "run_id": "long200_refined_walls_from60us",
+  "physical_time_range_s": [
+    6e-05,
+    9e-05
+  ],
+  "policy": "Wall-refined corrected trajectory only; no independent trajectories combined. Native frames, no temporal interpolation.",
+  "previous_policy_change_time_s": 5.58e-05,
+  "scope": "This is a 60\u201390 us segment, not a zero-to-200 us result. Historical species minimum in banner is for this segment only; earlier startup undershoots remain documented."
+}

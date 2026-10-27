@@ -1,0 +1,14 @@
+{
+  "run_id": "long200_refined_walls_from60us",
+  "call_id": "fc-01M5YWEGYV3BYFHKRXGZ5KEAEP",
+  "call_error": "FileExistsError: /results/long200_refined_walls_from60us",
+  "latest_complete_logged_time_s": 9.762e-05,
+  "saved_compact_time_s": 9e-05,
+  "recovery_checkpoint": "long200_refined_walls_from60us/chk04510",
+  "checkpoint_header_time_s": 9.000000000000479e-05,
+  "checkpoint_write_completed_in_log": true,
+  "modal_containers_at_review": [],
+  "result_json_present": false,
+  "root_cause": "Interrupted remote execution followed by an attempt that hit the existing-directory guard; original interruption cause not established. Modal logs query exceeded service resource limit.",
+  "solver_log_sha256": "1c59d86193f1211a1cd382f5b650858de9a65500356f9c2ccb839ef3ce9702ac"
+}
