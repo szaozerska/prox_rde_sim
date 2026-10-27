@@ -1,0 +1,16 @@
+{
+  "volume": "prox-rde-netl-startup",
+  "run_id": "closure_refined_walls_55p8_to_56p2us",
+  "sha256": {
+    "case.json": "69e95ffedf9dcc2c1a830814f836d2be8f35733c105ada2465fbddc1c3e8142c",
+    "result.json": "e945d27e7bc7ad19ed4b2a4e10e5ab0c485e7204738af46201942a42d5fdfe6c",
+    "checks.json": "7fe7d587b8866e7c8801240fd1bdd5d1de6114cb168b682b3fe1fed8da390ca6",
+    "allocation.json": "a0f82dc01d0699b15ed32398899f1f3524b676cbc967e657e39b66c5237b787c",
+    "solver.log": "df19d529b7b2d14ddf45ab290d220ca964f934f0ae25d44b836bf5d290cbb923",
+    "analysis.log": "531d5fec788ed0ca6f16489bbfc65c4ab344c4f907a1940406df7e56bb2d35ec",
+    "gridlog": "2018aa0923b29b744671039e68818d056928166cfc9e80176f46f72094fbd6a0",
+    "preview.npz": "c5475accafbc8a6bda5bc96526c3d31e90cfd5651699b5292aa47f6b23d36418",
+    "build/manifest.json": "4dc9e79c50e0a2511536328a64974435c60cf876cf3f42e5d72515c7b64090d0",
+    "build/cuda_mpi.json": "cc44e93094130177661c4c6a8114684d7c4ed964ac8aaea9b9b0c3d9235f24a4"
+  }
+}

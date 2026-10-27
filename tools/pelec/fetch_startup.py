@@ -7,7 +7,7 @@ def fetch(run_id,output):
     target=Path(output);target.mkdir(parents=True,exist_ok=True)
     volume=modal.Volume.from_name('prox-rde-netl-startup')
     hashes={}
-    for name in ('case.json','result.json','checks.json','allocation.json','solver.log','analysis.log','gridlog','preview.npz','build/manifest.json','build/cuda_mpi.json','operator_stop.json','emergency_stop.json'):
+    for name in ('case.json','result.json','checks.json','allocation.json','solver.log','analysis.log','gridlog','preview.npz','build/manifest.json','build/cuda_mpi.json','operator_stop.json','emergency_stop.json','mesh_audit.json'):
         path=target/name;path.parent.mkdir(parents=True,exist_ok=True)
         try:
             raw=b''.join(volume.read_file(run_id+'/'+name));path.write_bytes(raw)
