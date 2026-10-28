@@ -1,0 +1,6 @@
+{
+  "checkpoint": "long200_recovery_from90us/chk07533",
+  "time_s": 0.00015045999999999522,
+  "header_sha256": "5d6a4f075af342ce41c2b706b9c5fab068ae645ef4081bc0cbaf097cae4ed899",
+  "write_completed_in_log": true
+}

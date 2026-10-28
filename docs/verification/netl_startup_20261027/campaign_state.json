@@ -1,14 +1,14 @@
 {
-  "updated": "2026-10-27T16:58:27.472026-07:00",
+  "updated": "2026-10-27T18:27:36.880425-07:00",
   "branch": "3d-modelling",
   "worktree": "/Users/sgfx/.codex/worktrees/3d-cfd-review/prox_rde_sim",
   "volume": "prox-rde-netl-startup",
   "target_time_s": 0.0002,
   "aggregate_gpu_limit": 4,
-  "active_run": "long200_recovery_from90us",
-  "app_id": "ap-jEszbQx3hwS7JRMMOfsVJ5",
-  "call_id": "fc-01M5ZGX85Z1PD4WK4KBRYZJVV3",
-  "case_file": "runs3d/netl_startup_20261027/long200_recovery90.json",
+  "active_run": "long200_from150p46us_final",
+  "app_id": "ap-lWLluXCXkkRM1eNXsTi7OW",
+  "call_id": "fc-01M601SGHMYK587YRM0PJX11S7",
+  "case_file": "runs3d/netl_startup_20261027/long200_from150p46.json",
   "known_image": "im-dQvjTZUDmgVOTBXmBplQzq",
   "checkpoint_lineage": [
     "pilot200_local_amr_v2_mpi4/chk00020",
@@ -19,7 +19,8 @@
     "closure_replay_prepare_55p8us/chk02800",
     "closure_refined_walls_55p8_to_56p2us/chk02820",
     "closure_walls_validation_56p2_to_60us/chk03010",
-    "long200_refined_walls_from60us/chk04510"
+    "long200_refined_walls_from60us/chk04510",
+    "long200_recovery_from90us/chk07533"
   ],
   "cpu_build_app": "ap-gGQXK8awKei3eHDioz3z3Z",
   "cpu_build_log": "/private/tmp/rde-cvode-direct-build.log",
@@ -31,27 +32,28 @@
     "Stop on nonfinite states, solver crash, significant species closure failure or mass-fraction undershoot worse than -0.01; preserve evidence and diagnose.",
     "Render actual snapshots and pressure/chemical-heat-release/reactant history. Do not synthesize rotation or infer revolutions from target time.",
     "Do not rerun the rejected sparse_direct backend. Retain original GMRES binary and cached CUDA-aware image.",
-    "Use modal run --detach ... --launch-only for continuation; inspect FunctionCall by saved ID."
+    "Use modal run --detach ... --launch-only for continuation; inspect FunctionCall by saved ID.",
+    "Final worker began at 18:25:37 PDT after a substantial launch delay. The requested 7800-second limit is shortened by the worker to the unchanged 20:00 cutoff; 200 us is unlikely to fit. Inspect before cutoff and checkpoint-stop with time for final analysis."
   ],
   "heartbeat_id": "continue-netl-3d-cfd-trajectory",
   "operational_cutoff": "2026-10-27T20:00:00-07:00",
   "software_tests_passed": 39,
-  "achieved_time_s": 0.00014276,
+  "achieved_time_s": 0.00015046,
   "detached": true,
   "cpu_build_status": "Completed. sparse_direct backend rejected after matched comparison: 6.49 times slower; field agreement passes recorded criteria.",
-  "last_verified_remote_time_s": 0.00014276,
+  "last_verified_remote_time_s": 0.00015046,
   "latest_rendered_time_s": 0.00013,
   "latest_visualization": "docs/verification/netl_startup_20261027/progress_zero_to_130us/pelec_annulus.gif",
   "latest_physical_observation": "Full native 0\u2013130-us history shows opposed startup waves meeting near 40\u201345 us, then weakening downstream disturbances. Methane inventory rebuilds after ~100 us; sustained rotating detonation not established.",
   "campaign_status": "continuing_corrected_diagnostic_trajectory",
   "continuation_allowed": true,
   "stop_reason": null,
-  "long_run_id": "long200_recovery_from90us",
-  "long_run_status": "recovering interrupted corrected trajectory",
+  "long_run_id": "long200_from150p46us_final",
+  "long_run_status": "Continuing same trajectory after planned wall-time stop",
   "long_run_final_checkpoint": null,
   "diagnostic_phase": "guarded_corrected_continuation",
   "diagnostic_plan": [
-    "Inspect existing recovery long200_recovery_from90us before any allocation; it restarts the completed 90-us checkpoint, targets 200 us, saves checkpoints every 5 us, and enforces operational_cutoff in the worker after queue delay.",
+    "Inspect long200_from150p46us_final before allocating anything. It restarts chk07533 at 150.46 us; startup verified at 18:25:37 PDT. The worker caps the requested 7800-second wall limit at operational_cutoff=20:00 PDT. Allow final analysis time; no new ignition or physics changes.",
     "Never resume original long200_detached_segment3/chk03370. Preserve original failed branch evidence separately.",
     "Use native-log guard and compact field audits. Known undershoots remain failures; halt on existing emergency bounds.",
     "Continue completed bounded segments only from this corrected checkpoint lineage. Do not merge old failed suffix into animations; explicitly record wall-refinement change at 55.8 us.",
@@ -72,7 +74,7 @@
     "emergency_stop_required": false
   },
   "diagnostic_frozen_status": "Completed normally; final saved active-fluid closure roundoff; finite native pressure, temperature and chemical heat release; small species undershoots remain diagnostic failures.",
-  "active_run_status": "recovery advancing; no new emergency violation",
+  "active_run_status": "Native restart verified and advancing past 150.66 us; four-GPU worker started 18:25:37 PDT after launch delay.",
   "diagnostic_walls_result": {
     "time_s": 5.62e-05,
     "max_logged_closure_error": 7.7715612e-16,
@@ -94,8 +96,8 @@
     "worst_maximum_sum_minus_one": 8.8817842e-16,
     "note": "Native log includes all AMR levels; localize discrepancies before classifying active-fluid error."
   },
-  "corrected_achieved_time_s": 0.00014276,
-  "corrected_checkpoint": "long200_refined_walls_from60us/chk04510",
+  "corrected_achieved_time_s": 0.00015046,
+  "corrected_checkpoint": "long200_recovery_from90us/chk07533",
   "validation_review": {
     "closure_max": 8.8817842e-16,
     "coarse_steps": 190,
@@ -110,7 +112,7 @@
   "original_invalid_achieved_time_s": 6.72e-05,
   "original_stop_reason": "Logged species-sum deviations from one: -0.03484 to +0.06166 at 55.98\u201356.12 microseconds. Stop requested; do not continue long trajectory until diagnosed.",
   "latest_monitor": {
-    "coarse_steps": 2638,
+    "coarse_steps": 3023,
     "species_sum_error": 1.110223e-15,
     "minimum_species": -3.9621183e-09,
     "all_logged_extrema_finite": true,
@@ -119,10 +121,10 @@
       4289776.2
     ],
     "temperature_K": [
-      255.20946,
+      249.764,
       3724.52
     ],
-    "native_heat_release_last_audited_time_s": 0.00013500000000000323,
+    "native_heat_release_last_audited_time_s": 0.00015045999999999522,
     "native_sample_fields_finite": {
       "pressure_Pa": true,
       "temperature_K": true,
@@ -131,17 +133,17 @@
       "heat_release_W_m3": true
     },
     "sampled_native_heat_release_range_W_m3": [
-      -143651771820.0661,
-      8067910699908.266
+      -175452114333.50745,
+      10818686029040.445
     ],
-    "latest_saved_methane_kg": 1.0819480556298733e-06,
+    "latest_saved_methane_kg": 1.7596819811232997e-06,
     "latest_saved_pressure_Pa": [
-      645649.0517067286,
-      1640739.1293364821
+      552060.8320788433,
+      1370005.6847905025
     ],
     "note": "Methane inventory is rebuilding, but inventory change alone is not evidence of sustained detonation or a revolution. Saved-field audits lag current log time; small logged undershoots remain failures."
   },
-  "latest_saved_field_time_s": 0.00013500000000000323,
+  "latest_saved_field_time_s": 0.00015045999999999522,
   "interrupted_segment": {
     "run_id": "long200_refined_walls_from60us",
     "call_id": "fc-01M5YWEGYV3BYFHKRXGZ5KEAEP",
@@ -157,5 +159,43 @@
     "solver_log_sha256": "1c59d86193f1211a1cd382f5b650858de9a65500356f9c2ccb839ef3ce9702ac"
   },
   "latest_full_history_visualization": "docs/verification/netl_startup_20261027/progress_zero_to_130us/pelec_annulus.gif",
-  "full_history_manifest": "docs/verification/netl_startup_20261027/progress_zero_to_130us/trajectory_manifest.json"
+  "full_history_manifest": "docs/verification/netl_startup_20261027/progress_zero_to_130us/trajectory_manifest.json",
+  "completed_recovery_segment": {
+    "returncode": 6,
+    "effective_wall_limit_seconds": 14400,
+    "wall_seconds": 14370.748956231,
+    "actual_saved_time_s": 0.00015045999999999522,
+    "analysis_returncode": 0,
+    "requested_time_s": 0.0002,
+    "completed": false,
+    "checkpoints": [
+      "chk04760",
+      "chk05010",
+      "chk05260",
+      "chk05510",
+      "chk05760",
+      "chk06010",
+      "chk06260",
+      "chk06510",
+      "chk06760",
+      "chk07010",
+      "chk07261",
+      "chk07511",
+      "chk07533"
+    ],
+    "emergency_stop": false,
+    "operator_stop": {
+      "action": "checkpoint_stop",
+      "reason": "Approaching bounded wall-time limit"
+    },
+    "scope": "Execution status only; physical conclusions require native-field analysis."
+  },
+  "next_checkpoint_provenance": {
+    "checkpoint": "long200_recovery_from90us/chk07533",
+    "time_s": 0.00015045999999999522,
+    "header_sha256": "5d6a4f075af342ce41c2b706b9c5fab068ae645ef4081bc0cbaf097cae4ed899",
+    "write_completed_in_log": true
+  },
+  "container_id": "ta-01M601SGXHJDSWRDBBVXS8ZMAR",
+  "active_solver_started_at": "2026-10-27T18:25:37-07:00"
 }

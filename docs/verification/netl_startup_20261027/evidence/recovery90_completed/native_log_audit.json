@@ -1,0 +1,70 @@
+{
+  "latest_time_s": 0.00015046,
+  "fields": {
+    "density": {
+      "samples": 3023,
+      "minimum": 0.00045800883,
+      "maximum": 0.021175056,
+      "nonfinite_samples": 0
+    },
+    "x_velocity": {
+      "samples": 3023,
+      "minimum": -37133.492,
+      "maximum": 38362.001,
+      "nonfinite_samples": 0
+    },
+    "y_velocity": {
+      "samples": 3023,
+      "minimum": -36889.618,
+      "maximum": 79128.517,
+      "nonfinite_samples": 0
+    },
+    "z_velocity": {
+      "samples": 3023,
+      "minimum": -14405.984,
+      "maximum": 177793.44,
+      "nonfinite_samples": 0
+    },
+    "eint_e": {
+      "samples": 3023,
+      "minimum": -53790011000.0,
+      "maximum": 3904286400.0,
+      "nonfinite_samples": 0
+    },
+    "Temp": {
+      "samples": 3023,
+      "minimum": 249.764,
+      "maximum": 3724.52,
+      "nonfinite_samples": 0
+    },
+    "pressure": {
+      "samples": 3023,
+      "minimum": 2499253.9,
+      "maximum": 42897762.0,
+      "nonfinite_samples": 0
+    },
+    "massfrac": {
+      "samples": 3023,
+      "minimum": -3.9621183e-09,
+      "maximum": 0.99999237,
+      "nonfinite_samples": 0
+    },
+    "sumYminus1": {
+      "samples": 3023,
+      "minimum": -9.9920072e-16,
+      "maximum": 1.110223e-15,
+      "nonfinite_samples": 0
+    }
+  },
+  "emergency_stop_required": false,
+  "violation_count": 0,
+  "first_violations": [],
+  "every_step_species_sum": {
+    "samples": 3023,
+    "worst_time_s": 0.00013938,
+    "maximum_absolute_error": 1.110223e-15,
+    "worst_minimum_sum_minus_one": -7.7715612e-16,
+    "worst_maximum_sum_minus_one": 1.110223e-15,
+    "note": "Native log includes all AMR levels; localize discrepancies before classifying active-fluid error."
+  }
+}

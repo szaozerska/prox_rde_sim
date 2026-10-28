@@ -1,0 +1,30 @@
+{
+  "returncode": 6,
+  "effective_wall_limit_seconds": 14400,
+  "wall_seconds": 14370.748956231,
+  "actual_saved_time_s": 0.00015045999999999522,
+  "analysis_returncode": 0,
+  "requested_time_s": 0.0002,
+  "completed": false,
+  "checkpoints": [
+    "chk04760",
+    "chk05010",
+    "chk05260",
+    "chk05510",
+    "chk05760",
+    "chk06010",
+    "chk06260",
+    "chk06510",
+    "chk06760",
+    "chk07010",
+    "chk07261",
+    "chk07511",
+    "chk07533"
+  ],
+  "emergency_stop": false,
+  "operator_stop": {
+    "action": "checkpoint_stop",
+    "reason": "Approaching bounded wall-time limit"
+  },
+  "scope": "Execution status only; physical conclusions require native-field analysis."
+}
