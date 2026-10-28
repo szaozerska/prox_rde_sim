@@ -1,0 +1,71 @@
+{
+  "latest_time_s": 0.0001511,
+  "fields": {
+    "density": {
+      "samples": 32,
+      "minimum": 0.0004556167,
+      "maximum": 0.015549134,
+      "nonfinite_samples": 0
+    },
+    "x_velocity": {
+      "samples": 32,
+      "minimum": -33793.171,
+      "maximum": 30675.428,
+      "nonfinite_samples": 0
+    },
+    "y_velocity": {
+      "samples": 32,
+      "minimum": -38712.31,
+      "maximum": 17090.491,
+      "nonfinite_samples": 0
+    },
+    "z_velocity": {
+      "samples": 32,
+      "minimum": -14762.283,
+      "maximum": 88493.006,
+      "nonfinite_samples": 0
+    },
+    "eint_e": {
+      "samples": 32,
+      "minimum": -53610846000.0,
+      "maximum": 208853080.0,
+      "nonfinite_samples": 0
+    },
+    "Temp": {
+      "samples": 32,
+      "minimum": 249.35945,
+      "maximum": 3401.2227,
+      "nonfinite_samples": 0
+    },
+    "pressure": {
+      "samples": 32,
+      "minimum": 5521515.7,
+      "maximum": 15117146.0,
+      "nonfinite_samples": 0
+    },
+    "massfrac": {
+      "samples": 32,
+      "minimum": -1.2755833e-15,
+      "maximum": 0.99999266,
+      "nonfinite_samples": 0
+    },
+    "sumYminus1": {
+      "samples": 32,
+      "minimum": -8.8817842e-16,
+      "maximum": 8.8817842e-16,
+      "nonfinite_samples": 0
+    }
+  },
+  "emergency_stop_required": false,
+  "violation_count": 0,
+  "first_violations": [],
+  "every_step_species_sum": {
+    "samples": 32,
+    "worst_time_s": 0.00015048,
+    "maximum_absolute_error": 8.8817842e-16,
+    "worst_minimum_sum_minus_one": -7.7715612e-16,
+    "worst_maximum_sum_minus_one": 8.8817842e-16,
+    "note": "Native log includes all AMR levels; localize discrepancies before classifying active-fluid error."
+  },
+  "note": "Small negative species remain diagnostic failures. Earlier lineage failures and prior-segment extrema are retained separately. Native-field heat-release audit remains at 150.46 us until a new plot export is available."
+}

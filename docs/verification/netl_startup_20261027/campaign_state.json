@@ -1,5 +1,5 @@
 {
-  "updated": "2026-10-27T18:27:36.880425-07:00",
+  "updated": "2026-10-27T18:29:20.249185-07:00",
   "branch": "3d-modelling",
   "worktree": "/Users/sgfx/.codex/worktrees/3d-cfd-review/prox_rde_sim",
   "volume": "prox-rde-netl-startup",
@@ -38,10 +38,10 @@
   "heartbeat_id": "continue-netl-3d-cfd-trajectory",
   "operational_cutoff": "2026-10-27T20:00:00-07:00",
   "software_tests_passed": 39,
-  "achieved_time_s": 0.00015046,
+  "achieved_time_s": 0.0001511,
   "detached": true,
   "cpu_build_status": "Completed. sparse_direct backend rejected after matched comparison: 6.49 times slower; field agreement passes recorded criteria.",
-  "last_verified_remote_time_s": 0.00015046,
+  "last_verified_remote_time_s": 0.0001511,
   "latest_rendered_time_s": 0.00013,
   "latest_visualization": "docs/verification/netl_startup_20261027/progress_zero_to_130us/pelec_annulus.gif",
   "latest_physical_observation": "Full native 0\u2013130-us history shows opposed startup waves meeting near 40\u201345 us, then weakening downstream disturbances. Methane inventory rebuilds after ~100 us; sustained rotating detonation not established.",
@@ -74,7 +74,7 @@
     "emergency_stop_required": false
   },
   "diagnostic_frozen_status": "Completed normally; final saved active-fluid closure roundoff; finite native pressure, temperature and chemical heat release; small species undershoots remain diagnostic failures.",
-  "active_run_status": "Native restart verified and advancing past 150.66 us; four-GPU worker started 18:25:37 PDT after launch delay.",
+  "active_run_status": "Advancing from verified 150.46-us checkpoint; native log reaches 151.10 us with finite extrema and roundoff closure. No new exported snapshot yet.",
   "diagnostic_walls_result": {
     "time_s": 5.62e-05,
     "max_logged_closure_error": 7.7715612e-16,
@@ -96,7 +96,7 @@
     "worst_maximum_sum_minus_one": 8.8817842e-16,
     "note": "Native log includes all AMR levels; localize discrepancies before classifying active-fluid error."
   },
-  "corrected_achieved_time_s": 0.00015046,
+  "corrected_achieved_time_s": 0.0001511,
   "corrected_checkpoint": "long200_recovery_from90us/chk07533",
   "validation_review": {
     "closure_max": 8.8817842e-16,
@@ -197,5 +197,76 @@
     "write_completed_in_log": true
   },
   "container_id": "ta-01M601SGXHJDSWRDBBVXS8ZMAR",
-  "active_solver_started_at": "2026-10-27T18:25:37-07:00"
+  "active_solver_started_at": "2026-10-27T18:25:37-07:00",
+  "active_segment_monitor": {
+    "latest_time_s": 0.0001511,
+    "fields": {
+      "density": {
+        "samples": 32,
+        "minimum": 0.0004556167,
+        "maximum": 0.015549134,
+        "nonfinite_samples": 0
+      },
+      "x_velocity": {
+        "samples": 32,
+        "minimum": -33793.171,
+        "maximum": 30675.428,
+        "nonfinite_samples": 0
+      },
+      "y_velocity": {
+        "samples": 32,
+        "minimum": -38712.31,
+        "maximum": 17090.491,
+        "nonfinite_samples": 0
+      },
+      "z_velocity": {
+        "samples": 32,
+        "minimum": -14762.283,
+        "maximum": 88493.006,
+        "nonfinite_samples": 0
+      },
+      "eint_e": {
+        "samples": 32,
+        "minimum": -53610846000.0,
+        "maximum": 208853080.0,
+        "nonfinite_samples": 0
+      },
+      "Temp": {
+        "samples": 32,
+        "minimum": 249.35945,
+        "maximum": 3401.2227,
+        "nonfinite_samples": 0
+      },
+      "pressure": {
+        "samples": 32,
+        "minimum": 5521515.7,
+        "maximum": 15117146.0,
+        "nonfinite_samples": 0
+      },
+      "massfrac": {
+        "samples": 32,
+        "minimum": -1.2755833e-15,
+        "maximum": 0.99999266,
+        "nonfinite_samples": 0
+      },
+      "sumYminus1": {
+        "samples": 32,
+        "minimum": -8.8817842e-16,
+        "maximum": 8.8817842e-16,
+        "nonfinite_samples": 0
+      }
+    },
+    "emergency_stop_required": false,
+    "violation_count": 0,
+    "first_violations": [],
+    "every_step_species_sum": {
+      "samples": 32,
+      "worst_time_s": 0.00015048,
+      "maximum_absolute_error": 8.8817842e-16,
+      "worst_minimum_sum_minus_one": -7.7715612e-16,
+      "worst_maximum_sum_minus_one": 8.8817842e-16,
+      "note": "Native log includes all AMR levels; localize discrepancies before classifying active-fluid error."
+    },
+    "note": "Small negative species remain diagnostic failures. Earlier lineage failures and prior-segment extrema are retained separately. Native-field heat-release audit remains at 150.46 us until a new plot export is available."
+  }
 }
