@@ -1,0 +1,22 @@
+{
+  "returncode": 6,
+  "effective_wall_limit_seconds": 5664.480988,
+  "wall_seconds": 3965.010446798,
+  "actual_saved_time_s": 0.0001666999999999868,
+  "analysis_returncode": 0,
+  "requested_time_s": 0.0002,
+  "completed": false,
+  "checkpoints": [
+    "chk07761",
+    "chk08011",
+    "chk08261",
+    "chk08345"
+  ],
+  "emergency_stop": false,
+  "operator_stop": {
+    "action": "checkpoint_stop",
+    "reason": "Final campaign stop to preserve time for field analysis and full-history rendering before the authorized 20:00 PDT cutoff; 200-us target will remain unmet. No emergency bound triggered.",
+    "requested_at": "2026-10-27T19:30:30.934349-07:00"
+  },
+  "scope": "Execution status only; physical conclusions require native-field analysis."
+}

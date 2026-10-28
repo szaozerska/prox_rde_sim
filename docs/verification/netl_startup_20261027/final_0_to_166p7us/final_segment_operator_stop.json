@@ -1,0 +1,5 @@
+{
+  "action": "checkpoint_stop",
+  "reason": "Final campaign stop to preserve time for field analysis and full-history rendering before the authorized 20:00 PDT cutoff; 200-us target will remain unmet. No emergency bound triggered.",
+  "requested_at": "2026-10-27T19:30:30.934349-07:00"
+}

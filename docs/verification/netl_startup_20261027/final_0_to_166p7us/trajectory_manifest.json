@@ -1,0 +1,86 @@
+{
+  "volume": "prox-rde-netl-startup",
+  "segments": [
+    {
+      "directory": "/Users/sgfx/.codex/worktrees/3d-cfd-review/prox_rde_sim/runs3d/netl_startup_20261027/local_amr_v2_evidence",
+      "run_id": "pilot200_local_amr_v2_mpi4"
+    },
+    {
+      "directory": "/Users/sgfx/.codex/worktrees/3d-cfd-review/prox_rde_sim/runs3d/netl_startup_20261027/long_segment1_evidence",
+      "run_id": "long200_segment1_retry",
+      "restart_checkpoint": "pilot200_local_amr_v2_mpi4/chk00020",
+      "restart_time_s": 2e-07,
+      "checkpoint_header_sha256": "6682f3afa0ceea14e24b90193dd2337751c48e460b0ff6c718d9630b7c874fed"
+    },
+    {
+      "directory": "/Users/sgfx/.codex/worktrees/3d-cfd-review/prox_rde_sim/runs3d/netl_startup_20261027/long_cuda_evidence",
+      "run_id": "long200_cuda_segment2",
+      "restart_checkpoint": "long200_segment1_retry/chk00360",
+      "restart_time_s": 6.999999999999953e-06,
+      "checkpoint_header_sha256": "a63691037224b71efdb3fb9a8b7addb361ee9d5966df5cbcb34bcabd31d5a526"
+    },
+    {
+      "directory": "/Users/sgfx/.codex/worktrees/3d-cfd-review/prox_rde_sim/runs3d/netl_startup_20261027/burning_gmres_evidence",
+      "run_id": "burning_gmres_control",
+      "restart_checkpoint": "long200_cuda_segment2/chk00730",
+      "restart_time_s": 1.4399999999999882e-05,
+      "checkpoint_header_sha256": "c3f1ddb2075a11cb6d6bc9dddd361d6ce83994cd7a42341628a4e91e8a5994b9"
+    },
+    {
+      "directory": "/Users/sgfx/.codex/worktrees/3d-cfd-review/prox_rde_sim/runs3d/netl_startup_20261027/long_detached_evidence",
+      "run_id": "long200_detached_segment3",
+      "restart_checkpoint": "burning_gmres_control/chk00740",
+      "restart_time_s": 1.46e-05,
+      "checkpoint_header_sha256": "35875f11870290db7af02e1cdee9ffbf517a40a2142c58bf05e202e9f9f88301"
+    },
+    {
+      "directory": "/Users/sgfx/.codex/worktrees/3d-cfd-review/prox_rde_sim/runs3d/netl_startup_20261027/closure_prepare_evidence",
+      "run_id": "closure_replay_prepare_55p8us",
+      "restart_checkpoint": "long200_detached_segment3/chk02510",
+      "restart_time_s": 5.0000000000002964e-05,
+      "checkpoint_header_sha256": "3314828b47e9b4a8978562c04e8aff52aee378a7cfda7478d17809b09a03697b"
+    },
+    {
+      "directory": "/Users/sgfx/.codex/worktrees/3d-cfd-review/prox_rde_sim/runs3d/netl_startup_20261027/closure_walls_evidence",
+      "run_id": "closure_refined_walls_55p8_to_56p2us",
+      "restart_checkpoint": "closure_replay_prepare_55p8us/chk02800",
+      "restart_time_s": 5.58e-05,
+      "checkpoint_header_sha256": "b8165a99ed0c19361b2ab2c084413b79b0c943c1db0c4412f5371f509dae789f"
+    },
+    {
+      "directory": "/Users/sgfx/.codex/worktrees/3d-cfd-review/prox_rde_sim/runs3d/netl_startup_20261027/walls_validation60_evidence",
+      "run_id": "closure_walls_validation_56p2_to_60us",
+      "restart_checkpoint": "closure_refined_walls_55p8_to_56p2us/chk02820",
+      "restart_time_s": 5.62e-05,
+      "checkpoint_header_sha256": "8aa3b1ff642b2ae33b6ec218abf51cabce418af19745501a95a2da4dd5361db3"
+    },
+    {
+      "directory": "/Users/sgfx/.codex/worktrees/3d-cfd-review/prox_rde_sim/runs3d/netl_startup_20261027/long_refined_evidence",
+      "run_id": "long200_refined_walls_from60us",
+      "restart_checkpoint": "closure_walls_validation_56p2_to_60us/chk03010",
+      "restart_time_s": 6e-05,
+      "checkpoint_header_sha256": "4183f01a44b82519e6a31eb7c8b77ef9dfc5c82d29d27ab241679965ff1e0743"
+    },
+    {
+      "directory": "/Users/sgfx/.codex/worktrees/3d-cfd-review/prox_rde_sim/runs3d/netl_startup_20261027/recovery90_evidence",
+      "run_id": "long200_recovery_from90us",
+      "restart_checkpoint": "long200_refined_walls_from60us/chk04510",
+      "restart_time_s": 9.000000000000479e-05,
+      "checkpoint_header_sha256": "e128ceb96a240ab20c33fa68ecdd0dc0819098f97854006dc953dbbd1785b0fb"
+    },
+    {
+      "directory": "/Users/sgfx/.codex/worktrees/3d-cfd-review/prox_rde_sim/runs3d/netl_startup_20261027/final150_evidence",
+      "run_id": "long200_from150p46us_final",
+      "restart_checkpoint": "long200_recovery_from90us/chk07533",
+      "restart_time_s": 0.00015045999999999522,
+      "checkpoint_header_sha256": "5d6a4f075af342ce41c2b706b9c5fab068ae645ef4081bc0cbaf097cae4ed899"
+    }
+  ],
+  "policy_changes": [
+    {
+      "run_id": "closure_refined_walls_55p8_to_56p2us",
+      "time_s": 5.58e-05,
+      "description": "All embedded walls refined; same ignition history. At the restart timestamp retain the parent pre-regrid frame; first child frame follows it."
+    }
+  ]
+}

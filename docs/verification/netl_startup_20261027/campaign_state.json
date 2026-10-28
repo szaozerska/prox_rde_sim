@@ -1,5 +1,5 @@
 {
-  "updated": "2026-10-27T19:09:32.143848-07:00",
+  "updated": "2026-10-27T20:06:16.276425-07:00",
   "branch": "3d-modelling",
   "worktree": "/Users/sgfx/.codex/worktrees/3d-cfd-review/prox_rde_sim",
   "volume": "prox-rde-netl-startup",
@@ -38,26 +38,23 @@
   "heartbeat_id": "continue-netl-3d-cfd-trajectory",
   "operational_cutoff": "2026-10-27T20:00:00-07:00",
   "software_tests_passed": 39,
-  "achieved_time_s": 0.00016114,
+  "achieved_time_s": 0.0001667,
   "detached": true,
   "cpu_build_status": "Completed. sparse_direct backend rejected after matched comparison: 6.49 times slower; field agreement passes recorded criteria.",
-  "last_verified_remote_time_s": 0.00016114,
-  "latest_rendered_time_s": 0.00013,
-  "latest_visualization": "docs/verification/netl_startup_20261027/progress_zero_to_130us/pelec_annulus.gif",
-  "latest_physical_observation": "Full native 0\u2013130-us history shows opposed startup waves meeting near 40\u201345 us, then weakening downstream disturbances. Methane inventory rebuilds after ~100 us; sustained rotating detonation not established.",
-  "campaign_status": "continuing_corrected_diagnostic_trajectory",
-  "continuation_allowed": true,
-  "stop_reason": null,
+  "last_verified_remote_time_s": 0.0001667,
+  "latest_rendered_time_s": 0.0001667,
+  "latest_visualization": "docs/verification/netl_startup_20261027/final_0_to_166p7us/pelec_annulus.gif",
+  "latest_physical_observation": "Final 0\u2013166.7-us native history shows opposing startup fronts colliding and decaying, later reactant replenishment and localized heat release, without an established sustained rotating detonation or completed detonation revolution.",
+  "campaign_status": "closed_at_operational_bound_target_unmet",
+  "continuation_allowed": false,
+  "stop_reason": "Final operational stop to allow analysis and rendering before 20:00 PDT cutoff; not an emergency numerical failure. Requested target 200 us remains unmet.",
   "long_run_id": "long200_from150p46us_final",
-  "long_run_status": "Continuing same trajectory after planned wall-time stop",
-  "long_run_final_checkpoint": null,
+  "long_run_status": "Checkpoint-stopped; app finished at 19:33:49 PDT, no containers remain",
+  "long_run_final_checkpoint": "long200_from150p46us_final/chk08345",
   "diagnostic_phase": "guarded_corrected_continuation",
   "diagnostic_plan": [
-    "Inspect long200_from150p46us_final before allocating anything. It restarts chk07533 at 150.46 us; startup verified at 18:25:37 PDT. The worker caps the requested 7800-second wall limit at operational_cutoff=20:00 PDT. Allow final analysis time; no new ignition or physics changes.",
-    "Never resume original long200_detached_segment3/chk03370. Preserve original failed branch evidence separately.",
-    "Use native-log guard and compact field audits. Known undershoots remain failures; halt on existing emergency bounds.",
-    "Continue completed bounded segments only from this corrected checkpoint lineage. Do not merge old failed suffix into animations; explicitly record wall-refinement change at 55.8 us.",
-    "If a Modal attempt fails with existing-directory guard after remote interruption, do not overwrite or reinitialize. Verify no container is active and recover the latest completed checkpoint under a unique run ID; preserve original suffix separately. The 20:00 PDT cutoff takes precedence over physical target."
+    "Campaign closed; do not launch more CFD under this expired compute window. Final native fields and checkpoints are preserved.",
+    "A future campaign should qualify actual fuel/oxygen supply and usable refill and compare a separately declared directional starter; do not re-ignite this saved trajectory or call it NETL-equivalent."
   ],
   "diagnostic_prepare_checkpoint": "closure_replay_prepare_55p8us/chk02800",
   "closure_classification": "Confirmed active leaf-fluid failure: 168 cells above 1e-8 at 56 us; maximum error 0.0915468977 at level 0, volume fraction 0.97222. Not solely solid or fine-covered cells.",
@@ -74,7 +71,7 @@
     "emergency_stop_required": false
   },
   "diagnostic_frozen_status": "Completed normally; final saved active-fluid closure roundoff; finite native pressure, temperature and chemical heat release; small species undershoots remain diagnostic failures.",
-  "active_run_status": "Existing final segment advancing through 161.14 us; finite native states and roundoff closure, no emergency violation. Latest field export is 155.02 us.",
+  "active_run_status": "Stopped; final native analysis completed",
   "diagnostic_walls_result": {
     "time_s": 5.62e-05,
     "max_logged_closure_error": 7.7715612e-16,
@@ -96,8 +93,8 @@
     "worst_maximum_sum_minus_one": 8.8817842e-16,
     "note": "Native log includes all AMR levels; localize discrepancies before classifying active-fluid error."
   },
-  "corrected_achieved_time_s": 0.00016114,
-  "corrected_checkpoint": "long200_recovery_from90us/chk07533",
+  "corrected_achieved_time_s": 0.0001667,
+  "corrected_checkpoint": "long200_from150p46us_final/chk08345",
   "validation_review": {
     "closure_max": 8.8817842e-16,
     "coarse_steps": 190,
@@ -143,7 +140,7 @@
     ],
     "note": "Methane inventory is rebuilding, but inventory change alone is not evidence of sustained detonation or a revolution. Saved-field audits lag current log time; small logged undershoots remain failures."
   },
-  "latest_saved_field_time_s": 0.00015501999999999286,
+  "latest_saved_field_time_s": 0.0001666999999999868,
   "interrupted_segment": {
     "run_id": "long200_refined_walls_from60us",
     "call_id": "fc-01M5YWEGYV3BYFHKRXGZ5KEAEP",
@@ -158,8 +155,8 @@
     "root_cause": "Interrupted remote execution followed by an attempt that hit the existing-directory guard; original interruption cause not established. Modal logs query exceeded service resource limit.",
     "solver_log_sha256": "1c59d86193f1211a1cd382f5b650858de9a65500356f9c2ccb839ef3ce9702ac"
   },
-  "latest_full_history_visualization": "docs/verification/netl_startup_20261027/progress_zero_to_130us/pelec_annulus.gif",
-  "full_history_manifest": "docs/verification/netl_startup_20261027/progress_zero_to_130us/trajectory_manifest.json",
+  "latest_full_history_visualization": "docs/verification/netl_startup_20261027/final_0_to_166p7us/pelec_annulus.gif",
+  "full_history_manifest": "docs/verification/netl_startup_20261027/final_0_to_166p7us/trajectory_manifest.json",
   "completed_recovery_segment": {
     "returncode": 6,
     "effective_wall_limit_seconds": 14400,
@@ -200,58 +197,58 @@
   "active_solver_started_at": "2026-10-27T18:25:37-07:00",
   "active_segment_monitor": {
     "audit": {
-      "latest_time_s": 0.00016114,
+      "latest_time_s": 0.0001667,
       "fields": {
         "density": {
-          "samples": 534,
+          "samples": 812,
           "minimum": 0.00044562163,
           "maximum": 0.015549134,
           "nonfinite_samples": 0
         },
         "x_velocity": {
-          "samples": 534,
+          "samples": 812,
           "minimum": -45283.081,
           "maximum": 45286.689,
           "nonfinite_samples": 0
         },
         "y_velocity": {
-          "samples": 534,
-          "minimum": -49707.813,
+          "samples": 812,
+          "minimum": -50005.027,
           "maximum": 17557.631,
           "nonfinite_samples": 0
         },
         "z_velocity": {
-          "samples": 534,
+          "samples": 812,
           "minimum": -20256.762,
           "maximum": 88493.006,
           "nonfinite_samples": 0
         },
         "eint_e": {
-          "samples": 534,
+          "samples": 812,
           "minimum": -53610846000.0,
           "maximum": 208853080.0,
           "nonfinite_samples": 0
         },
         "Temp": {
-          "samples": 534,
+          "samples": 812,
           "minimum": 247.3986,
-          "maximum": 3401.2227,
+          "maximum": 3404.943,
           "nonfinite_samples": 0
         },
         "pressure": {
-          "samples": 534,
-          "minimum": 5081922.8,
+          "samples": 812,
+          "minimum": 4735946.4,
           "maximum": 15117146.0,
           "nonfinite_samples": 0
         },
         "massfrac": {
-          "samples": 534,
-          "minimum": -8.564314e-15,
+          "samples": 812,
+          "minimum": -9.9438981e-15,
           "maximum": 0.99999276,
           "nonfinite_samples": 0
         },
         "sumYminus1": {
-          "samples": 534,
+          "samples": 812,
           "minimum": -9.9920072e-16,
           "maximum": 1.110223e-15,
           "nonfinite_samples": 0
@@ -261,7 +258,7 @@
       "violation_count": 0,
       "first_violations": [],
       "every_step_species_sum": {
-        "samples": 534,
+        "samples": 812,
         "worst_time_s": 0.00015786,
         "maximum_absolute_error": 1.110223e-15,
         "worst_minimum_sum_minus_one": -7.7715612e-16,
@@ -270,43 +267,43 @@
       }
     },
     "latest_row": {
-      "time_s": 0.00015501999999999286,
-      "mass_kg": 0.00015189010823500672,
-      "total_energy_J": -271.74752924260423,
-      "methane_kg": 2.0146822854290255e-06,
-      "oxygen_kg": 2.7142801215087547e-05,
-      "min_species": -2.1714e-320,
-      "species_sum_error": 8.881784197001252e-16,
+      "time_s": 0.0001666999999999868,
+      "mass_kg": 0.00013442551903223662,
+      "total_energy_J": -269.46978069013085,
+      "methane_kg": 2.7333706456206012e-06,
+      "oxygen_kg": 2.49535586494127e-05,
+      "min_species": -2.541e-320,
+      "species_sum_error": 7.771561172376096e-16,
       "negative_inventory_kg": 0.0,
       "finite": true,
       "pressure_Pa": [
-        533149.8262572697,
-        1391509.3969223984
+        473594.6364143343,
+        1238803.4741362564
       ],
       "temperature_K": [
-        247.42606686267126,
-        3359.121187036297
+        262.46576752591454,
+        3382.915433082915
       ],
-      "fluid_volume_m3": 8.52226186193432e-05,
-      "max_speed_mps": 840.7458825239777,
+      "fluid_volume_m3": 8.522261861934327e-05,
+      "max_speed_mps": 731.5415903811725,
       "finest_level": 1,
       "leaf_fluid_cells": 11310080,
-      "blocks": 485,
+      "blocks": 489,
       "closure_by_region": {
         "fluid_leaf": {
-          "maximum_absolute_error": 8.881784197001252e-16,
+          "maximum_absolute_error": 7.771561172376096e-16,
           "cells_above_1e_8": 0,
           "nonfinite_cells": 0,
           "worst_cell": {
             "level": 1,
-            "grid_id": 30,
+            "grid_id": 28,
             "position_m": [
-              0.00307578125,
-              -0.035817968750000005,
-              0.00386953125
+              -0.02391171875,
+              -0.028078906249999997,
+              0.00069453125
             ],
             "volume_fraction": 1.0,
-            "signed_sum_minus_one": 8.881784197001252e-16
+            "signed_sum_minus_one": -7.771561172376096e-16
           }
         },
         "fluid_covered_by_finer": {
@@ -315,11 +312,11 @@
           "nonfinite_cells": 0,
           "worst_cell": {
             "level": 0,
-            "grid_id": 1,
+            "grid_id": 2,
             "position_m": [
-              0.006151562500000001,
-              -0.035520312500000005,
-              0.00019843750000000002
+              0.0263921875,
+              -0.025598437499999998,
+              0.0049609375
             ],
             "volume_fraction": 1.0,
             "signed_sum_minus_one": -7.771561172376096e-16
@@ -338,47 +335,79 @@
       "pressure_Pa": {
         "finite": true,
         "last_range": [
-          549678.558836357,
-          1289490.3207309889
+          473904.1212968682,
+          1229925.4103179208
         ]
       },
       "temperature_K": {
         "finite": true,
         "last_range": [
-          285.29658537054405,
-          3329.642461238026
+          303.69281781328044,
+          3379.1349559366486
         ]
       },
       "methane_Y": {
         "finite": true,
         "last_range": [
-          1.2758651946404357e-21,
-          0.9173032927890971
+          1.4121274143000075e-21,
+          0.9498070036572893
         ]
       },
       "oxygen_Y": {
         "finite": true,
         "last_range": [
-          6.748213066886978e-05,
-          0.9997297524396271
+          2.3603341067743842e-05,
+          0.9980556873785226
         ]
       },
       "heat_release_W_m3": {
         "finite": true,
         "last_range": [
-          -174400552071.4568,
-          9906522608559.18
+          -123621253945.24893,
+          13439578991176.688
         ]
       }
     },
-    "preview_time_s": 0.00015501999999999286
+    "preview_time_s": 0.0001666999999999868
   },
   "pending_final_manifest": "runs3d/netl_startup_20261027/trajectory_final_manifest.json",
   "pending_final_assembly": "runs3d/netl_startup_20261027/final_trajectory",
   "final_assembly_check": {
-    "frames": 52,
-    "through_time_s": 0.00015501999999999286,
+    "frames": 55,
+    "through_time_s": 0.0001667,
     "checkpoint_join_passed": true,
-    "note": "Prepared actual full history; refresh final segment evidence and reassemble after checkpoint stop before final rendering."
-  }
+    "note": "Final retained history assembled with no field interpolation and explicit 55.8-us mesh-policy change."
+  },
+  "heartbeat_status": "deleted",
+  "remote_containers_after_stop": [],
+  "target_reached": false,
+  "physical_validation_passed": false,
+  "final_result": {
+    "returncode": 6,
+    "effective_wall_limit_seconds": 5664.480988,
+    "wall_seconds": 3965.010446798,
+    "actual_saved_time_s": 0.0001666999999999868,
+    "analysis_returncode": 0,
+    "requested_time_s": 0.0002,
+    "completed": false,
+    "checkpoints": [
+      "chk07761",
+      "chk08011",
+      "chk08261",
+      "chk08345"
+    ],
+    "emergency_stop": false,
+    "operator_stop": {
+      "action": "checkpoint_stop",
+      "reason": "Final campaign stop to preserve time for field analysis and full-history rendering before the authorized 20:00 PDT cutoff; 200-us target will remain unmet. No emergency bound triggered.",
+      "requested_at": "2026-10-27T19:30:30.934349-07:00"
+    },
+    "scope": "Execution status only; physical conclusions require native-field analysis."
+  },
+  "final_checkpoint": {
+    "path": "long200_from150p46us_final/chk08345/Header",
+    "sha256": "af3da5408e79f576abf638b4394903ea3293c5c617efb115945d601b101b76c3",
+    "time_s": 0.0001666999999999868
+  },
+  "final_artifacts_inspected": true
 }

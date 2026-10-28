@@ -1,0 +1,3150 @@
+{
+  "rows": [
+    {
+      "time_s": 0.0,
+      "mass_kg": 0.0005662336346874438,
+      "total_energy_J": -102.82111903656636,
+      "methane_kg": 1.1855744803655795e-05,
+      "oxygen_kg": 0.00016544357013524786,
+      "min_species": 0.0,
+      "species_sum_error": 2.220446049250313e-16,
+      "negative_inventory_kg": 0.0,
+      "finite": true,
+      "pressure_Pa": [
+        102508.33918539318,
+        4000000.0000000023
+      ],
+      "temperature_K": [
+        299.9999999999999,
+        3000.0000000000005
+      ],
+      "fluid_volume_m3": 8.522261861934351e-05,
+      "max_speed_mps": 0.0,
+      "finest_level": 1,
+      "leaf_fluid_cells": 2946080,
+      "blocks": 63,
+      "heat_release_available": true
+    },
+    {
+      "time_s": 5e-08,
+      "mass_kg": 0.0005662420940916727,
+      "total_energy_J": -102.83017935711062,
+      "methane_kg": 1.1832218665029939e-05,
+      "oxygen_kg": 0.00016538508231984418,
+      "min_species": -1.750512067887291e-37,
+      "species_sum_error": 7.771561172376096e-16,
+      "negative_inventory_kg": 4.624499926245877e-44,
+      "finite": true,
+      "pressure_Pa": [
+        102618.1875313595,
+        8182735.491129221
+      ],
+      "temperature_K": [
+        299.9934194769501,
+        4377.45305394515
+      ],
+      "fluid_volume_m3": 8.522261861934351e-05,
+      "max_speed_mps": 109.11089969634178,
+      "finest_level": 1,
+      "leaf_fluid_cells": 2946080,
+      "blocks": 63,
+      "heat_release_available": true
+    },
+    {
+      "time_s": 9.999999999999998e-08,
+      "mass_kg": 0.0005662527027852835,
+      "total_energy_J": -102.83015871535551,
+      "methane_kg": 1.1833443624459555e-05,
+      "oxygen_kg": 0.0001653688093181077,
+      "min_species": -5.401592035999411e-16,
+      "species_sum_error": 6.661338147750939e-16,
+      "negative_inventory_kg": 1.3810734000123196e-22,
+      "finite": true,
+      "pressure_Pa": [
+        102728.07688904519,
+        10488082.104468025
+      ],
+      "temperature_K": [
+        299.98662300868415,
+        4401.0195421646895
+      ],
+      "fluid_volume_m3": 8.522261861934351e-05,
+      "max_speed_mps": 297.6859057294844,
+      "finest_level": 1,
+      "leaf_fluid_cells": 2946080,
+      "blocks": 63,
+      "heat_release_available": true
+    },
+    {
+      "time_s": 1.5000000000000002e-07,
+      "mass_kg": 0.0005662604300563412,
+      "total_energy_J": -102.83879439988739,
+      "methane_kg": 1.1834300948682157e-05,
+      "oxygen_kg": 0.00016537346206539112,
+      "min_species": -1.103478188411004e-15,
+      "species_sum_error": 6.661338147750939e-16,
+      "negative_inventory_kg": 9.528636025254653e-24,
+      "finite": true,
+      "pressure_Pa": [
+        102838.0015118975,
+        10191914.664343344
+      ],
+      "temperature_K": [
+        299.97962860090485,
+        4387.85686361628
+      ],
+      "fluid_volume_m3": 8.522261861934351e-05,
+      "max_speed_mps": 386.39170323423525,
+      "finest_level": 1,
+      "leaf_fluid_cells": 2946080,
+      "blocks": 63,
+      "heat_release_available": true
+    },
+    {
+      "time_s": 2e-07,
+      "mass_kg": 0.0005662678409474551,
+      "total_energy_J": -102.84719095754838,
+      "methane_kg": 1.1834760379010558e-05,
+      "oxygen_kg": 0.0001653778727249299,
+      "min_species": -3.135525961595495e-14,
+      "species_sum_error": 6.661338147750939e-16,
+      "negative_inventory_kg": 9.628342351594112e-23,
+      "finite": true,
+      "pressure_Pa": [
+        102947.95631506783,
+        9733271.006839504
+      ],
+      "temperature_K": [
+        299.97245274982066,
+        4367.424179643546
+      ],
+      "fluid_volume_m3": 8.522261861934351e-05,
+      "max_speed_mps": 440.00672233628393,
+      "finest_level": 1,
+      "leaf_fluid_cells": 2946080,
+      "blocks": 63,
+      "heat_release_available": true
+    },
+    {
+      "time_s": 5.019999999999972e-06,
+      "mass_kg": 0.0005671573843438054,
+      "total_energy_J": -103.97293613115782,
+      "methane_kg": 1.0966126597572038e-05,
+      "oxygen_kg": 0.00016204802070052507,
+      "min_species": -0.00019517920778936907,
+      "species_sum_error": 6.661338147750939e-16,
+      "negative_inventory_kg": 2.0208423786166084e-12,
+      "finite": true,
+      "pressure_Pa": [
+        113523.51986100311,
+        44500161.67760643
+      ],
+      "temperature_K": [
+        286.99317965203306,
+        4390.730214423183
+      ],
+      "fluid_volume_m3": 8.522261861934351e-05,
+      "max_speed_mps": 1319.284799114588,
+      "finest_level": 1,
+      "leaf_fluid_cells": 2946080,
+      "blocks": 63,
+      "heat_release_available": true
+    },
+    {
+      "time_s": 6.999999999999953e-06,
+      "mass_kg": 0.0005675549504876038,
+      "total_energy_J": -104.50540737366276,
+      "methane_kg": 1.0524110607287346e-05,
+      "oxygen_kg": 0.00016033010911962016,
+      "min_species": -0.0007470568784466191,
+      "species_sum_error": 6.661338147750939e-16,
+      "negative_inventory_kg": 1.986653817474486e-12,
+      "finite": true,
+      "pressure_Pa": [
+        117815.33310100215,
+        40825178.45288801
+      ],
+      "temperature_K": [
+        286.1105854367921,
+        4301.088496268292
+      ],
+      "fluid_volume_m3": 8.522261861934357e-05,
+      "max_speed_mps": 1518.0333924831377,
+      "finest_level": 1,
+      "leaf_fluid_cells": 3153664,
+      "blocks": 63,
+      "heat_release_available": true
+    },
+    {
+      "time_s": 1.0019999999999924e-05,
+      "mass_kg": 0.0005680705915223666,
+      "total_energy_J": -105.26380736959008,
+      "methane_kg": 9.82626288004103e-06,
+      "oxygen_kg": 0.00015762506867297727,
+      "min_species": -0.0007618061538525106,
+      "species_sum_error": 6.661338147750939e-16,
+      "negative_inventory_kg": 2.164689108990508e-12,
+      "finite": true,
+      "pressure_Pa": [
+        124263.50059204063,
+        54821358.880680434
+      ],
+      "temperature_K": [
+        286.23821918545525,
+        4216.70350040359
+      ],
+      "fluid_volume_m3": 8.522261861934357e-05,
+      "max_speed_mps": 1351.9973271789356,
+      "finest_level": 1,
+      "leaf_fluid_cells": 3568832,
+      "blocks": 99,
+      "heat_release_available": true
+    },
+    {
+      "time_s": 1.4399999999999882e-05,
+      "mass_kg": 0.0005686119112043237,
+      "total_energy_J": -106.24473000090497,
+      "methane_kg": 8.767700725123518e-06,
+      "oxygen_kg": 0.00015353364695280803,
+      "min_species": -0.00016307622667301454,
+      "species_sum_error": 6.661338147750939e-16,
+      "negative_inventory_kg": 2.1893437925324802e-12,
+      "finite": true,
+      "pressure_Pa": [
+        133360.96803571325,
+        61521765.8489387
+      ],
+      "temperature_K": [
+        285.5625842285301,
+        4223.036274361655
+      ],
+      "fluid_volume_m3": 8.522261861934355e-05,
+      "max_speed_mps": 1570.9697426662115,
+      "finest_level": 1,
+      "leaf_fluid_cells": 3309388,
+      "blocks": 99,
+      "heat_release_available": true
+    },
+    {
+      "time_s": 1.46e-05,
+      "mass_kg": 0.0005686312726870696,
+      "total_energy_J": -106.28684084614531,
+      "methane_kg": 8.716496121948962e-06,
+      "oxygen_kg": 0.00015333718402422855,
+      "min_species": -0.000609705197842497,
+      "species_sum_error": 6.661338147750939e-16,
+      "negative_inventory_kg": 3.062905691578581e-12,
+      "finite": true,
+      "pressure_Pa": [
+        133768.58382341996,
+        72462074.83863519
+      ],
+      "temperature_K": [
+        285.5176881099557,
+        4289.204892696293
+      ],
+      "fluid_volume_m3": 8.522261861934357e-05,
+      "max_speed_mps": 1544.5749995403335,
+      "finest_level": 1,
+      "leaf_fluid_cells": 3392448,
+      "blocks": 101,
+      "heat_release_available": true
+    },
+    {
+      "time_s": 1.4999999999999997e-05,
+      "mass_kg": 0.0005686699969523237,
+      "total_energy_J": -106.37040985556597,
+      "methane_kg": 8.613965587651096e-06,
+      "oxygen_kg": 0.000152944804216686,
+      "min_species": -0.00025793980230648584,
+      "species_sum_error": 6.661338147750939e-16,
+      "negative_inventory_kg": 2.249488095200019e-12,
+      "finite": true,
+      "pressure_Pa": [
+        134581.7166282049,
+        65536177.048191994
+      ],
+      "temperature_K": [
+        285.4328946182807,
+        4307.8205867615725
+      ],
+      "fluid_volume_m3": 8.522261861934361e-05,
+      "max_speed_mps": 1544.282222835058,
+      "finest_level": 1,
+      "leaf_fluid_cells": 3604884,
+      "blocks": 130,
+      "heat_release_available": true
+    },
+    {
+      "time_s": 2.001999999999995e-05,
+      "mass_kg": 0.0005689947573275492,
+      "total_energy_J": -107.33601834974267,
+      "methane_kg": 7.302109477566576e-06,
+      "oxygen_kg": 0.0001479542851980946,
+      "min_species": -0.000220953312368992,
+      "species_sum_error": 6.661338147750939e-16,
+      "negative_inventory_kg": 2.260083002962208e-12,
+      "finite": true,
+      "pressure_Pa": [
+        144546.56811200816,
+        51969458.8432654
+      ],
+      "temperature_K": [
+        284.5976408935083,
+        4288.97595552354
+      ],
+      "fluid_volume_m3": 8.522261861934355e-05,
+      "max_speed_mps": 1503.1083195316583,
+      "finest_level": 1,
+      "leaf_fluid_cells": 3468348,
+      "blocks": 103,
+      "heat_release_available": true
+    },
+    {
+      "time_s": 2.5019999999999903e-05,
+      "mass_kg": 0.0005689924660584554,
+      "total_energy_J": -108.14650995752869,
+      "methane_kg": 5.943622629045944e-06,
+      "oxygen_kg": 0.00014288663829306958,
+      "min_species": -0.00034238664126454144,
+      "species_sum_error": 6.661338147750939e-16,
+      "negative_inventory_kg": 2.0138633047400235e-12,
+      "finite": true,
+      "pressure_Pa": [
+        154035.1202096616,
+        48998740.1724401
+      ],
+      "temperature_K": [
+        283.3719903552922,
+        4257.648593605411
+      ],
+      "fluid_volume_m3": 8.52226186193435e-05,
+      "max_speed_mps": 1474.1468488060063,
+      "finest_level": 1,
+      "leaf_fluid_cells": 3741120,
+      "blocks": 167,
+      "heat_release_available": true
+    },
+    {
+      "time_s": 3.0019999999999855e-05,
+      "mass_kg": 0.0005686620244309918,
+      "total_energy_J": -108.79223165401095,
+      "methane_kg": 4.518170706689767e-06,
+      "oxygen_kg": 0.0001375835497364561,
+      "min_species": -0.0004571563126580556,
+      "species_sum_error": 7.771561172376096e-16,
+      "negative_inventory_kg": 1.85902267011837e-12,
+      "finite": true,
+      "pressure_Pa": [
+        163110.97599162423,
+        74199068.34075826
+      ],
+      "temperature_K": [
+        281.9474885541293,
+        4254.888687233105
+      ],
+      "fluid_volume_m3": 8.522261861934357e-05,
+      "max_speed_mps": 1502.1363554292568,
+      "finest_level": 1,
+      "leaf_fluid_cells": 3786168,
+      "blocks": 172,
+      "heat_release_available": true
+    },
+    {
+      "time_s": 3.5000000000000566e-05,
+      "mass_kg": 0.0005679755521334855,
+      "total_energy_J": -109.26997274815221,
+      "methane_kg": 3.0617447545349405e-06,
+      "oxygen_kg": 0.00013207392167952133,
+      "min_species": -0.0002886948682204606,
+      "species_sum_error": 6.661338147750939e-16,
+      "negative_inventory_kg": 1.9493040260939683e-12,
+      "finite": true,
+      "pressure_Pa": [
+        171772.10843275333,
+        57979882.63751826
+      ],
+      "temperature_K": [
+        281.26283278251884,
+        4274.605333734664
+      ],
+      "fluid_volume_m3": 8.522261861934365e-05,
+      "max_speed_mps": 1474.2369161844051,
+      "finest_level": 1,
+      "leaf_fluid_cells": 3963040,
+      "blocks": 173,
+      "heat_release_available": true
+    },
+    {
+      "time_s": 4.0000000000001365e-05,
+      "mass_kg": 0.0005669562407118363,
+      "total_energy_J": -109.60028603577949,
+      "methane_kg": 1.5083123609413704e-06,
+      "oxygen_kg": 0.0001262031701757605,
+      "min_species": -0.0003146212538213646,
+      "species_sum_error": 6.661338147750939e-16,
+      "negative_inventory_kg": 1.7274112944904017e-12,
+      "finite": true,
+      "pressure_Pa": [
+        180121.58060676407,
+        58618493.859558195
+      ],
+      "temperature_K": [
+        279.9817286258193,
+        4292.115421964817
+      ],
+      "fluid_volume_m3": 8.522261861934347e-05,
+      "max_speed_mps": 1438.8069050783056,
+      "finest_level": 1,
+      "leaf_fluid_cells": 4072860,
+      "blocks": 200,
+      "heat_release_available": true
+    },
+    {
+      "time_s": 4.5000000000002164e-05,
+      "mass_kg": 0.0005655454309516752,
+      "total_energy_J": -109.75421320249325,
+      "methane_kg": 3.293478801595284e-08,
+      "oxygen_kg": 0.00012067893176675496,
+      "min_species": -2.9673732456177235e-10,
+      "species_sum_error": 6.661338147750939e-16,
+      "negative_inventory_kg": 2.750069401676751e-19,
+      "finite": true,
+      "pressure_Pa": [
+        188155.74913738391,
+        105129577.73511472
+      ],
+      "temperature_K": [
+        282.4310250547404,
+        4624.65795381408
+      ],
+      "fluid_volume_m3": 8.522261861934355e-05,
+      "max_speed_mps": 1334.298395729349,
+      "finest_level": 1,
+      "leaf_fluid_cells": 4226684,
+      "blocks": 231,
+      "heat_release_available": true
+    },
+    {
+      "time_s": 5.0000000000002964e-05,
+      "mass_kg": 0.0005636407814692315,
+      "total_energy_J": -109.80681394123549,
+      "methane_kg": 5.900674084326089e-09,
+      "oxygen_kg": 0.00011988618820856455,
+      "min_species": -4.480518051730239e-10,
+      "species_sum_error": 6.661338147750939e-16,
+      "negative_inventory_kg": 1.724733214737038e-19,
+      "finite": true,
+      "pressure_Pa": [
+        195903.52718272142,
+        23990519.45856075
+      ],
+      "temperature_K": [
+        280.68341735225,
+        3900.755510676439
+      ],
+      "fluid_volume_m3": 8.52226186193435e-05,
+      "max_speed_mps": 1427.7546760419086,
+      "finest_level": 1,
+      "leaf_fluid_cells": 4290716,
+      "blocks": 235,
+      "heat_release_available": true
+    },
+    {
+      "time_s": 5.500000000000376e-05,
+      "mass_kg": 0.0005615220360450979,
+      "total_energy_J": -109.86365447422284,
+      "methane_kg": 3.389203442773876e-09,
+      "oxygen_kg": 0.00011911576395425602,
+      "min_species": -7.205437416946377e-10,
+      "species_sum_error": 6.661338147750939e-16,
+      "negative_inventory_kg": 2.940086067448151e-19,
+      "finite": true,
+      "pressure_Pa": [
+        203390.59928832197,
+        15908079.444058388
+      ],
+      "temperature_K": [
+        279.0125882042829,
+        3820.5747268225314
+      ],
+      "fluid_volume_m3": 8.52226186193436e-05,
+      "max_speed_mps": 1692.3639567908833,
+      "finest_level": 1,
+      "leaf_fluid_cells": 4321484,
+      "blocks": 227,
+      "heat_release_available": true
+    },
+    {
+      "time_s": 5.58e-05,
+      "mass_kg": 0.0005611630871557347,
+      "total_energy_J": -109.87310647589422,
+      "methane_kg": 3.2029491128688857e-09,
+      "oxygen_kg": 0.00011899227068097739,
+      "min_species": -6.984298232870978e-10,
+      "species_sum_error": 6.661338147750939e-16,
+      "negative_inventory_kg": 3.876038651190561e-19,
+      "finite": true,
+      "pressure_Pa": [
+        204565.8887403605,
+        15349350.289800722
+      ],
+      "temperature_K": [
+        278.75570289010506,
+        3816.5095340714233
+      ],
+      "fluid_volume_m3": 8.522261861934343e-05,
+      "max_speed_mps": 1733.301701240284,
+      "finest_level": 1,
+      "leaf_fluid_cells": 4286968,
+      "blocks": 223,
+      "heat_release_available": true
+    },
+    {
+      "time_s": 5.590000000000002e-05,
+      "mass_kg": 0.0005611178677295842,
+      "total_energy_J": -109.8742941008195,
+      "methane_kg": 3.179738118698909e-09,
+      "oxygen_kg": 0.00011897711711816671,
+      "min_species": -7.425469119520986e-10,
+      "species_sum_error": 6.661338147750939e-16,
+      "negative_inventory_kg": 4.922126345833853e-18,
+      "finite": true,
+      "pressure_Pa": [
+        204592.0278158172,
+        15290955.445660396
+      ],
+      "temperature_K": [
+        278.7042138079418,
+        3815.99868805406
+      ],
+      "fluid_volume_m3": 8.522261861934345e-05,
+      "max_speed_mps": 1738.1281027664547,
+      "finest_level": 1,
+      "leaf_fluid_cells": 11306944,
+      "blocks": 542,
+      "closure_by_region": {
+        "fluid_leaf": {
+          "maximum_absolute_error": 6.661338147750939e-16,
+          "cells_above_1e_8": 0,
+          "nonfinite_cells": 0,
+          "worst_cell": {
+            "level": 1,
+            "grid_id": 29,
+            "position_m": [
+              -0.0002976562500000002,
+              -0.033436718750000004,
+              0.00922734375
+            ],
+            "volume_fraction": 1.0,
+            "signed_sum_minus_one": 6.661338147750939e-16
+          }
+        },
+        "fluid_covered_by_finer": {
+          "maximum_absolute_error": 6.661338147750939e-16,
+          "cells_above_1e_8": 0,
+          "nonfinite_cells": 0,
+          "worst_cell": {
+            "level": 0,
+            "grid_id": 0,
+            "position_m": [
+              -0.0164703125,
+              -0.028773437500000002,
+              0.0045640625
+            ],
+            "volume_fraction": 0.6575713078540566,
+            "signed_sum_minus_one": -6.661338147750939e-16
+          }
+        },
+        "solid": {
+          "maximum_absolute_error": 0.0,
+          "cells_above_1e_8": 0,
+          "nonfinite_cells": 0,
+          "worst_cell": null
+        }
+      },
+      "heat_release_available": true
+    },
+    {
+      "time_s": 5.600000000000003e-05,
+      "mass_kg": 0.0005610726183438759,
+      "total_energy_J": -109.87548335207613,
+      "methane_kg": 3.156279777889416e-09,
+      "oxygen_kg": 0.0001189619129633607,
+      "min_species": -4.934812315392813e-10,
+      "species_sum_error": 6.661338147750939e-16,
+      "negative_inventory_kg": 3.6428341104614754e-18,
+      "finite": true,
+      "pressure_Pa": [
+        204659.48890749706,
+        15224971.447481869
+      ],
+      "temperature_K": [
+        278.64442658652274,
+        3815.4873909063867
+      ],
+      "fluid_volume_m3": 8.522261861934343e-05,
+      "max_speed_mps": 1742.2565927572095,
+      "finest_level": 1,
+      "leaf_fluid_cells": 11283648,
+      "blocks": 556,
+      "closure_by_region": {
+        "fluid_leaf": {
+          "maximum_absolute_error": 6.661338147750939e-16,
+          "cells_above_1e_8": 0,
+          "nonfinite_cells": 0,
+          "worst_cell": {
+            "level": 1,
+            "grid_id": 29,
+            "position_m": [
+              -0.00783828125,
+              -0.03482578125,
+              0.009028906250000001
+            ],
+            "volume_fraction": 1.0,
+            "signed_sum_minus_one": 6.661338147750939e-16
+          }
+        },
+        "fluid_covered_by_finer": {
+          "maximum_absolute_error": 6.661338147750939e-16,
+          "cells_above_1e_8": 0,
+          "nonfinite_cells": 0,
+          "worst_cell": {
+            "level": 0,
+            "grid_id": 0,
+            "position_m": [
+              -0.0311546875,
+              -0.020835937500000005,
+              0.0136921875
+            ],
+            "volume_fraction": 1.0,
+            "signed_sum_minus_one": 6.661338147750939e-16
+          }
+        },
+        "solid": {
+          "maximum_absolute_error": 0.0,
+          "cells_above_1e_8": 0,
+          "nonfinite_cells": 0,
+          "worst_cell": null
+        }
+      },
+      "heat_release_available": true
+    },
+    {
+      "time_s": 5.610000000000005e-05,
+      "mass_kg": 0.0005610273201445821,
+      "total_energy_J": -109.876675111153,
+      "methane_kg": 3.1326546464173453e-09,
+      "oxygen_kg": 0.00011894673445701255,
+      "min_species": -3.3265079678016305e-10,
+      "species_sum_error": 6.661338147750939e-16,
+      "negative_inventory_kg": 2.5411535870069598e-18,
+      "finite": true,
+      "pressure_Pa": [
+        204755.5133477424,
+        15171557.55742266
+      ],
+      "temperature_K": [
+        278.5935817123576,
+        3814.975685800683
+      ],
+      "fluid_volume_m3": 8.522261861934343e-05,
+      "max_speed_mps": 1745.4899517670638,
+      "finest_level": 1,
+      "leaf_fluid_cells": 11283648,
+      "blocks": 556,
+      "closure_by_region": {
+        "fluid_leaf": {
+          "maximum_absolute_error": 6.661338147750939e-16,
+          "cells_above_1e_8": 0,
+          "nonfinite_cells": 0,
+          "worst_cell": {
+            "level": 1,
+            "grid_id": 28,
+            "position_m": [
+              -0.025102343750000002,
+              -0.027483593749999997,
+              0.010021093750000001
+            ],
+            "volume_fraction": 1.0,
+            "signed_sum_minus_one": 6.661338147750939e-16
+          }
+        },
+        "fluid_covered_by_finer": {
+          "maximum_absolute_error": 6.661338147750939e-16,
+          "cells_above_1e_8": 0,
+          "nonfinite_cells": 0,
+          "worst_cell": {
+            "level": 0,
+            "grid_id": 1,
+            "position_m": [
+              0.0105171875,
+              -0.0351234375,
+              0.0077390625
+            ],
+            "volume_fraction": 1.0,
+            "signed_sum_minus_one": 6.661338147750939e-16
+          }
+        },
+        "solid": {
+          "maximum_absolute_error": 0.0,
+          "cells_above_1e_8": 0,
+          "nonfinite_cells": 0,
+          "worst_cell": null
+        }
+      },
+      "heat_release_available": true
+    },
+    {
+      "time_s": 5.62e-05,
+      "mass_kg": 0.0005609819610411798,
+      "total_energy_J": -109.87786977897352,
+      "methane_kg": 3.108959690592872e-09,
+      "oxygen_kg": 0.00011893157622516153,
+      "min_species": -2.2507671823671928e-10,
+      "species_sum_error": 6.661338147750939e-16,
+      "negative_inventory_kg": 1.6626006041919692e-18,
+      "finite": true,
+      "pressure_Pa": [
+        204871.03796618377,
+        15109113.505835447
+      ],
+      "temperature_K": [
+        278.5431422557325,
+        3814.4636128326038
+      ],
+      "fluid_volume_m3": 8.522261861934342e-05,
+      "max_speed_mps": 1749.685020938555,
+      "finest_level": 1,
+      "leaf_fluid_cells": 11284992,
+      "blocks": 581,
+      "closure_by_region": {
+        "fluid_leaf": {
+          "maximum_absolute_error": 6.661338147750939e-16,
+          "cells_above_1e_8": 0,
+          "nonfinite_cells": 0,
+          "worst_cell": {
+            "level": 1,
+            "grid_id": 30,
+            "position_m": [
+              0.00029765625,
+              -0.03661171875,
+              0.01021953125
+            ],
+            "volume_fraction": 1.0,
+            "signed_sum_minus_one": -6.661338147750939e-16
+          }
+        },
+        "fluid_covered_by_finer": {
+          "maximum_absolute_error": 6.661338147750939e-16,
+          "cells_above_1e_8": 0,
+          "nonfinite_cells": 0,
+          "worst_cell": {
+            "level": 0,
+            "grid_id": 2,
+            "position_m": [
+              0.0263921875,
+              -0.0200421875,
+              0.0244078125
+            ],
+            "volume_fraction": 0.6267668663134126,
+            "signed_sum_minus_one": 6.661338147750939e-16
+          }
+        },
+        "solid": {
+          "maximum_absolute_error": 0.0,
+          "cells_above_1e_8": 0,
+          "nonfinite_cells": 0,
+          "worst_cell": null
+        }
+      },
+      "heat_release_available": true
+    },
+    {
+      "time_s": 5.6500000000000045e-05,
+      "mass_kg": 0.00056084545209478,
+      "total_energy_J": -109.88147180505598,
+      "methane_kg": 3.0385433416478605e-09,
+      "oxygen_kg": 0.00011888617914970471,
+      "min_species": -7.404608485922116e-11,
+      "species_sum_error": 6.661338147750939e-16,
+      "negative_inventory_kg": 3.713438457556479e-19,
+      "finite": true,
+      "pressure_Pa": [
+        205279.7073833712,
+        14908672.905575186
+      ],
+      "temperature_K": [
+        278.4315073442144,
+        3812.9255355580426
+      ],
+      "fluid_volume_m3": 8.522261861934357e-05,
+      "max_speed_mps": 1763.9832280080286,
+      "finest_level": 1,
+      "leaf_fluid_cells": 11311872,
+      "blocks": 501,
+      "closure_by_region": {
+        "fluid_leaf": {
+          "maximum_absolute_error": 6.661338147750939e-16,
+          "cells_above_1e_8": 0,
+          "nonfinite_cells": 0,
+          "worst_cell": {
+            "level": 0,
+            "grid_id": 2,
+            "position_m": [
+              0.0319484375,
+              -0.012898437500000002,
+              0.0125015625
+            ],
+            "volume_fraction": 1.0,
+            "signed_sum_minus_one": 6.661338147750939e-16
+          }
+        },
+        "fluid_covered_by_finer": {
+          "maximum_absolute_error": 6.661338147750939e-16,
+          "cells_above_1e_8": 0,
+          "nonfinite_cells": 0,
+          "worst_cell": {
+            "level": 0,
+            "grid_id": 0,
+            "position_m": [
+              -0.0164703125,
+              -0.0323453125,
+              0.006945312500000001
+            ],
+            "volume_fraction": 1.0,
+            "signed_sum_minus_one": 6.661338147750939e-16
+          }
+        },
+        "solid": {
+          "maximum_absolute_error": 0.0,
+          "cells_above_1e_8": 0,
+          "nonfinite_cells": 0,
+          "worst_cell": null
+        }
+      },
+      "heat_release_available": true
+    },
+    {
+      "time_s": 5.7000000000000125e-05,
+      "mass_kg": 0.0005606163323133025,
+      "total_energy_J": -109.88752813376978,
+      "methane_kg": 2.928241846815432e-09,
+      "oxygen_kg": 0.00011881070248270124,
+      "min_species": -7.160901619723945e-12,
+      "species_sum_error": 6.661338147750939e-16,
+      "negative_inventory_kg": 1.7168189032087158e-20,
+      "finite": true,
+      "pressure_Pa": [
+        206009.39886945923,
+        14617629.527255047
+      ],
+      "temperature_K": [
+        278.2761471996011,
+        3810.3573136297355
+      ],
+      "fluid_volume_m3": 8.522261861934364e-05,
+      "max_speed_mps": 1782.6568070604876,
+      "finest_level": 1,
+      "leaf_fluid_cells": 11279616,
+      "blocks": 579,
+      "closure_by_region": {
+        "fluid_leaf": {
+          "maximum_absolute_error": 6.661338147750939e-16,
+          "cells_above_1e_8": 0,
+          "nonfinite_cells": 0,
+          "worst_cell": {
+            "level": 1,
+            "grid_id": 29,
+            "position_m": [
+              -0.01021953125,
+              -0.03502421875,
+              0.00466328125
+            ],
+            "volume_fraction": 1.0,
+            "signed_sum_minus_one": 6.661338147750939e-16
+          }
+        },
+        "fluid_covered_by_finer": {
+          "maximum_absolute_error": 6.661338147750939e-16,
+          "cells_above_1e_8": 0,
+          "nonfinite_cells": 0,
+          "worst_cell": {
+            "level": 0,
+            "grid_id": 0,
+            "position_m": [
+              -0.025598437499999998,
+              -0.0263921875,
+              0.0049609375
+            ],
+            "volume_fraction": 1.0,
+            "signed_sum_minus_one": 6.661338147750939e-16
+          }
+        },
+        "solid": {
+          "maximum_absolute_error": 0.0,
+          "cells_above_1e_8": 0,
+          "nonfinite_cells": 0,
+          "worst_cell": null
+        }
+      },
+      "heat_release_available": true
+    },
+    {
+      "time_s": 5.7500000000000205e-05,
+      "mass_kg": 0.000560385105354198,
+      "total_energy_J": -109.89363612829624,
+      "methane_kg": 2.8287554995916717e-09,
+      "oxygen_kg": 0.00011873552085287501,
+      "min_species": -2.721467158354354e-13,
+      "species_sum_error": 6.661338147750939e-16,
+      "negative_inventory_kg": 2.496883480517705e-22,
+      "finite": true,
+      "pressure_Pa": [
+        206747.69891064352,
+        14356113.358154126
+      ],
+      "temperature_K": [
+        278.12729915731234,
+        3807.783810271547
+      ],
+      "fluid_volume_m3": 8.522261861934357e-05,
+      "max_speed_mps": 1797.859227011696,
+      "finest_level": 1,
+      "leaf_fluid_cells": 11306048,
+      "blocks": 561,
+      "closure_by_region": {
+        "fluid_leaf": {
+          "maximum_absolute_error": 6.661338147750939e-16,
+          "cells_above_1e_8": 0,
+          "nonfinite_cells": 0,
+          "worst_cell": {
+            "level": 1,
+            "grid_id": 45,
+            "position_m": [
+              -0.035817968750000005,
+              0.0034726562500000005,
+              0.00982265625
+            ],
+            "volume_fraction": 1.0,
+            "signed_sum_minus_one": 6.661338147750939e-16
+          }
+        },
+        "fluid_covered_by_finer": {
+          "maximum_absolute_error": 6.661338147750939e-16,
+          "cells_above_1e_8": 0,
+          "nonfinite_cells": 0,
+          "worst_cell": {
+            "level": 0,
+            "grid_id": 0,
+            "position_m": [
+              -0.028376562500000004,
+              -0.0216296875,
+              0.0037703125
+            ],
+            "volume_fraction": 1.0,
+            "signed_sum_minus_one": 6.661338147750939e-16
+          }
+        },
+        "solid": {
+          "maximum_absolute_error": 0.0,
+          "cells_above_1e_8": 0,
+          "nonfinite_cells": 0,
+          "worst_cell": null
+        }
+      },
+      "heat_release_available": true
+    },
+    {
+      "time_s": 5.8000000000000285e-05,
+      "mass_kg": 0.0005601517362257064,
+      "total_energy_J": -109.89978520983537,
+      "methane_kg": 2.7404997728123394e-09,
+      "oxygen_kg": 0.00011866076599659622,
+      "min_species": -1.1073140196762673e-10,
+      "species_sum_error": 6.661338147750939e-16,
+      "negative_inventory_kg": 3.7437539689782715e-20,
+      "finite": true,
+      "pressure_Pa": [
+        207478.90055293404,
+        14076352.668304289
+      ],
+      "temperature_K": [
+        277.98194331016083,
+        3805.2030949602113
+      ],
+      "fluid_volume_m3": 8.522261861934342e-05,
+      "max_speed_mps": 1809.594306585302,
+      "finest_level": 1,
+      "leaf_fluid_cells": 11354880,
+      "blocks": 479,
+      "closure_by_region": {
+        "fluid_leaf": {
+          "maximum_absolute_error": 6.661338147750939e-16,
+          "cells_above_1e_8": 0,
+          "nonfinite_cells": 0,
+          "worst_cell": {
+            "level": 1,
+            "grid_id": 28,
+            "position_m": [
+              -0.016569531250000002,
+              -0.032444531250000005,
+              0.00823515625
+            ],
+            "volume_fraction": 1.0,
+            "signed_sum_minus_one": 6.661338147750939e-16
+          }
+        },
+        "fluid_covered_by_finer": {
+          "maximum_absolute_error": 6.661338147750939e-16,
+          "cells_above_1e_8": 0,
+          "nonfinite_cells": 0,
+          "worst_cell": {
+            "level": 0,
+            "grid_id": 2,
+            "position_m": [
+              0.020042187500000003,
+              -0.0307578125,
+              0.004167187500000001
+            ],
+            "volume_fraction": 1.0,
+            "signed_sum_minus_one": 6.661338147750939e-16
+          }
+        },
+        "solid": {
+          "maximum_absolute_error": 0.0,
+          "cells_above_1e_8": 0,
+          "nonfinite_cells": 0,
+          "worst_cell": null
+        }
+      },
+      "heat_release_available": true
+    },
+    {
+      "time_s": 5.8500000000000365e-05,
+      "mass_kg": 0.0005599162117147217,
+      "total_energy_J": -109.90597027085697,
+      "methane_kg": 2.664191465508581e-09,
+      "oxygen_kg": 0.00011858649247407761,
+      "min_species": -3.152649147160105e-14,
+      "species_sum_error": 6.661338147750939e-16,
+      "negative_inventory_kg": 1.643529638624575e-23,
+      "finite": true,
+      "pressure_Pa": [
+        208204.44592546998,
+        13825794.57842399
+      ],
+      "temperature_K": [
+        277.83064903780524,
+        3802.611146149685
+      ],
+      "fluid_volume_m3": 8.522261861934357e-05,
+      "max_speed_mps": 1817.8653025536823,
+      "finest_level": 1,
+      "leaf_fluid_cells": 11272448,
+      "blocks": 565,
+      "closure_by_region": {
+        "fluid_leaf": {
+          "maximum_absolute_error": 6.661338147750939e-16,
+          "cells_above_1e_8": 0,
+          "nonfinite_cells": 0,
+          "worst_cell": {
+            "level": 1,
+            "grid_id": 30,
+            "position_m": [
+              0.00228203125,
+              -0.03442890625,
+              0.009028906250000001
+            ],
+            "volume_fraction": 1.0,
+            "signed_sum_minus_one": 6.661338147750939e-16
+          }
+        },
+        "fluid_covered_by_finer": {
+          "maximum_absolute_error": 6.661338147750939e-16,
+          "cells_above_1e_8": 0,
+          "nonfinite_cells": 0,
+          "worst_cell": {
+            "level": 0,
+            "grid_id": 0,
+            "position_m": [
+              -0.0323453125,
+              -0.0180578125,
+              0.0105171875
+            ],
+            "volume_fraction": 1.0,
+            "signed_sum_minus_one": 6.661338147750939e-16
+          }
+        },
+        "solid": {
+          "maximum_absolute_error": 0.0,
+          "cells_above_1e_8": 0,
+          "nonfinite_cells": 0,
+          "worst_cell": null
+        }
+      },
+      "heat_release_available": true
+    },
+    {
+      "time_s": 5.9000000000000445e-05,
+      "mass_kg": 0.0005596785257988638,
+      "total_energy_J": -109.91218896842847,
+      "methane_kg": 2.5998506753046114e-09,
+      "oxygen_kg": 0.00011851276298427708,
+      "min_species": -3.1735233421476233e-16,
+      "species_sum_error": 6.661338147750939e-16,
+      "negative_inventory_kg": 1.17898046270765e-24,
+      "finite": true,
+      "pressure_Pa": [
+        208928.18277885494,
+        13575824.001886934
+      ],
+      "temperature_K": [
+        277.67095482324646,
+        3800.0030069136833
+      ],
+      "fluid_volume_m3": 8.522261861934353e-05,
+      "max_speed_mps": 1822.8414314042852,
+      "finest_level": 1,
+      "leaf_fluid_cells": 11347712,
+      "blocks": 489,
+      "closure_by_region": {
+        "fluid_leaf": {
+          "maximum_absolute_error": 6.661338147750939e-16,
+          "cells_above_1e_8": 0,
+          "nonfinite_cells": 0,
+          "worst_cell": {
+            "level": 1,
+            "grid_id": 28,
+            "position_m": [
+              -0.01994296875,
+              -0.03145234375,
+              0.00684609375
+            ],
+            "volume_fraction": 1.0,
+            "signed_sum_minus_one": -6.661338147750939e-16
+          }
+        },
+        "fluid_covered_by_finer": {
+          "maximum_absolute_error": 6.661338147750939e-16,
+          "cells_above_1e_8": 0,
+          "nonfinite_cells": 0,
+          "worst_cell": {
+            "level": 0,
+            "grid_id": 0,
+            "position_m": [
+              -0.029964062500000003,
+              -0.014485937500000002,
+              0.0128984375
+            ],
+            "volume_fraction": 0.9443184016626921,
+            "signed_sum_minus_one": 6.661338147750939e-16
+          }
+        },
+        "solid": {
+          "maximum_absolute_error": 0.0,
+          "cells_above_1e_8": 0,
+          "nonfinite_cells": 0,
+          "worst_cell": null
+        }
+      },
+      "heat_release_available": true
+    },
+    {
+      "time_s": 5.9500000000000525e-05,
+      "mass_kg": 0.0005594386758063067,
+      "total_energy_J": -109.91844020145116,
+      "methane_kg": 2.547982491014164e-09,
+      "oxygen_kg": 0.00011843931988767848,
+      "min_species": -4.3833564431173324e-16,
+      "species_sum_error": 6.661338147750939e-16,
+      "negative_inventory_kg": 3.614150941306356e-25,
+      "finite": true,
+      "pressure_Pa": [
+        209646.5246661636,
+        13322696.894278089
+      ],
+      "temperature_K": [
+        277.5135350967982,
+        3797.373399478242
+      ],
+      "fluid_volume_m3": 8.522261861934361e-05,
+      "max_speed_mps": 1824.439583810448,
+      "finest_level": 1,
+      "leaf_fluid_cells": 11284544,
+      "blocks": 543,
+      "closure_by_region": {
+        "fluid_leaf": {
+          "maximum_absolute_error": 6.661338147750939e-16,
+          "cells_above_1e_8": 0,
+          "nonfinite_cells": 0,
+          "worst_cell": {
+            "level": 1,
+            "grid_id": 28,
+            "position_m": [
+              -0.02053828125,
+              -0.03046015625,
+              0.00783828125
+            ],
+            "volume_fraction": 1.0,
+            "signed_sum_minus_one": 6.661338147750939e-16
+          }
+        },
+        "fluid_covered_by_finer": {
+          "maximum_absolute_error": 6.661338147750939e-16,
+          "cells_above_1e_8": 0,
+          "nonfinite_cells": 0,
+          "worst_cell": {
+            "level": 0,
+            "grid_id": 2,
+            "position_m": [
+              0.025995312500000003,
+              -0.0236140625,
+              0.0053578125
+            ],
+            "volume_fraction": 1.0,
+            "signed_sum_minus_one": 6.661338147750939e-16
+          }
+        },
+        "solid": {
+          "maximum_absolute_error": 0.0,
+          "cells_above_1e_8": 0,
+          "nonfinite_cells": 0,
+          "worst_cell": null
+        }
+      },
+      "heat_release_available": true
+    },
+    {
+      "time_s": 6e-05,
+      "mass_kg": 0.0005591966605942246,
+      "total_energy_J": -109.9247233980451,
+      "methane_kg": 2.500792054123979e-09,
+      "oxygen_kg": 0.00011836578771223724,
+      "min_species": -6.197181686096085e-15,
+      "species_sum_error": 6.661338147750939e-16,
+      "negative_inventory_kg": 3.9298155468967e-23,
+      "finite": true,
+      "pressure_Pa": [
+        210362.48911312688,
+        13060846.592107818
+      ],
+      "temperature_K": [
+        277.35898505410194,
+        3794.716693845773
+      ],
+      "fluid_volume_m3": 8.522261861934339e-05,
+      "max_speed_mps": 1826.2332020945564,
+      "finest_level": 1,
+      "leaf_fluid_cells": 11284992,
+      "blocks": 559,
+      "closure_by_region": {
+        "fluid_leaf": {
+          "maximum_absolute_error": 6.661338147750939e-16,
+          "cells_above_1e_8": 0,
+          "nonfinite_cells": 0,
+          "worst_cell": {
+            "level": 1,
+            "grid_id": 31,
+            "position_m": [
+              0.025102343750000002,
+              -0.028674218749999997,
+              0.00605234375
+            ],
+            "volume_fraction": 0.4344615398864299,
+            "signed_sum_minus_one": 6.661338147750939e-16
+          }
+        },
+        "fluid_covered_by_finer": {
+          "maximum_absolute_error": 6.661338147750939e-16,
+          "cells_above_1e_8": 0,
+          "nonfinite_cells": 0,
+          "worst_cell": {
+            "level": 0,
+            "grid_id": 0,
+            "position_m": [
+              -0.0224234375,
+              -0.0263921875,
+              0.0125015625
+            ],
+            "volume_fraction": 1.0,
+            "signed_sum_minus_one": 6.661338147750939e-16
+          }
+        },
+        "solid": {
+          "maximum_absolute_error": 0.0,
+          "cells_above_1e_8": 0,
+          "nonfinite_cells": 0,
+          "worst_cell": null
+        }
+      },
+      "heat_release_available": true
+    },
+    {
+      "time_s": 6.50000000000008e-05,
+      "mass_kg": 0.0005566559628832779,
+      "total_energy_J": -109.98618133472851,
+      "methane_kg": 1.8697685429279166e-09,
+      "oxygen_kg": 0.0001176112013092077,
+      "min_species": -5.895225493100813e-16,
+      "species_sum_error": 6.661338147750939e-16,
+      "negative_inventory_kg": 1.920930399572513e-24,
+      "finite": true,
+      "pressure_Pa": [
+        217414.85764223442,
+        10641332.060096709
+      ],
+      "temperature_K": [
+        275.7491149877882,
+        3770.402610838289
+      ],
+      "fluid_volume_m3": 8.522261861934346e-05,
+      "max_speed_mps": 1774.5298426793613,
+      "finest_level": 1,
+      "leaf_fluid_cells": 11309184,
+      "blocks": 545,
+      "closure_by_region": {
+        "fluid_leaf": {
+          "maximum_absolute_error": 6.661338147750939e-16,
+          "cells_above_1e_8": 0,
+          "nonfinite_cells": 0,
+          "worst_cell": {
+            "level": 1,
+            "grid_id": 29,
+            "position_m": [
+              -0.00565546875,
+              -0.03621484375,
+              0.004861718750000001
+            ],
+            "volume_fraction": 1.0,
+            "signed_sum_minus_one": 6.661338147750939e-16
+          }
+        },
+        "fluid_covered_by_finer": {
+          "maximum_absolute_error": 6.661338147750939e-16,
+          "cells_above_1e_8": 0,
+          "nonfinite_cells": 0,
+          "worst_cell": {
+            "level": 0,
+            "grid_id": 0,
+            "position_m": [
+              -0.0323453125,
+              -0.014485937500000002,
+              0.0057546875
+            ],
+            "volume_fraction": 1.0,
+            "signed_sum_minus_one": -6.661338147750939e-16
+          }
+        },
+        "solid": {
+          "maximum_absolute_error": 0.0,
+          "cells_above_1e_8": 0,
+          "nonfinite_cells": 0,
+          "worst_cell": null
+        }
+      },
+      "heat_release_available": true
+    },
+    {
+      "time_s": 7.000000000000159e-05,
+      "mass_kg": 0.0005538996379070525,
+      "total_energy_J": -110.0535162408691,
+      "methane_kg": 1.5949147158502402e-09,
+      "oxygen_kg": 0.00011684120867796402,
+      "min_species": -6.676325965364037e-11,
+      "species_sum_error": 6.661338147750939e-16,
+      "negative_inventory_kg": 1.1365431856296999e-20,
+      "finite": true,
+      "pressure_Pa": [
+        224258.77385122376,
+        8846851.172548186
+      ],
+      "temperature_K": [
+        274.35075696191075,
+        3751.8025428468795
+      ],
+      "fluid_volume_m3": 8.522261861934347e-05,
+      "max_speed_mps": 1787.610007252703,
+      "finest_level": 1,
+      "leaf_fluid_cells": 11373696,
+      "blocks": 528,
+      "closure_by_region": {
+        "fluid_leaf": {
+          "maximum_absolute_error": 6.661338147750939e-16,
+          "cells_above_1e_8": 0,
+          "nonfinite_cells": 0,
+          "worst_cell": {
+            "level": 1,
+            "grid_id": 28,
+            "position_m": [
+              -0.02014140625,
+              -0.03006328125,
+              0.00883046875
+            ],
+            "volume_fraction": 1.0,
+            "signed_sum_minus_one": 6.661338147750939e-16
+          }
+        },
+        "fluid_covered_by_finer": {
+          "maximum_absolute_error": 6.661338147750939e-16,
+          "cells_above_1e_8": 0,
+          "nonfinite_cells": 0,
+          "worst_cell": {
+            "level": 0,
+            "grid_id": 0,
+            "position_m": [
+              -0.017264062500000003,
+              -0.0323453125,
+              0.0085328125
+            ],
+            "volume_fraction": 1.0,
+            "signed_sum_minus_one": 6.661338147750939e-16
+          }
+        },
+        "solid": {
+          "maximum_absolute_error": 0.0,
+          "cells_above_1e_8": 0,
+          "nonfinite_cells": 0,
+          "worst_cell": null
+        }
+      },
+      "heat_release_available": true
+    },
+    {
+      "time_s": 7.500000000000239e-05,
+      "mass_kg": 0.0005509259425779737,
+      "total_energy_J": -110.12333974810434,
+      "methane_kg": 1.4280181358876697e-09,
+      "oxygen_kg": 0.00011603745639010709,
+      "min_species": -3.490620782645555e-16,
+      "species_sum_error": 6.661338147750939e-16,
+      "negative_inventory_kg": 5.389572940843093e-24,
+      "finite": true,
+      "pressure_Pa": [
+        230920.26576199254,
+        7314800.05543792
+      ],
+      "temperature_K": [
+        272.9689212395959,
+        3731.5440504791377
+      ],
+      "fluid_volume_m3": 8.522261861934336e-05,
+      "max_speed_mps": 1778.081602778459,
+      "finest_level": 1,
+      "leaf_fluid_cells": 11328000,
+      "blocks": 572,
+      "closure_by_region": {
+        "fluid_leaf": {
+          "maximum_absolute_error": 6.661338147750939e-16,
+          "cells_above_1e_8": 0,
+          "nonfinite_cells": 0,
+          "worst_cell": {
+            "level": 0,
+            "grid_id": 7,
+            "position_m": [
+              -0.008929687500000002,
+              0.0347265625,
+              0.0192484375
+            ],
+            "volume_fraction": 1.0,
+            "signed_sum_minus_one": 6.661338147750939e-16
+          }
+        },
+        "fluid_covered_by_finer": {
+          "maximum_absolute_error": 6.661338147750939e-16,
+          "cells_above_1e_8": 0,
+          "nonfinite_cells": 0,
+          "worst_cell": {
+            "level": 0,
+            "grid_id": 1,
+            "position_m": [
+              0.0001984374999999994,
+              -0.0367109375,
+              0.0057546875
+            ],
+            "volume_fraction": 1.0,
+            "signed_sum_minus_one": 6.661338147750939e-16
+          }
+        },
+        "solid": {
+          "maximum_absolute_error": 0.0,
+          "cells_above_1e_8": 0,
+          "nonfinite_cells": 0,
+          "worst_cell": null
+        }
+      },
+      "heat_release_available": true
+    },
+    {
+      "time_s": 8.000000000000319e-05,
+      "mass_kg": 0.0005466473001047916,
+      "total_energy_J": -110.69535124224261,
+      "methane_kg": 1.3458200924640627e-09,
+      "oxygen_kg": 0.00011494927612273869,
+      "min_species": -5.57995577641886e-16,
+      "species_sum_error": 6.661338147750939e-16,
+      "negative_inventory_kg": 5.8389526300394115e-25,
+      "finite": true,
+      "pressure_Pa": [
+        237406.3381798881,
+        5997382.797563229
+      ],
+      "temperature_K": [
+        271.69565900526123,
+        3710.5453027461363
+      ],
+      "fluid_volume_m3": 8.522261861934357e-05,
+      "max_speed_mps": 1792.3258577575093,
+      "finest_level": 1,
+      "leaf_fluid_cells": 11281408,
+      "blocks": 578,
+      "closure_by_region": {
+        "fluid_leaf": {
+          "maximum_absolute_error": 6.661338147750939e-16,
+          "cells_above_1e_8": 0,
+          "nonfinite_cells": 0,
+          "worst_cell": {
+            "level": 0,
+            "grid_id": 7,
+            "position_m": [
+              -0.010120312499999999,
+              0.0347265625,
+              0.014089062500000001
+            ],
+            "volume_fraction": 1.0,
+            "signed_sum_minus_one": 6.661338147750939e-16
+          }
+        },
+        "fluid_covered_by_finer": {
+          "maximum_absolute_error": 6.661338147750939e-16,
+          "cells_above_1e_8": 0,
+          "nonfinite_cells": 0,
+          "worst_cell": {
+            "level": 0,
+            "grid_id": 0,
+            "position_m": [
+              -0.022820312500000002,
+              -0.0303609375,
+              0.007342187500000001
+            ],
+            "volume_fraction": 0.8328330925710701,
+            "signed_sum_minus_one": 6.661338147750939e-16
+          }
+        },
+        "solid": {
+          "maximum_absolute_error": 0.0,
+          "cells_above_1e_8": 0,
+          "nonfinite_cells": 0,
+          "worst_cell": null
+        }
+      },
+      "heat_release_available": true
+    },
+    {
+      "time_s": 8.500000000000399e-05,
+      "mass_kg": 0.0005295922268988034,
+      "total_energy_J": -118.33220241288637,
+      "methane_kg": 1.2953011360536013e-09,
+      "oxygen_kg": 0.00011089427350702531,
+      "min_species": -3.0807211919296575e-13,
+      "species_sum_error": 6.661338147750939e-16,
+      "negative_inventory_kg": 3.975419139021827e-23,
+      "finite": true,
+      "pressure_Pa": [
+        243729.72327468183,
+        4925674.987131605
+      ],
+      "temperature_K": [
+        271.14674784269647,
+        3690.718660642484
+      ],
+      "fluid_volume_m3": 8.522261861934361e-05,
+      "max_speed_mps": 1787.3910531956224,
+      "finest_level": 1,
+      "leaf_fluid_cells": 11306496,
+      "blocks": 643,
+      "closure_by_region": {
+        "fluid_leaf": {
+          "maximum_absolute_error": 6.661338147750939e-16,
+          "cells_above_1e_8": 0,
+          "nonfinite_cells": 0,
+          "worst_cell": {
+            "level": 1,
+            "grid_id": 30,
+            "position_m": [
+              0.00029765625,
+              -0.03661171875,
+              0.00644921875
+            ],
+            "volume_fraction": 1.0,
+            "signed_sum_minus_one": 6.661338147750939e-16
+          }
+        },
+        "fluid_covered_by_finer": {
+          "maximum_absolute_error": 6.661338147750939e-16,
+          "cells_above_1e_8": 0,
+          "nonfinite_cells": 0,
+          "worst_cell": {
+            "level": 0,
+            "grid_id": 0,
+            "position_m": [
+              -0.0311546875,
+              -0.0204390625,
+              0.013295312500000002
+            ],
+            "volume_fraction": 1.0,
+            "signed_sum_minus_one": 6.661338147750939e-16
+          }
+        },
+        "solid": {
+          "maximum_absolute_error": 0.0,
+          "cells_above_1e_8": 0,
+          "nonfinite_cells": 0,
+          "worst_cell": null
+        }
+      },
+      "heat_release_available": true
+    },
+    {
+      "time_s": 9.000000000000479e-05,
+      "mass_kg": 0.0005036823442843221,
+      "total_energy_J": -130.5249737852464,
+      "methane_kg": 1.2541880516637861e-09,
+      "oxygen_kg": 0.00010478369115341011,
+      "min_species": -7.053607380122189e-14,
+      "species_sum_error": 6.661338147750939e-16,
+      "negative_inventory_kg": 1.4708988608341977e-24,
+      "finite": true,
+      "pressure_Pa": [
+        249901.38928960927,
+        4291406.128306599
+      ],
+      "temperature_K": [
+        279.83017944361313,
+        3672.4837238631594
+      ],
+      "fluid_volume_m3": 8.522261861934335e-05,
+      "max_speed_mps": 1778.2401097785746,
+      "finest_level": 1,
+      "leaf_fluid_cells": 11328000,
+      "blocks": 521,
+      "closure_by_region": {
+        "fluid_leaf": {
+          "maximum_absolute_error": 6.661338147750939e-16,
+          "cells_above_1e_8": 0,
+          "nonfinite_cells": 0,
+          "worst_cell": {
+            "level": 1,
+            "grid_id": 28,
+            "position_m": [
+              -0.02391171875,
+              -0.029269531249999998,
+              0.00605234375
+            ],
+            "volume_fraction": 1.0,
+            "signed_sum_minus_one": 6.661338147750939e-16
+          }
+        },
+        "fluid_covered_by_finer": {
+          "maximum_absolute_error": 6.661338147750939e-16,
+          "cells_above_1e_8": 0,
+          "nonfinite_cells": 0,
+          "worst_cell": {
+            "level": 0,
+            "grid_id": 0,
+            "position_m": [
+              -0.035520312500000005,
+              -0.013295312500000002,
+              0.021232812500000003
+            ],
+            "volume_fraction": 0.9340713760491528,
+            "signed_sum_minus_one": 6.661338147750939e-16
+          }
+        },
+        "solid": {
+          "maximum_absolute_error": 0.0,
+          "cells_above_1e_8": 0,
+          "nonfinite_cells": 0,
+          "worst_cell": null
+        }
+      },
+      "heat_release_available": true
+    },
+    {
+      "time_s": 9.500000000000559e-05,
+      "mass_kg": 0.00047086139787906974,
+      "total_energy_J": -146.89203871346973,
+      "methane_kg": 4.2628075531410295e-09,
+      "oxygen_kg": 9.707169482523476e-05,
+      "min_species": -1.1098262415904744e-14,
+      "species_sum_error": 6.661338147750939e-16,
+      "negative_inventory_kg": 5.050317632012697e-25,
+      "finite": true,
+      "pressure_Pa": [
+        489180.08134137135,
+        3905410.7523714113
+      ],
+      "temperature_K": [
+        385.19767727754237,
+        3655.0431815736238
+      ],
+      "fluid_volume_m3": 8.52226186193436e-05,
+      "max_speed_mps": 1677.9723761709622,
+      "finest_level": 1,
+      "leaf_fluid_cells": 11282304,
+      "blocks": 598,
+      "closure_by_region": {
+        "fluid_leaf": {
+          "maximum_absolute_error": 6.661338147750939e-16,
+          "cells_above_1e_8": 0,
+          "nonfinite_cells": 0,
+          "worst_cell": {
+            "level": 1,
+            "grid_id": 29,
+            "position_m": [
+              -0.000694531249999999,
+              -0.037405468750000004,
+              0.00545703125
+            ],
+            "volume_fraction": 1.0,
+            "signed_sum_minus_one": 6.661338147750939e-16
+          }
+        },
+        "fluid_covered_by_finer": {
+          "maximum_absolute_error": 6.661338147750939e-16,
+          "cells_above_1e_8": 0,
+          "nonfinite_cells": 0,
+          "worst_cell": {
+            "level": 0,
+            "grid_id": 0,
+            "position_m": [
+              -0.0279796875,
+              -0.024804687500000002,
+              0.0204390625
+            ],
+            "volume_fraction": 1.0,
+            "signed_sum_minus_one": 6.661338147750939e-16
+          }
+        },
+        "solid": {
+          "maximum_absolute_error": 0.0,
+          "cells_above_1e_8": 0,
+          "nonfinite_cells": 0,
+          "worst_cell": null
+        }
+      },
+      "heat_release_available": true
+    },
+    {
+      "time_s": 0.00010000000000000639,
+      "mass_kg": 0.00042726785211577687,
+      "total_energy_J": -173.62771315728858,
+      "methane_kg": 5.4835187481195054e-08,
+      "oxygen_kg": 8.684348571028423e-05,
+      "min_species": -5.547011950749924e-14,
+      "species_sum_error": 6.661338147750939e-16,
+      "negative_inventory_kg": 8.31739417814815e-25,
+      "finite": true,
+      "pressure_Pa": [
+        980628.5463251871,
+        3235090.4068842344
+      ],
+      "temperature_K": [
+        327.2390845451585,
+        3639.1522991320944
+      ],
+      "fluid_volume_m3": 8.522261861934326e-05,
+      "max_speed_mps": 1338.1058810655868,
+      "finest_level": 1,
+      "leaf_fluid_cells": 11275584,
+      "blocks": 508,
+      "closure_by_region": {
+        "fluid_leaf": {
+          "maximum_absolute_error": 6.661338147750939e-16,
+          "cells_above_1e_8": 0,
+          "nonfinite_cells": 0,
+          "worst_cell": {
+            "level": 0,
+            "grid_id": 2,
+            "position_m": [
+              0.0323453125,
+              -0.0156765625,
+              0.0204390625
+            ],
+            "volume_fraction": 1.0,
+            "signed_sum_minus_one": 6.661338147750939e-16
+          }
+        },
+        "fluid_covered_by_finer": {
+          "maximum_absolute_error": 6.661338147750939e-16,
+          "cells_above_1e_8": 0,
+          "nonfinite_cells": 0,
+          "worst_cell": {
+            "level": 0,
+            "grid_id": 0,
+            "position_m": [
+              -0.0311546875,
+              -0.0212328125,
+              0.016867187500000002
+            ],
+            "volume_fraction": 1.0,
+            "signed_sum_minus_one": 6.661338147750939e-16
+          }
+        },
+        "solid": {
+          "maximum_absolute_error": 0.0,
+          "cells_above_1e_8": 0,
+          "nonfinite_cells": 0,
+          "worst_cell": null
+        }
+      },
+      "heat_release_available": true
+    },
+    {
+      "time_s": 0.00010500000000000719,
+      "mass_kg": 0.0003855341979267565,
+      "total_energy_J": -196.40351831164327,
+      "methane_kg": 1.5738146022187274e-07,
+      "oxygen_kg": 7.709039575348075e-05,
+      "min_species": -7.359458037478014e-14,
+      "species_sum_error": 6.661338147750939e-16,
+      "negative_inventory_kg": 1.1805618292296137e-24,
+      "finite": true,
+      "pressure_Pa": [
+        916112.740698679,
+        2865975.8051516414
+      ],
+      "temperature_K": [
+        289.11698999765696,
+        3623.0489078737896
+      ],
+      "fluid_volume_m3": 8.522261861934319e-05,
+      "max_speed_mps": 1114.6916986089382,
+      "finest_level": 1,
+      "leaf_fluid_cells": 11291264,
+      "blocks": 514,
+      "closure_by_region": {
+        "fluid_leaf": {
+          "maximum_absolute_error": 6.661338147750939e-16,
+          "cells_above_1e_8": 0,
+          "nonfinite_cells": 0,
+          "worst_cell": {
+            "level": 0,
+            "grid_id": 3,
+            "position_m": [
+              -0.0335359375,
+              0.0105171875,
+              0.0148828125
+            ],
+            "volume_fraction": 1.0,
+            "signed_sum_minus_one": 6.661338147750939e-16
+          }
+        },
+        "fluid_covered_by_finer": {
+          "maximum_absolute_error": 6.661338147750939e-16,
+          "cells_above_1e_8": 0,
+          "nonfinite_cells": 0,
+          "worst_cell": {
+            "level": 0,
+            "grid_id": 0,
+            "position_m": [
+              -0.0303609375,
+              -0.020835937500000005,
+              0.00019843750000000002
+            ],
+            "volume_fraction": 1.0,
+            "signed_sum_minus_one": -6.661338147750939e-16
+          }
+        },
+        "solid": {
+          "maximum_absolute_error": 0.0,
+          "cells_above_1e_8": 0,
+          "nonfinite_cells": 0,
+          "worst_cell": null
+        }
+      },
+      "heat_release_available": true
+    },
+    {
+      "time_s": 0.00011000000000000799,
+      "mass_kg": 0.0003464366016816802,
+      "total_energy_J": -215.8484810790133,
+      "methane_kg": 2.7818226952131335e-07,
+      "oxygen_kg": 6.812908456316619e-05,
+      "min_species": -1.7382345359846718e-13,
+      "species_sum_error": 6.661338147750939e-16,
+      "negative_inventory_kg": 2.05248694742044e-24,
+      "finite": true,
+      "pressure_Pa": [
+        901389.8443940076,
+        2567341.8183907755
+      ],
+      "temperature_K": [
+        286.4839624453043,
+        3655.059712329948
+      ],
+      "fluid_volume_m3": 8.522261861934324e-05,
+      "max_speed_mps": 1002.3410830837583,
+      "finest_level": 1,
+      "leaf_fluid_cells": 11184640,
+      "blocks": 503,
+      "closure_by_region": {
+        "fluid_leaf": {
+          "maximum_absolute_error": 6.661338147750939e-16,
+          "cells_above_1e_8": 0,
+          "nonfinite_cells": 0,
+          "worst_cell": {
+            "level": 0,
+            "grid_id": 7,
+            "position_m": [
+              -0.001785937500000001,
+              0.035520312500000005,
+              0.0125015625
+            ],
+            "volume_fraction": 1.0,
+            "signed_sum_minus_one": 6.661338147750939e-16
+          }
+        },
+        "fluid_covered_by_finer": {
+          "maximum_absolute_error": 6.661338147750939e-16,
+          "cells_above_1e_8": 0,
+          "nonfinite_cells": 0,
+          "worst_cell": {
+            "level": 0,
+            "grid_id": 0,
+            "position_m": [
+              -0.0279796875,
+              -0.0244078125,
+              0.0009921875
+            ],
+            "volume_fraction": 1.0,
+            "signed_sum_minus_one": 6.661338147750939e-16
+          }
+        },
+        "solid": {
+          "maximum_absolute_error": 0.0,
+          "cells_above_1e_8": 0,
+          "nonfinite_cells": 0,
+          "worst_cell": null
+        }
+      },
+      "heat_release_available": true
+    },
+    {
+      "time_s": 0.00011500000000000879,
+      "mass_kg": 0.00031046757484128436,
+      "total_energy_J": -232.22664127098318,
+      "methane_kg": 4.09896175032656e-07,
+      "oxygen_kg": 5.998173334916563e-05,
+      "min_species": -1.215066674238712e-13,
+      "species_sum_error": 6.661338147750939e-16,
+      "negative_inventory_kg": 1.3050754684400546e-24,
+      "finite": true,
+      "pressure_Pa": [
+        855635.1513208593,
+        2672865.295257127
+      ],
+      "temperature_K": [
+        281.39702926481874,
+        3656.672774573028
+      ],
+      "fluid_volume_m3": 8.522261861934317e-05,
+      "max_speed_mps": 972.2456424594176,
+      "finest_level": 1,
+      "leaf_fluid_cells": 11295744,
+      "blocks": 511,
+      "closure_by_region": {
+        "fluid_leaf": {
+          "maximum_absolute_error": 6.661338147750939e-16,
+          "cells_above_1e_8": 0,
+          "nonfinite_cells": 0,
+          "worst_cell": {
+            "level": 1,
+            "grid_id": 28,
+            "position_m": [
+              -0.019149218750000002,
+              -0.03145234375,
+              0.00049609375
+            ],
+            "volume_fraction": 1.0,
+            "signed_sum_minus_one": 6.661338147750939e-16
+          }
+        },
+        "fluid_covered_by_finer": {
+          "maximum_absolute_error": 6.661338147750939e-16,
+          "cells_above_1e_8": 0,
+          "nonfinite_cells": 0,
+          "worst_cell": {
+            "level": 0,
+            "grid_id": 0,
+            "position_m": [
+              -0.034329687500000004,
+              -0.0156765625,
+              0.0121046875
+            ],
+            "volume_fraction": 1.0,
+            "signed_sum_minus_one": 6.661338147750939e-16
+          }
+        },
+        "solid": {
+          "maximum_absolute_error": 0.0,
+          "cells_above_1e_8": 0,
+          "nonfinite_cells": 0,
+          "worst_cell": null
+        }
+      },
+      "heat_release_available": true
+    },
+    {
+      "time_s": 0.00012000000000000958,
+      "mass_kg": 0.00027772572982871156,
+      "total_energy_J": -245.64635262094023,
+      "methane_kg": 5.527029397888503e-07,
+      "oxygen_kg": 5.264467533022895e-05,
+      "min_species": -1.0135852574217537e-15,
+      "species_sum_error": 6.661338147750939e-16,
+      "negative_inventory_kg": 1.191599612656679e-27,
+      "finite": true,
+      "pressure_Pa": [
+        807210.2935087238,
+        2368459.7274783794
+      ],
+      "temperature_K": [
+        276.24302751341725,
+        3602.298898674675
+      ],
+      "fluid_volume_m3": 8.52226186193432e-05,
+      "max_speed_mps": 1012.4737901139408,
+      "finest_level": 1,
+      "leaf_fluid_cells": 11295744,
+      "blocks": 505,
+      "closure_by_region": {
+        "fluid_leaf": {
+          "maximum_absolute_error": 6.661338147750939e-16,
+          "cells_above_1e_8": 0,
+          "nonfinite_cells": 0,
+          "worst_cell": {
+            "level": 0,
+            "grid_id": 5,
+            "position_m": [
+              0.033932812500000006,
+              -0.0109140625,
+              0.020042187500000003
+            ],
+            "volume_fraction": 1.0,
+            "signed_sum_minus_one": 6.661338147750939e-16
+          }
+        },
+        "fluid_covered_by_finer": {
+          "maximum_absolute_error": 6.661338147750939e-16,
+          "cells_above_1e_8": 0,
+          "nonfinite_cells": 0,
+          "worst_cell": {
+            "level": 0,
+            "grid_id": 0,
+            "position_m": [
+              -0.0323453125,
+              -0.0156765625,
+              0.0009921875
+            ],
+            "volume_fraction": 1.0,
+            "signed_sum_minus_one": -6.661338147750939e-16
+          }
+        },
+        "solid": {
+          "maximum_absolute_error": 0.0,
+          "cells_above_1e_8": 0,
+          "nonfinite_cells": 0,
+          "worst_cell": null
+        }
+      },
+      "heat_release_available": true
+    },
+    {
+      "time_s": 0.0001250000000000084,
+      "mass_kg": 0.0002479016170265482,
+      "total_energy_J": -256.75729976178053,
+      "methane_kg": 7.098944344982001e-07,
+      "oxygen_kg": 4.6046368904792015e-05,
+      "min_species": -7.363758001402891e-14,
+      "species_sum_error": 7.771561172376096e-16,
+      "negative_inventory_kg": 1.806943876953575e-24,
+      "finite": true,
+      "pressure_Pa": [
+        745761.3769180882,
+        2088314.1981664484
+      ],
+      "temperature_K": [
+        271.294959097245,
+        3572.425283119492
+      ],
+      "fluid_volume_m3": 8.522261861934332e-05,
+      "max_speed_mps": 1155.3774313311485,
+      "finest_level": 1,
+      "leaf_fluid_cells": 11177472,
+      "blocks": 495,
+      "closure_by_region": {
+        "fluid_leaf": {
+          "maximum_absolute_error": 7.771561172376096e-16,
+          "cells_above_1e_8": 0,
+          "nonfinite_cells": 0,
+          "worst_cell": {
+            "level": 1,
+            "grid_id": 30,
+            "position_m": [
+              0.00406796875,
+              -0.03561953125,
+              0.00069453125
+            ],
+            "volume_fraction": 1.0,
+            "signed_sum_minus_one": -7.771561172376096e-16
+          }
+        },
+        "fluid_covered_by_finer": {
+          "maximum_absolute_error": 6.661338147750939e-16,
+          "cells_above_1e_8": 0,
+          "nonfinite_cells": 0,
+          "worst_cell": {
+            "level": 0,
+            "grid_id": 0,
+            "position_m": [
+              -0.0319484375,
+              -0.0180578125,
+              0.015279687500000002
+            ],
+            "volume_fraction": 1.0,
+            "signed_sum_minus_one": 6.661338147750939e-16
+          }
+        },
+        "solid": {
+          "maximum_absolute_error": 0.0,
+          "cells_above_1e_8": 0,
+          "nonfinite_cells": 0,
+          "worst_cell": null
+        }
+      },
+      "heat_release_available": true
+    },
+    {
+      "time_s": 0.00013000000000000582,
+      "mass_kg": 0.00022188029009403225,
+      "total_energy_J": -265.14339381546597,
+      "methane_kg": 8.858176584730748e-07,
+      "oxygen_kg": 4.043871308764662e-05,
+      "min_species": -3.4038783575123294e-15,
+      "species_sum_error": 7.771561172376096e-16,
+      "negative_inventory_kg": 4.207054054259202e-25,
+      "finite": true,
+      "pressure_Pa": [
+        684372.9549918754,
+        1834360.4170611673
+      ],
+      "temperature_K": [
+        265.33828410613006,
+        3539.301375057516
+      ],
+      "fluid_volume_m3": 8.52226186193433e-05,
+      "max_speed_mps": 1149.1155447294093,
+      "finest_level": 1,
+      "leaf_fluid_cells": 11310080,
+      "blocks": 501,
+      "closure_by_region": {
+        "fluid_leaf": {
+          "maximum_absolute_error": 7.771561172376096e-16,
+          "cells_above_1e_8": 0,
+          "nonfinite_cells": 0,
+          "worst_cell": {
+            "level": 1,
+            "grid_id": 33,
+            "position_m": [
+              -0.02788046875,
+              -0.02430859375,
+              0.00089296875
+            ],
+            "volume_fraction": 1.0,
+            "signed_sum_minus_one": -7.771561172376096e-16
+          }
+        },
+        "fluid_covered_by_finer": {
+          "maximum_absolute_error": 6.661338147750939e-16,
+          "cells_above_1e_8": 0,
+          "nonfinite_cells": 0,
+          "worst_cell": {
+            "level": 0,
+            "grid_id": 0,
+            "position_m": [
+              -0.016073437500000003,
+              -0.032742187500000006,
+              0.0057546875
+            ],
+            "volume_fraction": 1.0,
+            "signed_sum_minus_one": 6.661338147750939e-16
+          }
+        },
+        "solid": {
+          "maximum_absolute_error": 0.0,
+          "cells_above_1e_8": 0,
+          "nonfinite_cells": 0,
+          "worst_cell": null
+        }
+      },
+      "heat_release_available": true
+    },
+    {
+      "time_s": 0.00013500000000000323,
+      "mass_kg": 0.000202028614503628,
+      "total_energy_J": -269.50357664962536,
+      "methane_kg": 1.0819480556298733e-06,
+      "oxygen_kg": 3.6348325910796064e-05,
+      "min_species": -8.912217008016109e-16,
+      "species_sum_error": 7.771561172376096e-16,
+      "negative_inventory_kg": 8.901867705656927e-27,
+      "finite": true,
+      "pressure_Pa": [
+        645649.0517067286,
+        1640739.1293364821
+      ],
+      "temperature_K": [
+        261.57125938768144,
+        3504.016442786993
+      ],
+      "fluid_volume_m3": 8.522261861934326e-05,
+      "max_speed_mps": 1071.6085992240075,
+      "finest_level": 1,
+      "leaf_fluid_cells": 11310080,
+      "blocks": 490,
+      "closure_by_region": {
+        "fluid_leaf": {
+          "maximum_absolute_error": 7.771561172376096e-16,
+          "cells_above_1e_8": 0,
+          "nonfinite_cells": 0,
+          "worst_cell": {
+            "level": 1,
+            "grid_id": 33,
+            "position_m": [
+              -0.02589609375,
+              -0.02470546875,
+              0.00089296875
+            ],
+            "volume_fraction": 1.0,
+            "signed_sum_minus_one": -7.771561172376096e-16
+          }
+        },
+        "fluid_covered_by_finer": {
+          "maximum_absolute_error": 6.661338147750939e-16,
+          "cells_above_1e_8": 0,
+          "nonfinite_cells": 0,
+          "worst_cell": {
+            "level": 0,
+            "grid_id": 0,
+            "position_m": [
+              -0.029567187500000005,
+              -0.0212328125,
+              0.0025796875000000004
+            ],
+            "volume_fraction": 1.0,
+            "signed_sum_minus_one": 6.661338147750939e-16
+          }
+        },
+        "solid": {
+          "maximum_absolute_error": 0.0,
+          "cells_above_1e_8": 0,
+          "nonfinite_cells": 0,
+          "worst_cell": null
+        }
+      },
+      "heat_release_available": true
+    },
+    {
+      "time_s": 0.00014000000000000064,
+      "mass_kg": 0.00018626053590121527,
+      "total_energy_J": -271.5129313104576,
+      "methane_kg": 1.2921384963339419e-06,
+      "oxygen_kg": 3.326461531703771e-05,
+      "min_species": -6.067e-320,
+      "species_sum_error": 7.771561172376096e-16,
+      "negative_inventory_kg": 0.0,
+      "finite": true,
+      "pressure_Pa": [
+        603276.9524616839,
+        1509056.396253538
+      ],
+      "temperature_K": [
+        256.85854389178166,
+        3468.900012307156
+      ],
+      "fluid_volume_m3": 8.522261861934322e-05,
+      "max_speed_mps": 1001.3965066020324,
+      "finest_level": 1,
+      "leaf_fluid_cells": 11310080,
+      "blocks": 497,
+      "closure_by_region": {
+        "fluid_leaf": {
+          "maximum_absolute_error": 7.771561172376096e-16,
+          "cells_above_1e_8": 0,
+          "nonfinite_cells": 0,
+          "worst_cell": {
+            "level": 1,
+            "grid_id": 29,
+            "position_m": [
+              -0.01021953125,
+              -0.03502421875,
+              0.00307578125
+            ],
+            "volume_fraction": 1.0,
+            "signed_sum_minus_one": -7.771561172376096e-16
+          }
+        },
+        "fluid_covered_by_finer": {
+          "maximum_absolute_error": 6.661338147750939e-16,
+          "cells_above_1e_8": 0,
+          "nonfinite_cells": 0,
+          "worst_cell": {
+            "level": 0,
+            "grid_id": 0,
+            "position_m": [
+              -0.0204390625,
+              -0.029964062500000003,
+              0.0021828125000000003
+            ],
+            "volume_fraction": 1.0,
+            "signed_sum_minus_one": 6.661338147750939e-16
+          }
+        },
+        "solid": {
+          "maximum_absolute_error": 0.0,
+          "cells_above_1e_8": 0,
+          "nonfinite_cells": 0,
+          "worst_cell": null
+        }
+      },
+      "heat_release_available": true
+    },
+    {
+      "time_s": 0.00014501999999999804,
+      "mass_kg": 0.00017300154964284043,
+      "total_energy_J": -272.19726999670735,
+      "methane_kg": 1.5007933940366707e-06,
+      "oxygen_kg": 3.080801680581796e-05,
+      "min_species": -6.357e-320,
+      "species_sum_error": 8.881784197001252e-16,
+      "negative_inventory_kg": 0.0,
+      "finite": true,
+      "pressure_Pa": [
+        570932.3006797364,
+        1412156.262214725
+      ],
+      "temperature_K": [
+        253.82261635046797,
+        3436.7532914378976
+      ],
+      "fluid_volume_m3": 8.522261861934322e-05,
+      "max_speed_mps": 941.9623948844506,
+      "finest_level": 1,
+      "leaf_fluid_cells": 11310080,
+      "blocks": 497,
+      "closure_by_region": {
+        "fluid_leaf": {
+          "maximum_absolute_error": 8.881784197001252e-16,
+          "cells_above_1e_8": 0,
+          "nonfinite_cells": 0,
+          "worst_cell": {
+            "level": 1,
+            "grid_id": 28,
+            "position_m": [
+              -0.014188281250000002,
+              -0.033436718750000004,
+              0.0012898437500000002
+            ],
+            "volume_fraction": 1.0,
+            "signed_sum_minus_one": 8.881784197001252e-16
+          }
+        },
+        "fluid_covered_by_finer": {
+          "maximum_absolute_error": 6.661338147750939e-16,
+          "cells_above_1e_8": 0,
+          "nonfinite_cells": 0,
+          "worst_cell": {
+            "level": 0,
+            "grid_id": 0,
+            "position_m": [
+              -0.0319484375,
+              -0.0204390625,
+              0.024804687500000002
+            ],
+            "volume_fraction": 0.9282853371531034,
+            "signed_sum_minus_one": 6.661338147750939e-16
+          }
+        },
+        "solid": {
+          "maximum_absolute_error": 0.0,
+          "cells_above_1e_8": 0,
+          "nonfinite_cells": 0,
+          "worst_cell": null
+        }
+      },
+      "heat_release_available": true
+    },
+    {
+      "time_s": 0.00015001999999999545,
+      "mass_kg": 0.0001616476112710647,
+      "total_energy_J": -272.1778196153602,
+      "methane_kg": 1.7365259738919775e-06,
+      "oxygen_kg": 2.8781238104952527e-05,
+      "min_species": -8.281254297031946e-16,
+      "species_sum_error": 8.881784197001252e-16,
+      "negative_inventory_kg": 2.76722730287824e-26,
+      "finite": true,
+      "pressure_Pa": [
+        550763.2947889428,
+        1393189.2142426579
+      ],
+      "temperature_K": [
+        250.01022941954736,
+        3405.361330058547
+      ],
+      "fluid_volume_m3": 8.522261861934322e-05,
+      "max_speed_mps": 889.5227040328862,
+      "finest_level": 1,
+      "leaf_fluid_cells": 11310080,
+      "blocks": 497,
+      "closure_by_region": {
+        "fluid_leaf": {
+          "maximum_absolute_error": 8.881784197001252e-16,
+          "cells_above_1e_8": 0,
+          "nonfinite_cells": 0,
+          "worst_cell": {
+            "level": 1,
+            "grid_id": 29,
+            "position_m": [
+              -9.92187500000008e-05,
+              -0.035817968750000005,
+              0.00307578125
+            ],
+            "volume_fraction": 1.0,
+            "signed_sum_minus_one": 8.881784197001252e-16
+          }
+        },
+        "fluid_covered_by_finer": {
+          "maximum_absolute_error": 6.661338147750939e-16,
+          "cells_above_1e_8": 0,
+          "nonfinite_cells": 0,
+          "worst_cell": {
+            "level": 0,
+            "grid_id": 0,
+            "position_m": [
+              -0.027185937500000004,
+              -0.022820312500000002,
+              0.0037703125
+            ],
+            "volume_fraction": 1.0,
+            "signed_sum_minus_one": 6.661338147750939e-16
+          }
+        },
+        "solid": {
+          "maximum_absolute_error": 0.0,
+          "cells_above_1e_8": 0,
+          "nonfinite_cells": 0,
+          "worst_cell": null
+        }
+      },
+      "heat_release_available": true
+    },
+    {
+      "time_s": 0.00015045999999999522,
+      "mass_kg": 0.00016072601365536344,
+      "total_energy_J": -272.1558003165344,
+      "methane_kg": 1.7596819811232997e-06,
+      "oxygen_kg": 2.8619648840901355e-05,
+      "min_species": -3.2193e-320,
+      "species_sum_error": 7.771561172376096e-16,
+      "negative_inventory_kg": 0.0,
+      "finite": true,
+      "pressure_Pa": [
+        552060.8320788433,
+        1370005.6847905025
+      ],
+      "temperature_K": [
+        249.76400482784626,
+        3401.3257083365793
+      ],
+      "fluid_volume_m3": 8.522261861934322e-05,
+      "max_speed_mps": 885.1297532027816,
+      "finest_level": 1,
+      "leaf_fluid_cells": 11310080,
+      "blocks": 497,
+      "closure_by_region": {
+        "fluid_leaf": {
+          "maximum_absolute_error": 7.771561172376096e-16,
+          "cells_above_1e_8": 0,
+          "nonfinite_cells": 0,
+          "worst_cell": {
+            "level": 1,
+            "grid_id": 28,
+            "position_m": [
+              -0.02291953125,
+              -0.02827734375,
+              0.0036710937500000003
+            ],
+            "volume_fraction": 1.0,
+            "signed_sum_minus_one": -7.771561172376096e-16
+          }
+        },
+        "fluid_covered_by_finer": {
+          "maximum_absolute_error": 6.661338147750939e-16,
+          "cells_above_1e_8": 0,
+          "nonfinite_cells": 0,
+          "worst_cell": {
+            "level": 0,
+            "grid_id": 0,
+            "position_m": [
+              -0.031551562500000005,
+              -0.0164703125,
+              0.0025796875000000004
+            ],
+            "volume_fraction": 1.0,
+            "signed_sum_minus_one": 6.661338147750939e-16
+          }
+        },
+        "solid": {
+          "maximum_absolute_error": 0.0,
+          "cells_above_1e_8": 0,
+          "nonfinite_cells": 0,
+          "worst_cell": null
+        }
+      },
+      "heat_release_available": true
+    },
+    {
+      "time_s": 0.00015501999999999286,
+      "mass_kg": 0.00015189010823500672,
+      "total_energy_J": -271.74752924260423,
+      "methane_kg": 2.0146822854290255e-06,
+      "oxygen_kg": 2.7142801215087547e-05,
+      "min_species": -2.1714e-320,
+      "species_sum_error": 8.881784197001252e-16,
+      "negative_inventory_kg": 0.0,
+      "finite": true,
+      "pressure_Pa": [
+        533149.8262572697,
+        1391509.3969223984
+      ],
+      "temperature_K": [
+        247.42606686267126,
+        3359.121187036297
+      ],
+      "fluid_volume_m3": 8.52226186193432e-05,
+      "max_speed_mps": 840.7458825239777,
+      "finest_level": 1,
+      "leaf_fluid_cells": 11310080,
+      "blocks": 485,
+      "closure_by_region": {
+        "fluid_leaf": {
+          "maximum_absolute_error": 8.881784197001252e-16,
+          "cells_above_1e_8": 0,
+          "nonfinite_cells": 0,
+          "worst_cell": {
+            "level": 1,
+            "grid_id": 30,
+            "position_m": [
+              0.00307578125,
+              -0.035817968750000005,
+              0.00386953125
+            ],
+            "volume_fraction": 1.0,
+            "signed_sum_minus_one": 8.881784197001252e-16
+          }
+        },
+        "fluid_covered_by_finer": {
+          "maximum_absolute_error": 7.771561172376096e-16,
+          "cells_above_1e_8": 0,
+          "nonfinite_cells": 0,
+          "worst_cell": {
+            "level": 0,
+            "grid_id": 1,
+            "position_m": [
+              0.006151562500000001,
+              -0.035520312500000005,
+              0.00019843750000000002
+            ],
+            "volume_fraction": 1.0,
+            "signed_sum_minus_one": -7.771561172376096e-16
+          }
+        },
+        "solid": {
+          "maximum_absolute_error": 0.0,
+          "cells_above_1e_8": 0,
+          "nonfinite_cells": 0,
+          "worst_cell": null
+        }
+      },
+      "heat_release_available": true
+    },
+    {
+      "time_s": 0.00016001999999999027,
+      "mass_kg": 0.00014362439377263648,
+      "total_energy_J": -270.95690222001787,
+      "methane_kg": 2.3148575381095357e-06,
+      "oxygen_kg": 2.5979520559276182e-05,
+      "min_species": -2.8127e-320,
+      "species_sum_error": 8.881784197001252e-16,
+      "negative_inventory_kg": 0.0,
+      "finite": true,
+      "pressure_Pa": [
+        515520.05837335065,
+        1296190.052323878
+      ],
+      "temperature_K": [
+        259.8725939086848,
+        3360.9530560379944
+      ],
+      "fluid_volume_m3": 8.522261861934312e-05,
+      "max_speed_mps": 793.1474278490106,
+      "finest_level": 1,
+      "leaf_fluid_cells": 11310080,
+      "blocks": 489,
+      "closure_by_region": {
+        "fluid_leaf": {
+          "maximum_absolute_error": 8.881784197001252e-16,
+          "cells_above_1e_8": 0,
+          "nonfinite_cells": 0,
+          "worst_cell": {
+            "level": 1,
+            "grid_id": 31,
+            "position_m": [
+              0.025102343750000002,
+              -0.02609453125,
+              9.921875000000001e-05
+            ],
+            "volume_fraction": 1.0,
+            "signed_sum_minus_one": 8.881784197001252e-16
+          }
+        },
+        "fluid_covered_by_finer": {
+          "maximum_absolute_error": 6.661338147750939e-16,
+          "cells_above_1e_8": 0,
+          "nonfinite_cells": 0,
+          "worst_cell": {
+            "level": 0,
+            "grid_id": 0,
+            "position_m": [
+              -0.0323453125,
+              -0.0176609375,
+              0.0244078125
+            ],
+            "volume_fraction": 1.0,
+            "signed_sum_minus_one": 6.661338147750939e-16
+          }
+        },
+        "solid": {
+          "maximum_absolute_error": 0.0,
+          "cells_above_1e_8": 0,
+          "nonfinite_cells": 0,
+          "worst_cell": null
+        }
+      },
+      "heat_release_available": true
+    },
+    {
+      "time_s": 0.00016501999999998768,
+      "mass_kg": 0.00013656699933235045,
+      "total_energy_J": -269.8827948007171,
+      "methane_kg": 2.6271387045787937e-06,
+      "oxygen_kg": 2.516687036780168e-05,
+      "min_species": -2.4876e-320,
+      "species_sum_error": 8.881784197001252e-16,
+      "negative_inventory_kg": 0.0,
+      "finite": true,
+      "pressure_Pa": [
+        483805.2184916228,
+        1273222.9036548035
+      ],
+      "temperature_K": [
+        262.11159289511204,
+        3393.0038131895662
+      ],
+      "fluid_volume_m3": 8.522261861934327e-05,
+      "max_speed_mps": 746.7180011522549,
+      "finest_level": 1,
+      "leaf_fluid_cells": 11310080,
+      "blocks": 489,
+      "closure_by_region": {
+        "fluid_leaf": {
+          "maximum_absolute_error": 8.881784197001252e-16,
+          "cells_above_1e_8": 0,
+          "nonfinite_cells": 0,
+          "worst_cell": {
+            "level": 1,
+            "grid_id": 30,
+            "position_m": [
+              0.00307578125,
+              -0.03542109375,
+              0.00466328125
+            ],
+            "volume_fraction": 1.0,
+            "signed_sum_minus_one": 8.881784197001252e-16
+          }
+        },
+        "fluid_covered_by_finer": {
+          "maximum_absolute_error": 6.661338147750939e-16,
+          "cells_above_1e_8": 0,
+          "nonfinite_cells": 0,
+          "worst_cell": {
+            "level": 0,
+            "grid_id": 0,
+            "position_m": [
+              -0.032742187500000006,
+              -0.0184546875,
+              0.0009921875
+            ],
+            "volume_fraction": 1.0,
+            "signed_sum_minus_one": 6.661338147750939e-16
+          }
+        },
+        "solid": {
+          "maximum_absolute_error": 0.0,
+          "cells_above_1e_8": 0,
+          "nonfinite_cells": 0,
+          "worst_cell": null
+        }
+      },
+      "heat_release_available": true
+    },
+    {
+      "time_s": 0.0001666999999999868,
+      "mass_kg": 0.00013442551903223662,
+      "total_energy_J": -269.46978069013085,
+      "methane_kg": 2.7333706456206012e-06,
+      "oxygen_kg": 2.49535586494127e-05,
+      "min_species": -2.541e-320,
+      "species_sum_error": 7.771561172376096e-16,
+      "negative_inventory_kg": 0.0,
+      "finite": true,
+      "pressure_Pa": [
+        473594.6364143343,
+        1238803.4741362564
+      ],
+      "temperature_K": [
+        262.46576752591454,
+        3382.915433082915
+      ],
+      "fluid_volume_m3": 8.522261861934327e-05,
+      "max_speed_mps": 731.5415903811725,
+      "finest_level": 1,
+      "leaf_fluid_cells": 11310080,
+      "blocks": 489,
+      "closure_by_region": {
+        "fluid_leaf": {
+          "maximum_absolute_error": 7.771561172376096e-16,
+          "cells_above_1e_8": 0,
+          "nonfinite_cells": 0,
+          "worst_cell": {
+            "level": 1,
+            "grid_id": 28,
+            "position_m": [
+              -0.02391171875,
+              -0.028078906249999997,
+              0.00069453125
+            ],
+            "volume_fraction": 1.0,
+            "signed_sum_minus_one": -7.771561172376096e-16
+          }
+        },
+        "fluid_covered_by_finer": {
+          "maximum_absolute_error": 7.771561172376096e-16,
+          "cells_above_1e_8": 0,
+          "nonfinite_cells": 0,
+          "worst_cell": {
+            "level": 0,
+            "grid_id": 2,
+            "position_m": [
+              0.0263921875,
+              -0.025598437499999998,
+              0.0049609375
+            ],
+            "volume_fraction": 1.0,
+            "signed_sum_minus_one": -7.771561172376096e-16
+          }
+        },
+        "solid": {
+          "maximum_absolute_error": 0.0,
+          "cells_above_1e_8": 0,
+          "nonfinite_cells": 0,
+          "worst_cell": null
+        }
+      },
+      "heat_release_available": true
+    }
+  ],
+  "checks": {
+    "every_step_species_sum": true,
+    "every_step_finite": true,
+    "thermo_range": true,
+    "finite": true,
+    "species_nonnegative": false,
+    "every_step_species_nonnegative": false,
+    "species_sum": true,
+    "positive_pressure": true
+  },
+  "every_step_species": {
+    "samples": 1770,
+    "minimum_mass_fraction": -0.0010239157,
+    "time_interval_s": [
+      1.46e-05,
+      5.0000000000002964e-05
+    ],
+    "note": "Native extrema restricted to the retained checkpoint interval."
+  },
+  "segment_species_histories": [
+    {
+      "samples": 21,
+      "minimum_mass_fraction": -1.098615e-05,
+      "time_interval_s": [
+        0.0,
+        2e-07
+      ],
+      "note": "Native extrema restricted to the retained checkpoint interval."
+    },
+    {
+      "samples": 340,
+      "minimum_mass_fraction": -0.0009090749,
+      "time_interval_s": [
+        2e-07,
+        6.999999999999953e-06
+      ],
+      "note": "Native extrema restricted to the retained checkpoint interval."
+    },
+    {
+      "samples": 370,
+      "minimum_mass_fraction": -0.0010088734,
+      "time_interval_s": [
+        6.999999999999953e-06,
+        1.4399999999999882e-05
+      ],
+      "note": "Native extrema restricted to the retained checkpoint interval."
+    },
+    {
+      "samples": 10,
+      "minimum_mass_fraction": -0.0006097052,
+      "time_interval_s": [
+        1.4399999999999882e-05,
+        1.46e-05
+      ],
+      "note": "Native extrema restricted to the retained checkpoint interval."
+    },
+    {
+      "samples": 1770,
+      "minimum_mass_fraction": -0.0010239157,
+      "time_interval_s": [
+        1.46e-05,
+        5.0000000000002964e-05
+      ],
+      "note": "Native extrema restricted to the retained checkpoint interval."
+    },
+    {
+      "samples": 290,
+      "minimum_mass_fraction": -2.3400934e-08,
+      "time_interval_s": [
+        5.0000000000002964e-05,
+        5.58e-05
+      ],
+      "note": "Native extrema restricted to the retained checkpoint interval."
+    },
+    {
+      "samples": 20,
+      "minimum_mass_fraction": -1.0438946e-09,
+      "time_interval_s": [
+        5.58e-05,
+        5.62e-05
+      ],
+      "note": "Native extrema restricted to the retained checkpoint interval."
+    },
+    {
+      "samples": 190,
+      "minimum_mass_fraction": -2.0885805e-10,
+      "time_interval_s": [
+        5.62e-05,
+        6e-05
+      ],
+      "note": "Native extrema restricted to the retained checkpoint interval."
+    },
+    {
+      "samples": 1500,
+      "minimum_mass_fraction": -1.8624641e-10,
+      "time_interval_s": [
+        6e-05,
+        9.000000000000479e-05
+      ],
+      "note": "Native extrema restricted to the retained checkpoint interval."
+    },
+    {
+      "samples": 3023,
+      "minimum_mass_fraction": -3.9621183e-09,
+      "time_interval_s": [
+        9.000000000000479e-05,
+        0.00015045999999999522
+      ],
+      "note": "Native extrema restricted to the retained checkpoint interval."
+    },
+    {
+      "samples": 812,
+      "minimum_mass_fraction": -9.9438981e-15,
+      "time_interval_s": [
+        0.00015045999999999522,
+        0.0001666999999999868
+      ],
+      "note": "Native extrema restricted to the retained checkpoint interval."
+    }
+  ],
+  "physical_validation_passed": false,
+  "sampling": "Native checkpoint trajectory snapshots; no temporal interpolation. GIF frames may have unequal physical spacing.",
+  "scope": "Allocation records establish consecutive checkpoint lineage; input and field checks reject incompatible snapshots.",
+  "sources": [
+    {
+      "directory": "/Users/sgfx/.codex/worktrees/3d-cfd-review/prox_rde_sim/runs3d/netl_startup_20261027/final_trajectory/segments/00_pilot200_local_amr_v2_mpi4",
+      "preview_sha256": "e3c252e5b16aeeb9699463046a010619168b5604b2bfefae5eb2c2c10e1f4dc7",
+      "allocation": {
+        "devices": "index, name, memory.total [MiB]\n0, NVIDIA H100 80GB HBM3, 81559 MiB\n1, NVIDIA H100 80GB HBM3, 81559 MiB\n2, NVIDIA H100 80GB HBM3, 81559 MiB\n3, NVIDIA H100 80GB HBM3, 81559 MiB\n",
+        "topology": "\t\u001b[4mGPU0\tGPU1\tGPU2\tGPU3\tCPU Affinity\tNUMA Affinity\tGPU NUMA ID\u001b[0m\nFailed to run topology matrix\n\n",
+        "ranks": 4,
+        "command": [
+          "mpirun",
+          "--allow-run-as-root",
+          "--bind-to",
+          "none",
+          "-np",
+          "4",
+          "python",
+          "/opt/mpi_gpu_rank.py",
+          "/opt/PeleC/build-mpi/Exec/RegTests/RDEStartup/PeleC-RDEStartup",
+          "inputs"
+        ]
+      }
+    },
+    {
+      "directory": "/Users/sgfx/.codex/worktrees/3d-cfd-review/prox_rde_sim/runs3d/netl_startup_20261027/final_trajectory/segments/01_long200_segment1_retry",
+      "preview_sha256": "c481749966894aa0ac53e5012ede048603d4c90e96d291d913c7cc2d9224f5c5",
+      "allocation": {
+        "devices": "index, name, memory.total [MiB]\n0, NVIDIA H100 80GB HBM3, 81559 MiB\n1, NVIDIA H100 80GB HBM3, 81559 MiB\n2, NVIDIA H100 80GB HBM3, 81559 MiB\n3, NVIDIA H100 80GB HBM3, 81559 MiB\n",
+        "topology": "\t\u001b[4mGPU0\tGPU1\tGPU2\tGPU3\tCPU Affinity\tNUMA Affinity\tGPU NUMA ID\u001b[0m\nFailed to run topology matrix\n\n",
+        "ranks": 4,
+        "command": [
+          "mpirun",
+          "--allow-run-as-root",
+          "--bind-to",
+          "none",
+          "-np",
+          "4",
+          "python",
+          "/opt/mpi_gpu_rank.py",
+          "/opt/PeleC/build-mpi/Exec/RegTests/RDEStartup/PeleC-RDEStartup",
+          "inputs",
+          "amr.restart=/results/pilot200_local_amr_v2_mpi4/chk00020"
+        ]
+      }
+    },
+    {
+      "directory": "/Users/sgfx/.codex/worktrees/3d-cfd-review/prox_rde_sim/runs3d/netl_startup_20261027/final_trajectory/segments/02_long200_cuda_segment2",
+      "preview_sha256": "2a96b833130f899b762b055ea846f090a8540243b63144afddbc32e938b7e89a",
+      "allocation": {
+        "devices": "index, name, memory.total [MiB]\n0, NVIDIA H100 80GB HBM3, 81559 MiB\n1, NVIDIA H100 80GB HBM3, 81559 MiB\n2, NVIDIA H100 80GB HBM3, 81559 MiB\n3, NVIDIA H100 80GB HBM3, 81559 MiB\n",
+        "topology": "\t\u001b[4mGPU0\tGPU1\tGPU2\tGPU3\tCPU Affinity\tNUMA Affinity\tGPU NUMA ID\u001b[0m\nFailed to run topology matrix\n\n",
+        "ranks": 4,
+        "command": [
+          "/opt/cuda-mpi/bin/mpirun",
+          "--allow-run-as-root",
+          "--bind-to",
+          "none",
+          "-np",
+          "4",
+          "python",
+          "/opt/mpi_gpu_rank.py",
+          "/opt/PeleC/build-mpi/Exec/RegTests/RDEStartup/PeleC-RDEStartup",
+          "inputs",
+          "amr.restart=/results/long200_segment1_retry/chk00360"
+        ]
+      }
+    },
+    {
+      "directory": "/Users/sgfx/.codex/worktrees/3d-cfd-review/prox_rde_sim/runs3d/netl_startup_20261027/final_trajectory/segments/03_burning_gmres_control",
+      "preview_sha256": "04c756542c2f9ed6f59617fb3a9fab2d4373ec3bdfe47d7f205aab814a547f12",
+      "allocation": {
+        "devices": "index, name, memory.total [MiB]\n0, NVIDIA H100 80GB HBM3, 81559 MiB\n1, NVIDIA H100 80GB HBM3, 81559 MiB\n2, NVIDIA H100 80GB HBM3, 81559 MiB\n3, NVIDIA H100 80GB HBM3, 81559 MiB\n",
+        "topology": "\t\u001b[4mGPU0\tGPU1\tGPU2\tGPU3\tCPU Affinity\tNUMA Affinity\tGPU NUMA ID\u001b[0m\nFailed to run topology matrix\n\n",
+        "ranks": 4,
+        "command": [
+          "/opt/cuda-mpi/bin/mpirun",
+          "--allow-run-as-root",
+          "--bind-to",
+          "none",
+          "-np",
+          "4",
+          "python",
+          "/opt/mpi_gpu_rank.py",
+          "/opt/PeleC/build-mpi/Exec/RegTests/RDEStartup/PeleC-RDEStartup",
+          "inputs",
+          "amr.restart=/results/long200_cuda_segment2/chk00730"
+        ]
+      }
+    },
+    {
+      "directory": "/Users/sgfx/.codex/worktrees/3d-cfd-review/prox_rde_sim/runs3d/netl_startup_20261027/final_trajectory/segments/04_long200_detached_segment3",
+      "preview_sha256": "7c9b6d0a14e30daa4cfd95e5b5c34cacf2fe64b808fcc2b2dafa88928152dcef",
+      "allocation": {
+        "devices": "index, name, memory.total [MiB]\n0, NVIDIA H100 80GB HBM3, 81559 MiB\n1, NVIDIA H100 80GB HBM3, 81559 MiB\n2, NVIDIA H100 80GB HBM3, 81559 MiB\n3, NVIDIA H100 80GB HBM3, 81559 MiB\n",
+        "topology": "\t\u001b[4mGPU0\tGPU1\tGPU2\tGPU3\tCPU Affinity\tNUMA Affinity\tGPU NUMA ID\u001b[0m\nFailed to run topology matrix\n\n",
+        "ranks": 4,
+        "command": [
+          "/opt/cuda-mpi/bin/mpirun",
+          "--allow-run-as-root",
+          "--bind-to",
+          "none",
+          "-np",
+          "4",
+          "python",
+          "/opt/mpi_gpu_rank.py",
+          "/opt/PeleC/build-mpi/Exec/RegTests/RDEStartup/PeleC-RDEStartup",
+          "inputs",
+          "amr.restart=/results/burning_gmres_control/chk00740"
+        ]
+      }
+    },
+    {
+      "directory": "/Users/sgfx/.codex/worktrees/3d-cfd-review/prox_rde_sim/runs3d/netl_startup_20261027/final_trajectory/segments/05_closure_replay_prepare_55p8us",
+      "preview_sha256": "c81633e5880408f9a0184fcb0ca52711d4608526cf17cc8187890a07605b2cd0",
+      "allocation": {
+        "devices": "index, name, memory.total [MiB]\n0, NVIDIA H100 80GB HBM3, 81559 MiB\n1, NVIDIA H100 80GB HBM3, 81559 MiB\n2, NVIDIA H100 80GB HBM3, 81559 MiB\n3, NVIDIA H100 80GB HBM3, 81559 MiB\n",
+        "topology": "\t\u001b[4mGPU0\tGPU1\tGPU2\tGPU3\tCPU Affinity\tNUMA Affinity\tGPU NUMA ID\u001b[0m\nFailed to run topology matrix\n\n",
+        "ranks": 4,
+        "command": [
+          "/opt/cuda-mpi/bin/mpirun",
+          "--allow-run-as-root",
+          "--bind-to",
+          "none",
+          "-np",
+          "4",
+          "python",
+          "/opt/mpi_gpu_rank.py",
+          "/opt/PeleC/build-mpi/Exec/RegTests/RDEStartup/PeleC-RDEStartup",
+          "inputs",
+          "amr.restart=/results/long200_detached_segment3/chk02510"
+        ]
+      }
+    },
+    {
+      "directory": "/Users/sgfx/.codex/worktrees/3d-cfd-review/prox_rde_sim/runs3d/netl_startup_20261027/final_trajectory/segments/06_closure_refined_walls_55p8_to_56p2us",
+      "preview_sha256": "2467252d9d5de2c056259ebab4c2bf8229511e8bd5299726c3e47df11bd17807",
+      "allocation": {
+        "devices": "index, name, memory.total [MiB]\n0, NVIDIA H100 80GB HBM3, 81559 MiB\n1, NVIDIA H100 80GB HBM3, 81559 MiB\n2, NVIDIA H100 80GB HBM3, 81559 MiB\n3, NVIDIA H100 80GB HBM3, 81559 MiB\n",
+        "topology": "\t\u001b[4mGPU0\tGPU1\tGPU2\tGPU3\tCPU Affinity\tNUMA Affinity\tGPU NUMA ID\u001b[0m\nFailed to run topology matrix\n\n",
+        "ranks": 4,
+        "command": [
+          "/opt/cuda-mpi/bin/mpirun",
+          "--allow-run-as-root",
+          "--bind-to",
+          "none",
+          "-np",
+          "4",
+          "python",
+          "/opt/mpi_gpu_rank.py",
+          "/opt/PeleC/build-mpi/Exec/RegTests/RDEStartup/PeleC-RDEStartup",
+          "inputs",
+          "amr.message_int=1",
+          "amr.restart=/results/closure_replay_prepare_55p8us/chk02800"
+        ]
+      }
+    },
+    {
+      "directory": "/Users/sgfx/.codex/worktrees/3d-cfd-review/prox_rde_sim/runs3d/netl_startup_20261027/final_trajectory/segments/07_closure_walls_validation_56p2_to_60us",
+      "preview_sha256": "426edd009b3f76ee4d9a47011454b1bdde104aa49f2de8b466294c70d4b29982",
+      "allocation": {
+        "devices": "index, name, memory.total [MiB]\n0, NVIDIA H100 80GB HBM3, 81559 MiB\n1, NVIDIA H100 80GB HBM3, 81559 MiB\n2, NVIDIA H100 80GB HBM3, 81559 MiB\n3, NVIDIA H100 80GB HBM3, 81559 MiB\n",
+        "topology": "\t\u001b[4mGPU0\tGPU1\tGPU2\tGPU3\tCPU Affinity\tNUMA Affinity\tGPU NUMA ID\u001b[0m\nFailed to run topology matrix\n\n",
+        "ranks": 4,
+        "command": [
+          "/opt/cuda-mpi/bin/mpirun",
+          "--allow-run-as-root",
+          "--bind-to",
+          "none",
+          "-np",
+          "4",
+          "python",
+          "/opt/mpi_gpu_rank.py",
+          "/opt/PeleC/build-mpi/Exec/RegTests/RDEStartup/PeleC-RDEStartup",
+          "inputs",
+          "amr.message_int=1",
+          "amr.restart=/results/closure_refined_walls_55p8_to_56p2us/chk02820"
+        ]
+      }
+    },
+    {
+      "directory": "/Users/sgfx/.codex/worktrees/3d-cfd-review/prox_rde_sim/runs3d/netl_startup_20261027/final_trajectory/segments/08_long200_refined_walls_from60us",
+      "preview_sha256": "04b8e19f295af344794061c58eb85daf3092a21cd0abf6c5ddc29668cbad980c",
+      "allocation": {
+        "devices": "index, name, memory.total [MiB]\n0, NVIDIA H200, 143771 MiB\n1, NVIDIA H200, 143771 MiB\n2, NVIDIA H200, 143771 MiB\n3, NVIDIA H200, 143771 MiB\n",
+        "topology": "\t\u001b[4mGPU0\tGPU1\tGPU2\tGPU3\tCPU Affinity\tNUMA Affinity\tGPU NUMA ID\u001b[0m\nFailed to run topology matrix\n\n",
+        "ranks": 4,
+        "command": [
+          "/opt/cuda-mpi/bin/mpirun",
+          "--allow-run-as-root",
+          "--bind-to",
+          "none",
+          "-np",
+          "4",
+          "python",
+          "/opt/mpi_gpu_rank.py",
+          "/opt/PeleC/build-mpi/Exec/RegTests/RDEStartup/PeleC-RDEStartup",
+          "inputs",
+          "amr.message_int=1",
+          "amr.restart=/results/closure_walls_validation_56p2_to_60us/chk03010"
+        ]
+      }
+    },
+    {
+      "directory": "/Users/sgfx/.codex/worktrees/3d-cfd-review/prox_rde_sim/runs3d/netl_startup_20261027/final_trajectory/segments/09_long200_recovery_from90us",
+      "preview_sha256": "31eb6364ed814beb7282ecae73e95b0442635eb06daa09bd455b207d982722d5",
+      "allocation": {
+        "devices": "index, name, memory.total [MiB]\n0, NVIDIA H100 80GB HBM3, 81559 MiB\n1, NVIDIA H100 80GB HBM3, 81559 MiB\n2, NVIDIA H100 80GB HBM3, 81559 MiB\n3, NVIDIA H100 80GB HBM3, 81559 MiB\n",
+        "topology": "\t\u001b[4mGPU0\tGPU1\tGPU2\tGPU3\tCPU Affinity\tNUMA Affinity\tGPU NUMA ID\u001b[0m\nFailed to run topology matrix\n\n",
+        "ranks": 4,
+        "command": [
+          "/opt/cuda-mpi/bin/mpirun",
+          "--allow-run-as-root",
+          "--bind-to",
+          "none",
+          "-np",
+          "4",
+          "python",
+          "/opt/mpi_gpu_rank.py",
+          "/opt/PeleC/build-mpi/Exec/RegTests/RDEStartup/PeleC-RDEStartup",
+          "inputs",
+          "amr.message_int=1",
+          "amr.restart=/results/long200_refined_walls_from60us/chk04510"
+        ]
+      }
+    },
+    {
+      "directory": "/Users/sgfx/.codex/worktrees/3d-cfd-review/prox_rde_sim/runs3d/netl_startup_20261027/final_trajectory/segments/10_long200_from150p46us_final",
+      "preview_sha256": "cdc4dcbb71734bf8caf3911a95b573e729f59e0fe5dc041a9c2035ecf128c699",
+      "allocation": {
+        "devices": "index, name, memory.total [MiB]\n0, NVIDIA H100 80GB HBM3, 81559 MiB\n1, NVIDIA H100 80GB HBM3, 81559 MiB\n2, NVIDIA H100 80GB HBM3, 81559 MiB\n3, NVIDIA H100 80GB HBM3, 81559 MiB\n",
+        "topology": "\t\u001b[4mGPU0\tGPU1\tGPU2\tGPU3\tCPU Affinity\tNUMA Affinity\tGPU NUMA ID\u001b[0m\nFailed to run topology matrix\n\n",
+        "ranks": 4,
+        "command": [
+          "/opt/cuda-mpi/bin/mpirun",
+          "--allow-run-as-root",
+          "--bind-to",
+          "none",
+          "-np",
+          "4",
+          "python",
+          "/opt/mpi_gpu_rank.py",
+          "/opt/PeleC/build-mpi/Exec/RegTests/RDEStartup/PeleC-RDEStartup",
+          "inputs",
+          "amr.message_int=1",
+          "amr.restart=/results/long200_recovery_from90us/chk07533"
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,175 @@
+{
+  "audit": {
+    "latest_time_s": 0.0001667,
+    "fields": {
+      "density": {
+        "samples": 812,
+        "minimum": 0.00044562163,
+        "maximum": 0.015549134,
+        "nonfinite_samples": 0
+      },
+      "x_velocity": {
+        "samples": 812,
+        "minimum": -45283.081,
+        "maximum": 45286.689,
+        "nonfinite_samples": 0
+      },
+      "y_velocity": {
+        "samples": 812,
+        "minimum": -50005.027,
+        "maximum": 17557.631,
+        "nonfinite_samples": 0
+      },
+      "z_velocity": {
+        "samples": 812,
+        "minimum": -20256.762,
+        "maximum": 88493.006,
+        "nonfinite_samples": 0
+      },
+      "eint_e": {
+        "samples": 812,
+        "minimum": -53610846000.0,
+        "maximum": 208853080.0,
+        "nonfinite_samples": 0
+      },
+      "Temp": {
+        "samples": 812,
+        "minimum": 247.3986,
+        "maximum": 3404.943,
+        "nonfinite_samples": 0
+      },
+      "pressure": {
+        "samples": 812,
+        "minimum": 4735946.4,
+        "maximum": 15117146.0,
+        "nonfinite_samples": 0
+      },
+      "massfrac": {
+        "samples": 812,
+        "minimum": -9.9438981e-15,
+        "maximum": 0.99999276,
+        "nonfinite_samples": 0
+      },
+      "sumYminus1": {
+        "samples": 812,
+        "minimum": -9.9920072e-16,
+        "maximum": 1.110223e-15,
+        "nonfinite_samples": 0
+      }
+    },
+    "emergency_stop_required": false,
+    "violation_count": 0,
+    "first_violations": [],
+    "every_step_species_sum": {
+      "samples": 812,
+      "worst_time_s": 0.00015786,
+      "maximum_absolute_error": 1.110223e-15,
+      "worst_minimum_sum_minus_one": -7.7715612e-16,
+      "worst_maximum_sum_minus_one": 1.110223e-15,
+      "note": "Native log includes all AMR levels; localize discrepancies before classifying active-fluid error."
+    }
+  },
+  "latest_row": {
+    "time_s": 0.0001666999999999868,
+    "mass_kg": 0.00013442551903223662,
+    "total_energy_J": -269.46978069013085,
+    "methane_kg": 2.7333706456206012e-06,
+    "oxygen_kg": 2.49535586494127e-05,
+    "min_species": -2.541e-320,
+    "species_sum_error": 7.771561172376096e-16,
+    "negative_inventory_kg": 0.0,
+    "finite": true,
+    "pressure_Pa": [
+      473594.6364143343,
+      1238803.4741362564
+    ],
+    "temperature_K": [
+      262.46576752591454,
+      3382.915433082915
+    ],
+    "fluid_volume_m3": 8.522261861934327e-05,
+    "max_speed_mps": 731.5415903811725,
+    "finest_level": 1,
+    "leaf_fluid_cells": 11310080,
+    "blocks": 489,
+    "closure_by_region": {
+      "fluid_leaf": {
+        "maximum_absolute_error": 7.771561172376096e-16,
+        "cells_above_1e_8": 0,
+        "nonfinite_cells": 0,
+        "worst_cell": {
+          "level": 1,
+          "grid_id": 28,
+          "position_m": [
+            -0.02391171875,
+            -0.028078906249999997,
+            0.00069453125
+          ],
+          "volume_fraction": 1.0,
+          "signed_sum_minus_one": -7.771561172376096e-16
+        }
+      },
+      "fluid_covered_by_finer": {
+        "maximum_absolute_error": 7.771561172376096e-16,
+        "cells_above_1e_8": 0,
+        "nonfinite_cells": 0,
+        "worst_cell": {
+          "level": 0,
+          "grid_id": 2,
+          "position_m": [
+            0.0263921875,
+            -0.025598437499999998,
+            0.0049609375
+          ],
+          "volume_fraction": 1.0,
+          "signed_sum_minus_one": -7.771561172376096e-16
+        }
+      },
+      "solid": {
+        "maximum_absolute_error": 0.0,
+        "cells_above_1e_8": 0,
+        "nonfinite_cells": 0,
+        "worst_cell": null
+      }
+    },
+    "heat_release_available": true
+  },
+  "fields": {
+    "pressure_Pa": {
+      "finite": true,
+      "last_range": [
+        473904.1212968682,
+        1229925.4103179208
+      ]
+    },
+    "temperature_K": {
+      "finite": true,
+      "last_range": [
+        303.69281781328044,
+        3379.1349559366486
+      ]
+    },
+    "methane_Y": {
+      "finite": true,
+      "last_range": [
+        1.4121274143000075e-21,
+        0.9498070036572893
+      ]
+    },
+    "oxygen_Y": {
+      "finite": true,
+      "last_range": [
+        2.3603341067743842e-05,
+        0.9980556873785226
+      ]
+    },
+    "heat_release_W_m3": {
+      "finite": true,
+      "last_range": [
+        -123621253945.24893,
+        13439578991176.688
+      ]
+    }
+  },
+  "preview_time_s": 0.0001666999999999868
+}
